@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regen Studio | The Art of Regeneration</title>
+  <meta name="description" content="A visual exploration of Regen Studio's polygon identity. An immersive design experience celebrating geometric beauty and regenerative innovation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="trial.css">
+</head>
+<body>
+
+  <!-- Floating Navigation -->
+  <nav class="trial-nav" id="trialNav">
+    <a href="index.html" class="trial-nav__logo">
+      <img src="Images/Website Logo.svg" alt="Regen Studio" class="trial-nav__logo-img">
+    </a>
+    <div class="trial-nav__links">
+      <a href="#hero" class="trial-nav__link active" data-section="hero">Hero</a>
+      <a href="#mosaic" class="trial-nav__link" data-section="mosaic">Mosaic</a>
+      <a href="#grid" class="trial-nav__link" data-section="grid">Grid</a>
+      <a href="#reveal" class="trial-nav__link" data-section="reveal">Reveal</a>
+      <a href="#wave" class="trial-nav__link" data-section="wave">Wave</a>
+      <a href="#gallery" class="trial-nav__link" data-section="gallery">Gallery</a>
+    </div>
+    <a href="index.html" class="trial-nav__back">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Site
+    </a>
+  </nav>
+
+  <!-- Section 1: Hero with Polygon Explosion -->
+  <section class="hero-section" id="hero">
+    <!-- Background triangle grid -->
+    <div class="hero-grid" id="heroGrid"></div>
+    <!-- Floating animated polygons -->
+    <div class="hero-polygons" id="heroPolygons"></div>
+    <!-- Central content -->
+    <div class="hero-content">
+      <div class="hero-label">
+        <svg class="hero-label__icon" width="24" height="24" viewBox="0 0 24 24">
+          <polygon points="12,2 22,20 2,20" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        <span>A Visual Experience by Regen Studio</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-title__line hero-title__line--1">The Art of</span>
+        <span class="hero-title__line hero-title__line--2"><em>Regeneration</em></span>
+      </h1>
+      <p class="hero-subtitle">Where geometry meets nature. Where polygons come alive.</p>
+      <div class="hero-scroll-cue">
+        <span>Scroll to explore</span>
+        <div class="hero-scroll-cue__arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="7 13 12 18 17 13"/><line x1="12" y1="6" x2="12" y2="18"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <!-- Decorative corner triangles -->
+    <svg class="hero-corner hero-corner--tl" viewBox="0 0 200 200" preserveAspectRatio="none">
+      <polygon points="0,0 200,0 0,200" fill="url(#grad-teal)" opacity="0.08"/>
+      <defs><linearGradient id="grad-teal" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#009BBB"/><stop offset="100%" stop-color="#00914B"/></linearGradient></defs>
+    </svg>
+    <svg class="hero-corner hero-corner--br" viewBox="0 0 200 200" preserveAspectRatio="none">
+      <polygon points="200,0 200,200 0,200" fill="url(#grad-magenta)" opacity="0.08"/>
+      <defs><linearGradient id="grad-magenta" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#93093F"/><stop offset="100%" stop-color="#E71846"/></linearGradient></defs>
+    </svg>
+  </section>
+
+  <!-- Section 2: Polygon Mosaic -->
+  <section class="mosaic-section" id="mosaic">
+    <div class="section-header">
+      <p class="section-label">Tessellation</p>
+      <h2 class="section-title">Polygon <em>Mosaic</em></h2>
+      <p class="section-desc">Watch as hundreds of triangles assemble into a living geometric landscape, each finding its place in the composition.</p>
+    </div>
+    <div class="mosaic-container">
+      <svg class="mosaic-svg" id="mosaicSvg" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+  </section>
+
+  <!-- Section 3: Interactive Polygon Grid -->
+  <section class="grid-section" id="grid">
+    <div class="section-header section-header--light">
+      <p class="section-label">Interaction</p>
+      <h2 class="section-title">Living <em>Canvas</em></h2>
+      <p class="section-desc">Move your cursor across the grid. Watch as polygons respond to your presence -- scaling, rotating, and shifting color in a ripple of life.</p>
+    </div>
+    <div class="grid-container" id="gridContainer">
+      <canvas id="gridCanvas"></canvas>
+    </div>
+  </section>
+
+  <!-- Section 4: Polygon Transition/Reveal -->
+  <section class="reveal-section" id="reveal">
+    <div class="reveal-container">
+      <div class="reveal-stage" id="revealStage">
+        <canvas id="revealCanvas"></canvas>
+        <div class="reveal-text" id="revealText">
+          <p class="reveal-text__label">Our Philosophy</p>
+          <h2 class="reveal-text__title">We design systems that <em>regenerate</em></h2>
+          <p class="reveal-text__body">Every polygon represents a connection. Every triangle, a relationship between people, planet, and purpose. When they come together, they form something greater than the sum of their parts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Color Spectrum Wave -->
+  <section class="wave-section" id="wave">
+    <div class="section-header">
+      <p class="section-label">Spectrum</p>
+      <h2 class="section-title">Color <em>Wave</em></h2>
+      <p class="section-desc">The full palette in motion. A flowing river of geometry where every hue finds its rhythm.</p>
+    </div>
+    <div class="wave-container" id="waveContainer">
+      <canvas id="waveCanvas"></canvas>
+    </div>
+  </section>
+
+  <!-- Section 6: Geometric Art Gallery -->
+  <section class="gallery-section" id="gallery">
+    <div class="section-header">
+      <p class="section-label">Gallery</p>
+      <h2 class="section-title">Geometric <em>Compositions</em></h2>
+      <p class="section-desc">Four original polygon artworks celebrating the Regen Studio identity. Hover to transform.</p>
+    </div>
+    <div class="gallery-grid">
+
+      <!-- Card 1: Crystalline -->
+      <div class="gallery-card" data-artwork="crystalline">
+        <div class="gallery-card__art">
+          <svg viewBox="0 0 400 400" class="gallery-artwork" id="artwork1">
+            <!-- Generated by JS -->
+          </svg>
+        </div>
+        <div class="gallery-card__info">
+          <h3>Crystalline Growth</h3>
+          <p>Faceted forms emerging from a central seed</p>
+        </div>
+      </div>
+
+      <!-- Card 2: Strata -->
+      <div class="gallery-card" data-artwork="strata">
+        <div class="gallery-card__art">
+          <svg viewBox="0 0 400 400" class="gallery-artwork" id="artwork2">
+            <!-- Generated by JS -->
+          </svg>
+        </div>
+        <div class="gallery-card__info">
+          <h3>Urban Strata</h3>
+          <p>Layered geometric horizons in warm tones</p>
+        </div>
+      </div>
+
+      <!-- Card 3: Bloom -->
+      <div class="gallery-card" data-artwork="bloom">
+        <div class="gallery-card__art">
+          <svg viewBox="0 0 400 400" class="gallery-artwork" id="artwork3">
+            <!-- Generated by JS -->
+          </svg>
+        </div>
+        <div class="gallery-card__info">
+          <h3>Digital Bloom</h3>
+          <p>Organic polygon spirals in emerald and teal</p>
+        </div>
+      </div>
+
+      <!-- Card 4: Prism -->
+      <div class="gallery-card" data-artwork="prism">
+        <div class="gallery-card__art">
+          <svg viewBox="0 0 400 400" class="gallery-artwork" id="artwork4">
+            <!-- Generated by JS -->
+          </svg>
+        </div>
+        <div class="gallery-card__info">
+          <h3>Light Prism</h3>
+          <p>Refracted color through crystalline polygons</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="trial-footer">
+    <div class="trial-footer__inner">
+      <div class="trial-footer__brand">
+        <span class="trial-nav__logo-regen">Regen</span><span class="trial-nav__logo-studio">Studio</span>
+      </div>
+      <p class="trial-footer__text">A design exploration celebrating geometry, color, and regenerative thinking.</p>
+      <a href="index.html" class="trial-footer__link">Visit the main site &rarr;</a>
+    </div>
+    <div class="trial-footer__polygons" id="footerPolygons"></div>
+  </footer>
+
+  <script src="trial.js"></script>
+</body>
+</html>

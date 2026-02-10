@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post | Regen Studio</title>
+  <meta name="description" content="Read insights on regenerative innovation from Regen Studio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__logo">
+        <img src="Images/Website Logo.svg" alt="Regen Studio" class="nav__logo-img">
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html#about">Vision</a></li>
+        <li><a href="index.html#focus">Our Focus</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#clients">Who We Serve</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="index.html#contact" class="btn btn--small">Get in Touch</a></li>
+      </ul>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Post Header (rendered by JS) -->
+  <section class="post-header" id="postHeader"></section>
+
+  <!-- Featured Image (rendered by JS) -->
+  <section class="post-featured-image" id="postFeaturedImage"></section>
+
+  <!-- Post Content (rendered by JS) -->
+  <section class="post-content" id="postContent"></section>
+
+  <!-- Related Posts (rendered by JS) -->
+  <section class="related-posts" id="relatedPosts"></section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo">
+          <span class="nav__logo-regen">Regen</span><span class="nav__logo-studio">Studio</span>
+        </a>
+        <p>Pioneering innovations in the regeneration of our natural, human and urban ecosystems.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html#about">Our Vision</a></li>
+            <li><a href="index.html#focus">Our Focus</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#clients">Who We Serve</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:hello@regenstudio.world">Email Us</a></li>
+            <li><a href="https://www.linkedin.com/company/regen-std" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Regen Studio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="blog.js"></script>
+</body>
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regen Studio | Regenerative Innovation Design</title>
+  <meta name="description" content="Designing innovations that regenerate humans, cities and nature. Pioneering systemic innovations at the intersection of technology, society, and nature.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="#" class="nav__logo">
+        <img src="Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#focus">Our Focus</a></li>
+        <li><a href="#about">Vision</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#clients">Who We Serve</a></li>
+        <li><a href="#blog-preview">Blog</a></li>
+        <li><a href="#contact" class="btn btn--small">Get in Touch</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button class="viewport-toggle" id="viewportToggle" aria-label="Toggle viewport">
+          <svg class="viewport-toggle__icon viewport-toggle__icon--desktop" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="16" height="11" rx="1.5"/><line x1="6" y1="17" x2="14" y2="17"/><line x1="10" y1="14" x2="10" y2="17"/></svg>
+          <svg class="viewport-toggle__icon viewport-toggle__icon--mobile" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="10" height="16" rx="2"/><line x1="8.5" y1="15" x2="11.5" y2="15"/></svg>
+        </button>
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Freeze button (fixed, top-right) -->
+  <button class="freeze-btn" id="freezeBtn">
+    <svg class="freeze-btn__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+    <span class="freeze-btn__text">Freeze your creation</span>
+  </button>
+
+  <!-- Freeze share panel -->
+  <div class="freeze-panel" id="freezePanel">
+    <p class="freeze-panel__msg">Art has emerged from this ecosystem of triangles by your hand! Share it with the world.</p>
+    <div class="freeze-panel__actions">
+      <button class="freeze-panel__btn freeze-panel__btn--download" id="freezeDownload" title="Save as image">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </button>
+      <button class="freeze-panel__btn freeze-panel__btn--x" id="freezeShareX" title="Share on X">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </button>
+      <button class="freeze-panel__btn freeze-panel__btn--linkedin" id="freezeShareLinkedIn" title="Share on LinkedIn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </button>
+      <button class="freeze-panel__btn freeze-panel__btn--whatsapp" id="freezeShareWhatsApp" title="Share on WhatsApp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Hero: Interactive Triangle Canvas -->
+  <header class="hero" id="hero">
+    <!-- Ambient gradient orbs (behind canvas) -->
+    <div class="hero-ambient">
+      <div class="hero-ambient__orb hero-ambient__orb--1"></div>
+      <div class="hero-ambient__orb hero-ambient__orb--2"></div>
+      <div class="hero-ambient__orb hero-ambient__orb--3"></div>
+    </div>
+
+    <!-- Canvas for triangle simulation -->
+    <div class="hero-canvas-wrap">
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <!-- Hero text overlay -->
+    <div class="hero__content" id="heroOverlay">
+      <div class="hero__inner">
+        <div class="hero__badge animate-in">
+          <span class="hero__badge-dot"></span>
+          Regenerative Innovation Design Studio
+        </div>
+        <h1 class="hero__title animate-in">
+          Innovations that<br>
+          <strong>Regenerate</strong>
+        </h1>
+        <p class="hero__tagline animate-in">
+          Humans, Cities and Nature.
+        </p>
+        <p class="hero__subtitle animate-in">
+          We pioneer systemic innovations at the intersection of technology, society, and nature &mdash; helping organizations to create positive impact through new solutions.
+        </p>
+        <div class="hero__actions animate-in">
+          <a href="#focus" class="btn btn--primary">Explore Our Work</a>
+          <a href="#about" class="btn btn--outline">Our Vision</a>
+        </div>
+        <div class="hero__locations animate-in">
+          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> The Hague, NL</span>
+          <span class="hero__locations-divider">&bull;</span>
+          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> São Paulo, BR</span>
+          <span class="hero__locations-divider">&bull;</span>
+          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Worldwide</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero__scroll">
+      <a href="#about" aria-label="Scroll down">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 13 12 18 17 13"/><line x1="12" y1="6" x2="12" y2="18"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Content wrapper: solid backgrounds to cover canvas on scroll -->
+  <div class="content-wrap">
+
+    <!-- Lander image: full-width transition from hero -->
+    <div class="lander-image">
+      <img src="Images/WebsiteLander.svg" alt="Regen Studio — Regenerative Innovation Design">
+    </div>
+
+    <!-- Polygon Divider: Hero to Focus -->
+    <div class="polygon-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,60 200,20 500,50 800,10 1100,40 1440,0 1440,60" fill="#FFFFFF"/>
+        <polygon points="700,60 730,32 760,60" fill="#009BBB" opacity="0.18"/>
+        <polygon points="200,60 225,40 250,60" fill="#00914B" opacity="0.22"/>
+      </svg>
+    </div>
+
+    <!-- Focus Areas -->
+    <section class="section focus" id="focus">
+      <div class="container">
+        <p class="section__label section__label--center">Our Focus</p>
+        <h2 class="section__title section__title--center">Designing for the most pressing challenges facing the world today</h2>
+        <div class="focus__grid">
+          <article class="focus__card">
+            <div class="focus__card-header">
+              <div class="focus__card-icon">
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                  <!-- Left: heavy downward triangles (fossil) fading out -->
+                  <polygon points="4,12 12,26 -2,26" fill="#FFA92D" opacity="0.15"/>
+                  <polygon points="10,16 18,30 2,30" fill="#FFA92D" opacity="0.25"/>
+                  <polygon points="14,20 20,32 8,32" fill="#FFA92D" opacity="0.3"/>
+                  <!-- Right: light upward triangles (renewable) emerging -->
+                  <polygon points="28,32 36,18 20,18" fill="#FFA92D" opacity="0.45"/>
+                  <polygon points="32,28 40,14 24,14" fill="#FFA92D" opacity="0.65"/>
+                  <polygon points="36,24 44,8 28,8" fill="#FFA92D" opacity="0.9"/>
+                  <!-- Centre pivot — the turning point -->
+                  <polygon points="22,16 26,24 18,24" fill="#FFA92D" opacity="0.5"/>
+                </svg>
+              </div>
+              <h3 class="focus__card-title">Energy Transition</h3>
+              <p class="focus__card-text">Decentralised, locally managed grids that go beyond renewables toward a just energy future.</p>
+            </div>
+            <a class="focus__case" href="#">
+              <div class="focus__case-accent"></div>
+              <div class="focus__case-body">
+                <span class="focus__case-label">Featured Case</span>
+                <span class="focus__case-name">Smart Energy Communities</span>
+              </div>
+              <span class="focus__case-indicator"></span>
+            </a>
+          </article>
+          <article class="focus__card">
+            <div class="focus__card-header">
+              <div class="focus__card-icon">
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                  <!-- Ring of triangles — Circular Economy -->
+                  <polygon points="22,3 26,10 18,10" fill="#00914B" opacity="0.9"/>
+                  <polygon points="31,6 33,14 26,11" fill="#00914B" opacity="0.8"/>
+                  <polygon points="38,13 37,21 31,16" fill="#00914B" opacity="0.7"/>
+                  <polygon points="41,22 38,30 35,23" fill="#00914B" opacity="0.6"/>
+                  <polygon points="38,31 33,38 32,30" fill="#00914B" opacity="0.5"/>
+                  <polygon points="31,38 25,42 26,34" fill="#00914B" opacity="0.4"/>
+                  <polygon points="22,41 18,34 26,34" fill="#00914B" opacity="0.35"/>
+                  <polygon points="13,38 11,30 19,34" fill="#00914B" opacity="0.4"/>
+                  <polygon points="6,31 9,23 12,30" fill="#00914B" opacity="0.5"/>
+                  <polygon points="3,22 6,14 9,22" fill="#00914B" opacity="0.6"/>
+                  <polygon points="6,13 11,6 13,14" fill="#00914B" opacity="0.7"/>
+                  <polygon points="13,6 18,10 11,11" fill="#00914B" opacity="0.8"/>
+                </svg>
+              </div>
+              <h3 class="focus__card-title">Circular Economy</h3>
+              <p class="focus__card-text">Closing resource loops so products and materials stay in use longer, eliminating waste by design.</p>
+            </div>
+            <a class="focus__case" href="#">
+              <div class="focus__case-accent"></div>
+              <div class="focus__case-body">
+                <span class="focus__case-label">Featured Case</span>
+                <span class="focus__case-name">Digital Product Passports</span>
+              </div>
+              <span class="focus__case-indicator"></span>
+            </a>
+          </article>
+          <article class="focus__card">
+            <div class="focus__card-header">
+              <div class="focus__card-icon">
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                  <!-- Buildings as triangle pairs — Cities -->
+                  <!-- Building 1 (short) -->
+                  <polygon points="4,40 10,40 7,32" fill="#009BBB" opacity="0.25"/>
+                  <polygon points="4,32 10,32 7,40" fill="#009BBB" opacity="0.15"/>
+                  <!-- Building 2 (medium) -->
+                  <polygon points="10,40 16,40 13,28" fill="#009BBB" opacity="0.5"/>
+                  <polygon points="10,28 16,28 13,40" fill="#009BBB" opacity="0.35"/>
+                  <!-- Building 3 (tall) -->
+                  <polygon points="16,40 24,40 20,18" fill="#009BBB" opacity="0.85"/>
+                  <polygon points="16,18 24,18 20,40" fill="#009BBB" opacity="0.6"/>
+                  <!-- Building 4 (medium-tall) -->
+                  <polygon points="24,40 30,40 27,24" fill="#009BBB" opacity="0.65"/>
+                  <polygon points="24,24 30,24 27,40" fill="#009BBB" opacity="0.45"/>
+                  <!-- Building 5 (tallest) -->
+                  <polygon points="30,40 38,40 34,12" fill="#009BBB" opacity="0.4"/>
+                  <polygon points="30,12 38,12 34,40" fill="#009BBB" opacity="0.25"/>
+                </svg>
+              </div>
+              <h3 class="focus__card-title">Liveable Cities</h3>
+              <p class="focus__card-text">Habitats where people and nature thrive together through responsible, human-centred technology.</p>
+            </div>
+            <a class="focus__case" href="#">
+              <div class="focus__case-accent"></div>
+              <div class="focus__case-body">
+                <span class="focus__case-label">Featured Case</span>
+                <span class="focus__case-name">Living Labs</span>
+              </div>
+              <span class="focus__case-indicator"></span>
+            </a>
+          </article>
+          <article class="focus__card">
+            <div class="focus__card-header">
+              <div class="focus__card-icon">
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                  <!-- Tree canopy from triangles — Nature -->
+                  <polygon points="22,2 32,20 12,20" fill="#65DD35" opacity="0.85"/>
+                  <polygon points="22,10 36,28 8,28" fill="#65DD35" opacity="0.5"/>
+                  <polygon points="22,18 38,36 6,36" fill="#65DD35" opacity="0.25"/>
+                  <!-- Trunk -->
+                  <polygon points="20,36 24,36 23,42" fill="#65DD35" opacity="0.6"/>
+                  <polygon points="20,36 24,36 21,42" fill="#65DD35" opacity="0.4"/>
+                </svg>
+              </div>
+              <h3 class="focus__card-title">Resilient Nature</h3>
+              <p class="focus__card-text">Reversing ecological destruction with technology that restores ecosystems and protects biodiversity.</p>
+            </div>
+            <a class="focus__case" href="#">
+              <div class="focus__case-accent"></div>
+              <div class="focus__case-body">
+                <span class="focus__case-label">Featured Case</span>
+                <span class="focus__case-name">Regenerative Strategy</span>
+              </div>
+              <span class="focus__case-indicator"></span>
+            </a>
+          </article>
+          <article class="focus__card">
+            <div class="focus__card-header">
+              <div class="focus__card-icon">
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                  <!-- Mesh network: small triangle nodes connected by lines -->
+                  <!-- Connection lines first (behind nodes) -->
+                  <line x1="22" y1="8" x2="10" y2="16" stroke="#93093F" stroke-width="0.8" opacity="0.2"/>
+                  <line x1="22" y1="8" x2="34" y2="16" stroke="#93093F" stroke-width="0.8" opacity="0.2"/>
+                  <line x1="22" y1="8" x2="22" y2="22" stroke="#93093F" stroke-width="0.8" opacity="0.2"/>
+                  <line x1="10" y1="16" x2="22" y2="22" stroke="#93093F" stroke-width="0.8" opacity="0.18"/>
+                  <line x1="34" y1="16" x2="22" y2="22" stroke="#93093F" stroke-width="0.8" opacity="0.18"/>
+                  <line x1="10" y1="16" x2="4" y2="28" stroke="#93093F" stroke-width="0.8" opacity="0.15"/>
+                  <line x1="10" y1="16" x2="16" y2="32" stroke="#93093F" stroke-width="0.8" opacity="0.15"/>
+                  <line x1="34" y1="16" x2="40" y2="28" stroke="#93093F" stroke-width="0.8" opacity="0.15"/>
+                  <line x1="34" y1="16" x2="28" y2="32" stroke="#93093F" stroke-width="0.8" opacity="0.15"/>
+                  <line x1="22" y1="22" x2="16" y2="32" stroke="#93093F" stroke-width="0.8" opacity="0.15"/>
+                  <line x1="22" y1="22" x2="28" y2="32" stroke="#93093F" stroke-width="0.8" opacity="0.15"/>
+                  <line x1="4" y1="28" x2="16" y2="32" stroke="#93093F" stroke-width="0.8" opacity="0.12"/>
+                  <line x1="40" y1="28" x2="28" y2="32" stroke="#93093F" stroke-width="0.8" opacity="0.12"/>
+                  <line x1="16" y1="32" x2="22" y2="40" stroke="#93093F" stroke-width="0.8" opacity="0.12"/>
+                  <line x1="28" y1="32" x2="22" y2="40" stroke="#93093F" stroke-width="0.8" opacity="0.12"/>
+                  <!-- Triangle nodes -->
+                  <polygon points="22,4 26,12 18,12" fill="#93093F" opacity="0.85"/>
+                  <polygon points="10,12 14,20 6,20" fill="#93093F" opacity="0.65"/>
+                  <polygon points="34,12 38,20 30,20" fill="#93093F" opacity="0.65"/>
+                  <polygon points="22,18 26,26 18,26" fill="#93093F" opacity="0.5"/>
+                  <polygon points="4,24 8,32 0,32" fill="#93093F" opacity="0.35"/>
+                  <polygon points="40,24 44,32 36,32" fill="#93093F" opacity="0.35"/>
+                  <polygon points="16,28 20,36 12,36" fill="#93093F" opacity="0.4"/>
+                  <polygon points="28,28 32,36 24,36" fill="#93093F" opacity="0.4"/>
+                  <polygon points="22,36 26,44 18,44" fill="#93093F" opacity="0.25"/>
+                </svg>
+              </div>
+              <h3 class="focus__card-title">Digital Society</h3>
+              <p class="focus__card-text">Privacy-first systems where data serves people, protecting individuals in an increasingly digital world.</p>
+            </div>
+            <a class="focus__case" href="#">
+              <div class="focus__case-accent"></div>
+              <div class="focus__case-body">
+                <span class="focus__case-label">Featured Case</span>
+                <span class="focus__case-name">Digital Identities</span>
+              </div>
+              <span class="focus__case-indicator"></span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Polygon Divider: Focus to Vision -->
+    <div class="polygon-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,0 0,60 1440,60 1440,20 1200,50 900,10 600,45 300,5" fill="#F8F9FA"/>
+        <polygon points="350,60 380,32 410,60" fill="#E71846" opacity="0.20"/>
+        <polygon points="900,60 935,28 970,60" fill="#FFA92D" opacity="0.22"/>
+      </svg>
+    </div>
+
+    <!-- About / Vision -->
+    <section class="section about section-decoration" id="about">
+      <div class="container">
+        <div class="section__grid section__grid--2col">
+          <div class="about__text">
+            <p class="section__label">Our Vision</p>
+            <h2 class="section__title">Systems that work for people <em>&amp; planet</em></h2>
+            <p class="about__lead">
+              We believe the most impactful innovations don't just solve problems &mdash; they regenerate the systems they touch. Through inspiration, beauty, and years of expertise, we transform systems so they work for an age of humans living in balance with themselves, their communities, their cities, and their planet.
+            </p>
+            <p>
+              Regen Studio helps you design innovations from a systemic perspective that have regenerative impact. The most successful innovations which manage to change systems and generate positive impact combine technological, social, political, and natural elements.
+            </p>
+          </div>
+          <div class="about__visual">
+            <div class="about__circle-group">
+              <div class="about__circle about__circle--1">
+                <span>Natural</span>
+              </div>
+              <div class="about__circle about__circle--2">
+                <span>Human</span>
+              </div>
+              <div class="about__circle about__circle--3">
+                <span>Urban</span>
+              </div>
+              <div class="about__circle-center">
+                <img src="Images/WhiteLogoCompactNoText.svg" alt="Regen Studio" class="about__circle-logo">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Polygon Divider: Vision to Services -->
+    <div class="polygon-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,60 0,20 300,50 600,0 900,40 1200,10 1440,45 1440,60" fill="#F8F9FA"/>
+        <polygon class="divider-accent divider-accent--1" points="500,60 530,30 560,60" fill="#65DD35" opacity="0.20"/>
+        <polygon class="divider-accent divider-accent--2" points="1050,60 1080,38 1110,60" fill="#009BBB" opacity="0.18"/>
+        <polygon class="divider-accent divider-accent--3" points="780,60 800,42 820,60" fill="#FFA92D" opacity="0.15"/>
+      </svg>
+    </div>
+
+    <!-- Services -->
+    <section class="section services" id="services">
+      <div class="container">
+        <p class="section__label section__label--center">What We Do</p>
+        <h2 class="section__title section__title--center">Services designed for systemic impact</h2>
+        <div class="services__grid">
+          <article class="service">
+            <div class="service__number">01</div>
+            <h3 class="service__title">Innovation Services</h3>
+            <p class="service__text">From process design to consultancy and system architecture &mdash; we develop tailored innovation approaches for complex multi-stakeholder environments.</p>
+          </article>
+          <article class="service">
+            <div class="service__number">02</div>
+            <h3 class="service__title">Vision &amp; Strategy</h3>
+            <p class="service__text">We help you determine your desired future and create clear pathways to achieve it, aligning stakeholders around a shared regenerative vision.</p>
+          </article>
+          <article class="service">
+            <div class="service__number">03</div>
+            <h3 class="service__title">Visual Storytelling</h3>
+            <p class="service__text">Compelling visual narratives that communicate change, making complex systemic innovation accessible and inspiring.</p>
+          </article>
+          <article class="service">
+            <div class="service__number">04</div>
+            <h3 class="service__title">Out-of-the-Box Ideas</h3>
+            <p class="service__text">Collaborative creative sessions where we explore unconventional solutions for your most ambitious regenerative challenges.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Approach -->
+    <section class="section approach">
+      <div class="container">
+        <div class="approach__banner">
+          <h2 class="approach__title">Innovation that combines <em>all elements</em></h2>
+          <p class="approach__text">The most successful innovations which manage to change systems and generate positive impact don't live in silos. They combine technological, social, political, and natural elements into coherent, regenerative solutions.</p>
+          <div class="approach__pillars">
+            <div class="approach__pillar">
+              <div class="approach__pillar-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 14h3"/><path d="M1 9h3"/><path d="M1 14h3"/></svg>
+              </div>
+              <span>Technological</span>
+            </div>
+            <div class="approach__pillar">
+              <div class="approach__pillar-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <span>Social</span>
+            </div>
+            <div class="approach__pillar">
+              <div class="approach__pillar-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+              </div>
+              <span>Political</span>
+            </div>
+            <div class="approach__pillar">
+              <div class="approach__pillar-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c4-4 8-7.5 8-12a8 8 0 1 0-16 0c0 4.5 4 8 8 12z"/><path d="M12 2v8"/><path d="M8 6c2 2 6 2 8 0"/></svg>
+              </div>
+              <span>Natural</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Polygon Divider: Approach to Clients -->
+    <div class="polygon-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,60 100,15 400,50 700,0 1000,35 1300,10 1440,40 1440,60" fill="#F8F9FA"/>
+        <polygon class="divider-accent divider-accent--1" points="250,60 285,30 320,60" fill="#93093F" opacity="0.18"/>
+        <polygon class="divider-accent divider-accent--2" points="800,60 830,35 860,60" fill="#00914B" opacity="0.22"/>
+        <polygon class="divider-accent divider-accent--3" points="1200,60 1225,40 1250,60" fill="#FFA92D" opacity="0.15"/>
+      </svg>
+    </div>
+
+    <!-- Clients -->
+    <section class="section clients" id="clients">
+      <div class="container">
+        <p class="section__label section__label--center">Who We Serve</p>
+        <h2 class="section__title section__title--center">Partners in regeneration</h2>
+
+        <!-- Organization types -->
+        <div class="clients__grid">
+          <div class="client-type">
+            <div class="client-type__icon">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <polygon points="20,4 8,24 14,24" fill="#00914B" opacity="0.7"/>
+                <polygon points="20,4 26,24 32,24" fill="#00914B" opacity="0.5"/>
+                <polygon points="14,24 20,36 26,24" fill="#00914B" opacity="0.85"/>
+                <polygon points="4,28 10,18 16,28" fill="#00914B" opacity="0.3"/>
+                <polygon points="24,28 30,18 36,28" fill="#00914B" opacity="0.3"/>
+              </svg>
+            </div>
+            <h3>Governments</h3>
+          </div>
+          <div class="client-type">
+            <div class="client-type__icon">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <polygon points="20,6 14,18 26,18" fill="#009BBB" opacity="0.8"/>
+                <polygon points="12,18 6,30 18,30" fill="#009BBB" opacity="0.5"/>
+                <polygon points="28,18 22,30 34,30" fill="#009BBB" opacity="0.5"/>
+                <polygon points="20,22 16,30 24,30" fill="#009BBB" opacity="0.65"/>
+              </svg>
+            </div>
+            <h3>Impact Entrepreneurs</h3>
+          </div>
+          <div class="client-type">
+            <div class="client-type__icon">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <polygon points="20,4 12,18 28,18" fill="#93093F" opacity="0.6"/>
+                <polygon points="20,18 12,32 28,32" fill="#93093F" opacity="0.45"/>
+                <polygon points="20,11 16,18 24,18" fill="#93093F" opacity="0.8"/>
+                <polygon points="20,25 17,32 23,32" fill="#93093F" opacity="0.7"/>
+              </svg>
+            </div>
+            <h3>Social Businesses</h3>
+          </div>
+          <div class="client-type">
+            <div class="client-type__icon">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <polygon points="10,10 6,18 14,18" fill="#E71846" opacity="0.6"/>
+                <polygon points="30,10 26,18 34,18" fill="#E71846" opacity="0.6"/>
+                <polygon points="20,14 14,26 26,26" fill="#E71846" opacity="0.5"/>
+                <line x1="10" y1="14" x2="20" y2="20" stroke="#E71846" stroke-width="0.8" opacity="0.3"/>
+                <line x1="30" y1="14" x2="20" y2="20" stroke="#E71846" stroke-width="0.8" opacity="0.3"/>
+              </svg>
+            </div>
+            <h3>Industry Associations</h3>
+          </div>
+          <div class="client-type">
+            <div class="client-type__icon">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <polygon points="20,4 14,14 26,14" fill="#FFA92D" opacity="0.7"/>
+                <polygon points="10,14 4,26 16,26" fill="#FFA92D" opacity="0.45"/>
+                <polygon points="30,14 24,26 36,26" fill="#FFA92D" opacity="0.45"/>
+                <polygon points="15,26 10,36 20,36" fill="#FFA92D" opacity="0.35"/>
+                <polygon points="25,26 20,36 30,36" fill="#FFA92D" opacity="0.35"/>
+              </svg>
+            </div>
+            <h3>NGOs</h3>
+          </div>
+          <div class="client-type">
+            <div class="client-type__icon">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <polygon points="12,8 8,16 16,16" fill="#65DD35" opacity="0.5"/>
+                <polygon points="28,8 24,16 32,16" fill="#65DD35" opacity="0.5"/>
+                <polygon points="20,16 14,28 26,28" fill="#65DD35" opacity="0.7"/>
+                <polygon points="20,6 17,12 23,12" fill="#65DD35" opacity="0.8"/>
+                <polygon points="20,28 16,36 24,36" fill="#65DD35" opacity="0.45"/>
+              </svg>
+            </div>
+            <h3>Universities</h3>
+          </div>
+        </div>
+
+        <!-- Client logos carousel -->
+        <div class="clients__logos-section">
+          <p class="clients__logos-label">Trusted by</p>
+          <div class="clients__logos-track-wrap">
+            <div class="clients__logos-track" id="clientLogosTrack">
+              <!-- Placeholder logos — replace with real ones via Images/client-logos/ -->
+              <span class="clients__logo-placeholder">Partner A</span>
+              <span class="clients__logo-placeholder">Partner B</span>
+              <span class="clients__logo-placeholder">Partner C</span>
+              <span class="clients__logo-placeholder">Partner D</span>
+              <span class="clients__logo-placeholder">Partner E</span>
+              <span class="clients__logo-placeholder">Partner F</span>
+              <span class="clients__logo-placeholder">Partner A</span>
+              <span class="clients__logo-placeholder">Partner B</span>
+              <span class="clients__logo-placeholder">Partner C</span>
+              <span class="clients__logo-placeholder">Partner D</span>
+              <span class="clients__logo-placeholder">Partner E</span>
+              <span class="clients__logo-placeholder">Partner F</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Polygon Divider: Clients to Blog -->
+    <div class="polygon-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,0 0,60 1440,60 1440,15 1100,50 800,5 500,40 200,10" fill="#FFFFFF"/>
+        <polygon points="600,60 635,32 670,60" fill="#E71846" opacity="0.20"/>
+        <polygon points="1000,60 1030,38 1060,60" fill="#65DD35" opacity="0.22"/>
+      </svg>
+    </div>
+
+    <!-- Latest from the Blog -->
+    <section class="section blog-preview" id="blog-preview">
+      <div class="container">
+        <div class="blog-preview__header">
+          <div>
+            <p class="section__label">Latest Insights</p>
+            <h2 class="section__title">From the blog</h2>
+          </div>
+          <a href="blog.html" class="btn btn--outline btn--small">View all posts</a>
+        </div>
+        <div class="blog-preview__grid" id="blogPreviewGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Polygon Divider: Blog to CTA -->
+    <div class="polygon-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,60 200,20 500,50 800,10 1100,40 1440,0 1440,60" fill="#FFFFFF"/>
+        <polygon points="400,60 430,34 460,60" fill="#009BBB" opacity="0.18"/>
+        <polygon points="900,60 925,38 950,60" fill="#FFA92D" opacity="0.20"/>
+      </svg>
+    </div>
+
+    <!-- Contact / CTA -->
+    <section class="section cta" id="contact">
+      <div class="container">
+        <div class="cta__inner">
+          <div class="cta__logo">
+            <img src="Images/Website Logo.svg" alt="Regen Studio" class="cta__logo-img">
+          </div>
+          <p class="section__label">Let's Create Together</p>
+          <h2 class="cta__title">Ready to design innovations that regenerate?</h2>
+          <p class="cta__text">Whether you're a government agency, entrepreneur, NGO, or university &mdash; we'd love to explore how regenerative innovation can transform your work.</p>
+          <div class="cta__actions">
+            <a href="mailto:hello@regenstudio.world" class="btn btn--primary btn--large">Start a Conversation</a>
+          </div>
+          <div class="cta__locations">
+            <div class="cta__location">
+              <h4>The Hague</h4>
+              <p>The Netherlands</p>
+            </div>
+            <div class="cta__location">
+              <h4>São Paulo</h4>
+              <p>Brazil</p>
+            </div>
+            <div class="cta__location">
+              <h4>Worldwide</h4>
+              <p>Digital &amp; On-site</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__brand">
+          <a href="#" class="nav__logo">
+            <span class="nav__logo-regen">Regen</span><span class="nav__logo-studio">Studio</span>
+          </a>
+          <p>Pioneering innovations in the regeneration of our natural, human and urban ecosystems.</p>
+        </div>
+        <div class="footer__links">
+          <div class="footer__col">
+            <h4>Navigate</h4>
+            <ul>
+              <li><a href="#about">Our Vision</a></li>
+              <li><a href="#focus">Our Focus</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#clients">Who We Serve</a></li>
+              <li><a href="blog.html">Blog</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="mailto:hello@regenstudio.world">Email Us</a></li>
+              <li><a href="https://www.linkedin.com/company/regen-std" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p>&copy; 2026 Regen Studio. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /.content-wrap -->
+
+  <script src="script.js"></script>
+</body>
+</html>
