@@ -791,7 +791,7 @@
 
     // --- Export template compositing ---
     var shareText = 'I just created art from an ecosystem of triangles at Regen Studio — designing innovations that regenerate humans, cities and nature.';
-    var shareUrl = window.location.href;
+    var shareUrl = 'https://www.regenstudio.space';
 
     // Preload the logo SVG as an Image
     var logoImg = new Image();
