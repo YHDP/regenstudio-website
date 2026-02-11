@@ -1492,14 +1492,15 @@ em:only-of-type {
 .services__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 28px;
 }
 
 .service {
-  padding: 36px 32px;
+  padding: 40px 32px 36px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-bg-card);
+  text-align: center;
   transition: all var(--transition);
   position: relative;
   box-shadow: var(--shadow-sm);
@@ -1508,22 +1509,38 @@ em:only-of-type {
 .service:hover {
   border-color: var(--color-border-hover);
   box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
-/* Each service number gets a different brand color */
-.service:nth-child(1) .service__number { color: var(--color-emerald); }
-.service:nth-child(2) .service__number { color: var(--color-teal); }
-.service:nth-child(3) .service__number { color: var(--color-magenta); }
-.service:nth-child(4) .service__number { color: var(--color-red); }
-.service:nth-child(5) .service__number { color: var(--color-orange); }
-.service:nth-child(6) .service__number { color: var(--color-green); }
+.service__image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
 
-.service__number {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  margin-bottom: 16px;
-  font-family: var(--font-sans);
+.service__image img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  transition: all var(--transition);
+}
+
+/* Subtle colored accent line at top of each card */
+.service:nth-child(1) { border-top: 2px solid var(--color-emerald); }
+.service:nth-child(2) { border-top: 2px solid var(--color-teal); }
+.service:nth-child(3) { border-top: 2px solid var(--color-magenta); }
+.service:nth-child(4) { border-top: 2px solid var(--color-red); }
+
+/* Soft colored glow on images */
+.service:nth-child(1) .service__image img { box-shadow: 0 0 20px rgba(0, 145, 75, 0.15); }
+.service:nth-child(2) .service__image img { box-shadow: 0 0 20px rgba(0, 155, 187, 0.15); }
+.service:nth-child(3) .service__image img { box-shadow: 0 0 20px rgba(147, 9, 63, 0.15); }
+.service:nth-child(4) .service__image img { box-shadow: 0 0 20px rgba(231, 24, 70, 0.15); }
+
+.service:hover .service__image img {
+  transform: scale(1.05);
 }
 
 .service__title {
