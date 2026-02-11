@@ -19,6 +19,22 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
+    // Nav contact popover
+    const navContactBtn = document.getElementById('navContactBtn');
+    const navContactPopover = document.getElementById('navContactPopover');
+    if (navContactBtn && navContactPopover) {
+      navContactBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        navContactPopover.classList.toggle('open');
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav__contact-wrap')) {
+          navContactPopover.classList.remove('open');
+        }
+      });
+    }
+
     if (navToggle && navLinks) {
       navToggle.addEventListener('click', () => {
         navToggle.classList.toggle('active');
@@ -93,7 +109,7 @@
     name: 'Regen Studio',
     url: 'https://www.regenstudio.world',
     tagline: 'Designing innovations that regenerate humans, cities and nature.',
-    email: 'hello@regenstudio.world',
+    email: 'info@regenstudio.world',
     profiles: {
       linkedin: 'https://www.linkedin.com/company/105199538',
       bluesky: 'https://bsky.app/profile/regen-studio.bsky.social',
@@ -171,11 +187,11 @@
           ${imageHtml}
         </a>
         <div class="blog-card__body">
-          <div class="blog-card__categories">${cats}</div>
           <h3 class="blog-card__title">
             <a href="blog-post.html?post=${encodeURIComponent(post.slug)}">${post.title}</a>
           </h3>
           <p class="blog-card__excerpt">${post.excerpt}</p>
+          <div class="blog-card__categories">${cats}</div>
           <div class="blog-card__meta">
             <span>${icons.user} ${post.author.name}</span>
             <span>${icons.calendar} ${formatDate(post.date)}</span>
@@ -192,7 +208,6 @@
   async function initBlogListing() {
     const grid = document.getElementById('blogGrid');
     const catContainer = document.getElementById('categoryFilters');
-    const tagContainer = document.getElementById('tagFilters');
 
     if (!grid) return;
 
@@ -216,7 +231,86 @@
     }
 
     renderPills(catContainer, catCounts, 'category');
-    renderPills(tagContainer, tagCounts, 'tag');
+
+    // --- Tag search dropdown ---
+    function initTagSearch(tagCounts) {
+      const searchInput = document.getElementById('tagSearchInput');
+      const dropdown = document.getElementById('tagSearchDropdown');
+      const activeContainer = document.getElementById('tagSearchActive');
+      const countBadge = document.getElementById('tagSearchCount');
+
+      const sortedTags = Object.entries(tagCounts).sort((a, b) => a[0].localeCompare(b[0]));
+
+      function renderDropdown(filter) {
+        const query = (filter || '').toLowerCase();
+        const items = sortedTags.filter(([name]) => !query || name.toLowerCase().includes(query));
+        dropdown.innerHTML = items.map(([name, count]) =>
+          `<label class="tag-search__item">
+            <input type="checkbox" value="${name}" ${activeTags.has(name) ? 'checked' : ''}>
+            <span class="tag-search__item-label">${name}</span>
+            <span class="tag-search__item-count">${count}</span>
+          </label>`
+        ).join('');
+        if (items.length === 0) {
+          dropdown.innerHTML = '<div class="tag-search__empty">No tags found</div>';
+        }
+      }
+
+      function renderActivePills() {
+        activeContainer.innerHTML = [...activeTags].map(tag =>
+          `<span class="tag-search__pill" data-tag="${tag}">${tag}<button class="tag-search__pill-remove" data-tag="${tag}">&times;</button></span>`
+        ).join('');
+        countBadge.textContent = activeTags.size > 0 ? activeTags.size : '';
+        countBadge.style.display = activeTags.size > 0 ? 'inline-flex' : 'none';
+      }
+
+      searchInput.addEventListener('focus', () => {
+        renderDropdown(searchInput.value);
+        dropdown.classList.add('open');
+      });
+
+      searchInput.addEventListener('input', () => {
+        renderDropdown(searchInput.value);
+        if (!dropdown.classList.contains('open')) {
+          dropdown.classList.add('open');
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('#tagSearch')) {
+          dropdown.classList.remove('open');
+        }
+      });
+
+      dropdown.addEventListener('change', (e) => {
+        if (e.target.type !== 'checkbox') return;
+        const tag = e.target.value;
+        if (e.target.checked) {
+          activeTags.add(tag);
+        } else {
+          activeTags.delete(tag);
+        }
+        renderActivePills();
+        writeHashState();
+        filterAndRender();
+      });
+
+      activeContainer.addEventListener('click', (e) => {
+        const removeBtn = e.target.closest('.tag-search__pill-remove');
+        if (!removeBtn) return;
+        const tag = removeBtn.dataset.tag;
+        activeTags.delete(tag);
+        renderActivePills();
+        renderDropdown(searchInput.value);
+        writeHashState();
+        filterAndRender();
+      });
+
+      // Expose for external state updates (hash change)
+      return { renderActivePills, renderDropdown };
+    }
+
+    const tagSearch = initTagSearch(tagCounts);
 
     // Filter state
     let activeCategories = new Set();
@@ -244,9 +338,8 @@
       document.querySelectorAll('.filter-pill[data-type="category"]').forEach(btn => {
         btn.classList.toggle('active', activeCategories.has(btn.dataset.value));
       });
-      document.querySelectorAll('.filter-pill[data-type="tag"]').forEach(btn => {
-        btn.classList.toggle('active', activeTags.has(btn.dataset.value));
-      });
+      tagSearch.renderActivePills();
+      tagSearch.renderDropdown(document.getElementById('tagSearchInput').value);
     }
 
     function filterAndRender() {
@@ -466,6 +559,27 @@
       });
     });
 
+    // CTA banner after article content
+    const ctaBanner = document.createElement('div');
+    ctaBanner.className = 'post-cta-banner';
+    ctaBanner.innerHTML = `
+      <p class="post-cta-banner__label">Get in Touch</p>
+      <p class="post-cta-banner__text">Interested in working together on regenerative innovation?</p>
+      <div class="copyable-email copyable-email--compact">
+        <span class="copyable-email__address">${COMPANY.email}</span>
+        <button class="copyable-email__btn" data-email="${COMPANY.email}" aria-label="Copy email address">
+          <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span class="copyable-email__label">Copy</span>
+        </button>
+      </div>
+    `;
+    const postInner = postContainer.querySelector('.post-content__inner');
+    if (postInner) postInner.appendChild(ctaBanner);
+
+    // Scroll-triggered floating CTA
+    initScrollCTA();
+
     // Related posts
     const related = getRelatedPosts(post, blogs, 3);
     const relatedSection = document.getElementById('relatedPosts');
@@ -485,10 +599,101 @@
   }
 
   // ========================================
+  // Scroll-triggered floating CTA (blog post)
+  // ========================================
+  function initScrollCTA() {
+    const postContent = document.getElementById('postContent');
+    if (!postContent) return;
+
+    let dismissed = false;
+    let visible = false;
+
+    // Create the floating CTA element
+    const floatingCTA = document.createElement('div');
+    floatingCTA.className = 'scroll-cta';
+    floatingCTA.innerHTML = `
+      <button class="scroll-cta__close" aria-label="Dismiss">&times;</button>
+      <p class="scroll-cta__label">Get in Touch</p>
+      <p class="scroll-cta__text">Like what you're reading?</p>
+      <div class="scroll-cta__email-row">
+        <span class="scroll-cta__address">${COMPANY.email}</span>
+        <button class="copyable-email__btn copyable-email__btn--small" data-email="${COMPANY.email}" aria-label="Copy email">
+          <svg class="copyable-email__icon copyable-email__icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+      </div>
+    `;
+    document.body.appendChild(floatingCTA);
+
+    // Dismiss handler
+    floatingCTA.querySelector('.scroll-cta__close').addEventListener('click', () => {
+      dismissed = true;
+      floatingCTA.classList.remove('scroll-cta--visible');
+    });
+
+    // Scroll handler — show after 40% of article
+    function onScroll() {
+      if (dismissed) return;
+
+      const rect = postContent.getBoundingClientRect();
+      const contentHeight = postContent.offsetHeight;
+      const scrolledInto = -rect.top;
+      const progress = scrolledInto / contentHeight;
+
+      if (progress > 0.4 && progress < 0.95 && !visible) {
+        visible = true;
+        floatingCTA.classList.add('scroll-cta--visible');
+      } else if ((progress <= 0.35 || progress >= 0.95) && visible) {
+        visible = false;
+        floatingCTA.classList.remove('scroll-cta--visible');
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  // ========================================
   // Init
   // ========================================
+  // --- Copy-to-clipboard delegated handler for blog pages ---
+  function initCopyButtons() {
+    document.addEventListener('click', (e) => {
+      // CTA / inline copyable email button
+      const copyBtn = e.target.closest('.copyable-email__btn');
+      if (copyBtn) {
+        const email = copyBtn.getAttribute('data-email');
+        navigator.clipboard.writeText(email).then(() => {
+          const label = copyBtn.querySelector('.copyable-email__label');
+          copyBtn.classList.add('copied');
+          if (label) label.textContent = 'Copied!';
+          showToast('Email copied to clipboard!');
+          setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            if (label) label.textContent = 'Copy';
+          }, 2000);
+        });
+        return;
+      }
+
+      // Footer copy button
+      const footerBtn = e.target.closest('.footer__copy-btn');
+      if (footerBtn) {
+        const email = footerBtn.getAttribute('data-email');
+        navigator.clipboard.writeText(email).then(() => {
+          footerBtn.classList.add('copied');
+          showToast('Email copied to clipboard!');
+          setTimeout(() => {
+            footerBtn.classList.remove('copied');
+          }, 2000);
+        });
+        return;
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     initNav();
+    initCopyButtons();
     initBlogListing();
     initBlogPost();
   });
