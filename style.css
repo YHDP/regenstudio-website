@@ -724,10 +724,41 @@ em:only-of-type {
   margin-bottom: 16px;
 }
 
+.freeze-panel__note {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.freeze-panel__note strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.freeze-panel__note a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity var(--transition);
+}
+
+.freeze-panel__note a:hover {
+  opacity: 0.8;
+}
+
 .freeze-panel__actions {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
+}
+
+.freeze-panel__divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 10px 0;
 }
 
 .freeze-panel__btn {
@@ -749,16 +780,16 @@ em:only-of-type {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+.freeze-panel__btn--share:hover {
+  background: rgba(0, 145, 75, 0.06);
+  border-color: rgba(0, 145, 75, 0.18);
+  color: var(--color-emerald);
+}
+
 .freeze-panel__btn--download:hover {
   background: var(--color-emerald-bg);
   border-color: rgba(0, 145, 75, 0.2);
   color: var(--color-emerald);
-}
-
-.freeze-panel__btn--x:hover {
-  background: #f5f5f5;
-  border-color: rgba(0, 0, 0, 0.15);
-  color: #000;
 }
 
 .freeze-panel__btn--linkedin:hover {
@@ -771,6 +802,64 @@ em:only-of-type {
   background: rgba(37, 211, 102, 0.08);
   border-color: rgba(37, 211, 102, 0.2);
   color: #25D366;
+}
+
+.freeze-panel__btn--bluesky:hover {
+  background: rgba(0, 133, 255, 0.08);
+  border-color: rgba(0, 133, 255, 0.2);
+  color: #0085FF;
+}
+
+.freeze-panel__btn--mastodon:hover {
+  background: rgba(99, 100, 255, 0.08);
+  border-color: rgba(99, 100, 255, 0.2);
+  color: #6364FF;
+}
+
+.freeze-panel__btn--reddit:hover {
+  background: rgba(255, 69, 0, 0.08);
+  border-color: rgba(255, 69, 0, 0.2);
+  color: #FF4500;
+}
+
+.freeze-panel__btn--signal:hover {
+  background: rgba(59, 118, 240, 0.08);
+  border-color: rgba(59, 118, 240, 0.2);
+  color: #3B76F0;
+}
+
+.freeze-panel__btn--email:hover {
+  background: rgba(36, 54, 68, 0.06);
+  border-color: rgba(36, 54, 68, 0.18);
+  color: var(--color-text);
+}
+
+/* --- Share toast notification --- */
+.share-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  z-index: 9999;
+  padding: 12px 24px;
+  background: rgba(36, 54, 68, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  border-radius: 100px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.share-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 @media (max-width: 768px) {

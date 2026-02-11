@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <defs>
+    <!-- Brand palette -->
+    <!-- Magenta: #93093F, Red: #E71846, Orange: #FFA92D, Green: #65DD35, Emerald: #00914B, Teal: #009BBB -->
+
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1200" y2="750" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a0a0f"/>
+      <stop offset="100%" stop-color="#111118"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="750" fill="url(#bgGrad)"/>
+
+  <!-- Bond lines (connections between clustered triangles) -->
+  <g opacity="0.18" stroke-width="1.5" stroke-linecap="round">
+    <!-- Central cluster bonds -->
+    <line x1="580" y1="340" x2="630" y2="300" stroke="#00914B"/>
+    <line x1="630" y1="300" x2="660" y2="360" stroke="#009BBB"/>
+    <line x1="660" y1="360" x2="580" y2="340" stroke="#00914B"/>
+    <line x1="630" y1="300" x2="610" y2="260" stroke="#009BBB"/>
+    <line x1="580" y1="340" x2="540" y2="310" stroke="#65DD35"/>
+    <line x1="660" y1="360" x2="700" y2="340" stroke="#009BBB"/>
+    <line x1="700" y1="340" x2="720" y2="380" stroke="#E71846"/>
+
+    <!-- Left cluster bonds -->
+    <line x1="200" y1="420" x2="250" y2="390" stroke="#93093F"/>
+    <line x1="250" y1="390" x2="270" y2="440" stroke="#E71846"/>
+    <line x1="270" y1="440" x2="200" y2="420" stroke="#93093F"/>
+    <line x1="250" y1="390" x2="230" y2="350" stroke="#FFA92D"/>
+
+    <!-- Right cluster bonds -->
+    <line x1="900" y1="280" x2="950" y2="260" stroke="#FFA92D"/>
+    <line x1="950" y1="260" x2="970" y2="310" stroke="#65DD35"/>
+    <line x1="970" y1="310" x2="900" y2="280" stroke="#FFA92D"/>
+
+    <!-- Top-right bonds -->
+    <line x1="850" y1="160" x2="890" y2="140" stroke="#009BBB"/>
+    <line x1="890" y1="140" x2="880" y2="190" stroke="#00914B"/>
+
+    <!-- Bottom cluster bonds -->
+    <line x1="450" y1="560" x2="500" y2="540" stroke="#E71846"/>
+    <line x1="500" y1="540" x2="510" y2="590" stroke="#93093F"/>
+    <line x1="510" y1="590" x2="450" y2="560" stroke="#E71846"/>
+  </g>
+
+  <!-- Glow underlays for clustered triangles -->
+  <g filter="url(#glow)" opacity="0.12">
+    <polygon points="580,320 560,360 600,360" fill="#00914B"/>
+    <polygon points="630,280 610,320 650,320" fill="#009BBB"/>
+    <polygon points="660,340 640,380 680,380" fill="#009BBB"/>
+  </g>
+
+  <!-- Central cluster (Emerald + Teal) -->
+  <g opacity="0.9">
+    <polygon points="580,320 560,360 600,360" fill="#00914B" opacity="0.85"/>
+    <polygon points="630,280 610,320 650,320" fill="#009BBB" opacity="0.85"/>
+    <polygon points="660,340 640,380 680,380" fill="#009BBB" opacity="0.75"/>
+    <polygon points="610,240 594,272 626,272" fill="#009BBB" opacity="0.7"/>
+    <polygon points="540,290 524,322 556,322" fill="#65DD35" opacity="0.7"/>
+    <polygon points="700,320 684,352 716,352" fill="#E71846" opacity="0.65"/>
+    <polygon points="720,360 704,392 736,392" fill="#E71846" opacity="0.55"/>
+  </g>
+
+  <!-- Left cluster (Magenta + Red) -->
+  <g opacity="0.85">
+    <polygon points="200,400 180,440 220,440" fill="#93093F" opacity="0.85"/>
+    <polygon points="250,370 230,410 270,410" fill="#E71846" opacity="0.8"/>
+    <polygon points="270,420 250,460 290,460" fill="#93093F" opacity="0.7"/>
+    <polygon points="230,330 218,358 242,358" fill="#FFA92D" opacity="0.65"/>
+  </g>
+
+  <!-- Right cluster (Orange + Green) -->
+  <g opacity="0.85">
+    <polygon points="900,260 880,300 920,300" fill="#FFA92D" opacity="0.85"/>
+    <polygon points="950,240 930,280 970,280" fill="#65DD35" opacity="0.8"/>
+    <polygon points="970,290 950,330 990,330" fill="#FFA92D" opacity="0.7"/>
+  </g>
+
+  <!-- Top-right pair (Teal + Emerald) -->
+  <g opacity="0.8">
+    <polygon points="850,140 834,172 866,172" fill="#009BBB" opacity="0.8"/>
+    <polygon points="890,120 874,152 906,152" fill="#00914B" opacity="0.75"/>
+    <polygon points="880,170 864,202 896,202" fill="#00914B" opacity="0.6"/>
+  </g>
+
+  <!-- Bottom cluster (Red + Magenta) -->
+  <g opacity="0.8">
+    <polygon points="450,540 434,572 466,572" fill="#E71846" opacity="0.8"/>
+    <polygon points="500,520 484,552 516,552" fill="#93093F" opacity="0.75"/>
+    <polygon points="510,570 494,602 526,602" fill="#E71846" opacity="0.65"/>
+  </g>
+
+  <!-- Scattered free-floating triangles (drifting, unbonded) -->
+  <g opacity="0.5">
+    <polygon points="120,180 108,208 132,208" fill="#FFA92D" opacity="0.6"/>
+    <polygon points="1050,450 1038,478 1062,478" fill="#65DD35" opacity="0.55"/>
+    <polygon points="350,120 340,144 360,144" fill="#009BBB" opacity="0.5"/>
+    <polygon points="780,550 768,578 792,578" fill="#93093F" opacity="0.5"/>
+    <polygon points="150,600 140,624 160,624" fill="#00914B" opacity="0.45"/>
+    <polygon points="1080,180 1070,204 1090,204" fill="#E71846" opacity="0.45"/>
+    <polygon points="70,400 62,420 78,420" fill="#009BBB" opacity="0.4"/>
+    <polygon points="400,680 392,700 408,700" fill="#FFA92D" opacity="0.4"/>
+    <polygon points="680,100 672,120 688,120" fill="#65DD35" opacity="0.4"/>
+    <polygon points="1000,600 992,620 1008,620" fill="#00914B" opacity="0.35"/>
+    <polygon points="300,460 294,476 306,476" fill="#E71846" opacity="0.35"/>
+    <polygon points="820,450 814,466 826,466" fill="#FFA92D" opacity="0.35"/>
+  </g>
+
+  <!-- Dust particles -->
+  <g opacity="0.25">
+    <circle cx="180" cy="250" r="1.2" fill="#ffffff"/>
+    <circle cx="420" cy="200" r="1" fill="#ffffff"/>
+    <circle cx="750" cy="180" r="1.3" fill="#ffffff"/>
+    <circle cx="550" cy="500" r="1" fill="#ffffff"/>
+    <circle cx="900" cy="420" r="1.2" fill="#ffffff"/>
+    <circle cx="300" cy="550" r="1" fill="#ffffff"/>
+    <circle cx="650" cy="620" r="1.1" fill="#ffffff"/>
+    <circle cx="1100" cy="350" r="1" fill="#ffffff"/>
+    <circle cx="100" cy="300" r="0.8" fill="#ffffff"/>
+    <circle cx="480" cy="380" r="0.9" fill="#ffffff"/>
+  </g>
+</svg>
