@@ -23,6 +23,7 @@
 
   <!-- Canonical -->
   <link rel="canonical" href="https://www.regenstudio.world/">
+  <link rel="icon" type="image/png" href="Images/Flavicon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,8 +43,23 @@
         <li><a href="#about">Vision</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#clients">Who We Serve</a></li>
-        <li><a href="#blog-preview">Blog</a></li>
-        <li><a href="#contact" class="btn btn--small">Get in Touch</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li class="nav__contact-wrap">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
       </ul>
       <div class="nav__actions">
         <button class="viewport-toggle" id="viewportToggle" aria-label="Toggle viewport">
@@ -341,6 +357,18 @@
             </a>
           </article>
         </div>
+        <div class="section__soft-cta">
+          <span class="section__soft-cta-text">Working on one of these challenges?</span>
+          <span class="section__soft-cta-email">
+            <span class="copyable-email copyable-email--inline">
+              <span class="copyable-email__address">info@regenstudio.world</span>
+              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Copy email">
+                <svg class="copyable-email__icon copyable-email__icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              </button>
+            </span>
+          </span>
+        </div>
       </div>
     </section>
 
@@ -423,6 +451,18 @@
             <h3 class="service__title">Out-of-the-Box Ideas</h3>
             <p class="service__text">Collaborative creative sessions where we explore unconventional solutions for your most ambitious regenerative challenges.</p>
           </article>
+        </div>
+        <div class="section__soft-cta">
+          <span class="section__soft-cta-text">Need this for your organization?</span>
+          <span class="section__soft-cta-email">
+            <span class="copyable-email copyable-email--inline">
+              <span class="copyable-email__address">info@regenstudio.world</span>
+              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Copy email">
+                <svg class="copyable-email__icon copyable-email__icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              </button>
+            </span>
+          </span>
         </div>
       </div>
     </section>
@@ -529,6 +569,19 @@
           </div>
         </div>
 
+        <div class="section__soft-cta">
+          <span class="section__soft-cta-text">Join them.</span>
+          <span class="section__soft-cta-email">
+            <span class="copyable-email copyable-email--inline">
+              <span class="copyable-email__address">info@regenstudio.world</span>
+              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Copy email">
+                <svg class="copyable-email__icon copyable-email__icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              </button>
+            </span>
+          </span>
+        </div>
+
       </div>
     </section>
 
@@ -577,7 +630,14 @@
           <h2 class="cta__title">Ready to design innovations that regenerate?</h2>
           <p class="cta__text">Whether you're a government agency, entrepreneur, NGO, or university &mdash; we'd love to explore how regenerative innovation can transform your work.</p>
           <div class="cta__actions">
-            <a href="mailto:hello@regenstudio.world" class="btn btn--primary btn--large">Start a Conversation</a>
+            <div class="copyable-email">
+              <span class="copyable-email__address" id="ctaEmail">info@regenstudio.world</span>
+              <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="copyable-email__label">Copy</span>
+              </button>
+            </div>
           </div>
           <div class="cta__locations">
             <div class="cta__location">
@@ -620,7 +680,15 @@
           <div class="footer__col">
             <h4>Connect</h4>
             <ul>
-              <li><a href="mailto:hello@regenstudio.world">Email Us</a></li>
+              <li>
+                <span class="footer__email-row">
+                  <span class="footer__email-address">info@regenstudio.world</span>
+                  <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                    <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  </button>
+                </span>
+              </li>
               <li><a href="https://www.linkedin.com/company/105199538" target="_blank" rel="noopener">LinkedIn</a></li>
             </ul>
           </div>

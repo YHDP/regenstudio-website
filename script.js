@@ -795,7 +795,7 @@
       name: 'Regen Studio',
       url: 'https://www.regenstudio.world',
       tagline: 'Designing innovations that regenerate humans, cities and nature.',
-      email: 'hello@regenstudio.world',
+      email: 'info@regenstudio.world',
       profiles: {
         linkedin: 'https://www.linkedin.com/company/105199538',
         bluesky: 'https://bsky.app/profile/regen-studio.bsky.social',
@@ -1378,6 +1378,22 @@
       });
     }
 
+    // --- Nav contact popover ---
+    var navContactBtn = document.getElementById('navContactBtn');
+    var navContactPopover = document.getElementById('navContactPopover');
+    if (navContactBtn && navContactPopover) {
+      navContactBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        navContactPopover.classList.toggle('open');
+      });
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('.nav__contact-wrap')) {
+          navContactPopover.classList.remove('open');
+        }
+      });
+    }
+
     // --- Mobile menu toggle ---
     navToggle.addEventListener('click', function () {
       navToggle.classList.toggle('active');
@@ -1457,6 +1473,40 @@
           window.scrollTo({ top: top, behavior: 'smooth' });
         }
       });
+    });
+
+    // --- Copy-to-clipboard for email buttons ---
+    document.addEventListener('click', function (e) {
+      // CTA copyable email button
+      var copyBtn = e.target.closest('.copyable-email__btn');
+      if (copyBtn) {
+        var email = copyBtn.getAttribute('data-email');
+        navigator.clipboard.writeText(email).then(function () {
+          var label = copyBtn.querySelector('.copyable-email__label');
+          copyBtn.classList.add('copied');
+          if (label) label.textContent = 'Copied!';
+          showToast('Email copied to clipboard!');
+          setTimeout(function () {
+            copyBtn.classList.remove('copied');
+            if (label) label.textContent = 'Copy';
+          }, 2000);
+        });
+        return;
+      }
+
+      // Footer copy button
+      var footerBtn = e.target.closest('.footer__copy-btn');
+      if (footerBtn) {
+        var email = footerBtn.getAttribute('data-email');
+        navigator.clipboard.writeText(email).then(function () {
+          footerBtn.classList.add('copied');
+          showToast('Email copied to clipboard!');
+          setTimeout(function () {
+            footerBtn.classList.remove('copied');
+          }, 2000);
+        });
+        return;
+      }
     });
 
     // --- Active nav link on scroll ---

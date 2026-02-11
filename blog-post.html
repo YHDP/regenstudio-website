@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog Post | Regen Studio</title>
   <meta name="description" content="Read insights on regenerative innovation from Regen Studio.">
+  <link rel="icon" type="image/png" href="Images/Flavicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -25,7 +26,22 @@
         <li><a href="index.html#services">Services</a></li>
         <li><a href="index.html#clients">Who We Serve</a></li>
         <li><a href="blog.html">Blog</a></li>
-        <li><a href="index.html#contact" class="btn btn--small">Get in Touch</a></li>
+        <li class="nav__contact-wrap">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
       </ul>
       <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -68,7 +84,15 @@
         <div class="footer__col">
           <h4>Connect</h4>
           <ul>
-            <li><a href="mailto:hello@regenstudio.world">Email Us</a></li>
+            <li>
+                <span class="footer__email-row">
+                  <span class="footer__email-address">info@regenstudio.world</span>
+                  <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                    <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  </button>
+                </span>
+              </li>
             <li><a href="https://www.linkedin.com/company/105199538" target="_blank" rel="noopener">LinkedIn</a></li>
           </ul>
         </div>

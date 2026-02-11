@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog | Regen Studio</title>
   <meta name="description" content="Insights on regenerative innovation, smart cities, urban ecosystems, and nature-based solutions from Regen Studio.">
+  <link rel="icon" type="image/png" href="Images/Flavicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -25,7 +26,22 @@
         <li><a href="index.html#services">Services</a></li>
         <li><a href="index.html#clients">Who We Serve</a></li>
         <li><a href="blog.html" style="color: var(--color-text);">Blog</a></li>
-        <li><a href="index.html#contact" class="btn btn--small">Get in Touch</a></li>
+        <li class="nav__contact-wrap">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
       </ul>
       <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -35,23 +51,55 @@
 
   <!-- Blog Hero -->
   <section class="blog-hero">
-    <div class="container">
+    <!-- Decorative triangles -->
+    <div class="blog-hero__triangles" aria-hidden="true">
+      <div class="blog-hero__tri blog-hero__tri--1"></div>
+      <div class="blog-hero__tri blog-hero__tri--2"></div>
+      <div class="blog-hero__tri blog-hero__tri--3"></div>
+      <div class="blog-hero__tri blog-hero__tri--4"></div>
+      <div class="blog-hero__tri blog-hero__tri--5"></div>
+      <div class="blog-hero__tri blog-hero__tri--6"></div>
+      <div class="blog-hero__tri blog-hero__tri--7"></div>
+    </div>
+    <!-- Ambient orbs -->
+    <div class="blog-hero__orb blog-hero__orb--1" aria-hidden="true"></div>
+    <div class="blog-hero__orb blog-hero__orb--2" aria-hidden="true"></div>
+
+    <div class="container blog-hero__container">
+      <p class="blog-hero__label">Latest Insights</p>
       <h1 class="blog-hero__title">Blog</h1>
       <p class="blog-hero__subtitle">Insights on regenerative innovation, smart cities, and designing systems that work for people and planet.</p>
     </div>
-  </section>
 
-  <!-- Filters -->
-  <section class="blog-filters">
-    <div class="container">
+    <!-- Filters (inside hero for visual continuity) -->
+    <div class="blog-filters">
+      <div class="container">
       <div class="blog-filters__group">
         <span class="blog-filters__label">Categories</span>
         <div class="blog-filters__pills" id="categoryFilters"></div>
       </div>
       <div class="blog-filters__group">
         <span class="blog-filters__label">Tags</span>
-        <div class="blog-filters__pills" id="tagFilters"></div>
+        <div class="tag-search" id="tagSearch">
+          <div class="tag-search__input-wrap">
+            <svg class="tag-search__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" class="tag-search__input" id="tagSearchInput" placeholder="Search tags..." autocomplete="off">
+            <span class="tag-search__count" id="tagSearchCount"></span>
+          </div>
+          <div class="tag-search__dropdown" id="tagSearchDropdown"></div>
+          <div class="tag-search__active" id="tagSearchActive"></div>
+        </div>
       </div>
+      </div>
+    </div>
+
+    <!-- Polygon divider at bottom of hero -->
+    <div class="blog-hero__divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,60 200,20 500,50 800,10 1100,40 1440,0 1440,60" fill="#FFFFFF"/>
+        <polygon points="400,60 430,34 460,60" fill="#009BBB" opacity="0.18"/>
+        <polygon points="950,60 975,40 1000,60" fill="#00914B" opacity="0.20"/>
+      </svg>
     </div>
   </section>
 
@@ -59,6 +107,31 @@
   <section class="blog-listing">
     <div class="container">
       <div class="blog-grid" id="blogGrid"></div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="blog-cta">
+    <div class="blog-cta__divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,60 200,20 500,50 800,10 1100,40 1440,0 1440,60" fill="#F8F9FA"/>
+        <polygon points="400,60 430,34 460,60" fill="#009BBB" opacity="0.18"/>
+        <polygon points="900,60 925,38 950,60" fill="#00914B" opacity="0.20"/>
+      </svg>
+    </div>
+    <div class="blog-cta__inner">
+      <div class="container">
+        <p class="blog-cta__label">Get in Touch</p>
+        <p class="blog-cta__text">Interested in regenerative innovation? Let's start a conversation.</p>
+        <div class="copyable-email copyable-email--compact">
+          <span class="copyable-email__address">info@regenstudio.world</span>
+          <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+            <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span class="copyable-email__label">Copy</span>
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -85,7 +158,15 @@
         <div class="footer__col">
           <h4>Connect</h4>
           <ul>
-            <li><a href="mailto:hello@regenstudio.world">Email Us</a></li>
+            <li>
+                <span class="footer__email-row">
+                  <span class="footer__email-address">info@regenstudio.world</span>
+                  <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                    <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  </button>
+                </span>
+              </li>
             <li><a href="https://www.linkedin.com/company/105199538" target="_blank" rel="noopener">LinkedIn</a></li>
           </ul>
         </div>
