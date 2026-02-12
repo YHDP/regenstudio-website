@@ -207,7 +207,8 @@
   // ========================================
   async function initBlogListing() {
     const grid = document.getElementById('blogGrid');
-    const catContainer = document.getElementById('categoryFilters');
+    const focusContainer = document.getElementById('focusAreaFilters');
+    const serviceContainer = document.getElementById('serviceFilters');
 
     if (!grid) return;
 
@@ -221,16 +222,20 @@
       b.tags.forEach(t => { tagCounts[t] = (tagCounts[t] || 0) + 1; });
     });
 
-    // Render filter pills
-    function renderPills(container, counts, type) {
-      container.innerHTML = Object.entries(counts)
-        .sort((a, b) => a[0].localeCompare(b[0]))
+    // Render category pills grouped by Focus Areas and Services
+    const focusAreas = ['Circular Economy', 'Digital Society', 'Energy Transition', 'Liveable Cities', 'Resilient Nature'];
+    const servicesList = ['Innovation Services', 'Out-of-the-Box Ideas', 'Vision & Strategy', 'Visual Storytelling'];
+
+    function renderPills(container, entries) {
+      container.innerHTML = entries.sort((a, b) => a[0].localeCompare(b[0]))
         .map(([name, count]) =>
-          `<button class="filter-pill" data-type="${type}" data-value="${name}">${name} <span class="filter-pill__count">${count}</span></button>`
+          `<button class="filter-pill" data-type="category" data-value="${name}">${name} <span class="filter-pill__count">${count}</span></button>`
         ).join('');
     }
 
-    renderPills(catContainer, catCounts, 'category');
+    const catEntries = Object.entries(catCounts);
+    renderPills(focusContainer, catEntries.filter(([name]) => focusAreas.includes(name)));
+    renderPills(serviceContainer, catEntries.filter(([name]) => servicesList.includes(name)));
 
     // --- Tag search dropdown ---
     function initTagSearch(tagCounts) {
