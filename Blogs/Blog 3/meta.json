@@ -1,5 +1,5 @@
 {
-  "title": "Nature-Based Solutions: Weaving Ecological Intelligence into Urban Design",
+  "title": "Weaving Nature into Urban Design",
   "slug": "Blog 3",
   "subtitle": "How integrating natural ecosystems into urban planning creates resilient, regenerative cities that thrive alongside nature.",
   "author": {
@@ -8,9 +8,9 @@
   },
   "date": "2025-01-18",
   "categories": ["Urban Regeneration", "Natural Ecosystems"],
-  "tags": ["nature-based-solutions", "urban-design", "biodiversity", "climate-adaptation", "regenerative-design"],
-  "featuredImage": null,
-  "featuredImageAlt": "",
-  "excerpt": "Nature-based solutions offer a powerful approach to urban challenges. By learning from and working with natural ecosystems, cities can build resilience, restore biodiversity, and create spaces that regenerate rather than deplete.",
+  "tags": ["urban-nature", "urban-design", "biodiversity", "climate-adaptation", "regenerative-design"],
+  "featuredImage": "hero-urban-nature.svg",
+  "featuredImageAlt": "Colorful triangles forming a building that transforms into a tree, representing the fusion of urban and natural systems",
+  "excerpt": "By learning from and working with natural ecosystems, cities can build resilience, restore biodiversity, and create spaces that regenerate rather than deplete.",
   "published": true
 }
