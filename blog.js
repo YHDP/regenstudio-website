@@ -617,9 +617,24 @@
     // CTA banner after article content
     const ctaBanner = document.createElement('div');
     ctaBanner.className = 'post-cta-banner';
+    ctaBanner.id = 'post-cta-banner';
     ctaBanner.innerHTML = `
       <p class="post-cta-banner__label">Get in Touch</p>
       <p class="post-cta-banner__text">Interested in working together on regenerative innovation?</p>
+      <form id="post-contact-form" class="regen-form regen-form--compact">
+        <div class="regen-form__row">
+          <input type="text" name="name" placeholder="Your name" class="regen-form__input" required>
+          <input type="email" name="email" placeholder="Email address" class="regen-form__input" required>
+        </div>
+        <button type="submit" class="btn btn--primary regen-form__submit">Send Message</button>
+        <p class="regen-form__disclaimer">Your data is stored in the EU and not shared with third parties. <a href="privacy.html">Privacy Policy</a></p>
+      </form>
+      <div id="post-contact-success" class="regen-form__success" style="display:none">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
+        <h3>Message sent!</h3>
+        <p>We'll get back to you as soon as possible.</p>
+      </div>
+      <div class="regen-form__divider"><span>or email us directly</span></div>
       <div class="copyable-email copyable-email--compact">
         <span class="copyable-email__address">${COMPANY.email}</span>
         <button class="copyable-email__btn" data-email="${COMPANY.email}" aria-label="Copy email address">
@@ -677,6 +692,7 @@
           <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
         </button>
       </div>
+      <a href="#post-cta-banner" class="scroll-cta__form-link">or send us a message &darr;</a>
     `;
     document.body.appendChild(floatingCTA);
 
@@ -746,10 +762,90 @@
     });
   }
 
+  // ========================================
+  // Contact Form Handlers (blog pages)
+  // ========================================
+  const EDGE_FUNCTION_URL = 'https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form';
+
+  function initBlogContactForms() {
+    // Blog listing page form
+    setupForm('blog-contact-form', 'blog-contact-success', 'blog_contact');
+    // Blog post CTA form
+    setupForm('post-contact-form', 'post-contact-success', 'blog_post_contact');
+
+    // Smooth scroll for scroll-cta form link
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('.scroll-cta__form-link');
+      if (link) {
+        e.preventDefault();
+        const target = document.getElementById('post-cta-banner');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // Dismiss the floating CTA
+          const floatingCTA = document.querySelector('.scroll-cta');
+          if (floatingCTA) floatingCTA.classList.remove('scroll-cta--visible');
+        }
+      }
+    });
+  }
+
+  function setupForm(formId, successId, source) {
+    // Use event delegation since forms may be JS-rendered
+    document.addEventListener('submit', async (e) => {
+      const form = e.target.closest('#' + formId);
+      if (!form) return;
+      e.preventDefault();
+
+      const submitBtn = form.querySelector('.regen-form__submit');
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      // Clear previous errors
+      const existingError = form.querySelector('.regen-form__error');
+      if (existingError) existingError.remove();
+
+      const formData = new FormData(form);
+      const payload = {
+        name: formData.get('name') || '',
+        email: formData.get('email') || '',
+        message: formData.get('message') || '',
+        source: source,
+        page_url: window.location.href,
+      };
+
+      try {
+        const res = await fetch(EDGE_FUNCTION_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.error || 'Something went wrong');
+        }
+
+        // Success
+        form.style.display = 'none';
+        const successEl = document.getElementById(successId);
+        if (successEl) successEl.style.display = 'flex';
+      } catch (err) {
+        const errorEl = document.createElement('p');
+        errorEl.className = 'regen-form__error';
+        errorEl.textContent = err.message || 'Failed to send. Please try again.';
+        submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     initNav();
     initCopyButtons();
     initBlogListing();
     initBlogPost();
+    initBlogContactForms();
   });
 })();
