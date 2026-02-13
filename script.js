@@ -797,11 +797,9 @@
       tagline: 'Designing innovations that regenerate humans, cities and nature.',
       email: 'info@regenstudio.world',
       profiles: {
-        linkedin: 'https://www.linkedin.com/company/105199538',
+        linkedin: 'https://www.linkedin.com/company/regen-studio-world/',
         bluesky: 'https://bsky.app/profile/regen-studio.bsky.social',
-        // Add new profiles here as they are created:
-        // mastodon: 'https://mastodon.social/@regenstudio',
-        // reddit: 'https://reddit.com/r/regenstudio',
+        mastodon: 'https://mastodon.social/@regen_studio',
       }
     };
 
@@ -814,7 +812,7 @@
     var shareMessages = {
       bluesky: 'I just created emergent art from an ecosystem of triangles\n\nMade with ' + blueskyHandle + ' — designing innovations that regenerate humans, cities and nature.\n\n' + shareUrl,
       linkedin: 'I just created emergent art from an ecosystem of interactive triangles at ' + companyName + ' — designing innovations that regenerate humans, cities and nature.\n\nTry it yourself: ' + shareUrl + '\n\nFollow ' + companyName + ': ' + linkedInPage,
-      mastodon: 'I just created emergent art from an ecosystem of triangles\n\nMade with ' + companyName + ' — designing innovations that regenerate humans, cities and nature.\n\n' + shareUrl + '\n\n#RegenerativeDesign #GenerativeArt #Innovation',
+      mastodon: 'I just created emergent art from an ecosystem of triangles\n\nMade with @regen_studio@mastodon.social — designing innovations that regenerate humans, cities and nature.\n\n' + shareUrl + '\n\n#RegenerativeDesign #GenerativeArt #Innovation',
       reddit: 'Emergent Art — Interactive triangle ecosystem by Regen Studio',
       whatsapp: 'I just created emergent art from an ecosystem of triangles at ' + companyName + ' — try it yourself! ' + shareUrl,
       email: {
@@ -1018,26 +1016,9 @@
       callback(ex.toDataURL('image/png'));
     }
 
-    // Convert data URL to File object for Web Share API
-    function dataUrlToFile(dataUrl, filename) {
-      var arr = dataUrl.split(',');
-      var mime = arr[0].match(/:(.*?);/)[1];
-      var bstr = atob(arr[1]);
-      var n = bstr.length;
-      var u8arr = new Uint8Array(n);
-      while (n--) u8arr[n] = bstr.charCodeAt(n);
-      return new File([u8arr], filename, { type: mime });
-    }
-
-    // Create export image and return as File via callback
-    function getExportFile(callback) {
-      createExportImage(function (dataUrl) {
-        callback(dataUrlToFile(dataUrl, 'regen-studio-creation.png'), dataUrl);
-      });
-    }
-
-    // Download button
+    // Download button — saves image and reveals share step
     var downloadBtn = document.getElementById('freezeDownload');
+    var shareStep = document.getElementById('freezeShareStep');
     if (downloadBtn) {
       downloadBtn.addEventListener('click', function () {
         createExportImage(function (dataUrl) {
@@ -1045,21 +1026,10 @@
           link.download = 'regen-studio-creation.png';
           link.href = dataUrl;
           link.click();
+          downloadBtn.classList.add('downloaded');
+          downloadBtn.querySelector('span').textContent = 'Saved! Download again';
+          if (shareStep) shareStep.classList.add('revealed');
         });
-      });
-    }
-
-    // Helper: download image, show toast, then open URL
-    function downloadThenOpen(url, platform) {
-      getExportFile(function (file, dataUrl) {
-        var link = document.createElement('a');
-        link.download = 'regen-studio-creation.png';
-        link.href = dataUrl;
-        link.click();
-        showToast('Image saved — attach it to your ' + (platform || '') + ' post!');
-        setTimeout(function () {
-          window.open(url, '_blank', 'width=600,height=500');
-        }, 800);
       });
     }
 
@@ -1084,44 +1054,33 @@
       }, 3000);
     }
 
-    // Native share button — shares the actual image file
+    // Native share button — uses device share sheet
     var shareNativeBtn = document.getElementById('freezeShareNative');
     if (shareNativeBtn) {
-      if (!navigator.share || !navigator.canShare) {
+      if (!navigator.share) {
         shareNativeBtn.style.display = 'none';
-      }
-      shareNativeBtn.addEventListener('click', function () {
-        getExportFile(function (file) {
-          var shareData = {
-            title: 'Emergent Art — ' + companyName,
-            text: shareMessages.native,
-            url: shareUrl,
-            files: [file]
-          };
-          if (navigator.canShare && navigator.canShare(shareData)) {
-            navigator.share(shareData).catch(function () {});
-          } else {
-            navigator.share({ title: 'Emergent Art — ' + companyName, text: shareMessages.native, url: shareUrl }).catch(function () {});
-          }
+      } else {
+        shareNativeBtn.addEventListener('click', function () {
+          navigator.share({ title: 'Emergent Art — ' + companyName, text: shareMessages.native, url: shareUrl }).catch(function () {});
         });
-      });
+      }
     }
 
     // Bluesky — open compose intent with pre-filled message
     var shareBskyBtn = document.getElementById('freezeShareBluesky');
     if (shareBskyBtn) {
       shareBskyBtn.addEventListener('click', function () {
-        downloadThenOpen('https://bsky.app/intent/compose?text=' + encodeURIComponent(shareMessages.bluesky), 'Bluesky');
+        window.open('https://bsky.app/intent/compose?text=' + encodeURIComponent(shareMessages.bluesky), '_blank', 'width=600,height=500');
+        showToast('Attach your saved image to the post!');
       });
     }
 
-    // LinkedIn — copy message to clipboard, download image, open share
-    // LinkedIn blocks pre-filled text (anti-spam), so we copy it for the user to paste
+    // LinkedIn — pre-fill text in composer, prompt user to @tag
     var shareLinkedInBtn = document.getElementById('freezeShareLinkedIn');
     if (shareLinkedInBtn) {
       shareLinkedInBtn.addEventListener('click', function () {
-        copyToClipboard(shareMessages.linkedin, 'Message copied — paste it in your LinkedIn post!');
-        downloadThenOpen('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(shareUrl), 'LinkedIn');
+        window.open('https://www.linkedin.com/feed/?shareActive=true&text=' + encodeURIComponent(shareMessages.linkedin), '_blank', 'width=600,height=600');
+        showToast('Type @Regen Studio in the post to tag us!');
       });
     }
 
@@ -1129,7 +1088,8 @@
     var shareMastodonBtn = document.getElementById('freezeShareMastodon');
     if (shareMastodonBtn) {
       shareMastodonBtn.addEventListener('click', function () {
-        downloadThenOpen('https://s2f.kytta.dev/?text=' + encodeURIComponent(shareMessages.mastodon), 'Mastodon');
+        window.open('https://s2f.kytta.dev/?text=' + encodeURIComponent(shareMessages.mastodon), '_blank', 'width=600,height=500');
+        showToast('Attach your saved image to the post!');
       });
     }
 
@@ -1137,22 +1097,16 @@
     var shareRedditBtn = document.getElementById('freezeShareReddit');
     if (shareRedditBtn) {
       shareRedditBtn.addEventListener('click', function () {
-        downloadThenOpen('https://reddit.com/submit?url=' + encodeURIComponent(shareUrl) + '&title=' + encodeURIComponent(shareMessages.reddit), 'Reddit');
+        window.open('https://reddit.com/submit?url=' + encodeURIComponent(shareUrl) + '&title=' + encodeURIComponent(shareMessages.reddit), '_blank', 'width=600,height=500');
+        showToast('Attach your saved image to the post!');
       });
     }
 
-    // WhatsApp — use native share with image if available, otherwise URL
+    // WhatsApp — open with message text
     var shareWhatsAppBtn = document.getElementById('freezeShareWhatsApp');
     if (shareWhatsAppBtn) {
       shareWhatsAppBtn.addEventListener('click', function () {
-        getExportFile(function (file) {
-          var shareData = { text: shareMessages.whatsapp, files: [file] };
-          if (navigator.canShare && navigator.canShare(shareData)) {
-            navigator.share(shareData).catch(function () {});
-          } else {
-            window.open('https://wa.me/?text=' + encodeURIComponent(shareMessages.whatsapp), '_blank');
-          }
-        });
+        window.open('https://wa.me/?text=' + encodeURIComponent(shareMessages.whatsapp), '_blank');
       });
     }
 

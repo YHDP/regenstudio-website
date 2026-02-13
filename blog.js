@@ -111,8 +111,9 @@
     tagline: 'Designing innovations that regenerate humans, cities and nature.',
     email: 'info@regenstudio.world',
     profiles: {
-      linkedin: 'https://www.linkedin.com/company/105199538',
+      linkedin: 'https://www.linkedin.com/company/regen-studio-world/',
       bluesky: 'https://bsky.app/profile/regen-studio.bsky.social',
+      mastodon: 'https://mastodon.social/@regen_studio',
     }
   };
 
@@ -122,7 +123,7 @@
     return {
       bluesky: postTitle + '\n\nBy ' + blueskyHandle + ' — ' + COMPANY.tagline + '\n\n' + pageUrl,
       linkedin: postTitle + '\n\nBy ' + COMPANY.name + ' — ' + COMPANY.tagline + '\n\nRead it here: ' + pageUrl + '\n\nFollow ' + COMPANY.name + ': ' + COMPANY.profiles.linkedin,
-      mastodon: postTitle + '\n\nBy ' + COMPANY.name + ' — ' + COMPANY.tagline + '\n\n' + pageUrl + '\n\n#RegenerativeDesign #Innovation',
+      mastodon: postTitle + '\n\nBy @regen_studio@mastodon.social — ' + COMPANY.tagline + '\n\n' + pageUrl + '\n\n#RegenerativeDesign #Innovation',
       reddit: postTitle + ' — ' + COMPANY.name,
       whatsapp: postTitle + ' — ' + COMPANY.tagline + ' ' + pageUrl,
       native: postTitle + ' — by ' + COMPANY.name + '. ' + COMPANY.tagline,
@@ -173,13 +174,26 @@
     }).catch(() => {});
   }
 
+  // --- Category color lookup (matching index.html focus section colors) ---
+  const CATEGORY_COLORS = {
+    'Circular Economy': 'emerald', 'Digital Product Passport': 'emerald', 'Circular Business Models': 'emerald',
+    'Energy Transition': 'orange', 'Smart Grids': 'orange', 'Energy Communities': 'orange', 'Energy Justice': 'orange',
+    'Liveable Cities': 'teal', 'Living Labs': 'teal', 'Digital Participation': 'teal', 'Urban Greening': 'teal',
+    'Digital Society': 'magenta', 'Digital Identity': 'magenta', 'Privacy-by-Design': 'magenta', 'AI': 'magenta',
+    'Resilient Nature': 'green', 'Reforestation': 'green', 'Biodiversity': 'green', 'Regenerative Agriculture': 'green',
+    'Innovation Services': 'gray', 'Out-of-the-Box Ideas': 'gray', 'Vision & Strategy': 'gray', 'Visual Storytelling': 'gray',
+  };
+
   // --- Card renderer ---
   function renderCard(post) {
     const imageHtml = post.featuredImage
       ? `<div class="blog-card__image"><img src="Blogs/${post.slug}/${post.featuredImage}" alt="${post.featuredImageAlt || ''}" loading="lazy"></div>`
       : `<div class="blog-card__image"><div class="blog-card__image-placeholder">${icons.image}</div></div>`;
 
-    const cats = post.categories.map(c => `<span class="blog-card__category">${c}</span>`).join('');
+    const cats = post.categories.map(c => {
+      const color = CATEGORY_COLORS[c] || 'gray';
+      return `<span class="blog-card__category blog-card__category--${color}">${c}</span>`;
+    }).join('');
 
     return `
       <article class="blog-card">
@@ -207,8 +221,7 @@
   // ========================================
   async function initBlogListing() {
     const grid = document.getElementById('blogGrid');
-    const focusContainer = document.getElementById('focusAreaFilters');
-    const serviceContainer = document.getElementById('serviceFilters');
+    const columnsContainer = document.getElementById('categoryColumns');
 
     if (!grid) return;
 
@@ -222,20 +235,59 @@
       b.tags.forEach(t => { tagCounts[t] = (tagCounts[t] || 0) + 1; });
     });
 
-    // Render category pills grouped by Focus Areas and Services
-    const focusAreas = ['Circular Economy', 'Digital Society', 'Energy Transition', 'Liveable Cities', 'Resilient Nature'];
-    const servicesList = ['Innovation Services', 'Out-of-the-Box Ideas', 'Vision & Strategy', 'Visual Storytelling'];
+    // Category columns with sub-categories and color mapping (matching index.html focus section)
+    const categoryColumns = [
+      { name: 'Circular Economy', color: 'emerald', subs: ['Digital Product Passport', 'Circular Business Models'] },
+      { name: 'Energy Transition', color: 'orange', subs: ['Smart Grids', 'Energy Communities', 'Energy Justice'] },
+      { name: 'Liveable Cities', color: 'teal', subs: ['Living Labs', 'Digital Participation', 'Urban Greening'] },
+      { name: 'Digital Society', color: 'magenta', subs: ['Digital Identity', 'Privacy-by-Design', 'AI'] },
+      { name: 'Resilient Nature', color: 'green', subs: ['Reforestation', 'Biodiversity', 'Regenerative Agriculture'] },
+      { name: 'Services', color: 'gray', subs: ['Innovation Services', 'Out-of-the-Box Ideas', 'Vision & Strategy', 'Visual Storytelling'] },
+    ];
 
-    function renderPills(container, entries) {
-      container.innerHTML = entries.sort((a, b) => a[0].localeCompare(b[0]))
-        .map(([name, count]) =>
-          `<button class="filter-pill" data-type="category" data-value="${name}">${name} <span class="filter-pill__count">${count}</span></button>`
-        ).join('');
+    // Build sub→parent lookup so sub-categories auto-inherit parent
+    const subToParent = {};
+    categoryColumns.forEach(col => {
+      col.subs.forEach(sub => { subToParent[sub] = col.name; });
+    });
+
+    // Expand blog categories: sub-categories inherit their parent
+    function expandCategories(cats) {
+      const expanded = new Set(cats);
+      cats.forEach(c => {
+        if (subToParent[c]) expanded.add(subToParent[c]);
+      });
+      return [...expanded];
     }
 
-    const catEntries = Object.entries(catCounts);
-    renderPills(focusContainer, catEntries.filter(([name]) => focusAreas.includes(name)));
-    renderPills(serviceContainer, catEntries.filter(([name]) => servicesList.includes(name)));
+    // Expand each blog's categories for filtering and counting
+    blogs.forEach(b => {
+      b._expandedCategories = expandCategories(b.categories);
+    });
+
+    // Recount with expanded categories
+    const expandedCatCounts = {};
+    blogs.forEach(b => {
+      b._expandedCategories.forEach(c => { expandedCatCounts[c] = (expandedCatCounts[c] || 0) + 1; });
+    });
+
+    // Render columns
+    columnsContainer.innerHTML = categoryColumns.map(col => {
+      const mainCount = expandedCatCounts[col.name] || 0;
+      const subsHtml = col.subs.map(sub => {
+        const count = expandedCatCounts[sub] || 0;
+        return `<button class="filter-pill filter-pill--sub filter-pill--${col.color}" data-type="category" data-value="${sub}" data-color="${col.color}">${sub}${count ? ` <span class="filter-pill__count">${count}</span>` : ''}</button>`;
+      }).join('');
+
+      return `
+        <div class="blog-filters__column blog-filters__column--${col.color}">
+          <button class="filter-pill filter-pill--main filter-pill--${col.color}" data-type="category" data-value="${col.name}" data-color="${col.color}">
+            ${col.name}${mainCount ? ` <span class="filter-pill__count">${mainCount}</span>` : ''}
+          </button>
+          <div class="blog-filters__subs">${subsHtml}</div>
+        </div>
+      `;
+    }).join('');
 
     // --- Tag search dropdown ---
     function initTagSearch(tagCounts) {
@@ -349,7 +401,7 @@
 
     function filterAndRender() {
       const filtered = blogs.filter(b => {
-        const catMatch = activeCategories.size === 0 || [...activeCategories].every(c => b.categories.includes(c));
+        const catMatch = activeCategories.size === 0 || [...activeCategories].every(c => b._expandedCategories.includes(c));
         const tagMatch = activeTags.size === 0 || [...activeTags].every(t => b.tags.includes(t));
         return catMatch && tagMatch;
       });
@@ -438,7 +490,7 @@
       <div class="container">
         <a href="blog.html" class="post-header__back">${icons.arrow} Back to Blog</a>
         <div class="post-header__categories">
-          ${post.categories.map(c => `<span class="post-header__category">${c}</span>`).join('')}
+          ${post.categories.map(c => `<span class="post-header__category post-header__category--${CATEGORY_COLORS[c] || 'gray'}">${c}</span>`).join('')}
         </div>
         <h1 class="post-header__title">${post.title}</h1>
         ${post.subtitle ? `<p class="post-header__subtitle">${post.subtitle}</p>` : ''}
@@ -523,12 +575,10 @@
       window.open('https://bsky.app/intent/compose?text=' + encodeURIComponent(msgs.bluesky), '_blank', 'width=600,height=500');
     });
 
-    // LinkedIn — copy message to clipboard then open share (LinkedIn blocks pre-filled text)
+    // LinkedIn — pre-fill text in composer, prompt user to @tag
     document.getElementById('shareLinkedIn').addEventListener('click', () => {
-      copyToClipboard(msgs.linkedin, 'Message copied — paste it in your LinkedIn post!');
-      setTimeout(() => {
-        window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(pageUrl), '_blank', 'width=600,height=500');
-      }, 800);
+      window.open('https://www.linkedin.com/feed/?shareActive=true&text=' + encodeURIComponent(msgs.linkedin), '_blank', 'width=600,height=600');
+      showToast('Type @Regen Studio in the post to tag us!');
     });
 
     // Mastodon — via Share2Fedi (handles instance selection)
