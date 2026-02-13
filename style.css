@@ -2661,3 +2661,223 @@ em:only-of-type {
 .reveal-delay-4 { transition-delay: 0.4s; }
 .reveal-delay-5 { transition-delay: 0.5s; }
 .reveal-delay-6 { transition-delay: 0.6s; }
+
+/* ========================================
+   Regen Form — Contact Forms
+   ======================================== */
+
+.regen-form {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.regen-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.regen-form__input {
+  width: 100%;
+  padding: 14px 18px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+
+.regen-form__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.regen-form__input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+.regen-form__textarea {
+  min-height: 100px;
+  resize: vertical;
+  margin-bottom: 16px;
+}
+
+.regen-form__submit {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.regen-form__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.regen-form__disclaimer {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.regen-form__disclaimer a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.regen-form__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.regen-form__success h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.regen-form__success p {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+}
+
+.regen-form__divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.regen-form__divider::before,
+.regen-form__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.regen-form__divider span {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.regen-form__error {
+  font-size: 0.85rem;
+  color: var(--color-red);
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* Compact variant for blog CTAs */
+.regen-form--compact .regen-form__textarea {
+  min-height: 60px;
+}
+
+/* Mobile: stack name + email */
+@media (max-width: 480px) {
+  .regen-form__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Scroll CTA form link */
+.scroll-cta__form-link {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  text-align: center;
+  transition: opacity var(--transition);
+}
+
+.scroll-cta__form-link:hover {
+  opacity: 0.7;
+}
+
+/* ========================================
+   Privacy Policy Page
+   ======================================== */
+
+.privacy-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 140px clamp(20px, 4vw, 40px) 80px;
+}
+
+.privacy-page h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.privacy-page .privacy-updated {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 40px;
+}
+
+.privacy-page h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-top: 36px;
+  margin-bottom: 12px;
+}
+
+.privacy-page p {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.privacy-page ul {
+  padding-left: 24px;
+  margin-bottom: 16px;
+}
+
+.privacy-page li {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  margin-bottom: 4px;
+}
+
+.privacy-page a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.privacy-page .privacy-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: color var(--transition);
+}
+
+.privacy-page .privacy-back:hover {
+  color: var(--color-primary);
+}

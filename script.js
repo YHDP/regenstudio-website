@@ -1486,12 +1486,70 @@
   }
 
   // =============================================
-  // 3. BOOT
+  // 3. CONTACT FORM
+  // =============================================
+
+  function initContactForms() {
+    var EDGE_FUNCTION_URL = 'https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form';
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var submitBtn = form.querySelector('.regen-form__submit');
+      var originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      // Clear previous errors
+      var existingError = form.querySelector('.regen-form__error');
+      if (existingError) existingError.remove();
+
+      var formData = new FormData(form);
+      var payload = {
+        name: formData.get('name') || '',
+        email: formData.get('email') || '',
+        message: formData.get('message') || '',
+        source: 'website_contact',
+        page_url: window.location.href,
+      };
+
+      fetch(EDGE_FUNCTION_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      .then(function (res) {
+        if (!res.ok) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            throw new Error(data.error || 'Something went wrong');
+          });
+        }
+        // Success
+        form.style.display = 'none';
+        var successEl = document.getElementById('contact-success');
+        if (successEl) successEl.style.display = 'flex';
+      })
+      .catch(function (err) {
+        var errorEl = document.createElement('p');
+        errorEl.className = 'regen-form__error';
+        errorEl.textContent = err.message || 'Failed to send. Please try again.';
+        submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+      });
+    });
+  }
+
+  // =============================================
+  // 4. BOOT
   // =============================================
 
   function boot() {
     initSimulation();
     initPage();
+    initContactForms();
   }
 
   if (document.readyState === 'loading') {
