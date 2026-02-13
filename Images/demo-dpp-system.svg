@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <rect width="800" height="500" fill="#FFFFFF"/>
+
+  <!-- ==========================================
+       SUPPLY CHAIN FLOW — green/wood tessellated triangles
+       Central composition representing linked supply chain nodes
+       ========================================== -->
+
+  <!-- Node 1: Forest / Harvest (left) -->
+  <polygon points="100,260 160,200 160,260" fill="#0D6B3E" opacity="0.9"/>
+  <polygon points="100,260 160,260 160,320" fill="#10B981" opacity="0.8"/>
+  <polygon points="160,200 220,260 160,260" fill="#10B981" opacity="0.85"/>
+  <polygon points="160,260 220,260 160,320" fill="#0D6B3E" opacity="0.75"/>
+  <polygon points="160,200 220,200 220,260" fill="#059669" opacity="0.7"/>
+  <polygon points="160,320 220,260 220,320" fill="#059669" opacity="0.65"/>
+  <!-- Tree triangles -->
+  <polygon points="140,200 160,150 180,200" fill="#0D6B3E" opacity="0.8"/>
+  <polygon points="150,170 160,130 170,170" fill="#10B981" opacity="0.75"/>
+  <polygon points="145,185 160,140 175,185" fill="#059669" opacity="0.6"/>
+
+  <!-- Link 1→2 (chain arrow) -->
+  <polygon points="220,250 270,244 270,256" fill="#8B6F47" opacity="0.6"/>
+  <polygon points="270,240 300,250 270,260" fill="#8B6F47" opacity="0.7"/>
+
+  <!-- Node 2: Transport / Ship (center-left) -->
+  <polygon points="300,230 360,200 360,260" fill="#8B6F47" opacity="0.8"/>
+  <polygon points="300,270 360,260 360,300" fill="#A0845C" opacity="0.7"/>
+  <polygon points="300,230 300,270 360,260" fill="#6B5535" opacity="0.75"/>
+  <polygon points="360,200 400,240 360,260" fill="#A0845C" opacity="0.65"/>
+  <polygon points="360,260 400,240 400,280" fill="#8B6F47" opacity="0.6"/>
+  <polygon points="360,260 360,300 400,280" fill="#6B5535" opacity="0.7"/>
+  <!-- Wave detail -->
+  <polygon points="310,300 340,290 370,300" fill="#0EA5E9" opacity="0.3"/>
+  <polygon points="330,310 360,300 390,310" fill="#0EA5E9" opacity="0.2"/>
+
+  <!-- Link 2→3 -->
+  <polygon points="400,250 450,244 450,256" fill="#8B6F47" opacity="0.6"/>
+  <polygon points="450,240 480,250 450,260" fill="#8B6F47" opacity="0.7"/>
+
+  <!-- Node 3: Manufacturing (center-right) -->
+  <polygon points="480,220 540,190 540,250" fill="#059669" opacity="0.85"/>
+  <polygon points="480,280 540,250 540,310" fill="#10B981" opacity="0.75"/>
+  <polygon points="480,220 480,280 540,250" fill="#047857" opacity="0.8"/>
+  <polygon points="540,190 600,220 600,260" fill="#10B981" opacity="0.7"/>
+  <polygon points="540,250 600,260 600,300" fill="#059669" opacity="0.65"/>
+  <polygon points="540,190 540,250 600,220" fill="#0D6B3E" opacity="0.75"/>
+  <polygon points="540,250 540,310 600,300" fill="#047857" opacity="0.7"/>
+  <!-- Gear/cog detail -->
+  <polygon points="530,240 540,225 550,240" fill="#FFFFFF" opacity="0.5"/>
+  <polygon points="530,260 540,275 550,260" fill="#FFFFFF" opacity="0.4"/>
+  <polygon points="525,250 540,240 540,260" fill="#FFFFFF" opacity="0.45"/>
+  <polygon points="555,250 540,240 540,260" fill="#FFFFFF" opacity="0.45"/>
+
+  <!-- Link 3→4 -->
+  <polygon points="600,250 650,244 650,256" fill="#10B981" opacity="0.6"/>
+  <polygon points="650,240 680,250 650,260" fill="#10B981" opacity="0.7"/>
+
+  <!-- Node 4: DPP / Product (right) -->
+  <polygon points="680,210 740,180 740,240" fill="#10B981" opacity="0.9"/>
+  <polygon points="680,290 740,260 740,320" fill="#0D6B3E" opacity="0.8"/>
+  <polygon points="680,210 680,290 740,260" fill="#059669" opacity="0.85"/>
+  <polygon points="740,180 780,210 740,240" fill="#0D6B3E" opacity="0.7"/>
+  <polygon points="740,240 780,210 780,260" fill="#10B981" opacity="0.75"/>
+  <polygon points="740,260 780,260 780,310" fill="#059669" opacity="0.65"/>
+  <polygon points="740,260 740,320 780,310" fill="#047857" opacity="0.7"/>
+  <!-- QR code detail -->
+  <polygon points="700,240 710,230 720,240" fill="#FFFFFF" opacity="0.6"/>
+  <polygon points="700,250 710,260 720,250" fill="#FFFFFF" opacity="0.5"/>
+  <polygon points="700,240 700,260 710,250" fill="#FFFFFF" opacity="0.55"/>
+  <polygon points="720,240 720,260 710,250" fill="#FFFFFF" opacity="0.55"/>
+  <polygon points="705,235 715,235 710,242" fill="#FFFFFF" opacity="0.4"/>
+
+  <!-- Decorative accent triangles -->
+  <!-- Top-left forest canopy -->
+  <polygon points="60,140 85,110 110,140" fill="#0D6B3E" opacity="0.2"/>
+  <polygon points="40,170 65,145 90,170" fill="#10B981" opacity="0.15"/>
+  <polygon points="80,110 105,85 125,115" fill="#059669" opacity="0.12"/>
+
+  <!-- Top accent -->
+  <polygon points="350,80 375,55 395,85" fill="#10B981" opacity="0.15"/>
+  <polygon points="380,100 405,75 425,105" fill="#0D6B3E" opacity="0.1"/>
+  <polygon points="420,65 445,40 465,70" fill="#059669" opacity="0.12"/>
+
+  <!-- Bottom-left -->
+  <polygon points="70,380 95,355 115,385" fill="#8B6F47" opacity="0.15"/>
+  <polygon points="85,410 70,380 105,395" fill="#A0845C" opacity="0.1"/>
+
+  <!-- Bottom-right -->
+  <polygon points="680,400 705,375 725,405" fill="#10B981" opacity="0.15"/>
+  <polygon points="700,425 680,395 720,410" fill="#0D6B3E" opacity="0.1"/>
+
+  <!-- Sparkle triangles -->
+  <polygon points="250,100 258,88 266,100" fill="#10B981" opacity="0.12"/>
+  <polygon points="620,120 628,108 636,120" fill="#0D6B3E" opacity="0.1"/>
+  <polygon points="180,400 188,390 196,400" fill="#059669" opacity="0.1"/>
+  <polygon points="500,400 508,390 516,400" fill="#8B6F47" opacity="0.1"/>
+  <polygon points="730,100 738,88 746,100" fill="#10B981" opacity="0.1"/>
+  <polygon points="50,280 58,270 66,280" fill="#0D6B3E" opacity="0.1"/>
+</svg>

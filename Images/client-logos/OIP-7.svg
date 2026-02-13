@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_2" data-name="Camada 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 433.39 254">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #005ceb;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-family: DMSans-Bold, 'DM Sans';
+        font-size: 101px;
+        font-variation-settings: 'opsz' 14, 'wght' 700;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <g id="Camada_1-2" data-name="Camada 1">
+    <rect class="cls-1" width="433.39" height="254"/>
+    <text class="cls-2" transform="translate(66.35 162.75)"><tspan x="0" y="0">FIDES.</tspan></text>
+  </g>
+</svg>

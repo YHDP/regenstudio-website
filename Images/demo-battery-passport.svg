@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <rect width="800" height="500" fill="#FFFFFF"/>
+
+  <!-- Battery body — emerald/green tessellated triangles
+       Central composition, x:200-600, y:140-380 -->
+
+  <!-- Battery top terminal -->
+  <polygon points="340,140 380,100 420,140" fill="#0D6B3E" opacity="0.9"/>
+  <polygon points="380,100 420,100 420,140" fill="#00914B" opacity="0.85"/>
+  <polygon points="340,140 380,100 340,100" fill="#00914B" opacity="0.8"/>
+  <polygon points="360,100 380,80 400,100" fill="#059669" opacity="0.75"/>
+
+  <!-- Row 1 (y:140-180) -->
+  <polygon points="200,180 260,140 260,180" fill="#00914B" opacity="0.9"/>
+  <polygon points="260,140 320,180 260,180" fill="#059669" opacity="0.85"/>
+  <polygon points="260,140 320,140 320,180" fill="#00914B" opacity="0.8"/>
+  <polygon points="320,140 380,180 320,180" fill="#059669" opacity="0.85"/>
+  <polygon points="320,140 380,140 380,180" fill="#00914B" opacity="0.9"/>
+  <polygon points="380,140 440,180 380,180" fill="#059669" opacity="0.8"/>
+  <polygon points="380,140 440,140 440,180" fill="#00914B" opacity="0.85"/>
+  <polygon points="440,140 500,180 440,180" fill="#059669" opacity="0.85"/>
+  <polygon points="440,140 500,140 500,180" fill="#00914B" opacity="0.8"/>
+  <polygon points="500,140 560,180 500,180" fill="#059669" opacity="0.8"/>
+  <polygon points="500,140 560,140 560,180" fill="#00914B" opacity="0.85"/>
+
+  <!-- Row 2 (y:180-220) -->
+  <polygon points="200,180 260,180 200,220" fill="#059669" opacity="0.8"/>
+  <polygon points="260,180 260,220 200,220" fill="#00914B" opacity="0.75"/>
+  <polygon points="260,180 320,180 320,220" fill="#00914B" opacity="0.7"/>
+  <polygon points="260,180 260,220 320,220" fill="#059669" opacity="0.75"/>
+  <polygon points="320,180 380,180 380,220" fill="#059669" opacity="0.75"/>
+  <polygon points="320,180 320,220 380,220" fill="#00914B" opacity="0.7"/>
+  <polygon points="380,180 440,180 440,220" fill="#00914B" opacity="0.75"/>
+  <polygon points="380,180 380,220 440,220" fill="#059669" opacity="0.7"/>
+  <polygon points="440,180 500,180 500,220" fill="#059669" opacity="0.7"/>
+  <polygon points="440,180 440,220 500,220" fill="#00914B" opacity="0.75"/>
+  <polygon points="500,180 560,180 560,220" fill="#00914B" opacity="0.7"/>
+  <polygon points="500,180 500,220 560,220" fill="#059669" opacity="0.7"/>
+
+  <!-- Row 3 (y:220-260) — charge level indicator -->
+  <polygon points="200,220 260,220 260,260" fill="#65DD35" opacity="0.7"/>
+  <polygon points="200,220 200,260 260,260" fill="#65DD35" opacity="0.6"/>
+  <polygon points="260,220 320,220 320,260" fill="#65DD35" opacity="0.65"/>
+  <polygon points="260,220 260,260 320,260" fill="#65DD35" opacity="0.55"/>
+  <polygon points="320,220 380,220 380,260" fill="#65DD35" opacity="0.6"/>
+  <polygon points="320,220 320,260 380,260" fill="#65DD35" opacity="0.5"/>
+  <polygon points="380,220 440,220 440,260" fill="#059669" opacity="0.5"/>
+  <polygon points="380,220 380,260 440,260" fill="#047857" opacity="0.55"/>
+  <polygon points="440,220 500,220 500,260" fill="#059669" opacity="0.45"/>
+  <polygon points="440,220 440,260 500,260" fill="#047857" opacity="0.5"/>
+  <polygon points="500,220 560,220 560,260" fill="#059669" opacity="0.4"/>
+  <polygon points="500,220 500,260 560,260" fill="#047857" opacity="0.45"/>
+
+  <!-- Row 4 (y:260-300) -->
+  <polygon points="200,260 260,260 260,300" fill="#00914B" opacity="0.6"/>
+  <polygon points="200,260 200,300 260,300" fill="#059669" opacity="0.55"/>
+  <polygon points="260,260 320,260 320,300" fill="#059669" opacity="0.55"/>
+  <polygon points="260,260 260,300 320,300" fill="#00914B" opacity="0.6"/>
+  <polygon points="320,260 380,260 380,300" fill="#00914B" opacity="0.55"/>
+  <polygon points="320,260 320,300 380,300" fill="#059669" opacity="0.5"/>
+  <polygon points="380,260 440,260 440,300" fill="#059669" opacity="0.55"/>
+  <polygon points="380,260 380,300 440,300" fill="#00914B" opacity="0.5"/>
+  <polygon points="440,260 500,260 500,300" fill="#00914B" opacity="0.5"/>
+  <polygon points="440,260 440,300 500,300" fill="#059669" opacity="0.55"/>
+  <polygon points="500,260 560,260 560,300" fill="#059669" opacity="0.5"/>
+  <polygon points="500,260 500,300 560,300" fill="#00914B" opacity="0.5"/>
+
+  <!-- Row 5 (y:300-340) -->
+  <polygon points="200,300 260,300 260,340" fill="#059669" opacity="0.5"/>
+  <polygon points="200,300 200,340 260,340" fill="#00914B" opacity="0.5"/>
+  <polygon points="260,300 320,300 320,340" fill="#00914B" opacity="0.5"/>
+  <polygon points="260,300 260,340 320,340" fill="#059669" opacity="0.45"/>
+  <polygon points="320,300 380,300 380,340" fill="#059669" opacity="0.45"/>
+  <polygon points="320,300 320,340 380,340" fill="#00914B" opacity="0.5"/>
+  <polygon points="380,300 440,300 440,340" fill="#00914B" opacity="0.45"/>
+  <polygon points="380,300 380,340 440,340" fill="#059669" opacity="0.45"/>
+  <polygon points="440,300 500,300 500,340" fill="#059669" opacity="0.45"/>
+  <polygon points="440,300 440,340 500,340" fill="#00914B" opacity="0.45"/>
+  <polygon points="500,300 560,300 560,340" fill="#00914B" opacity="0.45"/>
+  <polygon points="500,300 500,340 560,340" fill="#059669" opacity="0.4"/>
+
+  <!-- Row 6 bottom (y:340-380) -->
+  <polygon points="200,340 260,340 260,380" fill="#00914B" opacity="0.45"/>
+  <polygon points="200,340 200,380 260,380" fill="#059669" opacity="0.45"/>
+  <polygon points="260,340 320,340 320,380" fill="#059669" opacity="0.4"/>
+  <polygon points="260,340 260,380 320,380" fill="#00914B" opacity="0.45"/>
+  <polygon points="320,340 380,340 380,380" fill="#00914B" opacity="0.4"/>
+  <polygon points="320,340 320,380 380,380" fill="#059669" opacity="0.4"/>
+  <polygon points="380,340 440,340 440,380" fill="#059669" opacity="0.4"/>
+  <polygon points="380,340 380,380 440,380" fill="#00914B" opacity="0.4"/>
+  <polygon points="440,340 500,340 500,380" fill="#00914B" opacity="0.4"/>
+  <polygon points="440,340 440,380 500,380" fill="#059669" opacity="0.4"/>
+  <polygon points="500,340 560,340 560,380" fill="#059669" opacity="0.4"/>
+  <polygon points="500,340 500,380 560,380" fill="#00914B" opacity="0.35"/>
+
+  <!-- Checkmark overlay (passport approved) -->
+  <polygon points="350,270 390,310 390,295" fill="#FFFFFF" opacity="0.7"/>
+  <polygon points="390,295 390,310 460,220" fill="#FFFFFF" opacity="0.7"/>
+  <polygon points="460,220 460,235 390,310" fill="#FFFFFF" opacity="0.6"/>
+  <polygon points="350,270 350,285 390,310" fill="#FFFFFF" opacity="0.6"/>
+
+  <!-- EU stars ring (small triangles as stars) -->
+  <polygon points="380,155 384,148 388,155" fill="#FFA92D" opacity="0.6"/>
+  <polygon points="360,165 364,158 368,165" fill="#FFA92D" opacity="0.55"/>
+  <polygon points="392,165 396,158 400,165" fill="#FFA92D" opacity="0.55"/>
+  <polygon points="350,180 354,173 358,180" fill="#FFA92D" opacity="0.5"/>
+  <polygon points="402,180 406,173 410,180" fill="#FFA92D" opacity="0.5"/>
+
+  <!-- Scattered decorative triangles -->
+  <polygon points="80,120 105,90 130,120" fill="#00914B" opacity="0.2"/>
+  <polygon points="95,145 80,120 115,130" fill="#059669" opacity="0.15"/>
+  <polygon points="60,200 80,175 100,200" fill="#65DD35" opacity="0.12"/>
+
+  <polygon points="680,80 705,55 725,85" fill="#00914B" opacity="0.18"/>
+  <polygon points="700,110 680,80 715,95" fill="#059669" opacity="0.12"/>
+  <polygon points="720,150 740,125 755,155" fill="#65DD35" opacity="0.1"/>
+
+  <polygon points="70,370 95,345 115,375" fill="#00914B" opacity="0.15"/>
+  <polygon points="85,400 70,370 105,385" fill="#059669" opacity="0.1"/>
+
+  <polygon points="680,380 705,355 725,385" fill="#00914B" opacity="0.15"/>
+  <polygon points="700,410 680,380 720,395" fill="#065F46" opacity="0.1"/>
+
+  <!-- Sparkles -->
+  <polygon points="150,80 158,68 166,80" fill="#00914B" opacity="0.1"/>
+  <polygon points="620,420 628,410 636,420" fill="#059669" opacity="0.1"/>
+  <polygon points="680,250 688,240 696,250" fill="#00914B" opacity="0.1"/>
+  <polygon points="100,320 108,310 116,320" fill="#65DD35" opacity="0.1"/>
+</svg>
