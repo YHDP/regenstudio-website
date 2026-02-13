@@ -626,6 +626,7 @@
           <input type="text" name="name" placeholder="Your name" class="regen-form__input" required>
           <input type="email" name="email" placeholder="Email address" class="regen-form__input" required>
         </div>
+        <textarea name="message" placeholder="What's on your mind?" class="regen-form__input regen-form__textarea" rows="2"></textarea>
         <button type="submit" class="btn btn--primary regen-form__submit">Send Message</button>
         <p class="regen-form__disclaimer">Your data is stored in the EU and not shared with third parties. <a href="privacy.html">Privacy Policy</a></p>
       </form>
