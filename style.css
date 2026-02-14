@@ -3776,14 +3776,7 @@ a.dpp-product--linked {
   cursor: pointer;
 }
 
-/* Not-yet-scheduled cards — subtle styling */
-.dpp-product:has(.dpp-status--unscheduled) {
-  opacity: 0.75;
-}
-
-.dpp-product:has(.dpp-status--unscheduled):hover {
-  opacity: 1;
-}
+/* Not-yet-scheduled cards — subtle styling (kept for backwards compat) */
 
 /* Status dot */
 .dpp-status {
@@ -3943,7 +3936,8 @@ a.dpp-product--linked {
   user-select: none;
 }
 
-.dpp-gate--locked .dpp-products__note {
+.dpp-gate--locked .dpp-products__note,
+.dpp-gate--locked .dpp-art79 {
   filter: blur(6px);
   pointer-events: none;
   user-select: none;
@@ -4059,6 +4053,212 @@ a.dpp-product--linked {
   .dpp-gate__card {
     padding: 28px 20px;
   }
+}
+
+/* DPP info button on cards */
+.dpp-info-btn {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-bg-light);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+  z-index: 2;
+}
+.dpp-product:hover .dpp-info-btn {
+  opacity: 1;
+}
+.dpp-info-btn:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+.dpp-info-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 768px) {
+  .dpp-info-btn {
+    opacity: 0.7;
+  }
+}
+
+/* DPP info modal */
+.dpp-info-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.dpp-info-modal.open {
+  display: flex;
+}
+.dpp-info-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(36, 54, 68, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.dpp-info-modal__card {
+  position: relative;
+  max-width: 560px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: var(--color-bg-card);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 16px 48px rgba(36, 54, 68, 0.18);
+  animation: dppModalSlideIn 0.25s ease-out;
+}
+@keyframes dppModalSlideIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.dpp-info-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-bg-light);
+  color: var(--color-text-secondary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+.dpp-info-modal__close:hover {
+  background: var(--color-border);
+}
+.dpp-info-modal__title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 4px;
+  padding-right: 32px;
+}
+.dpp-info-modal__status {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.dpp-info-modal__status--confirmed { color: #00914B; }
+.dpp-info-modal__status--expected { color: #0077B6; }
+.dpp-info-modal__status--planned { color: #B8860B; }
+.dpp-info-modal__citation {
+  margin: 0 0 20px;
+  padding: 16px 20px;
+  border-left: 3px solid var(--color-primary);
+  background: var(--color-bg-light);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--color-text);
+  font-style: italic;
+}
+.dpp-info-modal__link {
+  display: inline-block;
+  padding: 8px 20px;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+.dpp-info-modal__link:hover {
+  background: var(--color-primary-dark, #007a3d);
+}
+
+@media (max-width: 768px) {
+  .dpp-info-modal__card {
+    max-width: 100%;
+    padding: 24px 20px;
+    max-height: 90vh;
+  }
+}
+
+/* Article 79 pill section */
+.dpp-art79 {
+  margin-top: 36px;
+  margin-bottom: 24px;
+}
+.dpp-art79__header {
+  margin-bottom: 16px;
+}
+.dpp-art79__title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+.dpp-art79__desc {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  max-width: 72ch;
+}
+.dpp-art79__desc a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary-glow);
+  text-underline-offset: 2px;
+}
+.dpp-art79__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.dpp-art79__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  background: var(--color-bg-light);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.dpp-art79__pill:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: rgba(0, 145, 75, 0.05);
+}
+.dpp-art79__pill svg {
+  width: 12px;
+  height: 12px;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+.dpp-art79__pill:hover svg {
+  opacity: 1;
 }
 
 /* DPP demos — 2-col grid */

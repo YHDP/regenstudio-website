@@ -94,7 +94,7 @@
         "name": "Which products need a Digital Product Passport?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Over 33 product groups will need a Digital Product Passport. Three have confirmed DPP dates: Batteries from February 2027 (Battery Regulation 2023/1542), Packaging from August 2028 (PPWR 2025/40), and Toys from August 2030 (Toy Safety Regulation 2025/2509). DPP obligations are expected around 2028–2029 for textiles, iron & steel, construction products, washing machines, dishwashers, heaters, aluminium, tyres, displays, and detergents — based on delegated acts currently in preparation. The ESPR working plan schedules DPPs for ~2030–2032 for furniture, electric motors, EV chargers, fridges, cooling equipment, mattresses, light sources, tumble dryers, mobile phones, and welding equipment. Nine additional product groups (including computers, air conditioners, vacuum cleaners, and solar panels) are transitioning from the Ecodesign Directive to ESPR under Article 79, with DPP requirements not yet scheduled."
+          "text": "Over 30 product groups will eventually need a Digital Product Passport. Three have confirmed DPP dates: Batteries from February 2027 (Battery Regulation 2023/1542), Packaging from August 2028 (PPWR 2025/40), and Toys from August 2030 (Toy Safety Regulation 2025/2509). Delegated acts are in preparation for textiles, iron & steel, construction products, washing machines, dishwashers, aluminium, tyres, displays, and detergents — these are expected to include DPP requirements applying around 2028–2029, but this will only be confirmed upon adoption. The ESPR working plan identifies further products for future delegated acts (furniture, electric motors, EV chargers, fridges, cooling equipment, mattresses, light sources, tumble dryers, mobile phones, and welding equipment) but no delegated acts have been started for these yet. An additional 19 product groups are transitioning from the Ecodesign Directive to the ESPR under Article 79 — existing measures apply until 31 December 2026, with new ESPR delegated acts including DPP requirements expected after this transition period."
         }
       },
       {
@@ -197,7 +197,7 @@
     <!-- Product Groups -->
     <section class="about-section" id="dpp-products">
       <h2 class="about-section__title">Which Products Need a Passport?</h2>
-      <p class="dpp-hero__lead">Digital Product Passports are mandated across several EU regulations — each with its own timeline for when the DPP obligation takes effect. Some dates are legally confirmed, others are estimated based on delegated acts in preparation. Below you'll find 33 product groups sorted by their DPP obligation date.</p>
+      <p class="dpp-hero__lead">Digital Product Passports are mandated across several EU regulations — each with its own timeline. Some DPP dates are legally confirmed, others are estimated based on delegated acts in preparation or identified in the ESPR working plan. Below you'll find 22 product groups with nearer DPP obligations, plus 19 transitioning from the Ecodesign Directive under Article 79.</p>
 
       <!-- Gated content wrapper -->
       <div class="dpp-gate" id="dppGate">
@@ -205,29 +205,37 @@
       <!-- Status legend -->
       <div class="dpp-products__legend" role="list" aria-label="DPP obligation status legend">
         <span class="dpp-products__legend-item" role="listitem"><span class="dpp-status dpp-status--confirmed"></span> DPP date confirmed</span>
-        <span class="dpp-products__legend-item" role="listitem"><span class="dpp-status dpp-status--expected"></span> DPP expected — delegated act in preparation</span>
-        <span class="dpp-products__legend-item" role="listitem"><span class="dpp-status dpp-status--planned"></span> DPP planned — in ESPR working plan</span>
-        <span class="dpp-products__legend-item" role="listitem"><span class="dpp-status dpp-status--unscheduled"></span> DPP not yet scheduled</span>
+        <span class="dpp-products__legend-item" role="listitem"><span class="dpp-status dpp-status--expected"></span> Delegated act in preparation — DPP expected</span>
+        <span class="dpp-products__legend-item" role="listitem"><span class="dpp-status dpp-status--planned"></span> In ESPR working plan — DPP timeline TBD</span>
       </div>
 
       <div class="dpp-products__grid">
 
         <!-- DPP DATE CONFIRMED — legally binding compliance date -->
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1542" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1542" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="Battery Regulation (EU) 2023/1542"
+           data-citation="'From 18 February 2027 … each electric vehicle battery, each LMT battery and each industrial battery with a capacity greater than 2 kWh … shall have an electronic record ("battery passport").' — Article 77(3), Regulation (EU) 2023/1542">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
           <span class="dpp-status dpp-status--confirmed" title="DPP obligation confirmed: February 2027"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Batteries.svg" alt="Batteries (EV, industrial, LMT) — DPP mandatory from February 2027 under EU Battery Regulation 2023/1542" loading="lazy">
           <span class="dpp-product__name">Batteries</span>
           <span class="dpp-product__date dpp-product__date--confirmed">DPP from Feb 2027</span>
           <span class="dpp-product__reg">Battery Reg. 2023/1542</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32025R0040" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32025R0040" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="Packaging &amp; Packaging Waste Regulation (EU) 2025/40"
+           data-citation="Packaging placed on the market shall bear a label with a data carrier linking to digitally available information on material composition, reusability, and sorting instructions. Applies from 1 August 2028. — Article 12, Regulation (EU) 2025/40 (PPWR)">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
           <span class="dpp-status dpp-status--confirmed" title="DPP obligation confirmed: digital labelling from August 2028"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Packaging.svg" alt="Packaging — digital labelling mandatory from August 2028 under PPWR 2025/40" loading="lazy">
           <span class="dpp-product__name">Packaging</span>
           <span class="dpp-product__date dpp-product__date--confirmed">Digital label from Aug 2028</span>
           <span class="dpp-product__reg">PPWR 2025/40</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32025R2509" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32025R2509" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="Toy Safety Regulation (EU) 2025/2509"
+           data-citation="'Before placing a toy on the market, the responsible economic operator shall create a digital product passport' covering safety, compliance, and chemical substance information. Applies from 2 August 2030. — Article 18, Regulation (EU) 2025/2509">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
           <span class="dpp-status dpp-status--confirmed" title="DPP obligation confirmed: August 2030"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Toys.svg" alt="Toys — DPP mandatory from August 2030 under Toy Safety Regulation 2025/2509" loading="lazy">
           <span class="dpp-product__name">Toys</span>
@@ -235,229 +243,236 @@
           <span class="dpp-product__reg">Toy Safety Reg. 2025/2509</span>
         </a>
 
-        <!-- DPP EXPECTED — delegated act in preparation, estimated DPP date -->
-        <a href="blog-post.html?slug=espr-textile-delegated-act" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--expected" title="DPP expected ~2028 — delegated act in preparation"></span>
+        <!-- DELEGATED ACT IN PREPARATION — DPP requirements expected but not yet confirmed -->
+        <a href="blog-post.html?slug=espr-textile-delegated-act" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="A delegated act on textiles for apparel is in preparation under the ESPR. It is expected to include DPP requirements. The DPP obligation date will be confirmed upon adoption — estimated ~18 months after the delegated act enters into force. — Article 4, Regulation (EU) 2024/1781; ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--expected" title="Delegated act in preparation — DPP expected ~2028"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Textiles for Apparel.svg" alt="Textiles for apparel — ESPR delegated act in preparation, DPP expected ~2028" loading="lazy">
           <span class="dpp-product__name">Textiles for Apparel</span>
           <span class="dpp-product__date dpp-product__date--expected">DPP expected ~2028</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--expected" title="DPP expected ~2028 — delegated act in preparation"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="A delegated act on iron and steel is in preparation under the ESPR. It is expected to include DPP requirements. The DPP obligation date will be confirmed upon adoption — estimated ~18 months after the delegated act enters into force. — Article 4, Regulation (EU) 2024/1781; ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--expected" title="Delegated act in preparation — DPP expected ~2028"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Iron and Steel.svg" alt="Iron and steel — ESPR delegated act in preparation, DPP expected ~2028" loading="lazy">
           <span class="dpp-product__name">Iron &amp; Steel</span>
           <span class="dpp-product__date dpp-product__date--expected">DPP expected ~2028</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R3110" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--expected" title="DPP expected ~2028 — regulation adopted, delegated act pending"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R3110" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="Construction Products Regulation (EU) 2024/3110"
+           data-citation="The revised Construction Products Regulation introduces requirements for environmental product declarations and digital product information. Implementing acts specifying DPP data requirements are expected. — Regulation (EU) 2024/3110">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--expected" title="Delegated act in preparation — DPP expected ~2028"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Construction Materials.svg" alt="Construction products — CPR 2024/3110 adopted, DPP expected ~2028" loading="lazy">
           <span class="dpp-product__name">Construction Products</span>
           <span class="dpp-product__date dpp-product__date--expected">DPP expected ~2028</span>
           <span class="dpp-product__reg">CPR 2024/3110</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--expected" title="DPP expected ~2028 — delegated act in preparation"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="A delegated act on washing machines and washer-dryers is in preparation under the ESPR. It is expected to include DPP requirements. The DPP obligation date will be confirmed upon adoption. — Article 4, Regulation (EU) 2024/1781; ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--expected" title="Delegated act in preparation — DPP expected ~2028"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Washing Machines.svg" alt="Washing machines — ESPR delegated act in preparation, DPP expected ~2028" loading="lazy">
           <span class="dpp-product__name">Washing Machines</span>
           <span class="dpp-product__date dpp-product__date--expected">DPP expected ~2028</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--expected" title="DPP expected ~2028 — delegated act in preparation"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="A delegated act on dishwashers is in preparation under the ESPR. It is expected to include DPP requirements. The DPP obligation date will be confirmed upon adoption. — Article 4, Regulation (EU) 2024/1781; ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--expected" title="Delegated act in preparation — DPP expected ~2028"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Dishwashers.svg" alt="Dishwashers — ESPR delegated act in preparation, DPP expected ~2028" loading="lazy">
           <span class="dpp-product__name">Dishwashers</span>
           <span class="dpp-product__date dpp-product__date--expected">DPP expected ~2028</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--expected" title="DPP expected ~2028 — delegated act in preparation"></span>
-          <img src="Images/Focus Areas/Digital Product Passports/Product groups/Low Temperature Heaters.svg" alt="Low-temperature heaters — ESPR delegated act in preparation, DPP expected ~2028" loading="lazy">
-          <span class="dpp-product__name">Low-Temp Heaters</span>
-          <span class="dpp-product__date dpp-product__date--expected">DPP expected ~2028</span>
-          <span class="dpp-product__reg">ESPR 2024/1781</span>
-        </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--expected" title="DPP expected ~2029 — delegated act in preparation"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="A delegated act on aluminium is in preparation under the ESPR. It is expected to include DPP requirements. The DPP obligation date will be confirmed upon adoption. — Article 4, Regulation (EU) 2024/1781; ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--expected" title="Delegated act in preparation — DPP expected ~2029"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Aluminium.svg" alt="Aluminium — ESPR delegated act in preparation, DPP expected ~2029" loading="lazy">
           <span class="dpp-product__name">Aluminium</span>
           <span class="dpp-product__date dpp-product__date--expected">DPP expected ~2029</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--expected" title="DPP expected ~2029 — delegated act in preparation"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="A delegated act on tyres is in preparation under the ESPR. It is expected to include DPP requirements. The DPP obligation date will be confirmed upon adoption. — Article 4, Regulation (EU) 2024/1781; ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--expected" title="Delegated act in preparation — DPP expected ~2029"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Tyres.svg" alt="Tyres — ESPR delegated act in preparation, DPP expected ~2029" loading="lazy">
           <span class="dpp-product__name">Tyres</span>
           <span class="dpp-product__date dpp-product__date--expected">DPP expected ~2029</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--expected" title="DPP expected ~2029 — delegated act in preparation"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="A delegated act on electronic displays is in preparation under the ESPR. It is expected to include DPP requirements. The DPP obligation date will be confirmed upon adoption. — Article 4, Regulation (EU) 2024/1781; ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--expected" title="Delegated act in preparation — DPP expected ~2029"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Displays.svg" alt="Electronic displays — ESPR delegated act in preparation, DPP expected ~2029" loading="lazy">
           <span class="dpp-product__name">Electronic Displays</span>
           <span class="dpp-product__date dpp-product__date--expected">DPP expected ~2029</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52025AG0016(01)" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--expected" title="DPP expected ~2029 — regulation pending adoption"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52025AG0016(01)" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="Detergents Regulation (pending adoption)"
+           data-citation="The revised Detergents Regulation introduces digital labelling and product information requirements. Final adoption is pending. DPP-related obligations will apply after entry into force — specific requirements and dates to be confirmed. — Detergents Regulation (pending adoption)">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--expected" title="Delegated act in preparation — DPP expected ~2029"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Detergents.svg" alt="Detergents — regulation pending adoption, DPP expected ~2029" loading="lazy">
           <span class="dpp-product__name">Detergents</span>
           <span class="dpp-product__date dpp-product__date--expected">DPP expected ~2029</span>
           <span class="dpp-product__reg">Detergents Reg. (pending)</span>
         </a>
 
-        <!-- DPP PLANNED — in ESPR working plan, delegated act not yet started -->
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--planned" title="DPP planned ~2030 — in ESPR working plan"></span>
+        <!-- IN ESPR WORKING PLAN — delegated act not yet started, DPP timeline indicative only -->
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="Furniture is identified in the ESPR Working Plan for a future delegated act. No delegated act has been initiated yet. DPP requirements and their timeline will be defined once the delegated act is prepared and adopted. — ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--planned" title="In ESPR working plan — DPP timeline ~2030"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Furniture.svg" alt="Furniture — in ESPR working plan, DPP planned ~2030" loading="lazy">
           <span class="dpp-product__name">Furniture</span>
           <span class="dpp-product__date dpp-product__date--planned">DPP planned ~2030</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--planned" title="DPP planned ~2030 — in ESPR working plan"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="Electric motors are identified in the ESPR Working Plan for a future delegated act. No delegated act has been initiated yet. DPP requirements and their timeline will be defined once the delegated act is prepared and adopted. — ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--planned" title="In ESPR working plan — DPP timeline ~2030"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Electric Motors.svg" alt="Electric motors — in ESPR working plan, DPP planned ~2030" loading="lazy">
           <span class="dpp-product__name">Electric Motors</span>
           <span class="dpp-product__date dpp-product__date--planned">DPP planned ~2030</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--planned" title="DPP planned ~2030 — in ESPR working plan"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="EV chargers are identified in the ESPR Working Plan for a future delegated act. No delegated act has been initiated yet. DPP requirements and their timeline will be defined once the delegated act is prepared and adopted. — ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--planned" title="In ESPR working plan — DPP timeline ~2030"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/EV Chargers.svg" alt="EV chargers — in ESPR working plan, DPP planned ~2030" loading="lazy">
           <span class="dpp-product__name">EV Chargers</span>
           <span class="dpp-product__date dpp-product__date--planned">DPP planned ~2030</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--planned" title="DPP planned ~2030 — in ESPR working plan"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="Fridges and freezers are identified in the ESPR Working Plan for a future delegated act. No delegated act has been initiated yet. DPP requirements and their timeline will be defined once the delegated act is prepared and adopted. — ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--planned" title="In ESPR working plan — DPP timeline ~2030"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Fridges and Freezers.svg" alt="Fridges and freezers — in ESPR working plan, DPP planned ~2030" loading="lazy">
           <span class="dpp-product__name">Fridges &amp; Freezers</span>
           <span class="dpp-product__date dpp-product__date--planned">DPP planned ~2030</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--planned" title="DPP planned ~2030 — in ESPR working plan"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="Cooling equipment is identified in the ESPR Working Plan for a future delegated act. No delegated act has been initiated yet. DPP requirements and their timeline will be defined once the delegated act is prepared and adopted. — ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--planned" title="In ESPR working plan — DPP timeline ~2030"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Professional Cooling Equipment with sales function.svg" alt="Professional cooling equipment — in ESPR working plan, DPP planned ~2030" loading="lazy">
           <span class="dpp-product__name">Cooling Equipment</span>
           <span class="dpp-product__date dpp-product__date--planned">DPP planned ~2030</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--planned" title="DPP planned ~2031 — in ESPR working plan"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="Mattresses are identified in the ESPR Working Plan for a future delegated act. No delegated act has been initiated yet. DPP requirements and their timeline will be defined once the delegated act is prepared and adopted. — ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--planned" title="In ESPR working plan — DPP timeline ~2031"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Matrasses.svg" alt="Mattresses — in ESPR working plan, DPP planned ~2031" loading="lazy">
           <span class="dpp-product__name">Mattresses</span>
           <span class="dpp-product__date dpp-product__date--planned">DPP planned ~2031</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--planned" title="DPP planned ~2031 — in ESPR working plan"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="Light sources are identified in the ESPR Working Plan for a future delegated act. No delegated act has been initiated yet. DPP requirements and their timeline will be defined once the delegated act is prepared and adopted. — ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--planned" title="In ESPR working plan — DPP timeline ~2031"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Light Sources & Control Gears.svg" alt="Light sources — in ESPR working plan, DPP planned ~2031" loading="lazy">
           <span class="dpp-product__name">Light Sources</span>
           <span class="dpp-product__date dpp-product__date--planned">DPP planned ~2031</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--planned" title="DPP planned ~2032 — in ESPR working plan"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="Tumble dryers are identified in the ESPR Working Plan for a future delegated act. No delegated act has been initiated yet. DPP requirements and their timeline will be defined once the delegated act is prepared and adopted. — ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--planned" title="In ESPR working plan — DPP timeline ~2032"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Tumble Dryers.svg" alt="Tumble dryers — in ESPR working plan, DPP planned ~2032" loading="lazy">
           <span class="dpp-product__name">Tumble Dryers</span>
           <span class="dpp-product__date dpp-product__date--planned">DPP planned ~2032</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--planned" title="DPP planned ~2032 — in ESPR working plan"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="Mobile phones and tablets are identified in the ESPR Working Plan for a future delegated act. No delegated act has been initiated yet. DPP requirements and their timeline will be defined once the delegated act is prepared and adopted. — ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--planned" title="In ESPR working plan — DPP timeline ~2032"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Mobile Phones and Tablets.svg" alt="Mobile phones and tablets — in ESPR working plan, DPP planned ~2032" loading="lazy">
           <span class="dpp-product__name">Mobile Phones &amp; Tablets</span>
           <span class="dpp-product__date dpp-product__date--planned">DPP planned ~2032</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--planned" title="DPP planned ~2032 — in ESPR working plan"></span>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked"
+           data-regulation-name="ESPR (EU) 2024/1781"
+           data-citation="Welding equipment is identified in the ESPR Working Plan for a future delegated act. No delegated act has been initiated yet. DPP requirements and their timeline will be defined once the delegated act is prepared and adopted. — ESPR Working Plan COM/2025/187">
+          <button class="dpp-info-btn" aria-label="View regulation citation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></button>
+          <span class="dpp-status dpp-status--planned" title="In ESPR working plan — DPP timeline ~2032"></span>
           <img src="Images/Focus Areas/Digital Product Passports/Product groups/Welding Equipment.svg" alt="Welding equipment — in ESPR working plan, DPP planned ~2032" loading="lazy">
           <span class="dpp-product__name">Welding Equipment</span>
           <span class="dpp-product__date dpp-product__date--planned">DPP planned ~2032</span>
           <span class="dpp-product__reg">ESPR 2024/1781</span>
         </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:187:FIN" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--planned" title="DPP timeline TBD — in ESPR working plan, revision ongoing"></span>
-          <img src="Images/Focus Areas/Digital Product Passports/Product groups/Water Heaters.svg" alt="Water heaters — in ESPR working plan, DPP timeline to be determined" loading="lazy">
-          <span class="dpp-product__name">Water Heaters</span>
-          <span class="dpp-product__date dpp-product__date--planned">DPP planned — TBD</span>
-          <span class="dpp-product__reg">ESPR 2024/1781</span>
-        </a>
 
-        <!-- DPP NOT YET SCHEDULED — transitioning from Ecodesign Directive to ESPR (Article 79), no delegated act work started -->
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--unscheduled" title="DPP not yet scheduled — transitioning from Ecodesign Directive to ESPR"></span>
-          <img src="Images/Focus Areas/Digital Product Passports/Product groups/Computers and Servers.svg" alt="Computers and servers — transitioning to ESPR, DPP not yet scheduled" loading="lazy">
-          <span class="dpp-product__name">Computers &amp; Servers</span>
-          <span class="dpp-product__date dpp-product__date--unscheduled">DPP not yet scheduled</span>
-          <span class="dpp-product__reg">Ecodesign Dir. → ESPR</span>
-        </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--unscheduled" title="DPP not yet scheduled — transitioning from Ecodesign Directive to ESPR"></span>
-          <img src="Images/Focus Areas/Digital Product Passports/Product groups/Air Conditioners and Heat Pumps.svg" alt="Air conditioners and heat pumps — transitioning to ESPR, DPP not yet scheduled" loading="lazy">
-          <span class="dpp-product__name">ACs &amp; Heat Pumps</span>
-          <span class="dpp-product__date dpp-product__date--unscheduled">DPP not yet scheduled</span>
-          <span class="dpp-product__reg">Ecodesign Dir. → ESPR</span>
-        </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--unscheduled" title="DPP not yet scheduled — transitioning from Ecodesign Directive to ESPR"></span>
-          <img src="Images/Focus Areas/Digital Product Passports/Product groups/Vacuum Cleaners.svg" alt="Vacuum cleaners — transitioning to ESPR, DPP not yet scheduled" loading="lazy">
-          <span class="dpp-product__name">Vacuum Cleaners</span>
-          <span class="dpp-product__date dpp-product__date--unscheduled">DPP not yet scheduled</span>
-          <span class="dpp-product__reg">Ecodesign Dir. → ESPR</span>
-        </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--unscheduled" title="DPP not yet scheduled — transitioning from Ecodesign Directive to ESPR"></span>
-          <img src="Images/Focus Areas/Digital Product Passports/Product groups/Cooking Appliances.svg" alt="Cooking appliances — transitioning to ESPR, DPP not yet scheduled" loading="lazy">
-          <span class="dpp-product__name">Cooking Appliances</span>
-          <span class="dpp-product__date dpp-product__date--unscheduled">DPP not yet scheduled</span>
-          <span class="dpp-product__reg">Ecodesign Dir. → ESPR</span>
-        </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--unscheduled" title="DPP not yet scheduled — transitioning from Ecodesign Directive to ESPR"></span>
-          <img src="Images/Focus Areas/Digital Product Passports/Product groups/Ventilation Units.svg" alt="Ventilation units — transitioning to ESPR, DPP not yet scheduled" loading="lazy">
-          <span class="dpp-product__name">Ventilation Units</span>
-          <span class="dpp-product__date dpp-product__date--unscheduled">DPP not yet scheduled</span>
-          <span class="dpp-product__reg">Ecodesign Dir. → ESPR</span>
-        </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--unscheduled" title="DPP not yet scheduled — transitioning from Ecodesign Directive to ESPR"></span>
-          <img src="Images/Focus Areas/Digital Product Passports/Product groups/Solar Panels.svg" alt="Solar panels — transitioning to ESPR, DPP not yet scheduled" loading="lazy">
-          <span class="dpp-product__name">Solar Panels</span>
-          <span class="dpp-product__date dpp-product__date--unscheduled">DPP not yet scheduled</span>
-          <span class="dpp-product__reg">Ecodesign Dir. → ESPR</span>
-        </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--unscheduled" title="DPP not yet scheduled — transitioning from Ecodesign Directive to ESPR"></span>
-          <img src="Images/Focus Areas/Digital Product Passports/Product groups/Power Transformers.svg" alt="Power transformers — transitioning to ESPR, DPP not yet scheduled" loading="lazy">
-          <span class="dpp-product__name">Power Transformers</span>
-          <span class="dpp-product__date dpp-product__date--unscheduled">DPP not yet scheduled</span>
-          <span class="dpp-product__reg">Ecodesign Dir. → ESPR</span>
-        </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--unscheduled" title="DPP not yet scheduled — transitioning from Ecodesign Directive to ESPR"></span>
-          <img src="Images/Focus Areas/Digital Product Passports/Product groups/Water Pumps.svg" alt="Water pumps — transitioning to ESPR, DPP not yet scheduled" loading="lazy">
-          <span class="dpp-product__name">Water Pumps</span>
-          <span class="dpp-product__date dpp-product__date--unscheduled">DPP not yet scheduled</span>
-          <span class="dpp-product__reg">Ecodesign Dir. → ESPR</span>
-        </a>
-        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-product dpp-product--linked">
-          <span class="dpp-status dpp-status--unscheduled" title="DPP not yet scheduled — transitioning from Ecodesign Directive to ESPR"></span>
-          <img src="Images/Focus Areas/Digital Product Passports/Product groups/Industrial Fans.svg" alt="Industrial fans — transitioning to ESPR, DPP not yet scheduled" loading="lazy">
-          <span class="dpp-product__name">Industrial Fans</span>
-          <span class="dpp-product__date dpp-product__date--unscheduled">DPP not yet scheduled</span>
-          <span class="dpp-product__reg">Ecodesign Dir. → ESPR</span>
-        </a>
+      </div>
 
+      <!-- Article 79 transition products — pill section -->
+      <div class="dpp-art79">
+        <div class="dpp-art79__header">
+          <h3 class="dpp-art79__title">Products transitioning from the Ecodesign Directive</h3>
+          <p class="dpp-art79__desc">These 19 product groups are currently regulated under the <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32009L0125" target="_blank" rel="noopener">Ecodesign Directive</a> and will transition to the ESPR. Under <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener">Article 79</a>, existing measures remain in effect until 31 December 2026. New ESPR delegated acts — including DPP requirements — are expected after this transition period, but none have been initiated yet.</p>
+        </div>
+        <div class="dpp-art79__pills">
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Photovoltaic Panels <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Space &amp; Combination Heaters <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Water Heaters <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Solid Fuel Local Space Heaters <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Air Conditioners &amp; Heat Pumps <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Solid Fuel Boilers <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Air Heating &amp; Cooling Products <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Ventilation Units <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Vacuum Cleaners <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Cooking Appliances <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Water Pumps <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Industrial Fans <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Circulators <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">External Power Supplies <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Computers, Servers &amp; Data Storage <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Power Transformers <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Professional Refrigeration Equipment <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Imaging Equipment <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+          <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener" class="dpp-art79__pill">Comfort Fans <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 2 L8.5 6 L3.5 10"/></svg></a>
+        </div>
       </div>
 
       <!-- Unlock overlay -->
       <div class="dpp-gate__overlay" id="dppGateOverlay">
         <div class="dpp-gate__card">
           <h3 class="dpp-gate__title">Unlock the full product overview</h3>
-          <p class="dpp-gate__text">Enter your email to access our complete DPP regulatory tracker with 33 product groups, status indicators, and source legislation links.</p>
+          <p class="dpp-gate__text">Enter your email to access our complete DPP regulatory tracker with all product groups, regulation citations, and source legislation links.</p>
           <form class="dpp-gate__form" id="dppGateForm">
             <div class="dpp-gate__input-row">
               <input type="email" name="email" placeholder="Your work email" class="dpp-gate__input" required>
@@ -468,10 +483,22 @@
         </div>
       </div>
 
-      <p class="dpp-products__note">Confirmed dates are set in the published regulation. Expected dates are estimated by adding the ESPR-mandated 18-month transition period to the anticipated delegated act adoption. Products marked "not yet scheduled" are transitioning from the <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener">Ecodesign Directive (Article 79)</a> to ESPR — new delegated acts with DPP requirements are expected but not yet in preparation. This overview reflects EU legislation as of early 2026. <a href="#dpp-contact">Contact us</a> if you're unsure whether your products are in scope.</p>
+      <p class="dpp-products__note">Confirmed dates are set in the published regulation. "Expected" dates assume DPP requirements will be included in delegated acts currently in preparation — the actual DPP date will be confirmed upon adoption (typically ~18 months after entry into force). "Planned" products are identified in the ESPR working plan but no delegated act has been started — DPP timelines are indicative only. Article 79 products are transitioning from the <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1781" target="_blank" rel="noopener">Ecodesign Directive</a> to the ESPR, with DPP requirements not yet defined. This overview reflects EU legislation as of early 2026. <a href="#dpp-contact">Contact us</a> if you're unsure whether your products are in scope.</p>
 
       </div><!-- /.dpp-gate -->
     </section>
+
+    <!-- DPP Info Modal (shared) -->
+    <div class="dpp-info-modal" id="dppInfoModal" role="dialog" aria-modal="true" aria-label="Product regulation details">
+      <div class="dpp-info-modal__backdrop"></div>
+      <div class="dpp-info-modal__card">
+        <button class="dpp-info-modal__close" aria-label="Close">&times;</button>
+        <h3 class="dpp-info-modal__title" id="dppInfoModalTitle"></h3>
+        <p class="dpp-info-modal__status" id="dppInfoModalStatus"></p>
+        <blockquote class="dpp-info-modal__citation" id="dppInfoModalCitation"></blockquote>
+        <a class="dpp-info-modal__link" id="dppInfoModalLink" target="_blank" rel="noopener">View regulation &rarr;</a>
+      </div>
+    </div>
 
     <!-- Stakeholder Services -->
     <section class="about-section" id="dpp-services">
@@ -735,11 +762,11 @@
         <details class="dpp-faq__item">
           <summary class="dpp-faq__question">Which products need a Digital Product Passport?</summary>
           <div class="dpp-faq__answer">
-            <p>33 product groups will need a Digital Product Passport, each at a different stage. Three have <strong>confirmed DPP dates</strong>: <strong>Batteries</strong> from February 2027 (Battery Regulation 2023/1542), <strong>Packaging</strong> from August 2028 (PPWR 2025/40), and <strong>Toys</strong> from August 2030 (Toy Safety Regulation 2025/2509).</p>
-            <p><strong>DPP obligations are expected around 2028–2029</strong> for textiles, iron &amp; steel, construction products, washing machines, dishwashers, low-temperature heaters, aluminium, tyres, electronic displays, and detergents — based on delegated acts currently in preparation under the ESPR or product-specific regulations.</p>
-            <p>The <strong>ESPR working plan</strong> schedules DPPs for <strong>~2030–2032</strong> for furniture, electric motors, EV chargers, fridges, cooling equipment, mattresses, light sources, tumble dryers, mobile phones &amp; tablets, and welding equipment.</p>
-            <p>Nine additional product groups — including computers, air conditioners, vacuum cleaners, and solar panels — are <strong>transitioning from the Ecodesign Directive</strong> to ESPR under Article 79, with DPP requirements <strong>not yet scheduled</strong>.</p>
-            <p>See our <a href="#dpp-products">full product group overview sorted by DPP obligation date</a> or read our analysis of the <a href="blog-post.html?slug=espr-textile-delegated-act">expected textile delegated act</a>.</p>
+            <p>Over 30 product groups will eventually need a Digital Product Passport, each at a different stage. Three have <strong>confirmed DPP dates</strong>: <strong>Batteries</strong> from February 2027 (Battery Regulation 2023/1542), <strong>Packaging</strong> from August 2028 (PPWR 2025/40), and <strong>Toys</strong> from August 2030 (Toy Safety Regulation 2025/2509).</p>
+            <p>Delegated acts are in preparation for several product groups — including textiles, iron &amp; steel, construction products, washing machines, dishwashers, aluminium, tyres, electronic displays, and detergents. These delegated acts are <strong>expected to include DPP requirements</strong>, with obligations likely applying around 2028–2029, but this will only be confirmed upon adoption.</p>
+            <p>The <strong>ESPR working plan</strong> identifies further products for future delegated acts — including furniture, electric motors, EV chargers, fridges, cooling equipment, mattresses, light sources, tumble dryers, mobile phones &amp; tablets, and welding equipment. <strong>No delegated acts have been started</strong> for these products, so DPP timelines (indicatively ~2030–2032) remain tentative.</p>
+            <p>An additional 19 product groups — including computers, air conditioners, vacuum cleaners, and solar panels — are <strong>transitioning from the Ecodesign Directive</strong> to the ESPR under Article 79. Existing measures remain in effect until 31 December 2026, after which new ESPR delegated acts with DPP requirements are expected — but none have been initiated yet.</p>
+            <p>See our <a href="#dpp-products">full product group overview</a> or read our analysis of the <a href="blog-post.html?slug=espr-textile-delegated-act">expected textile delegated act</a>.</p>
           </div>
         </details>
 
@@ -887,6 +914,11 @@
             }
             localStorage.setItem(GATE_KEY, '1');
             gate.classList.remove('dpp-gate--locked');
+            var overlay = document.getElementById('dppGateOverlay');
+            var card = overlay.querySelector('.dpp-gate__card');
+            card.innerHTML = '<h3 class="dpp-gate__title">Thank you!</h3>' +
+              '<p class="dpp-gate__text">Thanks for sharing your email to unlock all product group information surrounding Digital Product Passports. If this was valuable to you, we\u2019d love to know. Reach out to us at <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>';
+            setTimeout(function() { overlay.style.display = 'none'; }, 6000);
           })
           .catch(function(err) {
             var errorEl = document.createElement('p');
@@ -997,6 +1029,85 @@
             footerBtn.classList.add('copied');
             setTimeout(function() { footerBtn.classList.remove('copied'); }, 2000);
           });
+        }
+      });
+
+      // DPP info modal
+      var modal = document.getElementById('dppInfoModal');
+      var modalTitle = document.getElementById('dppInfoModalTitle');
+      var modalStatus = document.getElementById('dppInfoModalStatus');
+      var modalCitation = document.getElementById('dppInfoModalCitation');
+      var modalLink = document.getElementById('dppInfoModalLink');
+      var modalClose = modal ? modal.querySelector('.dpp-info-modal__close') : null;
+      var modalBackdrop = modal ? modal.querySelector('.dpp-info-modal__backdrop') : null;
+      var lastFocused = null;
+
+      function openInfoModal(card) {
+        if (!modal) return;
+        lastFocused = document.activeElement;
+        var name = card.querySelector('.dpp-product__name');
+        var date = card.querySelector('.dpp-product__date');
+        var citation = card.getAttribute('data-citation');
+        var href = card.getAttribute('href');
+
+        modalTitle.textContent = name ? name.textContent : '';
+        modalStatus.textContent = date ? date.textContent : '';
+
+        // Determine status color class
+        modalStatus.className = 'dpp-info-modal__status';
+        if (date) {
+          if (date.classList.contains('dpp-product__date--confirmed')) modalStatus.classList.add('dpp-info-modal__status--confirmed');
+          else if (date.classList.contains('dpp-product__date--expected')) modalStatus.classList.add('dpp-info-modal__status--expected');
+          else if (date.classList.contains('dpp-product__date--planned')) modalStatus.classList.add('dpp-info-modal__status--planned');
+        }
+
+        modalCitation.textContent = citation || 'No citation available.';
+        modalLink.href = href || '#';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        modalClose.focus();
+      }
+
+      function closeInfoModal() {
+        if (!modal) return;
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocused) lastFocused.focus();
+      }
+
+      // Event delegation for info buttons
+      var grid = document.querySelector('.dpp-products__grid');
+      if (grid) {
+        grid.addEventListener('click', function(e) {
+          var btn = e.target.closest('.dpp-info-btn');
+          if (btn) {
+            e.preventDefault();
+            e.stopPropagation();
+            var card = btn.closest('.dpp-product');
+            if (card) openInfoModal(card);
+          }
+        });
+      }
+
+      if (modalClose) modalClose.addEventListener('click', closeInfoModal);
+      if (modalBackdrop) modalBackdrop.addEventListener('click', closeInfoModal);
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal && modal.classList.contains('open')) {
+          closeInfoModal();
+        }
+        // Simple focus trap
+        if (e.key === 'Tab' && modal && modal.classList.contains('open')) {
+          var focusable = modal.querySelectorAll('button, a[href]');
+          if (focusable.length === 0) return;
+          var first = focusable[0];
+          var last = focusable[focusable.length - 1];
+          if (e.shiftKey) {
+            if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+          } else {
+            if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+          }
         }
       });
 
