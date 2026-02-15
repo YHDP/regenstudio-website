@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Water drop -->
+  <path d="M36 10 Q28 26 28 34 A8 8 0 0 0 44 34 Q44 26 36 10Z" stroke="#009BBB" stroke-linejoin="round"/>
+  <!-- Drop highlight -->
+  <path d="M33 30 Q34 26 36 24" stroke="#009BBB" stroke-width="1" stroke-linecap="round"/>
+  <!-- Pipe horizontal -->
+  <rect x="10" y="48" width="52" height="8" rx="2" stroke="#FFA92D"/>
+  <!-- Pipe joint -->
+  <line x1="36" y1="48" x2="36" y2="42" stroke="#E71846" stroke-width="2"/>
+  <rect x="32" y="42" width="8" height="6" rx="1" stroke="#E71846"/>
+  <!-- Tap handle -->
+  <line x1="40" y1="44" x2="46" y2="44" stroke="#00914B" stroke-width="2" stroke-linecap="round"/>
+  <!-- Flow lines -->
+  <line x1="34" y1="58" x2="34" y2="62" stroke="#93093F" stroke-width="1" stroke-linecap="round"/>
+  <line x1="38" y1="58" x2="38" y2="64" stroke="#93093F" stroke-width="1" stroke-linecap="round"/>
+</svg>

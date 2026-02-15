@@ -549,6 +549,13 @@
       </div>
     `;
 
+    // Execute deferred scripts in blog content (innerHTML doesn't run scripts)
+    postContainer.querySelectorAll('script').forEach(function(old) {
+      var s = document.createElement('script');
+      s.textContent = old.textContent;
+      old.parentNode.replaceChild(s, old);
+    });
+
     // Share button handlers (matching hero social sharing logic)
     // Always use production URL in share messages (not localhost)
     const pagePath = window.location.pathname.replace(/^\//, '') + window.location.search;

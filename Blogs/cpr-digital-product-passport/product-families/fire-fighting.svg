@@ -1,18 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
-  <!-- Extinguisher body -->
-  <rect x="22" y="20" width="28" height="38" rx="6" stroke="#E71846"/>
-  <!-- Neck -->
-  <rect x="30" y="14" width="12" height="8" rx="2" stroke="#009BBB"/>
-  <!-- Handle/lever -->
-  <path d="M34 14 L34 10 L44 10" stroke="#FFA92D"/>
-  <path d="M38 14 L38 12 L46 12 L46 10" stroke="#FFA92D"/>
-  <!-- Pressure gauge -->
-  <circle cx="36" cy="28" r="4" stroke="#00914B"/>
-  <!-- Hose -->
-  <path d="M22 32 L14 32 L14 46 L18 50" stroke="#93093F"/>
-  <!-- Nozzle -->
-  <path d="M16 48 L20 52" stroke="#93093F"/>
-  <!-- Label -->
-  <line x1="28" y1="40" x2="44" y2="40" stroke="#009BBB"/>
-  <line x1="30" y1="44" x2="42" y2="44" stroke="#009BBB"/>
+  <!-- Rolled-up fire hose — circular coil -->
+  <!-- Outer coil -->
+  <circle cx="36" cy="36" r="20" stroke="#E71846"/>
+  <!-- Inner coil / hub -->
+  <circle cx="36" cy="36" r="8" stroke="#E71846"/>
+  <!-- Coil wraps visible (top and bottom arcs) -->
+  <path d="M36 16 Q42 16 44 20" stroke="#FFA92D" stroke-width="1.5"/>
+  <path d="M36 56 Q30 56 28 52" stroke="#FFA92D" stroke-width="1.5"/>
+  <!-- Hub mounting bracket -->
+  <line x1="32" y1="28" x2="40" y2="28" stroke="#009BBB" stroke-width="1.5"/>
+  <line x1="32" y1="44" x2="40" y2="44" stroke="#009BBB" stroke-width="1.5"/>
+  <!-- Nozzle end extending from coil -->
+  <path d="M56 36 L64 36" stroke="#00914B" stroke-linecap="round"/>
+  <path d="M62 32 L66 36 L62 40" stroke="#00914B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Coupling connector at nozzle base -->
+  <rect x="54" y="33" width="4" height="6" rx="1" stroke="#93093F" stroke-width="1.5"/>
 </svg>
