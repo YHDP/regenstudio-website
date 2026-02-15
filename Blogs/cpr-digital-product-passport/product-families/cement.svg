@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Cement bag body -->
+  <rect x="16" y="18" width="40" height="42" rx="3" stroke="#009BBB"/>
+  <!-- Bag top fold -->
+  <path d="M16 18 L22 10 L50 10 L56 18" stroke="#00914B"/>
+  <!-- Label area -->
+  <rect x="22" y="28" width="28" height="16" rx="1" stroke="#FFA92D"/>
+  <!-- Label text lines -->
+  <line x1="26" y1="34" x2="46" y2="34" stroke="#E71846"/>
+  <line x1="28" y1="38" x2="44" y2="38" stroke="#E71846"/>
+  <!-- Bag stitching -->
+  <line x1="20" y1="54" x2="52" y2="54" stroke="#93093F" stroke-dasharray="2 2"/>
+</svg>

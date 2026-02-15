@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Tile grid -->
+  <rect x="8" y="8" width="56" height="56" rx="1" stroke="#009BBB"/>
+  <!-- Horizontal grout lines -->
+  <line x1="8" y1="22" x2="64" y2="22" stroke="#00914B"/>
+  <line x1="8" y1="36" x2="64" y2="36" stroke="#00914B"/>
+  <line x1="8" y1="50" x2="64" y2="50" stroke="#00914B"/>
+  <!-- Vertical grout lines row 1 -->
+  <line x1="36" y1="8" x2="36" y2="22" stroke="#00914B"/>
+  <!-- Vertical grout lines row 2 (offset) -->
+  <line x1="22" y1="22" x2="22" y2="36" stroke="#FFA92D"/>
+  <line x1="50" y1="22" x2="50" y2="36" stroke="#FFA92D"/>
+  <!-- Vertical grout lines row 3 -->
+  <line x1="36" y1="36" x2="36" y2="50" stroke="#00914B"/>
+  <!-- Vertical grout lines row 4 (offset) -->
+  <line x1="22" y1="50" x2="22" y2="64" stroke="#FFA92D"/>
+  <line x1="50" y1="50" x2="50" y2="64" stroke="#FFA92D"/>
+  <!-- Tile detail -->
+  <rect x="40" y="40" width="8" height="8" rx="0" stroke="#E71846" stroke-dasharray="1 2"/>
+</svg>

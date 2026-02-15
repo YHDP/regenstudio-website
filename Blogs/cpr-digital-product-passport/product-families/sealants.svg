@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Caulking gun body -->
+  <rect x="14" y="30" width="36" height="14" rx="2" stroke="#009BBB"/>
+  <!-- Nozzle -->
+  <path d="M50 34 L64 34 L66 37 L50 37" stroke="#E71846"/>
+  <path d="M64 34 L66 37" stroke="#E71846"/>
+  <!-- Plunger handle -->
+  <line x1="8" y1="37" x2="14" y2="37" stroke="#FFA92D"/>
+  <line x1="8" y1="34" x2="8" y2="40" stroke="#FFA92D"/>
+  <!-- Trigger -->
+  <path d="M24 44 L30 52 L26 52 L20 44" stroke="#00914B"/>
+  <!-- Handle grip -->
+  <path d="M18 30 L18 24 L40 24 L40 30" stroke="#009BBB"/>
+  <!-- Sealant bead coming out -->
+  <path d="M66 36 Q68 38 66 40 Q64 42 66 44" stroke="#93093F"/>
+  <!-- Push rod -->
+  <line x1="8" y1="37" x2="14" y2="37" stroke="#FFA92D"/>
+</svg>

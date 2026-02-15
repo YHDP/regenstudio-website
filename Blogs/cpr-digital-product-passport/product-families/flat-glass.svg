@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Glass pane (angled for perspective) -->
+  <path d="M18 8 L58 8 L54 64 L14 64 Z" stroke="#009BBB"/>
+  <!-- Reflection lines -->
+  <line x1="24" y1="16" x2="30" y2="28" stroke="#00914B"/>
+  <line x1="28" y1="16" x2="34" y2="28" stroke="#00914B"/>
+  <!-- Shine highlight -->
+  <line x1="42" y1="20" x2="44" y2="32" stroke="#FFA92D"/>
+  <!-- Edge thickness -->
+  <path d="M14 64 L18 60 L58 60 L54 64" stroke="#E71846"/>
+  <!-- Small sparkle -->
+  <line x1="46" y1="14" x2="46" y2="18" stroke="#93093F"/>
+  <line x1="44" y1="16" x2="48" y2="16" stroke="#93093F"/>
+</svg>

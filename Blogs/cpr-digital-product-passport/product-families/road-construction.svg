@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Road surface (perspective) -->
+  <path d="M4 60 L28 16 L44 16 L68 60 Z" stroke="#009BBB"/>
+  <!-- Center dashes -->
+  <line x1="36" y1="20" x2="36" y2="28" stroke="#FFA92D"/>
+  <line x1="36" y1="34" x2="36" y2="42" stroke="#FFA92D"/>
+  <line x1="36" y1="48" x2="36" y2="56" stroke="#FFA92D"/>
+  <!-- Edge lines -->
+  <line x1="18" y1="42" x2="12" y2="58" stroke="#E71846"/>
+  <line x1="54" y1="42" x2="60" y2="58" stroke="#E71846"/>
+  <!-- Road texture dots -->
+  <circle cx="26" cy="46" r="1" stroke="#00914B"/>
+  <circle cx="46" cy="46" r="1" stroke="#00914B"/>
+  <circle cx="22" cy="54" r="1" stroke="#00914B"/>
+  <circle cx="50" cy="54" r="1" stroke="#00914B"/>
+</svg>

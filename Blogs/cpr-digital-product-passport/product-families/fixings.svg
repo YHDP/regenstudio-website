@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Bolt shaft -->
+  <rect x="14" y="30" width="36" height="12" rx="1" stroke="#009BBB"/>
+  <!-- Bolt head (hex) -->
+  <path d="M8 28 L8 44 L14 44 L14 28 Z" stroke="#E71846"/>
+  <!-- Thread lines -->
+  <line x1="20" y1="30" x2="20" y2="42" stroke="#009BBB"/>
+  <line x1="26" y1="30" x2="26" y2="42" stroke="#009BBB"/>
+  <line x1="32" y1="30" x2="32" y2="42" stroke="#009BBB"/>
+  <line x1="38" y1="30" x2="38" y2="42" stroke="#009BBB"/>
+  <line x1="44" y1="30" x2="44" y2="42" stroke="#009BBB"/>
+  <!-- Nut (hex) -->
+  <path d="M50 26 L62 26 L66 36 L62 46 L50 46 L46 36 Z" stroke="#FFA92D"/>
+  <!-- Nut hole -->
+  <circle cx="56" cy="36" r="6" stroke="#00914B"/>
+  <!-- Washer suggestion -->
+  <line x1="46" y1="30" x2="46" y2="42" stroke="#93093F"/>
+</svg>

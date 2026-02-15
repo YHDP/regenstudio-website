@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Main pipe horizontal -->
+  <rect x="8" y="28" width="56" height="16" rx="8" stroke="#009BBB"/>
+  <!-- Vertical pipe down -->
+  <rect x="28" y="44" width="16" height="20" rx="4" stroke="#009BBB"/>
+  <!-- Water flow arrows -->
+  <path d="M18 34 L24 36 L18 38" stroke="#00914B"/>
+  <path d="M38 34 L44 36 L38 38" stroke="#00914B"/>
+  <!-- Drain opening -->
+  <ellipse cx="36" cy="62" rx="6" ry="3" stroke="#E71846"/>
+  <!-- Water drops -->
+  <path d="M34 58 L33 62" stroke="#FFA92D"/>
+  <path d="M38 58 L39 62" stroke="#FFA92D"/>
+  <!-- Joint ring -->
+  <line x1="28" y1="48" x2="44" y2="48" stroke="#93093F"/>
+  <!-- Inlet -->
+  <path d="M36 16 L36 28" stroke="#E71846"/>
+  <ellipse cx="36" cy="16" rx="6" ry="3" stroke="#E71846"/>
+</svg>

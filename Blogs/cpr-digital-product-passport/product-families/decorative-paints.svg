@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Paint bucket body -->
+  <path d="M14 24 L12 58 L60 58 L58 24 Z" stroke="#009BBB"/>
+  <!-- Bucket rim -->
+  <ellipse cx="36" cy="24" rx="22" ry="6" stroke="#009BBB"/>
+  <!-- Paint surface inside -->
+  <path d="M18 30 Q28 34 36 30 Q44 26 54 30" stroke="#E71846"/>
+  <!-- Handle -->
+  <path d="M18 18 Q36 6 54 18" stroke="#FFA92D"/>
+  <!-- Brush handle -->
+  <line x1="46" y1="28" x2="58" y2="10" stroke="#00914B"/>
+  <!-- Brush bristles -->
+  <rect x="56" y="8" width="8" height="14" rx="1" transform="rotate(-25 60 14)" stroke="#00914B"/>
+  <!-- Paint drip on bucket side -->
+  <path d="M52 24 Q54 28 52 34" stroke="#93093F"/>
+  <path d="M22 24 Q20 30 22 38" stroke="#93093F"/>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- I-beam cross section -->
+  <!-- Top flange -->
+  <rect x="16" y="12" width="40" height="6" rx="1" stroke="#009BBB"/>
+  <!-- Web -->
+  <rect x="30" y="18" width="12" height="36" rx="0" stroke="#E71846"/>
+  <!-- Bottom flange -->
+  <rect x="16" y="54" width="40" height="6" rx="1" stroke="#009BBB"/>
+  <!-- Bolt holes top -->
+  <circle cx="24" cy="15" r="2" stroke="#FFA92D"/>
+  <circle cx="48" cy="15" r="2" stroke="#FFA92D"/>
+  <!-- Bolt holes bottom -->
+  <circle cx="24" cy="57" r="2" stroke="#FFA92D"/>
+  <circle cx="48" cy="57" r="2" stroke="#FFA92D"/>
+  <!-- Dimension line -->
+  <line x1="10" y1="36" x2="16" y2="36" stroke="#00914B"/>
+  <line x1="56" y1="36" x2="62" y2="36" stroke="#00914B"/>
+</svg>

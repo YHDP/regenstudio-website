@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Mixing bucket body -->
+  <path d="M16 26 L12 60 L60 60 L56 26 Z" stroke="#009BBB"/>
+  <!-- Bucket rim -->
+  <ellipse cx="36" cy="26" rx="20" ry="6" stroke="#00914B"/>
+  <!-- Mortar surface -->
+  <path d="M18 38 Q28 34 36 38 Q44 42 54 38" stroke="#FFA92D"/>
+  <!-- Trowel handle -->
+  <line x1="42" y1="20" x2="60" y2="8" stroke="#E71846"/>
+  <!-- Trowel blade -->
+  <path d="M38 22 L46 18 L44 14 L36 18 Z" stroke="#E71846"/>
+  <!-- Handle grip -->
+  <rect x="56" y="5" width="8" height="5" rx="2" transform="rotate(-35 60 8)" stroke="#93093F"/>
+</svg>
