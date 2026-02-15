@@ -3870,6 +3870,15 @@ a.dpp-product--linked {
   margin-top: 8px;
 }
 
+.dpp-products__updated {
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+  opacity: 0.6;
+  text-align: right;
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
 .dpp-products__note a {
   color: var(--color-primary);
   text-decoration: underline;
@@ -3973,6 +3982,7 @@ a.dpp-product--linked {
 }
 
 .dpp-gate--locked .dpp-products__note,
+.dpp-gate--locked .dpp-products__updated,
 .dpp-gate--locked .dpp-art79 {
   filter: blur(6px);
   pointer-events: none;
