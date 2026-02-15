@@ -1226,7 +1226,7 @@
         published.forEach(function (blog) {
           var card = document.createElement('a');
           card.className = 'blog-card';
-          card.href = 'blog-post.html?slug=' + encodeURIComponent(blog.slug);
+          card.href = 'blog-post.html?post=' + encodeURIComponent(blog.slug);
 
           var imageHtml;
           if (blog.featuredImage) {
