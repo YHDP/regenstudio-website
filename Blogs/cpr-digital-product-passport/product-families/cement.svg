@@ -1,13 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
-  <!-- Cement bag body -->
-  <rect x="16" y="18" width="40" height="42" rx="3" stroke="#009BBB"/>
-  <!-- Bag top fold -->
-  <path d="M16 18 L22 10 L50 10 L56 18" stroke="#00914B"/>
-  <!-- Label area -->
-  <rect x="22" y="28" width="28" height="16" rx="1" stroke="#FFA92D"/>
-  <!-- Label text lines -->
-  <line x1="26" y1="34" x2="46" y2="34" stroke="#E71846"/>
-  <line x1="28" y1="38" x2="44" y2="38" stroke="#E71846"/>
-  <!-- Bag stitching -->
-  <line x1="20" y1="54" x2="52" y2="54" stroke="#93093F" stroke-dasharray="2 2"/>
+  <!-- Drum body -->
+  <ellipse cx="36" cy="38" rx="16" ry="10" stroke="#009BBB"/>
+  <path d="M20 28 L20 38" stroke="#009BBB"/>
+  <path d="M52 28 L52 38" stroke="#009BBB"/>
+  <ellipse cx="36" cy="28" rx="16" ry="10" stroke="#009BBB"/>
+  <!-- Drum opening / mouth -->
+  <path d="M48 24 L58 16 Q60 14 58 12 L54 10" stroke="#E71846" stroke-linecap="round"/>
+  <ellipse cx="56" cy="13" rx="5" ry="3.5" stroke="#E71846" stroke-width="1.5"/>
+  <!-- Drum stripes -->
+  <path d="M24 22 Q36 18 48 22" stroke="#FFA92D" stroke-width="1.5"/>
+  <path d="M24 34 Q36 30 48 34" stroke="#FFA92D" stroke-width="1.5"/>
+  <!-- A-frame legs -->
+  <line x1="28" y1="48" x2="20" y2="64" stroke="#00914B" stroke-linecap="round"/>
+  <line x1="44" y1="48" x2="52" y2="64" stroke="#00914B" stroke-linecap="round"/>
+  <!-- Axle -->
+  <line x1="22" y1="48" x2="50" y2="48" stroke="#93093F" stroke-width="2" stroke-linecap="round"/>
+  <!-- Wheels -->
+  <circle cx="20" cy="64" r="3" stroke="#93093F"/>
+  <circle cx="52" cy="64" r="3" stroke="#93093F"/>
+  <!-- Cross brace -->
+  <line x1="26" y1="56" x2="46" y2="56" stroke="#00914B" stroke-width="1"/>
 </svg>
