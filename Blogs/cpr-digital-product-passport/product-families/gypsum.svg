@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Plasterboard panel -->
+  <rect x="12" y="10" width="44" height="52" rx="1" stroke="#009BBB"/>
+  <!-- Panel thickness (3D edge) -->
+  <path d="M56 10 L60 14 L60 66 L56 62" stroke="#00914B"/>
+  <path d="M12 62 L16 66 L60 66" stroke="#00914B"/>
+  <!-- Screw holes -->
+  <circle cx="20" cy="18" r="2" stroke="#E71846"/>
+  <circle cx="48" cy="18" r="2" stroke="#E71846"/>
+  <circle cx="20" cy="54" r="2" stroke="#E71846"/>
+  <circle cx="48" cy="54" r="2" stroke="#E71846"/>
+  <!-- Center marking -->
+  <line x1="20" y1="36" x2="48" y2="36" stroke="#FFA92D" stroke-dasharray="4 3"/>
+  <!-- Paper layer edge -->
+  <line x1="12" y1="12" x2="56" y2="12" stroke="#93093F"/>
+</svg>

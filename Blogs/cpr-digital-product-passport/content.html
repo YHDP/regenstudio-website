@@ -69,55 +69,254 @@
 
 <p>The rollout is organised in waves, based on the readiness of existing standards and the work of <a href="https://www.cencenelec.eu/" target="_blank" rel="noopener">CEN/CENELEC</a> technical committees. The numbers (e.g. #1, #20) refer to the product family numbers assigned in the CPR's Annex VII — they are regulatory reference numbers, not a priority ranking:</p>
 
-<h3>Front-runners (standardisation requests 2025, standards expected 2025–2027)</h3>
-<ul>
-  <li><strong>#1</strong> Precast concrete products</li>
-  <li><strong>#20</strong> Structural metallic products</li>
-  <li><strong>#15</strong> Cement, building limes, and other hydraulic binders</li>
-  <li><strong>#2</strong> Doors, windows, shutters, gates, and related hardware</li>
-</ul>
+<style>
+  .cpr-wave-label {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-top: 4px;
+    padding: 2px 10px;
+    border-radius: 10px;
+  }
+  .cpr-wave--frontrunner { color: #00914B; background: rgba(0, 145, 75, 0.08); }
+  .cpr-wave--active { color: #0077B6; background: rgba(0, 119, 182, 0.08); }
+  .cpr-wave--acquis { color: #B8860B; background: rgba(184, 134, 11, 0.08); }
+  .cpr-wave--later { color: #93093F; background: rgba(147, 9, 63, 0.08); }
+  .cpr-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 16px; margin-bottom: 32px; }
+  .cpr-card {
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    padding: 20px 12px 16px; background: var(--color-bg-card, #fff); border: 1px solid var(--color-border, #e5e7eb);
+    border-radius: 12px; transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .cpr-card:hover { border-color: var(--color-primary, #00914B); box-shadow: 0 2px 12px rgba(0,145,75,0.08); }
+  .cpr-card img { width: 56px; height: 56px; object-fit: contain; margin-bottom: 10px; }
+  .cpr-card__name { font-size: 0.82rem; font-weight: 600; color: var(--color-text, #1a1a1a); line-height: 1.35; min-height: 2.2em; display: flex; align-items: center; }
+  .cpr-card__family { display: block; font-size: 0.66rem; font-weight: 400; color: var(--color-text-secondary, #6b7280); margin-top: 4px; line-height: 1.3; opacity: 0.8; }
+  .cpr-card__tc { display: block; font-size: 0.62rem; color: var(--color-text-secondary, #6b7280); margin-top: 6px; line-height: 1.3; opacity: 0.7; }
+  @media (max-width: 900px) { .cpr-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .cpr-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
 
-<h3>Active conversion (milestones ongoing, standardisation requests 2026)</h3>
-<ul>
-  <li><strong>#4</strong> Thermal insulation products</li>
-  <li><strong>#30</strong> Flat glass products</li>
-  <li><strong>#6</strong> Chimneys, flues, and specific products</li>
-  <li><strong>#16</strong> Reinforcing and prestressing steel for concrete</li>
-</ul>
+<h3>Front-runners <span class="cpr-wave-label cpr-wave--frontrunner">SReq 2025 &middot; standards 2025–2027</span></h3>
+<div class="cpr-grid" role="list" aria-label="Front-runner product families under CPR Working Plan">
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/precast-concrete.svg" alt="Precast concrete products — Annex VII family #1" loading="lazy">
+    <span class="cpr-card__name">Precast Concrete Products</span>
+    <span class="cpr-card__family">Annex VII #1</span>
+    <span class="cpr-card__tc">CEN/TC 229</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/structural-metallic.svg" alt="Structural metallic products — Annex VII family #20" loading="lazy">
+    <span class="cpr-card__name">Structural Metallic Products</span>
+    <span class="cpr-card__family">Annex VII #20</span>
+    <span class="cpr-card__tc">CEN/TC 135</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/cement.svg" alt="Cement, building limes, and other hydraulic binders — Annex VII family #15" loading="lazy">
+    <span class="cpr-card__name">Cement &amp; Building Limes</span>
+    <span class="cpr-card__family">Annex VII #15</span>
+    <span class="cpr-card__tc">CEN/TC 51</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/doors-windows.svg" alt="Doors, windows, shutters, gates, and related hardware — Annex VII family #2" loading="lazy">
+    <span class="cpr-card__name">Doors, Windows &amp; Gates</span>
+    <span class="cpr-card__family">Annex VII #2</span>
+    <span class="cpr-card__tc">CEN/TC 33</span>
+  </article>
+</div>
 
-<h3>Acquis started (milestones 2026–2027)</h3>
-<ul>
-  <li><strong>#13</strong> Structural timber and wood-based products</li>
-  <li><strong>#26</strong> Concrete and mortar (factory-made)</li>
-  <li><strong>#17</strong> Masonry and related products</li>
-  <li><strong>#24</strong> Aggregates</li>
-  <li><strong>#9</strong> Curtain walling, cladding, and structural sealant glazing</li>
-  <li><strong>#10</strong> Fixed fire-fighting equipment</li>
-  <li><strong>#23</strong> Road construction products</li>
-  <li><strong>#19</strong> Floorings</li>
-  <li><strong>#34 / #36</strong> Building kits and prefabricated units</li>
-  <li><strong>#21</strong> Wall and ceiling finishes</li>
-  <li><strong>#7</strong> Gypsum products</li>
-  <li><strong>#5</strong> Structural bearings and expansion joints</li>
-  <li><strong>#27</strong> Space heating appliances</li>
-  <li><strong>#22</strong> Roof coverings and roof lights</li>
-  <li><strong>#12</strong> Circulation fixtures (staircases, walkways, railings)</li>
-  <li><strong>#18</strong> Waste water engineering products</li>
-  <li><strong>#25</strong> Construction adhesives</li>
-  <li><strong>#32</strong> Sealants for joints</li>
-</ul>
+<h3>Active conversion <span class="cpr-wave-label cpr-wave--active">SReq 2026 &middot; milestones ongoing</span></h3>
+<div class="cpr-grid" role="list" aria-label="Active conversion product families under CPR Working Plan">
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/thermal-insulation.svg" alt="Thermal insulation products — Annex VII family #4" loading="lazy">
+    <span class="cpr-card__name">Thermal Insulation</span>
+    <span class="cpr-card__family">Annex VII #4</span>
+    <span class="cpr-card__tc">CEN/TC 88</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/flat-glass.svg" alt="Flat glass products — Annex VII family #30" loading="lazy">
+    <span class="cpr-card__name">Flat Glass Products</span>
+    <span class="cpr-card__family">Annex VII #30</span>
+    <span class="cpr-card__tc">CEN/TC 129</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/chimneys.svg" alt="Chimneys, flues, and specific products — Annex VII family #6" loading="lazy">
+    <span class="cpr-card__name">Chimneys &amp; Flues</span>
+    <span class="cpr-card__family">Annex VII #6</span>
+    <span class="cpr-card__tc">CEN/TC 166</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/reinforcing-steel.svg" alt="Reinforcing and prestressing steel for concrete — Annex VII family #16" loading="lazy">
+    <span class="cpr-card__name">Reinforcing Steel</span>
+    <span class="cpr-card__family">Annex VII #16</span>
+    <span class="cpr-card__tc">CEN/TC 459/SC 4</span>
+  </article>
+</div>
 
-<h3>Later wave (2028–2029)</h3>
-<ul>
-  <li><strong>#35</strong> Fire protection products</li>
-  <li><strong>#33</strong> Fixings</li>
-  <li><strong>#3</strong> Membranes (including liquid-applied)</li>
-  <li><strong>#8</strong> Geotextiles, geomembranes, and related products</li>
-  <li><strong>#11</strong> Sanitary appliances</li>
-  <li><strong>#28</strong> Pipes, tanks, and ancillaries not in contact with water for human consumption</li>
-  <li><strong>#31</strong> Cables, wires, and accessories</li>
-  <li>Decorative paints (new product family)</li>
-</ul>
+<h3>Acquis started <span class="cpr-wave-label cpr-wave--acquis">milestones 2026–2027</span></h3>
+<div class="cpr-grid" role="list" aria-label="Acquis started product families under CPR Working Plan">
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/timber.svg" alt="Structural timber and wood-based products — Annex VII family #13" loading="lazy">
+    <span class="cpr-card__name">Structural Timber</span>
+    <span class="cpr-card__family">Annex VII #13</span>
+    <span class="cpr-card__tc">CEN/TC 124</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/concrete-mortar.svg" alt="Concrete and mortar (factory-made) — Annex VII family #26" loading="lazy">
+    <span class="cpr-card__name">Concrete &amp; Mortar</span>
+    <span class="cpr-card__family">Annex VII #26</span>
+    <span class="cpr-card__tc">CEN/TC 104</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/masonry.svg" alt="Masonry and related products — Annex VII family #17" loading="lazy">
+    <span class="cpr-card__name">Masonry Products</span>
+    <span class="cpr-card__family">Annex VII #17</span>
+    <span class="cpr-card__tc">CEN/TC 125</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/aggregates.svg" alt="Aggregates — Annex VII family #24" loading="lazy">
+    <span class="cpr-card__name">Aggregates</span>
+    <span class="cpr-card__family">Annex VII #24</span>
+    <span class="cpr-card__tc">CEN/TC 154</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/curtain-walling.svg" alt="Curtain walling, cladding, and structural sealant glazing — Annex VII family #9" loading="lazy">
+    <span class="cpr-card__name">Curtain Walling</span>
+    <span class="cpr-card__family">Annex VII #9</span>
+    <span class="cpr-card__tc">CEN/TC 33 WG 6</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/fire-fighting.svg" alt="Fixed fire-fighting equipment — Annex VII family #10" loading="lazy">
+    <span class="cpr-card__name">Fixed Fire-Fighting</span>
+    <span class="cpr-card__family">Annex VII #10</span>
+    <span class="cpr-card__tc">CEN/TC 191</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/road-construction.svg" alt="Road construction products — Annex VII family #23" loading="lazy">
+    <span class="cpr-card__name">Road Construction</span>
+    <span class="cpr-card__family">Annex VII #23</span>
+    <span class="cpr-card__tc">CEN/TC 227</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/floorings.svg" alt="Floorings — Annex VII family #19" loading="lazy">
+    <span class="cpr-card__name">Floorings</span>
+    <span class="cpr-card__family">Annex VII #19</span>
+    <span class="cpr-card__tc">CEN/TC 134</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/building-kits.svg" alt="Building kits and prefabricated units — Annex VII families #34 / #36" loading="lazy">
+    <span class="cpr-card__name">Building Kits &amp; Prefab</span>
+    <span class="cpr-card__family">Annex VII #34 / #36</span>
+    <span class="cpr-card__tc">EOTA (EADs)</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/wall-ceiling-finishes.svg" alt="Wall and ceiling finishes — Annex VII family #21" loading="lazy">
+    <span class="cpr-card__name">Wall &amp; Ceiling Finishes</span>
+    <span class="cpr-card__family">Annex VII #21</span>
+    <span class="cpr-card__tc">CEN/TC 128</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/gypsum.svg" alt="Gypsum products — Annex VII family #7" loading="lazy">
+    <span class="cpr-card__name">Gypsum Products</span>
+    <span class="cpr-card__family">Annex VII #7</span>
+    <span class="cpr-card__tc">CEN/TC 241</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/structural-bearings.svg" alt="Structural bearings and expansion joints — Annex VII family #5" loading="lazy">
+    <span class="cpr-card__name">Structural Bearings</span>
+    <span class="cpr-card__family">Annex VII #5</span>
+    <span class="cpr-card__tc">CEN/TC 167</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/space-heating.svg" alt="Space heating appliances — Annex VII family #27" loading="lazy">
+    <span class="cpr-card__name">Space Heating</span>
+    <span class="cpr-card__family">Annex VII #27</span>
+    <span class="cpr-card__tc">CEN/TC 130</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/roof-coverings.svg" alt="Roof coverings and roof lights — Annex VII family #22" loading="lazy">
+    <span class="cpr-card__name">Roof Coverings</span>
+    <span class="cpr-card__family">Annex VII #22</span>
+    <span class="cpr-card__tc">CEN/TC 128</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/circulation-fixtures.svg" alt="Circulation fixtures (staircases, walkways, railings) — Annex VII family #12" loading="lazy">
+    <span class="cpr-card__name">Circulation Fixtures</span>
+    <span class="cpr-card__family">Annex VII #12</span>
+    <span class="cpr-card__tc">CEN/TC 226</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/waste-water.svg" alt="Waste water engineering products — Annex VII family #18" loading="lazy">
+    <span class="cpr-card__name">Waste Water Engineering</span>
+    <span class="cpr-card__family">Annex VII #18</span>
+    <span class="cpr-card__tc">CEN/TC 165</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/adhesives.svg" alt="Construction adhesives — Annex VII family #25" loading="lazy">
+    <span class="cpr-card__name">Construction Adhesives</span>
+    <span class="cpr-card__family">Annex VII #25</span>
+    <span class="cpr-card__tc">CEN/TC 193</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/sealants.svg" alt="Sealants for joints — Annex VII family #32" loading="lazy">
+    <span class="cpr-card__name">Sealants for Joints</span>
+    <span class="cpr-card__family">Annex VII #32</span>
+    <span class="cpr-card__tc">CEN/TC 349</span>
+  </article>
+</div>
+
+<h3>Later wave <span class="cpr-wave-label cpr-wave--later">2028–2029</span></h3>
+<div class="cpr-grid" role="list" aria-label="Later wave product families under CPR Working Plan">
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/fire-protection.svg" alt="Fire protection products — Annex VII family #35" loading="lazy">
+    <span class="cpr-card__name">Fire Protection</span>
+    <span class="cpr-card__family">Annex VII #35</span>
+    <span class="cpr-card__tc">CEN/TC 127</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/fixings.svg" alt="Fixings — Annex VII family #33" loading="lazy">
+    <span class="cpr-card__name">Fixings</span>
+    <span class="cpr-card__family">Annex VII #33</span>
+    <span class="cpr-card__tc">EOTA (ETAs)</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/membranes.svg" alt="Membranes (including liquid-applied) — Annex VII family #3" loading="lazy">
+    <span class="cpr-card__name">Membranes</span>
+    <span class="cpr-card__family">Annex VII #3</span>
+    <span class="cpr-card__tc">CEN/TC 254</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/geotextiles.svg" alt="Geotextiles, geomembranes, and related products — Annex VII family #8" loading="lazy">
+    <span class="cpr-card__name">Geotextiles</span>
+    <span class="cpr-card__family">Annex VII #8</span>
+    <span class="cpr-card__tc">CEN/TC 189</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/sanitary.svg" alt="Sanitary appliances — Annex VII family #11" loading="lazy">
+    <span class="cpr-card__name">Sanitary Appliances</span>
+    <span class="cpr-card__family">Annex VII #11</span>
+    <span class="cpr-card__tc">CEN/TC 163</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/pipes-tanks.svg" alt="Pipes, tanks, and ancillaries — Annex VII family #28" loading="lazy">
+    <span class="cpr-card__name">Pipes &amp; Tanks</span>
+    <span class="cpr-card__family">Annex VII #28</span>
+    <span class="cpr-card__tc">CEN/TC 155</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/cables.svg" alt="Cables, wires, and accessories — Annex VII family #31" loading="lazy">
+    <span class="cpr-card__name">Cables &amp; Wires</span>
+    <span class="cpr-card__family">Annex VII #31</span>
+    <span class="cpr-card__tc">CLC/TC 20</span>
+  </article>
+  <article class="cpr-card" role="listitem">
+    <img src="Blogs/cpr-digital-product-passport/product-families/decorative-paints.svg" alt="Decorative paints — new product family under CPR 2024/3110" loading="lazy">
+    <span class="cpr-card__name">Decorative Paints</span>
+    <span class="cpr-card__family">New family</span>
+    <span class="cpr-card__tc">CEN/TC 139</span>
+  </article>
+</div>
 
 <h2>Which Families Will Require a DPP First?</h2>
 

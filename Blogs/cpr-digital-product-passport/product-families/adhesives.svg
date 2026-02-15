@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Tube body -->
+  <rect x="18" y="20" width="28" height="36" rx="4" stroke="#009BBB"/>
+  <!-- Tube cap/nozzle -->
+  <path d="M28 20 L28 12 L36 6 L44 12 L44 20" stroke="#E71846"/>
+  <!-- Nozzle tip -->
+  <circle cx="36" cy="6" r="2" stroke="#E71846"/>
+  <!-- Tube crimp -->
+  <path d="M22 56 L50 56" stroke="#FFA92D"/>
+  <path d="M24 60 L48 60" stroke="#FFA92D"/>
+  <!-- Label -->
+  <rect x="22" y="30" width="20" height="14" rx="1" stroke="#00914B"/>
+  <!-- Glue drop -->
+  <path d="M36 2 Q38 -2 36 -4" stroke="#93093F"/>
+  <!-- Squeeze lines -->
+  <line x1="14" y1="36" x2="18" y2="36" stroke="#93093F"/>
+  <line x1="46" y1="36" x2="50" y2="36" stroke="#93093F"/>
+</svg>

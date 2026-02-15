@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Wall surface -->
+  <rect x="8" y="8" width="40" height="56" rx="1" stroke="#009BBB"/>
+  <!-- Paint roller handle -->
+  <line x1="54" y1="14" x2="54" y2="40" stroke="#E71846"/>
+  <!-- Roller head -->
+  <rect x="48" y="40" width="12" height="20" rx="5" stroke="#FFA92D"/>
+  <!-- Roller texture -->
+  <line x1="50" y1="44" x2="58" y2="44" stroke="#FFA92D"/>
+  <line x1="50" y1="48" x2="58" y2="48" stroke="#FFA92D"/>
+  <line x1="50" y1="52" x2="58" y2="52" stroke="#FFA92D"/>
+  <line x1="50" y1="56" x2="58" y2="56" stroke="#FFA92D"/>
+  <!-- Handle grip -->
+  <path d="M52 14 L56 14 L56 18 L52 18 Z" stroke="#93093F"/>
+  <!-- Painted area on wall -->
+  <rect x="12" y="24" width="32" height="36" rx="0" stroke="#00914B" stroke-dasharray="4 2"/>
+  <!-- Paint drip -->
+  <path d="M38 60 L38 64" stroke="#00914B"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Shield outline -->
+  <path d="M36 6 L56 16 L56 38 Q56 56 36 66 Q16 56 16 38 L16 16 Z" stroke="#009BBB"/>
+  <!-- Flame outer -->
+  <path d="M30 50 Q28 40 32 34 Q34 28 36 24 Q38 28 40 34 Q44 40 42 50 Q38 54 36 54 Q34 54 30 50" stroke="#E71846"/>
+  <!-- Flame inner -->
+  <path d="M33 48 Q32 42 36 36 Q40 42 39 48 Q38 50 36 50 Q34 50 33 48" stroke="#FFA92D"/>
+  <!-- Shield detail lines -->
+  <line x1="20" y1="20" x2="52" y2="20" stroke="#00914B"/>
+  <!-- Check mark on shield -->
+  <path d="M26 30 L32 34" stroke="#93093F"/>
+</svg>

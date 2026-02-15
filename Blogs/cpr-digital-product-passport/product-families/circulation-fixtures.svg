@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Stair treads -->
+  <path d="M14 60 L14 50 L26 50 L26 40 L38 40 L38 30 L50 30 L50 20 L62 20" stroke="#009BBB"/>
+  <!-- Railing -->
+  <line x1="14" y1="46" x2="62" y2="14" stroke="#E71846"/>
+  <!-- Railing posts -->
+  <line x1="20" y1="50" x2="20" y2="43" stroke="#FFA92D"/>
+  <line x1="32" y1="40" x2="32" y2="33" stroke="#FFA92D"/>
+  <line x1="44" y1="30" x2="44" y2="23" stroke="#FFA92D"/>
+  <line x1="56" y1="20" x2="56" y2="15" stroke="#FFA92D"/>
+  <!-- Handrail end -->
+  <circle cx="62" cy="14" r="2" stroke="#93093F"/>
+  <!-- Landing -->
+  <line x1="8" y1="60" x2="18" y2="60" stroke="#00914B"/>
+  <line x1="58" y1="20" x2="66" y2="20" stroke="#00914B"/>
+</svg>

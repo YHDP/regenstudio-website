@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Pile outline -->
+  <path d="M8 58 Q20 28 36 24 Q52 28 64 58 Z" stroke="#009BBB"/>
+  <!-- Stones -->
+  <ellipse cx="28" cy="48" rx="6" ry="4" stroke="#E71846"/>
+  <ellipse cx="42" cy="46" rx="5" ry="4" stroke="#FFA92D"/>
+  <ellipse cx="36" cy="38" rx="5" ry="3" stroke="#00914B"/>
+  <ellipse cx="22" cy="54" rx="5" ry="3" stroke="#FFA92D"/>
+  <ellipse cx="48" cy="52" rx="6" ry="4" stroke="#E71846"/>
+  <ellipse cx="36" cy="52" rx="4" ry="3" stroke="#009BBB"/>
+  <ellipse cx="30" cy="32" rx="3" ry="2" stroke="#93093F"/>
+  <ellipse cx="42" cy="34" rx="3" ry="2" stroke="#93093F"/>
+  <!-- Ground line -->
+  <line x1="4" y1="58" x2="68" y2="58" stroke="#009BBB"/>
+</svg>

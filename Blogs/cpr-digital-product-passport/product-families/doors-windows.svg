@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Window frame -->
+  <rect x="12" y="12" width="48" height="48" rx="2" stroke="#009BBB"/>
+  <!-- Vertical divider -->
+  <line x1="36" y1="12" x2="36" y2="60" stroke="#009BBB"/>
+  <!-- Horizontal divider -->
+  <line x1="12" y1="36" x2="60" y2="36" stroke="#009BBB"/>
+  <!-- Glass pane highlights -->
+  <line x1="16" y1="16" x2="20" y2="20" stroke="#00914B"/>
+  <line x1="40" y1="16" x2="44" y2="20" stroke="#00914B"/>
+  <line x1="16" y1="40" x2="20" y2="44" stroke="#FFA92D"/>
+  <line x1="40" y1="40" x2="44" y2="44" stroke="#FFA92D"/>
+  <!-- Handle -->
+  <circle cx="34" cy="48" r="2" stroke="#E71846"/>
+  <circle cx="34" cy="24" r="2" stroke="#E71846"/>
+</svg>

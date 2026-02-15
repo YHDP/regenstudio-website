@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Module 1 (bottom left) -->
+  <rect x="8" y="40" width="24" height="22" rx="1" stroke="#009BBB"/>
+  <!-- Module 2 (bottom right) -->
+  <rect x="36" y="40" width="28" height="22" rx="1" stroke="#E71846"/>
+  <!-- Module 3 (top) -->
+  <rect x="14" y="14" width="32" height="22" rx="1" stroke="#FFA92D"/>
+  <!-- Connection points -->
+  <circle cx="32" cy="40" r="2" stroke="#00914B"/>
+  <circle cx="36" cy="40" r="2" stroke="#00914B"/>
+  <!-- Arrow showing assembly -->
+  <path d="M50 14 L50 8 L56 8" stroke="#93093F"/>
+  <path d="M50 8 L48 10" stroke="#93093F"/>
+  <path d="M50 8 L52 10" stroke="#93093F"/>
+  <!-- Window in module -->
+  <rect x="16" y="46" width="8" height="8" rx="1" stroke="#FFA92D"/>
+  <rect x="42" y="48" width="10" height="8" rx="1" stroke="#009BBB"/>
+</svg>

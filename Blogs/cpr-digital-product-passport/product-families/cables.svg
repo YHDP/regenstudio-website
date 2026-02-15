@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Cable bundle outer sheath -->
+  <path d="M10 36 Q20 20 36 20 Q52 20 62 36 Q52 52 36 52 Q20 52 10 36" stroke="#009BBB"/>
+  <!-- Individual wires -->
+  <circle cx="30" cy="30" r="6" stroke="#E71846"/>
+  <circle cx="42" cy="30" r="6" stroke="#FFA92D"/>
+  <circle cx="36" cy="42" r="6" stroke="#00914B"/>
+  <!-- Wire cores -->
+  <circle cx="30" cy="30" r="2" stroke="#E71846"/>
+  <circle cx="42" cy="30" r="2" stroke="#FFA92D"/>
+  <circle cx="36" cy="42" r="2" stroke="#00914B"/>
+  <!-- Cable end strands left -->
+  <path d="M10 30 L4 24" stroke="#E71846"/>
+  <path d="M10 36 L4 36" stroke="#FFA92D"/>
+  <path d="M10 42 L4 48" stroke="#00914B"/>
+  <!-- Cable end strands right -->
+  <path d="M62 30 L68 24" stroke="#E71846"/>
+  <path d="M62 36 L68 36" stroke="#FFA92D"/>
+  <path d="M62 42 L68 48" stroke="#00914B"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Woven horizontal threads -->
+  <path d="M8 20 Q18 18 28 20 Q38 22 48 20 Q58 18 64 20" stroke="#009BBB"/>
+  <path d="M8 32 Q18 30 28 32 Q38 34 48 32 Q58 30 64 32" stroke="#009BBB"/>
+  <path d="M8 44 Q18 42 28 44 Q38 46 48 44 Q58 42 64 44" stroke="#009BBB"/>
+  <path d="M8 56 Q18 54 28 56 Q38 58 48 56 Q58 54 64 56" stroke="#009BBB"/>
+  <!-- Woven vertical threads -->
+  <path d="M16 12 Q14 24 16 32 Q18 44 16 56 L16 64" stroke="#FFA92D"/>
+  <path d="M30 12 Q28 24 30 32 Q32 44 30 56 L30 64" stroke="#FFA92D"/>
+  <path d="M44 12 Q42 24 44 32 Q46 44 44 56 L44 64" stroke="#E71846"/>
+  <path d="M58 12 Q56 24 58 32 Q60 44 58 56 L58 64" stroke="#E71846"/>
+  <!-- Intersection highlights -->
+  <circle cx="16" cy="20" r="2" stroke="#00914B"/>
+  <circle cx="44" cy="44" r="2" stroke="#00914B"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Wood plank -->
+  <rect x="10" y="16" width="52" height="40" rx="2" stroke="#009BBB"/>
+  <!-- Grain lines -->
+  <path d="M14 24 Q26 22 38 24 Q50 26 58 24" stroke="#FFA92D"/>
+  <path d="M14 32 Q22 34 34 32 Q46 30 58 32" stroke="#FFA92D"/>
+  <path d="M14 40 Q28 38 42 40 Q52 42 58 40" stroke="#FFA92D"/>
+  <path d="M14 48 Q24 50 36 48 Q48 46 58 48" stroke="#FFA92D"/>
+  <!-- Knot -->
+  <ellipse cx="26" cy="36" rx="4" ry="5" stroke="#E71846"/>
+  <!-- End grain ring -->
+  <ellipse cx="48" cy="28" rx="3" ry="3" stroke="#93093F"/>
+</svg>

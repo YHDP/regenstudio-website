@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
+  <!-- Top membrane layer -->
+  <path d="M8 16 Q24 12 40 16 Q56 20 64 16" stroke="#009BBB"/>
+  <path d="M8 22 Q24 18 40 22 Q56 26 64 22" stroke="#009BBB"/>
+  <!-- Middle membrane layer -->
+  <path d="M8 30 Q24 26 40 30 Q56 34 64 30" stroke="#E71846"/>
+  <path d="M8 36 Q24 32 40 36 Q56 40 64 36" stroke="#E71846"/>
+  <!-- Bottom membrane layer -->
+  <path d="M8 44 Q24 40 40 44 Q56 48 64 44" stroke="#FFA92D"/>
+  <path d="M8 50 Q24 46 40 50 Q56 54 64 50" stroke="#FFA92D"/>
+  <!-- Connection between layers -->
+  <line x1="16" y1="22" x2="16" y2="30" stroke="#00914B" stroke-dasharray="2 2"/>
+  <line x1="48" y1="36" x2="48" y2="44" stroke="#00914B" stroke-dasharray="2 2"/>
+  <!-- Water drop being blocked -->
+  <path d="M54 56 L56 62 L58 56" stroke="#93093F"/>
+  <line x1="54" y1="54" x2="58" y2="54" stroke="#93093F"/>
+</svg>
