@@ -3795,12 +3795,21 @@ a.dpp-product--linked {
 .dpp-status--unscheduled { background: transparent; border: 2px solid #8CA9BF; }
 
 /* DPP date label on card */
+.dpp-product__act {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+  line-height: 1.3;
+}
+
 .dpp-product__date {
   display: block;
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  margin-top: 2px;
+  margin-top: 1px;
 }
 
 .dpp-product__date--confirmed { color: #00914B; }
@@ -4156,6 +4165,12 @@ a.dpp-product--linked {
   color: var(--color-text);
   margin-bottom: 4px;
   padding-right: 32px;
+}
+.dpp-info-modal__act {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 2px;
 }
 .dpp-info-modal__status {
   font-size: 0.85rem;
