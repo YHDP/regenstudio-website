@@ -1,13 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
-  <!-- Bottom slab -->
-  <rect x="10" y="46" width="52" height="12" rx="1" stroke="#009BBB"/>
-  <!-- Middle slab -->
-  <rect x="14" y="32" width="44" height="12" rx="1" stroke="#00914B"/>
-  <!-- Top slab -->
-  <rect x="18" y="18" width="36" height="12" rx="1" stroke="#FFA92D"/>
-  <!-- Lifting loops -->
-  <path d="M28 18 Q28 12 32 12" stroke="#E71846"/>
-  <path d="M44 18 Q44 12 40 12" stroke="#E71846"/>
-  <!-- Surface texture lines -->
-  <line x1="16" y1="52" x2="56" y2="52" stroke="#93093F" stroke-dasharray="3 2"/>
+  <!-- Hollow-core slab panel -->
+  <rect x="8" y="24" width="56" height="24" rx="2" stroke="#009BBB"/>
+  <!-- Top surface line -->
+  <line x1="8" y1="30" x2="64" y2="30" stroke="#009BBB" stroke-width="1"/>
+  <!-- Circular voids -->
+  <circle cx="18" cy="40" r="4.5" stroke="#FFA92D"/>
+  <circle cx="30" cy="40" r="4.5" stroke="#E71846"/>
+  <circle cx="42" cy="40" r="4.5" stroke="#FFA92D"/>
+  <circle cx="54" cy="40" r="4.5" stroke="#E71846"/>
+  <!-- Lifting loop -->
+  <path d="M32 24 Q32 14 36 12 Q40 14 40 24" stroke="#00914B" stroke-width="2" stroke-linecap="round"/>
+  <!-- Crane hook -->
+  <line x1="36" y1="6" x2="36" y2="10" stroke="#93093F" stroke-width="2"/>
+  <path d="M33 6 Q33 3 36 3 Q39 3 39 6" stroke="#93093F" stroke-width="2" stroke-linecap="round"/>
+  <!-- Bottom edge detail -->
+  <line x1="8" y1="42" x2="64" y2="42" stroke="#009BBB" stroke-width="1" stroke-dasharray="3 2"/>
 </svg>

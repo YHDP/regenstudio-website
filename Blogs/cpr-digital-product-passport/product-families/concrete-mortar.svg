@@ -1,14 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" fill="none" stroke-width="2">
-  <!-- Mixing bucket body -->
-  <path d="M16 26 L12 60 L60 60 L56 26 Z" stroke="#009BBB"/>
+  <!-- Concrete bucket / hopper tilting -->
+  <path d="M14 12 L10 36 L30 36 L26 12 Z" stroke="#009BBB" stroke-linejoin="round"/>
   <!-- Bucket rim -->
-  <ellipse cx="36" cy="26" rx="20" ry="6" stroke="#00914B"/>
-  <!-- Mortar surface -->
-  <path d="M18 38 Q28 34 36 38 Q44 42 54 38" stroke="#FFA92D"/>
-  <!-- Trowel handle -->
-  <line x1="42" y1="20" x2="60" y2="8" stroke="#E71846"/>
-  <!-- Trowel blade -->
-  <path d="M38 22 L46 18 L44 14 L36 18 Z" stroke="#E71846"/>
-  <!-- Handle grip -->
-  <rect x="56" y="5" width="8" height="5" rx="2" transform="rotate(-35 60 8)" stroke="#93093F"/>
+  <line x1="12" y1="16" x2="28" y2="16" stroke="#009BBB" stroke-width="1.5"/>
+  <!-- Bucket handle -->
+  <path d="M16 12 Q20 6 24 12" stroke="#93093F" stroke-linecap="round"/>
+  <!-- Pouring stream -->
+  <path d="M26 30 Q34 32 38 42 Q40 48 42 52" stroke="#FFA92D" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
+  <path d="M28 34 Q32 36 36 44 Q38 50 38 54" stroke="#FFA92D" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <!-- Floor / ground surface -->
+  <line x1="8" y1="62" x2="64" y2="62" stroke="#00914B" stroke-width="2"/>
+  <!-- Concrete spreading on floor -->
+  <path d="M30 62 Q36 54 50 54 Q58 54 62 58 L64 62 Z" fill="none" stroke="#E71846" stroke-width="1.5"/>
+  <path d="M34 62 Q40 56 50 56 Q56 56 60 60" stroke="#E71846" stroke-width="1" stroke-dasharray="2 2"/>
+  <!-- Splash drops -->
+  <circle cx="46" cy="50" r="1.5" stroke="#FFA92D" stroke-width="1"/>
+  <circle cx="52" cy="48" r="1" stroke="#FFA92D" stroke-width="1"/>
+  <circle cx="56" cy="52" r="1.5" stroke="#E71846" stroke-width="1"/>
 </svg>
