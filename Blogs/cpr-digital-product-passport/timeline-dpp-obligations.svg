@@ -1,87 +1,83 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" font-family="'Inter', 'Segoe UI', system-ui, sans-serif">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#243644"/>
-      <stop offset="100%" stop-color="#1B2833"/>
-    </linearGradient>
     <linearGradient id="line-grad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#3A5A6E"/>
+      <stop offset="0%" stop-color="#C8D6DE"/>
       <stop offset="60%" stop-color="#00914B"/>
       <stop offset="100%" stop-color="#00914B"/>
     </linearGradient>
   </defs>
 
   <!-- Background -->
-  <rect width="960" height="320" rx="16" fill="url(#bg)"/>
+  <rect width="960" height="320" rx="16" fill="#F5F7F9" stroke="#E2E8ED" stroke-width="1"/>
 
   <!-- Title -->
-  <text x="480" y="36" text-anchor="middle" fill="#AFF9D7" font-size="11" font-weight="600" letter-spacing="1.5">ARTICLE 79 — OPERATIONAL TIMELINE</text>
-  <text x="480" y="60" text-anchor="middle" fill="#FFFFFF" font-size="17" font-weight="700">When Do DPP Obligations Actually Apply?</text>
+  <text x="480" y="36" text-anchor="middle" fill="#00914B" font-size="11" font-weight="600" letter-spacing="1.5">ARTICLE 79 — OPERATIONAL TIMELINE</text>
+  <text x="480" y="60" text-anchor="middle" fill="#1A2B36" font-size="17" font-weight="700">When Do DPP Obligations Actually Apply?</text>
 
   <!-- Timeline line -->
   <line x1="100" y1="145" x2="860" y2="145" stroke="url(#line-grad)" stroke-width="3" stroke-linecap="round"/>
 
   <!-- Dashed lead-in (unknown start date) -->
-  <line x1="60" y1="145" x2="98" y2="145" stroke="#3A5A6E" stroke-width="2" stroke-dasharray="5,4" stroke-linecap="round"/>
+  <line x1="60" y1="145" x2="98" y2="145" stroke="#C8D6DE" stroke-width="2" stroke-dasharray="5,4" stroke-linecap="round"/>
 
   <!-- Step 0: Now -->
-  <circle cx="100" cy="145" r="7" fill="#3A5A6E" stroke="#8CA9BF" stroke-width="2"/>
-  <text x="100" y="125" text-anchor="middle" fill="#AFF9D7" font-size="10" font-weight="600">NOW</text>
-  <text x="100" y="175" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="500">Delegated act</text>
-  <text x="100" y="189" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="500">not yet adopted</text>
-  <text x="100" y="207" text-anchor="middle" fill="#5A7A8F" font-size="8.5">Feb 2026</text>
+  <circle cx="100" cy="145" r="7" fill="#E2E8ED" stroke="#8CA9BF" stroke-width="2"/>
+  <text x="100" y="125" text-anchor="middle" fill="#1A2B36" font-size="10" font-weight="600">NOW</text>
+  <text x="100" y="175" text-anchor="middle" fill="#1A2B36" font-size="10" font-weight="500">Delegated act</text>
+  <text x="100" y="189" text-anchor="middle" fill="#1A2B36" font-size="10" font-weight="500">not yet adopted</text>
+  <text x="100" y="207" text-anchor="middle" fill="#8CA9BF" font-size="8.5">Feb 2026</text>
 
   <!-- Voluntary use bracket -->
-  <line x1="100" y1="90" x2="540" y2="90" stroke="#5A7A8F" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="100" y1="86" x2="100" y2="94" stroke="#5A7A8F" stroke-width="1"/>
-  <line x1="540" y1="86" x2="540" y2="94" stroke="#5A7A8F" stroke-width="1"/>
-  <text x="320" y="85" text-anchor="middle" fill="#5A7A8F" font-size="8.5" font-style="italic">Voluntary use in the interim</text>
+  <line x1="100" y1="90" x2="540" y2="90" stroke="#8CA9BF" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="100" y1="86" x2="100" y2="94" stroke="#8CA9BF" stroke-width="1"/>
+  <line x1="540" y1="86" x2="540" y2="94" stroke="#8CA9BF" stroke-width="1"/>
+  <text x="320" y="85" text-anchor="middle" fill="#5A7080" font-size="8.5" font-style="italic">Voluntary use in the interim</text>
 
   <!-- Step 1: DA adopted -->
-  <circle cx="290" cy="145" r="8" fill="#3A5A6E" stroke="#AFF9D7" stroke-width="2"/>
-  <text x="290" y="125" text-anchor="middle" fill="#AFF9D7" font-size="10" font-weight="600">TBD</text>
-  <text x="290" y="175" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="600">Delegated act</text>
-  <text x="290" y="189" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="600">adopted</text>
-  <text x="290" y="207" text-anchor="middle" fill="#8CA9BF" font-size="8.5">Likely after JTC24</text>
-  <text x="290" y="219" text-anchor="middle" fill="#8CA9BF" font-size="8.5">DPP standard published</text>
+  <circle cx="290" cy="145" r="8" fill="#E2E8ED" stroke="#1A2B36" stroke-width="2"/>
+  <text x="290" y="125" text-anchor="middle" fill="#1A2B36" font-size="10" font-weight="600">TBD</text>
+  <text x="290" y="175" text-anchor="middle" fill="#1A2B36" font-size="10" font-weight="600">Delegated act</text>
+  <text x="290" y="189" text-anchor="middle" fill="#1A2B36" font-size="10" font-weight="600">adopted</text>
+  <text x="290" y="207" text-anchor="middle" fill="#5A7080" font-size="8.5">Likely after JTC24</text>
+  <text x="290" y="219" text-anchor="middle" fill="#5A7080" font-size="8.5">DPP standard published</text>
 
   <!-- Arrow: +EIF -->
-  <text x="370" y="141" text-anchor="middle" fill="#5A7A8F" font-size="8">entry into force</text>
+  <text x="370" y="141" text-anchor="middle" fill="#8CA9BF" font-size="8">entry into force</text>
 
   <!-- Step 2: EIF -->
-  <circle cx="440" cy="145" r="7" fill="#3A5A6E" stroke="#8CA9BF" stroke-width="2"/>
-  <text x="440" y="125" text-anchor="middle" fill="#AFF9D7" font-size="10" font-weight="600">DA + EIF</text>
-  <text x="440" y="175" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="500">Delegated act</text>
-  <text x="440" y="189" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="500">enters into force</text>
-  <text x="440" y="207" text-anchor="middle" fill="#8CA9BF" font-size="8.5">Clock starts</text>
+  <circle cx="440" cy="145" r="7" fill="#E2E8ED" stroke="#8CA9BF" stroke-width="2"/>
+  <text x="440" y="125" text-anchor="middle" fill="#1A2B36" font-size="10" font-weight="600">DA + EIF</text>
+  <text x="440" y="175" text-anchor="middle" fill="#1A2B36" font-size="10" font-weight="500">Delegated act</text>
+  <text x="440" y="189" text-anchor="middle" fill="#1A2B36" font-size="10" font-weight="500">enters into force</text>
+  <text x="440" y="207" text-anchor="middle" fill="#5A7080" font-size="8.5">Clock starts</text>
 
   <!-- Step 3: +6 months -->
-  <circle cx="610" cy="145" r="8" fill="#00914B" stroke="#AFF9D7" stroke-width="2"/>
-  <text x="610" y="125" text-anchor="middle" fill="#AFF9D7" font-size="10" font-weight="600">EIF + 6 MONTHS</text>
-  <text x="610" y="175" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="600">DPP system</text>
-  <text x="610" y="189" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="600">operational</text>
-  <text x="610" y="207" text-anchor="middle" fill="#8CA9BF" font-size="8.5">Infrastructure live</text>
+  <circle cx="610" cy="145" r="8" fill="#00914B" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="610" y="125" text-anchor="middle" fill="#00914B" font-size="10" font-weight="600">EIF + 6 MONTHS</text>
+  <text x="610" y="175" text-anchor="middle" fill="#1A2B36" font-size="11" font-weight="600">DPP system</text>
+  <text x="610" y="189" text-anchor="middle" fill="#1A2B36" font-size="11" font-weight="600">operational</text>
+  <text x="610" y="207" text-anchor="middle" fill="#5A7080" font-size="8.5">Infrastructure live</text>
 
   <!-- Step 4: +18 months -->
-  <circle cx="810" cy="145" r="9" fill="#00914B" stroke="#AFF9D7" stroke-width="2.5"/>
-  <text x="810" y="121" text-anchor="middle" fill="#AFF9D7" font-size="10" font-weight="600">EIF + 18 MONTHS</text>
-  <text x="810" y="175" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">DPP obligations</text>
-  <text x="810" y="189" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">apply</text>
-  <text x="810" y="207" text-anchor="middle" fill="#8CA9BF" font-size="8.5">Only for products under</text>
-  <text x="810" y="219" text-anchor="middle" fill="#8CA9BF" font-size="8.5">CPR-2024 harmonised specs</text>
+  <circle cx="810" cy="145" r="9" fill="#00914B" stroke="#FFFFFF" stroke-width="2.5"/>
+  <text x="810" y="121" text-anchor="middle" fill="#00914B" font-size="10" font-weight="600">EIF + 18 MONTHS</text>
+  <text x="810" y="175" text-anchor="middle" fill="#1A2B36" font-size="11" font-weight="700">DPP obligations</text>
+  <text x="810" y="189" text-anchor="middle" fill="#1A2B36" font-size="11" font-weight="700">apply</text>
+  <text x="810" y="207" text-anchor="middle" fill="#5A7080" font-size="8.5">Only for products under</text>
+  <text x="810" y="219" text-anchor="middle" fill="#5A7080" font-size="8.5">CPR-2024 harmonised specs</text>
 
   <!-- Condition callout -->
-  <rect x="220" y="252" width="520" height="38" rx="8" fill="#1B2833" stroke="#3A5A6E" stroke-width="1"/>
+  <rect x="220" y="252" width="520" height="38" rx="8" fill="#FFFFFF" stroke="#E2E8ED" stroke-width="1"/>
   <!-- Warning/info icon -->
-  <g transform="translate(240,271)" fill="none" stroke="#AFF9D7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="translate(240,271)" fill="none" stroke="#00914B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="0" cy="0" r="8"/>
     <line x1="0" y1="-3" x2="0" y2="1"/>
-    <circle cx="0" cy="4.5" r="0.5" fill="#AFF9D7"/>
+    <circle cx="0" cy="4.5" r="0.5" fill="#00914B"/>
   </g>
-  <text x="258" y="268" fill="#FFFFFF" font-size="10" font-weight="600">Key condition:</text>
-  <text x="342" y="268" fill="#8CA9BF" font-size="9">DPP obligations only apply to products covered by new harmonised technical specs under CPR 2024/3110.</text>
-  <text x="258" y="282" fill="#8CA9BF" font-size="9">Products still under old CPR 305/2011 standards are not subject to DPP requirements.</text>
+  <text x="258" y="268" fill="#1A2B36" font-size="10" font-weight="600">Key condition:</text>
+  <text x="342" y="268" fill="#5A7080" font-size="9">DPP obligations only apply to products covered by new harmonised technical specs under CPR 2024/3110.</text>
+  <text x="258" y="282" fill="#5A7080" font-size="9">Products still under old CPR 305/2011 standards are not subject to DPP requirements.</text>
 
   <!-- Source -->
-  <text x="480" y="312" text-anchor="middle" fill="#5A7A8F" font-size="8">Source: Articles 75 &amp; 79, Regulation (EU) 2024/3110 — regenstudio.world</text>
+  <text x="480" y="312" text-anchor="middle" fill="#8CA9BF" font-size="8">Source: Articles 75 &amp; 79, Regulation (EU) 2024/3110 — regenstudio.world</text>
 </svg>
