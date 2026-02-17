@@ -1,0 +1,16 @@
+{
+  "title": "Designing for Privacy with Self-Sovereign Identity",
+  "slug": "ssi-privacy",
+  "subtitle": "How SSI places the control over personal data back into the hands of individuals",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regenerative Innovation Design"
+  },
+  "date": "2024-09-24",
+  "categories": ["Digital Identity", "Privacy-by-Design", "Vision & Strategy"],
+  "tags": ["self-sovereign-identity", "ssi", "privacy-by-design", "digital-identity", "decentralized-identity", "data-privacy", "selective-disclosure", "cryptography", "dutch-blockchain-coalition", "interoperability", "digital-trust", "identity-management"],
+  "featuredImage": "SSI headerAtivo 45Fides.webp",
+  "featuredImageAlt": "Designing for Privacy with Self-Sovereign Identity",
+  "excerpt": "In an era where personal data is continuously harvested and monetized, Self-Sovereign Identity places the control over personal data back into the hands of individuals.",
+  "published": true
+}
