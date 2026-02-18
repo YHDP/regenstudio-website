@@ -381,6 +381,10 @@
             <input type="email" name="email" placeholder="Email address" class="regen-form__input" required>
           </div>
           <textarea name="message" placeholder="What would you like to know?" class="regen-form__input regen-form__textarea"></textarea>
+          <label class="regen-form__checkbox">
+            <input type="checkbox" name="newsletter_opt_in" value="1" checked>
+            <span>Also subscribe me to the Regen Studio newsletter</span>
+          </label>
           <button type="submit" class="btn btn--primary btn--large regen-form__submit">Send Message</button>
           <p class="regen-form__disclaimer">Your data is stored in the EU and not shared with third parties. <a href="privacy.html">Privacy Policy</a></p>
         </form>
@@ -492,12 +496,14 @@
           if (existingError) existingError.remove();
 
           var formData = new FormData(form);
+          var nlCheckbox = form.querySelector('input[name="newsletter_opt_in"]');
           var payload = {
             name: formData.get('name') || '',
             email: formData.get('email') || '',
             message: formData.get('message') || '',
             source: 'faq_page',
-            page_url: window.location.href
+            page_url: window.location.href,
+            newsletter_opt_in: nlCheckbox ? nlCheckbox.checked : false
           };
 
           fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {

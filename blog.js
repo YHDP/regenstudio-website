@@ -626,23 +626,6 @@
     ctaBanner.className = 'post-cta-banner';
     ctaBanner.id = 'post-cta-banner';
     ctaBanner.innerHTML = `
-      <div class="newsletter-subscribe">
-        <p class="post-cta-banner__label">Stay Updated</p>
-        <p class="post-cta-banner__text">Stay updated on regenerative innovation</p>
-        <form id="post-subscribe-form" class="regen-form regen-form--compact regen-form--subscribe">
-          <div class="regen-form__row">
-            <input type="email" name="email" placeholder="Email address" class="regen-form__input" required>
-            <button type="submit" class="btn btn--primary regen-form__submit">Subscribe</button>
-          </div>
-          <p class="regen-form__disclaimer">No spam, unsubscribe anytime. <a href="privacy.html">Privacy Policy</a></p>
-        </form>
-        <div id="post-subscribe-success" class="regen-form__success" style="display:none">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
-          <h3>You're subscribed!</h3>
-          <p>We'll keep you posted on regenerative innovation insights.</p>
-        </div>
-      </div>
-      <div class="regen-form__divider"><span>or get in touch directly</span></div>
       <p class="post-cta-banner__label">Get in Touch</p>
       <p class="post-cta-banner__text">Interested in working together on regenerative innovation?</p>
       <form id="post-contact-form" class="regen-form regen-form--compact">
@@ -792,64 +775,6 @@
   }
 
   // ========================================
-  // Newsletter Subscribe Handler (blog pages)
-  // ========================================
-  const NEWSLETTER_SUBSCRIBE_URL = 'https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/newsletter-subscribe';
-
-  function initNewsletterForms() {
-    // Blog listing page subscribe form
-    setupSubscribeForm('blog-subscribe-form', 'blog-subscribe-success', 'blog_subscribe');
-    // Blog post subscribe form (injected by initBlogPost)
-    setupSubscribeForm('post-subscribe-form', 'post-subscribe-success', 'blog_subscribe');
-  }
-
-  function setupSubscribeForm(formId, successId, source) {
-    document.addEventListener('submit', async (e) => {
-      const form = e.target.closest('#' + formId);
-      if (!form) return;
-      e.preventDefault();
-
-      const submitBtn = form.querySelector('.regen-form__submit');
-      const originalText = submitBtn.textContent;
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Subscribing...';
-
-      const existingError = form.querySelector('.regen-form__error');
-      if (existingError) existingError.remove();
-
-      const formData = new FormData(form);
-      const payload = {
-        email: formData.get('email') || '',
-        source: source,
-      };
-
-      try {
-        const res = await fetch(NEWSLETTER_SUBSCRIBE_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-
-        if (!res.ok) {
-          const data = await res.json().catch(() => ({}));
-          throw new Error(data.error || 'Something went wrong');
-        }
-
-        form.style.display = 'none';
-        const successEl = document.getElementById(successId);
-        if (successEl) successEl.style.display = 'flex';
-      } catch (err) {
-        const errorEl = document.createElement('p');
-        errorEl.className = 'regen-form__error';
-        errorEl.textContent = err.message || 'Failed to subscribe. Please try again.';
-        submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-      }
-    });
-  }
-
-  // ========================================
   // Contact Form Handlers (blog pages)
   // ========================================
   const EDGE_FUNCTION_URL = 'https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form';
@@ -936,6 +861,5 @@
     initBlogListing();
     initBlogPost();
     initBlogContactForms();
-    initNewsletterForms();
   });
 })();
