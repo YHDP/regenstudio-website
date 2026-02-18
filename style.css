@@ -2871,11 +2871,6 @@ em:only-of-type {
   color: rgba(255, 255, 255, 0.8);
 }
 
-/* Subscribe form variant */
-.regen-form--subscribe .regen-form__row {
-  grid-template-columns: 1fr auto;
-}
-
 /* Compact variant for blog CTAs */
 .regen-form--compact .regen-form__textarea {
   min-height: 60px;
