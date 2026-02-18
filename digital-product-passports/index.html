@@ -524,6 +524,10 @@
               <input type="email" name="email" placeholder="Your work email" class="dpp-gate__input" required>
               <button type="submit" class="btn btn--primary dpp-gate__btn">Unlock</button>
             </div>
+            <label class="regen-form__checkbox regen-form__checkbox--light">
+              <input type="checkbox" name="newsletter_opt_in" value="1" checked>
+              <span>Keep me updated on DPP regulation changes</span>
+            </label>
             <p class="dpp-gate__disclaimer">By submitting you agree to our <a href="../privacy.html">Privacy Policy</a>.</p>
           </form>
         </div>
@@ -763,6 +767,10 @@
             <input type="email" name="email" placeholder="Email address" class="regen-form__input" required>
           </div>
           <textarea name="message" placeholder="Tell us about your project..." class="regen-form__input regen-form__textarea"></textarea>
+          <label class="regen-form__checkbox">
+            <input type="checkbox" name="newsletter_opt_in" value="1" checked>
+            <span>Also subscribe me to the Regen Studio newsletter</span>
+          </label>
           <button type="submit" class="btn btn--primary btn--large regen-form__submit">Send Message</button>
           <p class="regen-form__disclaimer">Your data is stored in the EU and not shared with third parties. <a href="../privacy.html">Privacy Policy</a></p>
         </form>
@@ -936,6 +944,8 @@
           e.preventDefault();
           var btn = gateForm.querySelector('.dpp-gate__btn');
           var email = gateForm.querySelector('input[name="email"]').value;
+          var nlCheckbox = gateForm.querySelector('input[name="newsletter_opt_in"]');
+          var newsletterOptIn = nlCheckbox ? nlCheckbox.checked : false;
           btn.disabled = true;
           btn.textContent = 'Unlocking...';
 
@@ -950,7 +960,8 @@
               email: email,
               message: 'DPP product overview unlock',
               source: 'dpp_gate',
-              page_url: window.location.href
+              page_url: window.location.href,
+              newsletter_opt_in: newsletterOptIn
             })
           })
           .then(function(res) {
@@ -992,12 +1003,14 @@
           if (existingError) existingError.remove();
 
           var formData = new FormData(form);
+          var nlCheckbox = form.querySelector('input[name="newsletter_opt_in"]');
           var payload = {
             name: formData.get('name') || '',
             email: formData.get('email') || '',
             message: formData.get('message') || '',
             source: 'dpp_page',
-            page_url: window.location.href
+            page_url: window.location.href,
+            newsletter_opt_in: nlCheckbox ? nlCheckbox.checked : false
           };
 
           fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {

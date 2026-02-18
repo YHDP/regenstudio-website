@@ -122,6 +122,26 @@
     </div>
     <div class="blog-cta__inner">
       <div class="container">
+        <!-- Newsletter subscribe form -->
+        <div class="newsletter-subscribe" id="newsletter-subscribe">
+          <p class="blog-cta__label">Stay Updated</p>
+          <p class="blog-cta__text">Stay updated on regenerative innovation</p>
+          <form id="blog-subscribe-form" class="regen-form regen-form--compact regen-form--subscribe">
+            <div class="regen-form__row">
+              <input type="email" name="email" placeholder="Email address" class="regen-form__input" required>
+              <button type="submit" class="btn btn--primary regen-form__submit">Subscribe</button>
+            </div>
+            <p class="regen-form__disclaimer">No spam, unsubscribe anytime. <a href="privacy.html">Privacy Policy</a></p>
+          </form>
+          <div id="blog-subscribe-success" class="regen-form__success" style="display:none">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
+            <h3>You're subscribed!</h3>
+            <p>We'll keep you posted on regenerative innovation insights.</p>
+          </div>
+        </div>
+
+        <div class="regen-form__divider"><span>or get in touch directly</span></div>
+
         <p class="blog-cta__label">Get in Touch</p>
         <p class="blog-cta__text">Interested in regenerative innovation? Let's start a conversation.</p>
         <form id="blog-contact-form" class="regen-form regen-form--compact">
@@ -130,6 +150,10 @@
             <input type="email" name="email" placeholder="Email address" class="regen-form__input" required>
           </div>
           <textarea name="message" placeholder="What's on your mind?" class="regen-form__input regen-form__textarea" rows="2"></textarea>
+          <label class="regen-form__checkbox">
+            <input type="checkbox" name="newsletter_opt_in" value="1" checked>
+            <span>Also subscribe me to the Regen Studio newsletter</span>
+          </label>
           <button type="submit" class="btn btn--primary regen-form__submit">Send Message</button>
           <p class="regen-form__disclaimer">Your data is stored in the EU and not shared with third parties. <a href="privacy.html">Privacy Policy</a></p>
         </form>
