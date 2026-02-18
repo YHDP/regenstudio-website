@@ -2850,6 +2850,32 @@ em:only-of-type {
   margin-top: 8px;
 }
 
+/* Newsletter checkbox */
+.regen-form__checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.regen-form__checkbox input[type="checkbox"] {
+  margin-top: 2px;
+  accent-color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.regen-form__checkbox--light {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Subscribe form variant */
+.regen-form--subscribe .regen-form__row {
+  grid-template-columns: 1fr auto;
+}
+
 /* Compact variant for blog CTAs */
 .regen-form--compact .regen-form__textarea {
   min-height: 60px;

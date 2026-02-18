@@ -1507,12 +1507,14 @@
       if (existingError) existingError.remove();
 
       var formData = new FormData(form);
+      var nlCheckbox = form.querySelector('input[name="newsletter_opt_in"]');
       var payload = {
         name: formData.get('name') || '',
         email: formData.get('email') || '',
         message: formData.get('message') || '',
         source: 'website_contact',
         page_url: window.location.href,
+        newsletter_opt_in: nlCheckbox ? nlCheckbox.checked : false,
       };
 
       fetch(EDGE_FUNCTION_URL, {
