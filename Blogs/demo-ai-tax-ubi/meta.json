@@ -1,0 +1,16 @@
+{
+  "title": "Try the AI Tax → UBI Simulator: Model How Automation Could Fund a Basic Income",
+  "slug": "demo-ai-tax-ubi",
+  "subtitle": "Adjust tax rates, automation thresholds, and population size — and see in real time how taxing AI could fund monthly payments to citizens",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regenerative Innovation Design"
+  },
+  "date": "2026-02-11",
+  "categories": ["Vision & Strategy", "Innovation Services"],
+  "tags": ["UBI", "AI-tax", "automation", "universal-basic-income", "policy", "demo", "future-of-work"],
+  "featuredImage": "../../Images/demo-ai-tax-ubi.svg",
+  "featuredImageAlt": "AI Tax → UBI Simulator — Modelling automation taxation and universal basic income",
+  "excerpt": "What if taxing AI-driven automation could fund a universal basic income? Our interactive simulator lets you set the policy parameters and see the numbers play out — revenue collected, monthly payments per citizen, and how it evolves year on year.",
+  "published": true
+}

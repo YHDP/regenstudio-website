@@ -1,0 +1,129 @@
+# Regen Studio Blog Guide
+
+## How the system works
+
+- `blogs.json` — master list of slugs, ordered newest-first. Add new slug at the **front**.
+- Each blog lives in `Blogs/[slug]/` with two required files: `meta.json` and `content.html`.
+- `blog-post.html?post=[slug]` renders a post. `blog.html` renders the listing.
+- `client-projects.html` renders only posts with category `"Client Projects"`.
+- All image paths in `content.html` are **relative to the site root** (e.g. `Blogs/slug/image.webp`, `Images/logo.svg`).
+
+---
+
+## meta.json structure
+
+```json
+{
+  "title": "SEO title — English, keywords front-loaded, proper noun last",
+  "slug": "url-slug-no-spaces",
+  "subtitle": "One sentence expanding the title",
+  "author": { "name": "Yvo Hunink de Paiva", "role": "Regenerative Innovation Design" },
+  "date": "YYYY-MM-DD",
+  "categories": ["Client Projects", "Energy Communities"],
+  "tags": ["tag-one", "tag-two"],
+  "featuredImage": "filename.webp",
+  "featuredImageAlt": "Keyword-rich description of the image",
+  "excerpt": "2-3 sentence summary shown on listing cards. Lead with the most searchable fact.",
+  "published": true
+}
+```
+
+---
+
+## Category colours (defined in blog.js + blog.css)
+
+| Category | Colour | Parent group |
+|---|---|---|
+| Circular Economy | emerald | — |
+| Digital Product Passport | emerald | Circular Economy |
+| Circular Business Models | emerald | Circular Economy |
+| Energy Transition | orange | — |
+| Smart Grids | orange | Energy Transition |
+| Energy Communities | orange | Energy Transition |
+| Energy Justice | orange | Energy Transition |
+| Liveable Cities | teal | — |
+| Living Labs | teal | Liveable Cities |
+| Digital Participation | teal | Liveable Cities |
+| Urban Greening | teal | Liveable Cities |
+| Digital Society | magenta | — |
+| Digital Identity | magenta | Digital Society |
+| Privacy-by-Design | magenta | Digital Society |
+| AI | magenta | Digital Society |
+| Resilient Nature | green | — |
+| Reforestation | green | Resilient Nature |
+| Biodiversity | green | Resilient Nature |
+| Regenerative Agriculture | green | Resilient Nature |
+| Innovation Services | gray | Services |
+| Out-of-the-Box Ideas | gray | Services |
+| Vision & Strategy | gray | Services |
+| Visual Storytelling | gray | Services |
+| Client Projects | gold | — |
+
+To add a new category: add to `CATEGORY_COLORS` in `blog.js`, add to `categoryColumns`, add CSS classes in `blog.css` and CSS variables in `style.css`.
+
+---
+
+## content.html conventions
+
+**Headings:** `<h2>` for main sections, `<h3>` for sub-sections. No `<h1>` (title is rendered by the system).
+
+**Images:**
+- `featuredImage` in meta.json = blog card thumbnail + post header. Don't repeat it in content.html.
+- Inline images: `<figure style="margin:40px 0;"><img src="Blogs/slug/filename.webp" alt="..." style="width:100%;border-radius:10px;display:block;"></figure>`
+- Footer image (before closing blockquote) follows the same pattern.
+
+**Closing blockquote (standard CTA):**
+```html
+<blockquote>
+  <p>One-line CTA. <a href="mailto:info@regenstudio.world">Get in touch</a> to explore what is possible.</p>
+</blockquote>
+```
+
+**Demo button block (reuse for any demo link):**
+```html
+<div style="background:linear-gradient(135deg,#243644 0%,#1B2833 100%);border-radius:16px;padding:40px;text-align:center;margin:40px 0;">
+  <p style="color:#AFF9D7;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;font-weight:600;">See it in action</p>
+  <p style="color:#FFFFFF;font-size:1.4rem;font-weight:700;margin-bottom:12px;line-height:1.3;">[Headline]</p>
+  <p style="color:#8CA9BF;font-size:1rem;margin-bottom:24px;line-height:1.6;">[Description]</p>
+  <a href="https://demos.regenstudio.space/[demo]/gate.html" style="display:inline-block;background:#00914B;color:#FFFFFF;font-weight:600;font-size:1rem;padding:14px 32px;border-radius:8px;text-decoration:none;">Explore the Demo &rarr;</a>
+</div>
+```
+
+**Collaboration banner (client project with external partner):**
+```html
+<div style="display:flex;align-items:center;justify-content:center;gap:32px;padding:24px 40px;background:#F0FAF4;border-radius:12px;border:1px solid #D1FAE5;margin-bottom:40px;flex-wrap:wrap;">
+  <img src="Images/client-logos/[LOGO].svg" alt="[Partner name]" style="height:52px;width:auto;">
+  <span style="color:#00914B;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">in collaboration with</span>
+  <img src="Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" style="height:34px;width:auto;">
+</div>
+```
+
+**Internal links:** Use root-relative paths, e.g. `index.html#services`, `client-projects.html`.
+
+---
+
+## Client logos
+
+Stored in `Images/client-logos/`. Key files:
+- `OIP-3.svg` — City of The Hague (Den Haag full-colour logo)
+- `OIP-7.svg` — FIDES
+
+---
+
+## Regen Studio logos
+
+- Nav / light backgrounds: `Images/Logo-Text-on-the-sideAtivo 2.svg`
+- Footer / dark backgrounds: `Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg`
+- Compact white: `Images/WhiteLogoCompact.svg`
+
+---
+
+## Checklist for a new blog post
+
+1. Create folder `Blogs/[slug]/`
+2. Write `meta.json` (title, slug, subtitle, author, date, categories, tags, featuredImage, featuredImageAlt, excerpt, published)
+3. Write `content.html`
+4. Prepend slug to `Blogs/blogs.json`
+5. If new category needed: update `blog.js` (CATEGORY_COLORS + categoryColumns) + `blog.css` + `style.css`
+6. Add featured image file to the folder
+7. Confirm before pushing

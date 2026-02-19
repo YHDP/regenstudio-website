@@ -1,0 +1,16 @@
+{
+  "title": "Try the EDI Wallet Demo: A Privacy-First Digital Identity Wallet",
+  "slug": "demo-edi-wallet",
+  "subtitle": "Experience credential management, QR scanning, and selective disclosure under eIDAS 2.0",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regenerative Innovation Design"
+  },
+  "date": "2026-02-10",
+  "categories": ["Digital Identity", "Privacy-by-Design"],
+  "tags": ["digital-identity", "demo", "eIDAS", "SSI", "self-sovereign-identity", "wallet", "verifiable-credentials", "selective-disclosure"],
+  "featuredImage": "../../Images/demo-edi-wallet.svg",
+  "featuredImageAlt": "EDI Wallet Demo — Privacy-First Digital Identity Wallet under eIDAS 2.0",
+  "excerpt": "See a self-sovereign identity wallet in practice. The EDI Wallet demo lets you receive verifiable credentials, store them, and present them with selective disclosure — following the eIDAS 2.0 framework.",
+  "published": true
+}
