@@ -32,6 +32,11 @@
           <div class="nav__contact-popover" id="navContactPopover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <a href="#blog-contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
               <div class="copyable-email copyable-email--compact">
                 <span class="copyable-email__address">info@regenstudio.world</span>
                 <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
@@ -112,7 +117,7 @@
   </section>
 
   <!-- CTA Section -->
-  <section class="blog-cta">
+  <section class="blog-cta" id="blog-contact">
     <div class="blog-cta__divider" aria-hidden="true">
       <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <polygon points="0,60 200,20 500,50 800,10 1100,40 1440,0 1440,60" fill="#F8F9FA"/>
