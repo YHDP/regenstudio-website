@@ -1,0 +1,16 @@
+{
+  "title": "Talk to AI as if it's Trump",
+  "slug": "ai-trump",
+  "subtitle": "A simple strategy for digital self-defense in the age of AI",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regenerative Innovation Design"
+  },
+  "date": "2025-05-22",
+  "categories": ["AI", "Vision & Strategy"],
+  "tags": ["ai", "chatgpt", "privacy", "digital-self-defense", "trump-test", "mental-models", "cloud-act", "regenerative-ai", "data-sovereignty", "ai-ethics", "ai-governance", "digital-autonomy", "surveillance-capitalism", "open-source-ai", "ollama", "digital-safety", "data-profiling", "ai-regulation", "ai-transparency", "algorithmic-bias"],
+  "featuredImage": "HeaderTRUMPAtivo 30.webp",
+  "featuredImageAlt": "Talk to AI as if it's Trump — a mental model for digital self-defense in the age of artificial intelligence",
+  "excerpt": "Having a conversation with ChatGPT is the same as whispering it in Donald Trump&rsquo;s ear. A personal story about AI, privacy, and why we need mental models for digital self-defense &mdash; co-written with ChatGPT.",
+  "published": true
+}
