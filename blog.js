@@ -667,11 +667,17 @@
     const relatedSection = document.getElementById('relatedPosts');
 
     if (related.length > 0) {
+      const primaryCategory = post.categories && post.categories[0]
+        ? `#${encodeURIComponent('cat=' + post.categories[0])}`
+        : '';
       relatedSection.innerHTML = `
         <div class="container">
           <h2 class="related-posts__title">Related Articles</h2>
           <div class="related-posts__grid">
             ${related.map(renderCard).join('')}
+          </div>
+          <div class="related-posts__cta">
+            <a href="blog.html${primaryCategory}" class="related-posts__cta-btn">View all blogs</a>
           </div>
         </div>
       `;

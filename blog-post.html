@@ -68,11 +68,16 @@
   <section class="related-posts" id="relatedPosts"></section>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="Regen Studio">
+    <meta itemprop="url" content="https://www.regenstudio.world">
+    <meta itemprop="email" content="info@regenstudio.world">
+    <meta itemprop="description" content="Regenerative innovation design studio pioneering systemic innovations at the intersection of technology, society, and nature.">
+    <link itemprop="logo" href="https://www.regenstudio.world/Images/Logo-Text-on-the-sideAtivo 2.svg">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <a href="index.html" class="nav__logo">
-          <span class="nav__logo-regen">Regen</span><span class="nav__logo-studio">Studio</span>
+        <a href="index.html" class="footer__logo">
+          <img src="Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img">
         </a>
         <p>Pioneering innovations in the regeneration of our natural, human and urban ecosystems.</p>
       </div>
@@ -86,6 +91,7 @@
             <li><a href="index.html#clients">Who We Serve</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li><a href="https://demos.regenstudio.space" target="_blank" rel="noopener">Demos</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="faq.html">FAQ</a></li>
           </ul>
         </div>
@@ -93,21 +99,43 @@
           <h4>Connect</h4>
           <ul>
             <li>
-                <span class="footer__email-row">
-                  <span class="footer__email-address">info@regenstudio.world</span>
-                  <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copy email address">
-                    <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                    <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                  </button>
-                </span>
-              </li>
-            <li><a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me">Mastodon</a></li>
+              <span class="footer__email-row">
+                <span class="footer__email-address">info@regenstudio.world</span>
+                <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+              </span>
+            </li>
+            <li><a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" itemprop="sameAs">LinkedIn</a></li>
+            <li><a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" itemprop="sameAs">Bluesky</a></li>
+            <li><a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" itemprop="sameAs">Mastodon</a></li>
           </ul>
+        </div>
+        <div class="footer__col footer__col--locations">
+          <h4>Locations</h4>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">The Netherlands</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio B.V.</p>
+              <p class="footer__address"><span itemprop="streetAddress">Stollenbergweg 43</span>, <span itemprop="addressLocality">Berg en Dal</span></p>
+              <meta itemprop="addressCountry" content="NL">
+            </div>
+            <p class="footer__reg">KVK 90337948</p>
+          </div>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">Brazil</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio Consultoria LTDA</p>
+              <p class="footer__address"><span itemprop="streetAddress">Av. Washington Lu&iacute;s 1527, 174B</span><br><span itemprop="postalCode">04662-002</span>, <span itemprop="addressLocality">S&atilde;o Paulo</span></p>
+              <meta itemprop="addressCountry" content="BR">
+            </div>
+            <p class="footer__reg">CNPJ 57.579.114/0001-55</p>
+          </div>
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; 2026 Regen Studio. All rights reserved.</p>
+        <p>&copy; 2026 Regen Studio. All rights reserved. &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="about.html">About</a></p>
       </div>
     </div>
   </footer>
