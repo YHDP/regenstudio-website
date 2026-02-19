@@ -1197,6 +1197,21 @@
   transform: translateY(-2px);
 }
 
+/* --- Embedded PDF viewer (used in blog post body) --- */
+.post-content__body .content-pdf {
+  margin: 32px 0;
+  border-radius: var(--radius-sm, 8px);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.post-content__body .content-pdf__embed {
+  width: 100%;
+  aspect-ratio: 297 / 210;
+  border: none;
+  display: block;
+}
+
 /* --- Blog CTA Section (listing page) --- */
 .blog-cta {
   position: relative;
