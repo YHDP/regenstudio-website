@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 190" width="100%">
+  <defs>
+    <marker id="ej-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3.5" orient="auto">
+      <path d="M0,0 L0,7 L10,3.5 z" fill="#00914B" opacity="0.6"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="900" height="190" rx="14" fill="#F0FAF4"/>
+
+  <!-- Section label -->
+  <text x="450" y="28" text-anchor="middle" fill="#00914B" font-size="11" font-weight="700" font-family="Inter,sans-serif" letter-spacing="0.12em">THE EXPERIMENT PROCESS</text>
+
+  <!-- Connecting arrows -->
+  <line x1="105" y1="85" x2="188" y2="85" stroke="#00914B" stroke-width="2" opacity="0.45" marker-end="url(#ej-arrow)"/>
+  <line x1="255" y1="85" x2="338" y2="85" stroke="#00914B" stroke-width="2" opacity="0.45" marker-end="url(#ej-arrow)"/>
+  <line x1="405" y1="85" x2="488" y2="85" stroke="#00914B" stroke-width="2" opacity="0.45" marker-end="url(#ej-arrow)"/>
+  <line x1="555" y1="85" x2="638" y2="85" stroke="#00914B" stroke-width="2" opacity="0.45" marker-end="url(#ej-arrow)"/>
+  <line x1="705" y1="85" x2="788" y2="85" stroke="#00914B" stroke-width="2" opacity="0.45" marker-end="url(#ej-arrow)"/>
+
+  <!-- Step 1: cx=75 -->
+  <circle cx="75" cy="85" r="30" fill="#00914B"/>
+  <text x="75" y="92" text-anchor="middle" fill="white" font-size="20" font-weight="700" font-family="Inter,sans-serif">1</text>
+  <text x="75" y="131" text-anchor="middle" fill="#1A2533" font-size="12" font-weight="600" font-family="Inter,sans-serif">Define</text>
+  <text x="75" y="147" text-anchor="middle" fill="#4A5568" font-size="11" font-family="Inter,sans-serif">Target Group</text>
+  <text x="75" y="162" text-anchor="middle" fill="#4A5568" font-size="11" font-family="Inter,sans-serif">&amp; Amounts</text>
+
+  <!-- Step 2: cx=225 -->
+  <circle cx="225" cy="85" r="30" fill="#007A3E"/>
+  <text x="225" y="92" text-anchor="middle" fill="white" font-size="20" font-weight="700" font-family="Inter,sans-serif">2</text>
+  <text x="225" y="131" text-anchor="middle" fill="#1A2533" font-size="12" font-weight="600" font-family="Inter,sans-serif">Configure</text>
+  <text x="225" y="147" text-anchor="middle" fill="#4A5568" font-size="11" font-family="Inter,sans-serif">Management</text>
+  <text x="225" y="162" text-anchor="middle" fill="#4A5568" font-size="11" font-family="Inter,sans-serif">Software</text>
+
+  <!-- Step 3: cx=375 -->
+  <circle cx="375" cy="85" r="30" fill="#00914B"/>
+  <text x="375" y="92" text-anchor="middle" fill="white" font-size="20" font-weight="700" font-family="Inter,sans-serif">3</text>
+  <text x="375" y="131" text-anchor="middle" fill="#1A2533" font-size="12" font-weight="600" font-family="Inter,sans-serif">Onboard</text>
+  <text x="375" y="147" text-anchor="middle" fill="#4A5568" font-size="11" font-family="Inter,sans-serif">Target Group</text>
+  <text x="375" y="162" text-anchor="middle" fill="#4A5568" font-size="11" font-family="Inter,sans-serif">Participants</text>
+
+  <!-- Step 4: cx=525 -->
+  <circle cx="525" cy="85" r="30" fill="#007A3E"/>
+  <text x="525" y="92" text-anchor="middle" fill="white" font-size="20" font-weight="700" font-family="Inter,sans-serif">4</text>
+  <text x="525" y="131" text-anchor="middle" fill="#1A2533" font-size="12" font-weight="600" font-family="Inter,sans-serif">Execute</text>
+  <text x="525" y="147" text-anchor="middle" fill="#4A5568" font-size="11" font-family="Inter,sans-serif">Payment</text>
+  <text x="525" y="162" text-anchor="middle" fill="#4A5568" font-size="11" font-family="Inter,sans-serif">to Bills</text>
+
+  <!-- Step 5: cx=675 -->
+  <circle cx="675" cy="85" r="30" fill="#00914B"/>
+  <text x="675" y="92" text-anchor="middle" fill="white" font-size="20" font-weight="700" font-family="Inter,sans-serif">5</text>
+  <text x="675" y="131" text-anchor="middle" fill="#1A2533" font-size="12" font-weight="600" font-family="Inter,sans-serif">Fulfil</text>
+  <text x="675" y="147" text-anchor="middle" fill="#4A5568" font-size="11" font-family="Inter,sans-serif">Meldplicht</text>
+  <text x="675" y="162" text-anchor="middle" fill="#4A5568" font-size="11" font-family="Inter,sans-serif">Obligation</text>
+
+  <!-- Step 6: cx=825 -->
+  <circle cx="825" cy="85" r="30" fill="#007A3E"/>
+  <text x="825" y="92" text-anchor="middle" fill="white" font-size="20" font-weight="700" font-family="Inter,sans-serif">6</text>
+  <text x="825" y="131" text-anchor="middle" fill="#1A2533" font-size="12" font-weight="600" font-family="Inter,sans-serif">Reflect</text>
+  <text x="825" y="147" text-anchor="middle" fill="#4A5568" font-size="11" font-family="Inter,sans-serif">&amp; Evaluate</text>
+  <text x="825" y="162" text-anchor="middle" fill="#4A5568" font-size="11" font-family="Inter,sans-serif">Impact</text>
+</svg>

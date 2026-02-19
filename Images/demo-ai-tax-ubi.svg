@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <rect width="800" height="500" fill="#FFFFFF"/>
+
+  <!-- ==========================================
+       ROBOT GIVING MONEY TO HUMAN — polygon-art triangles
+       Left: Robot figure, Center: money/coins, Right: Human figure
+       ========================================== -->
+
+  <!-- === ROBOT (left side) === -->
+  <!-- Robot head -->
+  <polygon points="240,120 280,80 320,120" fill="#009BBB" opacity="0.9"/>
+  <polygon points="240,120 320,120 280,155" fill="#243644" opacity="0.85"/>
+  <!-- Antenna -->
+  <polygon points="275,80 280,55 285,80" fill="#009BBB" opacity="0.7"/>
+  <polygon points="272,60 280,42 288,60" fill="#BBF0F8" opacity="0.6"/>
+  <!-- Eyes (small bright triangles) -->
+  <polygon points="255,115 265,105 275,115" fill="#BBF0F8" opacity="0.9"/>
+  <polygon points="285,115 295,105 305,115" fill="#BBF0F8" opacity="0.9"/>
+
+  <!-- Robot torso -->
+  <polygon points="235,155 280,155 235,220" fill="#243644" opacity="0.8"/>
+  <polygon points="280,155 325,155 325,220" fill="#1B2833" opacity="0.85"/>
+  <polygon points="235,220 280,155 325,220" fill="#009BBB" opacity="0.7"/>
+  <!-- Chest detail -->
+  <polygon points="265,175 280,165 295,175" fill="#BBF0F8" opacity="0.5"/>
+  <polygon points="265,190 280,175 295,190" fill="#BBF0F8" opacity="0.35"/>
+
+  <!-- Robot left arm (extended, giving) -->
+  <polygon points="325,165 370,155 370,185" fill="#243644" opacity="0.8"/>
+  <polygon points="370,155 420,148 420,178" fill="#1B2833" opacity="0.75"/>
+  <polygon points="370,155 370,185 420,178" fill="#009BBB" opacity="0.65"/>
+  <!-- Robot hand -->
+  <polygon points="420,148 445,155 420,178" fill="#243644" opacity="0.8"/>
+  <polygon points="445,155 455,145 455,168" fill="#009BBB" opacity="0.7"/>
+
+  <!-- Robot right arm -->
+  <polygon points="235,165 200,180 215,200" fill="#243644" opacity="0.7"/>
+  <polygon points="235,165 215,200 235,210" fill="#1B2833" opacity="0.65"/>
+
+  <!-- Robot legs -->
+  <polygon points="245,220 270,220 245,300" fill="#243644" opacity="0.8"/>
+  <polygon points="270,220 270,300 245,300" fill="#1B2833" opacity="0.75"/>
+  <polygon points="290,220 315,220 315,300" fill="#1B2833" opacity="0.8"/>
+  <polygon points="290,220 290,300 315,300" fill="#243644" opacity="0.75"/>
+  <!-- Robot feet -->
+  <polygon points="230,300 270,300 230,320" fill="#243644" opacity="0.85"/>
+  <polygon points="270,300 270,320 230,320" fill="#009BBB" opacity="0.6"/>
+  <polygon points="290,300 330,300 330,320" fill="#243644" opacity="0.85"/>
+  <polygon points="290,300 290,320 330,320" fill="#009BBB" opacity="0.6"/>
+
+  <!-- === MONEY / COINS (center, floating from robot hand to human) === -->
+  <!-- Coin 1 -->
+  <polygon points="460,140 475,125 490,140" fill="#FFA92D" opacity="0.9"/>
+  <polygon points="460,140 490,140 475,155" fill="#D97706" opacity="0.8"/>
+  <!-- Coin 2 -->
+  <polygon points="480,165 495,150 510,165" fill="#FFA92D" opacity="0.85"/>
+  <polygon points="480,165 510,165 495,180" fill="#D97706" opacity="0.75"/>
+  <!-- Coin 3 -->
+  <polygon points="500,140 515,128 530,140" fill="#FFA92D" opacity="0.8"/>
+  <polygon points="500,140 530,140 515,152" fill="#D97706" opacity="0.7"/>
+  <!-- Coin sparkle triangles -->
+  <polygon points="470,130 475,120 480,130" fill="#FFEEC8" opacity="0.6"/>
+  <polygon points="505,155 510,145 515,155" fill="#FFEEC8" opacity="0.5"/>
+  <polygon points="520,132 525,122 530,132" fill="#FFEEC8" opacity="0.55"/>
+  <!-- Extra small coins -->
+  <polygon points="445,160 455,150 465,160" fill="#FFA92D" opacity="0.6"/>
+  <polygon points="525,155 535,148 540,160" fill="#FFA92D" opacity="0.55"/>
+
+  <!-- === HUMAN (right side) === -->
+  <!-- Human head -->
+  <polygon points="580,105 610,70 640,105" fill="#00914B" opacity="0.85"/>
+  <polygon points="580,105 640,105 610,135" fill="#059669" opacity="0.8"/>
+  <!-- Hair -->
+  <polygon points="585,95 610,60 635,95" fill="#0D6B3E" opacity="0.5"/>
+
+  <!-- Human neck/shoulders -->
+  <polygon points="595,135 610,135 595,155" fill="#059669" opacity="0.7"/>
+  <polygon points="610,135 625,135 625,155" fill="#00914B" opacity="0.7"/>
+
+  <!-- Human torso -->
+  <polygon points="570,155 610,155 570,230" fill="#00914B" opacity="0.8"/>
+  <polygon points="610,155 650,155 650,230" fill="#059669" opacity="0.85"/>
+  <polygon points="570,230 610,155 650,230" fill="#0D6B3E" opacity="0.7"/>
+
+  <!-- Human left arm (extended to receive) -->
+  <polygon points="570,165 535,175 535,195" fill="#059669" opacity="0.75"/>
+  <polygon points="535,175 500,180 510,200" fill="#00914B" opacity="0.7"/>
+  <!-- Human hand (open, receiving) -->
+  <polygon points="500,175 490,185 505,190" fill="#059669" opacity="0.8"/>
+  <polygon points="490,185 485,175 500,175" fill="#00914B" opacity="0.7"/>
+
+  <!-- Human right arm -->
+  <polygon points="650,165 680,180 665,200" fill="#059669" opacity="0.7"/>
+  <polygon points="650,165 665,200 650,210" fill="#00914B" opacity="0.65"/>
+
+  <!-- Human legs -->
+  <polygon points="580,230 605,230 580,310" fill="#00914B" opacity="0.8"/>
+  <polygon points="605,230 605,310 580,310" fill="#059669" opacity="0.75"/>
+  <polygon points="615,230 640,230 640,310" fill="#059669" opacity="0.8"/>
+  <polygon points="615,230 615,310 640,310" fill="#00914B" opacity="0.75"/>
+  <!-- Human feet -->
+  <polygon points="568,310 605,310 568,328" fill="#00914B" opacity="0.85"/>
+  <polygon points="605,310 605,328 568,328" fill="#059669" opacity="0.6"/>
+  <polygon points="615,310 652,310 652,328" fill="#059669" opacity="0.85"/>
+  <polygon points="615,310 615,328 652,328" fill="#00914B" opacity="0.6"/>
+
+  <!-- === DECORATIVE ACCENT TRIANGLES === -->
+  <!-- Top-left -->
+  <polygon points="60,60 85,35 105,65" fill="#009BBB" opacity="0.12"/>
+  <polygon points="80,90 105,70 125,95" fill="#243644" opacity="0.08"/>
+  <polygon points="120,50 140,30 155,55" fill="#BBF0F8" opacity="0.1"/>
+
+  <!-- Top-right -->
+  <polygon points="700,50 720,30 735,55" fill="#00914B" opacity="0.12"/>
+  <polygon points="720,80 740,60 755,85" fill="#AFF9D7" opacity="0.1"/>
+
+  <!-- Bottom-left -->
+  <polygon points="70,400 90,380 105,405" fill="#009BBB" opacity="0.1"/>
+  <polygon points="100,430 80,410 115,415" fill="#243644" opacity="0.08"/>
+  <polygon points="150,380 170,365 185,385" fill="#BBF0F8" opacity="0.08"/>
+
+  <!-- Bottom-right -->
+  <polygon points="690,400 710,385 725,405" fill="#00914B" opacity="0.1"/>
+  <polygon points="710,430 695,410 730,420" fill="#059669" opacity="0.08"/>
+
+  <!-- Bottom-center coins scattered -->
+  <polygon points="380,380 395,365 410,380" fill="#FFA92D" opacity="0.1"/>
+  <polygon points="420,400 435,390 445,405" fill="#D97706" opacity="0.08"/>
+  <polygon points="350,410 365,400 375,415" fill="#FFA92D" opacity="0.07"/>
+
+  <!-- Sparkles around the money exchange -->
+  <polygon points="465,115 470,105 475,115" fill="#FFEEC8" opacity="0.3"/>
+  <polygon points="540,120 545,110 550,120" fill="#FFEEC8" opacity="0.25"/>
+  <polygon points="485,185 490,178 495,185" fill="#FFA92D" opacity="0.3"/>
+</svg>

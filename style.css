@@ -58,6 +58,11 @@
   --color-teal-mid: #79E1F3;
   --color-teal-bg: rgba(0, 155, 187, 0.08);
 
+  --color-gold: #A0701A;
+  --color-gold-light: #F5DFA0;
+  --color-gold-mid: #E8C46A;
+  --color-gold-bg: rgba(160, 112, 26, 0.08);
+
   /* Semantic Colors */
   --color-primary: #00914B;
   --color-primary-hover: #006937;

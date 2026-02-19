@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Projects | Regen Studio</title>
+  <meta name="description" content="Projects Regen Studio has delivered for clients — from Digital Product Passports and regenerative finance to smart city innovation.">
+  <link rel="icon" type="image/png" href="Images/Flavicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__logo">
+        <img src="Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html#about">Vision</a></li>
+        <li><a href="index.html#focus">Our Focus</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#clients">Who We Serve</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="https://demos.regenstudio.space" target="_blank" rel="noopener">Demos</a></li>
+        <li class="nav__contact-wrap">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <a href="#client-projects-contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="blog-hero">
+    <!-- Decorative triangles -->
+    <div class="blog-hero__triangles" aria-hidden="true">
+      <div class="blog-hero__tri blog-hero__tri--1"></div>
+      <div class="blog-hero__tri blog-hero__tri--2"></div>
+      <div class="blog-hero__tri blog-hero__tri--3"></div>
+      <div class="blog-hero__tri blog-hero__tri--4"></div>
+      <div class="blog-hero__tri blog-hero__tri--5"></div>
+      <div class="blog-hero__tri blog-hero__tri--6"></div>
+      <div class="blog-hero__tri blog-hero__tri--7"></div>
+    </div>
+    <div class="blog-hero__orb blog-hero__orb--1" aria-hidden="true"></div>
+    <div class="blog-hero__orb blog-hero__orb--2" aria-hidden="true"></div>
+
+    <div class="container blog-hero__container">
+      <p class="blog-hero__label">Our Work</p>
+      <h1 class="blog-hero__title">Client Projects</h1>
+      <p class="blog-hero__subtitle">A selection of projects we have delivered for clients — from Digital Product Passports and regenerative finance to smart city innovation.</p>
+    </div>
+
+    <!-- Polygon divider -->
+    <div class="blog-hero__divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,60 200,20 500,50 800,10 1100,40 1440,0 1440,60" fill="#FFFFFF"/>
+        <polygon points="400,60 430,34 460,60" fill="#A0701A" opacity="0.18"/>
+        <polygon points="950,60 975,40 1000,60" fill="#00914B" opacity="0.20"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Blog Grid -->
+  <section class="blog-listing">
+    <div class="container">
+      <div class="blog-grid" id="clientProjectsGrid"></div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="blog-cta" id="client-projects-contact">
+    <div class="blog-cta__divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,60 200,20 500,50 800,10 1100,40 1440,0 1440,60" fill="#F8F9FA"/>
+        <polygon points="400,60 430,34 460,60" fill="#A0701A" opacity="0.18"/>
+        <polygon points="900,60 925,38 950,60" fill="#00914B" opacity="0.20"/>
+      </svg>
+    </div>
+    <div class="blog-cta__inner">
+      <div class="container">
+        <p class="blog-cta__label">Work With Us</p>
+        <p class="blog-cta__text">Want to explore what Regen Studio could do for your organisation? Let's start a conversation.</p>
+        <form id="blog-contact-form" class="regen-form regen-form--compact">
+          <div class="regen-form__row">
+            <input type="text" name="name" placeholder="Your name" class="regen-form__input" required>
+            <input type="email" name="email" placeholder="Email address" class="regen-form__input" required>
+          </div>
+          <textarea name="message" placeholder="What's on your mind?" class="regen-form__input regen-form__textarea" rows="2"></textarea>
+          <label class="regen-form__checkbox">
+            <input type="checkbox" name="newsletter_opt_in" value="1" checked>
+            <span>Also subscribe me to the Regen Studio newsletter</span>
+          </label>
+          <button type="submit" class="btn btn--primary regen-form__submit">Send Message</button>
+          <p class="regen-form__disclaimer">Your data is stored in the EU and not shared with third parties. <a href="privacy.html">Privacy Policy</a></p>
+        </form>
+        <div id="blog-contact-success" class="regen-form__success" style="display:none">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
+          <h3>Message sent!</h3>
+          <p>We'll get back to you as soon as possible.</p>
+        </div>
+        <div class="regen-form__divider"><span>or email us directly</span></div>
+        <div class="copyable-email copyable-email--compact">
+          <span class="copyable-email__address">info@regenstudio.world</span>
+          <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+            <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span class="copyable-email__label">Copy</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="Regen Studio">
+    <meta itemprop="url" content="https://www.regenstudio.world">
+    <meta itemprop="email" content="info@regenstudio.world">
+    <meta itemprop="description" content="Regenerative innovation design studio pioneering systemic innovations at the intersection of technology, society, and nature.">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img">
+        </a>
+        <p>Pioneering innovations in the regeneration of our natural, human and urban ecosystems.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html#about">Our Vision</a></li>
+            <li><a href="index.html#focus">Our Focus</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#clients">Who We Serve</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="https://demos.regenstudio.space" target="_blank" rel="noopener">Demos</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Connect</h4>
+          <ul>
+            <li>
+              <span class="footer__email-row">
+                <span class="footer__email-address">info@regenstudio.world</span>
+                <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+              </span>
+            </li>
+            <li><a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" itemprop="sameAs">LinkedIn</a></li>
+            <li><a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" itemprop="sameAs">Bluesky</a></li>
+            <li><a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" itemprop="sameAs">Mastodon</a></li>
+          </ul>
+        </div>
+        <div class="footer__col footer__col--locations">
+          <h4>Locations</h4>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">The Netherlands</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio B.V.</p>
+              <p class="footer__address"><span itemprop="streetAddress">Stollenbergweg 43</span>, <span itemprop="addressLocality">Berg en Dal</span></p>
+              <meta itemprop="addressCountry" content="NL">
+            </div>
+            <p class="footer__reg">KVK 90337948</p>
+          </div>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">Brazil</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio Consultoria LTDA</p>
+              <p class="footer__address"><span itemprop="streetAddress">Av. Washington Lu&iacute;s 1527, 174B</span><br><span itemprop="postalCode">04662-002</span>, <span itemprop="addressLocality">S&atilde;o Paulo</span></p>
+              <meta itemprop="addressCountry" content="BR">
+            </div>
+            <p class="footer__reg">CNPJ 57.579.114/0001-55</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Regen Studio. All rights reserved. &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="about.html">About</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="blog.js"></script>
+</body>
+</html>

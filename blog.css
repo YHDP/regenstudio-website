@@ -299,6 +299,11 @@
   color: var(--color-text);
 }
 
+.filter-pill--gold.active {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+}
+
 .filter-pill--gray.active {
   background: var(--color-navy);
   border-color: var(--color-navy);
@@ -310,6 +315,7 @@
 .filter-pill--teal:hover { color: var(--color-teal); }
 .filter-pill--magenta:hover { color: var(--color-magenta); }
 .filter-pill--green:hover { color: var(--color-green); }
+.filter-pill--gold:hover { color: var(--color-gold); }
 .filter-pill--gray:hover { color: var(--color-text); }
 
 /* Active pills always override hover color */
@@ -591,6 +597,11 @@
   background: var(--color-green-bg);
 }
 
+.blog-card__category--gold {
+  color: var(--color-gold);
+  background: var(--color-gold-bg);
+}
+
 .blog-card__category--gray {
   color: var(--color-text-secondary);
   background: var(--color-bg-light);
@@ -744,6 +755,12 @@
   color: var(--color-green);
   background: var(--color-green-bg);
   border: 1px solid rgba(101, 221, 53, 0.15);
+}
+
+.post-header__category--gold {
+  color: var(--color-gold);
+  background: var(--color-gold-bg);
+  border: 1px solid rgba(160, 112, 26, 0.15);
 }
 
 .post-header__category--gray {
@@ -1188,17 +1205,18 @@
 .related-posts__cta-btn {
   display: inline-block;
   padding: 12px 32px;
-  background: var(--color-accent, #00914B);
-  color: #fff;
+  background: #fff;
+  color: #00914B;
+  border: 1.5px solid #00914B;
   font-size: 0.95rem;
   font-weight: 600;
   border-radius: var(--radius-sm, 8px);
   text-decoration: none;
-  transition: background 0.2s, transform 0.15s;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
 }
 
 .related-posts__cta-btn:hover {
-  background: #007a3f;
+  background: #00914B;
   color: #fff;
   transform: translateY(-2px);
 }

@@ -182,6 +182,7 @@
     'Digital Society': 'magenta', 'Digital Identity': 'magenta', 'Privacy-by-Design': 'magenta', 'AI': 'magenta',
     'Resilient Nature': 'green', 'Reforestation': 'green', 'Biodiversity': 'green', 'Regenerative Agriculture': 'green',
     'Innovation Services': 'gray', 'Out-of-the-Box Ideas': 'gray', 'Vision & Strategy': 'gray', 'Visual Storytelling': 'gray',
+    'Client Projects': 'gold',
   };
 
   // --- Card renderer ---
@@ -243,6 +244,7 @@
       { name: 'Digital Society', color: 'magenta', subs: ['Digital Identity', 'Privacy-by-Design', 'AI'] },
       { name: 'Resilient Nature', color: 'green', subs: ['Reforestation', 'Biodiversity', 'Regenerative Agriculture'] },
       { name: 'Services', color: 'gray', subs: ['Innovation Services', 'Out-of-the-Box Ideas', 'Vision & Strategy', 'Visual Storytelling'] },
+      { name: 'Client Projects', color: 'gold', subs: [] },
     ];
 
     // Build sub→parent lookup so sub-categories auto-inherit parent
@@ -458,6 +460,24 @@
       updatePillStates();
       filterAndRender();
     });
+  }
+
+  // ========================================
+  // Client Projects Page
+  // ========================================
+  async function initClientProjectsListing() {
+    const grid = document.getElementById('clientProjectsGrid');
+    if (!grid) return;
+
+    const blogs = await loadBlogs();
+    const clientBlogs = blogs.filter(b => b.categories && b.categories.includes('Client Projects'));
+
+    if (clientBlogs.length === 0) {
+      grid.innerHTML = `<div class="blog-no-results"><h3 class="blog-no-results__title">No client projects found</h3></div>`;
+      return;
+    }
+
+    grid.innerHTML = clientBlogs.map(renderCard).join('');
   }
 
   // ========================================
@@ -677,7 +697,7 @@
             ${related.map(renderCard).join('')}
           </div>
           <div class="related-posts__cta">
-            <a href="blog.html${primaryCategory}" class="related-posts__cta-btn">View all blogs</a>
+            <a href="blog.html${primaryCategory}" class="related-posts__cta-btn">View all related blogs</a>
           </div>
         </div>
       `;
@@ -865,6 +885,7 @@
     initNav();
     initCopyButtons();
     initBlogListing();
+    initClientProjectsListing();
     initBlogPost();
     initBlogContactForms();
   });
