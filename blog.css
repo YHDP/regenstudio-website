@@ -903,6 +903,12 @@
   box-shadow: var(--shadow-sm);
 }
 
+.post-content__body figure.figure--half {
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .post-content__body figure figcaption {
   font-size: 0.85rem;
   color: var(--color-text-muted);
@@ -1166,6 +1172,29 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
+}
+
+.related-posts__cta {
+  margin-top: 48px;
+  text-align: center;
+}
+
+.related-posts__cta-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  background: var(--color-accent, #00914B);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm, 8px);
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.related-posts__cta-btn:hover {
+  background: #007a3f;
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 /* --- Blog CTA Section (listing page) --- */
