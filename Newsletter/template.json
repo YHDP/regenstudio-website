@@ -1,0 +1,18 @@
+{
+  "subject": "Regen Studio — [Month Year] Update",
+  "intro": "Welcome to the latest Regen Studio newsletter. Here's what's new in regenerative innovation design.",
+  "sections": [
+    {
+      "heading": "New on the Blog",
+      "body": "We published [number] new articles this month. <a href='https://www.regenstudio.world/blog.html'>Read them on our blog</a>."
+    },
+    {
+      "heading": "Regulation Update",
+      "body": "Key developments in EU digital product passport regulations: [describe updates here]."
+    },
+    {
+      "heading": "What We're Working On",
+      "body": "A brief update on current projects, new demos, or company news."
+    }
+  ]
+}

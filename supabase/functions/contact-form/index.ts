@@ -193,18 +193,18 @@ Deno.serve(async (req) => {
 
       const rows = [
         ["Name", name || "—"],
-        ["Email", `<a href="mailto:${email}" style="color:#00914B;text-decoration:none">${email}</a>`],
+        ["Email", `<a href="mailto:${email}" style="color:#B91C1C;text-decoration:none">${email}</a>`],
         ["Organization", organization || "—"],
-        ...(demo_id ? [["Demo", `<span style="background:#AFF9D7;color:#00914B;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600">${demo_id}</span>`]] : []),
+        ...(demo_id ? [["Demo", `<span style="background:#FEE2E2;color:#B91C1C;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600">${demo_id}</span>`]] : []),
         ...(message ? [["Message", message]] : []),
-        ["Source Page", page_url ? `<a href="${page_url}" style="color:#00914B;text-decoration:none;word-break:break-all">${page_url}</a>` : "—"],
+        ["Source Page", page_url ? `<a href="${page_url}" style="color:#B91C1C;text-decoration:none;word-break:break-all">${page_url}</a>` : "—"],
         ["Submitted", formattedTime],
-        ...(newsletter_opt_in ? [["Newsletter", `<span style="background:#AFF9D7;color:#00914B;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600">Subscribed</span>`]] : []),
+        ...(newsletter_opt_in ? [["Newsletter", `<span style="background:#FEE2E2;color:#B91C1C;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600">Subscribed</span>`]] : []),
       ];
 
       const notifContent = `
         <div style="margin-bottom:24px">
-          <span style="display:inline-block;background:${isAccessRequest ? "#009BBB" : isDppGate ? "#E5A100" : "#00914B"};color:white;padding:4px 14px;border-radius:99px;font-size:12px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase">${sourceLabel}</span>
+          <span style="display:inline-block;background:${isAccessRequest ? "#DC2626" : isDppGate ? "#B91C1C" : "#991B1B"};color:white;padding:4px 14px;border-radius:99px;font-size:12px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase">${sourceLabel}</span>
         </div>
         <table style="width:100%;border-collapse:collapse;margin-bottom:24px">
           ${rows.map(([k, v]) => `
@@ -215,7 +215,7 @@ Deno.serve(async (req) => {
           `).join("")}
         </table>
         <div style="text-align:center">
-          <a href="mailto:${email}" style="display:inline-block;background:#00914B;color:white;padding:10px 28px;border-radius:99px;font-size:14px;font-weight:600;text-decoration:none">Reply to ${name || "sender"}</a>
+          <a href="mailto:${email}" style="display:inline-block;background:#B91C1C;color:white;padding:10px 28px;border-radius:99px;font-size:14px;font-weight:600;text-decoration:none">Reply to ${name || "sender"}</a>
         </div>`;
 
       const notifHtml = emailLayout(notifContent, false);
@@ -279,6 +279,19 @@ Deno.serve(async (req) => {
 });
 
 function emailLayout(content: string, isExternal: boolean): string {
+  // Theme: External (user-facing) = brand teal | Internal (team) = red alert
+  const hdrBg = isExternal ? '#3A5A6E' : '#6B2020';
+  const ac = isExternal
+    ? ['#00914B', '#009BBB', '#6366F1', '#FFA92D', '#93093F']
+    : ['#B91C1C', '#DC2626', '#991B1B', '#EF4444', '#7F1D1D'];
+  const t1 = isExternal
+    ? ['rgba(0,145,75,0.7)', 'rgba(0,155,187,0.6)', 'rgba(99,102,241,0.55)', 'rgba(255,169,45,0.65)', 'rgba(147,9,63,0.5)', 'rgba(0,145,75,0.6)', 'rgba(0,155,187,0.45)', 'rgba(255,169,45,0.55)', 'rgba(99,102,241,0.5)']
+    : ['rgba(185,28,28,0.7)', 'rgba(220,38,38,0.6)', 'rgba(153,27,27,0.55)', 'rgba(239,68,68,0.65)', 'rgba(127,29,29,0.5)', 'rgba(185,28,28,0.6)', 'rgba(220,38,38,0.45)', 'rgba(239,68,68,0.55)', 'rgba(153,27,27,0.5)'];
+  const t2 = isExternal
+    ? ['rgba(0,155,187,0.6)', 'rgba(255,169,45,0.65)', 'rgba(0,145,75,0.55)', 'rgba(99,102,241,0.6)', 'rgba(147,9,63,0.5)', 'rgba(0,145,75,0.7)', 'rgba(0,155,187,0.5)', 'rgba(255,169,45,0.6)', 'rgba(99,102,241,0.55)']
+    : ['rgba(220,38,38,0.6)', 'rgba(239,68,68,0.65)', 'rgba(185,28,28,0.55)', 'rgba(153,27,27,0.6)', 'rgba(127,29,29,0.5)', 'rgba(185,28,28,0.7)', 'rgba(220,38,38,0.5)', 'rgba(239,68,68,0.6)', 'rgba(153,27,27,0.55)'];
+  const footerTri = isExternal ? '#00914B' : '#B91C1C';
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
@@ -288,34 +301,34 @@ function emailLayout(content: string, isExternal: boolean): string {
       <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#FFFFFF;border-radius:16px;border:1px solid #E4E2E2;overflow:hidden">
 
         <!-- Header with scattered rotated triangle characters -->
-        <tr><td style="background:#3A5A6E;padding:0;text-align:center;height:88px">
+        <tr><td style="background:${hdrBg};padding:0;text-align:center;height:88px">
           <table width="100%" cellpadding="0" cellspacing="0" style="height:88px"><tr>
             <td style="vertical-align:middle;text-align:center">
               <!-- Top scatter row -->
               <div style="font-size:0;line-height:0;height:20px;text-align:left;padding:0 8px">
-                <span style="font-size:16px;color:rgba(0,145,75,0.7);padding-left:5px;display:inline-block;transform:rotate(25deg)">&#9650;</span>
-                <span style="font-size:9px;color:rgba(0,155,187,0.6);padding-left:22px;display:inline-block;transform:rotate(-40deg)">&#9650;</span>
-                <span style="font-size:13px;color:rgba(99,102,241,0.55);padding-left:35px;display:inline-block;transform:rotate(160deg)">&#9650;</span>
-                <span style="font-size:7px;color:rgba(255,169,45,0.65);padding-left:18px;display:inline-block;transform:rotate(75deg)">&#9650;</span>
-                <span style="font-size:11px;color:rgba(147,9,63,0.5);padding-left:30px;display:inline-block;transform:rotate(-20deg)">&#9650;</span>
-                <span style="font-size:6px;color:rgba(0,145,75,0.6);padding-left:15px;display:inline-block;transform:rotate(200deg)">&#9650;</span>
-                <span style="font-size:14px;color:rgba(0,155,187,0.45);padding-left:25px;display:inline-block;transform:rotate(110deg)">&#9650;</span>
-                <span style="font-size:8px;color:rgba(255,169,45,0.55);padding-left:20px;display:inline-block;transform:rotate(-65deg)">&#9650;</span>
-                <span style="font-size:10px;color:rgba(99,102,241,0.5);padding-left:12px;display:inline-block;transform:rotate(45deg)">&#9650;</span>
+                <span style="font-size:16px;color:${t1[0]};padding-left:5px;display:inline-block;transform:rotate(25deg)">&#9650;</span>
+                <span style="font-size:9px;color:${t1[1]};padding-left:22px;display:inline-block;transform:rotate(-40deg)">&#9650;</span>
+                <span style="font-size:13px;color:${t1[2]};padding-left:35px;display:inline-block;transform:rotate(160deg)">&#9650;</span>
+                <span style="font-size:7px;color:${t1[3]};padding-left:18px;display:inline-block;transform:rotate(75deg)">&#9650;</span>
+                <span style="font-size:11px;color:${t1[4]};padding-left:30px;display:inline-block;transform:rotate(-20deg)">&#9650;</span>
+                <span style="font-size:6px;color:${t1[5]};padding-left:15px;display:inline-block;transform:rotate(200deg)">&#9650;</span>
+                <span style="font-size:14px;color:${t1[6]};padding-left:25px;display:inline-block;transform:rotate(110deg)">&#9650;</span>
+                <span style="font-size:8px;color:${t1[7]};padding-left:20px;display:inline-block;transform:rotate(-65deg)">&#9650;</span>
+                <span style="font-size:10px;color:${t1[8]};padding-left:12px;display:inline-block;transform:rotate(45deg)">&#9650;</span>
               </div>
               <!-- Title -->
               <span style="color:white;font-size:18px;font-weight:600;letter-spacing:0.5px">REGEN STUDIO</span>
               <!-- Bottom scatter row -->
               <div style="font-size:0;line-height:0;height:20px;text-align:right;padding:2px 8px 0">
-                <span style="font-size:8px;color:rgba(0,155,187,0.6);padding-right:10px;display:inline-block;transform:rotate(135deg)">&#9650;</span>
-                <span style="font-size:15px;color:rgba(255,169,45,0.65);padding-right:28px;display:inline-block;transform:rotate(-30deg)">&#9650;</span>
-                <span style="font-size:10px;color:rgba(0,145,75,0.55);padding-right:35px;display:inline-block;transform:rotate(80deg)">&#9650;</span>
-                <span style="font-size:7px;color:rgba(99,102,241,0.6);padding-right:15px;display:inline-block;transform:rotate(-90deg)">&#9650;</span>
-                <span style="font-size:12px;color:rgba(147,9,63,0.5);padding-right:22px;display:inline-block;transform:rotate(210deg)">&#9650;</span>
-                <span style="font-size:6px;color:rgba(0,145,75,0.7);padding-right:40px;display:inline-block;transform:rotate(50deg)">&#9650;</span>
-                <span style="font-size:13px;color:rgba(0,155,187,0.5);padding-right:18px;display:inline-block;transform:rotate(-150deg)">&#9650;</span>
-                <span style="font-size:9px;color:rgba(255,169,45,0.6);padding-right:30px;display:inline-block;transform:rotate(15deg)">&#9650;</span>
-                <span style="font-size:11px;color:rgba(99,102,241,0.55);padding-right:5px;display:inline-block;transform:rotate(-55deg)">&#9650;</span>
+                <span style="font-size:8px;color:${t2[0]};padding-right:10px;display:inline-block;transform:rotate(135deg)">&#9650;</span>
+                <span style="font-size:15px;color:${t2[1]};padding-right:28px;display:inline-block;transform:rotate(-30deg)">&#9650;</span>
+                <span style="font-size:10px;color:${t2[2]};padding-right:35px;display:inline-block;transform:rotate(80deg)">&#9650;</span>
+                <span style="font-size:7px;color:${t2[3]};padding-right:15px;display:inline-block;transform:rotate(-90deg)">&#9650;</span>
+                <span style="font-size:12px;color:${t2[4]};padding-right:22px;display:inline-block;transform:rotate(210deg)">&#9650;</span>
+                <span style="font-size:6px;color:${t2[5]};padding-right:40px;display:inline-block;transform:rotate(50deg)">&#9650;</span>
+                <span style="font-size:13px;color:${t2[6]};padding-right:18px;display:inline-block;transform:rotate(-150deg)">&#9650;</span>
+                <span style="font-size:9px;color:${t2[7]};padding-right:30px;display:inline-block;transform:rotate(15deg)">&#9650;</span>
+                <span style="font-size:11px;color:${t2[8]};padding-right:5px;display:inline-block;transform:rotate(-55deg)">&#9650;</span>
               </div>
             </td>
           </tr></table>
@@ -324,11 +337,11 @@ function emailLayout(content: string, isExternal: boolean): string {
         <!-- Multi-color accent line -->
         <tr><td style="height:0;font-size:0;line-height:0">
           <table width="100%" cellpadding="0" cellspacing="0"><tr>
-            <td style="width:30%;height:3px;background:#00914B"></td>
-            <td style="width:20%;height:3px;background:#009BBB"></td>
-            <td style="width:20%;height:3px;background:#6366F1"></td>
-            <td style="width:15%;height:3px;background:#FFA92D"></td>
-            <td style="width:15%;height:3px;background:#93093F"></td>
+            <td style="width:30%;height:3px;background:${ac[0]}"></td>
+            <td style="width:20%;height:3px;background:${ac[1]}"></td>
+            <td style="width:20%;height:3px;background:${ac[2]}"></td>
+            <td style="width:15%;height:3px;background:${ac[3]}"></td>
+            <td style="width:15%;height:3px;background:${ac[4]}"></td>
           </tr></table>
         </td></tr>
 
@@ -351,16 +364,16 @@ function emailLayout(content: string, isExternal: boolean): string {
         <!-- Footer with triangle accent -->
         <tr><td style="height:0;font-size:0;line-height:0">
           <table width="100%" cellpadding="0" cellspacing="0"><tr>
-            <td style="width:30%;height:2px;background:#00914B"></td>
-            <td style="width:20%;height:2px;background:#009BBB"></td>
-            <td style="width:20%;height:2px;background:#6366F1"></td>
-            <td style="width:15%;height:2px;background:#FFA92D"></td>
-            <td style="width:15%;height:2px;background:#93093F"></td>
+            <td style="width:30%;height:2px;background:${ac[0]}"></td>
+            <td style="width:20%;height:2px;background:${ac[1]}"></td>
+            <td style="width:20%;height:2px;background:${ac[2]}"></td>
+            <td style="width:15%;height:2px;background:${ac[3]}"></td>
+            <td style="width:15%;height:2px;background:${ac[4]}"></td>
           </tr></table>
         </td></tr>
         <tr><td style="background:#FAFBFC;padding:20px 32px;text-align:center">
           <p style="margin:0;font-size:12px;color:#9B9B9B">
-            <span style="color:#00914B">&#9650;</span> &nbsp;
+            <span style="color:${footerTri}">&#9650;</span> &nbsp;
             ${isExternal
               ? 'You received this because you submitted a form on the website of Regen Studio'
               : 'Internal notification from the website of Regen Studio'}
