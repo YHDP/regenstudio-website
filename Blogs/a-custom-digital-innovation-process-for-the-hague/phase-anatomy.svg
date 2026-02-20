@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 200" width="100%">
+
+  <!-- Card 1: Function / Goal -->
+  <rect x="10" y="10" width="205" height="175" rx="12" fill="#F0FAF4" stroke="#D1FAE5" stroke-width="1.5"/>
+  <!-- Target icon -->
+  <circle cx="113" cy="52" r="20" fill="none" stroke="#00914B" stroke-width="2"/>
+  <circle cx="113" cy="52" r="11" fill="none" stroke="#00914B" stroke-width="2"/>
+  <circle cx="113" cy="52" r="4" fill="#00914B"/>
+  <text x="113" y="92" text-anchor="middle" fill="#00914B" font-size="13" font-weight="700" font-family="Inter,sans-serif">Function</text>
+  <line x1="60" y1="100" x2="165" y2="100" stroke="#D1FAE5" stroke-width="1"/>
+  <text x="113" y="118" text-anchor="middle" fill="#374151" font-size="11" font-family="Inter,sans-serif">Why this phase matters</text>
+  <text x="113" y="134" text-anchor="middle" fill="#374151" font-size="11" font-family="Inter,sans-serif">and what it achieves</text>
+  <text x="113" y="158" text-anchor="middle" fill="#6B7280" font-size="10" font-style="italic" font-family="Inter,sans-serif">Guides tool selection</text>
+
+  <!-- Card 2: Steps -->
+  <rect x="228" y="10" width="205" height="175" rx="12" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.5"/>
+  <!-- List icon: 3 lines with dots -->
+  <circle cx="258" cy="42" r="4" fill="#2563EB"/>
+  <rect x="268" y="38" width="60" height="7" rx="3" fill="#2563EB" opacity="0.35"/>
+  <circle cx="258" cy="57" r="4" fill="#2563EB"/>
+  <rect x="268" y="53" width="48" height="7" rx="3" fill="#2563EB" opacity="0.35"/>
+  <circle cx="258" cy="72" r="4" fill="#2563EB"/>
+  <rect x="268" y="68" width="54" height="7" rx="3" fill="#2563EB" opacity="0.35"/>
+  <text x="330" y="92" text-anchor="middle" fill="#2563EB" font-size="13" font-weight="700" font-family="Inter,sans-serif">Steps</text>
+  <line x1="278" y1="100" x2="382" y2="100" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="330" y="118" text-anchor="middle" fill="#374151" font-size="11" font-family="Inter,sans-serif">The sequence of activities</text>
+  <text x="330" y="134" text-anchor="middle" fill="#374151" font-size="11" font-family="Inter,sans-serif">from prep to phase close</text>
+  <text x="330" y="158" text-anchor="middle" fill="#6B7280" font-size="10" font-style="italic" font-family="Inter,sans-serif">Including Go · Stop · Redo</text>
+
+  <!-- Card 3: Deliverables -->
+  <rect x="446" y="10" width="205" height="175" rx="12" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.5"/>
+  <!-- Document icon -->
+  <rect x="523" y="28" width="36" height="46" rx="4" fill="none" stroke="#A0701A" stroke-width="2"/>
+  <path d="M523 42 L559 42" stroke="#A0701A" stroke-width="1.5" opacity="0.5"/>
+  <path d="M523 50 L559 50" stroke="#A0701A" stroke-width="1.5" opacity="0.5"/>
+  <path d="M523 58 L548 58" stroke="#A0701A" stroke-width="1.5" opacity="0.5"/>
+  <text x="548" y="92" text-anchor="middle" fill="#A0701A" font-size="13" font-weight="700" font-family="Inter,sans-serif">Deliverables</text>
+  <line x1="496" y1="100" x2="600" y2="100" stroke="#FDE68A" stroke-width="1"/>
+  <text x="548" y="118" text-anchor="middle" fill="#374151" font-size="11" font-family="Inter,sans-serif">The concrete outputs:</text>
+  <text x="548" y="134" text-anchor="middle" fill="#374151" font-size="11" font-family="Inter,sans-serif">reports, decisions, tests</text>
+  <text x="548" y="158" text-anchor="middle" fill="#6B7280" font-size="10" font-style="italic" font-family="Inter,sans-serif">Not all are mandatory</text>
+
+  <!-- Card 4: Situational Deepening -->
+  <rect x="664" y="10" width="222" height="175" rx="12" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1.5"/>
+  <!-- Branching icon: Y-shape paths -->
+  <line x1="775" y1="28" x2="775" y2="48" stroke="#6D28D9" stroke-width="2"/>
+  <line x1="775" y1="48" x2="750" y2="70" stroke="#6D28D9" stroke-width="2"/>
+  <line x1="775" y1="48" x2="800" y2="70" stroke="#6D28D9" stroke-width="2"/>
+  <circle cx="750" cy="74" r="4" fill="#6D28D9"/>
+  <circle cx="775" cy="74" r="4" fill="#6D28D9" opacity="0.4"/>
+  <circle cx="800" cy="74" r="4" fill="#6D28D9"/>
+  <text x="775" y="98" text-anchor="middle" fill="#6D28D9" font-size="12" font-weight="700" font-family="Inter,sans-serif">Situational</text>
+  <text x="775" y="113" text-anchor="middle" fill="#6D28D9" font-size="12" font-weight="700" font-family="Inter,sans-serif">Deepening</text>
+  <line x1="714" y1="120" x2="836" y2="120" stroke="#DDD6FE" stroke-width="1"/>
+  <text x="775" y="138" text-anchor="middle" fill="#374151" font-size="11" font-family="Inter,sans-serif">Optional paths for cases</text>
+  <text x="775" y="154" text-anchor="middle" fill="#374151" font-size="11" font-family="Inter,sans-serif">that need more depth</text>
+  <text x="775" y="175" text-anchor="middle" fill="#6B7280" font-size="10" font-style="italic" font-family="Inter,sans-serif">Up to 10 options per phase</text>
+</svg>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problem Analysis Methods | Regen Studio</title>
+  <meta name="description" content="Regen Studio's problem analysis toolbox — 10 methods from Socratic Questioning and Empathy Mapping to Systems Mapping and the Iceberg Model. Physical and online tooling available.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.regenstudio.world/problem-analysis/">
+  <meta property="og:title" content="Problem Analysis Methods | Regen Studio">
+  <meta property="og:description" content="10 problem analysis methods — from Socratic Questioning and Empathy Mapping to Systems Mapping and the Iceberg Model.">
+  <meta property="og:image" content="https://www.regenstudio.world/Images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Problem Analysis Methods | Regen Studio">
+  <meta name="twitter:description" content="10 problem analysis methods — from Socratic Questioning to the Iceberg Model. Physical and online tooling available.">
+  <meta name="twitter:image" content="https://www.regenstudio.world/Images/og-image.png">
+
+  <link rel="canonical" href="https://www.regenstudio.world/problem-analysis/">
+  <link rel="icon" type="image/png" href="../Images/Flavicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Structured data: Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Problem Analysis",
+    "provider": {
+      "@type": "Organization",
+      "name": "Regen Studio",
+      "url": "https://www.regenstudio.world"
+    },
+    "description": "Problem analysis methodologies — 10 methods from Socratic Questioning and Empathy Mapping to Systems Mapping and the Iceberg Model. Physical and online tooling available.",
+    "url": "https://www.regenstudio.world/problem-analysis/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.regenstudio.world/" },
+      { "@type": "ListItem", "position": 2, "name": "Innovation Services", "item": "https://www.regenstudio.world/innovation-services.html" },
+      { "@type": "ListItem", "position": 3, "name": "Problem Analysis", "item": "https://www.regenstudio.world/problem-analysis/" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav nav--scrolled" id="nav">
+    <div class="nav__inner container">
+      <a href="../index.html" class="nav__logo">
+        <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="../index.html#about">Vision</a></li>
+        <li><a href="../index.html#focus">Our Focus</a></li>
+        <li><a href="../index.html#services">Services</a></li>
+        <li><a href="../index.html#clients">Who We Serve</a></li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li><a href="https://demos.regenstudio.space" target="_blank" rel="noopener">Demos</a></li>
+        <li class="nav__contact-wrap">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <a href="#pa-contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="pa-page">
+
+    <!-- Breadcrumb -->
+    <nav class="pa-breadcrumb" aria-label="Breadcrumb">
+      <ol class="pa-breadcrumb__list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../innovation-services.html">Innovation Services</a></li>
+        <li aria-current="page">Problem Analysis</li>
+      </ol>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pa-hero" id="pa-overview">
+      <div class="pa-hero__text">
+        <p class="pa-hero__label">Problem Analysis</p>
+        <h1 class="pa-hero__title">Find the <em>root causes</em></h1>
+        <p class="pa-hero__lead">Solving the wrong problem might be the biggest innovation mistake to make. Therefore, starting your innovation journey with an extensive problem analysis is a must! The head of the Industrial Engineering Department of Yale University famously said, &ldquo;If I had only one hour to solve a problem, I would spend up to two-thirds of that hour in attempting to define what the problem is.&rdquo; (So no this wasn&rsquo;t Einstein).</p>
+        <p class="pa-hero__lead">We have numerous exercises and methodologies in our toolbox for problem definition, of which the most important ones are mentioned here. Although normally we design custom brainstorming sessions, where we tend to look at the context of the client to determine the exact combination of exercises required and sometimes invent new ones.</p>
+        <p class="pa-hero__lead"><strong>For each method we have physical and online tooling available!</strong></p>
+        <div class="pa-hero__actions">
+          <a href="#pa-contact" class="btn btn--outline">Get in Touch</a>
+        </div>
+      </div>
+      <div class="pa-hero__visual">
+        <div class="pa-hero__image">
+          <img src="../Images/Services/Innovation Services Sub/Innovation Services-10 -problem analysis.webp" alt="Problem Analysis — find the root causes of complex challenges">
+        </div>
+      </div>
+    </section>
+
+    <!-- Methods Grid -->
+    <section class="about-section" id="pa-methods">
+      <h2 class="about-section__title">Our Problem Analysis Methods</h2>
+      <div class="pa-methods__grid">
+
+        <div class="pa-method">
+          <div class="pa-method__image">
+            <img src="../Images/Problem Analysis/5Whys.png" alt="Socratic Questioning" loading="lazy">
+          </div>
+          <h3 class="pa-method__title">Socratic Questioning</h3>
+        </div>
+
+        <div class="pa-method">
+          <div class="pa-method__image">
+            <img src="../Images/Problem Analysis/EmpathyMappingAtivo 1@2x.png" alt="Empathy Mapping" loading="lazy">
+          </div>
+          <h3 class="pa-method__title">Empathy Mapping</h3>
+        </div>
+
+        <div class="pa-method">
+          <div class="pa-method__image">
+            <img src="../Images/Problem Analysis/Personas.png" alt="Personas" loading="lazy">
+          </div>
+          <h3 class="pa-method__title">Personas</h3>
+        </div>
+
+        <div class="pa-method">
+          <div class="pa-method__image">
+            <img src="../Images/Problem Analysis/CustomerJourney.png" alt="Customer and User Journey" loading="lazy">
+          </div>
+          <h3 class="pa-method__title">Customer and User Journey</h3>
+        </div>
+
+        <div class="pa-method">
+          <div class="pa-method__image">
+            <img src="../Images/Problem Analysis/AssumptionMapping.png" alt="Assumption Mapping" loading="lazy">
+          </div>
+          <h3 class="pa-method__title">Assumption Mapping</h3>
+        </div>
+
+        <div class="pa-method">
+          <div class="pa-method__image">
+            <img src="../Images/Problem Analysis/Stakeholder Analysis.png" alt="Stakeholder Mapping" loading="lazy">
+          </div>
+          <h3 class="pa-method__title">Stakeholder Mapping</h3>
+        </div>
+
+        <div class="pa-method">
+          <div class="pa-method__image">
+            <img src="../Images/Problem Analysis/systemsmappingAtivo 3@2x.png" alt="Systems Mapping" loading="lazy">
+          </div>
+          <h3 class="pa-method__title">Systems Mapping</h3>
+        </div>
+
+        <div class="pa-method">
+          <div class="pa-method__image">
+            <img src="../Images/Problem Analysis/CausalLoopAtivo 4@2x.png" alt="Causal Loop Diagrams" loading="lazy">
+          </div>
+          <h3 class="pa-method__title">Causal Loop Diagrams</h3>
+        </div>
+
+        <div class="pa-method">
+          <div class="pa-method__image">
+            <img src="../Images/Problem Analysis/RootCauseAtivo 2@2x.png" alt="Root Cause Mapping" loading="lazy">
+          </div>
+          <h3 class="pa-method__title">Root Cause Mapping</h3>
+        </div>
+
+        <div class="pa-method">
+          <div class="pa-method__image">
+            <img src="../Images/Problem Analysis/IcebergAnalysis.png" alt="The Iceberg Model" loading="lazy">
+          </div>
+          <h3 class="pa-method__title">The Iceberg Model</h3>
+        </div>
+
+        <div class="pa-method">
+          <div class="pa-method__image">
+            <img src="../Images/Problem Analysis/CustomBrainstorming.png" alt="Custom Brainstorming" loading="lazy">
+          </div>
+          <h3 class="pa-method__title">Custom Brainstorming</h3>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Featured Case -->
+    <section class="about-section" id="pa-case">
+      <h2 class="about-section__title">See It In Action</h2>
+      <div class="pa-case-featured">
+        <a href="../blog-post.html?post=slim-laadplein-vruchtenbuurt" class="demos-preview__card">
+          <div class="demos-preview__card-visual">
+            <img src="../Blogs/slim-laadplein-vruchtenbuurt/Smart Charging. HeaderAtivo 63.webp" alt="Vruchtenbuurt smart charging plaza concept — residents' initiative for smart energy sharing and shared mobility in The Hague" class="demos-preview__card-img" loading="lazy">
+            <span class="demos-preview__card-badge">Case</span>
+          </div>
+          <div class="demos-preview__card-body">
+            <h3>Smart Charging in the Vruchtenbuurt</h3>
+            <p>In The Hague's Vruchtenbuurt, two energy cooperatives and the municipality used a structured innovation process to untangle a complex challenge: how do you optimally use the electricity grid and public space when residents generate their own energy, share cars, and want a neighbourhood battery? This is the story of how Problem Analysis and Ideation turned a residents' dream into a concrete plan.</p>
+            <span class="demos-preview__card-tags">
+              <span>Client Projects</span><span>Energy Communities</span><span>Innovation Services</span>
+            </span>
+            <span class="demos-preview__card-link">Read the case &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- CTA with contact form -->
+    <section class="inno-services-cta" id="pa-contact">
+      <div class="inno-services-cta__inner">
+        <p class="section__label">Let's Create Together</p>
+        <h2 class="cta__title">Ready to define the right problem?</h2>
+        <p class="cta__text">Tell us about your challenge and we'll explore how our problem analysis methods can help.</p>
+        <form id="contact-form" class="regen-form">
+          <div class="regen-form__row">
+            <input type="text" name="name" placeholder="Your name" class="regen-form__input" required>
+            <input type="email" name="email" placeholder="Email address" class="regen-form__input" required>
+          </div>
+          <textarea name="message" placeholder="Tell us about your project..." class="regen-form__input regen-form__textarea"></textarea>
+          <label class="regen-form__checkbox">
+            <input type="checkbox" name="newsletter_opt_in" value="1" checked>
+            <span>Also subscribe me to the Regen Studio newsletter</span>
+          </label>
+          <button type="submit" class="btn btn--primary btn--large regen-form__submit">Send Message</button>
+          <p class="regen-form__disclaimer">Your data is stored in the EU and not shared with third parties. <a href="../privacy.html">Privacy Policy</a></p>
+        </form>
+        <div id="contact-success" class="regen-form__success" style="display:none">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
+          <h3>Message sent!</h3>
+          <p>We'll get back to you as soon as possible.</p>
+        </div>
+        <div class="regen-form__divider"><span>or email us directly</span></div>
+        <div style="display:flex;justify-content:center;">
+          <div class="copyable-email">
+            <span class="copyable-email__address">info@regenstudio.world</span>
+            <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+              <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="copyable-email__label">Copy</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="Regen Studio">
+    <meta itemprop="url" content="https://www.regenstudio.world">
+    <meta itemprop="email" content="info@regenstudio.world">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo">
+          <img src="../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img">
+        </a>
+        <p>Pioneering innovations in the regeneration of our natural, human and urban ecosystems.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="../index.html#about">Our Vision</a></li>
+            <li><a href="../index.html#focus">Our Focus</a></li>
+            <li><a href="../index.html#services">Services</a></li>
+            <li><a href="../index.html#clients">Who We Serve</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="https://demos.regenstudio.space" target="_blank" rel="noopener">Demos</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Connect</h4>
+          <ul>
+            <li>
+              <span class="footer__email-row">
+                <span class="footer__email-address">info@regenstudio.world</span>
+                <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+              </span>
+            </li>
+            <li><a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" itemprop="sameAs">LinkedIn</a></li>
+            <li><a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" itemprop="sameAs">Bluesky</a></li>
+            <li><a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" itemprop="sameAs">Mastodon</a></li>
+          </ul>
+        </div>
+        <div class="footer__col footer__col--locations">
+          <h4>Locations</h4>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">The Netherlands</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio B.V.</p>
+              <p class="footer__address"><span itemprop="streetAddress">Stollenbergweg 43</span>, <span itemprop="addressLocality">Berg en Dal</span></p>
+              <meta itemprop="addressCountry" content="NL">
+            </div>
+            <p class="footer__reg">KVK 90337948</p>
+          </div>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">Brazil</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio Consultoria LTDA</p>
+              <p class="footer__address"><span itemprop="streetAddress">Av. Washington Lu&iacute;s 1527, 174B</span><br><span itemprop="postalCode">04662-002</span>, <span itemprop="addressLocality">S&atilde;o Paulo</span></p>
+              <meta itemprop="addressCountry" content="BR">
+            </div>
+            <p class="footer__reg">CNPJ 57.579.114/0001-55</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Regen Studio. All rights reserved. &middot; <a href="../privacy.html">Privacy Policy</a> &middot; <a href="../about.html">About</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // Contact form submission
+      var form = document.getElementById('contact-form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var submitBtn = form.querySelector('.regen-form__submit');
+          var originalText = submitBtn.textContent;
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending...';
+
+          var existingError = form.querySelector('.regen-form__error');
+          if (existingError) existingError.remove();
+
+          var formData = new FormData(form);
+          var nlCheckbox = form.querySelector('input[name="newsletter_opt_in"]');
+          var payload = {
+            name: formData.get('name') || '',
+            email: formData.get('email') || '',
+            message: formData.get('message') || '',
+            source: 'pa_page',
+            page_url: window.location.href,
+            newsletter_opt_in: nlCheckbox ? nlCheckbox.checked : false
+          };
+
+          fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          })
+          .then(function(res) {
+            if (!res.ok) {
+              return res.json().catch(function() { return {}; }).then(function(data) {
+                throw new Error(data.error || 'Something went wrong');
+              });
+            }
+            form.style.display = 'none';
+            var successEl = document.getElementById('contact-success');
+            if (successEl) successEl.style.display = 'flex';
+          })
+          .catch(function(err) {
+            var errorEl = document.createElement('p');
+            errorEl.className = 'regen-form__error';
+            errorEl.textContent = err.message || 'Failed to send. Please try again.';
+            submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          });
+        });
+      }
+
+      // Nav toggle
+      var navToggle = document.getElementById('navToggle');
+      var navLinks = document.getElementById('navLinks');
+      if (navToggle && navLinks) {
+        navToggle.addEventListener('click', function() {
+          navToggle.classList.toggle('active');
+          navLinks.classList.toggle('open');
+          document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+        });
+      }
+
+      // Nav contact popover
+      var navContactBtn = document.getElementById('navContactBtn');
+      var navContactPopover = document.getElementById('navContactPopover');
+      if (navContactBtn && navContactPopover) {
+        navContactBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          navContactPopover.classList.toggle('open');
+        });
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('.nav__contact-wrap')) {
+            navContactPopover.classList.remove('open');
+          }
+        });
+      }
+
+      // Copy email buttons
+      document.addEventListener('click', function(e) {
+        var copyBtn = e.target.closest('.copyable-email__btn');
+        if (copyBtn) {
+          var email = copyBtn.getAttribute('data-email');
+          navigator.clipboard.writeText(email).then(function() {
+            var label = copyBtn.querySelector('.copyable-email__label');
+            copyBtn.classList.add('copied');
+            if (label) label.textContent = 'Copied!';
+            setTimeout(function() {
+              copyBtn.classList.remove('copied');
+              if (label) label.textContent = 'Copy';
+            }, 2000);
+          });
+          return;
+        }
+        var footerBtn = e.target.closest('.footer__copy-btn');
+        if (footerBtn) {
+          var email = footerBtn.getAttribute('data-email');
+          navigator.clipboard.writeText(email).then(function() {
+            footerBtn.classList.add('copied');
+            setTimeout(function() { footerBtn.classList.remove('copied'); }, 2000);
+          });
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>
