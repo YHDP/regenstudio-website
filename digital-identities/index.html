@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Identity Advisory &amp; eIDAS 2.0 Strategy | Regen Studio</title>
+  <meta name="description" content="Independent Digital Identity advisory — eIDAS 2.0, European Digital Identity Wallets, Self-Sovereign Identity (SSI), and privacy-by-design strategy from Regen Studio.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.regenstudio.world/digital-identities/">
+  <meta property="og:title" content="Digital Identity Advisory & eIDAS 2.0 Strategy | Regen Studio">
+  <meta property="og:description" content="Independent advisory on digital identity — eIDAS 2.0, European Digital Identity Wallets, SSI, verifiable credentials, and privacy-by-design strategy.">
+  <meta property="og:image" content="https://www.regenstudio.world/Images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Digital Identity Advisory & eIDAS 2.0 Strategy | Regen Studio">
+  <meta name="twitter:description" content="Independent advisory on digital identity — eIDAS 2.0, European Digital Identity Wallets, SSI, and privacy-by-design.">
+  <meta name="twitter:image" content="https://www.regenstudio.world/Images/og-image.png">
+
+  <link rel="canonical" href="https://www.regenstudio.world/digital-identities/">
+  <link rel="icon" type="image/png" href="../Images/Flavicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Structured data: Service + Breadcrumb + FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Digital Identity Advisory",
+    "provider": {
+      "@type": "Organization",
+      "name": "Regen Studio",
+      "url": "https://www.regenstudio.world"
+    },
+    "description": "Independent advisory on digital identity — eIDAS 2.0, European Digital Identity Wallets, Self-Sovereign Identity (SSI), verifiable credentials, and privacy-by-design strategy.",
+    "url": "https://www.regenstudio.world/digital-identities/",
+    "areaServed": ["EU", "Global"],
+    "serviceType": ["Digital Identity Advisory", "eIDAS 2.0 Strategy", "SSI Architecture", "Privacy-by-Design Consulting"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.regenstudio.world/" },
+      { "@type": "ListItem", "position": 2, "name": "Digital Society", "item": "https://www.regenstudio.world/index.html#focus" },
+      { "@type": "ListItem", "position": 3, "name": "Digital Identities", "item": "https://www.regenstudio.world/digital-identities/" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a Digital Identity?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A digital identity is the collection of attributes, credentials, and identifiers that represent a person, organization, or thing in the digital world. Unlike traditional identity systems that rely on centralized databases, modern digital identity frameworks — such as those under eIDAS 2.0 — give individuals control over their own data through digital wallets and verifiable credentials."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is eIDAS 2.0?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "eIDAS 2.0 (Regulation EU 2024/1183) is the revised European framework for electronic identification and trust services. It requires all EU member states to offer citizens a European Digital Identity Wallet by 2026, enabling cross-border identity verification, selective disclosure of personal attributes, and qualified electronic signatures — all under the user's control."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Self-Sovereign Identity (SSI)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Self-Sovereign Identity is a model where individuals own and control their digital identity without depending on a central authority. Using technologies like Decentralized Identifiers (DIDs) and Verifiable Credentials, SSI enables people to prove claims about themselves — such as age, qualifications, or citizenship — without revealing more information than necessary."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does Regen Studio help with Digital Identity?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Regen Studio acts as an independent advisor in the digital identity space. We designed the EDI Wallet demo showcasing eIDAS 2.0 concepts, led the Trusted DPP position paper for FIDES/DBC connecting digital identity to product passports, and write extensively about SSI and privacy-by-design. We help organizations navigate eIDAS 2.0, design wallet and credential strategies, and integrate digital identity into broader systems."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are Verifiable Credentials?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Verifiable Credentials are tamper-proof, cryptographically signed digital statements issued by a trusted party. They can represent anything from a university diploma to a proof of address. The holder stores them in a digital wallet and can present them to verifiers — who can check their authenticity without contacting the issuer. This is a core building block of eIDAS 2.0 and Self-Sovereign Identity."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav nav--scrolled" id="nav">
+    <div class="nav__inner container">
+      <a href="../index.html" class="nav__logo">
+        <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="../index.html#about">Vision</a></li>
+        <li><a href="../index.html#focus">Our Focus</a></li>
+        <li><a href="../index.html#services">Services</a></li>
+        <li><a href="../index.html#clients">Who We Serve</a></li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li><a href="https://demos.regenstudio.space" target="_blank" rel="noopener">Demos</a></li>
+        <li class="nav__contact-wrap">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <a href="#di-contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="di-page">
+
+    <!-- Breadcrumb -->
+    <nav class="di-breadcrumb" aria-label="Breadcrumb">
+      <ol class="di-breadcrumb__list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#focus">Digital Society</a></li>
+        <li aria-current="page">Digital Identities</li>
+      </ol>
+    </nav>
+
+    <!-- Hero -->
+    <section class="di-hero" id="di-overview">
+      <div class="di-hero__text">
+        <p class="di-hero__label">Digital Identity Advisory</p>
+        <h1 class="di-hero__title">Identities that <em>empower</em></h1>
+        <p class="di-hero__lead">Digital identity is the foundation of trust in a connected world. From signing contracts to proving qualifications, from crossing borders to accessing public services — how we identify ourselves online shapes how much control we have over our own lives. Getting identity right means building systems where people, not platforms, hold the keys to their data.</p>
+        <p class="di-hero__lead">The EU's <a href="../blog-post.html?post=ssi-privacy">eIDAS 2.0 regulation</a> (EU 2024/1183) is turning this vision into reality. By 2026, every EU member state must offer citizens a European Digital Identity Wallet — enabling cross-border identification, selective disclosure of personal attributes, and qualified electronic signatures, all under the user's control. It is the most ambitious digital identity framework in the world.</p>
+        <p class="di-hero__lead">Regen Studio acts as an independent advisor in the digital identity space. We designed the <a href="../blog-post.html?post=demo-edi-wallet">EDI Wallet demo</a> showcasing eIDAS 2.0 concepts in practice, led the Trusted DPP position paper for FIDES and the Dutch Blockchain Coalition connecting digital identity to product passports, and write about <a href="../blog-post.html?post=ssi-privacy">Self-Sovereign Identity and privacy-by-design</a>.</p>
+        <div class="di-hero__actions">
+          <a href="#di-contact" class="btn btn--outline">Get in Touch</a>
+        </div>
+      </div>
+      <div class="di-hero__visual">
+        <div class="di-hero__image">
+          <img src="../Images/demo-edi-wallet.svg" alt="EDI Wallet demo interface showing verifiable credential management and selective disclosure under the eIDAS 2.0 framework">
+        </div>
+      </div>
+    </section>
+
+    <!-- Demo -->
+    <section class="about-section di-demos" id="di-demos">
+      <h2 class="about-section__title">See It In Action</h2>
+      <div class="di-demo-featured">
+        <a href="https://demos.regenstudio.space/EDI-wallet/gate.html" target="_blank" rel="noopener" class="demos-preview__card">
+          <div class="demos-preview__card-visual">
+            <img src="../Images/demo-edi-wallet.svg" alt="EDI Wallet demo — Privacy-first digital identity wallet under eIDAS 2.0" class="demos-preview__card-img" loading="lazy">
+            <span class="demos-preview__card-badge">Demo</span>
+          </div>
+          <div class="demos-preview__card-body">
+            <h3>EDI Wallet</h3>
+            <p>Organizations can use this demo to test out user experiences of working with verifiable credentials — making it concrete for everyone involved what issuing, holding, and presenting digital identity credentials will actually look like. Experience selective disclosure, QR-based verification, and credential management following the eIDAS 2.0 framework.</p>
+            <span class="demos-preview__card-tags">
+              <span>Digital Identity</span><span>eIDAS 2.0</span><span>SSI</span>
+            </span>
+            <span class="demos-preview__card-link">Try the demo &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="about-section" id="di-services">
+      <h2 class="about-section__title">How We Help</h2>
+      <p class="di-hero__lead">Digital identity is a cross-cutting challenge — touching technology, regulation, organizational design, and ecosystem strategy. We offer focused advisory services to help you navigate it.</p>
+      <div class="di-services__grid">
+
+        <article class="di-service di-service--magenta">
+          <div class="di-service__icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3 class="di-service__title">Project Design</h3>
+          <p class="di-service__text">We help you adopt digital identities in your business processes — from mapping identity flows and credential architectures to designing pilot programs that test wallet-based interactions in practice.</p>
+        </article>
+
+        <article class="di-service di-service--teal">
+          <div class="di-service__icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3 class="di-service__title">Regulatory Analysis</h3>
+          <p class="di-service__text">We help you derive what the regulatory framework means for you — translating eIDAS 2.0, GDPR, and sector-specific rules into concrete obligations, timelines, and design constraints for your context.</p>
+        </article>
+
+        <article class="di-service di-service--emerald">
+          <div class="di-service__icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3 class="di-service__title">Vision &amp; Strategy</h3>
+          <p class="di-service__text">We help you determine what digital identity can mean for your organization — defining strategic opportunities, assessing readiness, and building a roadmap that connects identity to your broader goals.</p>
+        </article>
+
+        <article class="di-service di-service--orange">
+          <div class="di-service__icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>
+          </div>
+          <h3 class="di-service__title">Standardization &amp; Interoperability</h3>
+          <p class="di-service__text">We help you choose technical standards that establish interconnections with a broad ecosystem — navigating W3C, EBSI, OpenID, and ISO frameworks to ensure your identity architecture is future-proof and interoperable.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Key Concepts -->
+    <section class="about-section" id="di-concepts">
+      <h2 class="about-section__title">Key Concepts</h2>
+      <p class="di-hero__lead">Digital identity is a fast-evolving field shaped by regulation, technology, and a growing demand for privacy. Here are the building blocks we work with.</p>
+      <div class="di-concepts__grid">
+        <div class="di-concept">
+          <h3 class="di-concept__title">eIDAS 2.0</h3>
+          <p class="di-concept__text">The revised European regulation (EU 2024/1183) for electronic identification and trust services. It mandates that all EU member states offer citizens a European Digital Identity Wallet by 2026, creating a common framework for cross-border digital identity.</p>
+        </div>
+        <div class="di-concept">
+          <h3 class="di-concept__title">European Digital Identity Wallets</h3>
+          <p class="di-concept__text">Secure mobile applications issued under eIDAS 2.0 that allow citizens to store identity credentials, present them selectively, and sign documents electronically — all under their own control, across borders and sectors.</p>
+        </div>
+        <div class="di-concept">
+          <h3 class="di-concept__title">Self-Sovereign Identity (SSI)</h3>
+          <p class="di-concept__text">An identity model where individuals own and control their digital credentials without depending on a central authority. SSI forms the philosophical basis for user-centric identity. Critics note that eIDAS 2.0 stops short of true SSI — wallets are issued by member states, not self-created, and trust still flows through government-approved schemes. The principles of selective disclosure and user control are present, but full decentralization is not.</p>
+        </div>
+        <div class="di-concept">
+          <h3 class="di-concept__title">Verifiable Credentials</h3>
+          <p class="di-concept__text">Tamper-proof, cryptographically signed digital statements — such as diplomas, licenses, or proofs of age — that a holder stores in a wallet and presents to verifiers, who can check authenticity without contacting the issuer.</p>
+        </div>
+        <div class="di-concept">
+          <h3 class="di-concept__title">Decentralized Identifiers (DIDs)</h3>
+          <p class="di-concept__text">Globally unique identifiers that are created, owned, and controlled by the subject — not by a central registry. DIDs enable verifiable, decentralized digital identity and are a key component of the SSI stack.</p>
+        </div>
+        <div class="di-concept">
+          <h3 class="di-concept__title">Privacy-by-Design</h3>
+          <p class="di-concept__text">A design approach where privacy protections are built into systems from the start, not bolted on after. In digital identity, this means selective disclosure, data minimization, and ensuring users share only what is strictly necessary.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Preview -->
+    <section class="about-section di-blogs" id="di-insights">
+      <h2 class="about-section__title">Insights on Digital Identity</h2>
+      <div class="di-blogs__grid" id="diBlogGrid">
+        <!-- Populated by JS — noscript fallback below for crawlers -->
+      </div>
+      <noscript>
+        <div class="di-blogs__grid">
+          <a class="blog-card" href="../blog-post.html?post=demo-edi-wallet">
+            <div class="blog-card__placeholder"></div>
+            <div class="blog-card__body">
+              <span class="blog-card__category">Digital Identity</span>
+              <h3 class="blog-card__title">Try the EDI Wallet Demo: A Privacy-First Digital Identity Wallet</h3>
+              <p class="blog-card__excerpt">See a self-sovereign identity wallet in practice. The EDI Wallet demo lets you receive verifiable credentials, store them, and present them with selective disclosure.</p>
+            </div>
+          </a>
+          <a class="blog-card" href="../blog-post.html?post=ssi-privacy">
+            <div class="blog-card__placeholder"></div>
+            <div class="blog-card__body">
+              <span class="blog-card__category">Digital Identity</span>
+              <h3 class="blog-card__title">Designing for Privacy with Self-Sovereign Identity</h3>
+              <p class="blog-card__excerpt">In an era where personal data is continuously harvested and monetized, Self-Sovereign Identity places the control over personal data back into the hands of individuals.</p>
+            </div>
+          </a>
+          <a class="blog-card" href="../blog-post.html?post=trusted-dpps">
+            <div class="blog-card__placeholder"></div>
+            <div class="blog-card__body">
+              <span class="blog-card__category">Digital Identity</span>
+              <h3 class="blog-card__title">Position Paper: Trusted Digital Product Passports</h3>
+              <p class="blog-card__excerpt">Regen Studio led the creation of a groundbreaking position paper on Trusted Digital Product Passports for FIDES, commissioned by the Dutch Blockchain Coalition — defining a shared vision for trust ecosystems in the circular economy.</p>
+            </div>
+          </a>
+        </div>
+      </noscript>
+    </section>
+
+    <!-- CTA with contact form -->
+    <section class="inno-services-cta" id="di-contact">
+      <div class="inno-services-cta__inner">
+        <p class="section__label">Let's Create Together</p>
+        <h2 class="cta__title">Ready to explore digital identity?</h2>
+        <p class="cta__text">Tell us about your challenge and we'll explore how our digital identity advisory can help.</p>
+        <form id="contact-form" class="regen-form">
+          <div class="regen-form__row">
+            <input type="text" name="name" placeholder="Your name" class="regen-form__input" required>
+            <input type="email" name="email" placeholder="Email address" class="regen-form__input" required>
+          </div>
+          <textarea name="message" placeholder="Tell us about your project..." class="regen-form__input regen-form__textarea"></textarea>
+          <label class="regen-form__checkbox">
+            <input type="checkbox" name="newsletter_opt_in" value="1" checked>
+            <span>Also subscribe me to the Regen Studio newsletter</span>
+          </label>
+          <button type="submit" class="btn btn--primary btn--large regen-form__submit">Send Message</button>
+          <p class="regen-form__disclaimer">Your data is stored in the EU and not shared with third parties. <a href="../privacy.html">Privacy Policy</a></p>
+        </form>
+        <div id="contact-success" class="regen-form__success" style="display:none">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
+          <h3>Message sent!</h3>
+          <p>We'll get back to you as soon as possible.</p>
+        </div>
+        <div class="regen-form__divider"><span>or email us directly</span></div>
+        <div style="display:flex;justify-content:center;">
+          <div class="copyable-email">
+            <span class="copyable-email__address">info@regenstudio.world</span>
+            <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+              <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="copyable-email__label">Copy</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="about-section di-faq" id="di-faq">
+      <h2 class="about-section__title">Frequently Asked Questions</h2>
+      <div class="di-faq__list">
+
+        <details class="di-faq__item" open>
+          <summary class="di-faq__question">What is a Digital Identity?</summary>
+          <div class="di-faq__answer">
+            <p>A digital identity is the collection of attributes, credentials, and identifiers that represent a person, organization, or thing in the digital world. It is how you prove who you are online — whether logging into a service, signing a document, or verifying your age.</p>
+            <p>Unlike traditional identity systems that rely on centralized databases controlled by governments or companies, modern digital identity frameworks — such as those emerging under <a href="../blog-post.html?post=ssi-privacy">Self-Sovereign Identity</a> and eIDAS 2.0 — give individuals direct control over their own data through digital wallets and verifiable credentials.</p>
+          </div>
+        </details>
+
+        <details class="di-faq__item">
+          <summary class="di-faq__question">What is eIDAS 2.0?</summary>
+          <div class="di-faq__answer">
+            <p>eIDAS 2.0 (Regulation EU 2024/1183) is the revised European framework for electronic identification and trust services. It updates the original 2014 eIDAS regulation with a much broader scope and a new centerpiece: the European Digital Identity Wallet.</p>
+            <p>Under eIDAS 2.0, all EU member states must offer citizens a wallet by 2026 that enables cross-border identity verification, selective disclosure of personal attributes (proving you're over 18 without revealing your date of birth), and qualified electronic signatures — all under the user's control. Large online platforms will be required to accept these wallets for authentication.</p>
+          </div>
+        </details>
+
+        <details class="di-faq__item">
+          <summary class="di-faq__question">What is Self-Sovereign Identity (SSI)?</summary>
+          <div class="di-faq__answer">
+            <p>Self-Sovereign Identity is a model where individuals own and control their digital identity without depending on a central authority. Instead of a platform or government holding your data and deciding what to share, you hold cryptographically signed credentials in your own wallet and choose when and with whom to share them.</p>
+            <p>SSI relies on technologies like <strong>Decentralized Identifiers (DIDs)</strong> and <strong>Verifiable Credentials</strong> to enable trust without centralization. It underpins many of the principles embedded in eIDAS 2.0 and is the philosophical foundation for the European Digital Identity Wallet. Read more in our <a href="../blog-post.html?post=ssi-privacy">deep dive on SSI and privacy-by-design</a>.</p>
+          </div>
+        </details>
+
+        <details class="di-faq__item">
+          <summary class="di-faq__question">How does Regen Studio help with Digital Identity?</summary>
+          <div class="di-faq__answer">
+            <p>We are an independent advisory firm — we don't build identity platforms or sell wallet software. We help organizations understand, strategize, and design around digital identity challenges.</p>
+            <p>Concretely, we designed the <a href="../blog-post.html?post=demo-edi-wallet">EDI Wallet demo</a> to make eIDAS 2.0 concepts tangible, led the Trusted DPP position paper for FIDES and the Dutch Blockchain Coalition connecting digital identity to product passports, and write extensively about SSI, verifiable credentials, and privacy-by-design. We work with governments, industry coalitions, and technology teams navigating the shift toward user-centric identity.</p>
+          </div>
+        </details>
+
+        <details class="di-faq__item">
+          <summary class="di-faq__question">What are Verifiable Credentials?</summary>
+          <div class="di-faq__answer">
+            <p>Verifiable Credentials are tamper-proof, cryptographically signed digital statements issued by a trusted party. They can represent anything from a university diploma to a proof of address to a professional license. The holder stores them in a digital wallet and can present them to verifiers — who can check their authenticity instantly without contacting the issuer.</p>
+            <p>This is a core building block of both eIDAS 2.0 and Self-Sovereign Identity. Combined with selective disclosure, verifiable credentials allow you to prove specific claims (e.g., "I am over 18") without revealing the underlying data (your full date of birth). Try it yourself in our <a href="../blog-post.html?post=demo-edi-wallet">EDI Wallet demo</a>.</p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="Regen Studio">
+    <meta itemprop="url" content="https://www.regenstudio.world">
+    <meta itemprop="email" content="info@regenstudio.world">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo">
+          <img src="../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img">
+        </a>
+        <p>Pioneering innovations in the regeneration of our natural, human and urban ecosystems.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="../index.html#about">Our Vision</a></li>
+            <li><a href="../index.html#focus">Our Focus</a></li>
+            <li><a href="../index.html#services">Services</a></li>
+            <li><a href="../index.html#clients">Who We Serve</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="https://demos.regenstudio.space" target="_blank" rel="noopener">Demos</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Connect</h4>
+          <ul>
+            <li>
+              <span class="footer__email-row">
+                <span class="footer__email-address">info@regenstudio.world</span>
+                <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+              </span>
+            </li>
+            <li><a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" itemprop="sameAs">LinkedIn</a></li>
+            <li><a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" itemprop="sameAs">Bluesky</a></li>
+            <li><a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" itemprop="sameAs">Mastodon</a></li>
+          </ul>
+        </div>
+        <div class="footer__col footer__col--locations">
+          <h4>Locations</h4>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">The Netherlands</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio B.V.</p>
+              <p class="footer__address"><span itemprop="streetAddress">Stollenbergweg 43</span>, <span itemprop="addressLocality">Berg en Dal</span></p>
+              <meta itemprop="addressCountry" content="NL">
+            </div>
+            <p class="footer__reg">KVK 90337948</p>
+          </div>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">Brazil</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio Consultoria LTDA</p>
+              <p class="footer__address"><span itemprop="streetAddress">Av. Washington Lu&iacute;s 1527, 174B</span><br><span itemprop="postalCode">04662-002</span>, <span itemprop="addressLocality">S&atilde;o Paulo</span></p>
+              <meta itemprop="addressCountry" content="BR">
+            </div>
+            <p class="footer__reg">CNPJ 57.579.114/0001-55</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Regen Studio. All rights reserved. &middot; <a href="../privacy.html">Privacy Policy</a> &middot; <a href="../about.html">About</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // Contact form submission
+      var form = document.getElementById('contact-form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var submitBtn = form.querySelector('.regen-form__submit');
+          var originalText = submitBtn.textContent;
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending...';
+
+          var existingError = form.querySelector('.regen-form__error');
+          if (existingError) existingError.remove();
+
+          var formData = new FormData(form);
+          var nlCheckbox = form.querySelector('input[name="newsletter_opt_in"]');
+          var payload = {
+            name: formData.get('name') || '',
+            email: formData.get('email') || '',
+            message: formData.get('message') || '',
+            source: 'di_page',
+            page_url: window.location.href,
+            newsletter_opt_in: nlCheckbox ? nlCheckbox.checked : false
+          };
+
+          fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          })
+          .then(function(res) {
+            if (!res.ok) {
+              return res.json().catch(function() { return {}; }).then(function(data) {
+                throw new Error(data.error || 'Something went wrong');
+              });
+            }
+            form.style.display = 'none';
+            var successEl = document.getElementById('contact-success');
+            if (successEl) successEl.style.display = 'flex';
+          })
+          .catch(function(err) {
+            var errorEl = document.createElement('p');
+            errorEl.className = 'regen-form__error';
+            errorEl.textContent = err.message || 'Failed to send. Please try again.';
+            submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          });
+        });
+      }
+
+      // Nav toggle
+      var navToggle = document.getElementById('navToggle');
+      var navLinks = document.getElementById('navLinks');
+      if (navToggle && navLinks) {
+        navToggle.addEventListener('click', function() {
+          navToggle.classList.toggle('active');
+          navLinks.classList.toggle('open');
+          document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+        });
+      }
+
+      // Nav contact popover
+      var navContactBtn = document.getElementById('navContactBtn');
+      var navContactPopover = document.getElementById('navContactPopover');
+      if (navContactBtn && navContactPopover) {
+        navContactBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          navContactPopover.classList.toggle('open');
+        });
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('.nav__contact-wrap')) {
+            navContactPopover.classList.remove('open');
+          }
+        });
+      }
+
+      // Copy email buttons
+      document.addEventListener('click', function(e) {
+        var copyBtn = e.target.closest('.copyable-email__btn');
+        if (copyBtn) {
+          var email = copyBtn.getAttribute('data-email');
+          navigator.clipboard.writeText(email).then(function() {
+            var label = copyBtn.querySelector('.copyable-email__label');
+            copyBtn.classList.add('copied');
+            if (label) label.textContent = 'Copied!';
+            setTimeout(function() {
+              copyBtn.classList.remove('copied');
+              if (label) label.textContent = 'Copy';
+            }, 2000);
+          });
+          return;
+        }
+        var footerBtn = e.target.closest('.footer__copy-btn');
+        if (footerBtn) {
+          var email = footerBtn.getAttribute('data-email');
+          navigator.clipboard.writeText(email).then(function() {
+            footerBtn.classList.add('copied');
+            setTimeout(function() { footerBtn.classList.remove('copied'); }, 2000);
+          });
+        }
+      });
+
+      // Load Digital Identity blog posts
+      var diGrid = document.getElementById('diBlogGrid');
+      if (diGrid) {
+        fetch('../Blogs/blogs.json')
+          .then(function(r) { return r.json(); })
+          .then(function(folders) {
+            return Promise.all(folders.map(function(folder) {
+              return fetch('../Blogs/' + folder + '/meta.json')
+                .then(function(r) { return r.json(); })
+                .then(function(meta) { meta._folder = folder; return meta; });
+            }));
+          })
+          .then(function(blogs) {
+            var diBlogs = blogs
+              .filter(function(b) { return b.published && b.categories && b.categories.indexOf('Digital Identity') !== -1; })
+              .sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+
+            diBlogs.forEach(function(blog) {
+              var card = document.createElement('a');
+              card.className = 'blog-card';
+              card.href = '../blog-post.html?post=' + encodeURIComponent(blog.slug);
+
+              var imageHtml;
+              if (blog.featuredImage) {
+                imageHtml = '<img class="blog-card__image" src="../Blogs/' + blog._folder + '/' + blog.featuredImage + '" alt="' + (blog.featuredImageAlt || '') + '">';
+              } else {
+                imageHtml = '<div class="blog-card__placeholder"></div>';
+              }
+
+              var category = blog.categories && blog.categories[0] ? blog.categories[0] : 'Insight';
+              var date = new Date(blog.date + 'T00:00:00');
+              var dateStr = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+              card.innerHTML =
+                imageHtml +
+                '<div class="blog-card__body">' +
+                  '<span class="blog-card__category">' + category + '</span>' +
+                  '<h3 class="blog-card__title">' + blog.title + '</h3>' +
+                  '<p class="blog-card__excerpt">' + (blog.excerpt || blog.subtitle || '') + '</p>' +
+                  '<div class="blog-card__meta">' +
+                    '<span>' + dateStr + '</span>' +
+                    '<span class="blog-card__read">Read more &rarr;</span>' +
+                  '</div>' +
+                '</div>';
+
+              diGrid.appendChild(card);
+            });
+          });
+      }
+    })();
+  </script>
+</body>
+</html>

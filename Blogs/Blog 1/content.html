@@ -1,28 +1,88 @@
+<div style="display:flex;align-items:center;justify-content:center;gap:28px;padding:24px 40px;background:#F0FAF4;border-radius:12px;border:1px solid #D1FAE5;margin-bottom:40px;flex-wrap:wrap;">
+  <img src="Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" style="height:34px;width:auto;">
+  <span style="color:#00914B;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">in collaboration with</span>
+  <div style="display:flex;align-items:center;gap:14px;flex-shrink:0;">
+    <img src="Images/client-logos/OIP-3.svg" alt="City of The Hague — Den Haag" style="height:52px;width:auto;">
+    <span style="color:#D1D5DB;font-size:18px;font-weight:300;">&amp;</span>
+    <img src="Images/client-logos/OIP.svg" alt="Living Lab Scheveningen" style="height:46px;width:auto;">
+  </div>
+</div>
+
 <p>The City of The Hague's Expertise Centre for Digital Innovation &amp; Smart City (EC-DISC) has requested the help of Regen Studio's innovation consultant services. Every civil servant within the team gets periodic guidance and support from Regen Studio to fill in the role of use case manager, effectively a digital innovation process manager.</p>
 
-<figure>
-  <img src="Blogs/Blog 1/IMAGE BLOG 1a.png" alt="The City of The Hague's Living Lab Scheveningen">
-</figure>
+<p>The EC-DISC team is responsible for Living Lab Scheveningen, the city's testing area in the public space where digital innovations to solve societal problems can be experimented with. A large variety of use cases are active where Regen Studio's services are applied:</p>
 
-<p>The EC-DISC team is responsible for Living Lab Scheveningen, the city's testing area in the public space where digital innovations to solve societal problems can be experimented with. A large variety of use cases are active where Regen Studio's services are applied. Examples are:</p>
+<style>
+  .uc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0 28px;}
+  @media(max-width:768px){.uc-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:420px){.uc-grid{grid-template-columns:1fr;}}
+  .uc-card{background:#fff;border:1px solid #E5E7EB;border-radius:12px;padding:18px 12px 14px;text-align:center;transition:border-color .2s,box-shadow .2s;}
+  .uc-card:hover{border-color:var(--uc);box-shadow:0 4px 14px rgba(0,0,0,.06);}
+  .uc-card__icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;background:var(--uc);}
+  .uc-card__icon svg{width:22px;height:22px;}
+  .uc-card__name{font-size:12.5px;font-weight:600;color:#1A2533;line-height:1.35;margin:0;}
+</style>
 
-<ul>
-  <li>An experimental smart electricity grid</li>
-  <li>Smart charging of car-sharing vehicles</li>
-  <li>Launching customer of circular solar panels</li>
-  <li>Energy justice through co&ouml;perative gains from energy assets</li>
-  <li>Crowd control solutions</li>
-  <li>Unauthorized drone detection</li>
-  <li>Beach and swimming water safety</li>
-  <li>Measuring engagement of event visitors</li>
-</ul>
+<div class="uc-grid">
+  <div class="uc-card" style="--uc:#FFA92D;">
+    <div class="uc-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+    <p class="uc-card__name">Smart Electricity Grid</p>
+  </div>
+  <div class="uc-card" style="--uc:#00914B;">
+    <div class="uc-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="15" height="10" rx="3"/><path d="M16 9h2a2 2 0 012 2v0a2 2 0 01-2 2h-2"/><line x1="6" y1="11" x2="6.01" y2="11"/><line x1="10" y1="11" x2="10.01" y2="11"/><path d="M6 16v2"/><path d="M12 16v2"/></svg></div>
+    <p class="uc-card__name">Smart Charging Car Sharing</p>
+  </div>
+  <div class="uc-card" style="--uc:#009BBB;">
+    <div class="uc-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/><path d="M17 17l3 3M4 4l3 3" stroke-dasharray="2 2"/></svg></div>
+    <p class="uc-card__name">Circular Solar Panels</p>
+  </div>
+  <div class="uc-card" style="--uc:#65DD35;">
+    <div class="uc-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3"/><circle cx="12" cy="12" r="4"/><path d="M6.5 6.5L12 12l5.5-5.5"/><path d="M4 12H1M23 12h-3"/><path d="M16 20a6 6 0 00-8 0"/></svg></div>
+    <p class="uc-card__name">Energy Justice Cooperative</p>
+  </div>
+  <div class="uc-card" style="--uc:#93093F;">
+    <div class="uc-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+    <p class="uc-card__name">Crowd Control Solutions</p>
+  </div>
+  <div class="uc-card" style="--uc:#FFA92D;">
+    <div class="uc-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L8 6h3v4h2V6h3l-4-4z"/><circle cx="12" cy="14" r="2"/><path d="M5 14l2-2M19 14l-2-2"/><path d="M5 14l2 2M19 14l-2 2"/><path d="M2 22l4-4M22 22l-4-4"/></svg></div>
+    <p class="uc-card__name">Drone Detection</p>
+  </div>
+  <div class="uc-card" style="--uc:#00914B;">
+    <div class="uc-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16s2-2 4-2 4 2 6 2 4-2 6-2 4 2 4 2"/><path d="M2 20s2-2 4-2 4 2 6 2 4-2 6-2 4 2 4 2"/><circle cx="12" cy="8" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="9" y1="3" x2="9.5" y2="5"/><line x1="15" y1="3" x2="14.5" y2="5"/></svg></div>
+    <p class="uc-card__name">Beach &amp; Water Safety</p>
+  </div>
+  <div class="uc-card" style="--uc:#009BBB;">
+    <div class="uc-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><polyline points="6 10 10 7 14 11 18 8"/></svg></div>
+    <p class="uc-card__name">Event Visitor Engagement</p>
+  </div>
+</div>
 
-<p>Each of the use cases follows an innovation process designed specifically for the municipal context, which Regen Studio has helped to design (more on that in another blog). However, apart from designing the process with The Hague, Regen has stayed on board to teach use case managers how to work with process, guide them through upcoming challenges, and use their experiences for continuous improvement of the innovation process of their use case.</p>
+<p>Each of the use cases follows an innovation process designed specifically for the municipal context, which Regen Studio has helped to design. However, apart from designing the process with The Hague, Regen has stayed on board to teach use case managers how to work with process, guide them through upcoming challenges, and use their experiences for continuous improvement of the innovation process of their use case.</p>
+
+<p style="font-size:0.88rem;color:#6B7280;margin-bottom:4px;">Learn more about the innovation process designed for The Hague:</p>
+<a href="blog-post.html?post=a-custom-digital-innovation-process-for-the-hague" style="text-decoration:none;display:block;max-width:520px;margin:0 auto 28px;">
+  <article style="display:flex;flex-direction:row;background:#fff;border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;transition:box-shadow .2s,border-color .2s;">
+    <div style="width:160px;min-width:160px;overflow:hidden;">
+      <img src="Blogs/a-custom-digital-innovation-process-for-the-hague/City Innovation Process HeaderAtivo 56.webp" alt="Eight-phase digital innovation process for The Hague" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div style="padding:18px 20px;flex:1;display:flex;flex-direction:column;justify-content:center;">
+      <div style="display:flex;gap:6px;margin-bottom:10px;">
+        <span class="blog-card__category blog-card__category--emerald">Innovation Services</span>
+        <span class="blog-card__category blog-card__category--teal">Living Labs</span>
+      </div>
+      <p style="font-size:0.95rem;font-weight:600;color:#1A2533;line-height:1.35;margin:0 0 6px;">A Custom Digital Innovation Process for The Hague — Designed for Government, Adopted as Policy</p>
+      <p style="font-size:0.8rem;color:#6B7280;line-height:1.5;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">How Regen Studio designed an eight-phase innovation framework for EC-DISC and Living Lab Scheveningen — and how every phase is available as a standalone service.</p>
+    </div>
+  </article>
+</a>
 
 <p>This means The Hague has taken the most out of Regen Studio's expertise. Together designing an innovation process, but also making sure the organization is able to adopt it afterwards. After this assignment will be concluded, The Hague will have been able to set up an innovation team that not only has designed a recognisable innovation process for its own context, but is also allowing the civil servants within the team to deliver the right capabilities for guiding innovation processes and deliver impactful change in the city's ecosystems around their most pressing challenges.</p>
 
-<blockquote>
-  <p>Thank you The Hague, for your trust in this collaboration and for the impact we make together.</p>
-</blockquote>
+<figure style="margin:40px auto 24px;max-width:50%;text-align:center;">
+  <img src="Blogs/Blog 1/guiding footerAtivo 59.webp" alt="Innovation consultancy — guiding teams through digital innovation processes" style="width:100%;display:block;">
+</figure>
 
-<p>Contact us if you want innovation consultancy from us too!</p>
+<blockquote>
+  <p>Thank you The Hague, for your trust in this collaboration and for the impact we make together. <a href="mailto:info@regenstudio.world">Contact us</a> if you want innovation consultancy from us too!</p>
+</blockquote>

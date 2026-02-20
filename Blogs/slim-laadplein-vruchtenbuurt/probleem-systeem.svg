@@ -1,0 +1,383 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 750" width="100%" style="font-family: Arial, Helvetica, sans-serif;">
+  <defs>
+    <!-- Arrowhead marker -->
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748B"/>
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#3B82F6"/>
+    </marker>
+    <marker id="arrowhead-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#10B981"/>
+    </marker>
+    <marker id="arrowhead-amber" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#F59E0B"/>
+    </marker>
+    <marker id="arrowhead-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#EF4444"/>
+    </marker>
+    <marker id="arrowhead-pink" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#EC4899"/>
+    </marker>
+    <marker id="arrowhead-orange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#F97316"/>
+    </marker>
+    <marker id="arrowhead-purple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#8B5CF6"/>
+    </marker>
+    <!-- Subtle grid pattern -->
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#F1F5F9" stroke-width="0.5"/>
+    </pattern>
+    <!-- Drop shadow filter -->
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.08"/>
+    </filter>
+    <filter id="shadow-strong" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="1" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="750" fill="#FFFFFF"/>
+  <rect width="1100" height="750" fill="url(#grid)"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="1100" height="52" fill="#1E293B" rx="0"/>
+  <text x="550" y="33" text-anchor="middle" fill="#FFFFFF" font-size="16" font-weight="bold">Probleem Systeem  --  UC 0161  --  Slim Laadplein Vruchtenbuurt</text>
+
+  <!-- ============================================================ -->
+  <!-- CLUSTER 1: Ruimte (blue) - top left -->
+  <!-- ============================================================ -->
+  <rect x="20" y="65" width="390" height="280" rx="10" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <rect x="20" y="65" width="390" height="28" rx="10" fill="#3B82F6"/>
+  <rect x="20" y="83" width="390" height="10" fill="#3B82F6"/>
+  <text x="215" y="85" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">RUIMTE (Space)</text>
+
+  <!-- R1: Auto's claimen veel ruimte (3) -->
+  <rect x="35" y="102" width="170" height="36" rx="6" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="120" y="124" text-anchor="middle" fill="#1E3A5F" font-size="9.5">Auto's claimen veel ruimte</text>
+
+  <!-- R2: Publieke ruimte gedomineerd door auto (3) -->
+  <rect x="220" y="102" width="175" height="36" rx="6" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="307" y="118" text-anchor="middle" fill="#1E3A5F" font-size="9">Publieke ruimte gedomineerd</text>
+  <text x="307" y="130" text-anchor="middle" fill="#1E3A5F" font-size="9">door de auto</text>
+
+  <!-- R3: Tekort aan parkeerplekken (3) -->
+  <rect x="35" y="148" width="170" height="36" rx="6" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="120" y="170" text-anchor="middle" fill="#1E3A5F" font-size="9.5">Tekort aan parkeerplekken</text>
+
+  <!-- R4: Parkeerdruk is hoog (3) -->
+  <rect x="220" y="148" width="175" height="36" rx="6" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="307" y="170" text-anchor="middle" fill="#1E3A5F" font-size="9.5">De parkeerdruk is hoog</text>
+
+  <!-- R5: Kostbare ruimte niet goed benut (4) - EMPHASIZED -->
+  <rect x="35" y="196" width="170" height="40" rx="6" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2.5" filter="url(#shadow-strong)"/>
+  <text x="120" y="214" text-anchor="middle" fill="#1E3A5F" font-size="9.5" font-weight="bold">Kostbare ruimte niet</text>
+  <text x="120" y="226" text-anchor="middle" fill="#1E3A5F" font-size="9.5" font-weight="bold">goed benut</text>
+
+  <!-- R6: Groeiende privatisering buitenruimte (4) - EMPHASIZED -->
+  <rect x="220" y="196" width="175" height="40" rx="6" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2.5" filter="url(#shadow-strong)"/>
+  <text x="307" y="214" text-anchor="middle" fill="#1E3A5F" font-size="9.5" font-weight="bold">Groeiende privatisering</text>
+  <text x="307" y="226" text-anchor="middle" fill="#1E3A5F" font-size="9.5" font-weight="bold">buitenruimte</text>
+
+  <!-- R7: Ondergrond is ook erg druk (3) -->
+  <rect x="35" y="248" width="170" height="36" rx="6" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="120" y="270" text-anchor="middle" fill="#1E3A5F" font-size="9.5">Ondergrond is ook erg druk</text>
+
+  <!-- R8: Losse laadpalen nodigen niet uit tot collectief gedrag (3) -->
+  <rect x="220" y="248" width="175" height="44" rx="6" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="307" y="265" text-anchor="middle" fill="#1E3A5F" font-size="9">Losse laadpalen nodigen</text>
+  <text x="307" y="277" text-anchor="middle" fill="#1E3A5F" font-size="9">niet uit tot collectief gedrag</text>
+
+  <!-- Score badges for Ruimte -->
+  <circle cx="196" cy="106" r="8" fill="#3B82F6"/><text x="196" y="110" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+  <circle cx="386" cy="106" r="8" fill="#3B82F6"/><text x="386" y="110" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+  <circle cx="196" cy="152" r="8" fill="#3B82F6"/><text x="196" y="156" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+  <circle cx="386" cy="152" r="8" fill="#3B82F6"/><text x="386" y="156" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+  <circle cx="196" cy="200" r="9" fill="#1D4ED8"/><text x="196" y="204" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">4</text>
+  <circle cx="386" cy="200" r="9" fill="#1D4ED8"/><text x="386" y="204" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">4</text>
+  <circle cx="196" cy="252" r="8" fill="#3B82F6"/><text x="196" y="256" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+  <circle cx="386" cy="252" r="8" fill="#3B82F6"/><text x="386" y="256" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+
+  <!-- ============================================================ -->
+  <!-- CLUSTER 2: Klimaat (green) - top center -->
+  <!-- ============================================================ -->
+  <rect x="425" y="65" width="240" height="80" rx="10" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1"/>
+  <rect x="425" y="65" width="240" height="28" rx="10" fill="#10B981"/>
+  <rect x="425" y="83" width="240" height="10" fill="#10B981"/>
+  <text x="545" y="85" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">KLIMAAT (Climate)</text>
+
+  <!-- K1: We lijken de klimaatdoelen niet te halen (4) - EMPHASIZED -->
+  <rect x="440" y="102" width="210" height="32" rx="6" fill="#D1FAE5" stroke="#10B981" stroke-width="2.5" filter="url(#shadow-strong)"/>
+  <text x="545" y="122" text-anchor="middle" fill="#064E3B" font-size="9.5" font-weight="bold">Klimaatdoelen niet gehaald</text>
+  <circle cx="641" cy="106" r="9" fill="#059669"/><text x="641" y="110" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">4</text>
+
+  <!-- ============================================================ -->
+  <!-- CLUSTER 3: Innovatie (purple) - top right -->
+  <!-- ============================================================ -->
+  <rect x="680" y="65" width="400" height="130" rx="10" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1"/>
+  <rect x="680" y="65" width="400" height="28" rx="10" fill="#8B5CF6"/>
+  <rect x="680" y="83" width="400" height="10" fill="#8B5CF6"/>
+  <text x="880" y="85" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="bold">INNOVATIE MET BEWONERS KRIJGT WEINIG KANS</text>
+
+  <!-- I1: Er is een innovatieplek nodig voor netbewust laden (4) - EMPHASIZED -->
+  <rect x="695" y="102" width="175" height="40" rx="6" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="2.5" filter="url(#shadow-strong)"/>
+  <text x="782" y="118" text-anchor="middle" fill="#3B0764" font-size="9" font-weight="bold">Innovatieplek nodig voor</text>
+  <text x="782" y="130" text-anchor="middle" fill="#3B0764" font-size="9" font-weight="bold">netbewust laden</text>
+  <circle cx="861" cy="106" r="9" fill="#7C3AED"/><text x="861" y="110" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">4</text>
+
+  <!-- I2: Bewoners willen ruimte voor het experiment (4) - EMPHASIZED -->
+  <rect x="695" y="150" width="175" height="36" rx="6" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="2.5" filter="url(#shadow-strong)"/>
+  <text x="782" y="166" text-anchor="middle" fill="#3B0764" font-size="9" font-weight="bold">Bewoners willen ruimte</text>
+  <text x="782" y="178" text-anchor="middle" fill="#3B0764" font-size="9" font-weight="bold">voor het experiment</text>
+  <circle cx="861" cy="154" r="9" fill="#7C3AED"/><text x="861" y="158" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">4</text>
+
+  <!-- I3: Uitdaging bewoners betrokken te krijgen (3) -->
+  <rect x="890" y="102" width="175" height="40" rx="6" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="977" y="118" text-anchor="middle" fill="#3B0764" font-size="9">Uitdaging bewoners</text>
+  <text x="977" y="130" text-anchor="middle" fill="#3B0764" font-size="9">betrokken te krijgen</text>
+  <circle cx="1056" cy="106" r="8" fill="#8B5CF6"/><text x="1056" y="110" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+
+  <!-- ============================================================ -->
+  <!-- CLUSTER 4: Slim netbeheer (amber) - center -->
+  <!-- ============================================================ -->
+  <rect x="425" y="158" width="240" height="310" rx="10" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1"/>
+  <rect x="425" y="158" width="240" height="28" rx="10" fill="#F59E0B"/>
+  <rect x="425" y="176" width="240" height="10" fill="#F59E0B"/>
+  <text x="545" y="178" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="bold">SLIM NETBEHEER (Smart Grid)</text>
+
+  <!-- S1: Net niet optimaal gebruikt (3) -->
+  <rect x="440" y="196" width="210" height="32" rx="6" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="545" y="216" text-anchor="middle" fill="#78350F" font-size="9.5">Net niet optimaal gebruikt</text>
+  <circle cx="641" cy="200" r="8" fill="#F59E0B"/><text x="641" y="204" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+
+  <!-- S2: Slim laden onvoldoende ingezet (3) -->
+  <rect x="440" y="238" width="210" height="32" rx="6" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="545" y="258" text-anchor="middle" fill="#78350F" font-size="9.5">Slim laden onvoldoende ingezet</text>
+  <circle cx="641" cy="242" r="8" fill="#F59E0B"/><text x="641" y="246" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+
+  <!-- S3: Tegelijktijdigheid opwek/gebruik onvoldoende (3) -->
+  <rect x="440" y="280" width="210" height="38" rx="6" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="545" y="296" text-anchor="middle" fill="#78350F" font-size="9">Gelijktijdigheid opwek/gebruik</text>
+  <text x="545" y="308" text-anchor="middle" fill="#78350F" font-size="9">onvoldoende</text>
+  <circle cx="641" cy="284" r="8" fill="#F59E0B"/><text x="641" y="288" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+
+  <!-- S4: Uitdaging lokale opslag (4) - EMPHASIZED -->
+  <rect x="440" y="328" width="210" height="36" rx="6" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2.5" filter="url(#shadow-strong)"/>
+  <text x="545" y="348" text-anchor="middle" fill="#78350F" font-size="9.5" font-weight="bold">Uitdaging lokale opslag</text>
+  <circle cx="641" cy="332" r="9" fill="#D97706"/><text x="641" y="336" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">4</text>
+
+  <!-- S5: Middenspanningsstation smart ready, niet smart (2) -->
+  <rect x="440" y="374" width="210" height="38" rx="6" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="545" y="390" text-anchor="middle" fill="#78350F" font-size="9">MS-station smart ready,</text>
+  <text x="545" y="402" text-anchor="middle" fill="#78350F" font-size="9">niet smart</text>
+  <circle cx="641" cy="378" r="8" fill="#F59E0B"/><text x="641" y="382" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">2</text>
+
+  <!-- S6: Geen controle groene stroom in auto (3) -->
+  <rect x="440" y="422" width="210" height="36" rx="6" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="545" y="438" text-anchor="middle" fill="#78350F" font-size="9">Geen controle op groene</text>
+  <text x="545" y="450" text-anchor="middle" fill="#78350F" font-size="9">stroom in auto</text>
+  <circle cx="641" cy="426" r="8" fill="#F59E0B"/><text x="641" y="430" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+
+  <!-- S7: Uitdaging netbewust laden standaardiseren (3) -->
+  <rect x="440" y="302" width="0" height="0" rx="6"/>
+  <!-- Repositioned below -->
+
+  <!-- ============================================================ -->
+  <!-- CLUSTER 5: Juridisch (red) - center right -->
+  <!-- ============================================================ -->
+  <rect x="680" y="210" width="400" height="130" rx="10" fill="#FEF2F2" stroke="#FECACA" stroke-width="1"/>
+  <rect x="680" y="210" width="400" height="28" rx="10" fill="#EF4444"/>
+  <rect x="680" y="228" width="400" height="10" fill="#EF4444"/>
+  <text x="880" y="232" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">JURIDISCH (Legal)</text>
+
+  <!-- J1: Concessie laadinfra vs pilots (2) -->
+  <rect x="695" y="248" width="175" height="36" rx="6" fill="#FFFFFF" stroke="#EF4444" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="782" y="270" text-anchor="middle" fill="#7F1D1D" font-size="9.5">Concessie laadinfra vs pilots</text>
+  <circle cx="861" cy="252" r="8" fill="#EF4444"/><text x="861" y="256" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">2</text>
+
+  <!-- J2: Energiedelen zonder opslag werkt niet (2) -->
+  <rect x="695" y="293" width="175" height="38" rx="6" fill="#FFFFFF" stroke="#EF4444" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="782" y="309" text-anchor="middle" fill="#7F1D1D" font-size="9">Energiedelen zonder opslag</text>
+  <text x="782" y="321" text-anchor="middle" fill="#7F1D1D" font-size="9">werkt niet</text>
+  <circle cx="861" cy="297" r="8" fill="#EF4444"/><text x="861" y="301" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">2</text>
+
+  <!-- J3: Salderingsregeling verdwijnt (3) -->
+  <rect x="890" y="248" width="175" height="36" rx="6" fill="#FFFFFF" stroke="#EF4444" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="977" y="270" text-anchor="middle" fill="#7F1D1D" font-size="9.5">Salderingsregeling verdwijnt</text>
+  <circle cx="1056" cy="252" r="8" fill="#EF4444"/><text x="1056" y="256" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+
+  <!-- ============================================================ -->
+  <!-- CLUSTER 6: Sociale uitdagingen (pink) - bottom right -->
+  <!-- ============================================================ -->
+  <rect x="680" y="355" width="400" height="130" rx="10" fill="#FDF2F8" stroke="#FBCFE8" stroke-width="1"/>
+  <rect x="680" y="355" width="400" height="28" rx="10" fill="#EC4899"/>
+  <rect x="680" y="373" width="400" height="10" fill="#EC4899"/>
+  <text x="880" y="375" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">SOCIALE UITDAGINGEN (Social)</text>
+
+  <!-- SO1: Beginnende weerstand tegen laadpaalplekken (3) -->
+  <rect x="695" y="393" width="175" height="40" rx="6" fill="#FFFFFF" stroke="#EC4899" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="782" y="409" text-anchor="middle" fill="#831843" font-size="9">Beginnende weerstand tegen</text>
+  <text x="782" y="421" text-anchor="middle" fill="#831843" font-size="9">laadpaalplekken</text>
+  <circle cx="861" cy="397" r="8" fill="#EC4899"/><text x="861" y="401" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+
+  <!-- SO2: Weerstand tegen privilege deelauto's (3) -->
+  <rect x="695" y="441" width="175" height="36" rx="6" fill="#FFFFFF" stroke="#EC4899" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="782" y="457" text-anchor="middle" fill="#831843" font-size="9">Weerstand tegen privilege</text>
+  <text x="782" y="469" text-anchor="middle" fill="#831843" font-size="9">deelauto's</text>
+  <circle cx="861" cy="445" r="8" fill="#EC4899"/><text x="861" y="449" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+
+  <!-- SO3: Ieder voor zich bij laden werkt niet (3) -->
+  <rect x="890" y="393" width="175" height="40" rx="6" fill="#FFFFFF" stroke="#EC4899" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="977" y="409" text-anchor="middle" fill="#831843" font-size="9">Ieder voor zich bij</text>
+  <text x="977" y="421" text-anchor="middle" fill="#831843" font-size="9">laden werkt niet</text>
+  <circle cx="1056" cy="397" r="8" fill="#EC4899"/><text x="1056" y="401" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+
+  <!-- ============================================================ -->
+  <!-- CLUSTER 7: Lokaal eigendom (orange) - bottom -->
+  <!-- ============================================================ -->
+  <rect x="20" y="360" width="390" height="240" rx="10" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1"/>
+  <rect x="20" y="360" width="390" height="28" rx="10" fill="#F97316"/>
+  <rect x="20" y="378" width="390" height="10" fill="#F97316"/>
+  <text x="215" y="380" text-anchor="middle" fill="#FFFFFF" font-size="12" font-weight="bold">LOKAAL EIGENDOM (Local Ownership)</text>
+
+  <!-- L1: Energietransitie verloopt niet eerlijk (2) -->
+  <rect x="35" y="398" width="170" height="38" rx="6" fill="#FFFFFF" stroke="#F97316" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="120" y="414" text-anchor="middle" fill="#7C2D12" font-size="9">Energietransitie verloopt</text>
+  <text x="120" y="426" text-anchor="middle" fill="#7C2D12" font-size="9">niet eerlijk</text>
+  <circle cx="196" cy="402" r="8" fill="#F97316"/><text x="196" y="406" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">2</text>
+
+  <!-- L2: Uitdaging exploitatie/eigenaarschap (3) -->
+  <rect x="220" y="398" width="175" height="38" rx="6" fill="#FFFFFF" stroke="#F97316" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="307" y="414" text-anchor="middle" fill="#7C2D12" font-size="9">Uitdaging exploitatie/</text>
+  <text x="307" y="426" text-anchor="middle" fill="#7C2D12" font-size="9">eigenaarschap</text>
+  <circle cx="386" cy="402" r="8" fill="#F97316"/><text x="386" y="406" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+
+  <!-- L3: Parkeerplekken afgeven kan staatsteun zijn (2) -->
+  <rect x="35" y="448" width="170" height="38" rx="6" fill="#FFFFFF" stroke="#F97316" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="120" y="464" text-anchor="middle" fill="#7C2D12" font-size="9">Parkeerplekken afgeven</text>
+  <text x="120" y="476" text-anchor="middle" fill="#7C2D12" font-size="9">kan staatsteun zijn</text>
+  <circle cx="196" cy="452" r="8" fill="#F97316"/><text x="196" y="456" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">2</text>
+
+  <!-- L4: Precedentwerking (2) -->
+  <rect x="220" y="448" width="175" height="36" rx="6" fill="#FFFFFF" stroke="#F97316" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="307" y="470" text-anchor="middle" fill="#7C2D12" font-size="9.5">Precedentwerking</text>
+  <circle cx="386" cy="452" r="8" fill="#F97316"/><text x="386" y="456" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">2</text>
+
+  <!-- L5: Weinig mensen doen auto weg (3) -->
+  <rect x="35" y="498" width="170" height="36" rx="6" fill="#FFFFFF" stroke="#F97316" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="120" y="520" text-anchor="middle" fill="#7C2D12" font-size="9.5">Weinig mensen doen auto weg</text>
+  <circle cx="196" cy="502" r="8" fill="#F97316"/><text x="196" y="506" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+
+  <!-- Netbewust laden standaardiseren - placed in Slim Netbeheer overflow area -->
+  <rect x="425" y="468" width="240" height="38" rx="6" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="545" y="484" text-anchor="middle" fill="#78350F" font-size="9">Uitdaging netbewust laden</text>
+  <text x="545" y="496" text-anchor="middle" fill="#78350F" font-size="9">te standaardiseren</text>
+  <circle cx="656" cy="472" r="8" fill="#F59E0B"/><text x="656" y="476" text-anchor="middle" fill="#fff" font-size="8" font-weight="bold">3</text>
+
+  <!-- ============================================================ -->
+  <!-- CONNECTIONS (curved arrows) -->
+  <!-- ============================================================ -->
+
+  <!-- 1. Auto's claimen ruimte -> Publieke ruimte gedomineerd -->
+  <path d="M205,120 Q212,110 220,120" fill="none" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#arrowhead-blue)" opacity="0.7"/>
+
+  <!-- 2. Publieke ruimte gedomineerd -> Tekort parkeerplekken -->
+  <path d="M307,138 Q280,143 205,160" fill="none" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#arrowhead-blue)" opacity="0.7"/>
+
+  <!-- 3. Tekort parkeerplekken -> Parkeerdruk hoog -->
+  <path d="M205,166 Q212,156 220,166" fill="none" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#arrowhead-blue)" opacity="0.7"/>
+
+  <!-- 4. Parkeerdruk hoog -> Weerstand laadpaalplekken (cross-cluster: blue to pink) -->
+  <path d="M395,166 C450,166 550,300 695,413" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowhead)" opacity="0.55"/>
+
+  <!-- 5. Net niet optimaal -> Geen controle groene stroom -->
+  <path d="M545,228 Q545,234 545,238" fill="none" stroke="#F59E0B" stroke-width="1.5" marker-end="url(#arrowhead-amber)" opacity="0.7"/>
+  <path d="M545,270 Q560,290 560,298" fill="none" stroke="#F59E0B" stroke-width="0" opacity="0"/>
+  <!-- net -> geen controle: skip down -->
+  <path d="M545,228 C590,280 600,380 545,422" fill="none" stroke="#F59E0B" stroke-width="1.5" marker-end="url(#arrowhead-amber)" opacity="0.6"/>
+
+  <!-- 6. Geen controle groene stroom -> Slim laden onvoldoende -->
+  <path d="M545,422 C490,380 490,310 545,270" fill="none" stroke="#F59E0B" stroke-width="1.5" marker-end="url(#arrowhead-amber)" opacity="0.6" stroke-dasharray="4,3"/>
+
+  <!-- 7. Gelijktijdigheid onvoldoende -> Uitdaging lokale opslag -->
+  <path d="M545,318 Q545,322 545,328" fill="none" stroke="#F59E0B" stroke-width="1.5" marker-end="url(#arrowhead-amber)" opacity="0.7"/>
+
+  <!-- 8. Uitdaging lokale opslag -> Net niet optimaal (feedback loop) -->
+  <path d="M440,346 C415,320 415,230 440,212" fill="none" stroke="#F59E0B" stroke-width="1.5" marker-end="url(#arrowhead-amber)" opacity="0.6" stroke-dasharray="4,3"/>
+
+  <!-- 9. Net niet optimaal -> Klimaatdoelen (cross-cluster) -->
+  <path d="M545,196 Q545,160 545,134" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowhead)" opacity="0.55"/>
+
+  <!-- 10. Salderingsregeling verdwijnt -> Innovatieplek nodig -->
+  <path d="M977,248 C977,220 860,200 782,142" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowhead)" opacity="0.55"/>
+
+  <!-- 11. Uitdaging exploitatie/eigenaarschap -> Energietransitie niet eerlijk -->
+  <path d="M220,417 Q212,410 205,417" fill="none" stroke="#F97316" stroke-width="1.5" marker-end="url(#arrowhead-orange)" opacity="0.7"/>
+
+  <!-- 12. Energietransitie niet eerlijk -> Weerstand deelauto's (cross-cluster) -->
+  <path d="M205,417 C350,420 500,440 695,459" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowhead)" opacity="0.55"/>
+
+  <!-- 13. Losse laadpalen -> Slim laden onvoldoende (cross-cluster) -->
+  <path d="M395,270 Q415,265 440,254" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowhead)" opacity="0.55"/>
+
+  <!-- 14. Slim laden onvoldoende -> Ieder voor zich (cross-cluster) -->
+  <path d="M650,254 C720,254 800,350 890,413" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowhead)" opacity="0.55"/>
+
+  <!-- 15. Kostbare ruimte niet goed benut -> Groeiende privatisering -->
+  <path d="M205,216 Q212,210 220,216" fill="none" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#arrowhead-blue)" opacity="0.7"/>
+
+  <!-- 16. Weinig mensen doen auto weg -> Parkeerdruk hoog -->
+  <path d="M120,498 C100,420 100,300 120,184" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowhead)" opacity="0.5"/>
+
+  <!-- 17. Energiedelen zonder opslag -> Uitdaging lokale opslag -->
+  <path d="M695,312 C680,330 670,340 650,346" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowhead)" opacity="0.55"/>
+
+  <!-- ============================================================ -->
+  <!-- LEGEND -->
+  <!-- ============================================================ -->
+  <rect x="20" y="618" width="1060" height="120" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="550" y="642" text-anchor="middle" fill="#1E293B" font-size="12" font-weight="bold">LEGENDA</text>
+
+  <!-- Legend row 1 -->
+  <rect x="50" y="655" width="16" height="16" rx="3" fill="#3B82F6"/>
+  <text x="74" y="668" fill="#334155" font-size="10">Ruimte (8)</text>
+
+  <rect x="190" y="655" width="16" height="16" rx="3" fill="#10B981"/>
+  <text x="214" y="668" fill="#334155" font-size="10">Klimaat (1)</text>
+
+  <rect x="340" y="655" width="16" height="16" rx="3" fill="#8B5CF6"/>
+  <text x="364" y="668" fill="#334155" font-size="10">Innovatie (3)</text>
+
+  <rect x="500" y="655" width="16" height="16" rx="3" fill="#F59E0B"/>
+  <text x="524" y="668" fill="#334155" font-size="10">Slim netbeheer (7)</text>
+
+  <rect x="680" y="655" width="16" height="16" rx="3" fill="#EF4444"/>
+  <text x="704" y="668" fill="#334155" font-size="10">Juridisch (3)</text>
+
+  <rect x="830" y="655" width="16" height="16" rx="3" fill="#EC4899"/>
+  <text x="854" y="668" fill="#334155" font-size="10">Sociaal (3)</text>
+
+  <rect x="970" y="655" width="16" height="16" rx="3" fill="#F97316"/>
+  <text x="994" y="668" fill="#334155" font-size="10">Lokaal (5)</text>
+
+  <!-- Legend row 2: line types and score -->
+  <line x1="50" y1="695" x2="90" y2="695" stroke="#3B82F6" stroke-width="1.5"/>
+  <polygon points="90,692 96,695 90,698" fill="#3B82F6"/>
+  <text x="104" y="699" fill="#334155" font-size="10">Verbinding binnen cluster</text>
+
+  <line x1="340" y1="695" x2="380" y2="695" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="380,692 386,695 380,698" fill="#94A3B8"/>
+  <text x="394" y="699" fill="#334155" font-size="10">Verbinding tussen clusters</text>
+
+  <rect x="630" y="685" width="52" height="20" rx="5" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2.5"/>
+  <text x="700" y="699" fill="#334155" font-size="10">Score 4 (hoog belang)</text>
+
+  <rect x="850" y="685" width="52" height="20" rx="5" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5"/>
+  <text x="920" y="699" fill="#334155" font-size="10">Score 2-3</text>
+
+  <!-- Subtitle -->
+  <text x="550" y="740" text-anchor="middle" fill="#94A3B8" font-size="9">30 probleemelementen  |  7 clusters  |  Bron: Kumu Workshop 1a  |  UC-0161</text>
+
+</svg>
