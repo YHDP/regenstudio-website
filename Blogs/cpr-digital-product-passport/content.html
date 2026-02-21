@@ -1287,47 +1287,56 @@ function buildGanttHtml(range) {
       if (eadStds.length > 0) {
         sh += '<div style="margin-top:18px;font-size:0.62rem;font-weight:700;color:#006B3D;text-transform:uppercase;letter-spacing:0.06em;">EAD Route</div>';
 
-        // EAD milestone tracker — 5-stage pipeline
-        var oldEads = eadStds.filter(function(s){return s.regime !== 'new';});
-        var newEads = eadStds.filter(function(s){return s.regime === 'new';});
-        var hasOld = oldEads.length > 0;
-        var hasNew = newEads.length > 0;
+        // EAD milestone tracker — 5-stage pipeline (summary style like hEN)
+        function computeEadStage(s) {
+          if (s.regime === 'new') return 3;
+          if (s.new_ead) return 2;
+          return 1;
+        }
+        eadStds.forEach(function(s) { s._eadStage = computeEadStage(s); });
 
-        var eadSteps = [
-          { label: 'EAD (CPR 2011)', status: hasOld ? 'done' : 'future' },
-          { label: 'CPR 2024 EAD dev', status: hasNew ? 'done' : (hasOld ? 'active' : 'future') },
-          { label: 'CPR 2024 EAD adopted', status: hasNew ? 'done' : 'future' },
-          { label: 'Art 75 DA', status: 'future' },
-          { label: 'DPP applies', status: 'future' }
+        var totalEad = eadStds.length;
+        var eadStageCounts = [0,0,0,0,0];
+        eadStds.forEach(function(s) {
+          for (var i = 0; i < 5; i++) {
+            if (s._eadStage >= (i + 1)) eadStageCounts[i]++;
+          }
+        });
+
+        var highestEadStage = 0;
+        eadStds.forEach(function(s) { if (s._eadStage > highestEadStage) highestEadStage = s._eadStage; });
+
+        var eadSummaryStages = [
+          { num: 1, label: 'Legacy EAD' },
+          { num: 2, label: 'In development' },
+          { num: 3, label: 'Adopted' },
+          { num: 4, label: 'Art 75 DA' },
+          { num: 5, label: 'DPP' }
         ];
 
         sh += '<div class="cpr-milestones" style="margin:8px 0 12px;">';
-        eadSteps.forEach(function(step, idx) {
-          var dotCl2 = step.status === 'done' ? 'cpr-milestone__dot--done' : (step.status === 'active' ? 'cpr-milestone__dot--active' : 'cpr-milestone__dot--future');
-          var dateCl2 = step.status === 'done' ? 'cpr-milestone__date--done' : (step.status === 'active' ? 'cpr-milestone__date--draft' : '');
-          var ic2 = step.status === 'done' ? '\u2713' : (step.status === 'active' ? '\u2022' : '');
-          var dt2 = step.status === 'done' ? 'Done' : (step.status === 'active' ? 'In progress' : '\u2014');
-          if (idx === 0 && hasOld) {
-            dt2 = oldEads.length + ' EAD' + (oldEads.length > 1 ? 's' : '');
-          } else if (idx === 0 && !hasOld) {
-            dt2 = 'None';
-          }
-          if (idx === 2 && hasNew) {
-            dt2 = newEads.length + ' EAD' + (newEads.length > 1 ? 's' : '');
-          }
-          if (idx === 4 && rangeData && rangeData.ead_earliest) {
-            dt2 = rangeData.ead_earliest;
+        eadSummaryStages.forEach(function(st) {
+          var count = eadStageCounts[st.num - 1];
+          var isReached = count > 0;
+          var isHighest = st.num === highestEadStage;
+          var dotCl2, dateCl2, ic2;
+          if (st.num < highestEadStage && isReached) {
+            dotCl2 = 'cpr-milestone__dot--done'; dateCl2 = 'cpr-milestone__date--done'; ic2 = '\u2713';
+          } else if (isHighest && isReached) {
+            dotCl2 = 'cpr-milestone__dot--done'; dateCl2 = 'cpr-milestone__date--done'; ic2 = st.num;
+          } else {
+            dotCl2 = 'cpr-milestone__dot--future'; dateCl2 = ''; ic2 = st.num;
           }
           sh += '<div class="cpr-milestone">';
-          sh += '<div class="cpr-milestone__dot '+dotCl2+'">'+ic2+'</div>';
-          sh += '<div class="cpr-milestone__label">'+step.label+'</div>';
-          sh += '<div class="cpr-milestone__date '+dateCl2+'">'+dt2+'</div>';
+          sh += '<div class="cpr-milestone__dot ' + dotCl2 + '">' + ic2 + '</div>';
+          sh += '<div class="cpr-milestone__label">' + st.label + '</div>';
+          sh += '<div class="cpr-milestone__date ' + dateCl2 + '">' + count + ' of ' + totalEad + '</div>';
           sh += '</div>';
         });
         sh += '</div>';
 
         // EAD standards table — EAD | Name | Pipeline | AVCP | Validity | DPP Est
-        var eadStageLabels = ['None', 'Legacy EAD', 'New in dev', 'New adopted', 'Art 75 DA', 'DPP applies'];
+        var eadStageLabels = ['None', 'Legacy EAD', 'In development', 'Adopted', 'Art 75 DA', 'DPP'];
         sh += '<div class="cpr-modal__stds-table-wrap"><table class="cpr-modal__stds-table"><thead><tr>';
         sh += '<th>EAD</th><th>Name</th><th>Pipeline</th><th>AVCP</th><th>Validity</th><th>DPP Est</th>';
         sh += '</tr></thead><tbody>';
