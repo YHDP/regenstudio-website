@@ -1254,9 +1254,9 @@ function buildGanttHtml(range) {
         });
         sh += '</div>';
 
-        // hEN standards table — Standard | Name | Progress | SReq under | Deadline | DPP Est
+        // hEN standards table — Standard | Name | Progress | New SReq under | Deadline | DPP Est
         sh += '<div class="cpr-modal__stds-table-wrap"><table class="cpr-modal__stds-table"><thead><tr>';
-        sh += '<th>Standard</th><th>Name</th><th>Progress</th><th>SReq under</th><th>Deadline</th><th>DPP Est</th>';
+        sh += '<th>Standard</th><th>Name</th><th>Progress</th><th>New SReq under</th><th>Deadline</th><th>DPP Est</th>';
         sh += '</tr></thead><tbody>';
         henStds.forEach(function(s) {
           var stg = s._stage;
