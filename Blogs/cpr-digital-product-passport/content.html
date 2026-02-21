@@ -1321,9 +1321,9 @@ function buildGanttHtml(range) {
           var isHighest = st.num === highestEadStage;
           var dotCl2, dateCl2, ic2;
           if (st.num < highestEadStage && isReached) {
-            dotCl2 = 'cpr-milestone__dot--done'; dateCl2 = 'cpr-milestone__date--done'; ic2 = '\u2713';
-          } else if (isHighest && isReached) {
             dotCl2 = 'cpr-milestone__dot--done'; dateCl2 = 'cpr-milestone__date--done'; ic2 = st.num;
+          } else if (isHighest && isReached) {
+            dotCl2 = 'cpr-milestone__dot--active'; dateCl2 = 'cpr-milestone__date--draft'; ic2 = st.num;
           } else {
             dotCl2 = 'cpr-milestone__dot--future'; dateCl2 = ''; ic2 = st.num;
           }
