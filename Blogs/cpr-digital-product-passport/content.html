@@ -194,12 +194,18 @@
   .cpr-modal__tag--teal { color: #006B7F; background: rgba(0,155,187,0.08); }
   .cpr-modal__tag--orange { color: #B87800; background: rgba(255,169,45,0.1); }
   .cpr-modal__dpp-banner {
-    margin: 16px 28px 0; padding: 14px 18px; border-radius: 12px;
+    margin: 16px 28px 0; padding: 10px 16px; border-radius: 12px;
     background: linear-gradient(135deg, rgba(0,145,75,0.06) 0%, rgba(0,155,187,0.04) 100%);
-    border: 1px solid rgba(0,145,75,0.12); display: flex; align-items: center; justify-content: space-between;
+    border: 1px solid rgba(0,145,75,0.12);
   }
-  .cpr-modal__dpp-label { font-size: 0.72rem; color: #5A7080; font-weight: 500; }
-  .cpr-modal__dpp-value { font-size: 1.15rem; font-weight: 700; color: #00914B; }
+  .cpr-modal__dpp-banner .cpr-gantt__label { font-size: 0.62rem; margin-bottom: 6px; }
+  .cpr-modal__dpp-banner .cpr-gantt__lane { height: 18px; margin-bottom: 3px; }
+  .cpr-modal__dpp-banner .cpr-gantt__lane-label { font-size: 0.58rem; width: 26px; }
+  .cpr-modal__dpp-banner .cpr-gantt__track { height: 10px; border-radius: 5px; }
+  .cpr-modal__dpp-banner .cpr-gantt__bar { border-radius: 5px; }
+  .cpr-modal__dpp-banner .cpr-gantt__axis { padding-left: 30px; margin-top: 3px; }
+  .cpr-modal__dpp-banner .cpr-gantt__tick { font-size: 0.56rem; }
+  .cpr-modal__dpp-fallback { font-size: 0.82rem; font-weight: 600; color: #00914B; text-align: center; padding: 4px 0; }
   .cpr-modal__section { padding: 0 28px; }
   .cpr-modal__section-title {
     font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
@@ -823,10 +829,7 @@
       </div>
     </div>
     <div class="cpr-modal__tags"></div>
-    <div class="cpr-modal__dpp-banner">
-      <span class="cpr-modal__dpp-label">Estimated DPP obligation</span>
-      <span class="cpr-modal__dpp-value"></span>
-    </div>
+    <div class="cpr-modal__dpp-banner"></div>
     <div class="cpr-modal__section" id="cprTopMilestones">
       <div class="cpr-modal__section-title">Milestone progress</div>
       <div class="cpr-modal__timeline"></div>
@@ -843,6 +846,72 @@
 </div>
 
 <script>
+// Shared Gantt builder used by card face and modal banner
+function buildGanttHtml(range) {
+  function parseYear(s) {
+    if (!s) return null;
+    var m = s.match(/(\d{4})/);
+    return m ? parseInt(m[1]) : null;
+  }
+  function parseYearLate(s) {
+    if (!s) return null;
+    var parts = s.match(/(\d{4})/g);
+    return parts ? parseInt(parts[parts.length - 1]) : null;
+  }
+
+  var henE = parseYear(range.hen_earliest);
+  var henL = parseYearLate(range.hen_latest);
+  var eadE = parseYear(range.ead_earliest);
+  var eadL = parseYearLate(range.ead_latest);
+
+  var allYears = [henE, henL, eadE, eadL].filter(function(y) { return y !== null; });
+  var axisMin = Math.min.apply(null, allYears);
+  var axisMax = Math.max.apply(null, allYears);
+  if (axisMin === axisMax) { axisMin -= 1; axisMax += 1; }
+  var axisPad = 1;
+  axisMin -= axisPad;
+  axisMax += axisPad;
+  var axisSpan = axisMax - axisMin;
+
+  function barStyle(earliest, latest) {
+    var left = ((earliest - axisMin) / axisSpan * 100).toFixed(1);
+    var width = (((latest - earliest) || 0.5) / axisSpan * 100).toFixed(1);
+    if (parseFloat(width) < 5) width = '5';
+    return 'left:' + left + '%;width:' + width + '%';
+  }
+
+  var hasHen = henE !== null;
+  var hasEad = eadE !== null;
+  var html = '<div class="cpr-gantt__label">DPP Timeline</div><div class="cpr-gantt__lanes">';
+
+  if (hasHen) {
+    html += '<div class="cpr-gantt__lane"><span class="cpr-gantt__lane-label">hEN</span><div class="cpr-gantt__track"><div class="cpr-gantt__bar cpr-gantt__bar--hen" style="' + barStyle(henE, henL || henE) + '"></div></div></div>';
+  }
+  if (hasEad) {
+    html += '<div class="cpr-gantt__lane"><span class="cpr-gantt__lane-label">EAD</span><div class="cpr-gantt__track"><div class="cpr-gantt__bar cpr-gantt__bar--ead" style="' + barStyle(eadE, eadL || eadE) + '"></div></div></div>';
+  }
+
+  html += '</div>';
+
+  var ticks = [];
+  for (var y = axisMin + 1; y <= axisMax - 1; y++) { ticks.push(y); }
+  if (ticks.length > 5) {
+    ticks = ticks.filter(function(y) { return y % 2 === 0; });
+  }
+  html += '<div class="cpr-gantt__axis">';
+  ticks.forEach(function(yr) { html += '<span class="cpr-gantt__tick">\u2019' + String(yr).slice(2) + '</span>'; });
+  html += '</div>';
+
+  var countParts = [];
+  if (range.hen_count) countParts.push(range.hen_count + ' hENs');
+  if (range.ead_count) countParts.push(range.ead_count + ' EADs');
+  if (countParts.length) {
+    html += '<div class="cpr-gantt__counts">' + countParts.join(' \u00b7 ') + '</div>';
+  }
+
+  return html;
+}
+
 // Enrich cards with latest status pill and DPP date
 (function() {
   document.querySelectorAll('.cpr-card').forEach(function(card) {
@@ -897,73 +966,7 @@
     if (range && (range.hen_earliest || range.ead_earliest)) {
       var gantt = document.createElement('div');
       gantt.className = 'cpr-gantt';
-
-      // Parse year from strings like "~2028–2029", "~2030", "2035+"
-      function parseYear(s) {
-        if (!s) return null;
-        var m = s.match(/(\d{4})/);
-        return m ? parseInt(m[1]) : null;
-      }
-      function parseYearLate(s) {
-        if (!s) return null;
-        var parts = s.match(/(\d{4})/g);
-        return parts ? parseInt(parts[parts.length - 1]) : null;
-      }
-
-      var henE = parseYear(range.hen_earliest);
-      var henL = parseYearLate(range.hen_latest);
-      var eadE = parseYear(range.ead_earliest);
-      var eadL = parseYearLate(range.ead_latest);
-
-      // Determine axis range
-      var allYears = [henE, henL, eadE, eadL].filter(function(y) { return y !== null; });
-      var axisMin = Math.min.apply(null, allYears);
-      var axisMax = Math.max.apply(null, allYears);
-      if (axisMin === axisMax) { axisMin -= 1; axisMax += 1; }
-      var axisPad = 1;
-      axisMin -= axisPad;
-      axisMax += axisPad;
-      var axisSpan = axisMax - axisMin;
-
-      function barStyle(earliest, latest) {
-        var left = ((earliest - axisMin) / axisSpan * 100).toFixed(1);
-        var width = (((latest - earliest) || 0.5) / axisSpan * 100).toFixed(1);
-        if (parseFloat(width) < 5) width = '5';
-        return 'left:' + left + '%;width:' + width + '%';
-      }
-
-      var hasHen = henE !== null;
-      var hasEad = eadE !== null;
-      var html = '<div class="cpr-gantt__label">DPP Timeline</div><div class="cpr-gantt__lanes">';
-
-      if (hasHen) {
-        html += '<div class="cpr-gantt__lane"><span class="cpr-gantt__lane-label">hEN</span><div class="cpr-gantt__track"><div class="cpr-gantt__bar cpr-gantt__bar--hen" style="' + barStyle(henE, henL || henE) + '"></div></div></div>';
-      }
-      if (hasEad) {
-        html += '<div class="cpr-gantt__lane"><span class="cpr-gantt__lane-label">EAD</span><div class="cpr-gantt__track"><div class="cpr-gantt__bar cpr-gantt__bar--ead" style="' + barStyle(eadE, eadL || eadE) + '"></div></div></div>';
-      }
-
-      html += '</div>';
-
-      // Year ticks
-      var ticks = [];
-      for (var y = axisMin + 1; y <= axisMax - 1; y++) { ticks.push(y); }
-      if (ticks.length > 5) {
-        ticks = ticks.filter(function(y) { return y % 2 === 0; });
-      }
-      html += '<div class="cpr-gantt__axis">';
-      ticks.forEach(function(yr) { html += '<span class="cpr-gantt__tick">\u2019' + String(yr).slice(2) + '</span>'; });
-      html += '</div>';
-
-      // Counts
-      var countParts = [];
-      if (range.hen_count) countParts.push(range.hen_count + ' hENs');
-      if (range.ead_count) countParts.push(range.ead_count + ' EADs');
-      if (countParts.length) {
-        html += '<div class="cpr-gantt__counts">' + countParts.join(' \u00b7 ') + '</div>';
-      }
-
-      gantt.innerHTML = html;
+      gantt.innerHTML = buildGanttHtml(range);
       card.appendChild(gantt);
     } else if (dpp) {
       // Fallback: simple DPP date label for families without per-route data
@@ -984,7 +987,6 @@
   var subtitle = modal.querySelector('.cpr-modal__subtitle');
   var iconImg = modal.querySelector('.cpr-modal__icon img');
   var tagsEl = modal.querySelector('.cpr-modal__tags');
-  var dppValue = modal.querySelector('.cpr-modal__dpp-value');
   var dppBanner = modal.querySelector('.cpr-modal__dpp-banner');
   var timeline = modal.querySelector('.cpr-modal__timeline');
   var standardsSection = modal.querySelector('.cpr-modal__standards');
@@ -1015,11 +1017,17 @@
     if (tc) sub.push(tc);
     subtitle.textContent = sub.join(' \u00b7 ');
 
-    // DPP banner
-    if (dppEst) {
-      dppValue.textContent = dppEst;
+    // DPP banner — show mini Gantt or text fallback
+    var bannerRange = null;
+    try { bannerRange = JSON.parse(card.getAttribute('data-dpp-range') || ''); } catch(e) {}
+    if (bannerRange && (bannerRange.hen_earliest || bannerRange.ead_earliest)) {
+      dppBanner.innerHTML = buildGanttHtml(bannerRange);
+      dppBanner.style.display = '';
+    } else if (dppEst) {
+      dppBanner.innerHTML = '<div class="cpr-modal__dpp-fallback">DPP ' + dppEst + '</div>';
       dppBanner.style.display = '';
     } else {
+      dppBanner.innerHTML = '';
       dppBanner.style.display = 'none';
     }
 
