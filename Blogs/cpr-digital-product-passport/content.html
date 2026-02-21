@@ -1279,28 +1279,35 @@
       if (eadStds.length > 0) {
         sh += '<div style="margin-top:18px;font-size:0.62rem;font-weight:700;color:#006B3D;text-transform:uppercase;letter-spacing:0.06em;">EAD Route</div>';
 
-        // EAD milestone tracker
+        // EAD milestone tracker — 5-stage pipeline
+        var oldEads = eadStds.filter(function(s){return s.regime !== 'new';});
+        var newEads = eadStds.filter(function(s){return s.regime === 'new';});
+        var hasOld = oldEads.length > 0;
+        var hasNew = newEads.length > 0;
+
         var eadSteps = [
-          { label: 'EAD adopted', status: 'done' },
-          { label: 'New CPR EAD', status: 'future' },
-          { label: 'Sustainability', status: 'future' },
+          { label: 'EAD (CPR 2011)', status: hasOld ? 'done' : 'future' },
+          { label: 'CPR 2024 EAD dev', status: hasNew ? 'done' : (hasOld ? 'active' : 'future') },
+          { label: 'CPR 2024 EAD adopted', status: hasNew ? 'done' : 'future' },
+          { label: 'Art 75 DA', status: 'future' },
           { label: 'DPP applies', status: 'future' }
         ];
-        var hasNew = eadStds.some(function(s){return s.regime==='new';});
-        var hasSust = eadStds.some(function(s){return s.sustainability && s.sustainability !== 'none';});
-        eadSteps[1].status = hasNew ? 'done' : 'active';
-        eadSteps[2].status = hasSust ? 'done' : (hasNew ? 'active' : 'future');
 
         sh += '<div class="cpr-milestones" style="margin:8px 0 12px;">';
-        eadSteps.forEach(function(step) {
+        eadSteps.forEach(function(step, idx) {
           var dotCl2 = step.status === 'done' ? 'cpr-milestone__dot--done' : (step.status === 'active' ? 'cpr-milestone__dot--active' : 'cpr-milestone__dot--future');
           var dateCl2 = step.status === 'done' ? 'cpr-milestone__date--done' : (step.status === 'active' ? 'cpr-milestone__date--draft' : '');
           var ic2 = step.status === 'done' ? '\u2713' : (step.status === 'active' ? '\u2022' : '');
           var dt2 = step.status === 'done' ? 'Done' : (step.status === 'active' ? 'In progress' : '\u2014');
-          if (step.label === 'EAD adopted' && rangeData && rangeData.ead_count) {
-            dt2 = rangeData.ead_count + ' EAD' + (rangeData.ead_count > 1 ? 's' : '');
+          if (idx === 0 && hasOld) {
+            dt2 = oldEads.length + ' EAD' + (oldEads.length > 1 ? 's' : '');
+          } else if (idx === 0 && !hasOld) {
+            dt2 = 'None';
           }
-          if (step.label === 'DPP applies' && rangeData && rangeData.ead_earliest) {
+          if (idx === 2 && hasNew) {
+            dt2 = newEads.length + ' EAD' + (newEads.length > 1 ? 's' : '');
+          }
+          if (idx === 4 && rangeData && rangeData.ead_earliest) {
             dt2 = rangeData.ead_earliest;
           }
           sh += '<div class="cpr-milestone">';
