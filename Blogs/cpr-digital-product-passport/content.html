@@ -132,6 +132,8 @@
   .cpr-card__family { display: block; font-size: 0.66rem; font-weight: 400; color: var(--color-text-secondary, #6b7280); margin-top: 4px; line-height: 1.3; opacity: 0.8; }
   .cpr-card__tc { display: block; font-size: 0.62rem; color: var(--color-text-secondary, #6b7280); margin-top: 6px; line-height: 1.3; opacity: 0.7; }
   .cpr-card__dpp { display: block; font-size: 0.62rem; font-weight: 600; color: #009BBB; margin-top: 8px; letter-spacing: 0.01em; }
+  .cpr-card__art75 { display: flex; align-items: center; gap: 4px; font-size: 0.56rem; color: #8CA9BF; margin-top: 6px; line-height: 1.3; }
+  .cpr-card__art75-icon { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border-radius: 50%; background: rgba(231,168,0,0.12); color: #B87800; font-size: 0.5rem; font-weight: 700; flex-shrink: 0; }
   .cpr-card__status { display: inline-block; font-size: 0.58rem; font-weight: 600; margin-top: 8px; padding: 2px 8px; border-radius: 99px; line-height: 1.4; }
 
   /* Mini Gantt — card-level DPP timeline */
@@ -264,7 +266,7 @@
   .cpr-modal__stds-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
   .cpr-modal__stds-placeholder { font-size: 0.76rem; color: #5A7080; padding: 10px 0; line-height: 1.5; }
 
-  /* Stage dots — 5-dot progress indicator per hEN row */
+  /* Stage dots — progress indicator per standard row (5-dot hEN, 4-dot EAD) */
   .cpr-stage-dots { display: inline-flex; align-items: center; gap: 3px; }
   .cpr-stage-dots__dot {
     width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid #C5CDD5; background: #fff;
@@ -357,11 +359,11 @@
   <article class="cpr-card" role="listitem"
     data-full-name="Structural metallic products and ancillaries"
     data-letter="SMP" data-family="20" data-priority="02"
-    data-acquis="Yes" data-sreq="Adopted" data-tc="CEN/TC 135" data-dpp-est="~2030–2031"
-    data-milestones='{"i":"done","iii":"done","sreq":{"status":"adopted","label":"Adopted Oct 2025","date":"Oct 2025","url":"https://www.itb.pl/wp-content/uploads/2026/01/C20256586_0.pdf"},"delivery":{"status":"overdue","label":"Due 15 Nov 2025","date":"15 Nov 2025","url":"https://www.itb.pl/wp-content/uploads/2026/01/C20256586_0.pdf"},"mandatory":"Q2 2026","dpp":"~2030–2031"}'
-    data-dpp-range='{"hen_earliest":"~2030–2031","hen_latest":"~2030–2031","ead_earliest":null,"ead_latest":null,"envelope":"~2030–2031","hen_count":12,"ead_count":0}'
-    data-standards='{"standards":[{"id":"EN 1090-1","type":"hEN","name":"Execution of steel structures and aluminium structures — Conformity assessment","avcp":"2+","dpp_est":"~2030–2031","dpp_route":"hEN","delivery":"2025-11-15","stage":"Close of voting","sreq_table":"Table 2","dev_stage":"40.60","pub_est":"Q2 2026","mand_est":"~Q4 2026","notes":"SReq under CPR 305/2011 — resulting standard does NOT directly trigger DPP. Needs separate HTS under CPR 2024/3110.","cited":true},{"id":"EN 15088","type":"hEN","name":"Aluminium and aluminium alloys — Structural products for construction works","avcp":"2+","dpp_est":"~2030–2031","dpp_route":"hEN","delivery":"2025-11-15","stage":null,"sreq_table":"Table 2","pub_est":"Q3 2026","notes":"SReq under CPR 305/2011.","cited":true},{"id":"EN 10340","type":"hEN","name":"Steel castings for structural uses","avcp":"2+","dpp_est":"~2030–2031","dpp_route":"hEN","delivery":"2025-11-15","stage":null,"sreq_table":"Table 2","notes":"SReq under CPR 305/2011.","cited":true},{"id":"EN 14399-1","type":"hEN","name":"High-strength structural bolting assemblies for preloading — General requirements","avcp":"2+","dpp_est":"~2030–2031","dpp_route":"hEN","delivery":"2025-11-15","stage":null,"sreq_table":"Table 2","cited":true},{"id":"EN 15048-1","type":"hEN","name":"Non-preloaded structural bolting assemblies — General requirements","avcp":"2+","dpp_est":"~2030–2031","dpp_route":"hEN","delivery":"2025-11-15","stage":null,"sreq_table":"Table 2","cited":true},{"id":"EN 13479","type":"hEN","name":"Welding consumables — General product standard for filler metals and fluxes","avcp":"2+","dpp_est":"~2030–2031","dpp_route":"hEN","delivery":"2025-11-15","stage":null,"sreq_table":"Table 2","cited":true},{"id":"EN 14509","type":"hEN","name":"Double skin metal faced insulating sandwich panels — Factory made products","avcp":"1","dpp_est":"~2030–2031","dpp_route":"hEN","delivery":"2025-11-15","stage":null,"sreq_table":"Table 2","notes":"Also relevant to ROC (roof coverings) and WCF (wall/ceiling finishes).","cited":true}],"summary":{"hen_count":12,"hen_listed":7,"ead_count":0,"ead_listed":0,"completeness":"partial","source":"SReq C(2025) 6586 Annex I (12 standards total, 7 revisions listed individually)"}}'
-    data-info="<p><strong>Scope:</strong> Hot-rolled and cold-formed structural steel sections, stainless steel structural products, aluminium and aluminium alloys for structural use, high-strength structural bolting kits, non-preloaded structural bolting kits, welding consumables, steel structures and aluminium structures and kits, and double skin metal faced insulating sandwich panels.</p><p><strong>Technical committee:</strong> <a href=&quot;https://standards.cencenelec.eu/ords/f?p=205:22:::::FSP_ORG_ID,FSP_LANG_ID:6117,25&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>CEN/TC 135</a> — Execution of steel structures and aluminium structures.</p><p><strong>Current harmonised standard:</strong> EN 1090-1:2009+A1:2011 is the only cited harmonised standard for this family (conformity assessment under CPR 305/2011). It is supported by execution standards EN 1090-2:2018+A1:2024 (steel), EN 1090-3:2019 (aluminium), EN 1090-4:2018 and EN 1090-5:2017 (cold-formed). CEN/TS 1090-201:2024 covers structural steel reuse (technical specification, not yet a full EN).</p><p><strong>Standards in development</strong> (per <a href=&quot;https://standards.cencenelec.eu/ords/f?p=205:22:::::FSP_ORG_ID,FSP_LANG_ID:6117,25&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>TC 135 work programme</a>):<br>• prEN 1090-1 rev — conformity assessment revision (under drafting, formal vote forecast Feb 2026)<br>• prEN 1090-4 rev — cold-formed steel (under approval, vote May 2026)<br>• prEN 1090-5 rev — cold-formed aluminium (under approval, vote Jul 2026)<br>• prEN 1090-3 rev — aluminium structures (preliminary, vote forecast 2028)<br>• prEN 17662 — EPD product category rules for steel/iron/aluminium structural products (under approval)</p><p><strong>Standardisation request:</strong> <a href=&quot;https://www.itb.pl/wp-content/uploads/2026/01/C20256586_0.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Commission Implementing Decision C(2025) 6586</a>, adopted 2 October 2025 under CPR 305/2011 (replacing mandate M/120). Requests 12 standards — 5 new (finished steel, stainless steel, sandwich panels Part 2, and 2 EPD PCRs) and 7 revisions (EN 1090-1, EN 15088, EN 10340, EN 14399-1, EN 15048-1, EN 13479, EN 14509). All due <strong>15 November 2025</strong> per <a href=&quot;https://www.itb.pl/wp-content/uploads/2026/01/C20256586_1.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Annex I</a> — only ~6 weeks after adoption, deadline missed. CEN annual report due 31 Jan 2026, final report and decision expiry 31 Jan 2027. A new standardisation request under CPR 2024/3110 is planned for Q2 2026 for non-compliant standards (delivery Q3 2027).</p><p><strong>DPP outlook:</strong> Products currently CE-marked under EN 1090-1 (old CPR 305/2011) are <strong>not subject to DPP obligations</strong>. Chapter X of CPR 2024/3110 links the DPP to the Declaration of Performance and Conformity (DoPC), which only applies under new harmonised technical specifications. DPP obligations for SMP will only apply once a new HTS under CPR 2024/3110 replaces EN 1090-1 — estimated ~2030–2031.</p>">
+    data-acquis="Yes" data-sreq="Adopted" data-tc="CEN/TC 135" data-dpp-est="~2031–2032"
+    data-milestones='{"i":"done","iii":"done","sreq":{"status":"adopted","label":"Adopted Oct 2025","date":"Oct 2025","url":"https://www.itb.pl/wp-content/uploads/2026/01/C20256586_0.pdf"},"delivery":{"status":"overdue","label":"Due 15 Nov 2025 (mandate rejected)","date":"15 Nov 2025","url":"https://www.itb.pl/wp-content/uploads/2026/01/C20256586_0.pdf"},"mandatory":"~2030","dpp":"~2031–2032"}'
+    data-dpp-range='{"hen_earliest":"~2031–2032","hen_latest":"~2031–2032","ead_earliest":null,"ead_latest":null,"envelope":"~2031–2032","hen_count":12,"ead_count":28}'
+    data-standards='{"standards":[{"id":"EN 1090-1","type":"hEN","name":"Execution of steel structures and aluminium structures — Conformity assessment","avcp":"2+","dpp_est":"~2031–2032","dpp_route":"hEN","delivery":"2025-11-15","stage":"New project approved (mandate rejected)","sreq_table":"Table 2","dev_stage":"10.99","pub_est":"~2028–2029","mand_est":null,"notes":"CRITICAL: Mandate rejected by EU member states summer 2025 — stage dropped from 40.60 to 10.99. Revised mandate expected early 2026. Publication pushed to ~2028–2029.","cited":true},{"id":"EN 15088","type":"hEN","name":"Aluminium and aluminium alloys — Structural products for construction works","avcp":"2+","dpp_est":"~2031–2032","dpp_route":"hEN","delivery":"2025-11-15","stage":null,"sreq_table":"Table 2","pub_est":"Q3 2026","notes":"SReq under CPR 305/2011.","cited":true},{"id":"EN 10340","type":"hEN","name":"Steel castings for structural uses","avcp":"2+","dpp_est":"~2031–2032","dpp_route":"hEN","delivery":"2025-11-15","stage":null,"sreq_table":"Table 2","notes":"SReq under CPR 305/2011.","cited":true},{"id":"EN 14399-1","type":"hEN","name":"High-strength structural bolting assemblies for preloading — General requirements","avcp":"2+","dpp_est":"~2031–2032","dpp_route":"hEN","delivery":"2025-11-15","stage":null,"sreq_table":"Table 2","cited":true},{"id":"EN 15048-1","type":"hEN","name":"Non-preloaded structural bolting assemblies — General requirements","avcp":"2+","dpp_est":"~2031–2032","dpp_route":"hEN","delivery":"2025-11-15","stage":null,"sreq_table":"Table 2","cited":true},{"id":"EN 13479","type":"hEN","name":"Welding consumables — General product standard for filler metals and fluxes","avcp":"2+","dpp_est":"~2031–2032","dpp_route":"hEN","delivery":"2025-11-15","stage":null,"sreq_table":"Table 2","cited":true},{"id":"EN 14509","type":"hEN","name":"Double skin metal faced insulating sandwich panels — Factory made products","avcp":"1","dpp_est":"~2031–2032","dpp_route":"hEN","delivery":"2025-11-15","stage":null,"sreq_table":"Table 2","notes":"Also relevant to ROC (roof coverings) and WCF (wall/ceiling finishes).","cited":true}],"summary":{"hen_count":12,"hen_listed":7,"ead_count":28,"ead_listed":0,"completeness":"partial","source":"SReq C(2025) 6586 Annex I (12 hENs). 28+ EADs under PA 20 (not individually listed)."}}'
+    data-info="<p><strong>Scope:</strong> Hot-rolled and cold-formed structural steel sections, stainless steel structural products, aluminium and aluminium alloys for structural use, high-strength structural bolting kits, non-preloaded structural bolting kits, welding consumables, steel structures and aluminium structures and kits, and double skin metal faced insulating sandwich panels. Also covers 28+ EADs under Product Area 20 (tension systems, piles, gabions, connections, corrosion protection, and specialised structural metallic components).</p><p><strong>Technical committee:</strong> <a href=&quot;https://standards.cencenelec.eu/ords/f?p=205:22:::::FSP_ORG_ID,FSP_LANG_ID:6117,25&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>CEN/TC 135</a> — Execution of steel structures and aluminium structures.</p><p><strong>Current harmonised standard:</strong> EN 1090-1:2009+A1:2011 is the only cited hEN for this family (conformity assessment under CPR 305/2011). Supported by execution standards EN 1090-2:2018+A1:2024 (steel), EN 1090-3:2019 (aluminium), EN 1090-4:2018 and EN 1090-5:2017 (cold-formed). CEN/TS 1090-201:2024 covers structural steel reuse (3-year validity TS).</p><p><strong>Standards in development</strong> (per <a href=&quot;https://standards.cencenelec.eu/ords/f?p=205:22:::::FSP_ORG_ID,FSP_LANG_ID:6117,25&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>TC 135 work programme</a>):<br>• prEN 1090-1 rev — <strong style=&quot;color:#E71846;&quot;>MANDATE REJECTED summer 2025</strong> by EU member states (unclear scope, missing characteristics). Stage dropped from 40.60 to 10.99 (new project approved). Revised mandate expected early 2026. Publication now ~2028–2029<br>• prEN 1090-4 rev — cold-formed steel (stage 40.60 enquiry voting closed, formal vote ~May 2026)<br>• prEN 1090-5 rev — cold-formed aluminium (stage 40.60 enquiry voting closed, formal vote ~Jul 2026)<br>• prEN 1090-3 rev — aluminium structures (stage 00.60 close of review, vote forecast ~2028)<br>• prEN 17662 — EPD PCR for steel/iron/aluminium structural products (stage 45.99, FV draft dispatched Dec 2023 — possibly stalled)</p><p><strong>Standardisation request:</strong> <a href=&quot;https://www.itb.pl/wp-content/uploads/2026/01/C20256586_0.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Commission Implementing Decision C(2025) 6586</a>, adopted 2 October 2025 under CPR 305/2011 (replacing mandate M/120). Requests 12 standards — 5 new and 7 revisions. All due <strong>15 November 2025</strong> per <a href=&quot;https://www.itb.pl/wp-content/uploads/2026/01/C20256586_1.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Annex I</a> — deadline missed (EN 1090-1 mandate rejection is the primary blocker). Decision expires 31 Jan 2027. <a href=&quot;https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:52025DC0772&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>COM(2025) 772</a> (First CPR Working Plan 2026–2029) confirms SMP as first-wave priority. New SReq under CPR 2024/3110 planned Q2 2026 (delivery Q3 2027).</p><p><strong>EAD route:</strong> 28+ EADs under Product Area 20: structural steel sections (EAD 200017, 200022, 200116), tension rods/cables (EAD 200001, 200002, 200032), piles/foundations (EAD 200005, 200036, 200043), gabion systems (EAD 200019, 200020, 200039, 200050), connections/shear connectors (EAD 200033, 200086, 200102), corrosion protection (EAD 200126, 200188), and specialised components (EAD 200012, 200035, 200059, 200112, 200207). Old-regime EADs usable for ETAs until 2030, ETAs valid for CE marking until 2035.</p><p><strong>DPP outlook:</strong> Products under EN 1090-1 (old CPR 305/2011) are <strong>not subject to DPP</strong>. The EN 1090-1 mandate rejection pushes the timeline significantly — no new HTS before ~2028–2029, meaning DPP now estimated <strong>~2031–2032</strong>. However, SMP is confirmed as a first-wave priority in the CPR Working Plan. COM(2025) 991 designates cement and structural metallic products as the first two categories for DPP implementation.</p>">
     <img src="Blogs/cpr-digital-product-passport/product-families/structural-metallic.svg" alt="Structural metallic products — Annex VII family #20" loading="lazy">
     <span class="cpr-card__name">Structural Metallic Products</span>
     <span class="cpr-card__family">Annex VII #20 · SMP</span>
@@ -975,6 +977,13 @@ function buildGanttHtml(range) {
       dppEl.textContent = 'DPP ' + dpp;
       card.appendChild(dppEl);
     }
+
+    // Art 75 DA indicator — universal prerequisite for all DPP obligations
+    var art75 = document.createElement('div');
+    art75.className = 'cpr-card__art75';
+    art75.innerHTML = '<span class="cpr-card__art75-icon">!</span> Art 75 DA not yet adopted';
+    art75.title = 'No DPP obligations apply until the Commission adopts the delegated act under Article 75 CPR 2024/3110';
+    card.appendChild(art75);
   });
 })();
 </script>
@@ -1290,7 +1299,7 @@ function buildGanttHtml(range) {
       if (eadStds.length > 0) {
         sh += '<div style="margin-top:18px;font-size:0.62rem;font-weight:700;color:#006B3D;text-transform:uppercase;letter-spacing:0.06em;">EAD Route</div>';
 
-        // EAD milestone tracker — 5-stage pipeline (summary style like hEN)
+        // EAD milestone tracker — 4-stage pipeline (Art 75 DA is universal, shown on cards)
         function computeEadStage(s) {
           if (s.regime === 'new') return 3;
           if (s.new_ead) return 2;
@@ -1299,9 +1308,9 @@ function buildGanttHtml(range) {
         eadStds.forEach(function(s) { s._eadStage = computeEadStage(s); });
 
         var totalEad = eadStds.length;
-        var eadStageCounts = [0,0,0,0,0];
+        var eadStageCounts = [0,0,0,0];
         eadStds.forEach(function(s) {
-          for (var i = 0; i < 5; i++) {
+          for (var i = 0; i < 4; i++) {
             if (s._eadStage >= (i + 1)) eadStageCounts[i]++;
           }
         });
@@ -1313,8 +1322,7 @@ function buildGanttHtml(range) {
           { num: 1, label: 'Legacy EAD' },
           { num: 2, label: 'In development' },
           { num: 3, label: 'Adopted' },
-          { num: 4, label: 'Art 75 DA' },
-          { num: 5, label: 'DPP' }
+          { num: 4, label: 'DPP' }
         ];
 
         sh += '<div class="cpr-milestones" style="margin:8px 0 12px;">';
@@ -1339,7 +1347,7 @@ function buildGanttHtml(range) {
         sh += '</div>';
 
         // EAD standards table — EAD | Name | Pipeline | AVCP | Validity | DPP Est
-        var eadStageLabels = ['None', 'Legacy EAD', 'In development', 'Adopted', 'Art 75 DA', 'DPP'];
+        var eadStageLabels = ['None', 'Legacy EAD', 'In development', 'Adopted', 'DPP'];
         sh += '<div class="cpr-modal__stds-table-wrap"><table class="cpr-modal__stds-table"><thead><tr>';
         sh += '<th>EAD</th><th>Name</th><th>Pipeline</th><th>AVCP</th><th>Validity</th><th>DPP Est</th>';
         sh += '</tr></thead><tbody>';
@@ -1351,9 +1359,9 @@ function buildGanttHtml(range) {
           else if (s.new_ead) eadStg = 2;
           else eadStg = 1;
 
-          // Build 5-dot pipeline (green theme, grey dot 1 when no legacy)
+          // Build 4-dot pipeline (green theme, grey dot 1 when no legacy)
           var dots = '<span class="cpr-stage-dots" title="' + eadStageLabels[eadStg] + '">';
-          for (var d = 1; d <= 5; d++) {
+          for (var d = 1; d <= 4; d++) {
             if (d === 1 && !hasLegacy) {
               dots += '<span class="cpr-stage-dots__dot"></span>';
             } else if (d <= eadStg) {
