@@ -1183,8 +1183,8 @@ function buildGanttHtml(range) {
 
     if (stdsData && stdsData.standards && stdsData.standards.length > 0) {
       standardsSection.style.display = '';
-      // Hide top milestones — the timelines now live inside each route section
-      if (topMilestones) topMilestones.style.display = 'none';
+      // Always show top milestones — overall progress above per-route detail
+      if (topMilestones) topMilestones.style.display = '';
       var sh = '';
 
       // Group standards by type
