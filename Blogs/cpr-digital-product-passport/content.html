@@ -1239,9 +1239,9 @@ function buildGanttHtml(range) {
 
         sh += '</div>';
 
-        // hEN standards table — Table 3-style: Standard | New SReq | TC/WG | Stage | Delivery | Mand est | DPP est
+        // hEN standards table — Table 3-style: Standard | Name | TC/WG | Stage | Delivery | Mand est | DPP est
         sh += '<div class="cpr-modal__stds-table-wrap"><table class="cpr-modal__stds-table"><thead><tr>';
-        sh += '<th>Standard</th><th>New SReq</th><th>TC/WG</th><th>Stage</th><th>Delivery</th><th>Mand est</th><th>DPP est</th>';
+        sh += '<th>Standard</th><th>Name</th><th>TC/WG</th><th>Stage</th><th>Delivery</th><th>Mand est</th><th>DPP est</th>';
         sh += '</tr></thead><tbody>';
         henStds.forEach(function(s) {
           var stg = s._stage;
@@ -1257,17 +1257,21 @@ function buildGanttHtml(range) {
             }
           }
           dots += '</span>';
-          var revLabel = s.revision || '\u2014';
-          var revStyle = revLabel === 'CPR 2011' ? 'color:#B87800;' : (revLabel === 'CPR 2024' ? 'color:#006B7F;' : '');
           var tcWg = s.tc_wg || '\u2014';
+          var dppCell;
+          if (s.revision === 'CPR 2011') {
+            dppCell = '<span style="font-size:0.56rem;color:#B87800;font-weight:600;">SReq under CPR\u00a02011</span>';
+          } else {
+            dppCell = '<span style="font-weight:600;color:#009BBB;">' + (s.dpp_est || '\u2014') + '</span>';
+          }
           sh += '<tr>';
           sh += '<td>' + (s.id || '') + '</td>';
-          sh += '<td style="font-size:0.6rem;font-weight:600;' + revStyle + '">' + revLabel + '</td>';
+          sh += '<td style="font-size:0.58rem;color:#3A5A6A;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + (s.name || '\u2014') + '</td>';
           sh += '<td style="font-size:0.58rem;color:#5A7080;">' + tcWg + '</td>';
           sh += '<td>' + dots + ' <span style="font-size:0.58rem;color:#5A7080;margin-left:2px;">' + stageLabels[stg] + '</span></td>';
           sh += '<td>' + (s.delivery ? s.delivery.replace(/-/g,'\u2011') : '\u2014') + '</td>';
           sh += '<td>' + (s.mand_est || '\u2014') + '</td>';
-          sh += '<td style="font-weight:600;color:#009BBB;">' + (s.dpp_est || '\u2014') + '</td>';
+          sh += '<td>' + dppCell + '</td>';
           sh += '</tr>';
         });
         sh += '</tbody></table></div>';
