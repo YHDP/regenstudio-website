@@ -1318,30 +1318,47 @@
         });
         sh += '</div>';
 
-        // EAD standards table
+        // EAD standards table — EAD | Name | Pipeline | AVCP | Validity | DPP Est
+        var eadStageLabels = ['None', 'Legacy EAD', 'New in dev', 'New adopted', 'Art 75 DA', 'DPP applies'];
         sh += '<div class="cpr-modal__stds-table-wrap"><table class="cpr-modal__stds-table"><thead><tr>';
-        sh += '<th>EAD</th><th>Name</th><th>Regime</th><th>New EAD expected</th><th>DPP Est</th>';
+        sh += '<th>EAD</th><th>Name</th><th>Pipeline</th><th>AVCP</th><th>Validity</th><th>DPP Est</th>';
         sh += '</tr></thead><tbody>';
         eadStds.forEach(function(s) {
-          var regime = s.regime === 'old' ? 'CPR 305/2011' : (s.regime === 'new' ? 'CPR 2024/3110' : '\u2014');
-          var newEad = s.new_ead || '\u2014';
-          if (s.regime === 'new') newEad = '\u2714'; // already under new CPR
-          // For old-regime EADs: DPP is conditional on new EAD adoption
-          var dppCell = s.dpp_est || '\u2014';
-          var dppNote = '';
-          if (s.regime === 'old' && s.dpp_est) {
-            dppNote = ' *';
+          var isOld = s.regime !== 'new';
+          var hasLegacy = isOld;
+          var eadStg;
+          if (s.regime === 'new') eadStg = 3;
+          else if (s.new_ead) eadStg = 2;
+          else eadStg = 1;
+
+          // Build 5-dot pipeline (green theme, grey dot 1 when no legacy)
+          var dots = '<span class="cpr-stage-dots" title="' + eadStageLabels[eadStg] + '">';
+          for (var d = 1; d <= 5; d++) {
+            if (d === 1 && !hasLegacy) {
+              dots += '<span class="cpr-stage-dots__dot"></span>';
+            } else if (d <= eadStg) {
+              dots += '<span class="cpr-stage-dots__dot cpr-stage-dots__dot--done-green"></span>';
+            } else {
+              dots += '<span class="cpr-stage-dots__dot"></span>';
+            }
           }
+          dots += '</span>';
+
+          var validity = isOld ? (s.expires || '9 Jan 2031') : 'New CPR';
+          var dppCell = s.dpp_est || '\u2014';
+          var dppNote = (isOld && s.dpp_est) ? ' *' : '';
+
           sh += '<tr>';
           sh += '<td>' + (s.id || '') + '</td>';
           sh += '<td>' + (s.name || '') + '</td>';
-          sh += '<td>' + regime + '</td>';
-          sh += '<td>' + newEad + '</td>';
+          sh += '<td>' + dots + ' <span style="font-size:0.58rem;color:#5A7080;margin-left:2px;">' + eadStageLabels[eadStg] + '</span></td>';
+          sh += '<td>' + (s.avcp || '\u2014') + '</td>';
+          sh += '<td>' + validity + '</td>';
           sh += '<td style="font-weight:600;color:#00914B;">' + dppCell + dppNote + '</td>';
           sh += '</tr>';
         });
         sh += '</tbody></table></div>';
-        // Add footnote if any old-regime EADs have DPP estimates
+        // Footnote for old-regime EADs with DPP estimates
         var hasOldWithDpp = eadStds.some(function(s){return s.regime === 'old' && s.dpp_est;});
         if (hasOldWithDpp) {
           sh += '<div style="font-size:0.58rem;color:#8CA9BF;margin-top:4px;line-height:1.4;font-style:italic;">* DPP only applies once a new EAD is adopted under CPR 2024/3110. Estimate assumes timely replacement.</div>';
