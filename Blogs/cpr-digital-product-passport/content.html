@@ -233,19 +233,10 @@
     color: #009BBB; margin-bottom: 6px;
   }
   .cpr-modal__annex { padding: 0 28px 0; }
-  .cpr-modal__annex-toggle {
-    display: inline-flex; align-items: center; gap: 5px; border: none; background: none;
-    cursor: pointer; font-size: 0.68rem; font-weight: 600; color: #8CA9BF; padding: 8px 0 4px;
-    text-transform: uppercase; letter-spacing: 0.05em;
-  }
-  .cpr-modal__annex-toggle:hover { color: #5A7080; }
-  .cpr-modal__annex-toggle svg { transition: transform 0.2s; width: 12px; height: 12px; }
-  .cpr-modal__annex-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
   .cpr-modal__annex-content {
-    display: none; font-size: 0.78rem; line-height: 1.6; color: var(--color-text, #1a1a1a);
+    display: block; font-size: 0.78rem; line-height: 1.6; color: var(--color-text, #1a1a1a);
     padding: 8px 0 4px; border-top: 1px solid #EEF1F4;
   }
-  .cpr-modal__annex-content[data-open="true"] { display: block; }
   .cpr-modal__annex-content p { margin: 0 0 8px; }
   .cpr-modal__annex-content p:last-child { margin: 0; }
   .cpr-modal__annex-content strong { font-weight: 600; color: #1a2b36; }
@@ -283,7 +274,8 @@
   .cpr-modal__stds-table-wrap { overflow-x: auto; margin: 0 -4px; }
   .cpr-modal__stds-table { width: 100%; border-collapse: collapse; font-size: 0.7rem; line-height: 1.4; }
   .cpr-modal__stds-table th { text-align: left; font-weight: 600; color: #5A7080; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 6px 6px; border-bottom: 2px solid #E2E8ED; white-space: nowrap; }
-  .cpr-modal__stds-table td { padding: 5px 6px; border-bottom: 1px solid #EEF1F4; color: var(--color-text, #1a1a1a); vertical-align: top; }
+  .cpr-modal__stds-table td { padding: 5px 6px; border-bottom: 1px solid #EEF1F4; color: var(--color-text, #1a1a1a); vertical-align: middle; }
+  .cpr-modal__stds-table td:nth-child(2) { vertical-align: top; }
   .cpr-modal__stds-table tr:last-child td { border-bottom: none; }
   .cpr-modal__stds-table .cpr-std-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
   .cpr-std-dot--green { background: #00914B; }
@@ -378,15 +370,15 @@
     data-letter="PCR"
     data-family="1"
     data-priority="01"
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="Yes"
     data-sreq="Draft"
     data-tc="CEN/TC 229"
     data-dpp-est="~2030–2031"
     data-milestones='{"i":"done","iii":"done","sreq":{"status":"draft","label":"Draft published","date":"Feb 2026","url":"https://webgate.ec.europa.eu/circabc-ewpp/d/d/workspace/SpacesStore/112ef42c-fb77-45d8-984c-5d3b1807c139/download"},"delivery":"Q4 2026","mandatory":"","dpp":"~2030–2031"}'
     data-dpp-range='{"hen_earliest":"~2030\u20132031","hen_latest":"~2030\u20132031","ead_earliest":null,"ead_latest":null,"envelope":"~2030\u20132031","hen_count":4,"ead_count":null}'
-    data-standards='{"standards":[{"id":"EN 13369 (new)","type":"hEN","name":"Precast concrete products \u2014 Common rules (new performance assessment)","tc_wg":"CEN/TC 229","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2026-10-30","sreq_table":"Table 1","pub_est":"Q4 2026","revision":"CPR 2011","cited":false,"notes":"New harmonised product assessment standard. EN 13369:2024 (common rules, non-harmonised) published May 2024, replacing EN 13369:2018. SReq under CPR 305/2011 \u2014 needs separate HTS under CPR 2024/3110 for DPP."},{"id":"EPD/PCR LW+AAC","type":"hEN","name":"Environmental product declaration \u2014 Product category rules for lightweight and AAC products","tc_wg":"CEN/TC 229","dpp_route":"hEN","delivery":"2026-10-30","sreq_table":"Table 1","pub_est":"Q4 2026","revision":"CPR 2011","cited":false,"notes":"EPD PCR \u2014 not a product standard, no independent DPP trigger."},{"id":"EN 1520","type":"hEN","name":"Prefabricated reinforced components of lightweight aggregate concrete with open structure","tc_wg":"CEN/TC 177","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2026-10-30","sreq_table":"Table 2","pub_est":"Q4 2026","revision":"CPR 2011","cited":true,"notes":"Revision. Developed by CEN/TC 177 (not TC 229)."},{"id":"EN 12602","type":"hEN","name":"Prefabricated reinforced components of autoclaved aerated concrete","tc_wg":"CEN/TC 177","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2026-10-30","dev_stage":"prEN","stage":"Draft standard (Jul 2025)","sreq_table":"Table 2","pub_est":"Q4 2026","revision":"CPR 2011","cited":true,"notes":"Revision. Developed by CEN/TC 177. Draft BS EN 12602 dated 24 Jul 2025 confirms revision already underway."}],"summary":{"hen_count":4,"ead_count":null,"hen_listed":4,"ead_listed":0,"completeness":"full","source":"Draft SReq (Feb 2026) \u2014 4 standards, all listed individually"}}'
-    data-info="<p><strong>About this family:</strong> Covers factory-made precast concrete elements such as hollow core slabs, beams, wall and facade panels, stairs, masts, bridge elements, and box culverts — in normal-weight, lightweight aggregate and autoclaved aerated concrete. Products range from simple unreinforced items to prestressed structural members. Standardisation is led by CEN/TC 229 (precast concrete products), with CEN/TC 177 contributing standards for lightweight aggregate and autoclaved aerated concrete products.</p><p><strong>Current harmonised standards:</strong> EN 1520:2011 (lightweight aggregate, AVCP System 2+), EN 12602:2016 (autoclaved aerated concrete, AVCP System 2+). Both cited in OJ under old CPR 305/2011 via mandate M/100 (1994). <strong>EN 13369:2024</strong> (common rules) published May 2024, replacing EN 13369:2018 — this is a non-harmonised reference standard (no Annex ZA), but underpins all precast product standards. AVCP per Commission Decision 97/555/EC (System 2+ for structural, System 4 for non-structural).</p><p><strong>Standards in development:</strong> <strong>prEN 12602</strong> — draft standard dated 24 July 2025 (BSI reference 25/30510163 DC), confirming revision already underway under CEN/TC 177. EN 1170:2024 (test methods for fibre-reinforced precast) published Dec 2024 — supporting standard development is active.</p><p><strong>Standardisation request:</strong> Acquis Milestone I (product scope) and Milestone III (essential characteristics) both completed. <a href=&quot;https://webgate.ec.europa.eu/circabc-ewpp/d/d/workspace/SpacesStore/112ef42c-fb77-45d8-984c-5d3b1807c139/download&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Draft implementing decision published 4 Feb 2026</a> via Art. 12 notification (earlier draft from <a href=&quot;https://ec.europa.eu/docsroom/documents/58955&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>April 2024</a>). Feedback until <strong>3 Mar 2026</strong>. Under <strong>CPR 305/2011</strong> (old regulation). Replaces mandate M/100 (1994). <strong>4 deliverables</strong>, all due <strong>30 Oct 2026</strong>: (1) new hEN for precast concrete performance assessment (Table 1), (2) EPD product category rules for lightweight and AAC products (Table 1), (3) revision of EN 1520:2011 (Table 2), (4) revision of EN 12602:2016 (Table 2). Decision expires 30 Jun 2027. CEN reports due 31 Jan 2027. Table 3 target of SReq Q2 2025 was <strong>missed by ~8 months</strong>. <strong>NOT yet adopted</strong> — CEN WP 2025 still lists as &quot;M/XXX&quot; (no mandate number assigned).</p><p><strong>DPP outlook:</strong> The current standardisation request is issued under the old CPR 305/2011, so products under these standards are not yet subject to DPP obligations. A separate standardisation request under the new CPR 2024/3110 will be needed to create harmonised technical specifications that trigger DPP. Based on the expected timeline for that second request and the subsequent mandatory adoption and coexistence period, DPP is estimated around <strong>~2030–2031</strong>.</p>">
+    data-standards='{"standards":[{"id":"EN 13369 (new)","type":"hEN","name":"Precast concrete products \u2014 Common rules (new performance assessment)","tc_wg":"CEN/TC 229","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2026-10-30","sreq_table":"Table 1","pub_est":"Q4 2026","revision":"CPR 2011","cited":false,"notes":"New harmonised product assessment standard. EN 13369:2023 (common rules, non-harmonised; national adoptions 2024) replacing EN 13369:2018. SReq under CPR 305/2011 \u2014 needs separate HTS under CPR 2024/3110 for DPP."},{"id":"EPD/PCR LW+AAC","type":"hEN","name":"Environmental product declaration \u2014 Product category rules for lightweight and AAC products","tc_wg":"CEN/TC 229","dpp_route":"hEN","delivery":"2026-10-30","sreq_table":"Table 1","pub_est":"Q4 2026","revision":"CPR 2011","cited":false,"notes":"EPD PCR \u2014 not a product standard, no independent DPP trigger."},{"id":"EN 1520","type":"hEN","name":"Prefabricated reinforced components of lightweight aggregate concrete with open structure","tc_wg":"CEN/TC 177","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2026-10-30","sreq_table":"Table 2","pub_est":"Q4 2026","revision":"CPR 2011","cited":true,"notes":"Revision. Developed by CEN/TC 177 (not TC 229)."},{"id":"EN 12602","type":"hEN","name":"Prefabricated reinforced components of autoclaved aerated concrete","tc_wg":"CEN/TC 177","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2026-10-30","dev_stage":"prEN","stage":"Draft standard (Jul 2025)","sreq_table":"Table 2","pub_est":"Q4 2026","revision":"CPR 2011","cited":true,"notes":"Revision. Developed by CEN/TC 177. Draft BS EN 12602 dated 24 Jul 2025 confirms revision already underway."}],"summary":{"hen_count":4,"ead_count":null,"hen_listed":4,"ead_listed":0,"completeness":"full","source":"Draft SReq (Feb 2026) \u2014 4 standards, all listed individually"}}'
+    data-info="<p><strong>About this family:</strong> Covers factory-made precast concrete elements such as hollow core slabs, beams, wall and facade panels, stairs, masts, bridge elements, and box culverts — in normal-weight, lightweight aggregate and autoclaved aerated concrete. Products range from simple unreinforced items to prestressed structural members. Standardisation is led by CEN/TC 229 (precast concrete products), with CEN/TC 177 contributing standards for lightweight aggregate and autoclaved aerated concrete products.</p><p><strong>Current harmonised standards:</strong> EN 1520:2011 (lightweight aggregate, AVCP System 2+), EN 12602:2016 (autoclaved aerated concrete, AVCP System 2+). Both cited in OJ under old CPR 305/2011 via mandate M/100 (1994). <strong>EN 13369:2023</strong> (common rules; national adoptions 2024) replacing EN 13369:2018 — this is a non-harmonised reference standard (no Annex ZA), but underpins all precast product standards. AVCP per Commission Decision 1999/94/EC (System 2+ for structural, System 4 for non-structural).</p><p><strong>Standards in development:</strong> <strong>prEN 12602</strong> — draft standard dated 24 July 2025 (BSI reference 25/30510163 DC), confirming revision already underway under CEN/TC 177. EN 1170:2024 (test methods for fibre-reinforced precast) published Dec 2024 — supporting standard development is active.</p><p><strong>Standardisation request:</strong> Acquis Milestone I (product scope) and Milestone III (essential characteristics) both completed. <a href=&quot;https://webgate.ec.europa.eu/circabc-ewpp/d/d/workspace/SpacesStore/112ef42c-fb77-45d8-984c-5d3b1807c139/download&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Draft implementing decision published 4 Feb 2026</a> via Art. 12 notification (earlier draft from <a href=&quot;https://ec.europa.eu/docsroom/documents/58955&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>April 2024</a>). Feedback until <strong>3 Mar 2026</strong>. Under <strong>CPR 305/2011</strong> (old regulation). Replaces mandate M/100 (1994). <strong>4 deliverables</strong>, all due <strong>30 Oct 2026</strong>: (1) new hEN for precast concrete performance assessment (Table 1), (2) EPD product category rules for lightweight and AAC products (Table 1), (3) revision of EN 1520:2011 (Table 2), (4) revision of EN 12602:2016 (Table 2). Decision expires 30 Jun 2027. CEN reports due 31 Jan 2027. Table 3 target of SReq Q2 2025 was <strong>missed by ~8 months</strong>. <strong>NOT yet adopted</strong> — CEN WP 2025 still lists as &quot;M/XXX&quot; (no mandate number assigned).</p><p><strong>DPP outlook:</strong> The current standardisation request is issued under the old CPR 305/2011, so products under these standards are not yet subject to DPP obligations. A separate standardisation request under the new CPR 2024/3110 will be needed to create harmonised technical specifications that trigger DPP. Based on the expected timeline for that second request and the subsequent mandatory adoption and coexistence period, DPP is estimated around <strong>~2030–2031</strong>.</p>">
     <img src="Blogs/cpr-digital-product-passport/product-families/precast-concrete.svg" alt="Precast concrete products — Annex VII family #1" loading="lazy">
     <span class="cpr-card__name">Precast Concrete Products</span>
     <span class="cpr-card__family">Annex VII #1 · PCR</span>
@@ -397,7 +389,7 @@
     data-letter="SMP"
     data-family="20"
     data-priority="02"
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="Yes"
     data-sreq="Adopted"
     data-tc="CEN/TC 135"
@@ -405,7 +397,7 @@
     data-milestones='{"i":"done","iii":"done","sreq":{"status":"adopted","label":"Adopted Oct 2025","date":"Oct 2025","url":"https://www.itb.pl/wp-content/uploads/2026/01/C20256586_0.pdf"},"delivery":{"status":"overdue","label":"Due 15 Nov 2025","date":"15 Nov 2025","url":"https://www.itb.pl/wp-content/uploads/2026/01/C20256586_0.pdf"},"mandatory":"~2030","dpp":"~2031–2032"}'
     data-dpp-range='{"hen_earliest":"~2031\u20132032","hen_latest":"~2030\u20132031","ead_earliest":null,"ead_latest":null,"envelope":"~2030\u20132032","hen_count":12,"ead_count":28}'
     data-standards='{"standards":[{"id":"EN 1090-1","type":"hEN","name":"Execution of steel structures and aluminium structures \u2014 Conformity assessment","tc_wg":"CEN/TC 135","avcp":"2+","dpp_est":"~2031\u20132032","dpp_route":"hEN","delivery":"2025-11-15","dev_stage":"10.99","stage":"New project approved (mandate rejected summer 2025)","sreq_table":"Table 2","pub_est":"~2028\u20132029","revision":"CPR 2011","cited":true,"notes":"SReq under CPR 305/2011. CRITICAL: European standardisation mandate for EN 1090-1 rejected by majority of EU member states summer 2025 \u2014 concerns over unclear scope, undefined terminology, unnecessary/missing performance characteristics. Stage dropped from 40.60 to 10.99. Revised mandate draft expected early 2026. Publication now ~2028\u20132029 at earliest."},{"id":"EN 15088","type":"hEN","name":"Aluminium and aluminium alloys \u2014 Structural products for construction works","tc_wg":"CEN/TC 135","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2025-11-15","sreq_table":"Table 2","pub_est":"Q3 2026","revision":"CPR 2011","cited":true,"notes":"SReq under CPR 305/2011."},{"id":"EN 10340","type":"hEN","name":"Steel castings for structural uses","tc_wg":"CEN/TC 135","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2025-11-15","sreq_table":"Table 2","revision":"CPR 2011","cited":true,"notes":"SReq under CPR 305/2011."},{"id":"EN 14399-1","type":"hEN","name":"High-strength structural bolting assemblies for preloading \u2014 General requirements","tc_wg":"CEN/TC 135","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2025-11-15","sreq_table":"Table 2","revision":"CPR 2011","cited":true},{"id":"EN 15048-1","type":"hEN","name":"Non-preloaded structural bolting assemblies \u2014 General requirements","tc_wg":"CEN/TC 135","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2025-11-15","sreq_table":"Table 2","revision":"CPR 2011","cited":true},{"id":"EN 13479","type":"hEN","name":"Welding consumables \u2014 General product standard for filler metals and fluxes","tc_wg":"CEN/TC 135","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2025-11-15","sreq_table":"Table 2","revision":"CPR 2011","cited":true},{"id":"EN 14509","type":"hEN","name":"Double skin metal faced insulating sandwich panels \u2014 Factory made products","tc_wg":"CEN/TC 128","avcp":"1","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2025-11-15","sreq_table":"Table 2","revision":"CPR 2011","cited":true,"notes":"Also relevant to ROC (roof coverings) and WCF (wall/ceiling finishes)."},{"id":"EN 10025-1","type":"hEN","name":"Hot rolled products of structural steels \u2014 General technical delivery conditions","tc_wg":"CEN/TC 135","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","revision":"CPR 2011","cited":true},{"id":"EN 10210-1","type":"hEN","name":"Hot finished structural hollow sections of non-alloy and fine grain steels \u2014 Part 1: Technical delivery conditions","tc_wg":"CEN/TC 135","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","revision":"CPR 2011","cited":true},{"id":"EN 10219-1","type":"hEN","name":"Cold formed welded structural hollow sections of non-alloy and fine grain steels \u2014 Part 1: Technical delivery conditions","tc_wg":"CEN/TC 135","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","revision":"CPR 2011","cited":true},{"id":"EN 10088-4","type":"hEN","name":"Stainless steels \u2014 Part 4: Technical delivery conditions for sheet/plate and strip of corrosion resisting steels for construction purposes","tc_wg":"CEN/TC 135","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","revision":"CPR 2011","cited":true},{"id":"EN 10088-5","type":"hEN","name":"Stainless steels \u2014 Part 5: Technical delivery conditions for bars, rods, wire, sections and bright products of corrosion resisting steels for construction purposes","tc_wg":"CEN/TC 135","avcp":"2+","dpp_est":"~2030\u20132031","dpp_route":"hEN","revision":"CPR 2011","cited":true},{"id":"EAD 200001-00-0602","type":"EAD","name":"Cold-formed thin gauge steel members and sheeting","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200002-00-0602","type":"EAD","name":"Stainless steel structural profiles","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200005-00-0602","type":"EAD","name":"Structural steel piles \u2014 welded tubular","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200006-00-0602","type":"EAD","name":"Hot-finished rectangular steel hollow sections with external ribs","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200008-00-0602","type":"EAD","name":"Self-tapping and self-drilling screws for steel construction","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200009-00-0602","type":"EAD","name":"Structural steel connectors with integrated fire resistance","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200010-00-0602","type":"EAD","name":"Aluminium structural sections for permanent construction","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200012-00-0602","type":"EAD","name":"Welded steel I-beams for construction use","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200014-00-0602","type":"EAD","name":"Structural stainless steel tubular sections","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200016-00-0602","type":"EAD","name":"Steel wire rope assemblies for structural applications","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200017-00-0602","type":"EAD","name":"Cold-formed welded steel angles for structural use","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200018-00-0602","type":"EAD","name":"Gabion mesh products for civil engineering","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200019-00-0602","type":"EAD","name":"Modular steel pile system with threaded connections","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200020-00-0602","type":"EAD","name":"High-strength steel grades for structural hollow sections","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200021-00-0602","type":"EAD","name":"Sandwich panels with metallic facings \u2014 profiled","avcp":"1","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200022-00-0602","type":"EAD","name":"Steel foundation piles with flanged connections","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200023-00-0602","type":"EAD","name":"Steel tension rod systems for structural applications","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200024-00-0602","type":"EAD","name":"Corrosion protection systems for structural steel","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200025-00-0602","type":"EAD","name":"Steel gratings for construction use","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200026-00-0602","type":"EAD","name":"Profiled steel sheets for composite floor decks","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200027-00-0602","type":"EAD","name":"Structural cast iron products for building construction","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200029-00-0602","type":"EAD","name":"Duplex stainless steel reinforcing bars","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200030-00-0602","type":"EAD","name":"Steel permanent formwork for concrete","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200031-00-0602","type":"EAD","name":"Hollow steel micro-piles","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200032-00-0602","type":"EAD","name":"Steel sheet pile sections with improved interlocks","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200033-00-0602","type":"EAD","name":"Welded hollow section connections for structural joints","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200034-00-0602","type":"EAD","name":"Steel road barriers and vehicle restraint systems","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."},{"id":"EAD 200035-00-0602","type":"EAD","name":"Metallic cable tray systems for structural cable support","avcp":"2+","regime":"old","expires":"2031-01-09","dpp_est":"~2032","cited":true,"notes":"Old-regime EAD under CPR 305/2011."}],"summary":{"hen_count":12,"ead_count":28,"hen_listed":12,"ead_listed":28,"completeness":"full","source":"SReq C(2025) 6586 + EOTA PA 20. 12 hENs + 28 EADs."}}'
-    data-info="<p><strong>About this family:</strong> Covers structural steel and aluminium products used in load-bearing construction, including hot-rolled and cold-formed sections, stainless steel structural members, high-strength and non-preloaded bolting assemblies, welding consumables, and insulating sandwich panels. Conformity assessment centres on the execution of steel and aluminium structures and their components. Standardisation is led by CEN/TC 135.</p><p><strong>Current harmonised standard:</strong> EN 1090-1:2009+A1:2011 is the only cited harmonised standard for this family (conformity assessment under CPR 305/2011). Supported by execution standards EN 1090-2:2018+A1:2024 (steel, sustainability provisions added), EN 1090-3:2019 (aluminium), EN 1090-4:2018 and EN 1090-5:2017 (cold-formed). CEN/TS 1090-201:2024 covers structural steel reuse.</p><p><strong>EN 1090-1 mandate rejection (summer 2025):</strong> The European standardisation mandate for the EN 1090-1 revision was <strong>rejected by a majority of EU member states</strong>. Concerns raised: unclear scope, undefined terminology, unnecessary/missing performance characteristics (welding suitability, fracture toughness, fatigue strength removed). CEN development stage dropped from 40.60 to 10.99. A revised mandate is expected early 2026. Publication now estimated ~2028–2029 at earliest.</p><p><strong>Standards in development</strong> (per <a href=&quot;https://standards.cencenelec.eu/ords/f?p=205:22:::::FSP_ORG_ID,FSP_LANG_ID:6117,25&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>TC 135 work programme</a>):<br>• prEN 1090-1 rev — mandate rejected, back to stage 10.99<br>• prEN 1090-4 rev — cold-formed steel (stage 40.60, vote May 2026, NOT harmonised under CPR)<br>• prEN 1090-5 rev — cold-formed aluminium (stage 40.60, vote Jul 2026, NOT harmonised under CPR)<br>• prEN 17662 — EPD PCR for steel/iron/aluminium (stage 45.99, FV dispatched Dec 2023 — possibly stalled)</p><p><strong>28+ EADs under Product Area 20:</strong> Structural steel sections (EAD 200017, 200022, 200116), tension rods/cables (EAD 200001, 200002, 200006, 200032), piles/foundations (EAD 200005, 200014, 200036, 200043, 200077), gabions/baskets (EAD 200019, 200020, 200026, 200039), connections (EAD 200033, 200086, 200102), corrosion protection (EAD 200126, 200188), and others. Previously reported as 0 EADs.</p><p><strong>Standardisation request:</strong> Acquis Milestone I (product scope) and Milestone III (essential characteristics) both completed. <a href=&quot;https://www.itb.pl/wp-content/uploads/2026/01/C20256586_0.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Commission Implementing Decision C(2025) 6586</a>, adopted 2 October 2025 under CPR 305/2011 (replacing mandate M/120). 12 standards (5 new, 7 revisions), all due <strong>15 November 2025</strong> — deadline missed (~6 weeks from adoption). Decision expires 31 Jan 2027. <a href=&quot;https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:772:FIN&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>COM(2025) 772</a> confirms SMP as first-wave priority for CPR 2024/3110. New SReq under new CPR planned Q2 2026 (delivery Q3 2027).</p><p><strong>DPP outlook:</strong> Products currently CE-marked under the old CPR 305/2011 are not subject to DPP obligations. The rejection of the mandate for the main standard revision in summer 2025 has pushed the new harmonised technical specification under CPR 2024/3110 back significantly, making DPP unlikely before <strong>~2031–2032</strong>.</p>">
+    data-info="<p><strong>About this family:</strong> Covers structural steel and aluminium products used in load-bearing construction, including hot-rolled and cold-formed sections, stainless steel structural members, high-strength and non-preloaded bolting assemblies, welding consumables, and insulating sandwich panels. Conformity assessment centres on the execution of steel and aluminium structures and their components. Standardisation is led by CEN/TC 135.</p><p><strong>Current harmonised standards:</strong> EN 1090-1:2009+A1:2011 is the primary conformity assessment standard, but the OJ-cited harmonised standards for this family also include EN 15088:2005, EN 10340:2007, EN 14399-1:2015, EN 15048-1:2007, EN 13479:2017, EN 10025-1:2004, EN 10210-1:2006, EN 10219-1:2006, EN 10088-4:2009, and EN 10088-5:2009 (all under mandate M/120 and CPR 305/2011). Supported by execution standards EN 1090-2:2018+A1:2024 (steel, sustainability provisions added), EN 1090-3:2019 (aluminium), EN 1090-4:2018 and EN 1090-5:2017 (cold-formed). CEN/TS 1090-201:2024 covers structural steel reuse.</p><p><strong>EN 1090-1 mandate rejection (summer 2025):</strong> The European standardisation mandate for the EN 1090-1 revision was <strong>rejected by a majority of EU member states</strong>. Concerns raised: unclear scope, undefined terminology, unnecessary/missing performance characteristics (welding suitability, fracture toughness, fatigue strength removed). CEN development stage dropped from 40.60 to 10.99. A revised mandate is expected early 2026. Publication now estimated ~2028–2029 at earliest.</p><p><strong>Standards in development</strong> (per <a href=&quot;https://standards.cencenelec.eu/ords/f?p=205:22:::::FSP_ORG_ID,FSP_LANG_ID:6117,25&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>TC 135 work programme</a>):<br>• prEN 1090-1 rev — mandate rejected, back to stage 10.99<br>• prEN 1090-4 rev — cold-formed steel (stage 40.60, vote May 2026, NOT harmonised under CPR)<br>• prEN 1090-5 rev — cold-formed aluminium (stage 40.60, vote Jul 2026, NOT harmonised under CPR)<br>• prEN 17662 — EPD PCR for steel/iron/aluminium (stage 45.99, FV dispatched Dec 2023 — possibly stalled)</p><p><strong>28+ EADs under Product Area 20:</strong> Structural steel sections (EAD 200017, 200022, 200116), tension rods/cables (EAD 200001, 200002, 200006, 200032), piles/foundations (EAD 200005, 200014, 200036, 200043, 200077), gabions/baskets (EAD 200019, 200020, 200026, 200039), connections (EAD 200033, 200086, 200102), corrosion protection (EAD 200126, 200188), and others. Previously reported as 0 EADs.</p><p><strong>Standardisation request:</strong> Acquis Milestone I (product scope) and Milestone III (essential characteristics) both completed. <a href=&quot;https://www.itb.pl/wp-content/uploads/2026/01/C20256586_0.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Commission Implementing Decision C(2025) 6586</a>, adopted 2 October 2025 under CPR 305/2011 (replacing mandate M/120). 12 standards (5 new, 7 revisions), all due <strong>15 November 2025</strong> — deadline missed (~6 weeks from adoption). Decision expires 31 Jan 2027. <a href=&quot;https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=COM:2025:772:FIN&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>COM(2025) 772</a> confirms SMP as first-wave priority for CPR 2024/3110. New SReq under new CPR planned Q2 2026 (delivery Q3 2027).</p><p><strong>DPP outlook:</strong> Products currently CE-marked under the old CPR 305/2011 are not subject to DPP obligations. The rejection of the mandate for the main standard revision in summer 2025 has pushed the new harmonised technical specification under CPR 2024/3110 back significantly, making DPP unlikely before <strong>~2031–2032</strong>.</p>">
     <img src="Blogs/cpr-digital-product-passport/product-families/structural-metallic.svg" alt="Structural metallic products — Annex VII family #20" loading="lazy">
     <span class="cpr-card__name">Structural Metallic Products</span>
     <span class="cpr-card__family">Annex VII #20 · SMP</span>
@@ -416,7 +408,7 @@
     data-letter="CEM"
     data-family="15"
     data-priority="05"
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="Yes"
     data-sreq="Adopted"
     data-tc="CEN/TC 51"
@@ -424,7 +416,7 @@
     data-milestones='{"i":"done","iii":"done","sreq":{"status":"adopted","label":"Adopted Jul 2025","date":"Jul 2025","url":"https://ec.europa.eu/transparency/documents-register/api/files/C(2025)4828_0/de00000001073540?rendition=false"},"delivery":"Jun 2027–Jun 2028","mandatory":"Q4 2028–2029","dpp":"~2029–2030"}'
     data-dpp-range='{"hen_earliest":"~2029\u20132030","hen_latest":"~2030\u20132031","ead_earliest":"~2032","ead_latest":"~2032","envelope":"~2029\u20132032","hen_count":9,"ead_count":1}'
     data-standards='{"standards":[{"id":"EN 197-1","type":"hEN","name":"Common cements \u2014 Composition, specifications and conformity criteria","tc_wg":"CEN/TC 51","avcp":"1+","dpp_est":"~2029\u20132030","dpp_route":"hEN","delivery":"2027-06-30","dev_stage":"10.99","stage":"New project approved","sreq_table":"Table 2","pub_est":"Q1 2027","mand_est":"~Q4 2028","revision":"CPR 2011","cited":true,"notes":"Earliest CEM standard. SReq under CPR 2024/3110 \u2014 DPP applies directly. Only standard with registered CEN prEN (stage 10.99, approved 2 Jul 2025). Revision integrates EN 197-5 (CEM II/C-M, CEM VI low-carbon) and EN 197-6 (recycled building materials). EN 196-12:2024 (reactivity test methods) supports performance-based approach."},{"id":"EN 16908","type":"hEN","name":"Cement and building lime \u2014 EPD product category rules","tc_wg":"CEN/TC 51","dpp_route":"hEN","delivery":"2027-06-30","sreq_table":"Table 1","pub_est":"Q2 2027","cited":false,"notes":"EPD PCR \u2014 not a product standard, no independent DPP trigger."},{"id":"EN 413-1","type":"hEN","name":"Masonry cement \u2014 Composition, specifications and conformity criteria","tc_wg":"CEN/TC 51","avcp":"1+","dpp_est":"~2030","dpp_route":"hEN","delivery":"2027-12-31","sreq_table":"Table 2","pub_est":"Q3 2027","mand_est":"~Q2 2029","revision":"CPR 2011","cited":true},{"id":"EN 459-1","type":"hEN","name":"Building lime \u2014 Definitions, specifications and conformity criteria","tc_wg":"CEN/TC 51","avcp":"2+","dpp_est":"~2030","dpp_route":"hEN","delivery":"2027-12-31","sreq_table":"Table 2","pub_est":"Q3 2027","mand_est":"~Q2 2029","revision":"CPR 2011","cited":true},{"id":"EN 15368","type":"hEN","name":"Hydraulic binders for non-structural applications","tc_wg":"CEN/TC 51","avcp":"1+","dpp_est":"~2030","dpp_route":"hEN","delivery":"2027-12-31","sreq_table":"Table 2","pub_est":"Q4 2027","mand_est":"~Q2 2029","revision":"CPR 2011","cited":true},{"id":"EN 14216","type":"hEN","name":"Cement \u2014 Very low heat special cements","tc_wg":"CEN/TC 51","avcp":"1+","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2028-06-30","sreq_table":"Table 2","pub_est":"Q1 2028","mand_est":"~Q4 2029","revision":"CPR 2011","cited":true},{"id":"EN 14647","type":"hEN","name":"Calcium aluminate cement \u2014 Composition, specifications and conformity criteria","tc_wg":"CEN/TC 51","avcp":"1+","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2028-06-30","sreq_table":"Table 2","pub_est":"Q1 2028","mand_est":"~Q4 2029","revision":"CPR 2011","cited":true},{"id":"EN 15743","type":"hEN","name":"Supersulphated cement \u2014 Composition, specifications and conformity criteria","tc_wg":"CEN/TC 51","avcp":"1+","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2028-06-30","sreq_table":"Table 2","pub_est":"Q1 2028","mand_est":"~Q4 2029","revision":"CPR 2011","cited":true},{"id":"EN 13282","type":"hEN","name":"Hydraulic road binders","tc_wg":"CEN/TC 51","avcp":"1+","dpp_est":"~2030\u20132031","dpp_route":"hEN","delivery":"2028-06-30","sreq_table":"Table 2","pub_est":"Q1 2028","mand_est":"~Q4 2029","revision":"CPR 2011","cited":true},{"id":"EAD 150080-00-301","type":"EAD","name":"Blended cements with reduced clinker content","avcp":"1+","regime":"old","expires":"9 Jan 2031","new_ead":"~2027\u20132028","dpp_est":"~2032","cited":true,"notes":"Ecocem ETA 23-0877 (Cerema, Dec 2023). EAD formally cited in OJEU Dec 2025 \u2014 milestone for low-carbon cement. Ecocem building EUR 50M ACT facility in Dunkirk (300kt/yr, commercial H2 2026). Old-regime EAD (CPR 305/2011). DPP requires new EAD under CPR 2024/3110 (~2032). Commission signaled EOTA mandate by 2027 but old EAD valid until 2031."}],"summary":{"hen_count":9,"ead_count":1,"hen_listed":9,"ead_listed":1,"completeness":"full","source":"SReq C(2025) 4828 Annex I + EOTA database"}}'
-    data-info="<p><strong>About this family:</strong> Covers the full range of cements, building limes, and hydraulic binders used in construction, from common Portland cements and masonry cements to specialist types such as calcium aluminate, supersulphated, and very low heat cements, as well as hydraulic road binders. Cement is explicitly carved out of the ESPR, meaning sustainability requirements are set under the CPR instead. Standardisation is led by CEN/TC 51.</p><p><strong>Current harmonised standards:</strong> EN 197-1:2011 (common cement), EN 14216:2015, EN 413-1:2011, EN 14647:2005, EN 15743:2010+A1:2015, EN 459-1:2015, EN 13282-1:2013, EN 15368:2008+A1:2010. All cited under old CPR 305/2011 via mandate M/114 (1997). GWP declarations mandatory from 8 Jan 2026 (Annex II). CBAM financial obligations from 1 Jan 2026.</p><p><strong>Standards in development:</strong> prEN 197-1 rev — new project approved 2 July 2025 by CEN/TC 51 (stage 10.99). Revision will integrate EN 197-5 (CEM II/C-M and CEM VI low-carbon cements) and EN 197-6 (cement with recycled building materials), enabling wider range of low-carbon cements. EN 196-12:2024 published Dec 2024 (reactivity test methods supporting performance-based approach). <strong style=&quot;color:#E71846;&quot;>NOTE: Only EN 197-1 has a registered CEN prEN project.</strong> All other 8 standards covered by C(2025) 4828 have no registered prEN yet — risk for 2027-2028 deadlines.</p><p><strong>Standardisation request:</strong> Acquis Milestone I (product scope) and Milestone III (essential characteristics) both completed. <a href=&quot;https://ec.europa.eu/transparency/documents-register/api/files/C(2025)4828_0/de00000001073540?rendition=false&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Commission Implementing Decision C(2025) 4828</a>, adopted <strong>28 July 2025</strong>. Confirmed under <strong>CPR 2024/3110</strong> (title: &quot;in support of Regulation (EU) 2024/3110&quot;). DPP applies directly. Replaces mandate M/114 (expired 31 Dec 2025). 10 deliverables — 1 new TR + 9 revisions (<a href=&quot;https://ec.europa.eu/transparency/documents-register/api/files/C(2025)4828_1/de00000001073541?rendition=false&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Annex I</a>). Deadlines: EN 197-1 + EN 16908 by <strong>30 Jun 2027</strong>; EN 413-1, EN 459-1, EN 15368, alkali-activated TR by <strong>31 Dec 2027</strong>; EN 14216, EN 14647, EN 15743, EN 13282 by <strong>30 Jun 2028</strong>. Decision expires 30 Jun 2030.</p><p><strong>EAD route:</strong> EAD 150080-00-0301 (blended cements with reduced clinker content) <strong>formally cited in OJEU December 2025</strong> — milestone for low-carbon cement technologies. Ecocem holds ETA 23-0877 (ACT technology, issued by Cerema Dec 2023) and is building a EUR 50M production facility in Dunkirk (300kt/yr capacity, commercial operation H2 2026). Commission signalled Feb 2025 that an EOTA mandate for alkali-activated cements EAD could follow by 2027.</p><p><strong>Alkali-activated cements:</strong> Downgraded to Technical Report in C(2025) 4828, despite <a href=&quot;https://ecostandard.org/wp-content/uploads/2025/05/Joint-letter-draft-standardisation-requests-for-cement-13-May-2025.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>strong stakeholder opposition</a> (19 signatories). CEN/TC 51 refused to develop standards. A performance-based standard for alternative low-carbon cements requested for delivery by 2030.</p><p><strong>DPP outlook:</strong> The standardisation request is confirmed under CPR 2024/3110, so the resulting standards will directly trigger DPP obligations. The lead standard for common cements is due <strong>June 2027</strong>, with mandatory adoption expected by <strong>late 2028</strong> and the harmonised technical specification in force around 2029 to 2030. DPP is estimated around <strong>~2029–2030</strong>, making this one of the earliest families likely to require a digital product passport.</p>">
+    data-info="<p><strong>About this family:</strong> Covers the full range of cements, building limes, and hydraulic binders used in construction, from common Portland cements and masonry cements to specialist types such as calcium aluminate, supersulphated, and very low heat cements, as well as hydraulic road binders. Cement is explicitly carved out of the ESPR, meaning sustainability requirements are set under the CPR instead. Standardisation is led by CEN/TC 51.</p><p><strong>Current harmonised standards:</strong> EN 197-1:2011 (common cement), EN 14216:2015, EN 413-1:2011, EN 14647:2005, EN 15743:2010+A1:2015, EN 459-1:2010, EN 13282-1:2013, EN 15368:2008+A1:2010. All cited under old CPR 305/2011 via mandate M/114 (1997). GWP declarations mandatory from 8 Jan 2026 (Annex II). CBAM financial obligations from 1 Jan 2026.</p><p><strong>Standards in development:</strong> prEN 197-1 rev — new project approved 2 July 2025 by CEN/TC 51 (stage 10.99). Revision will integrate EN 197-5 (CEM II/C-M and CEM VI low-carbon cements) and EN 197-6 (cement with recycled building materials), enabling wider range of low-carbon cements. EN 196-12:2024 published Dec 2024 (reactivity test methods supporting performance-based approach). <strong style=&quot;color:#E71846;&quot;>NOTE: Only EN 197-1 has a registered CEN prEN project.</strong> All other 8 standards covered by C(2025) 4828 have no registered prEN yet — risk for 2027-2028 deadlines.</p><p><strong>Standardisation request:</strong> Acquis Milestone I (product scope) and Milestone III (essential characteristics) both completed. <a href=&quot;https://ec.europa.eu/transparency/documents-register/api/files/C(2025)4828_0/de00000001073540?rendition=false&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Commission Implementing Decision C(2025) 4828</a>, adopted <strong>28 July 2025</strong>. Confirmed under <strong>CPR 2024/3110</strong> (title: &quot;in support of Regulation (EU) 2024/3110&quot;). DPP applies directly. Replaces mandate M/114 (expired 31 Dec 2025). 10 deliverables — 1 new TR + 9 revisions (<a href=&quot;https://ec.europa.eu/transparency/documents-register/api/files/C(2025)4828_1/de00000001073541?rendition=false&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Annex I</a>). Deadlines: EN 197-1 + EN 16908 by <strong>30 Jun 2027</strong>; EN 413-1, EN 459-1, EN 15368, alkali-activated TR by <strong>31 Dec 2027</strong>; EN 14216, EN 14647, EN 15743, EN 13282 by <strong>30 Jun 2028</strong>. Decision expires 30 Jun 2030.</p><p><strong>EAD route:</strong> EAD 150080-00-0301 (blended cements with reduced clinker content) <strong>formally cited in OJEU December 2025</strong> — milestone for low-carbon cement technologies. Ecocem holds ETA 23-0877 (ACT technology, issued by Cerema Dec 2023) and is building a EUR 50M production facility in Dunkirk (300kt/yr capacity, commercial operation H2 2026). Commission signalled Feb 2025 that an EOTA mandate for alkali-activated cements EAD could follow by 2027.</p><p><strong>Alkali-activated cements:</strong> Downgraded to Technical Report in C(2025) 4828, despite <a href=&quot;https://ecostandard.org/wp-content/uploads/2025/05/Joint-letter-draft-standardisation-requests-for-cement-13-May-2025.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>strong stakeholder opposition</a> (19 signatories). CEN/TC 51 refused to develop standards. A performance-based standard for alternative low-carbon cements requested for delivery by 2030.</p><p><strong>DPP outlook:</strong> The standardisation request is confirmed under CPR 2024/3110, so the resulting standards will directly trigger DPP obligations. The lead standard for common cements is due <strong>June 2027</strong>, with mandatory adoption expected by <strong>late 2028</strong> and the harmonised technical specification in force around 2029 to 2030. DPP is estimated around <strong>~2029–2030</strong>, making this one of the earliest families likely to require a digital product passport.</p>">
     <img src="Blogs/cpr-digital-product-passport/product-families/cement.svg" alt="Cement, building limes, and other hydraulic binders — Annex VII family #15" loading="lazy">
     <span class="cpr-card__name">Cement &amp; Building Limes</span>
     <span class="cpr-card__family">Annex VII #15 · CEM</span>
@@ -435,7 +427,7 @@
     data-letter="CHI"
     data-family="6"
     data-priority="27"
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="Yes (2026)"
     data-sreq=""
     data-tc="CEN/TC 166"
@@ -454,7 +446,7 @@
     data-letter="RCP"
     data-family="23"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 227"
@@ -473,7 +465,7 @@
     data-letter="FLO"
     data-family="19"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 134"
@@ -492,7 +484,7 @@
     data-letter="KAS"
     data-family="34"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="EOTA (EADs)"
@@ -511,7 +503,7 @@
     data-letter="LAD"
     data-family="36"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 128 (existing)"
@@ -531,7 +523,7 @@
     data-letter="RPS"
     data-family="16"
     data-priority="03"
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="Yes"
     data-sreq="In preparation"
     data-tc="CEN/TC 459/SC 4"
@@ -550,7 +542,7 @@
     data-letter="DWS"
     data-family="2"
     data-priority="04"
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="Yes"
     data-sreq="Draft"
     data-tc="CEN/TC 33"
@@ -569,7 +561,7 @@
     data-letter="TIP"
     data-family="4"
     data-priority="06"
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="Yes"
     data-sreq=""
     data-tc="CEN/TC 88"
@@ -588,7 +580,7 @@
     data-letter="GLA"
     data-family="30"
     data-priority="28"
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="Yes"
     data-sreq=""
     data-tc="CEN/TC 129"
@@ -607,7 +599,7 @@
     data-letter="STP"
     data-family="13"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="Yes"
     data-sreq=""
     data-tc="CEN/TC 124"
@@ -626,7 +618,7 @@
     data-letter="FFF"
     data-family="10"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 191"
@@ -645,7 +637,7 @@
     data-letter="WCF"
     data-family="21"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 128"
@@ -664,7 +656,7 @@
     data-letter="GYP"
     data-family="7"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 241"
@@ -683,7 +675,7 @@
     data-letter="SBE"
     data-family="5"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 167"
@@ -702,7 +694,7 @@
     data-letter="SHA"
     data-family="27"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 130"
@@ -721,7 +713,7 @@
     data-letter="ROC"
     data-family="22"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 128"
@@ -740,7 +732,7 @@
     data-letter="CIF"
     data-family="12"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 226"
@@ -760,7 +752,7 @@
     data-letter="CMG"
     data-family="26"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="Yes"
     data-sreq=""
     data-tc="CEN/TC 104"
@@ -779,7 +771,7 @@
     data-letter="AGG"
     data-family="24"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="Yes"
     data-sreq=""
     data-tc="CEN/TC 154"
@@ -798,7 +790,7 @@
     data-letter="CWP"
     data-family="9"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="Yes"
     data-sreq=""
     data-tc="CEN/TC 33 WG 6"
@@ -817,7 +809,7 @@
     data-letter="ADH"
     data-family="25"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 193"
@@ -836,7 +828,7 @@
     data-letter="SEA"
     data-family="32"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 349"
@@ -855,7 +847,7 @@
     data-letter="FPP"
     data-family="35"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 127"
@@ -875,7 +867,7 @@
     data-letter="MAS"
     data-family="17"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="Yes"
     data-sreq=""
     data-tc="CEN/TC 125"
@@ -895,7 +887,7 @@
     data-letter="WWD"
     data-family="18"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 165"
@@ -914,7 +906,7 @@
     data-letter="FIX"
     data-family="33"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="EOTA (ETAs)"
@@ -933,7 +925,7 @@
     data-letter="MEM"
     data-family="3"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 254"
@@ -952,7 +944,7 @@
     data-letter="GEO"
     data-family="8"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 189"
@@ -972,7 +964,7 @@
     data-letter="SAP"
     data-family="11"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 163"
@@ -991,7 +983,7 @@
     data-letter="PTA"
     data-family="28"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 155"
@@ -1010,7 +1002,7 @@
     data-letter="CAB"
     data-family="31"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CLC/TC 20"
@@ -1030,7 +1022,7 @@
     data-letter="WBP"
     data-family="14"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="Yes"
     data-sreq=""
     data-tc="CEN/TC 112"
@@ -1050,7 +1042,7 @@
     data-letter="DWP"
     data-family="29"
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc=""
@@ -1070,7 +1062,7 @@
     data-letter="DPW"
     data-family=""
     data-priority=""
-    data-updated="2026-02-21"
+    data-updated="2026-02-22"
     data-acquis="No"
     data-sreq=""
     data-tc="CEN/TC 139"
@@ -1161,23 +1153,43 @@
   window.buildHenDppInfo = function(s, stageLabels) {
     var steps = [];
     steps.push('<div class="cpr-dpp-info-popup__title">DPP pathway \u2014 ' + (s.id || 'hEN') + '</div>');
-    if (s.sreq_table) {
-      steps.push('<div class="cpr-dpp-info-popup__step"><b>1. Standardisation request</b> \u2014 ' + s.sreq_table + (s.revision ? ' (' + s.revision + ')' : '') + '</div>');
+
+    // Step 1: Current CPR regime
+    var stepNum = 1;
+    if (s.current_cpr) {
+      var cprLabel = s.current_cpr === '2024/3110' ? 'CPR 2024/3110' : 'CPR 305/2011';
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>' + stepNum + '. Current regime:</b> Cited under ' + cprLabel + '</div>');
+      stepNum++;
     }
-    if (s._stage !== undefined) {
-      steps.push('<div class="cpr-dpp-info-popup__step"><b>2. CEN development</b> \u2014 ' + stageLabels[s._stage] + (s.stage ? ' (' + s.stage + ')' : '') + '</div>');
+
+    // Step 2: SReq / CPR regime context
+    if (s.sreq_cpr === '305/2011') {
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>' + stepNum + '. Active SReq:</b> Under CPR 305/2011 \u2014 does not trigger DPP directly. A subsequent SReq under CPR 2024/3110 is needed.</div>');
+      stepNum++;
+    } else if (s.sreq_cpr === '2024/3110') {
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>' + stepNum + '. Next SReq:</b> Under CPR 2024/3110 \u2014 resulting HTS will trigger DPP directly.</div>');
+      stepNum++;
+    } else if (s.sreq_table) {
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>' + stepNum + '. Standardisation request:</b> ' + s.sreq_table + '</div>');
+      stepNum++;
     }
+
+    // Remaining steps: delivery, pub, mandatory, DPP
     if (s.delivery) {
-      steps.push('<div class="cpr-dpp-info-popup__step"><b>3. Delivery deadline:</b> <span class="cpr-dpp-date">' + s.delivery + '</span></div>');
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>' + stepNum + '. Delivery deadline:</b> <span class="cpr-dpp-date">' + s.delivery + '</span></div>');
+      stepNum++;
     }
     if (s.pub_est) {
-      steps.push('<div class="cpr-dpp-info-popup__step"><b>4. Publication est:</b> <span class="cpr-dpp-date">' + s.pub_est + '</span></div>');
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>' + stepNum + '. Publication est:</b> <span class="cpr-dpp-date">' + s.pub_est + '</span></div>');
+      stepNum++;
     }
     if (s.mand_est) {
-      steps.push('<div class="cpr-dpp-info-popup__step"><b>5. Mandatory est:</b> <span class="cpr-dpp-date">' + s.mand_est + '</span></div>');
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>' + stepNum + '. Mandatory est:</b> <span class="cpr-dpp-date">' + s.mand_est + '</span></div>');
+      stepNum++;
     }
     if (s.dpp_est) {
-      steps.push('<div class="cpr-dpp-info-popup__step"><b>6. DPP obligation est:</b> <span class="cpr-dpp-date">' + s.dpp_est + '</span></div>');
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>' + stepNum + '. DPP obligation est:</b> <span class="cpr-dpp-date">' + s.dpp_est + '</span></div>');
+      stepNum++;
     }
     if (s.notes) {
       steps.push('<div class="cpr-dpp-info-popup__step" style="margin-top:6px;font-style:italic;color:#8CA9BF;font-size:0.62rem;">' + s.notes + '</div>');
@@ -1443,6 +1455,14 @@
       // Pre-compute stages for all hEN standards
       henStds.forEach(function(s) { s._stage = computeHenStage(s); });
 
+      // Enrich each hEN with CPR regime fields
+      var cardLetter = card.getAttribute('data-letter') || '';
+      var oldCprSreqFamilies = { PCR: true, SMP: true };
+      henStds.forEach(function(s) {
+        s.current_cpr = (s.revision === 'CPR 2011') ? '305/2011' : '2024/3110';
+        s.sreq_cpr = oldCprSreqFamilies[cardLetter] ? '305/2011' : '2024/3110';
+      });
+
       // === hEN Route: unified 7-dot timeline + table ===
       if (henStds.length > 0) {
         sh += '<div style="margin-top:4px;font-size:0.62rem;font-weight:700;color:#006B7F;text-transform:uppercase;letter-spacing:0.06em;">hEN Route</div>';
@@ -1549,17 +1569,12 @@
           }
           dots += '</span>';
           var tcWg = s.tc_wg || '\u2014';
-          var dppCell;
-          if (s.revision === 'CPR 2011') {
-            dppCell = '<span style="font-size:0.56rem;color:#B87800;font-weight:600;">SReq under CPR\u00a02011</span>';
-          } else {
-            dppCell = '<span style="font-weight:600;color:#009BBB;">' + (s.dpp_est || '\u2014') + '</span>';
-          }
+          var dppCell = '<span style="font-weight:600;color:#009BBB;">' + (s.dpp_est || '\u2014') + '</span>';
           var infoHtml = buildHenDppInfo(s, stageLabels).replace(/'/g, '&#39;').replace(/"/g, '&quot;');
           dppCell += ' <span class="cpr-dpp-info-btn" data-info="' + infoHtml + '" title="DPP reasoning">i</span>';
           sh += '<tr>';
           sh += '<td>' + (s.id || '') + '</td>';
-          sh += '<td style="font-size:0.58rem;color:#3A5A6A;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + (s.name || '\u2014') + '</td>';
+          sh += '<td style="font-size:0.58rem;color:#3A5A6A;">' + (s.name || '\u2014') + '</td>';
           sh += '<td style="font-size:0.58rem;color:#5A7080;">' + tcWg + '</td>';
           sh += '<td>' + dots + ' <span style="font-size:0.58rem;color:#5A7080;margin-left:2px;">' + stageLabels[stg] + '</span></td>';
           sh += '<td>' + (s.delivery ? s.delivery.replace(/-/g,'\u2011') : '\u2014') + '</td>';
@@ -1741,10 +1756,7 @@
     }
 
     if (sections.annex.length) {
-      var annexHtml = '<button class="cpr-modal__annex-toggle" aria-expanded="false">';
-      annexHtml += 'Additional details <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4.5L6 7.5L9 4.5"/></svg>';
-      annexHtml += '</button>';
-      annexHtml += '<div class="cpr-modal__annex-content">';
+      var annexHtml = '<div class="cpr-modal__annex-content">';
       // Convert each paragraph's bold header into a styled heading
       sections.annex.forEach(function(pHtml) {
         var tmp = document.createElement('div');
@@ -1765,16 +1777,6 @@
       annexHtml += '</div>';
       annexEl.innerHTML = annexHtml;
       annexEl.style.display = '';
-      // Wire toggle
-      var toggleBtn = annexEl.querySelector('.cpr-modal__annex-toggle');
-      var annexContent = annexEl.querySelector('.cpr-modal__annex-content');
-      if (toggleBtn && annexContent) {
-        toggleBtn.onclick = function() {
-          var open = annexContent.getAttribute('data-open') === 'true';
-          annexContent.setAttribute('data-open', open ? 'false' : 'true');
-          toggleBtn.setAttribute('aria-expanded', open ? 'false' : 'true');
-        };
-      }
     } else {
       annexEl.innerHTML = '';
       annexEl.style.display = 'none';
