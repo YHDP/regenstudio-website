@@ -134,20 +134,6 @@
   .cpr-card__dpp { display: block; font-size: 0.62rem; font-weight: 600; color: #009BBB; margin-top: 8px; letter-spacing: 0.01em; }
   .cpr-card__status { display: inline-block; font-size: 0.58rem; font-weight: 600; margin-top: 8px; padding: 2px 8px; border-radius: 99px; line-height: 1.4; }
 
-  /* Mini Gantt — card-level DPP timeline */
-  .cpr-gantt { width: 100%; margin-top: 10px; padding: 0 2px; }
-  .cpr-gantt__label { font-size: 0.56rem; font-weight: 600; color: #5A7080; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; text-align: left; }
-  .cpr-gantt__lanes { position: relative; width: 100%; }
-  .cpr-gantt__lane { display: flex; align-items: center; gap: 4px; height: 14px; margin-bottom: 2px; }
-  .cpr-gantt__lane-label { font-size: 0.52rem; font-weight: 600; color: #5A7080; width: 22px; text-align: right; flex-shrink: 0; }
-  .cpr-gantt__track { flex: 1; position: relative; height: 6px; background: #EEF1F4; border-radius: 3px; overflow: hidden; }
-  .cpr-gantt__bar { position: absolute; height: 100%; border-radius: 3px; min-width: 8px; }
-  .cpr-gantt__bar--hen { background: linear-gradient(90deg, #009BBB, #0081A1); }
-  .cpr-gantt__bar--ead { background: linear-gradient(90deg, #00914B, #007A3D); }
-  .cpr-gantt__bar--single { background: linear-gradient(90deg, #009BBB, #00914B); }
-  .cpr-gantt__axis { display: flex; justify-content: space-between; padding-left: 26px; margin-top: 1px; }
-  .cpr-gantt__tick { font-size: 0.48rem; color: #A0B0BE; font-weight: 500; }
-  .cpr-gantt__counts { font-size: 0.52rem; color: #8CA9BF; margin-top: 3px; text-align: left; padding-left: 26px; }
   .cpr-card__status--green { background: rgba(0,145,75,0.1); color: #00914B; }
   .cpr-card__status--teal { background: rgba(0,155,187,0.1); color: #009BBB; }
   .cpr-card__status--blue { background: rgba(59,130,246,0.1); color: #3B82F6; }
@@ -198,13 +184,6 @@
     background: linear-gradient(135deg, rgba(0,145,75,0.06) 0%, rgba(0,155,187,0.04) 100%);
     border: 1px solid rgba(0,145,75,0.12);
   }
-  .cpr-modal__dpp-banner .cpr-gantt__label { font-size: 0.62rem; margin-bottom: 6px; }
-  .cpr-modal__dpp-banner .cpr-gantt__lane { height: 18px; margin-bottom: 3px; }
-  .cpr-modal__dpp-banner .cpr-gantt__lane-label { font-size: 0.58rem; width: 26px; }
-  .cpr-modal__dpp-banner .cpr-gantt__track { height: 10px; border-radius: 5px; }
-  .cpr-modal__dpp-banner .cpr-gantt__bar { border-radius: 5px; }
-  .cpr-modal__dpp-banner .cpr-gantt__axis { padding-left: 30px; margin-top: 3px; }
-  .cpr-modal__dpp-banner .cpr-gantt__tick { font-size: 0.56rem; }
   .cpr-modal__dpp-fallback { font-size: 0.82rem; font-weight: 600; color: #00914B; text-align: center; padding: 4px 0; }
   .cpr-modal__section { padding: 0 28px; }
   .cpr-modal__section-title {
@@ -243,14 +222,29 @@
 
   /* Modal — per-standard DPP breakdown */
   .cpr-modal__standards { padding: 0 28px; }
-  .cpr-modal__stds-gantt { margin: 12px 0 16px; padding: 12px 16px; background: #F8FAFB; border-radius: 10px; border: 1px solid #EEF1F4; }
-  .cpr-modal__stds-gantt .cpr-gantt__label { font-size: 0.62rem; margin-bottom: 6px; }
-  .cpr-modal__stds-gantt .cpr-gantt__lane { height: 18px; margin-bottom: 3px; }
-  .cpr-modal__stds-gantt .cpr-gantt__lane-label { font-size: 0.58rem; width: 26px; }
-  .cpr-modal__stds-gantt .cpr-gantt__track { height: 10px; border-radius: 5px; }
-  .cpr-modal__stds-gantt .cpr-gantt__bar { border-radius: 5px; }
-  .cpr-modal__stds-gantt .cpr-gantt__axis { padding-left: 30px; margin-top: 3px; }
-  .cpr-modal__stds-gantt .cpr-gantt__tick { font-size: 0.56rem; }
+  /* DPP info button & popup */
+  .cpr-dpp-info-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 13px; height: 13px; border-radius: 50%; border: 1.2px solid #009BBB;
+    background: #fff; color: #009BBB; font-size: 0.48rem; font-weight: 700; font-style: italic;
+    cursor: pointer; margin-left: 4px; vertical-align: middle; line-height: 1;
+    font-family: Georgia, serif; flex-shrink: 0;
+  }
+  .cpr-dpp-info-btn:hover { background: #009BBB; color: #fff; }
+  .cpr-dpp-info-btn--ead { border-color: #00914B; color: #00914B; }
+  .cpr-dpp-info-btn--ead:hover { background: #00914B; color: #fff; }
+  .cpr-dpp-info-popup {
+    position: fixed; z-index: 10001; max-width: 340px; padding: 12px 14px;
+    background: #fff; border: 1px solid #E2E8ED; border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.13); font-size: 0.68rem; line-height: 1.55;
+    color: #2A3A4A; display: none;
+  }
+  .cpr-dpp-info-popup__title { font-weight: 700; font-size: 0.62rem; color: #5A7080; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+  .cpr-dpp-info-popup__step { margin-bottom: 4px; }
+  .cpr-dpp-info-popup__step b { font-weight: 600; color: #1a2b36; }
+  .cpr-dpp-info-popup__step .cpr-dpp-date { font-weight: 600; color: #009BBB; }
+  .cpr-dpp-info-popup__step .cpr-dpp-date--ead { color: #00914B; }
+
   .cpr-modal__stds-table-wrap { overflow-x: auto; margin: 0 -4px; }
   .cpr-modal__stds-table { width: 100%; border-collapse: collapse; font-size: 0.7rem; line-height: 1.4; }
   .cpr-modal__stds-table th { text-align: left; font-weight: 600; color: #5A7080; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 6px 6px; border-bottom: 2px solid #E2E8ED; white-space: nowrap; }
@@ -876,71 +870,85 @@
 </div>
 
 <script>
-// Shared Gantt builder used by card face and modal banner
-function buildGanttHtml(range) {
-  function parseYear(s) {
-    if (!s) return null;
-    var m = s.match(/(\d{4})/);
-    return m ? parseInt(m[1]) : null;
-  }
-  function parseYearLate(s) {
-    if (!s) return null;
-    var parts = s.match(/(\d{4})/g);
-    return parts ? parseInt(parts[parts.length - 1]) : null;
-  }
+// DPP info popup singleton
+(function() {
+  var popup = document.createElement('div');
+  popup.className = 'cpr-dpp-info-popup';
+  document.body.appendChild(popup);
 
-  var henE = parseYear(range.hen_earliest);
-  var henL = parseYearLate(range.hen_latest);
-  var eadE = parseYear(range.ead_earliest);
-  var eadL = parseYearLate(range.ead_latest);
+  function hide() { popup.style.display = 'none'; popup._openBtn = null; }
 
-  var allYears = [henE, henL, eadE, eadL].filter(function(y) { return y !== null; });
-  var axisMin = Math.min.apply(null, allYears);
-  var axisMax = Math.max.apply(null, allYears);
-  if (axisMin === axisMax) { axisMin -= 1; axisMax += 1; }
-  var axisPad = 1;
-  axisMin -= axisPad;
-  axisMax += axisPad;
-  var axisSpan = axisMax - axisMin;
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.cpr-dpp-info-btn');
+    if (btn) {
+      e.stopPropagation();
+      if (popup._openBtn === btn && popup.style.display === 'block') { hide(); return; }
+      popup.innerHTML = btn.getAttribute('data-info');
+      popup.style.display = 'block';
+      popup._openBtn = btn;
+      var r = btn.getBoundingClientRect();
+      var pw = popup.offsetWidth, ph = popup.offsetHeight;
+      var left = r.left + r.width / 2 - pw / 2;
+      var top = r.bottom + 6;
+      if (left < 8) left = 8;
+      if (left + pw > window.innerWidth - 8) left = window.innerWidth - pw - 8;
+      if (top + ph > window.innerHeight - 8) top = r.top - ph - 6;
+      popup.style.left = left + 'px';
+      popup.style.top = top + 'px';
+    } else {
+      if (popup.style.display === 'block') hide();
+    }
+  }, true);
 
-  function barStyle(earliest, latest) {
-    var left = ((earliest - axisMin) / axisSpan * 100).toFixed(1);
-    var width = (((latest - earliest) || 0.5) / axisSpan * 100).toFixed(1);
-    if (parseFloat(width) < 5) width = '5';
-    return 'left:' + left + '%;width:' + width + '%';
-  }
+  window.buildHenDppInfo = function(s, stageLabels) {
+    var steps = [];
+    steps.push('<div class="cpr-dpp-info-popup__title">DPP pathway \u2014 ' + (s.id || 'hEN') + '</div>');
+    if (s.sreq_table) {
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>1. Standardisation request</b> \u2014 ' + s.sreq_table + (s.revision ? ' (' + s.revision + ')' : '') + '</div>');
+    }
+    if (s._stage !== undefined) {
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>2. CEN development</b> \u2014 ' + stageLabels[s._stage] + (s.stage ? ' (' + s.stage + ')' : '') + '</div>');
+    }
+    if (s.delivery) {
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>3. Delivery deadline:</b> <span class="cpr-dpp-date">' + s.delivery + '</span></div>');
+    }
+    if (s.pub_est) {
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>4. Publication est:</b> <span class="cpr-dpp-date">' + s.pub_est + '</span></div>');
+    }
+    if (s.mand_est) {
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>5. Mandatory est:</b> <span class="cpr-dpp-date">' + s.mand_est + '</span></div>');
+    }
+    if (s.dpp_est) {
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>6. DPP obligation est:</b> <span class="cpr-dpp-date">' + s.dpp_est + '</span></div>');
+    }
+    if (s.notes) {
+      steps.push('<div class="cpr-dpp-info-popup__step" style="margin-top:6px;font-style:italic;color:#8CA9BF;font-size:0.62rem;">' + s.notes + '</div>');
+    }
+    return steps.join('');
+  };
 
-  var hasHen = henE !== null;
-  var hasEad = eadE !== null;
-  var html = '<div class="cpr-gantt__label">DPP Timeline</div><div class="cpr-gantt__lanes">';
-
-  if (hasHen) {
-    html += '<div class="cpr-gantt__lane"><span class="cpr-gantt__lane-label">hEN</span><div class="cpr-gantt__track"><div class="cpr-gantt__bar cpr-gantt__bar--hen" style="' + barStyle(henE, henL || henE) + '"></div></div></div>';
-  }
-  if (hasEad) {
-    html += '<div class="cpr-gantt__lane"><span class="cpr-gantt__lane-label">EAD</span><div class="cpr-gantt__track"><div class="cpr-gantt__bar cpr-gantt__bar--ead" style="' + barStyle(eadE, eadL || eadE) + '"></div></div></div>';
-  }
-
-  html += '</div>';
-
-  var ticks = [];
-  for (var y = axisMin + 1; y <= axisMax - 1; y++) { ticks.push(y); }
-  if (ticks.length > 5) {
-    ticks = ticks.filter(function(y) { return y % 2 === 0; });
-  }
-  html += '<div class="cpr-gantt__axis">';
-  ticks.forEach(function(yr) { html += '<span class="cpr-gantt__tick">\u2019' + String(yr).slice(2) + '</span>'; });
-  html += '</div>';
-
-  var countParts = [];
-  if (range.hen_count) countParts.push(range.hen_count + ' hENs');
-  if (range.ead_count) countParts.push(range.ead_count + ' EADs');
-  if (countParts.length) {
-    html += '<div class="cpr-gantt__counts">' + countParts.join(' \u00b7 ') + '</div>';
-  }
-
-  return html;
-}
+  window.buildEadDppInfo = function(s) {
+    var steps = [];
+    steps.push('<div class="cpr-dpp-info-popup__title">DPP pathway \u2014 ' + (s.id || 'EAD') + '</div>');
+    var isOld = s.regime !== 'new';
+    if (isOld) {
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>1. Legacy EAD</b> under CPR 2011' + (s.cited ? ', cited in OJEU' : '') + '</div>');
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>2. Validity expires:</b> <span class="cpr-dpp-date cpr-dpp-date--ead">' + (s.expires || '9 Jan 2031') + '</span></div>');
+      if (s.new_ead) {
+        steps.push('<div class="cpr-dpp-info-popup__step"><b>3. New EAD replacement est:</b> <span class="cpr-dpp-date cpr-dpp-date--ead">' + s.new_ead + '</span></div>');
+      }
+    } else {
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>1. New EAD</b> adopted under CPR 2024/3110</div>');
+    }
+    if (s.dpp_est) {
+      steps.push('<div class="cpr-dpp-info-popup__step"><b>' + (isOld ? '4' : '2') + '. DPP obligation est:</b> <span class="cpr-dpp-date cpr-dpp-date--ead">' + s.dpp_est + '</span></div>');
+    }
+    if (s.notes) {
+      steps.push('<div class="cpr-dpp-info-popup__step" style="margin-top:6px;font-style:italic;color:#8CA9BF;font-size:0.62rem;">' + s.notes + '</div>');
+    }
+    return steps.join('');
+  };
+})();
 
 // Enrich cards with latest status pill and DPP date
 (function() {
@@ -988,21 +996,15 @@ function buildGanttHtml(range) {
       }
     }
 
-    // Mini Gantt DPP timeline
+    // Simple DPP date range label
     var rangeRaw = card.getAttribute('data-dpp-range') || '';
     var range = null;
     if (rangeRaw) { try { range = JSON.parse(rangeRaw); } catch(e) {} }
-
-    if (range && (range.hen_earliest || range.ead_earliest)) {
-      var gantt = document.createElement('div');
-      gantt.className = 'cpr-gantt';
-      gantt.innerHTML = buildGanttHtml(range);
-      card.appendChild(gantt);
-    } else if (dpp) {
-      // Fallback: simple DPP date label for families without per-route data
+    var dppLabel = (range && range.envelope) ? range.envelope : dpp;
+    if (dppLabel) {
       var dppEl = document.createElement('span');
       dppEl.className = 'cpr-card__dpp';
-      dppEl.textContent = 'DPP ' + dpp;
+      dppEl.textContent = 'DPP ' + dppLabel;
       card.appendChild(dppEl);
     }
   });
@@ -1045,14 +1047,12 @@ function buildGanttHtml(range) {
     if (tc) sub.push(tc);
     subtitle.textContent = sub.join(' \u00b7 ');
 
-    // DPP banner — show mini Gantt or text fallback
+    // DPP banner — simple date range text
     var bannerRange = null;
     try { bannerRange = JSON.parse(card.getAttribute('data-dpp-range') || ''); } catch(e) {}
-    if (bannerRange && (bannerRange.hen_earliest || bannerRange.ead_earliest)) {
-      dppBanner.innerHTML = buildGanttHtml(bannerRange);
-      dppBanner.style.display = '';
-    } else if (dppEst) {
-      dppBanner.innerHTML = '<div class="cpr-modal__dpp-fallback">DPP ' + dppEst + '</div>';
+    var bannerLabel = (bannerRange && bannerRange.envelope) ? bannerRange.envelope : dppEst;
+    if (bannerLabel) {
+      dppBanner.innerHTML = '<div class="cpr-modal__dpp-fallback">DPP ' + bannerLabel + '</div>';
       dppBanner.style.display = '';
     } else {
       dppBanner.innerHTML = '';
@@ -1239,9 +1239,9 @@ function buildGanttHtml(range) {
 
         sh += '</div>';
 
-        // hEN standards table — Table 3-style: Standard | Name | TC/WG | Stage | Delivery | Mand est | DPP est
+        // hEN standards table — Table 3-style: Standard | Name | TC/WG | Stage | Delivery | DPP est
         sh += '<div class="cpr-modal__stds-table-wrap"><table class="cpr-modal__stds-table"><thead><tr>';
-        sh += '<th>Standard</th><th>Name</th><th>TC/WG</th><th>Stage</th><th>Delivery</th><th>Mand est</th><th>DPP est</th>';
+        sh += '<th>Standard</th><th>Name</th><th>TC/WG</th><th>Stage</th><th>Delivery</th><th>DPP est</th>';
         sh += '</tr></thead><tbody>';
         henStds.forEach(function(s) {
           var stg = s._stage;
@@ -1264,13 +1264,14 @@ function buildGanttHtml(range) {
           } else {
             dppCell = '<span style="font-weight:600;color:#009BBB;">' + (s.dpp_est || '\u2014') + '</span>';
           }
+          var infoHtml = buildHenDppInfo(s, stageLabels).replace(/'/g, '&#39;').replace(/"/g, '&quot;');
+          dppCell += ' <span class="cpr-dpp-info-btn" data-info="' + infoHtml + '" title="DPP reasoning">i</span>';
           sh += '<tr>';
           sh += '<td>' + (s.id || '') + '</td>';
           sh += '<td style="font-size:0.58rem;color:#3A5A6A;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + (s.name || '\u2014') + '</td>';
           sh += '<td style="font-size:0.58rem;color:#5A7080;">' + tcWg + '</td>';
           sh += '<td>' + dots + ' <span style="font-size:0.58rem;color:#5A7080;margin-left:2px;">' + stageLabels[stg] + '</span></td>';
           sh += '<td>' + (s.delivery ? s.delivery.replace(/-/g,'\u2011') : '\u2014') + '</td>';
-          sh += '<td>' + (s.mand_est || '\u2014') + '</td>';
           sh += '<td>' + dppCell + '</td>';
           sh += '</tr>';
         });
@@ -1361,6 +1362,8 @@ function buildGanttHtml(range) {
           var validity = isOld ? (s.expires || '9 Jan 2031') : 'New CPR';
           var dppCell = s.dpp_est || '\u2014';
           var dppNote = (isOld && s.dpp_est) ? ' *' : '';
+          var eadInfoHtml = buildEadDppInfo(s).replace(/'/g, '&#39;').replace(/"/g, '&quot;');
+          var eadInfoBtn = ' <span class="cpr-dpp-info-btn cpr-dpp-info-btn--ead" data-info="' + eadInfoHtml + '" title="DPP reasoning">i</span>';
 
           sh += '<tr>';
           sh += '<td>' + (s.id || '') + '</td>';
@@ -1368,7 +1371,7 @@ function buildGanttHtml(range) {
           sh += '<td>' + dots + ' <span style="font-size:0.58rem;color:#5A7080;margin-left:2px;">' + eadStageLabels[eadStg] + '</span></td>';
           sh += '<td>' + (s.avcp || '\u2014') + '</td>';
           sh += '<td>' + validity + '</td>';
-          sh += '<td style="font-weight:600;color:#00914B;">' + dppCell + dppNote + '</td>';
+          sh += '<td style="font-weight:600;color:#00914B;">' + dppCell + dppNote + eadInfoBtn + '</td>';
           sh += '</tr>';
         });
         sh += '</tbody></table></div>';
