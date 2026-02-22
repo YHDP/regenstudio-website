@@ -53,7 +53,7 @@
 - BEM classes: `cpr-card`, `cpr-modal__*`, `cpr-milestone__*`, `cpr-stage-dots__*`, `cpr-dpp-info-*`
 - No build step or propagation script — all 37 cards are edited directly in the HTML
 - When editing data-info: lines are very long single-line HTML strings; use `grep -o` to extract exact substrings before editing
-- Fact-checking: always verify standard year designations (EN vs national adoption year), AVCP decision numbers, and OJ-cited harmonised status vs newer non-harmonised revisions
+- Fact-checking: always verify standard year designations (EN vs national adoption year), AVCP decision numbers, OJ-cited harmonised status vs newer non-harmonised revisions, and cross-check counts across data-dpp-range, data-standards summary, and data-info narrative
 
 ## Current Status
 - Live site with 35+ blog posts, newsletter system, contact forms
