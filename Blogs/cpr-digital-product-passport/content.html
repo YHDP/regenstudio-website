@@ -220,6 +220,45 @@
   .cpr-modal__body p:last-child { margin: 0; }
   .cpr-modal__body strong { font-weight: 600; color: #1a2b36; }
 
+  /* Modal — intro / DPP outlook / annex sections */
+  .cpr-modal__intro { padding: 0 28px; font-size: 0.82rem; line-height: 1.65; color: var(--color-text, #1a1a1a); }
+  .cpr-modal__intro p { margin: 0 0 8px; }
+  .cpr-modal__intro p:last-child { margin: 0; }
+  .cpr-modal__intro strong { font-weight: 600; color: #1a2b36; }
+  .cpr-modal__intro .cpr-intro__label { font-size: 0.62rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #8CA9BF; margin-bottom: 2px; display: block; }
+  .cpr-modal__dpp-box {
+    margin: 12px 28px 4px; padding: 12px 16px; border-radius: 10px;
+    background: linear-gradient(135deg, rgba(0,155,187,0.06) 0%, rgba(0,145,75,0.04) 100%);
+    border: 1px solid rgba(0,155,187,0.15); font-size: 0.78rem; line-height: 1.6; color: #2A3A4A;
+  }
+  .cpr-modal__dpp-box strong { font-weight: 600; color: #1a2b36; }
+  .cpr-modal__dpp-box .cpr-dpp-box__title {
+    font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    color: #009BBB; margin-bottom: 6px;
+  }
+  .cpr-modal__annex { padding: 0 28px 0; }
+  .cpr-modal__annex-toggle {
+    display: inline-flex; align-items: center; gap: 5px; border: none; background: none;
+    cursor: pointer; font-size: 0.68rem; font-weight: 600; color: #8CA9BF; padding: 8px 0 4px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .cpr-modal__annex-toggle:hover { color: #5A7080; }
+  .cpr-modal__annex-toggle svg { transition: transform 0.2s; width: 12px; height: 12px; }
+  .cpr-modal__annex-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .cpr-modal__annex-content {
+    display: none; font-size: 0.78rem; line-height: 1.6; color: var(--color-text, #1a1a1a);
+    padding: 8px 0 4px; border-top: 1px solid #EEF1F4;
+  }
+  .cpr-modal__annex-content[data-open="true"] { display: block; }
+  .cpr-modal__annex-content p { margin: 0 0 8px; }
+  .cpr-modal__annex-content p:last-child { margin: 0; }
+  .cpr-modal__annex-content strong { font-weight: 600; color: #1a2b36; }
+  .cpr-modal__annex-content .cpr-annex__heading {
+    font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    color: #8CA9BF; margin: 12px 0 4px; padding-top: 8px; border-top: 1px dashed #EEF1F4;
+  }
+  .cpr-modal__annex-content .cpr-annex__heading:first-child { margin-top: 0; border-top: none; padding-top: 0; }
+
   /* Modal — per-standard DPP breakdown */
   .cpr-modal__standards { padding: 0 28px; }
   /* DPP info button & popup */
@@ -858,13 +897,13 @@
     </div>
     <div class="cpr-modal__tags"></div>
     <div class="cpr-modal__dpp-banner"></div>
+    <div class="cpr-modal__intro"></div>
+    <div class="cpr-modal__dpp-box"></div>
     <div class="cpr-modal__standards" style="display:none;">
       <div class="cpr-modal__section-title">Per-standard DPP timeline</div>
       <div class="cpr-modal__stds-content"></div>
     </div>
-    <div class="cpr-modal__section">
-      <div class="cpr-modal__section-title">Product details</div>
-    </div>
+    <div class="cpr-modal__annex"></div>
     <div class="cpr-modal__body"></div>
   </div>
 </div>
@@ -1022,9 +1061,42 @@
   var dppBanner = modal.querySelector('.cpr-modal__dpp-banner');
   var standardsSection = modal.querySelector('.cpr-modal__standards');
   var standardsContent = modal.querySelector('.cpr-modal__stds-content');
+  var introEl = modal.querySelector('.cpr-modal__intro');
+  var dppBoxEl = modal.querySelector('.cpr-modal__dpp-box');
+  var annexEl = modal.querySelector('.cpr-modal__annex');
   var body = modal.querySelector('.cpr-modal__body');
   var backdrop = modal.querySelector('.cpr-modal__backdrop');
   var closeBtn = modal.querySelector('.cpr-modal__close');
+
+  // Section heading keywords for categorisation
+  var introKeys = ['scope', 'product types', 'technical committee', 'technical body'];
+  var dppKeys = ['dpp outlook'];
+  // Everything else → annex
+
+  function categoriseInfo(html) {
+    if (!html) return { intro: [], dpp: [], annex: [] };
+    var div = document.createElement('div');
+    div.innerHTML = html;
+    var paras = div.querySelectorAll('p');
+    var result = { intro: [], dpp: [], annex: [] };
+    paras.forEach(function(p) {
+      var strong = p.querySelector('strong');
+      var heading = strong ? strong.textContent.toLowerCase().replace(/:$/, '').trim() : '';
+      var matched = false;
+      for (var i = 0; i < dppKeys.length; i++) {
+        if (heading.indexOf(dppKeys[i]) !== -1) { result.dpp.push(p.outerHTML); matched = true; break; }
+      }
+      if (!matched) {
+        for (var j = 0; j < introKeys.length; j++) {
+          if (heading.indexOf(introKeys[j]) === 0) { result.intro.push(p.outerHTML); matched = true; break; }
+        }
+      }
+      if (!matched && p.textContent.trim()) {
+        result.annex.push(p.outerHTML);
+      }
+    });
+    return result;
+  }
 
   function openModal(card) {
     var fullName = card.getAttribute('data-full-name');
@@ -1416,7 +1488,70 @@
       standardsContent.innerHTML = '';
     }
 
-    body.innerHTML = (info || '') + '<p style="font-size:0.72rem;line-height:1.5;color:var(--color-text-secondary,#64748b);background:var(--color-bg-card,#f8fafc);border-left:3px solid var(--color-border,#e2e8f0);padding:10px 14px;border-radius:0 8px 8px 0;margin-top:14px;"><strong>Disclaimer:</strong> The CPR regulatory landscape is dynamic and at times opaque, making it difficult to be completely up to date or accurate. The information on this page is provided for informational purposes only and should not be considered legal advice. For critical decision-making, we recommend validating this information with legal experts, sector organisations, or the <a href="https://single-market-economy.ec.europa.eu/sectors/construction/construction-products-regulation-cpr_en" target="_blank" rel="noopener" style="color:var(--color-primary,#009BBB);">European Commission</a>. If you see anything that should be improved or updated, please <a href="/#contact" style="color:var(--color-primary,#009BBB);">let us know through the form below</a>.</p>';
+    // Distribute data-info into intro / DPP box / annex
+    var sections = categoriseInfo(info);
+
+    if (sections.intro.length) {
+      introEl.innerHTML = sections.intro.join('');
+      introEl.style.display = '';
+    } else {
+      introEl.innerHTML = '';
+      introEl.style.display = 'none';
+    }
+
+    if (sections.dpp.length) {
+      // Strip the leading "DPP outlook:" bold label and wrap in a titled box
+      var dppHtml = sections.dpp.join('');
+      dppHtml = dppHtml.replace(/<strong>[^<]*DPP outlook[^<]*:\s*<\/strong>/i, '');
+      dppBoxEl.innerHTML = '<div class="cpr-dpp-box__title">DPP outlook</div>' + dppHtml;
+      dppBoxEl.style.display = '';
+    } else {
+      dppBoxEl.innerHTML = '';
+      dppBoxEl.style.display = 'none';
+    }
+
+    if (sections.annex.length) {
+      var annexHtml = '<button class="cpr-modal__annex-toggle" aria-expanded="false">';
+      annexHtml += 'Additional details <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4.5L6 7.5L9 4.5"/></svg>';
+      annexHtml += '</button>';
+      annexHtml += '<div class="cpr-modal__annex-content">';
+      // Convert each paragraph's bold header into a styled heading
+      sections.annex.forEach(function(pHtml) {
+        var tmp = document.createElement('div');
+        tmp.innerHTML = pHtml;
+        var p = tmp.querySelector('p');
+        if (p) {
+          var s = p.querySelector('strong');
+          if (s) {
+            var label = s.textContent.replace(/:$/, '').trim();
+            annexHtml += '<div class="cpr-annex__heading">' + label + '</div>';
+            s.parentNode.removeChild(s);
+            // Remove leading colon/space from remaining text
+            p.innerHTML = p.innerHTML.replace(/^\s*:\s*/, '').replace(/^\s*/, '');
+          }
+        }
+        annexHtml += '<p>' + (p ? p.innerHTML : pHtml) + '</p>';
+      });
+      annexHtml += '</div>';
+      annexEl.innerHTML = annexHtml;
+      annexEl.style.display = '';
+      // Wire toggle
+      var toggleBtn = annexEl.querySelector('.cpr-modal__annex-toggle');
+      var annexContent = annexEl.querySelector('.cpr-modal__annex-content');
+      if (toggleBtn && annexContent) {
+        toggleBtn.onclick = function() {
+          var open = annexContent.getAttribute('data-open') === 'true';
+          annexContent.setAttribute('data-open', open ? 'false' : 'true');
+          toggleBtn.setAttribute('aria-expanded', open ? 'false' : 'true');
+        };
+      }
+    } else {
+      annexEl.innerHTML = '';
+      annexEl.style.display = 'none';
+    }
+
+    // Disclaimer only in body
+    body.innerHTML = '<p style="font-size:0.72rem;line-height:1.5;color:var(--color-text-secondary,#64748b);background:var(--color-bg-card,#f8fafc);border-left:3px solid var(--color-border,#e2e8f0);padding:10px 14px;border-radius:0 8px 8px 0;margin-top:14px;"><strong>Disclaimer:</strong> The CPR regulatory landscape is dynamic and at times opaque, making it difficult to be completely up to date or accurate. The information on this page is provided for informational purposes only and should not be considered legal advice. For critical decision-making, we recommend validating this information with legal experts, sector organisations, or the <a href="https://single-market-economy.ec.europa.eu/sectors/construction/construction-products-regulation-cpr_en" target="_blank" rel="noopener" style="color:var(--color-primary,#009BBB);">European Commission</a>. If you see anything that should be improved or updated, please <a href="/#contact" style="color:var(--color-primary,#009BBB);">let us know through the form below</a>.</p>';
     modal.setAttribute('aria-hidden', 'false');
     closeBtn.focus();
   }
