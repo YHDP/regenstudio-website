@@ -85,7 +85,7 @@ function emailLayout(content: string, unsubscribeUrl: string): string {
           <div style="border-top:1px solid #E4E2E2;padding-top:20px">
             <p style="margin:0 0 4px;font-weight:600;font-size:14px;color:#243644">Best regards,</p>
             <p style="margin:0 0 12px;font-size:14px;color:#5781A1">The Regen Studio team</p>
-            <a href="https://www.regenstudio.space" style="color:#00914B;font-size:13px;text-decoration:none">www.regenstudio.space</a>
+            <a href="https://www.regenstudio.world" style="color:#00914B;font-size:13px;text-decoration:none">www.regenstudio.world</a>
           </div>
         </td></tr>
 

@@ -1,2 +1,20 @@
 # macOS
 .DS_Store
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node (if ever used for local tooling)
+node_modules/
+
+# Supabase local
+.supabase/

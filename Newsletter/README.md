@@ -68,7 +68,7 @@ Edit a copy of `template.json` in this folder. The payload format:
 curl -X POST \
   https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/newsletter-send \
   -H "Content-Type: application/json" \
-  -H "x-newsletter-secret: 89da632bd6e297f2daa6985358a6f4fc7974c78645aa5fb84aaf9d413adfe501" \
+  -H "x-newsletter-secret: YOUR_NEWSLETTER_SEND_SECRET" \
   -d @Newsletter/my-newsletter.json
 ```
 
@@ -78,7 +78,7 @@ Or with inline JSON:
 curl -X POST \
   https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/newsletter-send \
   -H "Content-Type: application/json" \
-  -H "x-newsletter-secret: 89da632bd6e297f2daa6985358a6f4fc7974c78645aa5fb84aaf9d413adfe501" \
+  -H "x-newsletter-secret: YOUR_NEWSLETTER_SEND_SECRET" \
   -d '{
     "subject": "Test Newsletter",
     "intro": "This is a test.",

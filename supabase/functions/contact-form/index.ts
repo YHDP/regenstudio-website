@@ -1,11 +1,11 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const ALLOWED_ORIGINS = [
-  "https://demos.regenstudio.space",
   "https://demos.regenstudio.world",
-  "https://www.regenstudio.space",
+  "https://demos.regenstudio.world",
   "https://www.regenstudio.world",
-  "https://regenstudio.space",
+  "https://www.regenstudio.world",
+  "https://regenstudio.world",
   "https://regenstudio.world",
 ];
 
@@ -106,7 +106,7 @@ Deno.serve(async (req) => {
     // Send emails via Lettermint
     const lettermintToken = Deno.env.get("LETTERMINT_API_TOKEN");
     if (lettermintToken) {
-      const fromAddress = "Regen Studio <noreply@regenstudio.space>";
+      const fromAddress = "Regen Studio <noreply@regenstudio.world>";
       const displayName = name || "there";
       const timestamp = new Date().toISOString();
       const formattedTime = new Date().toLocaleString("en-GB", {
@@ -128,21 +128,21 @@ Deno.serve(async (req) => {
         : "Thanks for reaching out — Regen Studio";
 
       const confirmationBody = isAccessRequest
-        ? `Hi ${displayName},\n\nWe've received your request for access to ${demoLabel}. We'll review it and get back to you shortly.\n\n---\n\nAbout Regen Studio\nWe pioneer systemic innovations at the intersection of technology, society, and nature — helping organizations create positive impact through new solutions.\n\nOur focus: Energy Transition, Circular Economy, Digital Society, Liveable Cities, Resilient Nature\n\nWebsite: https://www.regenstudio.space\nDemos: https://demos.regenstudio.space\nBlog: https://www.regenstudio.space/blog.html\n\nBest regards,\nThe Regen Studio team`
+        ? `Hi ${displayName},\n\nWe've received your request for access to ${demoLabel}. We'll review it and get back to you shortly.\n\n---\n\nAbout Regen Studio\nWe pioneer systemic innovations at the intersection of technology, society, and nature — helping organizations create positive impact through new solutions.\n\nOur focus: Energy Transition, Circular Economy, Digital Society, Liveable Cities, Resilient Nature\n\nWebsite: https://www.regenstudio.world\nDemos: https://demos.regenstudio.world\nBlog: https://www.regenstudio.world/blog.html\n\nBest regards,\nThe Regen Studio team`
         : isDppGate
-        ? `Hi ${displayName},\n\nThank you for sharing your email address with us to unlock all product group information surrounding Digital Product Passports.\n\nYou now have access to our full regulatory tracker with 33 product groups, DPP obligation dates, status indicators, and links to the source legislation.\n\nIf this was valuable to you, we'd love to know. Reach out to us at info@regenstudio.world.\n\nExplore more:\n- DPP Product Overview: https://www.regenstudio.world/dpp.html\n- Our Demos: https://demos.regenstudio.space\n- Blog: https://www.regenstudio.world/blog.html\n\nBest regards,\nThe Regen Studio team`
-        : `Hi ${displayName},\n\nThank you for reaching out. We received your message and will get back to you as soon as possible.\n\n---\n\nAbout Regen Studio\nWe pioneer systemic innovations at the intersection of technology, society, and nature — helping organizations create positive impact through new solutions.\n\nOur focus: Energy Transition, Circular Economy, Digital Society, Liveable Cities, Resilient Nature\n\nWebsite: https://www.regenstudio.space\nDemos: https://demos.regenstudio.space\nBlog: https://www.regenstudio.space/blog.html\n\nBest regards,\nThe Regen Studio team`;
+        ? `Hi ${displayName},\n\nThank you for sharing your email address with us to unlock all product group information surrounding Digital Product Passports.\n\nYou now have access to our full regulatory tracker with 33 product groups, DPP obligation dates, status indicators, and links to the source legislation.\n\nIf this was valuable to you, we'd love to know. Reach out to us at info@regenstudio.world.\n\nExplore more:\n- DPP Product Overview: https://www.regenstudio.world/dpp.html\n- Our Demos: https://demos.regenstudio.world\n- Blog: https://www.regenstudio.world/blog.html\n\nBest regards,\nThe Regen Studio team`
+        : `Hi ${displayName},\n\nThank you for reaching out. We received your message and will get back to you as soon as possible.\n\n---\n\nAbout Regen Studio\nWe pioneer systemic innovations at the intersection of technology, society, and nature — helping organizations create positive impact through new solutions.\n\nOur focus: Energy Transition, Circular Economy, Digital Society, Liveable Cities, Resilient Nature\n\nWebsite: https://www.regenstudio.world\nDemos: https://demos.regenstudio.world\nBlog: https://www.regenstudio.world/blog.html\n\nBest regards,\nThe Regen Studio team`;
 
       const aboutSection = `
            <div style="margin:24px 0 0;padding:24px;background:#FAFBFC;border-radius:12px;border:1px solid #E4E2E2">
              <p style="margin:0 0 6px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;color:#00914B">About Regen Studio</p>
              <p style="margin:0 0 14px;font-size:14px;color:#5781A1;line-height:1.6">We pioneer systemic innovations at the intersection of technology, society, and nature — helping organizations create positive impact through new solutions.</p>
              <table cellpadding="0" cellspacing="0" style="width:100%"><tr>
-               <td style="padding:0 6px 0 0;width:20%"><a href="https://www.regenstudio.space/#focus" style="display:block;padding:8px 0;text-align:center;background:#243644;color:white;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none">Our Focus</a></td>
-               <td style="padding:0 6px;width:20%"><a href="https://www.regenstudio.space/#about" style="display:block;padding:8px 0;text-align:center;background:#243644;color:white;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none">Vision</a></td>
-               <td style="padding:0 6px;width:20%"><a href="https://www.regenstudio.space/#services" style="display:block;padding:8px 0;text-align:center;background:#243644;color:white;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none">Services</a></td>
-               <td style="padding:0 6px;width:20%"><a href="https://demos.regenstudio.space" style="display:block;padding:8px 0;text-align:center;background:#00914B;color:white;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none">Demos</a></td>
-               <td style="padding:0 0 0 6px;width:20%"><a href="https://www.regenstudio.space/blog.html" style="display:block;padding:8px 0;text-align:center;background:#243644;color:white;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none">Blog</a></td>
+               <td style="padding:0 6px 0 0;width:20%"><a href="https://www.regenstudio.world/#focus" style="display:block;padding:8px 0;text-align:center;background:#243644;color:white;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none">Our Focus</a></td>
+               <td style="padding:0 6px;width:20%"><a href="https://www.regenstudio.world/#about" style="display:block;padding:8px 0;text-align:center;background:#243644;color:white;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none">Vision</a></td>
+               <td style="padding:0 6px;width:20%"><a href="https://www.regenstudio.world/#services" style="display:block;padding:8px 0;text-align:center;background:#243644;color:white;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none">Services</a></td>
+               <td style="padding:0 6px;width:20%"><a href="https://demos.regenstudio.world" style="display:block;padding:8px 0;text-align:center;background:#00914B;color:white;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none">Demos</a></td>
+               <td style="padding:0 0 0 6px;width:20%"><a href="https://www.regenstudio.world/blog.html" style="display:block;padding:8px 0;text-align:center;background:#243644;color:white;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none">Blog</a></td>
              </tr></table>
              <div style="margin-top:16px;text-align:center">
                <span style="display:inline-block;margin:0 6px 8px 0;padding:5px 12px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:99px;font-size:11px;font-weight:600;color:#00914B;white-space:nowrap">&#9650; Energy Transition</span>
@@ -356,7 +356,7 @@ function emailLayout(content: string, isExternal: boolean): string {
           <div style="border-top:1px solid #E4E2E2;padding-top:20px">
             <p style="margin:0 0 4px;font-weight:600;font-size:14px;color:#243644">Best regards,</p>
             <p style="margin:0 0 12px;font-size:14px;color:#5781A1">The Regen Studio team</p>
-            <a href="https://www.regenstudio.space" style="color:#00914B;font-size:13px;text-decoration:none">www.regenstudio.space</a>
+            <a href="https://www.regenstudio.world" style="color:#00914B;font-size:13px;text-decoration:none">www.regenstudio.world</a>
           </div>
         </td></tr>
         ` : ""}
