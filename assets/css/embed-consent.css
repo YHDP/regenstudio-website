@@ -60,3 +60,14 @@
 .embed-consent__btn:hover {
   background: #007a3f;
 }
+/* Audio embeds (SoundCloud) need more height for the overlay text */
+.embed-consent[data-embed-type="soundcloud"] {
+  min-height: 280px;
+}
+.embed-consent[data-embed-type="soundcloud"] .embed-consent__overlay {
+  padding: 20px 24px;
+}
+.embed-consent[data-embed-type="soundcloud"] .embed-consent__icon {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
