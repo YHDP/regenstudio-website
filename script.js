@@ -793,9 +793,9 @@
     // --- Centralized social profiles & company info ---
     var COMPANY = {
       name: 'Regen Studio',
-      url: 'https://www.regenstudio.world',
+      url: 'https://www.regenstudio.space',
       tagline: 'Designing innovations that regenerate humans, cities and nature.',
-      email: 'info@regenstudio.world',
+      email: 'info@regenstudio.space',
       profiles: {
         linkedin: 'https://www.linkedin.com/company/regen-studio-world/',
         bluesky: 'https://bsky.app/profile/regen-studio.bsky.social',
@@ -1009,7 +1009,7 @@
       // Website URL
       ec.font = '500 11.5px Inter, -apple-system, sans-serif';
       ec.fillStyle = 'rgba(0, 145, 75, 0.55)';
-      ec.fillText('www.regenstudio.world', centerX, y);
+      ec.fillText('www.regenstudio.space', centerX, y);
 
       ec.textAlign = 'left';
 
