@@ -18,3 +18,5 @@ node_modules/
 
 # Supabase local
 .supabase/
+supabase/.temp/
+supabase/.temp/
