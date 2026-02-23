@@ -6,7 +6,7 @@
 - Package manager: None (zero dependencies)
 - Backend: Supabase Edge Functions (Deno/TypeScript)
 - Email: Lettermint via Supabase
-- Hosting: GitHub Pages (www.regenstudio.space)
+- Hosting: GitHub Pages (www.regenstudio.world)
 - Fonts: Google Fonts (Inter, Playfair Display)
 
 ## Directory Structure

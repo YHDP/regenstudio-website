@@ -85,7 +85,7 @@ To add a new category: add to `CATEGORY_COLORS` in `blog.js`, add to `categoryCo
   <p style="color:#AFF9D7;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;font-weight:600;">See it in action</p>
   <p style="color:#FFFFFF;font-size:1.4rem;font-weight:700;margin-bottom:12px;line-height:1.3;">[Headline]</p>
   <p style="color:#8CA9BF;font-size:1rem;margin-bottom:24px;line-height:1.6;">[Description]</p>
-  <a href="https://demos.regenstudio.space/[demo]/gate.html" style="display:inline-block;background:#00914B;color:#FFFFFF;font-weight:600;font-size:1rem;padding:14px 32px;border-radius:8px;text-decoration:none;">Explore the Demo &rarr;</a>
+  <a href="https://demos.regenstudio.world/[demo]/gate.html" style="display:inline-block;background:#00914B;color:#FFFFFF;font-weight:600;font-size:1rem;padding:14px 32px;border-radius:8px;text-decoration:none;">Explore the Demo &rarr;</a>
 </div>
 ```
 
