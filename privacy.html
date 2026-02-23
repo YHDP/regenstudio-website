@@ -4,12 +4,266 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy | Regen Studio</title>
-  <meta name="description" content="Privacy policy for Regen Studio — how we handle your data.">
+  <meta name="description" content="How Regen Studio handles your data: zero cookies, privacy-preserving analytics, EU-hosted infrastructure. Compliant with GDPR, LGPD, and ePrivacy Directive.">
   <link rel="icon" type="image/png" href="Images/Flavicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Privacy page — visual enhancements ── */
+    .privacy-hero {
+      background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-dark) 60%, #1a3040 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 120px 24px 56px;
+      text-align: center;
+    }
+    .privacy-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(60deg, rgba(0,145,75,0.08) 0%, transparent 40%),
+        linear-gradient(200deg, rgba(0,155,187,0.06) 0%, transparent 40%),
+        linear-gradient(320deg, rgba(99,102,241,0.05) 0%, transparent 30%);
+      pointer-events: none;
+    }
+    .privacy-hero__accent {
+      height: 4px;
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+    .privacy-hero__accent span:nth-child(1) { flex: 3; background: #00914B; }
+    .privacy-hero__accent span:nth-child(2) { flex: 2; background: #009BBB; }
+    .privacy-hero__accent span:nth-child(3) { flex: 2; background: #6366F1; }
+    .privacy-hero__accent span:nth-child(4) { flex: 1.5; background: #FFA92D; }
+    .privacy-hero__accent span:nth-child(5) { flex: 1.5; background: #93093F; }
+    .privacy-hero__tri {
+      position: absolute;
+      width: 0; height: 0;
+      border-left: var(--tri-size, 8px) solid transparent;
+      border-right: var(--tri-size, 8px) solid transparent;
+      border-bottom: calc(var(--tri-size, 8px) * 1.73) solid var(--tri-color, rgba(0,145,75,0.15));
+      pointer-events: none;
+    }
+    .tri-1 { --tri-size: 10px; --tri-color: rgba(0,145,75,0.12); top: 18%; left: 8%; transform: rotate(25deg); }
+    .tri-2 { --tri-size: 6px; --tri-color: rgba(0,155,187,0.15); top: 30%; left: 15%; transform: rotate(-40deg); }
+    .tri-3 { --tri-size: 12px; --tri-color: rgba(99,102,241,0.1); top: 60%; right: 12%; transform: rotate(160deg); }
+    .tri-4 { --tri-size: 7px; --tri-color: rgba(255,169,45,0.15); top: 20%; right: 18%; transform: rotate(75deg); }
+    .tri-5 { --tri-size: 9px; --tri-color: rgba(147,9,63,0.1); bottom: 25%; left: 20%; transform: rotate(-20deg); }
+    .tri-6 { --tri-size: 5px; --tri-color: rgba(0,145,75,0.14); bottom: 30%; right: 25%; transform: rotate(200deg); }
+    .tri-7 { --tri-size: 14px; --tri-color: rgba(0,155,187,0.08); top: 45%; left: 5%; transform: rotate(110deg); }
+    .tri-8 { --tri-size: 8px; --tri-color: rgba(255,169,45,0.12); bottom: 15%; right: 8%; transform: rotate(-65deg); }
+    .privacy-hero__shield {
+      width: 56px; height: 56px;
+      background: rgba(0,145,75,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .privacy-hero__shield svg { color: #AFF9D7; }
+    .privacy-hero h1 {
+      color: white;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      margin: 0 0 8px;
+      position: relative;
+    }
+    .privacy-hero__sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.95rem;
+      margin: 0;
+      position: relative;
+    }
+    .privacy-hero__updated {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.8rem;
+      margin: 16px 0 0;
+      position: relative;
+    }
+
+    /* Override .privacy-page defaults for the new layout */
+    .privacy-page { padding-top: 0; }
+    .privacy-page h1, .privacy-page .privacy-updated, .privacy-page .privacy-back { display: none; }
+
+    /* ── TL;DR card ── */
+    .tldr-card {
+      max-width: 720px;
+      margin: -32px auto 40px;
+      position: relative;
+      z-index: 1;
+      background: white;
+      border-radius: 16px;
+      border: 1px solid var(--color-border);
+      box-shadow: 0 12px 40px rgba(36,54,68,0.1);
+      padding: 32px 36px;
+    }
+    .tldr-card h2 {
+      font-size: 0.75rem !important;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-primary);
+      margin: 0 0 20px !important;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tldr-card ul {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 32px;
+    }
+    .tldr-card li {
+      font-size: 0.88rem;
+      color: var(--color-text-secondary, #5781A1);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.6;
+    }
+    .tldr-card li::before {
+      content: '' !important;
+      flex-shrink: 0;
+      width: 6px; height: 6px;
+      margin-top: 7px;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+    .tldr-card li:nth-child(1)::before { background: #00914B; }
+    .tldr-card li:nth-child(2)::before { background: #009BBB; }
+    .tldr-card li:nth-child(3)::before { background: #6366F1; }
+    .tldr-card li:nth-child(4)::before { background: #FFA92D; }
+    .tldr-card li:nth-child(5)::before { background: #93093F; }
+    .tldr-card li:nth-child(6)::before { background: #00914B; }
+
+    /* ── Section with icon ── */
+    .priv-section { margin-bottom: 40px; }
+    .priv-section__header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+    }
+    .priv-section__icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .priv-section__icon svg { width: 18px; height: 18px; }
+    .priv-section__icon--emerald { background: rgba(0,145,75,0.1); color: #00914B; }
+    .priv-section__icon--teal { background: rgba(0,155,187,0.1); color: #009BBB; }
+    .priv-section__icon--indigo { background: rgba(99,102,241,0.1); color: #6366F1; }
+    .priv-section__icon--amber { background: rgba(255,169,45,0.1); color: #d97706; }
+    .priv-section__icon--crimson { background: rgba(147,9,63,0.1); color: #93093F; }
+    .priv-section h2 {
+      font-size: 1.15rem !important;
+      font-weight: 700 !important;
+      color: var(--color-text, #243644) !important;
+      margin: 0 !important;
+    }
+
+    /* ── Sub-processor cards ── */
+    .processor-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 16px 0;
+    }
+    .processor-card {
+      background: var(--color-bg-light, #F8F9FA);
+      border: 1px solid var(--color-border);
+      border-radius: 12px; padding: 16px;
+    }
+    .processor-card__name { font-size: 0.88rem; font-weight: 700; color: var(--color-text, #243644); margin: 0 0 4px; }
+    .processor-card__role { font-size: 0.78rem; color: var(--color-text-secondary, #5781A1); margin: 0 0 8px; line-height: 1.5; }
+    .processor-card__tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 600;
+      padding: 2px 8px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .processor-card__tag--eu { background: rgba(0,145,75,0.1); color: #00914B; }
+    .processor-card__tag--nl { background: rgba(0,155,187,0.1); color: #009BBB; }
+    .processor-card__tag--us { background: rgba(255,169,45,0.1); color: #d97706; }
+
+    /* ── Analytics deep-dive ── */
+    .analytics-box {
+      background: linear-gradient(135deg, rgba(0,145,75,0.04), rgba(0,155,187,0.04));
+      border: 1px solid rgba(0,145,75,0.15);
+      border-radius: 12px; padding: 24px; margin: 16px 0;
+    }
+    .analytics-box h3 {
+      font-size: 0.85rem; font-weight: 700; color: var(--color-text, #243644);
+      margin: 0 0 8px; display: flex; align-items: center; gap: 8px;
+    }
+    .analytics-box p { font-size: 0.85rem; line-height: 1.6; }
+    .analytics-box code {
+      font-size: 0.78rem; background: rgba(0,0,0,0.05);
+      padding: 2px 6px; border-radius: 4px; font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .analytics-flow {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 12px 0;
+    }
+    .analytics-flow__step {
+      background: white; border: 1px solid var(--color-border);
+      border-radius: 8px; padding: 8px 12px;
+      font-size: 0.78rem; color: var(--color-text, #243644);
+      font-weight: 500; text-align: center; line-height: 1.4;
+    }
+    .analytics-flow__arrow { color: var(--color-text-muted, #9B9B9B); font-size: 0.9rem; }
+
+    /* ── Rights comparison ── */
+    .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+    .rights-col {
+      background: var(--color-bg-light, #F8F9FA);
+      border: 1px solid var(--color-border);
+      border-radius: 12px; padding: 20px;
+    }
+    .rights-col h3 { font-size: 0.82rem; font-weight: 700; margin: 0 0 4px; }
+    .rights-col__ref { font-size: 0.72rem; color: var(--color-text-muted, #9B9B9B); margin: 0 0 12px; display: block; }
+    .rights-col ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
+    .rights-col li {
+      font-size: 0.82rem; padding: 4px 0;
+      border-bottom: 1px solid var(--color-border);
+      display: flex; align-items: flex-start; gap: 6px; line-height: 1.5;
+    }
+    .rights-col li:last-child { border-bottom: none; }
+    .rights-col li::before {
+      content: '\2713' !important; color: var(--color-primary);
+      font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── Divider ── */
+    .priv-divider {
+      height: 3px; display: flex; margin: 40px 0; border-radius: 3px; overflow: hidden;
+    }
+    .priv-divider span:nth-child(1) { flex: 3; background: #00914B; }
+    .priv-divider span:nth-child(2) { flex: 2; background: #009BBB; }
+    .priv-divider span:nth-child(3) { flex: 2; background: #6366F1; }
+    .priv-divider span:nth-child(4) { flex: 1.5; background: #FFA92D; }
+    .priv-divider span:nth-child(5) { flex: 1.5; background: #93093F; }
+
+    /* ── Contact box ── */
+    .contact-box {
+      background: var(--color-bg-light, #F8F9FA);
+      border: 1px solid var(--color-border);
+      border-radius: 12px; padding: 24px; text-align: center;
+    }
+    .contact-box p { margin: 0 0 12px; }
+    .contact-box a.cta {
+      display: inline-block; background: var(--color-primary);
+      color: white; padding: 10px 24px; border-radius: 99px;
+      font-size: 0.88rem; font-weight: 600; text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .contact-box a.cta:hover { background: var(--color-primary-hover); color: white; }
+
+    @media (max-width: 640px) {
+      .privacy-hero { padding: 100px 16px 40px; }
+      .tldr-card ul { grid-template-columns: 1fr; }
+      .tldr-card { margin: -24px 16px 0; padding: 20px; }
+      .processor-grid { grid-template-columns: 1fr; }
+      .rights-grid { grid-template-columns: 1fr; }
+      .analytics-flow { flex-direction: column; align-items: stretch; }
+      .analytics-flow__arrow { text-align: center; transform: rotate(90deg); }
+    }
+  </style>
 </head>
 <body>
 
@@ -37,8 +291,8 @@
               </a>
               <div class="nav__contact-popover-divider">or email us directly</div>
               <div class="copyable-email copyable-email--compact">
-                <span class="copyable-email__address">info@regenstudio.space</span>
-                <button class="copyable-email__btn" data-email="info@regenstudio.space" aria-label="Copy email address">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
                   <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                   <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
                   <span class="copyable-email__label">Copy</span>
@@ -54,104 +308,384 @@
     </div>
   </nav>
 
-  <main class="privacy-page">
-    <a href="index.html" class="privacy-back">&larr; Back to Home</a>
-
+  <!-- Hero -->
+  <section class="privacy-hero">
+    <div class="privacy-hero__accent"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="privacy-hero__tri tri-1"></div>
+    <div class="privacy-hero__tri tri-2"></div>
+    <div class="privacy-hero__tri tri-3"></div>
+    <div class="privacy-hero__tri tri-4"></div>
+    <div class="privacy-hero__tri tri-5"></div>
+    <div class="privacy-hero__tri tri-6"></div>
+    <div class="privacy-hero__tri tri-7"></div>
+    <div class="privacy-hero__tri tri-8"></div>
+    <div class="privacy-hero__shield">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
     <h1>Privacy Policy</h1>
-    <p class="privacy-updated">Last updated: 13 February 2026</p>
+    <p class="privacy-hero__sub">How we handle your data — transparently, minimally, and with respect.</p>
+    <p class="privacy-hero__updated">Last updated: 24 February 2026</p>
+  </section>
 
-    <h2>Data controller</h2>
-    <p>Regen Studio is a design and innovation studio based in The Hague, The Netherlands, and São Paulo, Brazil. Regen Studio is the data controller responsible for your personal data as described in this policy.</p>
-    <p>This privacy policy applies to the websites at <strong>regenstudio.space</strong> and <strong>demos.regenstudio.space</strong>.</p>
-    <p>Contact: <a href="mailto:info@regenstudio.space">info@regenstudio.space</a></p>
-
-    <h2>What data we collect</h2>
-    <p>When you submit a contact form or demo access request, we collect:</p>
+  <!-- TL;DR -->
+  <div class="tldr-card">
+    <h2>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+      The short version
+    </h2>
     <ul>
-      <li>Your name</li>
-      <li>Your email address</li>
-      <li>Your organization (if provided)</li>
-      <li>Your message (if provided)</li>
-      <li>The page URL you submitted from</li>
+      <li>No cookies are set on any of our websites</li>
+      <li>All fonts, scripts, and stylesheets are self-hosted on both sites</li>
+      <li>Analytics are privacy-preserving: no personal data stored</li>
+      <li>Your data is stored in the EU (Frankfurt, Germany)</li>
+      <li>We never sell, rent, or share your data</li>
+      <li>Compliant with GDPR, LGPD, and ePrivacy Directive</li>
     </ul>
-    <p>We do not use cookies, tracking pixels, or analytics on this site.</p>
+  </div>
 
-    <h2>Legal basis for processing</h2>
-    <p>We process your personal data based on the following legal grounds:</p>
-    <ul>
-      <li><strong>Legitimate interest</strong> (GDPR Article 6(1)(f) / LGPD Article 7(IX)) — to respond to your inquiry, manage our business relationship, and improve our services. We have assessed that this processing does not override your rights and freedoms.</li>
-      <li><strong>Consent</strong> (GDPR Article 6(1)(a) / LGPD Article 7(I)) — by voluntarily submitting a contact form, you consent to the processing of your data for the purposes described in this policy. You may withdraw consent at any time by contacting us.</li>
-    </ul>
+  <main class="privacy-page">
 
-    <h2>How we use your data</h2>
-    <ul>
-      <li>To respond to your inquiry or access request</li>
-      <li>To send you a confirmation email</li>
-      <li>To notify our team of your submission</li>
-    </ul>
-    <p>We do not use your data for marketing, profiling, or automated decision-making.</p>
+    <!-- Data controller -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--emerald">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h2>Data controller</h2>
+      </div>
+      <p><strong>Regen Studio B.V.</strong> is the data controller responsible for your personal data as described in this policy. Regen Studio is a design and innovation studio registered in The Netherlands (KVK 90337948), with activities in The Hague, The Netherlands and S&atilde;o Paulo, Brazil (CNPJ 57.579.114/0001-55).</p>
+      <p>This privacy policy applies to the websites at <strong>regenstudio.world</strong>, <strong>regenstudio.space</strong>, and <strong>demos.regenstudio.space</strong>, and to all services offered through these domains.</p>
+      <p>Contact: <a href="mailto:info@regenstudio.world">info@regenstudio.world</a></p>
+    </section>
 
-    <h2>Sub-processors and data storage</h2>
-    <p>We use the following third-party services to process your data:</p>
-    <ul>
-      <li><strong>Supabase Inc.</strong> — database hosting in the European Union (Frankfurt, Germany). Used to store contact form submissions.</li>
-      <li><strong>Lettermint</strong> — email delivery service (European Union). Used to send confirmation and notification emails.</li>
-    </ul>
-    <p>Both processors are contractually bound to protect your data in accordance with applicable data protection laws.</p>
+    <!-- What we collect -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--teal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h2>What data we collect and why</h2>
+      </div>
+      <p>We only collect personal data when you actively provide it, or when strictly necessary to deliver a service you requested.</p>
 
-    <h2>International data transfers</h2>
-    <p>Your form submissions are stored in the EU. Confirmation emails are sent via Lettermint, which processes your email address and name within the European Union. No international data transfers are required for email delivery.</p>
+      <p><strong>Contact forms and newsletter subscriptions</strong> (regenstudio.world)</p>
+      <ul>
+        <li>Your name, email address, and organization (if provided)</li>
+        <li>Your message (if provided)</li>
+        <li>The page URL you submitted from</li>
+      </ul>
+      <p>Purpose: to respond to your inquiry, send newsletters, and notify our team. Legal basis: <strong>legitimate interest</strong> (GDPR Art. 6(1)(f) / LGPD Art. 7(IX)) and <strong>consent</strong> (GDPR Art. 6(1)(a) / LGPD Art. 7(I)).</p>
 
-    <h2>Who has access</h2>
-    <p>Only the Regen Studio team and the sub-processors listed above have access to your data. We do not sell, rent, or share your personal data with any other third parties.</p>
+      <p><strong>Demo access requests and magic links</strong> (demos.regenstudio.space)</p>
+      <ul>
+        <li>Your email address</li>
+        <li>A cryptographic hash of the access token (the raw token is never stored server-side)</li>
+      </ul>
+      <p>Purpose: to verify your identity and grant demo access. Legal basis: <strong>performance of a contract</strong> (GDPR Art. 6(1)(b) / LGPD Art. 7(V)).</p>
 
-    <h2>How long we keep your data</h2>
-    <p>We retain contact submissions for up to 12 months after the last interaction, after which they are deleted.</p>
+      <p><strong>Report purchases</strong> (demos.regenstudio.space/cpr-dpp-tracker)</p>
+      <ul>
+        <li>Your email address</li>
+        <li>Selected report type and product family</li>
+        <li>Discount code (if used)</li>
+        <li>Billing details: company name, VAT ID, address (if provided for invoicing)</li>
+      </ul>
+      <p>Purpose: to process your order, generate your report, issue an invoice, and provide download access. When accessing a report or invoice, you must verify your email address to prevent unintended data disclosure through URL sharing. Legal basis: <strong>performance of a contract</strong> (GDPR Art. 6(1)(b) / LGPD Art. 7(V)).</p>
+    </section>
 
-    <h2>Your rights under the GDPR (EU)</h2>
-    <p>If you are in the European Economic Area, under the General Data Protection Regulation (GDPR) you have the right to:</p>
-    <ul>
-      <li>Access your personal data</li>
-      <li>Rectify inaccurate data</li>
-      <li>Request erasure of your data</li>
-      <li>Restrict processing</li>
-      <li>Object to processing</li>
-      <li>Data portability</li>
-      <li>Withdraw consent at any time</li>
-    </ul>
-    <p>You also have the right to lodge a complaint with a supervisory authority. For The Netherlands, this is the <a href="https://autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener">Autoriteit Persoonsgegevens (AP)</a>.</p>
+    <!-- What we do NOT collect -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--emerald">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h2>What we do NOT collect</h2>
+      </div>
+      <ul>
+        <li>We do <strong>not</strong> set any cookies on any of our websites</li>
+        <li>We do <strong>not</strong> use tracking pixels, fingerprinting, or advertising scripts</li>
+        <li>We do <strong>not</strong> share data with advertisers, data brokers, or social media platforms</li>
+        <li>We do <strong>not</strong> use your data for profiling or automated decision-making</li>
+        <li>We do <strong>not</strong> use your data for marketing unless you explicitly opt in (e.g., newsletter)</li>
+      </ul>
+      <p>On both our sites, all fonts, scripts, and stylesheets are self-hosted &mdash; zero third-party asset requests are made when you browse the page.</p>
+    </section>
 
-    <h2>Your rights under the LGPD (Brazil)</h2>
-    <p>If you are in Brazil, under the Lei Geral de Proteção de Dados (LGPD) you have the right to:</p>
-    <ul>
-      <li>Confirmation of the existence of processing</li>
-      <li>Access your personal data</li>
-      <li>Correct incomplete, inaccurate, or outdated data</li>
-      <li>Anonymization, blocking, or deletion of unnecessary or excessive data</li>
-      <li>Portability of your data</li>
-      <li>Deletion of data processed with your consent</li>
-      <li>Information about public and private entities with which your data has been shared</li>
-      <li>Information about the possibility of denying consent and its consequences</li>
-      <li>Withdrawal of consent</li>
-    </ul>
-    <p>You may exercise these rights or file a complaint with the <a href="https://www.gov.br/anpd" target="_blank" rel="noopener">Autoridade Nacional de Proteção de Dados (ANPD)</a>.</p>
+    <!-- Third-party embeds -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <h2>Third-party media embeds</h2>
+      </div>
+      <p>A small number of blog posts contain embedded videos (Vimeo) or audio players (SoundCloud). These embeds are <strong>not loaded automatically</strong>. Instead, you will see an informed consent overlay explaining exactly what data will be shared with the third party (IP address, browser type, operating system, page URL). The embed only loads after you explicitly click &ldquo;I understand.&rdquo;</p>
+      <p>Once you consent and the embed loads, the third party&rsquo;s own privacy policy applies to the data they receive. We do not control their processing.</p>
+    </section>
 
-    <h2>How to exercise your rights</h2>
-    <p>To exercise any of your rights under the GDPR or LGPD, contact us at <a href="mailto:info@regenstudio.space">info@regenstudio.space</a>. We will respond within 30 days.</p>
+    <!-- Analytics -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--indigo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h2>Privacy-preserving analytics</h2>
+      </div>
+      <p>On the demos site, we collect aggregate page view statistics to understand which pages are visited. This system is designed from the ground up to be privacy-preserving:</p>
 
-    <h2>Changes to this policy</h2>
-    <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated date. We encourage you to review this policy periodically.</p>
+      <div class="analytics-box">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          How it works
+        </h3>
+        <div class="analytics-flow">
+          <div class="analytics-flow__step">Your browser sends<br><code>page path</code> only</div>
+          <span class="analytics-flow__arrow">&rarr;</span>
+          <div class="analytics-flow__step">Server hashes your IP<br>with a <strong>daily-rotating salt</strong></div>
+          <span class="analytics-flow__arrow">&rarr;</span>
+          <div class="analytics-flow__step">Only <strong>aggregate counters</strong><br>persist long-term</div>
+        </div>
+        <p>Your IP address is used solely to generate a one-way hash for unique visitor counting. The hash formula is: <code>SHA-256(daily_salt + IP + UA)</code>. The raw IP is <strong>never stored</strong>. The salt is automatically rotated every 24 hours via a scheduled database function, making it impossible to track visitors across days. The raw hashes are deleted within 24 hours; only aggregate counts persist.</p>
+        <p>No session IDs, no cookies, no full URLs, and no user-agent strings are stored. Only the page path, country code (derived from Cloudflare&rsquo;s edge), and referrer domain are included in aggregate counters.</p>
+      </div>
 
-    <h2>Contact</h2>
-    <p>For any privacy-related questions, reach out to:<br>
-    <a href="mailto:info@regenstudio.space">info@regenstudio.space</a></p>
+      <p>Because we set no cookies and store no personal data, this analytics system does not require consent under the ePrivacy Directive (Art. 5(3)) or the Dutch Telecommunicatiewet (Art. 11.7a(3)). This architecture mirrors the approach recognized by the French CNIL as exempt from consent requirements.</p>
+      <p>The main website (regenstudio.world) does not currently use any analytics system.</p>
+    </section>
+
+    <!-- Local storage -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        </div>
+        <h2>Local storage</h2>
+      </div>
+      <p>We use your browser&rsquo;s <code>localStorage</code> in two cases:</p>
+      <ul>
+        <li><strong>Demo access tokens</strong> &mdash; when you access a demo using a magic link or password, we store a session token containing only the demo identifier and an expiry timestamp. This keeps you logged in so you don&rsquo;t have to re-authenticate on each page load.</li>
+        <li><strong>Content unlock tokens</strong> &mdash; when you provide your email to access gated content (e.g., product family details), we store a timestamp recording when you unlocked access.</li>
+      </ul>
+      <p>In both cases, the stored value contains <strong>no personal data</strong> (no email, no name). All tokens are programmatically enforced to expire after 24 hours: the code checks the stored timestamp against the current time and removes expired tokens automatically.</p>
+      <p>This storage is <strong>strictly necessary</strong> to provide the service you requested and is exempt from consent under ePrivacy Directive Art. 5(3).</p>
+    </section>
+
+    <div class="priv-divider"><span></span><span></span><span></span><span></span><span></span></div>
+
+    <!-- Sub-processors -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--teal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h2>Sub-processors and data storage</h2>
+      </div>
+      <p>We use the following third-party services. Each is contractually bound to protect your data in accordance with applicable data protection laws.</p>
+
+      <div class="processor-grid">
+        <div class="processor-card">
+          <p class="processor-card__name">Supabase Inc.</p>
+          <p class="processor-card__role">Database hosting, server-side functions, and authentication. All data stored in the EU (Frankfurt, Germany).</p>
+          <span class="processor-card__tag processor-card__tag--eu">EU hosted</span>
+        </div>
+        <div class="processor-card">
+          <p class="processor-card__name">Mollie B.V.</p>
+          <p class="processor-card__role">Payment processing for report purchases. Dutch payment service provider regulated by De Nederlandsche Bank.</p>
+          <span class="processor-card__tag processor-card__tag--nl">Netherlands</span>
+        </div>
+        <div class="processor-card">
+          <p class="processor-card__name">Lettermint</p>
+          <p class="processor-card__role">Transactional email delivery: confirmations, magic links, purchase receipts, newsletters, and internal notifications.</p>
+          <span class="processor-card__tag processor-card__tag--eu">EU</span>
+        </div>
+        <div class="processor-card">
+          <p class="processor-card__name">Exact Online (Exact Group B.V.)</p>
+          <p class="processor-card__role">Accounting software used to manage invoices and financial records. Invoice data is shared with our accountant, <a href="https://blendedbusiness.nl/" target="_blank" rel="noopener">Blended Business</a> (The Hague), via Exact Online.</p>
+          <span class="processor-card__tag processor-card__tag--nl">Netherlands</span>
+        </div>
+        <div class="processor-card">
+          <p class="processor-card__name">Proton Mail (Proton AG)</p>
+          <p class="processor-card__role">End-to-end encrypted email. Contact form submissions and business correspondence are received and stored in our Proton Mail inbox.</p>
+          <span class="processor-card__tag processor-card__tag--eu">Switzerland</span>
+        </div>
+        <div class="processor-card">
+          <p class="processor-card__name">GitHub (Microsoft)</p>
+          <p class="processor-card__role">Static website hosting via GitHub Pages. Serves HTML, CSS, JS, and font files. No personal data is stored by GitHub on our behalf.</p>
+          <span class="processor-card__tag processor-card__tag--us">US hosted</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- International transfers -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--indigo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <h2>International data transfers</h2>
+      </div>
+      <p>Your personal data (form submissions, orders) is stored in the EU (Frankfurt, Germany) via Supabase. Payments are processed by Mollie in The Netherlands. Invoices are managed through Exact Online (The Netherlands). Email is handled by Proton Mail (Switzerland, which has an EU adequacy decision).</p>
+      <p>The static websites are hosted on GitHub Pages (United States). GitHub serves only static files and does not process personal data on our behalf; however, standard HTTP server logs (including IP addresses) may be temporarily retained by GitHub in accordance with their <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">privacy statement</a>.</p>
+      <p>For transfers to the United States, we rely on the EU&ndash;US Data Privacy Framework where applicable, supplemented by Standard Contractual Clauses (SCCs). For transfers from Brazil, these are covered by LGPD Art. 33 with adequate safeguards.</p>
+    </section>
+
+    <!-- How we use your data -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--emerald">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <h2>How we use your data</h2>
+      </div>
+      <ul>
+        <li>To respond to your inquiry or access request</li>
+        <li>To send you confirmation emails or magic links</li>
+        <li>To process report purchases and deliver the report</li>
+        <li>To generate and send invoices</li>
+        <li>To send newsletters (only with your explicit consent)</li>
+        <li>To notify our team of submissions and orders</li>
+        <li>To understand aggregate website usage (privacy-preserving analytics, demos site only)</li>
+      </ul>
+      <p>We do not use your data for marketing (beyond opted-in newsletters), profiling, or automated decision-making.</p>
+    </section>
+
+    <!-- Who has access -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--crimson">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h2>Who has access</h2>
+      </div>
+      <p>We do not sell, rent, or share your personal data with any third parties beyond the sub-processors listed above. Below is a breakdown of exactly what each party can access:</p>
+      <ul>
+        <li><strong>Regen Studio team</strong> &mdash; full access to all data stored in our systems (contact submissions, orders, newsletter lists, analytics dashboards).</li>
+        <li><strong>Supabase</strong> &mdash; hosts all personal data server-side: contact form entries (name, email, organization, message), report orders (email, billing address, VAT ID, invoice records), newsletter subscriber lists, magic link tokens, and analytics hashes.</li>
+        <li><strong>Lettermint</strong> &mdash; receives email addresses and message content for every transactional email we send: contact form confirmations, magic links, purchase receipts, invoice PDFs, download links, and newsletter editions.</li>
+        <li><strong>Mollie</strong> &mdash; receives only payment amounts, an internal order ID, and a redirect URL. Buyer personal details (name, address, VAT ID) are <strong>not</strong> sent to Mollie and remain in our database.</li>
+        <li><strong>Proton Mail</strong> &mdash; our team mailbox. Internal notification emails (containing contact form submissions, order alerts, and magic link requests) are delivered here by Lettermint. Your replies to us are also stored in this inbox.</li>
+        <li><strong><a href="https://blendedbusiness.nl/" target="_blank" rel="noopener">Blended Business</a></strong> (our accountant, The Hague) &mdash; receives invoice data (name, company name, VAT ID, amounts) via Exact Online for bookkeeping and tax filing purposes.</li>
+        <li><strong>GitHub Pages</strong> &mdash; serves only static files (HTML, CSS, JS, fonts). No personal data is transmitted to GitHub by our code; however, GitHub may temporarily log IP addresses in standard server logs per their own <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">privacy statement</a>.</li>
+      </ul>
+    </section>
+
+    <!-- Data retention -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h2>Data retention</h2>
+      </div>
+      <ul>
+        <li><strong>Contact form submissions:</strong> automatically deleted after 90 days. You may request earlier deletion at any time.</li>
+        <li><strong>Newsletter subscribers:</strong> retained until you unsubscribe. Unsubscribed records are automatically deleted after 30 days (GDPR right to erasure). You may request full deletion at any time.</li>
+        <li><strong>Email event logs:</strong> raw webhook payloads from our email delivery service are automatically deleted after 90 days.</li>
+        <li><strong>Magic link tokens:</strong> hashed tokens expire after 15 minutes and can no longer be used for authentication. Used and expired links are automatically deleted after 7 days.</li>
+        <li><strong>Report orders and invoices:</strong> retained for at least 7 years as required by Dutch tax law (Algemene wet inzake rijksbelastingen, Art. 52).</li>
+        <li><strong>Analytics visitor hashes:</strong> deleted within 24 hours. Only aggregate counters persist. The hashing salt is rotated daily via automated scheduled function.</li>
+        <li><strong>Browser localStorage tokens:</strong> expire automatically after 24 hours, enforced programmatically.</li>
+      </ul>
+    </section>
+
+    <div class="priv-divider"><span></span><span></span><span></span><span></span><span></span></div>
+
+    <!-- Your rights -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--indigo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h2>Your rights</h2>
+      </div>
+      <p>Depending on where you are located, you have specific rights regarding your personal data.</p>
+
+      <div class="rights-grid">
+        <div class="rights-col">
+          <h3>GDPR (European Union)</h3>
+          <span class="rights-col__ref">Regulation (EU) 2016/679</span>
+          <ul>
+            <li>Access your personal data</li>
+            <li>Rectify inaccurate data</li>
+            <li>Request erasure (&ldquo;right to be forgotten&rdquo;)</li>
+            <li>Restrict processing</li>
+            <li>Object to processing</li>
+            <li>Data portability</li>
+            <li>Withdraw consent at any time</li>
+            <li>Lodge a complaint with a supervisory authority</li>
+          </ul>
+          <p style="font-size:0.78rem;color:var(--color-text-muted);margin:12px 0 0">Supervisory authority for The Netherlands: <a href="https://autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener">Autoriteit Persoonsgegevens (AP)</a></p>
+        </div>
+        <div class="rights-col">
+          <h3>LGPD (Brazil)</h3>
+          <span class="rights-col__ref">Lei 13.709/2018</span>
+          <ul>
+            <li>Confirmation of the existence of processing</li>
+            <li>Access your personal data</li>
+            <li>Correct incomplete, inaccurate, or outdated data</li>
+            <li>Anonymization, blocking, or deletion of unnecessary data</li>
+            <li>Portability of your data</li>
+            <li>Deletion of data processed with consent</li>
+            <li>Information about entities with which data has been shared</li>
+            <li>Withdrawal of consent</li>
+          </ul>
+          <p style="font-size:0.78rem;color:var(--color-text-muted);margin:12px 0 0">Supervisory authority: <a href="https://www.gov.br/anpd" target="_blank" rel="noopener">ANPD</a></p>
+        </div>
+      </div>
+
+      <p>For visitors from other jurisdictions, we extend the same rights listed above as a matter of good practice, regardless of whether local law requires it.</p>
+    </section>
+
+    <!-- How to exercise rights -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--emerald">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
+        </div>
+        <h2>How to exercise your rights</h2>
+      </div>
+      <p>To exercise any of your rights, contact us at <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>. We will acknowledge your request within 5 business days and respond substantively within 30 days.</p>
+      <p>If you request deletion, we will erase all personal data we hold about you, except where retention is required by law (e.g., invoice records under Dutch tax law).</p>
+    </section>
+
+    <!-- Children -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h2>Children</h2>
+      </div>
+      <p>Our services are directed at businesses and professionals. We do not knowingly collect personal data from children under 16. If you believe we have inadvertently collected data from a child, please contact us and we will delete it promptly.</p>
+    </section>
+
+    <!-- Changes -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--teal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+        </div>
+        <h2>Changes to this policy</h2>
+      </div>
+      <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated date.</p>
+    </section>
+
+    <div class="priv-divider"><span></span><span></span><span></span><span></span><span></span></div>
+
+    <!-- Contact -->
+    <div class="contact-box">
+      <p><strong>Questions about your privacy?</strong></p>
+      <p>We&rsquo;re happy to explain anything in this policy in more detail, or to help you exercise your rights.</p>
+      <a href="mailto:info@regenstudio.world" class="cta">Contact us</a>
+    </div>
+
   </main>
 
   <!-- Footer -->
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
     <meta itemprop="name" content="Regen Studio">
-    <meta itemprop="url" content="https://www.regenstudio.space">
-    <meta itemprop="email" content="info@regenstudio.space">
+    <meta itemprop="url" content="https://www.regenstudio.world">
+    <meta itemprop="email" content="info@regenstudio.world">
     <div class="container footer__inner">
       <div class="footer__brand">
         <a href="index.html" class="footer__logo">
@@ -178,8 +712,8 @@
           <ul>
             <li>
               <span class="footer__email-row">
-                <span class="footer__email-address">info@regenstudio.space</span>
-                <button class="footer__copy-btn" data-email="info@regenstudio.space" aria-label="Copy email address">
+                <span class="footer__email-address">info@regenstudio.world</span>
+                <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copy email address">
                   <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                   <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
                 </button>
@@ -219,7 +753,6 @@
   </footer>
 
   <script>
-    // Minimal JS for nav toggle and copy buttons on privacy page
     (function() {
       var navToggle = document.getElementById('navToggle');
       var navLinks = document.getElementById('navLinks');
@@ -230,7 +763,6 @@
           document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
         });
       }
-
       var navContactBtn = document.getElementById('navContactBtn');
       var navContactPopover = document.getElementById('navContactPopover');
       if (navContactBtn && navContactPopover) {
@@ -245,7 +777,6 @@
           }
         });
       }
-
       document.addEventListener('click', function(e) {
         var copyBtn = e.target.closest('.copyable-email__btn');
         if (copyBtn) {
