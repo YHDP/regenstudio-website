@@ -2000,9 +2000,11 @@
   var GATE_KEY = 'regen_cpr_unlocked';
 
   if (gate && gateForm) {
-    if (localStorage.getItem(GATE_KEY)) {
+    var ts = parseInt(localStorage.getItem(GATE_KEY) || '0', 10);
+    if (ts > 0 && (Date.now() - ts) < 86400000) {
       gate.classList.remove('cpr-gate--locked');
     } else {
+      localStorage.removeItem(GATE_KEY);
       gate.classList.add('cpr-gate--locked');
     }
 
@@ -2033,7 +2035,7 @@
             throw new Error(data.error || 'Something went wrong');
           });
         }
-        localStorage.setItem(GATE_KEY, '1');
+        localStorage.setItem(GATE_KEY, Date.now().toString());
         gate.classList.remove('cpr-gate--locked');
         var overlay = document.getElementById('cprGateOverlay');
         overlay.classList.remove('cpr-gate__overlay--fixed');

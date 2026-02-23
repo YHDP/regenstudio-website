@@ -23,9 +23,7 @@
 
   <link rel="canonical" href="https://www.regenstudio.space/digital-product-passports/">
   <link rel="icon" type="image/png" href="../Images/Flavicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/fonts/fonts.css">
   <link rel="stylesheet" href="../style.css">
 
   <!-- Structured data: Service + FAQ + Breadcrumb -->
@@ -939,9 +937,11 @@
 
       if (gate && gateForm) {
         // Check if already unlocked
-        if (localStorage.getItem(GATE_KEY)) {
+          var ts = parseInt(localStorage.getItem(GATE_KEY) || '0', 10);
+        if (ts > 0 && (Date.now() - ts) < 86400000) {
           gate.classList.remove('dpp-gate--locked');
         } else {
+          localStorage.removeItem(GATE_KEY);
           gate.classList.add('dpp-gate--locked');
         }
 
@@ -975,7 +975,7 @@
                 throw new Error(data.error || 'Something went wrong');
               });
             }
-            localStorage.setItem(GATE_KEY, '1');
+            localStorage.setItem(GATE_KEY, Date.now().toString());
             gate.classList.remove('dpp-gate--locked');
             var overlay = document.getElementById('dppGateOverlay');
             var card = overlay.querySelector('.dpp-gate__card');

@@ -59,16 +59,20 @@ Deno.serve(async (req) => {
   // Read raw body before parsing (needed for signature verification)
   const rawBody = await req.text();
 
-  // Verify signature
+  // Verify signature — mandatory, reject unsigned requests
   const signatureHeader = req.headers.get("X-Lettermint-Signature") || "";
-  if (signatureHeader) {
-    const valid = await verifySignature(rawBody, signatureHeader, webhookSecret);
-    if (!valid) {
-      return new Response(JSON.stringify({ error: "Invalid signature" }), {
-        status: 401,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
+  if (!signatureHeader) {
+    return new Response(JSON.stringify({ error: "Missing signature" }), {
+      status: 401,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+  const valid = await verifySignature(rawBody, signatureHeader, webhookSecret);
+  if (!valid) {
+    return new Response(JSON.stringify({ error: "Invalid signature" }), {
+      status: 401,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   let payload: Record<string, unknown>;

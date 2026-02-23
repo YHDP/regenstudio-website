@@ -388,7 +388,9 @@
   var modalClose=modal.querySelector('.sep-modal__close');
   var modalBg=modal.querySelector('.sep-modal__backdrop');
   var lastFocus=null;
-  var isUnlocked=!!localStorage.getItem(GATE_KEY);
+  var gateTs=parseInt(localStorage.getItem(GATE_KEY)||'0',10);
+  if(gateTs>0&&(Date.now()-gateTs)>=86400000){localStorage.removeItem(GATE_KEY);gateTs=0;}
+  var isUnlocked=gateTs>0;
 
   function renderGroup(g,color){
     var h='<div class="sep-modal__group"><p class="sep-modal__gtitle" style="color:'+color+'">'+g.title+'</p><ul>';
@@ -498,7 +500,7 @@
           body:JSON.stringify({name:'',email:emailVal,message:'Innovation process phase template unlock',source:'innovation_gate',newsletter:newsletter,page_url:window.location.href})
         }).then(function(res){
           if(!res.ok) return res.json().catch(function(){return{};}).then(function(d){throw new Error(d.error||'Something went wrong');});
-          localStorage.setItem(GATE_KEY,'1');
+          localStorage.setItem(GATE_KEY,Date.now().toString());
           isUnlocked=true;
           openModal(p);
         }).catch(function(er){

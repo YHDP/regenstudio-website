@@ -7,7 +7,7 @@
 - Backend: Supabase Edge Functions (Deno/TypeScript)
 - Email: Lettermint via Supabase
 - Hosting: GitHub Pages (www.regenstudio.world)
-- Fonts: Google Fonts (Inter, Playfair Display)
+- Fonts: Self-hosted in `assets/fonts/` (Inter, Playfair Display)
 
 ## Directory Structure
 - `/` — HTML pages (index, blog, about, faq, services, privacy)
@@ -54,6 +54,18 @@
 - No build step or propagation script — all 37 cards are edited directly in the HTML
 - When editing data-info: lines are very long single-line HTML strings; use `grep -o` to extract exact substrings before editing
 - Fact-checking: always verify standard year designations (EN vs national adoption year), AVCP decision numbers, OJ-cited harmonised status vs newer non-harmonised revisions, and cross-check counts across data-dpp-range, data-standards summary, and data-info narrative
+
+## Privacy Rules — MANDATORY
+
+This site follows a **zero third-party connections** policy. Both regenstudio.world and demos.regenstudio.space promise visitors in their privacy policies that all assets are self-hosted and no cookies are set.
+
+- **NEVER add Google Fonts, CDN-hosted scripts, or any external `<link>`/`<script>` tags**
+  - If a new font or library is needed, download the files and self-host them
+  - No `fonts.googleapis.com`, `cdnjs.cloudflare.com`, `cdn.jsdelivr.net`, `unpkg.com`, etc.
+- **NEVER add cookies, tracking pixels, fingerprinting, or advertising scripts**
+- **NEVER store raw IP addresses** — always hash with a rotating salt
+- **NEVER send personal data to third parties** beyond listed sub-processors (Supabase, Mollie, Lettermint, Exact Online, Proton Mail, GitHub Pages)
+- If adding a new external service, update `privacy.html` sub-processors section first
 
 ## Current Status
 - Live site with 35+ blog posts, newsletter system, contact forms
