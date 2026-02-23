@@ -107,9 +107,9 @@
   // --- Centralized social profiles & company info (shared with hero) ---
   const COMPANY = {
     name: 'Regen Studio',
-    url: 'https://www.regenstudio.world',
+    url: 'https://www.regenstudio.space',
     tagline: 'Designing innovations that regenerate humans, cities and nature.',
-    email: 'info@regenstudio.world',
+    email: 'info@regenstudio.space',
     profiles: {
       linkedin: 'https://www.linkedin.com/company/regen-studio-world/',
       bluesky: 'https://bsky.app/profile/regen-studio.bsky.social',
