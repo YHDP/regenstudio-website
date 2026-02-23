@@ -1,0 +1,62 @@
+/* Informed consent overlay for third-party media embeds */
+.embed-consent {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #1a1a2e;
+}
+.embed-consent iframe {
+  display: block;
+}
+.embed-consent__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  text-align: center;
+  background: #1a1a2e;
+  color: #e0e0e0;
+}
+.embed-consent__icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+.embed-consent__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 12px;
+}
+.embed-consent__info {
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 0 20px;
+  color: #b0b0b0;
+}
+.embed-consent__info a {
+  color: #7ecba1;
+}
+.embed-consent__info strong {
+  color: #d0d0d0;
+}
+.embed-consent__btn {
+  display: inline-block;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: #00914B;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.embed-consent__btn:hover {
+  background: #007a3f;
+}

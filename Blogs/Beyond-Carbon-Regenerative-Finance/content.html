@@ -8,7 +8,16 @@
 
 <p><strong>Watch the webinar below.</strong></p>
 
-<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/879909420" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+<link rel="stylesheet" href="assets/css/embed-consent.css">
+<div class="embed-consent" data-embed-src="https://player.vimeo.com/video/879909420" data-embed-type="vimeo" style="padding:56.25% 0 0 0;position:relative;">
+  <div class="embed-consent__overlay">
+    <div class="embed-consent__icon">&#9654;</div>
+    <p class="embed-consent__title">External video (Vimeo)</p>
+    <p class="embed-consent__info">Playing this video will connect your browser to Vimeo's servers. Vimeo will receive your <strong>IP address</strong>, <strong>browser type</strong>, <strong>operating system</strong>, and the <strong>page URL</strong> you are visiting. Vimeo may also set cookies. See <a href="https://vimeo.com/privacy" target="_blank" rel="noopener">Vimeo's privacy policy</a>.</p>
+    <button class="embed-consent__btn" onclick="this.closest('.embed-consent').querySelector('iframe').src=this.closest('.embed-consent').dataset.embedSrc;this.closest('.embed-consent__overlay').remove();">I understand — load video</button>
+  </div>
+  <iframe src="" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 <p><em>For Dutch speakers who prefer reading, <a href="https://dutchblockchaincoalition.org/assets/images/default/De-Zin-en-de-Onzin-van-Koolstof-DBC-Thema-Rapport-1.0.pdf">find the full report here</a>.</em></p>
 

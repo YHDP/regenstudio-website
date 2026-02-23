@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680" width="900" height="680">
   <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@600&amp;display=swap');
       text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
     </style>
   </defs>
