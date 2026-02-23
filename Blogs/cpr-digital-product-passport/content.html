@@ -322,8 +322,15 @@
 
   /* Email gate */
   .cpr-gate { position: relative; }
+  /* Locked: cards 5+ show name/icon but blur DPP date + status */
+  .cpr-gate--locked .cpr-grid > :nth-child(n+5) .cpr-card__dpp,
+  .cpr-gate--locked .cpr-grid > :nth-child(n+5) .cpr-card__status,
+  .cpr-gate--locked .cpr-grid > :nth-child(n+5) .cpr-card__tc {
+    filter: blur(4px);
+    user-select: none;
+  }
   .cpr-gate--locked .cpr-grid > :nth-child(n+5) {
-    filter: blur(6px); pointer-events: none; user-select: none;
+    opacity: 0.7;
   }
   .cpr-gate--locked .cpr-grid { position: relative; }
   .cpr-gate--locked .cpr-grid::after {
@@ -351,8 +358,42 @@
   .cpr-gate__disclaimer { font-size: 0.72rem; color: var(--color-text-secondary, #64748b); margin-top: 12px; opacity: 0.7; }
   .cpr-gate__disclaimer a { color: var(--color-primary, #009BBB); text-decoration: underline; }
   .cpr-gate__error { font-size: 0.82rem; color: var(--color-red, #E71846); margin-top: 8px; }
+
+  /* Blurred popup body for cards 2–37 */
+  .cpr-modal__blurred-wrap {
+    position: relative;
+    min-height: 200px;
+  }
+  .cpr-modal__blurred-content {
+    filter: blur(6px);
+    user-select: none;
+    pointer-events: none;
+  }
+  .cpr-modal__access-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    z-index: 10;
+  }
+
+  /* Teaser CTA box (card 1 popup) */
+  .cpr-modal__teaser-cta {
+    margin-top: 24px;
+    padding: 24px;
+    background: linear-gradient(135deg, #243644 0%, #1B2833 100%);
+    border-radius: 12px;
+    text-align: center;
+  }
+
   @media (max-width: 768px) {
-    .cpr-gate--locked .cpr-grid > :nth-child(n+5) { filter: blur(6px); }
+    .cpr-gate--locked .cpr-grid > :nth-child(n+5) .cpr-card__dpp,
+    .cpr-gate--locked .cpr-grid > :nth-child(n+5) .cpr-card__status,
+    .cpr-gate--locked .cpr-grid > :nth-child(n+5) .cpr-card__tc { filter: blur(4px); }
     .cpr-gate--locked .cpr-gate__overlay { top: 240px; }
   }
   @media (max-width: 480px) {
@@ -1329,7 +1370,7 @@
     return result;
   }
 
-  function openModal(card) {
+  function openModal(card, mode) {
     var fullName = card.getAttribute('data-full-name');
     var letter = card.getAttribute('data-letter');
     var family = card.getAttribute('data-family');
@@ -1784,6 +1825,77 @@
 
     // Disclaimer only in body
     body.innerHTML = '<p style="font-size:0.72rem;line-height:1.5;color:var(--color-text-secondary,#64748b);background:var(--color-bg-card,#f8fafc);border-left:3px solid var(--color-border,#e2e8f0);padding:10px 14px;border-radius:0 8px 8px 0;margin-top:14px;"><strong>Disclaimer:</strong> The CPR regulatory landscape is dynamic and at times opaque, making it difficult to be completely up to date or accurate. The information on this page is provided for informational purposes only and should not be considered legal advice. For critical decision-making, we recommend validating this information with legal experts, sector organisations, or the <a href="https://single-market-economy.ec.europa.eu/sectors/construction/construction-products-regulation-cpr_en" target="_blank" rel="noopener" style="color:var(--color-primary,#009BBB);">European Commission</a>. If you see anything that should be improved or updated, please <a href="/#contact" style="color:var(--color-primary,#009BBB);">let us know through the form below</a>.</p>';
+
+    // === Mode-specific popup behavior ===
+    // Restore elements from any previous blurred-wrap before cleanup
+    var modalCard = modal.querySelector('.cpr-modal__card');
+    var oldWrap = modal.querySelector('.cpr-modal__blurred-wrap');
+    if (oldWrap) {
+      // Move content elements back into modal card (before the wrap)
+      var blurredContent = oldWrap.querySelector('.cpr-modal__blurred-content');
+      if (blurredContent) {
+        while (blurredContent.firstChild) {
+          modalCard.insertBefore(blurredContent.firstChild, oldWrap);
+        }
+      }
+      oldWrap.parentNode.removeChild(oldWrap);
+    }
+    var oldTeaser = modal.querySelector('.cpr-modal__teaser-cta');
+    if (oldTeaser) oldTeaser.parentNode.removeChild(oldTeaser);
+
+    if (mode === 'teaser') {
+      // Card 1: hide detailed standards + annex, show simplified standard names + CTA
+      standardsSection.style.display = 'none';
+      annexEl.style.display = 'none';
+
+      // Build simplified standard names list from data-standards JSON
+      var teaserStdsRaw = card.getAttribute('data-standards') || '';
+      var teaserStds = null;
+      if (teaserStdsRaw) { try { teaserStds = JSON.parse(teaserStdsRaw); } catch(e) {} }
+      var stdNames = '';
+      if (teaserStds && teaserStds.standards && teaserStds.standards.length > 0) {
+        stdNames = '<div style="margin-top:16px;font-size:0.72rem;color:#5781A1;line-height:1.6;">';
+        stdNames += '<div style="font-size:0.62rem;font-weight:700;color:#243644;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Standards covered</div>';
+        stdNames += '<ul style="margin:0;padding-left:16px;">';
+        teaserStds.standards.forEach(function(s) {
+          stdNames += '<li>' + (s.id || '') + (s.name ? ' — ' + s.name : '') + '</li>';
+        });
+        stdNames += '</ul></div>';
+      }
+
+      // Append teaser CTA box
+      var teaserCta = document.createElement('div');
+      teaserCta.className = 'cpr-modal__teaser-cta';
+      teaserCta.innerHTML = stdNames
+        + '<p style="color:#AFF9D7;font-size:0.78rem;font-weight:600;margin-top:16px;margin-bottom:6px;">Want the full analysis?</p>'
+        + '<p style="color:#8CA9BF;font-size:0.82rem;line-height:1.6;margin-bottom:16px;">Explore detailed per-standard DPP timelines, regulatory status, and compliance data for all 37 product families in our interactive tracker.</p>'
+        + '<a href="https://demos.regenstudio.world/cpr-dpp-tracker/gate.html" style="display:inline-block;background:#00914B;color:#fff;font-weight:600;font-size:0.9rem;padding:12px 28px;border-radius:8px;text-decoration:none;">Explore the CPR DPP Tracker &rarr;</a>';
+      modalCard.appendChild(teaserCta);
+
+    } else if (mode === 'blurred') {
+      // Cards 2–37: wrap all content below header in blurred container with access overlay
+      var wrap = document.createElement('div');
+      wrap.className = 'cpr-modal__blurred-wrap';
+
+      // Move content sections into blurred container
+      var blurred = document.createElement('div');
+      blurred.className = 'cpr-modal__blurred-content';
+      [introEl, dppBoxEl, standardsSection, annexEl, body].forEach(function(el) {
+        if (el) blurred.appendChild(el);
+      });
+      wrap.appendChild(blurred);
+
+      // Add access overlay
+      var overlay = document.createElement('div');
+      overlay.className = 'cpr-modal__access-overlay';
+      overlay.innerHTML = '<p style="font-size:1.1rem;font-weight:600;color:#243644;margin-bottom:8px;">Want to see this info?</p>'
+        + '<p style="font-size:0.9rem;color:#5781A1;margin-bottom:20px;line-height:1.6;">Get full access to detailed regulatory analysis, standard-by-standard DPP timelines, and compliance data for all 37 product families.</p>'
+        + '<a href="https://demos.regenstudio.world/cpr-dpp-tracker/gate.html" style="display:inline-block;background:#00914B;color:#fff;font-weight:600;font-size:0.95rem;padding:12px 28px;border-radius:8px;text-decoration:none;">Request access to the CPR DPP Tracker &rarr;</a>';
+      wrap.appendChild(overlay);
+
+      modalCard.appendChild(wrap);
+    }
+
     modal.setAttribute('aria-hidden', 'false');
     closeBtn.focus();
   }
@@ -1792,11 +1904,17 @@
     modal.setAttribute('aria-hidden', 'true');
   }
 
-  document.querySelectorAll('.cpr-grid').forEach(function(grid) {
-    grid.addEventListener('click', function(e) {
-      var card = e.target.closest('.cpr-card');
-      if (card) openModal(card);
-    });
+  document.querySelector('.cpr-grid').addEventListener('click', function(e) {
+    var card = e.target.closest('.cpr-card');
+    if (!card) return;
+    var allCards = document.querySelectorAll('.cpr-card');
+    var cardIndex = Array.prototype.indexOf.call(allCards, card);
+
+    if (cardIndex === 0) {
+      openModal(card, 'teaser');   // Card 1: teaser popup
+    } else {
+      openModal(card, 'blurred');  // Cards 2–37: blurred popup
+    }
   });
 
   backdrop.addEventListener('click', closeModal);
@@ -1870,9 +1988,9 @@
 
 <div style="background: linear-gradient(135deg, #243644 0%, #1B2833 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
   <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">See it in action</p>
-  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Want to see what a DPP system looks like?</p>
-  <p style="color: #8CA9BF; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">Explore our interactive demo — tracking sustainable furniture from Brazilian forests through manufacturing, with UNTP verifiable credentials and ESPR compliance data.</p>
-  <a href="https://demos.regenstudio.space/dpp-system/gate.html" style="display: inline-block; background: #00914B; color: #FFFFFF; font-weight: 600; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none; transition: background 0.2s;">Explore the DPP System Demo &rarr;</a>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Track DPP readiness across construction product families</p>
+  <p style="color: #8CA9BF; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">Explore our interactive CPR DPP Tracker — covering all 37 product families, their harmonised standards, DPP obligation timelines, and regulatory status.</p>
+  <a href="https://demos.regenstudio.world/cpr-dpp-tracker/gate.html" style="display: inline-block; background: #00914B; color: #FFFFFF; font-weight: 600; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none; transition: background 0.2s;">Explore the CPR DPP Tracker &rarr;</a>
 </div>
 
 <h2>What the DPP Must Contain</h2>
@@ -1894,6 +2012,12 @@
   </figcaption>
 </figure>
 
+<div style="background: #F0FAF5; border: 1px solid #B8E6D0; border-radius: 12px; padding: 24px 28px; margin: 32px 0;">
+  <p style="margin: 0 0 8px; font-weight: 600; color: #243644;">See how this applies to each product family</p>
+  <p style="margin: 0 0 16px; font-size: 0.95rem; color: #5781A1; line-height: 1.6;">Our CPR DPP Tracker maps all 37 product families to their DPP timelines, harmonised standards, and regulatory status — so you can see exactly where your products stand.</p>
+  <a href="https://demos.regenstudio.world/cpr-dpp-tracker/gate.html" style="display: inline-block; background: #00914B; color: #FFFFFF; font-weight: 600; font-size: 0.9rem; padding: 10px 24px; border-radius: 8px; text-decoration: none;">Try the CPR DPP Tracker &rarr;</a>
+</div>
+
 <h2>Interoperability and Open Standards</h2>
 
 <p>Articles 77 and 78 contain unusually explicit requirements for the DPP's technical architecture. The regulation mandates:</p>
@@ -1912,7 +2036,7 @@
 <p>Despite the uncertainty around exact dates, the direction is clear. Manufacturers and other economic operators in the construction sector should:</p>
 
 <ul>
-  <li><strong>Map your products to the working plan.</strong> Identify which Annex VII product families your products fall under and check where those families sit in the Commission's rollout timeline.</li>
+  <li><strong>Map your products to the working plan.</strong> Identify which Annex VII product families your products fall under and check where those families sit in the Commission's rollout timeline. <a href="https://demos.regenstudio.world/cpr-dpp-tracker/gate.html" style="color: #00914B; font-weight: 600;">Our CPR DPP Tracker can help &rarr;</a></li>
   <li><strong>Start collecting and structuring product data.</strong> The DPP will require declarations of performance, safety information, technical documentation, and unique identifiers. Much of this data already exists but is often fragmented across different systems and formats.</li>
   <li><strong>Engage with CEN/CENELEC.</strong> If your product family's standardisation request has been adopted or is in preparation, the standards development process is already underway. Industry input — particularly from SMEs — is critical to ensuring the resulting specifications are both ambitious and workable.</li>
   <li><strong>Build DPP-ready data infrastructure.</strong> The regulation's emphasis on open standards, machine-readable formats, and BIM compatibility means that proprietary, siloed product data systems will not meet the requirements. Start investing in interoperable digital product data now.</li>

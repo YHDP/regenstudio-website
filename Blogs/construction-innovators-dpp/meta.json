@@ -1,16 +1,16 @@
 {
-  "title": "The DPP Has No Loophole: Why Innovative Construction Products May Face Digital Passports First",
-  "slug": "cpr-dpp-no-loophole",
-  "subtitle": "How the two-route CE marking system under CPR 2024/3110 creates an innovator's paradox for Digital Product Passports",
+  "title": "The Construction Innovator Paradox: Why Innovative Construction Products May Face Digital Product Passports First",
+  "slug": "construction-innovators-dpp",
+  "subtitle": "How the two-route CE marking system under CPR 2024/3110 creates may make Digital Product Passports for innovate products mandatory before the harmonized standards are done",
   "author": {
     "name": "Yvo Hunink de Paiva",
     "role": "Regenerative Innovation Design"
   },
-  "date": "2026-02-20",
-  "categories": ["Digital Product Passport", "Circular Economy"],
-  "tags": ["CPR", "construction", "digital-product-passports", "EAD", "ETA", "EOTA", "harmonised-standards", "DoPC", "EU-regulation"],
+  "date": "2026-02-22",
+  "categories": ["Digital Product Passport", "Vision & Strategy"],
+  "tags": ["CPR", "construction", "digital product passports", "EAD", "ETA", "EOTA", "DPPs", "harmonised-standards", "DoPC", "CE mark", "EU-regulation"],
   "featuredImage": "featured.webp",
   "featuredImageAlt": "Two routes to CE marking under the Construction Products Regulation — harmonised standards and European Assessment Documents — both leading to Digital Product Passport obligations",
   "excerpt": "Everyone assumes DPP obligations will roll out family by family. But the CPR's two-route CE marking system means innovative products using the EAD/ETA route could face Digital Product Passport requirements years before mainstream products covered by harmonised standards — and there is no way out.",
-  "published": false
+  "published": true
 }
