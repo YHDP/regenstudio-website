@@ -4544,6 +4544,19 @@ a.dpp-product--linked {
 @media (max-width: 640px) {
   .dpp-stakeholders__grid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .dpp-stakeholder {
+    padding: 20px 18px;
+  }
+  .dpp-stakeholder__icon {
+    display: none;
+  }
+  .dpp-stakeholder__title {
+    font-size: 1rem;
+  }
+  .dpp-stakeholder__intro {
+    font-size: 0.82rem;
   }
 }
 

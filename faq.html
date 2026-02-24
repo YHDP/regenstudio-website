@@ -273,7 +273,7 @@
         "name": "What are living labs and how does Regen Studio use them?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Living labs are real-world environments where innovations are co-created, tested, and refined together with the people who will use them — citizens, businesses, and public institutions. Unlike traditional pilot projects, living labs embed experimentation into everyday life: testing smart energy solutions in actual neighbourhoods, trialling digital participation tools with real municipal processes, or prototyping circular economy services with genuine customers. Regen Studio has designed and facilitated living labs for multiple municipalities in the Netherlands, including digital innovation processes for the City of The Hague."
+          "text": "Living labs are real-world environments where innovations are co-created, tested, and refined together with the people who will use them — citizens, businesses, and public institutions. Unlike traditional pilot projects, living labs embed experimentation into everyday life: testing smart energy solutions in actual neighbourhoods, trialling digital participation tools with real municipal processes, or prototyping circular economy services with genuine customers. Regen Studio worked on Living Lab Scheveningen, designing the innovation process, doing project management for several cases, and mentoring other project managers. This included digital innovation processes for the City of The Hague."
         }
       },
       {
@@ -290,6 +290,70 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Regen Studio's digital society work is built on the principle that technology should serve people, not extract from them. This means privacy-first design (our own websites set zero cookies and self-host all assets), advocacy for self-sovereign identity (individuals control their own data), and critical engagement with AI governance. We explore how digital infrastructure — from product passports to identity wallets — can be designed to empower citizens rather than concentrate power in platforms."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a Digital Identity?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A digital identity is the collection of attributes, credentials, and identifiers that represent a person, organization, or thing in the digital world. Unlike traditional identity systems that rely on centralized databases, modern digital identity frameworks — such as those under eIDAS 2.0 — give individuals control over their own data through digital wallets and verifiable credentials."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is eIDAS 2.0?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "eIDAS 2.0 (Regulation EU 2024/1183) is the revised European framework for electronic identification and trust services. It requires all EU member states to offer citizens a European Digital Identity Wallet by 2026, enabling cross-border identity verification, selective disclosure of personal attributes, and qualified electronic signatures — all under the user's control."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Self-Sovereign Identity (SSI)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Self-Sovereign Identity is a model where individuals own and control their digital identity without depending on a central authority. Using technologies like Decentralized Identifiers (DIDs) and Verifiable Credentials, SSI enables people to prove claims about themselves — such as age, qualifications, or citizenship — without revealing more information than necessary."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are Verifiable Credentials?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Verifiable Credentials are tamper-proof, cryptographically signed digital statements issued by a trusted party. They can represent anything from a university diploma to a proof of address. The holder stores them in a digital wallet and can present them to verifiers — who can check their authenticity without contacting the issuer. This is a core building block of eIDAS 2.0 and Self-Sovereign Identity."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is selective disclosure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Selective disclosure is the ability to share only specific attributes from a credential without revealing the full underlying data. For example, proving you are over 18 without revealing your exact date of birth. This is a fundamental privacy mechanism in eIDAS 2.0 wallets and SSI systems, made possible through cryptographic techniques."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do digital identity and Digital Product Passports connect?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Digital Product Passports need trust — verifiable credentials can be used to sign product data, so the origin and integrity of DPP information can be verified cryptographically. Regen Studio led the Trusted DPP position paper for FIDES and the Dutch Blockchain Coalition, defining how SSI and verifiable credentials create trust ecosystems for product passports."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Privacy-by-Design?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Privacy-by-Design is a design approach where privacy protections are built into systems from the start, not bolted on after. In digital identity, this means selective disclosure, data minimization, and ensuring users share only what is strictly necessary. Regen Studio practices this directly — our websites set zero cookies and self-host all assets."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is innovation process design?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Innovation process design is the practice of creating a structured, repeatable framework that guides an organisation from identifying a problem to adopting a validated solution. Regen Studio designed an eight-phase digital innovation process for the City of The Hague's EC-DISC and Living Lab Scheveningen. The CIO of the Information and Automation department formally adopted it as departmental policy."
         }
       },
       {
@@ -433,17 +497,18 @@
     <section class="about-hero">
       <p class="about-hero__label">Knowledge Base</p>
       <h1 class="about-hero__title">Frequently Asked <em>Questions</em></h1>
-      <p class="about-hero__lead">Find answers about our services, Digital Product Passports, EU regulations, energy transition, circular economy, innovation design, interactive demos, and how we work. Can't find what you're looking for? <a href="mailto:info@regenstudio.space">Get in touch</a>.</p>
+      <p class="about-hero__lead">Find answers about our services, circular economy, Digital Product Passports, EU regulations, energy transition, digital identity, resilient nature, innovation design, interactive demos, and how we work. Can't find what you're looking for? <a href="mailto:info@regenstudio.space">Get in touch</a>.</p>
     </section>
 
     <!-- Category jump links -->
     <nav class="faq-categories" aria-label="FAQ categories">
       <a href="#faq-about" class="faq-categories__link">About Regen Studio</a>
-      <a href="#faq-dpp" class="faq-categories__link">Digital Product Passports</a>
-      <a href="#faq-regulations" class="faq-categories__link">EU Regulations</a>
       <a href="#faq-circular" class="faq-categories__link">Circular Economy</a>
+      <a href="#faq-regulations" class="faq-categories__link">EU Regulations</a>
       <a href="#faq-energy" class="faq-categories__link">Energy Transition</a>
-      <a href="#faq-cities" class="faq-categories__link">Cities &amp; Digital Society</a>
+      <a href="#faq-cities" class="faq-categories__link">Liveable Cities</a>
+      <a href="#faq-digital" class="faq-categories__link">Digital Society</a>
+      <a href="#faq-nature" class="faq-categories__link">Resilient Nature</a>
       <a href="#faq-innovation" class="faq-categories__link">Innovation Services</a>
       <a href="#faq-demos" class="faq-categories__link">Demos &amp; Tools</a>
     </nav>
@@ -496,88 +561,6 @@
           <div class="dpp-faq__answer">
             <p>Both our websites (regenstudio.space and demos.regenstudio.space) set <strong>zero cookies</strong> on any page. All fonts, scripts, and stylesheets are self-hosted — no requests go to Google Fonts, CDNs, or any third-party servers when you browse. Our analytics are privacy-preserving: IP addresses are hashed with a daily-rotating salt and only aggregate page-view counters are stored.</p>
             <p>We never sell, rent, or share visitor data. The site is compliant with GDPR, LGPD, and the ePrivacy Directive. Full details are in our <a href="privacy.html">Privacy Policy</a>.</p>
-          </div>
-        </details>
-
-      </div>
-    </section>
-
-    <!-- Digital Product Passports -->
-    <section class="about-section dpp-faq" id="faq-dpp">
-      <h2 class="about-section__title">Digital Product Passports</h2>
-      <div class="dpp-faq__list">
-
-        <details class="dpp-faq__item">
-          <summary class="dpp-faq__question">What is a Digital Product Passport (DPP)?</summary>
-          <div class="dpp-faq__answer">
-            <p>A Digital Product Passport is a structured digital record that carries product information — materials, origin, environmental impact, repair instructions, and end-of-life options — throughout its lifecycle. Rather than a physical label, a DPP is typically accessed via a QR code or data carrier on the product, linking to a rich set of verified data.</p>
-            <p>Several EU regulations mandate DPPs for products sold in the EU. The <a href="blog-post.html?post=espr-textile-delegated-act">Ecodesign for Sustainable Products Regulation (ESPR)</a> provides the overarching framework, while product-specific regulations — including the EU Battery Regulation, the Toy Safety Regulation, the Detergents Regulation, and the Construction Products Regulation — each introduce their own DPP requirements. The goal is to enable transparency, support circular business models, and empower consumers, recyclers, and regulators with trustworthy product data.</p>
-          </div>
-        </details>
-
-        <details class="dpp-faq__item">
-          <summary class="dpp-faq__question">Who needs to comply with Digital Product Passport requirements?</summary>
-          <div class="dpp-faq__answer">
-            <p>Responsible Economic Operators (REOs) — typically product brands and importers placing products on the EU market — bear the primary compliance obligation. They must ensure a DPP is created and made accessible for each product unit or batch.</p>
-            <p>However, DPP compliance is not a solo effort. Supply chain partners (raw material suppliers, component manufacturers, logistics providers) must contribute the underlying data. Technology providers build the systems that host and exchange passport data. And industry associations often coordinate sector-wide approaches to data models and standards. See our <a href="digital-product-passports/#dpp-services">full breakdown by stakeholder type</a>.</p>
-          </div>
-        </details>
-
-        <details class="dpp-faq__item">
-          <summary class="dpp-faq__question">Which products need a Digital Product Passport?</summary>
-          <div class="dpp-faq__answer">
-            <p>Over 30 product groups are at various stages of requiring a DPP. <strong>Batteries</strong> are the first — the EU Battery Regulation (2023/1542) makes DPPs mandatory from February 2027. Three product-specific regulations have been <strong>adopted</strong> with DPP mandates: <strong>Toys</strong> (Toy Safety Regulation 2025/2509), <strong>Construction Products</strong> (CPR 2024/3110), and <strong>Packaging</strong> (PPWR 2025/40). The revised <strong>Detergents</strong> Regulation is pending formal adoption.</p>
-            <p>Under the ESPR, delegated acts are <strong>in preparation</strong> for textiles, iron &amp; steel, aluminium, tyres, washing machines, dishwashers, electronic displays, heaters, and water heaters — with adoption expected by 2027. The <strong>ESPR working plan</strong> (2025–2030) schedules further delegated acts for furniture, mattresses, electric motors, EV chargers, fridges, light sources, cooling equipment, tumble dryers, mobile phones &amp; tablets, and welding equipment.</p>
-            <p>Additionally, 19 product groups currently under the Ecodesign Directive — including computers, air conditioners, vacuum cleaners, cooking appliances, ventilation units, solar panels, power transformers, water pumps, and industrial fans — are <strong>transitioning to the ESPR</strong> under Article 79, with new delegated acts (and DPP requirements) expected but not yet scheduled.</p>
-            <p>See the <a href="digital-product-passports/#dpp-products">full product group overview with status indicators</a> or read our analysis of the <a href="blog-post.html?post=espr-textile-delegated-act">expected textile delegated act</a>.</p>
-          </div>
-        </details>
-
-        <details class="dpp-faq__item">
-          <summary class="dpp-faq__question">What data goes into a Digital Product Passport?</summary>
-          <div class="dpp-faq__answer">
-            <p>The specific data requirements depend on the product category and its delegated act, but common elements include: product identification, manufacturer details, materials and substances of concern, carbon footprint, recycled content percentages, durability and reparability scores, disassembly instructions, and end-of-life handling guidance.</p>
-            <p>Beyond regulatory minimums, DPPs can carry voluntary data that supports circular business models — such as proof of ethical sourcing, certifications, or dynamic usage data. The <a href="blog-post.html?post=dpp-regenerative-economies">regenerative potential of DPPs</a> lies in going beyond compliance to tell a product's full story.</p>
-          </div>
-        </details>
-
-        <details class="dpp-faq__item">
-          <summary class="dpp-faq__question">How is Regen Studio different from DPP software vendors?</summary>
-          <div class="dpp-faq__answer">
-            <p>We are an independent advisory firm — we don't sell DPP software, build platforms, or take commissions from technology providers. This independence means our advice is always in your interest, not shaped by a product we need to sell.</p>
-            <p>We help you understand what you actually need before you buy anything: readiness assessments, compliance roadmaps, data architecture strategy, vendor-neutral technology selection, and organizational change management. Whether you're a <a href="digital-product-passports/#dpp-services">brand, government, supply chain partner, or industry association</a>, we tailor our approach to your role in the ecosystem.</p>
-          </div>
-        </details>
-
-        <details class="dpp-faq__item">
-          <summary class="dpp-faq__question">Does the DPP regulation apply outside the EU?</summary>
-          <div class="dpp-faq__answer">
-            <p>The ESPR applies to all products placed on the EU market, regardless of where they are manufactured. This means exporters to the EU — including manufacturers in Brazil, China, Turkey, Bangladesh, and other major production countries — must comply with DPP requirements for their EU-bound products.</p>
-            <p>We have particular expertise in bridging EU requirements with production realities in <a href="blog-post.html?post=future-ready-textile-brazil">Brazil and Latin America</a>, helping local manufacturers and exporters prepare their data infrastructure and processes for EU compliance. Other regions, including the UK and parts of Asia, are also developing their own product passport frameworks.</p>
-          </div>
-        </details>
-
-        <details class="dpp-faq__item">
-          <summary class="dpp-faq__question">What is a DPP readiness assessment?</summary>
-          <div class="dpp-faq__answer">
-            <p>A DPP readiness assessment is a structured evaluation of an organization's preparedness for Digital Product Passport obligations. Regen Studio's assessment covers:</p>
-            <ul>
-              <li><strong>Regulatory exposure</strong> — which regulations and timelines apply to your products</li>
-              <li><strong>Data maturity</strong> — do you already collect the required data points, and in what format</li>
-              <li><strong>IT and systems landscape</strong> — where product data lives today and what integration is needed</li>
-              <li><strong>Supply chain readiness</strong> — can your suppliers provide the data you need</li>
-              <li><strong>Organizational capacity</strong> — who owns DPP compliance internally</li>
-            </ul>
-            <p>Deliverables typically include a gap analysis, a prioritized compliance roadmap, and recommendations for technology and process changes — all vendor-neutral. Learn more about our <a href="digital-product-passports/#dpp-services">DPP advisory services</a>.</p>
-          </div>
-        </details>
-
-        <details class="dpp-faq__item">
-          <summary class="dpp-faq__question">What is the DPP compliance timeline?</summary>
-          <div class="dpp-faq__answer">
-            <p>The first DPP deadline is <strong>February 2027</strong>, when the EU Battery Regulation (2023/1542) requires passports for EV batteries, industrial batteries above 2 kWh, and LMT batteries. The Packaging and Packaging Waste Regulation (PPWR 2025/40) introduces DPP elements from <strong>August 2028</strong>. The Toy Safety Regulation (2025/2509) applies from <strong>2030</strong>.</p>
-            <p>ESPR delegated acts for textiles are expected in 2026–2027 with application roughly 18 months after adoption. The Construction Products Regulation (2024/3110) DPP timeline depends on harmonised standards development — Chapter X provides the framework but specific dates follow from standardisation progress.</p>
-            <p>Organizations should begin data infrastructure work at least 18–24 months before their earliest applicable deadline. See our <a href="digital-product-passports/#dpp-products">product group overview</a> for a visual timeline.</p>
           </div>
         </details>
 
@@ -650,7 +633,7 @@
       </div>
     </section>
 
-    <!-- Circular Economy -->
+    <!-- Circular Economy (includes Digital Product Passports) -->
     <section class="about-section dpp-faq" id="faq-circular">
       <h2 class="about-section__title">Circular Economy</h2>
       <div class="dpp-faq__list">
@@ -664,10 +647,84 @@
         </details>
 
         <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">What is a Digital Product Passport (DPP)?</summary>
+          <div class="dpp-faq__answer">
+            <p>A Digital Product Passport is a structured digital record that carries product information — materials, origin, environmental impact, repair instructions, and end-of-life options — throughout its lifecycle. Rather than a physical label, a DPP is typically accessed via a QR code or data carrier on the product, linking to a rich set of verified data.</p>
+            <p>Several EU regulations mandate DPPs for products sold in the EU. The <a href="blog-post.html?post=espr-textile-delegated-act">Ecodesign for Sustainable Products Regulation (ESPR)</a> provides the overarching framework, while product-specific regulations — including the EU Battery Regulation, the Toy Safety Regulation, the Detergents Regulation, and the Construction Products Regulation — each introduce their own DPP requirements. The goal is to enable transparency, support circular business models, and empower consumers, recyclers, and regulators with trustworthy product data.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
           <summary class="dpp-faq__question">How do Digital Product Passports enable the circular economy?</summary>
           <div class="dpp-faq__answer">
             <p>DPPs provide the information needed at every stage of a product's life: what materials are in it, how to repair it, how to disassemble it, and where its components can go next. Without this data, recyclers can't sort efficiently, repair shops can't access service information, and consumers can't make informed choices.</p>
             <p>By making product data transparent and machine-readable, DPPs create the infrastructure for circular business models — from product-as-a-service to take-back schemes. Read more about <a href="blog-post.html?post=dpp-regenerative-economies">how DPPs can drive regenerative economies</a>.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">Who needs to comply with Digital Product Passport requirements?</summary>
+          <div class="dpp-faq__answer">
+            <p>Responsible Economic Operators (REOs) — typically product brands and importers placing products on the EU market — bear the primary compliance obligation. They must ensure a DPP is created and made accessible for each product unit or batch.</p>
+            <p>However, DPP compliance is not a solo effort. Supply chain partners (raw material suppliers, component manufacturers, logistics providers) must contribute the underlying data. Technology providers build the systems that host and exchange passport data. And industry associations often coordinate sector-wide approaches to data models and standards. See our <a href="digital-product-passports/#dpp-services">full breakdown by stakeholder type</a>.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">Which products need a Digital Product Passport?</summary>
+          <div class="dpp-faq__answer">
+            <p>Over 30 product groups are at various stages of requiring a DPP. <strong>Batteries</strong> are the first — the EU Battery Regulation (2023/1542) makes DPPs mandatory from February 2027. Three product-specific regulations have been <strong>adopted</strong> with DPP mandates: <strong>Toys</strong> (Toy Safety Regulation 2025/2509), <strong>Construction Products</strong> (CPR 2024/3110), and <strong>Packaging</strong> (PPWR 2025/40). The revised <strong>Detergents</strong> Regulation is pending formal adoption.</p>
+            <p>Under the ESPR, delegated acts are <strong>in preparation</strong> for textiles, iron &amp; steel, aluminium, tyres, washing machines, dishwashers, electronic displays, heaters, and water heaters — with adoption expected by 2027. The <strong>ESPR working plan</strong> (2025–2030) schedules further delegated acts for furniture, mattresses, electric motors, EV chargers, fridges, light sources, cooling equipment, tumble dryers, mobile phones &amp; tablets, and welding equipment.</p>
+            <p>Additionally, 19 product groups currently under the Ecodesign Directive — including computers, air conditioners, vacuum cleaners, cooking appliances, ventilation units, solar panels, power transformers, water pumps, and industrial fans — are <strong>transitioning to the ESPR</strong> under Article 79, with new delegated acts (and DPP requirements) expected but not yet scheduled.</p>
+            <p>See the <a href="digital-product-passports/#dpp-products">full product group overview with status indicators</a> or read our analysis of the <a href="blog-post.html?post=espr-textile-delegated-act">expected textile delegated act</a>.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">What data goes into a Digital Product Passport?</summary>
+          <div class="dpp-faq__answer">
+            <p>The specific data requirements depend on the product category and its delegated act, but common elements include: product identification, manufacturer details, materials and substances of concern, carbon footprint, recycled content percentages, durability and reparability scores, disassembly instructions, and end-of-life handling guidance.</p>
+            <p>Beyond regulatory minimums, DPPs can carry voluntary data that supports circular business models — such as proof of ethical sourcing, certifications, or dynamic usage data. The <a href="blog-post.html?post=dpp-regenerative-economies">regenerative potential of DPPs</a> lies in going beyond compliance to tell a product's full story.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">How is Regen Studio different from DPP software vendors?</summary>
+          <div class="dpp-faq__answer">
+            <p>We are an independent advisory firm — we don't sell DPP software, build platforms, or take commissions from technology providers. This independence means our advice is always in your interest, not shaped by a product we need to sell.</p>
+            <p>We help you understand what you actually need before you buy anything: readiness assessments, compliance roadmaps, data architecture strategy, vendor-neutral technology selection, and organizational change management. Whether you're a <a href="digital-product-passports/#dpp-services">brand, government, supply chain partner, or industry association</a>, we tailor our approach to your role in the ecosystem.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">Does the DPP regulation apply outside the EU?</summary>
+          <div class="dpp-faq__answer">
+            <p>The ESPR applies to all products placed on the EU market, regardless of where they are manufactured. This means exporters to the EU — including manufacturers in Brazil, China, Turkey, Bangladesh, and other major production countries — must comply with DPP requirements for their EU-bound products.</p>
+            <p>We have particular expertise in bridging EU requirements with production realities in <a href="blog-post.html?post=future-ready-textile-brazil">Brazil and Latin America</a>, helping local manufacturers and exporters prepare their data infrastructure and processes for EU compliance. Other regions, including the UK and parts of Asia, are also developing their own product passport frameworks.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">What is a DPP readiness assessment?</summary>
+          <div class="dpp-faq__answer">
+            <p>A DPP readiness assessment is a structured evaluation of an organization's preparedness for Digital Product Passport obligations. Regen Studio's assessment covers:</p>
+            <ul>
+              <li><strong>Regulatory exposure</strong> — which regulations and timelines apply to your products</li>
+              <li><strong>Data maturity</strong> — do you already collect the required data points, and in what format</li>
+              <li><strong>IT and systems landscape</strong> — where product data lives today and what integration is needed</li>
+              <li><strong>Supply chain readiness</strong> — can your suppliers provide the data you need</li>
+              <li><strong>Organizational capacity</strong> — who owns DPP compliance internally</li>
+            </ul>
+            <p>Deliverables typically include a gap analysis, a prioritized compliance roadmap, and recommendations for technology and process changes — all vendor-neutral. Learn more about our <a href="digital-product-passports/#dpp-services">DPP advisory services</a>.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">What is the DPP compliance timeline?</summary>
+          <div class="dpp-faq__answer">
+            <p>The first DPP deadline is <strong>February 2027</strong>, when the EU Battery Regulation (2023/1542) requires passports for EV batteries, industrial batteries above 2 kWh, and LMT batteries. The Packaging and Packaging Waste Regulation (PPWR 2025/40) introduces DPP elements from <strong>August 2028</strong>. The Toy Safety Regulation (2025/2509) applies from <strong>2030</strong>.</p>
+            <p>ESPR delegated acts for textiles are expected in 2026–2027 with application roughly 18 months after adoption. The Construction Products Regulation (2024/3110) DPP timeline depends on harmonised standards development — Chapter X provides the framework but specific dates follow from standardisation progress.</p>
+            <p>Organizations should begin data infrastructure work at least 18–24 months before their earliest applicable deadline. See our <a href="digital-product-passports/#dpp-products">product group overview</a> for a visual timeline.</p>
           </div>
         </details>
 
@@ -728,16 +785,48 @@
       </div>
     </section>
 
-    <!-- Liveable Cities & Digital Society -->
+    <!-- Liveable Cities -->
     <section class="about-section dpp-faq" id="faq-cities">
-      <h2 class="about-section__title">Liveable Cities &amp; Digital Society</h2>
+      <h2 class="about-section__title">Liveable Cities</h2>
       <div class="dpp-faq__list">
 
         <details class="dpp-faq__item">
           <summary class="dpp-faq__question">What are living labs and how does Regen Studio use them?</summary>
           <div class="dpp-faq__answer">
             <p>Living labs are real-world environments where innovations are co-created, tested, and refined together with the people who will use them — citizens, businesses, and public institutions. Unlike traditional pilot projects, living labs embed experimentation into everyday life: testing smart energy solutions in actual neighbourhoods, trialling digital participation tools with real municipal processes, or prototyping circular economy services with genuine customers.</p>
-            <p>Regen Studio has designed and facilitated living labs for multiple municipalities in the Netherlands, including <a href="blog-post.html?post=a-custom-digital-innovation-process-for-the-hague">digital innovation processes for the City of The Hague</a>.</p>
+            <p>Regen Studio worked on Living Lab Scheveningen — designing the innovation process, doing project management for several cases, and mentoring other project managers. This included <a href="blog-post.html?post=a-custom-digital-innovation-process-for-the-hague">digital innovation processes for the City of The Hague</a>.</p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- Digital Society -->
+    <section class="about-section dpp-faq" id="faq-digital">
+      <h2 class="about-section__title">Digital Society</h2>
+      <div class="dpp-faq__list">
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">How does Regen Studio approach digital society?</summary>
+          <div class="dpp-faq__answer">
+            <p>Our digital society work is built on the principle that technology should serve people, not extract from them. This means privacy-first design (our own websites set <a href="privacy.html">zero cookies and self-host all assets</a>), advocacy for self-sovereign identity (individuals control their own data), and critical engagement with AI governance.</p>
+            <p>We explore how digital infrastructure — from product passports to identity wallets — can be designed to empower citizens rather than concentrate power in platforms. Learn more on our <a href="digital-identities/">Digital Identity advisory page</a>.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">What is a Digital Identity?</summary>
+          <div class="dpp-faq__answer">
+            <p>A digital identity is the collection of attributes, credentials, and identifiers that represent a person, organization, or thing in the digital world. It is how you prove who you are online — whether logging into a service, signing a document, or verifying your age.</p>
+            <p>Unlike traditional identity systems that rely on centralized databases controlled by governments or companies, modern digital identity frameworks — such as those emerging under <a href="blog-post.html?post=ssi-privacy">Self-Sovereign Identity</a> and eIDAS 2.0 — give individuals direct control over their own data through digital wallets and verifiable credentials.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">What is eIDAS 2.0?</summary>
+          <div class="dpp-faq__answer">
+            <p>eIDAS 2.0 (Regulation EU 2024/1183) is the revised European framework for electronic identification and trust services. It updates the original 2014 eIDAS regulation with a much broader scope and a new centerpiece: the European Digital Identity Wallet.</p>
+            <p>Under eIDAS 2.0, all EU member states must offer citizens a wallet by 2026 that enables cross-border identity verification, selective disclosure of personal attributes (proving you're over 18 without revealing your date of birth), and qualified electronic signatures — all under the user's control. Large online platforms will be required to accept these wallets for authentication.</p>
           </div>
         </details>
 
@@ -750,12 +839,52 @@
         </details>
 
         <details class="dpp-faq__item">
-          <summary class="dpp-faq__question">How does Regen Studio approach digital society?</summary>
+          <summary class="dpp-faq__question">What is Self-Sovereign Identity (SSI)?</summary>
           <div class="dpp-faq__answer">
-            <p>Our digital society work is built on the principle that technology should serve people, not extract from them. This means privacy-first design (our own websites set <a href="privacy.html">zero cookies and self-host all assets</a>), advocacy for self-sovereign identity (individuals control their own data), and critical engagement with AI governance.</p>
-            <p>We explore how digital infrastructure — from product passports to identity wallets — can be designed to empower citizens rather than concentrate power in platforms.</p>
+            <p>Self-Sovereign Identity is a model where individuals own and control their digital identity without depending on a central authority. Instead of a platform or government holding your data and deciding what to share, you hold cryptographically signed credentials in your own wallet and choose when and with whom to share them.</p>
+            <p>SSI relies on technologies like <strong>Decentralized Identifiers (DIDs)</strong> and <strong>Verifiable Credentials</strong> to enable trust without centralization. It underpins many of the principles embedded in eIDAS 2.0, though critics note that EDI wallets are issued by member states — not self-created — so the EU framework stops short of full decentralization while preserving the core principles of selective disclosure and user control. Read more in our <a href="blog-post.html?post=ssi-privacy">deep dive on SSI and privacy-by-design</a>.</p>
           </div>
         </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">What are Verifiable Credentials?</summary>
+          <div class="dpp-faq__answer">
+            <p>Verifiable Credentials are tamper-proof, cryptographically signed digital statements issued by a trusted party. They can represent anything from a university diploma to a proof of address to a professional license. The holder stores them in a digital wallet and can present them to verifiers — who can check their authenticity instantly without contacting the issuer.</p>
+            <p>This is a core building block of both eIDAS 2.0 and Self-Sovereign Identity. Combined with selective disclosure, verifiable credentials allow you to prove specific claims (e.g., "I am over 18") without revealing the underlying data (your full date of birth). Try it yourself in our <a href="blog-post.html?post=demo-edi-wallet">EDI Wallet demo</a>.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">What is selective disclosure?</summary>
+          <div class="dpp-faq__answer">
+            <p>Selective disclosure is the ability to share only specific attributes from a credential without revealing the full underlying data. For example, proving you are over 18 without revealing your exact date of birth, or proving you hold a valid driver's licence without sharing your home address.</p>
+            <p>This is a fundamental privacy mechanism in eIDAS 2.0 wallets and SSI systems. It is made possible through cryptographic techniques that allow a verifier to confirm a claim is true — signed by a trusted issuer — without seeing the data that isn't relevant to the interaction. Our <a href="https://demos.regenstudio.space" target="_blank" rel="noopener">EDI Wallet demo</a> lets you experience selective disclosure in practice.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">How do digital identity and Digital Product Passports connect?</summary>
+          <div class="dpp-faq__answer">
+            <p>Digital Product Passports need trust — how do you know the data in a passport is authentic and hasn't been tampered with? This is where digital identity infrastructure comes in. Verifiable credentials can be used to sign product data, so the origin and integrity of DPP information can be verified cryptographically.</p>
+            <p>Regen Studio led the creation of the <a href="blog-post.html?post=trusted-dpps">Trusted DPP position paper</a> for FIDES and the Dutch Blockchain Coalition, which defines how SSI and verifiable credentials create trust ecosystems for product passports — ensuring that sustainability claims are not just stated, but provable.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">What is Privacy-by-Design?</summary>
+          <div class="dpp-faq__answer">
+            <p>Privacy-by-Design is a design approach where privacy protections are built into systems from the start, not bolted on after. In digital identity, this means selective disclosure, data minimization, and ensuring users share only what is strictly necessary for each interaction.</p>
+            <p>Regen Studio practices this principle directly: our own websites set zero cookies and self-host all assets. In our advisory work, we help organizations design identity and data systems that respect user privacy structurally — not as an afterthought. Read more about <a href="blog-post.html?post=ssi-privacy">privacy-by-design and SSI</a>.</p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- Resilient Nature -->
+    <section class="about-section dpp-faq" id="faq-nature">
+      <h2 class="about-section__title">Resilient Nature</h2>
+      <div class="dpp-faq__list">
 
         <details class="dpp-faq__item">
           <summary class="dpp-faq__question">What is bioacoustics monitoring?</summary>
@@ -802,6 +931,14 @@
           <div class="dpp-faq__answer">
             <p>A design sprint is a time-boxed innovation method — typically 4–5 days — that compresses months of divergent discussion into a structured process: define the challenge, generate solutions, build a testable prototype, and validate it with real users.</p>
             <p>It is particularly effective when a team is stuck in analysis paralysis, when stakeholders have conflicting visions, or when you need a tangible proof of concept fast. Regen Studio facilitates design sprints for organisations working on complex systemic challenges — energy transition, circular economy, digital identity — where the problem space is large and cross-cutting. Learn more about our <a href="innovation-services.html">innovation services</a>.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">What is innovation process design?</summary>
+          <div class="dpp-faq__answer">
+            <p>Innovation process design is the practice of creating a structured, repeatable framework that guides an organisation from identifying a problem to adopting a validated solution. Unlike ad-hoc innovation, a designed process accounts for the full journey: problem analysis, ideation, prototyping, testing, stakeholder governance, procurement constraints, and handover to operational teams.</p>
+            <p>Regen Studio designed an <a href="blog-post.html?post=a-custom-digital-innovation-process-for-the-hague">eight-phase digital innovation process for the City of The Hague's EC-DISC and Living Lab Scheveningen</a>. The CIO of the Information &amp; Automation department formally adopted it as departmental policy. The process was specifically built for government — accounting for GDPR obligations, political cycles, procurement rules, and the need to transfer ownership to a maintenance team. Each phase is also available as a standalone service.</p>
           </div>
         </details>
 
