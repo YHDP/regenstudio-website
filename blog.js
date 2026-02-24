@@ -36,18 +36,43 @@
     }
 
     if (navToggle && navLinks) {
+      let savedScrollY = 0;
+
+      function openNav() {
+        savedScrollY = window.scrollY;
+        document.body.classList.add('nav-open');
+        document.body.style.top = -savedScrollY + 'px';
+        navToggle.classList.add('active');
+        navLinks.classList.add('open');
+      }
+
+      function closeNav() {
+        document.body.classList.remove('nav-open');
+        document.body.style.top = '';
+        window.scrollTo(0, savedScrollY);
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('open');
+      }
+
       navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('active');
-        navLinks.classList.toggle('open');
-        document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+        if (navLinks.classList.contains('open')) {
+          closeNav();
+        } else {
+          openNav();
+        }
       });
 
       navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-          navToggle.classList.remove('active');
-          navLinks.classList.remove('open');
-          document.body.style.overflow = '';
+          closeNav();
         });
+      });
+
+      // Close menu on orientation change
+      window.addEventListener('orientationchange', () => {
+        if (navLinks.classList.contains('open')) {
+          closeNav();
+        }
       });
     }
   }
@@ -740,22 +765,29 @@
       floatingCTA.classList.remove('scroll-cta--visible');
     });
 
-    // Scroll handler — show after 40% of article
+    // Scroll handler — show after 40% of article (rAF-batched)
+    let ctaScrollRafPending = false;
     function onScroll() {
       if (dismissed) return;
+      if (ctaScrollRafPending) return;
+      ctaScrollRafPending = true;
+      requestAnimationFrame(() => {
+        ctaScrollRafPending = false;
+        if (dismissed) return;
 
-      const rect = postContent.getBoundingClientRect();
-      const contentHeight = postContent.offsetHeight;
-      const scrolledInto = -rect.top;
-      const progress = scrolledInto / contentHeight;
+        const rect = postContent.getBoundingClientRect();
+        const contentHeight = postContent.offsetHeight;
+        const scrolledInto = -rect.top;
+        const progress = scrolledInto / contentHeight;
 
-      if (progress > 0.4 && progress < 0.95 && !visible) {
-        visible = true;
-        floatingCTA.classList.add('scroll-cta--visible');
-      } else if ((progress <= 0.35 || progress >= 0.95) && visible) {
-        visible = false;
-        floatingCTA.classList.remove('scroll-cta--visible');
-      }
+        if (progress > 0.4 && progress < 0.95 && !visible) {
+          visible = true;
+          floatingCTA.classList.add('scroll-cta--visible');
+        } else if ((progress <= 0.35 || progress >= 0.95) && visible) {
+          visible = false;
+          floatingCTA.classList.remove('scroll-cta--visible');
+        }
+      });
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
