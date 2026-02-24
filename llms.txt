@@ -1,0 +1,57 @@
+# Regen Studio
+
+> Regenerative innovation design studio helping organizations create systemic
+> positive impact at the intersection of technology, society, and nature.
+> Based in The Netherlands and Brazil.
+
+## What We Do
+- Digital Product Passport advisory (independent, vendor-neutral)
+- Innovation design services (10 methodologies for complex multi-stakeholder environments)
+- Vision & strategy for regenerative systems
+- Visual storytelling for systemic innovation
+- Energy transition & community energy design
+- Circular economy & business model design
+
+## Focus Areas
+- Circular Economy: DPP compliance, circular business models, ESPR advisory
+- Energy Transition: Smart grids, energy communities, energy justice
+- Liveable Cities: Living labs, digital participation, urban greening
+- Resilient Nature: Bioacoustics, reforestation, biodiversity monitoring
+- Digital Society: Digital identity, privacy-by-design, AI governance
+
+## Key Regulations We Advise On
+- ESPR (Ecodesign for Sustainable Products Regulation)
+- EU Battery Regulation 2023/1542 — DPP mandatory from Feb 2027
+- Construction Products Regulation 2024/3110 — 37 product families
+- Toy Safety Regulation 2025/2509
+- Packaging & Packaging Waste Regulation 2025/40
+- Textiles delegated act (in preparation)
+
+## Interactive Demos
+- [CPR DPP Tracker](https://demos.regenstudio.space): Track all 37 CPR product families and harmonised standards progress
+- [Battery Passport Checker](https://demos.regenstudio.space): Free 1-minute tool to assess DPP obligations under EU Battery Regulation
+- [DPP System](https://demos.regenstudio.space): Full product passport platform prototype (restricted, request access)
+- [EDI Wallet](https://demos.regenstudio.space): European Digital Identity wallet prototype with selective disclosure (restricted, request access)
+- [AI Tax → UBI](https://demos.regenstudio.space): Policy simulation exploring AI taxation and universal basic income
+
+## Locations
+- The Netherlands: Regen Studio B.V., Berg en Dal (KVK 90337948)
+- Brazil: Regen Studio Consultoria LTDA, São Paulo (CNPJ 57.579.114/0001-55)
+
+## Pages
+- [Home](https://www.regenstudio.space): Vision, focus areas, services overview, and client types
+- [Digital Product Passports](https://www.regenstudio.space/digital-product-passports/): DPP advisory services, readiness assessments, compliance roadmaps
+- [Innovation Services](https://www.regenstudio.space/innovation-services.html): 10 innovation design methodologies for complex multi-stakeholder environments
+- [Blog](https://www.regenstudio.space/blog.html): Analysis of EU regulations, project case studies, and innovation insights
+- [FAQ](https://www.regenstudio.space/faq.html): 47 questions covering DPPs, EU regulations, energy transition, circular economy, and more
+- [About](https://www.regenstudio.space/about.html): Team, philosophy, and company background
+- [Digital Identities](https://www.regenstudio.space/digital-identities/): Self-sovereign identity and eIDAS 2.0 advisory
+- [Client Projects](https://www.regenstudio.space/client-projects.html): Selected project portfolio
+- [Privacy Policy](https://www.regenstudio.space/privacy.html): Zero cookies, self-hosted assets, GDPR/LGPD compliant
+- [Interactive Demos](https://demos.regenstudio.space): Five demo tools for DPP, digital identity, and policy simulation
+
+## Contact
+- Email: info@regenstudio.space
+- [LinkedIn](https://www.linkedin.com/company/regen-studio-world/)
+- [Bluesky](https://bsky.app/profile/regen-studio.bsky.social)
+- [Mastodon](https://mastodon.social/@regen_studio)

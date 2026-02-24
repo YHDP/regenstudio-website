@@ -1,0 +1,26 @@
+# robots.txt for regenstudio.space
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+# AI crawlers — explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://www.regenstudio.space/sitemap.xml

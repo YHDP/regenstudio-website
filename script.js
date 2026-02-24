@@ -1561,3 +1561,53 @@
   }
 
 })();
+
+/* ========================================
+   "No Cookies" Privacy Popup
+   ======================================== */
+(function () {
+  'use strict';
+
+  try { if (sessionStorage.getItem('_regen_no_cookies')) return; } catch (e) { return; }
+
+  function dismiss(overlay) {
+    overlay.classList.add('cookie-popup--closing');
+    setTimeout(function () { overlay.remove(); }, 300);
+    try { sessionStorage.setItem('_regen_no_cookies', '1'); } catch (e) {}
+  }
+
+  setTimeout(function () {
+    var overlay = document.createElement('div');
+    overlay.className = 'cookie-popup';
+
+    var privacyHref = 'privacy.html';
+    // Adjust href if we're in a subdirectory
+    var depth = window.location.pathname.replace(/\/[^/]*$/, '').split('/').filter(Boolean).length;
+    if (depth > 0) privacyHref = new Array(depth + 1).join('../') + 'privacy.html';
+
+    overlay.innerHTML =
+      '<div class="cookie-popup__card">' +
+        '<h2 class="cookie-popup__title">This website uses cookies</h2>' +
+        '<p class="cookie-popup__kicker">Just kidding.</p>' +
+        '<div class="cookie-popup__body">' +
+          '<p>No cookies. No trackers. No fingerprinting.<br>We don\u2019t know who you are \u2014 and we like it that way.</p>' +
+          '<p>Your privacy isn\u2019t a preference we manage.<br>It\u2019s a right we respect.</p>' +
+        '</div>' +
+        '<div class="cookie-popup__actions">' +
+          '<a class="cookie-popup__link" href="' + privacyHref + '">Read our privacy promise \u2192</a>' +
+          '<button class="cookie-popup__btn" type="button">Awesome, carry on</button>' +
+        '</div>' +
+      '</div>';
+
+    document.body.appendChild(overlay);
+
+    overlay.querySelector('.cookie-popup__btn').addEventListener('click', function () { dismiss(overlay); });
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) dismiss(overlay); });
+    document.addEventListener('keydown', function onEsc(e) {
+      if (e.key === 'Escape' && document.querySelector('.cookie-popup')) {
+        dismiss(overlay);
+        document.removeEventListener('keydown', onEsc);
+      }
+    });
+  }, 800);
+})();

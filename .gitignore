@@ -19,4 +19,7 @@ node_modules/
 # Supabase local
 .supabase/
 supabase/.temp/
-supabase/.temp/
+
+# Experimental pages
+trial.html
+trial2.html
