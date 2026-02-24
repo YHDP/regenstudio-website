@@ -24,7 +24,7 @@
       payload.site = SITE;
       fetch(ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify(payload),
         keepalive: true
       }).catch(function () {});
