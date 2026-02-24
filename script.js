@@ -254,36 +254,39 @@
     }
   });
 
-  canvas.addEventListener('touchstart', function (e) {
-    e.preventDefault();
-    var touch = e.touches[0];
-    if (!startDrag(touch.clientX, touch.clientY)) {
-      mouse.x = touch.clientX;
-      mouse.y = touch.clientY;
-      mouse.active = true;
-    }
-  }, { passive: false });
+  // Touch interaction only on desktop — mobile gets ambient animation only
+  if (!isMobile) {
+    canvas.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      var touch = e.touches[0];
+      if (!startDrag(touch.clientX, touch.clientY)) {
+        mouse.x = touch.clientX;
+        mouse.y = touch.clientY;
+        mouse.active = true;
+      }
+    }, { passive: false });
 
-  canvas.addEventListener('touchmove', function (e) {
-    e.preventDefault();
-    var touch = e.touches[0];
-    if (drag.active) {
-      moveDrag(touch.clientX, touch.clientY);
-    } else {
-      mouse.x = touch.clientX;
-      mouse.y = touch.clientY;
-    }
-  }, { passive: false });
+    canvas.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+      var touch = e.touches[0];
+      if (drag.active) {
+        moveDrag(touch.clientX, touch.clientY);
+      } else {
+        mouse.x = touch.clientX;
+        mouse.y = touch.clientY;
+      }
+    }, { passive: false });
 
-  canvas.addEventListener('touchend', function () {
-    endDrag();
-    mouse.active = false;
-  });
-  canvas.addEventListener('touchcancel', function () {
-    drag.active = false;
-    drag.members = [];
-    mouse.active = false;
-  });
+    canvas.addEventListener('touchend', function () {
+      endDrag();
+      mouse.active = false;
+    });
+    canvas.addEventListener('touchcancel', function () {
+      drag.active = false;
+      drag.members = [];
+      mouse.active = false;
+    });
+  }
 
   // --- Ambient dust particles ---
   var dust = [];
@@ -1623,49 +1626,43 @@
 })();
 
 /* ========================================
-   "No Cookies" Privacy Popup
+   Privacy Banner
    ======================================== */
 (function () {
   'use strict';
 
   try { if (sessionStorage.getItem('_regen_no_cookies')) return; } catch (e) { return; }
 
-  function dismiss(overlay) {
-    overlay.classList.add('cookie-popup--closing');
-    setTimeout(function () { overlay.remove(); }, 300);
+  function dismiss(banner) {
+    banner.classList.add('privacy-banner--closing');
+    setTimeout(function () { banner.remove(); }, 300);
     try { sessionStorage.setItem('_regen_no_cookies', '1'); } catch (e) {}
   }
 
   setTimeout(function () {
-    var overlay = document.createElement('div');
-    overlay.className = 'cookie-popup';
+    var banner = document.createElement('div');
+    banner.className = 'privacy-banner';
 
     var privacyHref = 'privacy.html';
-    // Adjust href if we're in a subdirectory
     var depth = window.location.pathname.replace(/\/[^/]*$/, '').split('/').filter(Boolean).length;
     if (depth > 0) privacyHref = new Array(depth + 1).join('../') + 'privacy.html';
 
-    overlay.innerHTML =
-      '<div class="cookie-popup__card">' +
-        '<h2 class="cookie-popup__title">This website uses cookies</h2>' +
-        '<p class="cookie-popup__kicker">Just kidding.</p>' +
-        '<div class="cookie-popup__body">' +
-          '<p>No cookies. No trackers. No fingerprinting.<br>We don\u2019t know who you are \u2014 and we like it that way.</p>' +
-          '<p>Your privacy isn\u2019t a preference we manage.<br>It\u2019s a right we respect.</p>' +
-        '</div>' +
-        '<div class="cookie-popup__actions">' +
-          '<a class="cookie-popup__link" href="' + privacyHref + '">Read our privacy promise \u2192</a>' +
-          '<button class="cookie-popup__btn" type="button">Awesome, carry on</button>' +
-        '</div>' +
+    banner.innerHTML =
+      '<div class="privacy-banner__inner">' +
+        '<svg class="privacy-banner__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' +
+        '<p class="privacy-banner__text"><strong>Your visit is private.</strong> No cookies, no trackers, no data collection. ' +
+          '<a class="privacy-banner__link" href="' + privacyHref + '">How we protect your privacy</a></p>' +
+        '<button class="privacy-banner__btn" type="button" aria-label="Dismiss">' +
+          '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+        '</button>' +
       '</div>';
 
-    document.body.appendChild(overlay);
+    document.body.appendChild(banner);
 
-    overlay.querySelector('.cookie-popup__btn').addEventListener('click', function () { dismiss(overlay); });
-    overlay.addEventListener('click', function (e) { if (e.target === overlay) dismiss(overlay); });
+    banner.querySelector('.privacy-banner__btn').addEventListener('click', function () { dismiss(banner); });
     document.addEventListener('keydown', function onEsc(e) {
-      if (e.key === 'Escape' && document.querySelector('.cookie-popup')) {
-        dismiss(overlay);
+      if (e.key === 'Escape' && document.querySelector('.privacy-banner')) {
+        dismiss(banner);
         document.removeEventListener('keydown', onEsc);
       }
     });
