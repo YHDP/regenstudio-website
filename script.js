@@ -11,12 +11,15 @@
   // 1. TRIANGLE SIMULATION (from trial2)
   // =============================================
 
+  var isMobile = window.innerWidth < 768;
+  var isLowEnd = isMobile && (navigator.hardwareConcurrency || 4) < 4;
+
   const CFG = {
-    count: 180,
+    count: isLowEnd ? 60 : isMobile ? 40 : 180,
     minSize: 10,
     maxSize: 28,
     driftSpeed: 0.4,
-    attractRadius: 220,
+    attractRadius: isMobile ? 160 : 220,
     attractForce: 0.012,
     bondDist: 1.18,
     bondSpring: 0.055,
@@ -26,9 +29,9 @@
     dampFree: 0.989,
     dampBonded: 0.92,
     bondLineOpacity: 0.14,
-    glowRadius: 6,
+    glowRadius: isMobile ? 0 : 6,
     glowOpacity: 0.12,
-    dustCount: 60,
+    dustCount: isLowEnd ? 20 : isMobile ? 15 : 60,
     dustSize: 1.5,
     dustSpeed: 0.15,
   };
@@ -719,7 +722,7 @@
       ctx.rotate(t.rotation);
 
       // Soft glow behind bonded triangles
-      if (t.bondCount > 0 && t.attractT > 0.2) {
+      if (CFG.glowRadius > 0 && t.bondCount > 0 && t.attractT > 0.2) {
         ctx.globalAlpha = t.attractT * CFG.glowOpacity;
         ctx.shadowColor = 'rgb(' + c.r + ',' + c.g + ',' + c.b + ')';
         ctx.shadowBlur = CFG.glowRadius * t.attractT;
@@ -843,8 +846,8 @@
     }
 
     function createExportImage(callback) {
-      // 2x resolution for crisp output
-      var S = 2;
+      // 2x resolution for crisp output (1x on mobile to avoid large pixel buffers)
+      var S = isMobile ? 1 : 2;
       var EW = 1200 * S;
       var EH = 630 * S;
       var ex = document.createElement('canvas');
@@ -1159,16 +1162,32 @@
   }
 
   // --- Simulation init ---
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   function initSimulation() {
     resize();
     createTriangles();
     createDust();
-    requestAnimationFrame(loop);
+    if (prefersReducedMotion) {
+      // Draw a single static frame and stop
+      updateDust(0);
+      var activeBonds = update();
+      draw(activeBonds, 0);
+      simulationRunning = false;
+    } else {
+      requestAnimationFrame(loop);
+    }
   }
 
   window.addEventListener('resize', function () {
     resize();
     createDust();
+    if (prefersReducedMotion) {
+      // Redraw static frame on resize, don't restart loop
+      updateDust(0);
+      var activeBonds = update();
+      draw(activeBonds, 0);
+    }
   });
 
   // =============================================
@@ -1275,10 +1294,17 @@
     var navToggle = document.getElementById('navToggle');
     var navLinks = document.getElementById('navLinks');
 
-    // --- Navbar scroll effect ---
+    // --- Navbar scroll effect (rAF-batched) ---
+    var scrollRafPending = false;
     function onScroll() {
       nav.classList.toggle('nav--scrolled', window.scrollY > 60);
-      updateCanvasScrollFade();
+      if (!scrollRafPending) {
+        scrollRafPending = true;
+        requestAnimationFrame(function () {
+          scrollRafPending = false;
+          updateCanvasScrollFade();
+        });
+      }
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -1348,19 +1374,44 @@
       });
     }
 
-    // --- Mobile menu toggle ---
+    // --- Mobile menu toggle (iOS scroll lock) ---
+    var savedScrollY = 0;
+
+    function openNav() {
+      savedScrollY = window.scrollY;
+      document.body.classList.add('nav-open');
+      document.body.style.top = -savedScrollY + 'px';
+      navToggle.classList.add('active');
+      navLinks.classList.add('open');
+    }
+
+    function closeNav() {
+      document.body.classList.remove('nav-open');
+      document.body.style.top = '';
+      window.scrollTo(0, savedScrollY);
+      navToggle.classList.remove('active');
+      navLinks.classList.remove('open');
+    }
+
     navToggle.addEventListener('click', function () {
-      navToggle.classList.toggle('active');
-      navLinks.classList.toggle('open');
-      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+      if (navLinks.classList.contains('open')) {
+        closeNav();
+      } else {
+        openNav();
+      }
     });
 
     navLinks.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
-        navToggle.classList.remove('active');
-        navLinks.classList.remove('open');
-        document.body.style.overflow = '';
+        closeNav();
       });
+    });
+
+    // --- Close menu on orientation change ---
+    window.addEventListener('orientationchange', function () {
+      if (navLinks.classList.contains('open')) {
+        closeNav();
+      }
     });
 
     // --- Hero entrance animations ---
@@ -1482,7 +1533,16 @@
       });
     }
 
-    window.addEventListener('scroll', updateActiveLink, { passive: true });
+    var activeLinkRafPending = false;
+    window.addEventListener('scroll', function () {
+      if (!activeLinkRafPending) {
+        activeLinkRafPending = true;
+        requestAnimationFrame(function () {
+          activeLinkRafPending = false;
+          updateActiveLink();
+        });
+      }
+    }, { passive: true });
   }
 
   // =============================================
