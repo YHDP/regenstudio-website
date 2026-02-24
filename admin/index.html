@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics — Regen Studio</title>
+  <link rel="icon" type="image/png" href="../Images/Flavicon.png">
+  <link rel="stylesheet" href="../assets/fonts/inter.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- Password Gate -->
+  <div class="admin-gate" id="gate">
+    <div class="admin-gate__card">
+      <div class="admin-gate__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <h1 class="admin-gate__title">Analytics Dashboard</h1>
+      <p class="admin-gate__subtitle">Enter the admin password to continue.</p>
+      <form class="admin-gate__form" id="gateForm">
+        <input type="password" id="gatePassword" class="admin-gate__input" placeholder="Password" autocomplete="off" required>
+        <button type="submit" class="admin-gate__btn">Sign in</button>
+      </form>
+      <p class="admin-gate__error" id="gateError"></p>
+    </div>
+  </div>
+
+  <!-- Dashboard (hidden until auth) -->
+  <div class="admin-dashboard" id="dashboard" style="display:none">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="sidebar">
+      <div class="admin-sidebar__header">
+        <a href="../" class="admin-sidebar__logo">
+          <img src="../Images/WhiteLogoCompactNoText.svg" alt="Regen Studio" height="28">
+        </a>
+        <span class="admin-sidebar__badge">Analytics</span>
+      </div>
+      <nav class="admin-sidebar__nav">
+        <button class="admin-nav-btn active" data-view="overview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Overview
+        </button>
+        <button class="admin-nav-btn" data-view="pages">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Pages
+        </button>
+        <button class="admin-nav-btn" data-view="navigation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Navigation
+        </button>
+        <button class="admin-nav-btn" data-view="engagement">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Engagement
+        </button>
+        <button class="admin-nav-btn" data-view="acquisition">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Acquisition
+        </button>
+        <button class="admin-nav-btn" data-view="funnel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          Funnel
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+
+      <!-- Top Bar -->
+      <div class="admin-topbar">
+        <h2 class="admin-topbar__title" id="viewTitle">Overview</h2>
+        <div class="admin-topbar__controls">
+          <select id="siteFilter" class="admin-select">
+            <option value="all" selected>All sites</option>
+            <option value="www">www.regenstudio.space</option>
+            <option value="demos">demos.regenstudio.space</option>
+          </select>
+          <select id="dateRange" class="admin-select">
+            <option value="7">Last 7 days</option>
+            <option value="30" selected>Last 30 days</option>
+            <option value="90">Last 90 days</option>
+            <option value="custom">Custom range</option>
+          </select>
+          <div class="admin-custom-range" id="customRange" style="display:none">
+            <input type="date" id="dateFrom" class="admin-date-input">
+            <span>to</span>
+            <input type="date" id="dateTo" class="admin-date-input">
+            <button class="admin-btn-sm" id="applyRange">Apply</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- View: Overview -->
+      <section class="admin-view active" id="view-overview">
+        <div class="admin-kpi-grid">
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiViews">—</span><span class="admin-kpi__label">Total Views</span></div>
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiUniques">—</span><span class="admin-kpi__label">Unique Visitors</span></div>
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiDepth">—</span><span class="admin-kpi__label">Avg Session Depth</span></div>
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiTime">—</span><span class="admin-kpi__label">Avg Time on Page</span></div>
+        </div>
+        <div class="admin-chart-panel">
+          <h3>Daily Trend</h3>
+          <canvas id="chartOverviewTrend"></canvas>
+        </div>
+      </section>
+
+      <!-- View: Pages -->
+      <section class="admin-view" id="view-pages">
+        <div class="admin-table-panel">
+          <h3>Pages by Views</h3>
+          <table class="admin-table" id="tablePages">
+            <thead><tr><th id="thSite" style="display:none">Site</th><th>Page</th><th>Views</th><th>Uniques</th><th>Avg Time</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- View: Navigation -->
+      <section class="admin-view" id="view-navigation">
+        <div class="admin-table-panel">
+          <h3>Navigation Flows</h3>
+          <table class="admin-table" id="tableFlows">
+            <thead><tr><th>From</th><th>To</th><th>Count</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="admin-grid-2">
+          <div class="admin-table-panel">
+            <h3>Entry Pages</h3>
+            <table class="admin-table" id="tableEntry">
+              <thead><tr><th>Page</th><th>Count</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="admin-table-panel">
+            <h3>Exit Pages</h3>
+            <table class="admin-table" id="tableExit">
+              <thead><tr><th>Page</th><th>Count</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- View: Engagement -->
+      <section class="admin-view" id="view-engagement">
+        <div class="admin-grid-2">
+          <div class="admin-chart-panel">
+            <h3>Scroll Depth</h3>
+            <canvas id="chartScroll"></canvas>
+          </div>
+          <div class="admin-chart-panel">
+            <h3>Time on Page Distribution</h3>
+            <canvas id="chartTime"></canvas>
+          </div>
+        </div>
+        <div class="admin-table-panel">
+          <h3>Click Targets</h3>
+          <table class="admin-table" id="tableClicks">
+            <thead><tr><th>Page</th><th>Target</th><th>Section</th><th>Clicks</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- View: Acquisition -->
+      <section class="admin-view" id="view-acquisition">
+        <div class="admin-grid-2">
+          <div class="admin-chart-panel">
+            <h3>Referrer Sources</h3>
+            <canvas id="chartReferrers"></canvas>
+          </div>
+          <div class="admin-chart-panel">
+            <h3>Countries</h3>
+            <canvas id="chartCountries"></canvas>
+          </div>
+        </div>
+        <div class="admin-grid-2">
+          <div class="admin-chart-panel">
+            <h3>Devices</h3>
+            <canvas id="chartDevices"></canvas>
+          </div>
+          <div class="admin-chart-panel">
+            <h3>Browsers</h3>
+            <canvas id="chartBrowsers"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- View: Funnel -->
+      <section class="admin-view" id="view-funnel">
+        <p class="admin-funnel-note" id="funnelNote" style="display:none">The reports purchase funnel only tracks demos.regenstudio.space — no funnel data for www.</p>
+        <div class="admin-chart-panel">
+          <h3>Reports Purchase Funnel</h3>
+          <canvas id="chartFunnel"></canvas>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="../assets/js/vendor/chart.min.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
