@@ -22,15 +22,12 @@
   function send(payload) {
     try {
       payload.site = SITE;
-      var blob = new Blob([JSON.stringify(payload)], { type: 'text/plain' });
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon(ENDPOINT, blob);
-      } else {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', ENDPOINT, true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify(payload));
-      }
+      fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        keepalive: true
+      }).catch(function () {});
     } catch (e) {
       // Analytics must never break the page
     }
