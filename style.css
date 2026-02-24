@@ -93,6 +93,25 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Skip to content link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 10000;
+  padding: 8px 16px;
+  background: var(--color-emerald);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 16px;
+}
+
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
@@ -2980,7 +2999,7 @@ em:only-of-type {
   align-items: flex-start;
   gap: 8px;
   font-size: 0.85rem;
-  color: var(--color-muted);
+  color: var(--color-text-muted);
   cursor: pointer;
   margin-bottom: 8px;
 }
