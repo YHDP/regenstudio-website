@@ -2,7 +2,7 @@
  * RegenTracker — Privacy-preserving universal analytics tracker
  * ES5-compatible IIFE. Auto-initializes on load.
  *
- * Configured for: www.regenstudio.space (site: 'www')
+ * Configured for: www.regenstudio.world (site: 'www')
  *
  * Features:
  * - page_view with referrer_domain + from_page (sessionStorage)

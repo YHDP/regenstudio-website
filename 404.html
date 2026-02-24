@@ -3,18 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Blog Post | Regen Studio</title>
-  <meta name="description" content="Read insights on regenerative innovation from Regen Studio.">
-  <link rel="icon" type="image/png" href="Images/favicon.png">
+  <title>Page Not Found | Regen Studio</title>
+  <meta name="robots" content="noindex">
+
+  <link rel="icon" type="image/png" href="Images/Flavicon.png">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="blog.css">
+
+  <style>
+    .error-page {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+    }
+    .error-page__inner {
+      max-width: 480px;
+    }
+    .error-page__img {
+      display: block;
+      margin: 0 auto 32px;
+      max-width: 320px;
+      width: 100%;
+      height: auto;
+    }
+    .error-page__title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--color-heading, #1a1a2e);
+    }
+    .error-page__text {
+      font-size: 1.05rem;
+      color: var(--color-text-light, #666);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    .error-page__actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .error-page__link {
+      font-size: 0.95rem;
+      color: var(--color-primary, #00914B);
+      font-weight: 500;
+    }
+    .error-page__link:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
 
   <!-- Navigation -->
-  <nav class="nav" id="nav">
+  <nav class="nav nav--scrolled" id="nav">
     <div class="nav__inner container">
       <a href="index.html" class="nav__logo">
         <img src="Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
@@ -31,7 +78,7 @@
           <div class="nav__contact-popover" id="navContactPopover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
-              <a href="/#contact-form" class="nav__contact-popover-link">
+              <a href="index.html#contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 Send us a message
               </a>
@@ -54,26 +101,23 @@
     </div>
   </nav>
 
-  <!-- Post Header (rendered by JS) -->
-  <div id="main-content"></div>
-  <section class="post-header" id="postHeader"></section>
-
-  <!-- Featured Image (rendered by JS) -->
-  <section class="post-featured-image" id="postFeaturedImage"></section>
-
-  <!-- Post Content (rendered by JS) -->
-  <section class="post-content" id="postContent"></section>
-
-  <!-- Related Posts (rendered by JS) -->
-  <section class="related-posts" id="relatedPosts"></section>
+  <main class="error-page" id="main-content">
+    <div class="error-page__inner">
+      <img src="Images/404-chameleon.png" alt="Curious chameleon on a pencil" class="error-page__img">
+      <h1 class="error-page__title">Page not found</h1>
+      <p class="error-page__text">The page you're looking for doesn't exist or has been moved.</p>
+      <div class="error-page__actions">
+        <a href="index.html" class="btn btn--primary">Back to home</a>
+        <a href="blog.html" class="error-page__link">View our blog &rarr;</a>
+      </div>
+    </div>
+  </main>
 
   <!-- Footer -->
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
     <meta itemprop="name" content="Regen Studio">
     <meta itemprop="url" content="https://www.regenstudio.world">
     <meta itemprop="email" content="info@regenstudio.world">
-    <meta itemprop="description" content="Regenerative innovation design studio pioneering systemic innovations at the intersection of technology, society, and nature.">
-    <link itemprop="logo" href="https://www.regenstudio.world/Images/Logo-Text-on-the-sideAtivo 2.svg">
     <div class="container footer__inner">
       <div class="footer__brand">
         <a href="index.html" class="footer__logo">
@@ -140,7 +184,57 @@
     </div>
   </footer>
 
-  <script src="blog.js" defer></script>
-  <script src="assets/js/tracker.js" defer></script>
+  <script>
+    (function() {
+      var navToggle = document.getElementById('navToggle');
+      var navLinks = document.getElementById('navLinks');
+      if (navToggle && navLinks) {
+        navToggle.addEventListener('click', function() {
+          navToggle.classList.toggle('active');
+          navLinks.classList.toggle('open');
+          document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+        });
+      }
+      var navContactBtn = document.getElementById('navContactBtn');
+      var navContactPopover = document.getElementById('navContactPopover');
+      if (navContactBtn && navContactPopover) {
+        navContactBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          navContactPopover.classList.toggle('open');
+        });
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('.nav__contact-wrap')) {
+            navContactPopover.classList.remove('open');
+          }
+        });
+      }
+      document.addEventListener('click', function(e) {
+        var copyBtn = e.target.closest('.copyable-email__btn');
+        if (copyBtn) {
+          var email = copyBtn.getAttribute('data-email');
+          navigator.clipboard.writeText(email).then(function() {
+            var label = copyBtn.querySelector('.copyable-email__label');
+            copyBtn.classList.add('copied');
+            if (label) label.textContent = 'Copied!';
+            setTimeout(function() {
+              copyBtn.classList.remove('copied');
+              if (label) label.textContent = 'Copy';
+            }, 2000);
+          });
+          return;
+        }
+        var footerBtn = e.target.closest('.footer__copy-btn');
+        if (footerBtn) {
+          var email = footerBtn.getAttribute('data-email');
+          navigator.clipboard.writeText(email).then(function() {
+            footerBtn.classList.add('copied');
+            setTimeout(function() { footerBtn.classList.remove('copied'); }, 2000);
+          });
+        }
+      });
+    })();
+  </script>
+  <script src="assets/js/tracker.js"></script>
 </body>
 </html>

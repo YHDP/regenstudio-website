@@ -28,30 +28,30 @@
 - Textiles delegated act (in preparation)
 
 ## Interactive Demos
-- [CPR DPP Tracker](https://demos.regenstudio.space): Track all 37 CPR product families and harmonised standards progress
-- [Battery Passport Checker](https://demos.regenstudio.space): Free 1-minute tool to assess DPP obligations under EU Battery Regulation
-- [DPP System](https://demos.regenstudio.space): Full product passport platform prototype (restricted, request access)
-- [EDI Wallet](https://demos.regenstudio.space): European Digital Identity wallet prototype with selective disclosure (restricted, request access)
-- [AI Tax → UBI](https://demos.regenstudio.space): Policy simulation exploring AI taxation and universal basic income
+- [CPR DPP Tracker](https://demos.regenstudio.world): Track all 37 CPR product families and harmonised standards progress
+- [Battery Passport Checker](https://demos.regenstudio.world): Free 1-minute tool to assess DPP obligations under EU Battery Regulation
+- [DPP System](https://demos.regenstudio.world): Full product passport platform prototype (restricted, request access)
+- [EDI Wallet](https://demos.regenstudio.world): European Digital Identity wallet prototype with selective disclosure (restricted, request access)
+- [AI Tax → UBI](https://demos.regenstudio.world): Policy simulation exploring AI taxation and universal basic income
 
 ## Locations
 - The Netherlands: Regen Studio B.V., Berg en Dal (KVK 90337948)
 - Brazil: Regen Studio Consultoria LTDA, São Paulo (CNPJ 57.579.114/0001-55)
 
 ## Pages
-- [Home](https://www.regenstudio.space): Vision, focus areas, services overview, and client types
-- [Digital Product Passports](https://www.regenstudio.space/digital-product-passports/): DPP advisory services, readiness assessments, compliance roadmaps
-- [Innovation Services](https://www.regenstudio.space/innovation-services.html): 10 innovation design methodologies for complex multi-stakeholder environments
-- [Blog](https://www.regenstudio.space/blog.html): Analysis of EU regulations, project case studies, and innovation insights
-- [FAQ](https://www.regenstudio.space/faq.html): 47 questions covering DPPs, EU regulations, energy transition, circular economy, and more
-- [About](https://www.regenstudio.space/about.html): Team, philosophy, and company background
-- [Digital Identities](https://www.regenstudio.space/digital-identities/): Self-sovereign identity and eIDAS 2.0 advisory
-- [Client Projects](https://www.regenstudio.space/client-projects.html): Selected project portfolio
-- [Privacy Policy](https://www.regenstudio.space/privacy.html): Zero cookies, self-hosted assets, GDPR/LGPD compliant
-- [Interactive Demos](https://demos.regenstudio.space): Five demo tools for DPP, digital identity, and policy simulation
+- [Home](https://www.regenstudio.world): Vision, focus areas, services overview, and client types
+- [Digital Product Passports](https://www.regenstudio.world/digital-product-passports/): DPP advisory services, readiness assessments, compliance roadmaps
+- [Innovation Services](https://www.regenstudio.world/innovation-services.html): 10 innovation design methodologies for complex multi-stakeholder environments
+- [Blog](https://www.regenstudio.world/blog.html): Analysis of EU regulations, project case studies, and innovation insights
+- [FAQ](https://www.regenstudio.world/faq.html): 47 questions covering DPPs, EU regulations, energy transition, circular economy, and more
+- [About](https://www.regenstudio.world/about.html): Team, philosophy, and company background
+- [Digital Identities](https://www.regenstudio.world/digital-identities/): Self-sovereign identity and eIDAS 2.0 advisory
+- [Client Projects](https://www.regenstudio.world/client-projects.html): Selected project portfolio
+- [Privacy Policy](https://www.regenstudio.world/privacy.html): Zero cookies, self-hosted assets, GDPR/LGPD compliant
+- [Interactive Demos](https://demos.regenstudio.world): Five demo tools for DPP, digital identity, and policy simulation
 
 ## Contact
-- Email: info@regenstudio.space
+- Email: info@regenstudio.world
 - [LinkedIn](https://www.linkedin.com/company/regen-studio-world/)
 - [Bluesky](https://bsky.app/profile/regen-studio.bsky.social)
 - [Mastodon](https://mastodon.social/@regen_studio)
