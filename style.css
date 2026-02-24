@@ -105,6 +105,13 @@ body {
   color: var(--color-text);
   line-height: 1.7;
   overflow-x: hidden;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
+}
+
+body.nav-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
 }
 
 a {
@@ -200,6 +207,7 @@ em:only-of-type {
 .btn--small {
   padding: 10px 24px;
   font-size: 0.875rem;
+  min-height: 44px;
 }
 
 .btn--large {
@@ -631,6 +639,7 @@ em:only-of-type {
   width: 100%;
   height: 100%;
   pointer-events: auto;
+  touch-action: manipulation;
 }
 
 /* --- Hero content overlay --- */
@@ -707,7 +716,7 @@ em:only-of-type {
 }
 
 .hero__subtitle {
-  font-size: clamp(0.82rem, 1.1vw, 0.92rem);
+  font-size: clamp(0.88rem, 1.1vw, 0.92rem);
   color: rgba(36, 54, 68, 0.38);
   max-width: 400px;
   margin-bottom: 32px;
@@ -1892,6 +1901,28 @@ em:only-of-type {
   100% { transform: translateX(-50%); }
 }
 
+/* Mobile: static logo grid instead of infinite scroll */
+@media (max-width: 768px) {
+  .clients__logos-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px 32px;
+    width: auto;
+  }
+
+  .clients__logos-track-wrap {
+    -webkit-mask-image: none;
+    mask-image: none;
+    overflow: visible;
+  }
+
+  /* Hide the duplicate set — JS creates 2 rounds, only show first 8 */
+  .clients__logos-track img:nth-child(n+9) {
+    display: none;
+  }
+}
+
 /* --- Blog Preview --- */
 .blog-preview {
   background: var(--color-bg);
@@ -2333,6 +2364,7 @@ em:only-of-type {
 .copyable-email__btn--small {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0;
   padding: 6px;
   font-size: 0;
@@ -2342,6 +2374,8 @@ em:only-of-type {
   border-radius: 8px;
   cursor: pointer;
   transition: all var(--transition);
+  min-width: 36px;
+  min-height: 36px;
 }
 
 .copyable-email__btn--small:hover {
@@ -2613,10 +2647,12 @@ em:only-of-type {
     background: var(--color-bg);
     flex-direction: column;
     padding: 100px 40px 40px;
+    padding-bottom: calc(40px + env(safe-area-inset-bottom));
     gap: 24px;
     border-left: 1px solid var(--color-border);
     transition: right var(--transition);
     box-shadow: -4px 0 20px rgba(36, 54, 68, 0.1);
+    z-index: 1000;
   }
 
   .nav__links.open {
@@ -2729,6 +2765,10 @@ em:only-of-type {
 
   .hero__content {
     padding: 0 24px 80px;
+  }
+
+  .hero__tagline {
+    white-space: normal;
   }
 }
 
@@ -3412,6 +3452,27 @@ em:only-of-type {
 .inno-service:nth-child(5n+4) .inno-service__image img { box-shadow: 0 0 20px rgba(147, 9, 63, 0.15); }
 .inno-service:nth-child(5n+5) .inno-service__image img { box-shadow: 0 0 20px rgba(231, 24, 70, 0.15); }
 
+/* Details/summary reset for desktop — hide markers, keep card appearance */
+.inno-service summary {
+  list-style: none;
+  cursor: default;
+}
+.inno-service summary::-webkit-details-marker { display: none; }
+.inno-service summary::marker { display: none; }
+
+/* Learn more link inside subtitle */
+.inno-service__link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  transition: color var(--transition);
+}
+.inno-service__link:hover {
+  color: var(--color-primary-hover);
+}
+
 /* Clickable service card overlay */
 .service--linked {
   cursor: pointer;
@@ -3455,10 +3516,48 @@ em:only-of-type {
   width: 100% !important;
 }
 
-/* Innovation services responsive */
+/* Innovation services responsive — accordion on mobile */
 @media (max-width: 640px) {
   .inno-services__grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .inno-service {
+    padding: 16px 20px;
+    text-align: left;
+  }
+  .inno-service summary {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+  }
+  .inno-service summary::after {
+    content: '';
+    margin-left: auto;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat center;
+    transition: transform 0.2s;
+  }
+  .inno-service[open] summary::after {
+    transform: rotate(180deg);
+  }
+  .inno-service__image {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  .inno-service__image img {
+    width: 48px;
+    height: 48px;
+  }
+  .inno-service__subtitle {
+    padding-top: 12px;
+  }
+  .inno-service:hover {
+    transform: none;
   }
 }
 
@@ -4147,8 +4246,9 @@ a.dpp-product--linked {
 
 .dpp-gate__btn {
   white-space: nowrap;
-  padding: 10px 24px;
+  padding: 12px 24px;
   font-size: 0.9rem;
+  min-height: 44px;
 }
 
 .dpp-gate__disclaimer {
@@ -5184,5 +5284,56 @@ a.dpp-product--linked {
 @keyframes cookiePopupOut {
   from { opacity: 1; }
   to   { opacity: 0; }
+}
+
+/* ========================================
+   Mobile Breakpoints — 600px / 320px
+   ======================================== */
+
+@media (max-width: 600px) {
+  .clients__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 320px) {
+  .hero__title {
+    font-size: 1.4rem;
+  }
+
+  .hero__tagline {
+    font-size: 1.2rem;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  :root {
+    --section-pad: 60px;
+  }
+
+  .copyable-email__address {
+    white-space: normal;
+    word-break: break-all;
+  }
+}
+
+/* --- Reduced motion: disable backdrop-filter --- */
+@media (prefers-reduced-motion: reduce) {
+  .nav--scrolled,
+  .freeze-btn,
+  .freeze-panel,
+  .scroll-cta {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* --- Textarea min-height on small screens --- */
+@media (max-width: 480px) {
+  .regen-form__textarea {
+    min-height: 80px;
+  }
 }
 

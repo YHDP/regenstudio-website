@@ -237,12 +237,13 @@
 }
 
 .filter-pill--sub {
-  padding: 5px 12px;
+  padding: 8px 14px;
   font-size: 0.73rem;
   font-weight: 400;
   box-shadow: none;
   border-color: transparent;
   background: transparent;
+  min-height: 36px;
 }
 
 .filter-pill--sub:hover {
@@ -1427,6 +1428,10 @@
     order: -1;
     flex-shrink: 0;
   }
+
+  .scroll-cta {
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  }
 }
 
 @media (max-width: 1024px) {
@@ -1489,6 +1494,9 @@
 }
 
 @media (max-width: 480px) {
+  .blog-filters__columns {
+    grid-template-columns: 1fr;
+  }
 
   .share-btn--lg {
     padding: 9px 16px;
