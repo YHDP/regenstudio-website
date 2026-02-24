@@ -584,8 +584,15 @@
           })
           .then(function(blogs) {
             var diBlogs = blogs
-              .filter(function(b) { return b.published && b.categories && b.categories.indexOf('Digital Identity') !== -1; })
-              .sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+              .filter(function(b) { return b.published && b.categories && b.categories.indexOf('Digital Identity') !== -1; });
+
+            // Shuffle (Fisher-Yates)
+            for (var i = diBlogs.length - 1; i > 0; i--) {
+              var j = Math.floor(Math.random() * (i + 1));
+              var tmp = diBlogs[i];
+              diBlogs[i] = diBlogs[j];
+              diBlogs[j] = tmp;
+            }
 
             diBlogs.forEach(function(blog) {
               var card = document.createElement('a');
