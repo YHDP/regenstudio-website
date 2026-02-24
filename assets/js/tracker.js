@@ -22,7 +22,7 @@
   function send(payload) {
     try {
       payload.site = SITE;
-      var blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+      var blob = new Blob([JSON.stringify(payload)], { type: 'text/plain' });
       if (navigator.sendBeacon) {
         navigator.sendBeacon(ENDPOINT, blob);
       } else {
