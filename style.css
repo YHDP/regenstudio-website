@@ -2397,6 +2397,29 @@ em:only-of-type {
   background: rgba(34, 197, 94, 0.08);
 }
 
+/* Form link beside inline email — subtle sibling to the copy button */
+.soft-cta__form-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 6px;
+  color: var(--color-text-muted);
+  background: var(--color-bg-light);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  margin-left: 4px;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+
+.soft-cta__form-link:hover {
+  color: var(--color-primary);
+  border-color: var(--color-border-hover);
+  background: var(--color-emerald-bg);
+}
+
 /* --- CTA --- */
 .cta {
   background: var(--color-bg);
