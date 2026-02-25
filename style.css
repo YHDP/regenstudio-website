@@ -5215,6 +5215,98 @@ a.dpp-product--linked {
   }
 }
 
+/* ========================================
+   Follow Card (Social Links)
+   ======================================== */
+
+.follow-card {
+  margin: 48px auto 0;
+  max-width: 480px;
+  text-align: center;
+}
+
+.follow-card__heading {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.follow-card__links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.follow-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.follow-card__link:hover {
+  border-color: var(--color-primary);
+  background: rgba(var(--color-primary-rgb, 45, 106, 79), 0.06);
+}
+
+.follow-card__link svg {
+  flex-shrink: 0;
+}
+
+/* ========================================
+   Thank-you Page
+   ======================================== */
+
+.thankyou-page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 160px clamp(20px, 4vw, 40px) 80px;
+  text-align: center;
+}
+
+.thankyou-page__icon {
+  margin-bottom: 24px;
+}
+
+.thankyou-page__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  margin-bottom: 12px;
+}
+
+.thankyou-page__text {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.thankyou-page__home {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+  color: var(--color-primary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+
+.thankyou-page__home:hover {
+  opacity: 0.8;
+}
+
 /* --- Textarea min-height on small screens --- */
 @media (max-width: 480px) {
   .regen-form__textarea {

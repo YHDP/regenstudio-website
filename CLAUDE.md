@@ -142,9 +142,23 @@ Use official EU translations, with English acronym in parentheses on first menti
 - PT: Passaporte Digital do Produto (DPP)
 See `/Users/yvhun/Claude/Werkmappie/PLAN TO LAUNCH WEBSITE/translation-review.md` for the full terminology table.
 
+## Conversion Tracking (Ad Pixels)
+
+The `/thank-you.html` page (and `/nl/thank-you.html`, `/pt/thank-you.html`) includes a placeholder comment for conversion tracking pixels. When ad campaigns begin:
+
+1. Open `thank-you.html` (and NL/PT versions)
+2. Find the comment: `<!-- conversion tracking pixel placeholder -->`
+3. Add the pixel script directly below it, for example:
+   - **LinkedIn Insight Tag:** `<script>...</script>` from LinkedIn Campaign Manager
+   - **Google Ads:** `<script>gtag('event', 'conversion', {...})</script>`
+   - **Meta Pixel:** `<script>fbq('track', 'Lead')</script>`
+4. Update `privacy.html` sub-processors section to disclose the new tracker
+5. Test the form → thank-you redirect flow to confirm the pixel fires
+
 ## Current Status
 - Live site with 35+ blog posts, newsletter system, contact forms
 - Hero triangle canvas animation active
-- `trial.js` / `trial.html` / `trial2.html` are experimental pages
 - 6 standalone Q&A pages for AI citation optimization
-- Trilingual infrastructure in place (i18n.js + locales), translations in progress
+- Full trilingual support (EN/NL/PT) — i18n.js + locales + 16 translated core pages + 60 translated blog posts
+- Thank-you page with social follow card and conversion pixel placeholder
+- Form submissions redirect to /thank-you.html on success
