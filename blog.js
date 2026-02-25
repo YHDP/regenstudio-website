@@ -238,6 +238,40 @@
     'Client Projects': 'gold',
   };
 
+  // --- Category translation: English name → i18n key ---
+  var CATEGORY_I18N = {
+    'Circular Economy': 'categories.circular_economy',
+    'Digital Product Passport': 'categories.dpp',
+    'Circular Business Models': 'categories.circular_models',
+    'Energy Transition': 'categories.energy_transition',
+    'Smart Grids': 'categories.smart_grids',
+    'Energy Communities': 'categories.energy_communities',
+    'Energy Justice': 'categories.energy_justice',
+    'Liveable Cities': 'categories.liveable_cities',
+    'Living Labs': 'categories.living_labs',
+    'Digital Participation': 'categories.digital_participation',
+    'Urban Greening': 'categories.urban_greening',
+    'Digital Society': 'categories.digital_society',
+    'Digital Identity': 'categories.digital_identity',
+    'Privacy-by-Design': 'categories.privacy_by_design',
+    'Innovation Services': 'categories.innovation_services',
+    'Vision & Strategy': 'categories.vision_strategy',
+    'Out-of-the-Box Ideas': 'categories.out_of_the_box',
+    'Client Projects': 'categories.client_projects',
+    'AI': 'categories.ai',
+    'Visual Storytelling': 'categories.visual_storytelling',
+    'Biodiversity': 'categories.biodiversity',
+    'Reforestation': 'categories.reforestation',
+    'Regenerative Agriculture': 'categories.regenerative_agriculture',
+    'Resilient Nature': 'categories.resilient_nature',
+    'Services': 'categories.services'
+  };
+
+  function tc(cat) {
+    var key = CATEGORY_I18N[cat];
+    return key ? t(key, cat) : cat;
+  }
+
   // --- Resolve image paths from static pages ---
   function resolveImagePath(slug, featuredImage) {
     if (!featuredImage) return '';
@@ -270,7 +304,7 @@
 
     const cats = post.categories.map(c => {
       const color = CATEGORY_COLORS[c] || 'gray';
-      return `<span class="blog-card__category blog-card__category--${color}">${c}</span>`;
+      return `<span class="blog-card__category blog-card__category--${color}">${tc(c)}</span>`;
     }).join('');
 
     return `
@@ -353,13 +387,13 @@
       const mainCount = expandedCatCounts[col.name] || 0;
       const subsHtml = col.subs.map(sub => {
         const count = expandedCatCounts[sub] || 0;
-        return `<button class="filter-pill filter-pill--sub filter-pill--${col.color}" data-type="category" data-value="${sub}" data-color="${col.color}">${sub}${count ? ` <span class="filter-pill__count">${count}</span>` : ''}</button>`;
+        return `<button class="filter-pill filter-pill--sub filter-pill--${col.color}" data-type="category" data-value="${sub}" data-color="${col.color}">${tc(sub)}${count ? ` <span class="filter-pill__count">${count}</span>` : ''}</button>`;
       }).join('');
 
       return `
         <div class="blog-filters__column blog-filters__column--${col.color}">
           <button class="filter-pill filter-pill--main filter-pill--${col.color}" data-type="category" data-value="${col.name}" data-color="${col.color}">
-            ${col.name}${mainCount ? ` <span class="filter-pill__count">${mainCount}</span>` : ''}
+            ${tc(col.name)}${mainCount ? ` <span class="filter-pill__count">${mainCount}</span>` : ''}
           </button>
           <div class="blog-filters__subs">${subsHtml}</div>
         </div>
@@ -611,7 +645,7 @@
       <div class="container">
         <a href="${pageUrl('blog.html')}" class="post-header__back">${icons.arrow} ${t("blog.back", "Back to Blog")}</a>
         <div class="post-header__categories">
-          ${post.categories.map(c => `<span class="post-header__category post-header__category--${CATEGORY_COLORS[c] || 'gray'}">${c}</span>`).join('')}
+          ${post.categories.map(c => `<span class="post-header__category post-header__category--${CATEGORY_COLORS[c] || 'gray'}">${tc(c)}</span>`).join('')}
         </div>
         <h1 class="post-header__title">${post.title}</h1>
         ${post.subtitle ? `<p class="post-header__subtitle">${post.subtitle}</p>` : ''}
