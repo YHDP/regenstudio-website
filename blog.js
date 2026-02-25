@@ -93,25 +93,47 @@
   // --- Utility: Format date ---
   function formatDate(dateStr) {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    var dateLocale = langCode === 'nl' ? 'nl-NL' : langCode === 'pt' ? 'pt-BR' : 'en-US';
+    return d.toLocaleDateString(dateLocale, { year: 'numeric', month: 'long', day: 'numeric' });
   }
 
-  // --- Path helper: detect if we're on a static blog page (blog/<slug>/) ---
+  // --- Locale detection ---
+  var pageLang = document.documentElement.lang || 'en';
+  var langCode = pageLang === 'nl' ? 'nl' : pageLang === 'pt-BR' ? 'pt' : 'en';
+  var localePrefix = langCode === 'en' ? '' : '/' + langCode;
+
+  // --- Path helper: detect depth from root, accounting for locale prefix ---
   var basePath = (function () {
+    var path = window.location.pathname;
     var slugMeta = document.querySelector('meta[name="blog-post-slug"]');
-    if (slugMeta && /^\/blog\//.test(window.location.pathname)) return '../../';
+    // Static blog post: /<lang>/blog/<slug>/ → ../../../
+    if (slugMeta && /^\/(nl|pt)\/blog\//.test(path)) return '../../../';
+    // Static blog post: /blog/<slug>/ → ../../
+    if (slugMeta && /^\/blog\//.test(path)) return '../../';
+    // Locale listing page: /nl/*.html or /pt/*.html → ../
+    if (/^\/(nl|pt)\//.test(path)) return '../';
     return '';
   })();
 
   // --- Data loading ---
+  // Language suffix for locale-specific files (e.g., .nl or .pt)
+  var langSuffix = langCode !== 'en' ? '.' + langCode : '';
+
   async function loadBlogs() {
     const resp = await fetch(basePath + 'Blogs/blogs.json');
     const folders = await resp.json();
 
     const blogs = await Promise.all(folders.map(async (folder) => {
+      const base = basePath + 'Blogs/' + folder + '/';
+
+      // Fetch locale-specific meta/content, fall back to English
       const [metaResp, contentResp] = await Promise.all([
-        fetch(basePath + `Blogs/${folder}/meta.json`),
-        fetch(basePath + `Blogs/${folder}/content.html`)
+        langSuffix
+          ? fetch(base + 'meta' + langSuffix + '.json').then(function (r) { return r.ok ? r : fetch(base + 'meta.json'); })
+          : fetch(base + 'meta.json'),
+        langSuffix
+          ? fetch(base + 'content' + langSuffix + '.html').then(function (r) { return r.ok ? r : fetch(base + 'content.html'); })
+          : fetch(base + 'content.html')
       ]);
       const meta = await metaResp.json();
       const content = await contentResp.text();
@@ -226,9 +248,15 @@
     return 'Blogs/' + slug + '/' + featuredImage;
   }
 
+  // --- Locale-aware page URL helper (e.g., blog.html → ../nl/blog.html from a post page) ---
+  function pageUrl(page) {
+    if (langCode === 'en') return basePath + page;
+    return basePath + langCode + '/' + page;
+  }
+
   // --- Blog post URL helper ---
   function blogPostUrl(slug) {
-    return '/blog/' + encodeURIComponent(slug) + '/';
+    return localePrefix + '/blog/' + encodeURIComponent(slug) + '/';
   }
 
   // --- Card renderer ---
@@ -538,14 +566,14 @@
     var slugMeta = document.querySelector('meta[name="blog-post-slug"]');
     const slug = slugMeta ? slugMeta.getAttribute('content') : new URLSearchParams(window.location.search).get('post');
     if (!slug) {
-      window.location.href = basePath + 'blog.html';
+      window.location.href = pageUrl('blog.html');
       return;
     }
 
     const blogs = await loadBlogs();
     const post = blogs.find(b => b.slug === slug);
     if (!post) {
-      window.location.href = basePath + 'blog.html';
+      window.location.href = pageUrl('blog.html');
       return;
     }
 
@@ -555,7 +583,7 @@
     // Update meta description + OG + Twitter tags for social sharing & tab title
     var postTitle = post.title + ' | Regen Studio Blog';
     var postDesc = post.excerpt || post.subtitle || 'Read insights on regenerative innovation from Regen Studio.';
-    var postUrl = COMPANY.url + '/blog/' + encodeURIComponent(post.slug) + '/';
+    var postUrl = COMPANY.url + localePrefix + '/blog/' + encodeURIComponent(post.slug) + '/';
     var postImage = post.featuredImage
       ? (post.featuredImage.startsWith('../../')
         ? COMPANY.url + '/' + post.featuredImage.replace('../../', '')
@@ -581,7 +609,7 @@
     const headerEl = document.getElementById('postHeader');
     headerEl.innerHTML = `
       <div class="container">
-        <a href="${basePath}blog.html" class="post-header__back">${icons.arrow} ${t("blog.back", "Back to Blog")}</a>
+        <a href="${pageUrl('blog.html')}" class="post-header__back">${icons.arrow} ${t("blog.back", "Back to Blog")}</a>
         <div class="post-header__categories">
           ${post.categories.map(c => `<span class="post-header__category post-header__category--${CATEGORY_COLORS[c] || 'gray'}">${c}</span>`).join('')}
         </div>
@@ -618,7 +646,7 @@
       <div class="post-content__inner">
         <div class="post-content__body">${post.content}</div>
         <div class="post-tags" id="postTags">
-          ${post.tags.map(t => `<a href="${basePath}blog.html#${encodeURIComponent('tag=' + t)}" class="post-tag">#${t}</a>`).join('')}
+          ${post.tags.map(t => `<a href="${pageUrl('blog.html')}#${encodeURIComponent('tag=' + t)}" class="post-tag">#${t}</a>`).join('')}
         </div>
         <div class="post-share">
           <div class="post-share__card">
@@ -792,7 +820,7 @@
             ${related.map(renderCard).join('')}
           </div>
           <div class="related-posts__cta">
-            <a href="${basePath}blog.html${primaryCategory}" class="related-posts__cta-btn">${t("blog.view_related", "View all related blogs")}</a>
+            <a href="${pageUrl('blog.html')}${primaryCategory}" class="related-posts__cta-btn">${t("blog.view_related", "View all related blogs")}</a>
           </div>
         </div>
       `;
