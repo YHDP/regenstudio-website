@@ -2,7 +2,7 @@
 
 > Regenerative innovation design studio helping organizations create systemic
 > positive impact at the intersection of technology, society, and nature.
-> Based in The Netherlands and Brazil.
+> Based in The Netherlands and Brazil. Founded in 2023.
 
 ## What We Do
 - Digital Product Passport advisory (independent, vendor-neutral)
@@ -27,6 +27,18 @@
 - Packaging & Packaging Waste Regulation 2025/40
 - Textiles delegated act (in preparation)
 
+## Innovation Services
+1. **Problem Analysis** — Find root causes of complex challenges through systems mapping and stakeholder analysis
+2. **Ideation** — Sketch future possibilities using structured creative sessions and divergent thinking
+3. **Prototyping** — Build rough solutions rapidly to test concepts before committing resources
+4. **Solution Validation** — Pass all checks by testing prototypes against real-world requirements and stakeholder needs
+5. **Experiment Design** — Test solutions in practice through structured experiments with measurable outcomes
+6. **Design Sprints** — Innovation pressure cooker: compress months of work into focused multi-day sessions
+7. **Innovation Process Design** — Create a custom innovation framework tailored to your organisation's context
+8. **Innovation System Design** — Build co-creation communities and multi-stakeholder innovation ecosystems
+9. **Innovation Coaching** — Provide ongoing support to teams navigating innovation journeys
+10. **Innovation Management** — Effective innovation operations: portfolio management, governance, and scaling
+
 ## Interactive Demos
 - [CPR DPP Tracker](https://demos.regenstudio.world): Track all 37 CPR product families and harmonised standards progress
 - [Battery Passport Checker](https://demos.regenstudio.world): Free 1-minute tool to assess DPP obligations under EU Battery Regulation
@@ -34,18 +46,70 @@
 - [EDI Wallet](https://demos.regenstudio.world): European Digital Identity wallet prototype with selective disclosure (restricted, request access)
 - [AI Tax → UBI](https://demos.regenstudio.world): Policy simulation exploring AI taxation and universal basic income
 
+## Blog Posts
+
+- [The Construction Innovator Paradox: Why Innovative Construction Products May Face Digital Product Passports First](https://www.regenstudio.world/blog/construction-products-innovation-dpp/) — 2026-02-22 — Digital Product Passport, Vision & Strategy
+- [Smart Charging in the Vruchtenbuurt](https://www.regenstudio.world/blog/slim-laadplein-vruchtenbuurt/) — 2026-02-19 — Client Projects, Energy Communities, Smart Grids, Innovation Services
+- [Energy Justice by Design: How We Helped The Hague Design Energy Cooperatives That Changed Local Welfare Policies](https://www.regenstudio.world/blog/energy-justice-the-hague/) — 2026-02-18 — Client Projects, Energy Communities, Energy Justice, Innovation Services
+- [A Smart Energy Community on Scheveningen Beach](https://www.regenstudio.world/blog/slim-strandnet/) — 2026-02-17 — Client Projects, Energy Communities, Smart Grids, Living Labs
+- [The Construction Products Regulation and Digital Product Passports](https://www.regenstudio.world/blog/cpr-digital-product-passport/) — 2026-02-15 — Digital Product Passport, Vision & Strategy
+- [The Expected ESPR Delegated Act on Textiles](https://www.regenstudio.world/blog/espr-textile-delegated-act/) — 2026-02-12 — Digital Product Passport, Circular Business Models, Vision & Strategy
+- [Try the AI Tax → UBI Simulator](https://www.regenstudio.world/blog/demo-ai-tax-ubi/) — 2026-02-11 — Vision & Strategy, Innovation Services
+- [Try the EDI Wallet Demo](https://www.regenstudio.world/blog/demo-edi-wallet/) — 2026-02-10 — Digital Identity, Privacy-by-Design
+- [Try the Battery Passport Checker](https://www.regenstudio.world/blog/demo-battery-passport/) — 2026-02-09 — Digital Product Passport, Vision & Strategy
+- [The Art of Emergence: An Interactive Triangle Ecosystem](https://www.regenstudio.world/blog/emergent-triangles/) — 2026-02-09 — AI, Visual Storytelling, Out-of-the-Box Ideas
+- [Try the DPP System Demo](https://www.regenstudio.world/blog/demo-dpp-system/) — 2026-02-08 — Digital Product Passport, Innovation Services
+- [Insights from CircularTech Forum](https://www.regenstudio.world/blog/CircularTech/) — 2025-09-23 — Digital Product Passport, Vision & Strategy
+- [What to Expect from the ESPR Working Plan 2025-2030?](https://www.regenstudio.world/blog/ESPR/) — 2025-08-26 — Digital Product Passport, Vision & Strategy
+- [Talk to AI as if it's Trump](https://www.regenstudio.world/blog/ai-trump/) — 2025-05-22 — AI, Vision & Strategy
+- [Position Paper: Trusted Digital Product Passports](https://www.regenstudio.world/blog/trusted-dpps/) — 2025-05-22 — Digital Product Passport, Digital Identity, Vision & Strategy, Client Projects
+- [10 Design Principles for Antifragile Regenerative Innovation Systems](https://www.regenstudio.world/blog/antifragile/) — 2025-04-17 — Out-of-the-Box Ideas, Innovation Services
+- [A Custom Digital Innovation Process for The Hague](https://www.regenstudio.world/blog/a-custom-digital-innovation-process-for-the-hague/) — 2025-02-19 — Client Projects, Innovation Services, Living Labs
+- [Weaving Nature into Urban Design](https://www.regenstudio.world/blog/Blog%203/) — 2025-01-18 — Urban Greening, Biodiversity, Vision & Strategy
+- [Reimagining Cities as Regenerative Ecosystems](https://www.regenstudio.world/blog/urban-jungle/) — 2024-11-24 — Urban Greening, Biodiversity
+- [Innovation Theatre — Playfully Building Capacity for Change](https://www.regenstudio.world/blog/Innovation-Theatre/) — 2024-10-29 — Out-of-the-Box Ideas, Liveable Cities
+- [Reimagining Urban Spaces: How Living Labs Drive City Regeneration](https://www.regenstudio.world/blog/Blog%202/) — 2024-10-05 — Living Labs, Digital Participation, Innovation Services
+- [Designing for Privacy with Self-Sovereign Identity](https://www.regenstudio.world/blog/ssi-privacy/) — 2024-09-24 — Digital Identity, Privacy-by-Design, Vision & Strategy
+- [Exploring Bioacoustics With Iracambi](https://www.regenstudio.world/blog/bioacoustics-iracambi/) — 2024-09-23 — Biodiversity, Reforestation, Innovation Services
+- [Energy Hubs: How We Design Them as Smart Energy Communities](https://www.regenstudio.world/blog/energy-hubs/) — 2024-09-18 — Energy Communities, Smart Grids, Innovation Services
+- [A Future-Ready Brazilian Textile Ecosystem with Digital Product Passports](https://www.regenstudio.world/blog/future-ready-textile-brazil/) — 2024-09-16 — Digital Product Passport, Circular Business Models, Innovation Services
+- [Advising Entrepreneurs through Shell Startup Engine Brazil](https://www.regenstudio.world/blog/shell-startup-enginge-brazil/) — 2024-09-09 — Circular Business Models, Innovation Services, Out-of-the-Box Ideas
+- [Beyond Carbon: The Rise of Regenerative Finance](https://www.regenstudio.world/blog/Beyond-Carbon-Regenerative-Finance/) — 2024-08-31 — Energy Justice, Regenerative Agriculture, Vision & Strategy, Client Projects
+- [Planting Regen Roots in Brazil](https://www.regenstudio.world/blog/planting-regen-roots-in-brazil/) — 2024-08-13 — Reforestation, Biodiversity, Urban Greening, Vision & Strategy
+- [Digital Product Passports for Regenerative Economies](https://www.regenstudio.world/blog/dpp-regenerative-economies/) — 2024-08-09 — Digital Product Passport, Innovation Services
+- [Intentional Disruption as a Tool for Regenerative Innovation](https://www.regenstudio.world/blog/resilience-dividend/) — 2024-05-20 — Resilient Nature, Vision & Strategy, Out-of-the-Box Ideas
+- [Guiding the City of The Hague's Smart City team](https://www.regenstudio.world/blog/Blog%201/) — 2024-04-12 — Living Labs, Digital Participation, Innovation Services, Client Projects
+
+## FAQ Topics
+The FAQ page covers 47 questions across 8 topic areas:
+- **About Regen Studio** — What the studio does, where it is based, client types, regenerative innovation philosophy, privacy approach
+- **EU Regulations** — ESPR, EU Battery Regulation, CPR, Toy Safety Regulation, PPWR, textiles delegated act, Detergents Regulation
+- **Circular Economy** — What DPPs are, who needs them, what data they contain, compliance timelines, DPP readiness assessments, circular business models, vendor-neutral advisory
+- **Energy Transition** — Energy communities, energy justice, smart grids, the Slim Strandnet project
+- **Liveable Cities** — Living labs and participatory urban design
+- **Digital Society** — Digital identity, eIDAS 2.0, EDI wallets, self-sovereign identity, verifiable credentials, selective disclosure, privacy-by-design
+- **Resilient Nature** — Bioacoustics monitoring for biodiversity
+- **Innovation Services** — Innovation design services, design sprints, innovation process and system design, innovation coaching
+- **Interactive Demos & Tools** — CPR DPP Tracker, Battery Passport Checker, restricted demo access
+
 ## Locations
 - The Netherlands: Regen Studio B.V., Berg en Dal (KVK 90337948)
-- Brazil: Regen Studio Consultoria LTDA, São Paulo (CNPJ 57.579.114/0001-55)
+- Brazil: Regen Studio Consultoria LTDA, Sao Paulo (CNPJ 57.579.114/0001-55)
 
 ## Pages
 - [Home](https://www.regenstudio.world): Vision, focus areas, services overview, and client types
 - [Digital Product Passports](https://www.regenstudio.world/digital-product-passports/): DPP advisory services, readiness assessments, compliance roadmaps
+- [What is a Digital Product Passport?](https://www.regenstudio.world/what-is-a-digital-product-passport/): Comprehensive Q&A on DPPs — what they contain, which regulations require them, who needs to comply, timelines
+- [What is the ESPR?](https://www.regenstudio.world/what-is-espr/): Guide to the Ecodesign for Sustainable Products Regulation — purpose, scope, DPP requirements, timelines
+- [What is the Construction Products Regulation?](https://www.regenstudio.world/what-is-the-construction-products-regulation/): Q&A on CPR 2024/3110 — scope, 37 product families, harmonised standards, DPP requirements, timelines
 - [Innovation Services](https://www.regenstudio.world/innovation-services.html): 10 innovation design methodologies for complex multi-stakeholder environments
+- [What is Innovation Design?](https://www.regenstudio.world/what-is-innovation-design/): Q&A on innovation design — 10 services, design sprints, living labs, innovation process design, case studies
 - [Blog](https://www.regenstudio.world/blog.html): Analysis of EU regulations, project case studies, and innovation insights
 - [FAQ](https://www.regenstudio.world/faq.html): 47 questions covering DPPs, EU regulations, energy transition, circular economy, and more
 - [About](https://www.regenstudio.world/about.html): Team, philosophy, and company background
 - [Digital Identities](https://www.regenstudio.world/digital-identities/): Self-sovereign identity and eIDAS 2.0 advisory
+- [What is eIDAS 2.0?](https://www.regenstudio.world/what-is-eidas/): Q&A on eIDAS 2.0 — European Digital Identity Wallets, verifiable credentials, timeline, member state implementation
+- [What is the EDI Wallet?](https://www.regenstudio.world/what-is-the-edi-wallet/): Q&A on the European Digital Identity Wallet — how it works, selective disclosure, verifiable credentials, SSI
 - [Client Projects](https://www.regenstudio.world/client-projects.html): Selected project portfolio
 - [Privacy Policy](https://www.regenstudio.world/privacy.html): Zero cookies, self-hosted assets, GDPR/LGPD compliant
 - [Interactive Demos](https://demos.regenstudio.world): Five demo tools for DPP, digital identity, and policy simulation

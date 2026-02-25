@@ -1,0 +1,16 @@
+{
+  "title": "Probeer de AI-belasting → UBI-simulator: Modelleer hoe automatisering een basisinkomen kan financieren",
+  "slug": "demo-ai-tax-ubi",
+  "subtitle": "Pas belastingtarieven, automatiseringsdrempels en bevolkingsomvang aan — en zie in realtime hoe het belasten van AI maandelijkse uitkeringen aan burgers kan financieren",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regeneratief Innovatieontwerp"
+  },
+  "date": "2026-02-11",
+  "categories": ["Vision & Strategy", "Innovation Services"],
+  "tags": ["UBI", "AI-tax", "automation", "universal-basic-income", "policy", "demo", "future-of-work"],
+  "featuredImage": "../../Images/demo-ai-tax-ubi.svg",
+  "featuredImageAlt": "AI-belasting → UBI-simulator — Modellering van automatiseringsbelasting en universeel basisinkomen",
+  "excerpt": "Wat als het belasten van AI-gestuurde automatisering een universeel basisinkomen zou kunnen financieren? Onze interactieve simulator laat je de beleidsparameters instellen en de cijfers zien — geïnde inkomsten, maandelijkse betalingen per burger en hoe het zich jaar na jaar ontwikkelt.",
+  "published": true
+}

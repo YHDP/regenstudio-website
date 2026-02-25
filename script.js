@@ -7,6 +7,10 @@
 (function () {
   'use strict';
 
+  // --- i18n helper ---
+  var _i18n = window.__i18n || { t: function (k, f) { return f || k; }, lang: 'en' };
+  function t(key, fallback) { return _i18n.t(key, fallback); }
+
   // =============================================
   // 1. TRIANGLE SIMULATION (from trial2)
   // =============================================
@@ -105,23 +109,6 @@
       });
     }
     return cluster.size > 1 ? cluster : null;
-  }
-
-  function findClusterAt(x, y) {
-    var hit = null;
-    var hitDist = Infinity;
-    for (var i = 0; i < tris.length; i++) {
-      var t = tris[i];
-      if (t.bondCount < 1 || t.attractT < 0.05) continue;
-      var dx = x - t.x;
-      var dy = y - t.y;
-      var d = dx * dx + dy * dy;
-      if (d < (t.radius * 3) * (t.radius * 3) && d < hitDist) {
-        hitDist = d;
-        hit = t;
-      }
-    }
-    return hit ? findClusterOf(hit) : null;
   }
 
   function disperseCluster(cluster) {
@@ -250,7 +237,7 @@
     mouse.active = false;
     if (drag.active) {
       drag.active = false;
-      drag.members = [];
+      drag.clusterIds = new Set();
     }
   });
 
@@ -283,7 +270,7 @@
     });
     canvas.addEventListener('touchcancel', function () {
       drag.active = false;
-      drag.members = [];
+      drag.clusterIds = new Set();
       mouse.active = false;
     });
   }
@@ -767,9 +754,6 @@
     }
   }
 
-  // Hero overlay reference (no fade — text stays visible)
-  var heroOverlay = document.getElementById('heroOverlay');
-
   // --- Canvas scroll fade ---
   var simulationRunning = true;
   var frozen = false;
@@ -785,11 +769,11 @@
       var textEl = freezeBtn.querySelector('.freeze-btn__text');
       var iconEl = freezeBtn.querySelector('.freeze-btn__icon');
       if (frozen) {
-        textEl.textContent = 'Unfreeze';
+        textEl.textContent = t('hero.unfreeze', 'Unfreeze');
         iconEl.innerHTML = '<polygon points="6,3 20,12 6,21" fill="currentColor" stroke="none"/>';
         if (freezePanel) freezePanel.classList.add('visible');
       } else {
-        textEl.textContent = 'Freeze your creation';
+        textEl.textContent = t('hero.freeze', 'Freeze your creation');
         iconEl.innerHTML = '<rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>';
         if (freezePanel) freezePanel.classList.remove('visible');
       }
@@ -1039,13 +1023,6 @@
       });
     }
 
-    // Helper: copy text to clipboard and show a toast
-    function copyToClipboard(text, toastMsg) {
-      navigator.clipboard.writeText(text).then(function () {
-        showToast(toastMsg || 'Message copied to clipboard — paste it in your post!');
-      }).catch(function () {});
-    }
-
     function showToast(msg) {
       var existing = document.querySelector('.share-toast');
       if (existing) existing.remove();
@@ -1248,7 +1225,7 @@
         published.forEach(function (blog) {
           var card = document.createElement('a');
           card.className = 'blog-card';
-          card.href = 'blog-post.html?post=' + encodeURIComponent(blog.slug);
+          card.href = '/blog/' + encodeURIComponent(blog.slug) + '/';
 
           var imageHtml;
           if (blog.featuredImage) {
@@ -1492,11 +1469,11 @@
         navigator.clipboard.writeText(email).then(function () {
           var label = copyBtn.querySelector('.copyable-email__label');
           copyBtn.classList.add('copied');
-          if (label) label.textContent = 'Copied!';
-          showToast('Email copied to clipboard!');
+          if (label) label.textContent = t('nav.copied', 'Copied!');
+          showToast(t('toast.email_copied', 'Email copied to clipboard!'));
           setTimeout(function () {
             copyBtn.classList.remove('copied');
-            if (label) label.textContent = 'Copy';
+            if (label) label.textContent = t('nav.copy', 'Copy');
           }, 2000);
         });
         return;
@@ -1508,7 +1485,7 @@
         var email = footerBtn.getAttribute('data-email');
         navigator.clipboard.writeText(email).then(function () {
           footerBtn.classList.add('copied');
-          showToast('Email copied to clipboard!');
+          showToast(t('toast.email_copied', 'Email copied to clipboard!'));
           setTimeout(function () {
             footerBtn.classList.remove('copied');
           }, 2000);
@@ -1563,7 +1540,7 @@
       var submitBtn = form.querySelector('.regen-form__submit');
       var originalText = submitBtn.textContent;
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
+      submitBtn.textContent = t('form.sending', 'Sending...');
 
       // Clear previous errors
       var existingError = form.querySelector('.regen-form__error');
@@ -1599,7 +1576,7 @@
       .catch(function (err) {
         var errorEl = document.createElement('p');
         errorEl.className = 'regen-form__error';
-        errorEl.textContent = err.message || 'Failed to send. Please try again.';
+        errorEl.textContent = err.message || t('form.error_default', 'Failed to send. Please try again.');
         submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;

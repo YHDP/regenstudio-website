@@ -1,0 +1,16 @@
+{
+  "title": "Probeer de Battery Passport Checker: ontdek of je een batterijpaspoort nodig hebt",
+  "slug": "demo-battery-passport",
+  "subtitle": "Een interactieve compliancechecker onder EU-verordening 2023/1542, met een downloadbaar PDF-rapport",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regeneratief innovatieontwerp"
+  },
+  "date": "2026-02-09",
+  "categories": ["Digital Product Passport", "Vision & Strategy"],
+  "tags": ["battery-passport", "demo", "EU-regulation", "compliance", "Battery-Regulation", "digital-product-passport"],
+  "featuredImage": "../../Images/demo-battery-passport.svg",
+  "featuredImageAlt": "Battery Passport Checker — Compliancetool EU-verordening 2023/1542",
+  "excerpt": "Weet je niet zeker of je bedrijf een batterijpaspoort nodig heeft onder EU-verordening 2023/1542? Onze interactieve checker leidt je door de belangrijkste vragen en genereert een downloadbaar PDF-rapport met je verplichtingenstatus.",
+  "published": true
+}

@@ -3,22 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Blog | Regen Studio</title>
-  <meta name="description" content="Insights on regenerative innovation, smart cities, urban ecosystems, and nature-based solutions from Regen Studio.">
+  <title>Blog — Digital Product Passports, Circular Economy, EU Regulations | Regen Studio</title>
+  <meta name="description" content="Expert analysis on Digital Product Passports, EU Construction Products Regulation, circular economy, energy transition, and regenerative innovation. 30+ in-depth articles.">
 
   <!-- Open Graph / Social -->
   <meta property="og:title" content="Blog | Regen Studio">
   <meta property="og:description" content="Insights on digital product passports, regenerative innovation, and systemic change.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.regenstudio.world/blog.html">
-  <meta property="og:image" content="https://www.regenstudio.world/Images/WebsiteLander.svg">
+  <meta property="og:image" content="https://www.regenstudio.world/Images/og-image.png">
+  <meta property="og:image:alt" content="Regen Studio Blog — Regenerative Innovation Insights">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog | Regen Studio">
+  <meta name="twitter:description" content="Insights on digital product passports, regenerative innovation, and systemic change.">
+  <meta name="twitter:image" content="https://www.regenstudio.world/Images/og-image.png">
 
   <!-- Canonical -->
   <link rel="canonical" href="https://www.regenstudio.world/blog.html">
+  <link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog.html">
+  <link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog.html">
+  <link rel="alternate" type="application/rss+xml" title="Regen Studio Blog" href="https://www.regenstudio.world/feed.xml">
   <link rel="icon" type="image/png" href="Images/favicon.png">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="blog.css">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Regen Studio Blog",
+    "description": "Expert analysis on Digital Product Passports, EU regulations, circular economy, energy transition, and regenerative innovation.",
+    "url": "https://www.regenstudio.world/blog.html",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Regen Studio",
+      "url": "https://www.regenstudio.world"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Regen Studio",
+      "url": "https://www.regenstudio.world"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.regenstudio.world/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.regenstudio.world/blog.html" }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
@@ -82,8 +123,8 @@
 
     <div class="container blog-hero__container">
       <p class="blog-hero__label">Latest Insights</p>
-      <h1 class="blog-hero__title">Blog</h1>
-      <p class="blog-hero__subtitle">Insights on regenerative innovation, smart cities, and designing systems that work for people and planet.</p>
+      <h1 class="blog-hero__title">Insights on Regenerative Innovation</h1>
+      <p class="blog-hero__subtitle"><strong>Expert analysis on <a href="/what-is-a-digital-product-passport/"><abbr title="Digital Product Passport">DPP</abbr>s</a>, <a href="/what-is-espr/"><abbr title="Ecodesign for Sustainable Products Regulation">ESPR</abbr></a>, circular economy, energy transition, and regenerative innovation.</strong> Over 30 in-depth articles on designing systems that work for people and planet.</p>
     </div>
 
     <!-- Filters (inside hero for visual continuity) -->
@@ -154,7 +195,7 @@
         <div id="blog-contact-success" class="regen-form__success" style="display:none">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
           <h3>Message sent!</h3>
-          <p>We'll get back to you as soon as possible.</p>
+          <p>We'll be in touch shortly.</p>
         </div>
         <div class="regen-form__divider"><span>or email us directly</span></div>
         <div class="copyable-email copyable-email--compact">
@@ -241,6 +282,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/i18n.js" defer></script>
   <script src="blog.js" defer></script>
   <script src="assets/js/tracker.js" defer></script>
 </body>

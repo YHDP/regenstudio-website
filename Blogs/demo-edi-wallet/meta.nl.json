@@ -1,0 +1,16 @@
+{
+  "title": "Probeer de EDI Wallet-demo: Een privacy-first digitale identiteitswallet",
+  "slug": "demo-edi-wallet",
+  "subtitle": "Ervaar credentialbeheer, QR-scanning en selectieve openbaarmaking onder eIDAS 2.0",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regeneratief Innovatieontwerp"
+  },
+  "date": "2026-02-10",
+  "categories": ["Digital Identity", "Privacy-by-Design"],
+  "tags": ["digital-identity", "demo", "eIDAS", "SSI", "self-sovereign-identity", "wallet", "verifiable-credentials", "selective-disclosure"],
+  "featuredImage": "../../Images/demo-edi-wallet.svg",
+  "featuredImageAlt": "EDI Wallet-demo — Privacy-first digitale identiteitswallet onder eIDAS 2.0",
+  "excerpt": "Bekijk een zelfsoevereine identiteitswallet in de praktijk. De EDI Wallet-demo laat je verifieerbare referenties ontvangen, opslaan en presenteren met selectieve openbaarmaking — volgens het eIDAS 2.0-framework.",
+  "published": true
+}

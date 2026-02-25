@@ -1,0 +1,16 @@
+{
+  "title": "Experimente a demo do sistema DPP: um Passaporte Digital de Produto completo em ação",
+  "slug": "demo-dpp-system",
+  "subtitle": "Rastreie móveis de madeira nobre brasileira da floresta ao produto final — com dados de conformidade ESPR ao vivo",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Design de Inovação Regenerativa"
+  },
+  "date": "2026-02-08",
+  "categories": ["Digital Product Passport", "Innovation Services"],
+  "tags": ["digital-product-passport", "demo", "ESPR", "UNTP", "supply-chain", "traceability", "furniture"],
+  "featuredImage": "../../Images/demo-dpp-system.svg",
+  "featuredImageAlt": "Demo do sistema DPP — Um Passaporte Digital de Produto completo em ação",
+  "excerpt": "Veja como é um sistema DPP completo de ponta a ponta. Nossa demo interativa rastreia móveis de madeira nobre brasileira da floresta ao produto final, com Credenciais Verificáveis UNTP e dados de conformidade ESPR ao vivo.",
+  "published": true
+}

@@ -1,0 +1,51 @@
+<p>A identidade digital está quebrada. A maioria dos sistemas hoje pede que você entregue todos os seus dados pessoais para verificar um único fato — sua idade, sua qualificação profissional, sua cidadania. O resultado é uma economia de vigilância onde dados pessoais são o preço da participação. A demo da Carteira EDI mostra um caminho diferente: uma carteira de identidade com privacidade em primeiro lugar onde <em>você</em> decide o que compartilha, quando e com quem.</p>
+
+<h2>Por que a identidade digital precisa de uma repensagem com privacidade em primeiro lugar</h2>
+
+<p>O <strong>regulamento eIDAS 2.0</strong> (EU 2024/1183) da UE introduz a Carteira Europeia de Identidade Digital — um framework obrigatório para todos os estados-membros da UE oferecerem a seus cidadãos uma carteira digital para credenciais de identidade. O regulamento exige que as carteiras suportem divulgação seletiva, o que significa que um usuário pode provar um atributo específico (como ter mais de 18 anos) sem revelar a credencial subjacente (sua data de nascimento completa e outros dados pessoais).</p>
+
+<p>Esta é uma mudança fundamental. Em vez de provedores de identidade centralizados que mantêm seus dados e medeiam cada verificação, as carteiras eIDAS 2.0 permitem a troca de credenciais peer-to-peer — entre uma pessoa e um serviço, ou entre organizações.</p>
+
+<p>A demo da Carteira EDI torna isso tangível. Em vez de ler sobre Credenciais Verificáveis e divulgação seletiva, você as experimenta.</p>
+
+<h2>O que a demo mostra</h2>
+
+<p>A demo simula um ciclo completo de interação com carteira SSI:</p>
+
+<ul>
+  <li><strong>Emissão de credencial:</strong> Um emissor de credenciais (como uma universidade, agência governamental ou empregador) emite uma Credencial Verificável para sua carteira. Você vê a estrutura da credencial — as declarações que ela contém, a assinatura digital do emissor e a data de expiração.</li>
+  <li><strong>Armazenamento de credencial:</strong> A credencial é armazenada em sua carteira, organizada e acessível. Você controla quais credenciais estão em sua carteira e pode revogá-las ou excluí-las.</li>
+  <li><strong>Apresentação de credencial com divulgação seletiva:</strong> Quando um verificador (um serviço ou organização) solicita comprovação, você escolhe exatamente quais atributos compartilhar. A carteira gera uma prova criptográfica que satisfaz a solicitação do verificador sem revelar nada além do que você escolheu divulgar.</li>
+  <li><strong>Fluxo de apresentação baseado em QR:</strong> A demo inclui um fluxo realista de escaneamento de QR — o mecanismo usado em interações eIDAS 2.0 do mundo real — para que você possa ver como a verificação presencial e online funciona na prática.</li>
+</ul>
+
+<h2>Para quem é destinado</h2>
+
+<p><strong>Arquitetos de identidade e desenvolvedores</strong> construindo sistemas de identidade digital, aplicações de carteira ou integrações de verificadores ganharão familiaridade prática com o modelo de interação SSI e entenderão como os requisitos de conformidade com o eIDAS 2.0 se traduzem em escolhas reais de implementação.</p>
+
+<p><strong>Equipes governamentais digitais</strong> trabalhando em implementações nacionais de carteira eIDAS 2.0 ou transformação de serviços digitais encontrarão na demo um ponto de referência útil para como uma interação de carteira conforme se parece e é sentida da perspectiva do usuário.</p>
+
+<p><strong>Pesquisadores de privacidade e encarregados de proteção de dados</strong> podem usar a demo para entender como a divulgação seletiva funciona na prática — e como ela difere das abordagens de minimização de dados baseadas em consentimento que a maioria dos sistemas atuais utiliza.</p>
+
+<p><strong>Gerentes de produto e designers de UX</strong> construindo serviços que precisarão aceitar credenciais de carteira eIDAS 2.0 podem explorar o fluxo de verificação e entender o que seus usuários experimentarão no lado da carteira da interação.</p>
+
+<h2>Como usar a demo</h2>
+
+<ol>
+  <li><strong>Entre pelo portal.</strong> Forneça seu nome e organização para acessar o ambiente da demo. Nenhuma conta ou software especial é necessário.</li>
+  <li><strong>Receba uma credencial.</strong> A demo emite uma Credencial Verificável para sua carteira simulada — por exemplo, uma qualificação profissional ou uma credencial de verificação de idade. Você pode inspecionar a estrutura da credencial e a atestação do emissor.</li>
+  <li><strong>Armazene na sua carteira.</strong> A credencial é adicionada à sua carteira. Explore a interface da carteira para ver como as credenciais são organizadas e quais informações são exibidas ao portador.</li>
+  <li><strong>Escaneie um código QR para apresentar.</strong> Navegue até um cenário de verificação e escaneie o código QR para acionar uma solicitação de apresentação. A carteira mostrará exatamente o que o verificador está pedindo.</li>
+  <li><strong>Escolha o que divulgar.</strong> Selecione quais atributos compartilhar em resposta à solicitação do verificador. A carteira gera uma prova de divulgação seletiva — e você pode ver o que o verificador recebe versus o que permanece privado em sua carteira.</li>
+</ol>
+
+<div style="background: linear-gradient(135deg, #243644 0%, #1B2833 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Veja em ação</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Experiencie gestão de credenciais e divulgação seletiva em primeira mão</p>
+  <p style="color: #8CA9BF; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">Receba credenciais, armazene-as em uma carteira com privacidade em primeiro lugar e apresente apenas o necessário — com escaneamento de QR e divulgação seletiva eIDAS 2.0.</p>
+  <a href="https://demos.regenstudio.world/EDI-wallet/gate.html" style="display: inline-block; background: #00914B; color: #FFFFFF; font-weight: 600; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none; transition: background 0.2s;">Explore a Demo da Carteira EDI &rarr;</a>
+</div>
+
+<p>Interessado em como a identidade digital se conecta com passaportes de produto e confiança na cadeia de suprimentos? Leia nosso artigo sobre <a href="/blog/trusted-dpps/">Passaportes Digitais de Produto Confiáveis</a> — que explora como SSI e Credenciais Verificáveis sustentam a arquitetura de confiança de sistemas DPP conformes.</p>
+
+<p style="text-align: center; margin-top: 24px;">Quer explorar como uma carteira EDI poderia funcionar no contexto da sua organização? Entre em contato em <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>

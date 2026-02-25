@@ -5,6 +5,12 @@
 (function () {
   'use strict';
 
+  // --- i18n helper: translate dynamic strings ---
+  // Uses window.__i18n.t(key, fallback) from i18n.js. Falls back to English if i18n.js
+  // hasn't loaded yet or if no translation exists for the key.
+  var _i18n = window.__i18n || { t: function (k, f) { return f || k; }, lang: 'en' };
+  function t(key, fallback) { return _i18n.t(key, fallback); }
+
   // --- Shared: Navbar scroll & mobile toggle ---
   function initNav() {
     const nav = document.getElementById('nav');
@@ -90,15 +96,22 @@
     return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   }
 
+  // --- Path helper: detect if we're on a static blog page (blog/<slug>/) ---
+  var basePath = (function () {
+    var slugMeta = document.querySelector('meta[name="blog-post-slug"]');
+    if (slugMeta && /^\/blog\//.test(window.location.pathname)) return '../../';
+    return '';
+  })();
+
   // --- Data loading ---
   async function loadBlogs() {
-    const resp = await fetch('Blogs/blogs.json');
+    const resp = await fetch(basePath + 'Blogs/blogs.json');
     const folders = await resp.json();
 
     const blogs = await Promise.all(folders.map(async (folder) => {
       const [metaResp, contentResp] = await Promise.all([
-        fetch(`Blogs/${folder}/meta.json`),
-        fetch(`Blogs/${folder}/content.html`)
+        fetch(basePath + `Blogs/${folder}/meta.json`),
+        fetch(basePath + `Blogs/${folder}/content.html`)
       ]);
       const meta = await metaResp.json();
       const content = await contentResp.text();
@@ -172,7 +185,6 @@
     mastodon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.547c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054 19.648 19.648 0 0 0 4.581.536h.353c1.578 0 3.168-.091 4.718-.39.038-.007.077-.013.112-.026 2.437-.503 4.756-2.075 4.992-6.048.009-.155.043-1.625.043-1.784 0-.544.199-3.858-.077-5.89zM19.44 12.666h-3.126v5.083c0 1.07-.449 1.614-1.347 1.614-.994 0-1.493-.648-1.493-1.929V14.27h-3.104v3.164c0 1.281-.5 1.929-1.494 1.929-.897 0-1.346-.544-1.346-1.614v-5.083H4.404c0 1.176-.025 2.354.1 3.518.19 1.747 1.427 2.246 2.735 2.372 1.414.135 2.783-.184 2.783-.184s-.027.784.015 1.228c.003.029.02.055.046.065.023.009.049.003.065-.015.545-.608 1.182-.584 1.852-.584.67 0 1.307-.024 1.852.584a.057.057 0 0 0 .065.015.056.056 0 0 0 .046-.065c.042-.444.015-1.228.015-1.228s1.369.319 2.783.184c1.308-.126 2.545-.625 2.735-2.372.125-1.164.1-2.342.1-3.518zM8.52 8.322c-.866 0-1.569.835-1.569 1.864 0 1.03.703 1.865 1.569 1.865.866 0 1.569-.835 1.569-1.865 0-1.029-.703-1.864-1.569-1.864zm6.96 0c-.867 0-1.569.835-1.569 1.864 0 1.03.702 1.865 1.569 1.865.866 0 1.569-.835 1.569-1.865 0-1.029-.703-1.864-1.569-1.864z"/></svg>',
     reddit: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>',
     whatsapp: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>',
-    signal: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.917 1.043 5.593 2.776 7.678l-1.46 4.323 4.497-1.384A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 4.8a7.2 7.2 0 1 1 0 14.4 7.158 7.158 0 0 1-3.552-.94l-.248-.148-2.576.793.861-2.489-.163-.26A7.158 7.158 0 0 1 4.8 12 7.2 7.2 0 0 1 12 4.8z"/></svg>',
     email: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>',
     share: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>',
     link: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>'
@@ -193,12 +205,6 @@
     }, 3000);
   }
 
-  function copyToClipboard(text, toastMsg) {
-    navigator.clipboard.writeText(text).then(() => {
-      showToast(toastMsg || 'Message copied to clipboard — paste it in your post!');
-    }).catch(() => {});
-  }
-
   // --- Category color lookup (matching index.html focus section colors) ---
   const CATEGORY_COLORS = {
     'Circular Economy': 'emerald', 'Digital Product Passport': 'emerald', 'Circular Business Models': 'emerald',
@@ -210,10 +216,28 @@
     'Client Projects': 'gold',
   };
 
+  // --- Resolve image paths from static pages ---
+  function resolveImagePath(slug, featuredImage) {
+    if (!featuredImage) return '';
+    // Images with ../../ prefix are already relative to blog/<slug>/
+    if (basePath && !featuredImage.startsWith('../../')) {
+      return basePath + 'Blogs/' + slug + '/' + featuredImage;
+    }
+    return 'Blogs/' + slug + '/' + featuredImage;
+  }
+
+  // --- Blog post URL helper ---
+  function blogPostUrl(slug) {
+    return '/blog/' + encodeURIComponent(slug) + '/';
+  }
+
   // --- Card renderer ---
   function renderCard(post) {
+    var imgSrc = post.featuredImage
+      ? (basePath + 'Blogs/' + post.slug + '/' + post.featuredImage)
+      : '';
     const imageHtml = post.featuredImage
-      ? `<div class="blog-card__image"><img src="Blogs/${post.slug}/${post.featuredImage}" alt="${post.featuredImageAlt || ''}" loading="lazy"></div>`
+      ? `<div class="blog-card__image"><img src="${imgSrc}" alt="${post.featuredImageAlt || ''}" loading="lazy"></div>`
       : `<div class="blog-card__image"><div class="blog-card__image-placeholder">${icons.image}</div></div>`;
 
     const cats = post.categories.map(c => {
@@ -223,19 +247,19 @@
 
     return `
       <article class="blog-card">
-        <a href="blog-post.html?post=${encodeURIComponent(post.slug)}">
+        <a href="${blogPostUrl(post.slug)}">
           ${imageHtml}
         </a>
         <div class="blog-card__body">
           <h3 class="blog-card__title">
-            <a href="blog-post.html?post=${encodeURIComponent(post.slug)}">${post.title}</a>
+            <a href="${blogPostUrl(post.slug)}">${post.title}</a>
           </h3>
           <p class="blog-card__excerpt">${post.excerpt}</p>
           <div class="blog-card__categories">${cats}</div>
           <div class="blog-card__meta">
             <span>${icons.user} ${post.author.name}</span>
             <span>${icons.calendar} ${formatDate(post.date)}</span>
-            <span>${icons.clock} ${post.readingTime} min read</span>
+            <span>${icons.clock} ${post.readingTime} ${t("blog.min_read", "min read")}</span>
           </div>
         </div>
       </article>
@@ -253,11 +277,9 @@
 
     const blogs = await loadBlogs();
 
-    // Collect all categories and tags with counts
-    const catCounts = {};
+    // Collect all tags with counts
     const tagCounts = {};
     blogs.forEach(b => {
-      b.categories.forEach(c => { catCounts[c] = (catCounts[c] || 0) + 1; });
       b.tags.forEach(t => { tagCounts[t] = (tagCounts[t] || 0) + 1; });
     });
 
@@ -336,7 +358,7 @@
           </label>`
         ).join('');
         if (items.length === 0) {
-          dropdown.innerHTML = '<div class="tag-search__empty">No tags found</div>';
+          dropdown.innerHTML = `<div class="tag-search__empty">${t("blog.no_tags", "No tags found")}</div>`;
         }
       }
 
@@ -437,9 +459,9 @@
         grid.innerHTML = `
           <div class="blog-no-results">
             <div class="blog-no-results__icon">${icons.search}</div>
-            <h3 class="blog-no-results__title">No posts found</h3>
-            <p class="blog-no-results__text">Try adjusting your filters to find what you're looking for.</p>
-            <button class="btn btn--outline btn--small" id="clearFilters">Clear all filters</button>
+            <h3 class="blog-no-results__title">${t("blog.no_posts_title", "No posts found")}</h3>
+            <p class="blog-no-results__text">${t("blog.no_posts_text", "Try adjusting your filters to find what you're looking for.")}</p>
+            <button class="btn btn--outline btn--small" id="clearFilters">${t("blog.clear_filters", "Clear all filters")}</button>
           </div>
         `;
         document.getElementById('clearFilters').addEventListener('click', () => {
@@ -512,28 +534,54 @@
     const postContainer = document.getElementById('postContent');
     if (!postContainer) return;
 
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get('post');
+    // Detect slug: meta tag (static page) → query param (legacy) → redirect
+    var slugMeta = document.querySelector('meta[name="blog-post-slug"]');
+    const slug = slugMeta ? slugMeta.getAttribute('content') : new URLSearchParams(window.location.search).get('post');
     if (!slug) {
-      window.location.href = 'blog.html';
+      window.location.href = basePath + 'blog.html';
       return;
     }
 
     const blogs = await loadBlogs();
     const post = blogs.find(b => b.slug === slug);
     if (!post) {
-      window.location.href = 'blog.html';
+      window.location.href = basePath + 'blog.html';
       return;
     }
 
     // Set page title
     document.title = `${post.title} | Regen Studio Blog`;
 
+    // Update meta description + OG + Twitter tags for social sharing & tab title
+    var postTitle = post.title + ' | Regen Studio Blog';
+    var postDesc = post.excerpt || post.subtitle || 'Read insights on regenerative innovation from Regen Studio.';
+    var postUrl = COMPANY.url + '/blog/' + encodeURIComponent(post.slug) + '/';
+    var postImage = post.featuredImage
+      ? (post.featuredImage.startsWith('../../')
+        ? COMPANY.url + '/' + post.featuredImage.replace('../../', '')
+        : COMPANY.url + '/Blogs/' + post.slug + '/' + post.featuredImage)
+      : COMPANY.url + '/Images/og-image.png';
+
+    var metaUpdates = [
+      ['meta[name="description"]', 'content', postDesc],
+      ['meta[property="og:title"]', 'content', postTitle],
+      ['meta[property="og:description"]', 'content', postDesc],
+      ['meta[property="og:url"]', 'content', postUrl],
+      ['meta[property="og:image"]', 'content', postImage],
+      ['meta[name="twitter:title"]', 'content', postTitle],
+      ['meta[name="twitter:description"]', 'content', postDesc],
+      ['meta[name="twitter:image"]', 'content', postImage],
+    ];
+    metaUpdates.forEach(function (u) {
+      var el = document.querySelector(u[0]);
+      if (el) el.setAttribute(u[1], u[2]);
+    });
+
     // Render header
     const headerEl = document.getElementById('postHeader');
     headerEl.innerHTML = `
       <div class="container">
-        <a href="blog.html" class="post-header__back">${icons.arrow} Back to Blog</a>
+        <a href="${basePath}blog.html" class="post-header__back">${icons.arrow} ${t("blog.back", "Back to Blog")}</a>
         <div class="post-header__categories">
           ${post.categories.map(c => `<span class="post-header__category post-header__category--${CATEGORY_COLORS[c] || 'gray'}">${c}</span>`).join('')}
         </div>
@@ -547,7 +595,7 @@
           <div class="post-header__meta-divider"></div>
           <div class="post-header__meta-item">${icons.calendar} ${formatDate(post.date)}</div>
           <div class="post-header__meta-divider"></div>
-          <div class="post-header__meta-item">${icons.clock} ${post.readingTime} min read</div>
+          <div class="post-header__meta-item">${icons.clock} ${post.readingTime} ${t("blog.min_read", "min read")}</div>
         </div>
       </div>
     `;
@@ -555,9 +603,10 @@
     // Render featured image
     const featuredEl = document.getElementById('postFeaturedImage');
     if (post.featuredImage) {
+      var featImgSrc = resolveImagePath(post.slug, post.featuredImage);
       featuredEl.innerHTML = `
         <div class="container">
-          <img src="Blogs/${post.slug}/${post.featuredImage}" alt="${post.featuredImageAlt || ''}">
+          <img src="${featImgSrc}" alt="${post.featuredImageAlt || ''}">
         </div>
       `;
     } else {
@@ -569,18 +618,18 @@
       <div class="post-content__inner">
         <div class="post-content__body">${post.content}</div>
         <div class="post-tags" id="postTags">
-          ${post.tags.map(t => `<a href="blog.html#${encodeURIComponent('tag=' + t)}" class="post-tag">#${t}</a>`).join('')}
+          ${post.tags.map(t => `<a href="${basePath}blog.html#${encodeURIComponent('tag=' + t)}" class="post-tag">#${t}</a>`).join('')}
         </div>
         <div class="post-share">
           <div class="post-share__card">
-            <p class="post-share__label">Share this article</p>
+            <p class="post-share__label">${t("blog.share_label", "Share this article")}</p>
             <div class="post-share__buttons post-share__buttons--primary">
               <button class="share-btn share-btn--native share-btn--lg" id="shareNative" title="Share via apps on your device">${icons.share} Share</button>
-              <button class="share-btn share-btn--copy share-btn--lg" id="shareCopy" title="Copy link">${icons.link} Copy link</button>
+              <button class="share-btn share-btn--copy share-btn--lg" id="shareCopy" title="Copy link">${icons.link} ${t("blog.share_copy", "Copy link")}</button>
               <button class="share-btn share-btn--email share-btn--lg" id="shareEmail" title="Share via Email">${icons.email} Email</button>
             </div>
             <div class="post-share__divider">
-              <span>or share on</span>
+              <span>${t("blog.share_or", "or share on")}</span>
             </div>
             <div class="post-share__buttons post-share__buttons--social">
               <button class="share-btn share-btn--bluesky" id="shareBluesky" title="Share on Bluesky">${icons.bluesky} Bluesky</button>
@@ -602,9 +651,8 @@
     });
 
     // Share button handlers (matching hero social sharing logic)
-    // Always use production URL in share messages (not localhost)
-    const pagePath = window.location.pathname.replace(/^\//, '') + window.location.search;
-    const pageUrl = COMPANY.url + '/' + pagePath;
+    // Always use canonical blog URL in share messages
+    const pageUrl = COMPANY.url + '/blog/' + encodeURIComponent(post.slug) + '/';
     const pageTitle = post.title;
     const msgs = buildShareMessages(pageTitle, pageUrl);
 
@@ -657,11 +705,11 @@
     document.getElementById('shareCopy').addEventListener('click', function () {
       navigator.clipboard.writeText(pageUrl).then(() => {
         this.classList.add('share-btn--copied');
-        this.innerHTML = `${icons.link} Copied!`;
+        this.innerHTML = `${icons.link} ${t("blog.share_copied", "Copied!")}`;
         showToast('Link copied to clipboard!');
         setTimeout(() => {
           this.classList.remove('share-btn--copied');
-          this.innerHTML = `${icons.link} Copy link`;
+          this.innerHTML = `${icons.link} ${t("blog.share_copy", "Copy link")}`;
         }, 2000);
       });
     });
@@ -671,8 +719,8 @@
     ctaBanner.className = 'post-cta-banner';
     ctaBanner.id = 'post-cta-banner';
     ctaBanner.innerHTML = `
-      <p class="post-cta-banner__label">Get in Touch</p>
-      <p class="post-cta-banner__text">Interested in working together on regenerative innovation?</p>
+      <p class="post-cta-banner__label">${t("cta.get_in_touch", "Get in Touch")}</p>
+      <p class="post-cta-banner__text">${t("blog.cta_text", "Interested in working together on regenerative innovation?")}</p>
       <form id="post-contact-form" class="regen-form regen-form--compact">
         <div class="regen-form__row">
           <input type="text" name="name" placeholder="Your name" class="regen-form__input" required>
@@ -684,14 +732,14 @@
           <span>Also subscribe me to the Regen Studio newsletter</span>
         </label>
         <button type="submit" class="btn btn--primary regen-form__submit">Send Message</button>
-        <p class="regen-form__disclaimer">Your data is stored in the EU and not shared with third parties. <a href="privacy.html">Privacy Policy</a></p>
+        <p class="regen-form__disclaimer">Your data is stored in the EU and not shared with third parties. <a href="${basePath}privacy.html">Privacy Policy</a></p>
       </form>
       <div id="post-contact-success" class="regen-form__success" style="display:none">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
         <h3>Message sent!</h3>
-        <p>We'll get back to you as soon as possible.</p>
+        <p>We'll be in touch shortly.</p>
       </div>
-      <div class="regen-form__divider"><span>or email us directly</span></div>
+      <div class="regen-form__divider"><span>${t("blog.cta_or_email", "or email us directly")}</span></div>
       <div class="copyable-email copyable-email--compact">
         <span class="copyable-email__address">${COMPANY.email}</span>
         <button class="copyable-email__btn" data-email="${COMPANY.email}" aria-label="Copy email address">
@@ -717,12 +765,12 @@
         : '';
       relatedSection.innerHTML = `
         <div class="container">
-          <h2 class="related-posts__title">Related Articles</h2>
+          <h2 class="related-posts__title">${t("blog.related", "Related Articles")}</h2>
           <div class="related-posts__grid">
             ${related.map(renderCard).join('')}
           </div>
           <div class="related-posts__cta">
-            <a href="blog.html${primaryCategory}" class="related-posts__cta-btn">View all related blogs</a>
+            <a href="${basePath}blog.html${primaryCategory}" class="related-posts__cta-btn">${t("blog.view_related", "View all related blogs")}</a>
           </div>
         </div>
       `;
@@ -746,8 +794,8 @@
     floatingCTA.className = 'scroll-cta';
     floatingCTA.innerHTML = `
       <button class="scroll-cta__close" aria-label="Dismiss">&times;</button>
-      <p class="scroll-cta__label">Get in Touch</p>
-      <p class="scroll-cta__text">Like what you're reading?</p>
+      <p class="scroll-cta__label">${t("cta.get_in_touch", "Get in Touch")}</p>
+      <p class="scroll-cta__text">${t("blog.cta_floating_text", "Like what you're reading?")}</p>
       <div class="scroll-cta__email-row">
         <span class="scroll-cta__address">${COMPANY.email}</span>
         <button class="copyable-email__btn copyable-email__btn--small" data-email="${COMPANY.email}" aria-label="Copy email">
@@ -755,7 +803,7 @@
           <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
         </button>
       </div>
-      <a href="#post-cta-banner" class="scroll-cta__form-link">or send us a message &darr;</a>
+      <a href="#post-cta-banner" class="scroll-cta__form-link">${t("blog.cta_floating_link", "or send us a message")} &darr;</a>
     `;
     document.body.appendChild(floatingCTA);
 
@@ -806,7 +854,7 @@
         navigator.clipboard.writeText(email).then(() => {
           const label = copyBtn.querySelector('.copyable-email__label');
           copyBtn.classList.add('copied');
-          if (label) label.textContent = 'Copied!';
+          if (label) label.textContent = t("nav.copied", "Copied!");
           showToast('Email copied to clipboard!');
           setTimeout(() => {
             copyBtn.classList.remove('copied');
