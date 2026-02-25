@@ -1,0 +1,16 @@
+{
+  "title": "Experimente o Battery Passport Checker: descubra se você precisa de um passaporte de bateria",
+  "slug": "demo-battery-passport",
+  "subtitle": "Um verificador interativo de conformidade sob o Regulamento da UE 2023/1542, com relatório PDF para download",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Design de Inovação Regenerativa"
+  },
+  "date": "2026-02-09",
+  "categories": ["Digital Product Passport", "Vision & Strategy"],
+  "tags": ["battery-passport", "demo", "EU-regulation", "compliance", "Battery-Regulation", "digital-product-passport"],
+  "featuredImage": "../../Images/demo-battery-passport.svg",
+  "featuredImageAlt": "Battery Passport Checker — Ferramenta de conformidade do Regulamento da UE 2023/1542",
+  "excerpt": "Não tem certeza se sua empresa precisa de um passaporte de bateria sob o Regulamento da UE 2023/1542? Nosso verificador interativo guia você pelas perguntas-chave e gera um relatório PDF para download com o status das suas obrigações.",
+  "published": true
+}

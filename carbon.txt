@@ -1,0 +1,20 @@
+# carbon.txt for regenstudio.world
+# Specification: https://carbontxt.org/
+
+[upstream]
+providers = [
+  { domain = "github.com", service = "shared-hosting" }
+]
+
+[org]
+credentials = [
+  { domain = "regenstudio.world", doctype = "sustainability-page", url = "https://www.regenstudio.world/about.html" }
+]
+
+# Notes:
+# - Static site on GitHub Pages (Microsoft infrastructure)
+# - Zero third-party connections architecture
+# - All fonts, scripts, and assets self-hosted
+# - No cookies, tracking pixels, or external CDNs
+# - Privacy-preserving analytics with hashed visitor IDs
+# - Microsoft has committed to 100% renewable energy for data centres

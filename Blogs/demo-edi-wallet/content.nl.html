@@ -1,0 +1,51 @@
+<p>Digitale identiteit is kapot. De meeste systemen vragen je vandaag om al je persoonlijke gegevens over te dragen om één enkel feit te verifiëren — je leeftijd, je professionele kwalificatie, je staatsburgerschap. Het resultaat is een surveillance-economie waarin persoonlijke data de prijs is van deelname. De EDI Wallet-demo laat een ander pad zien: een privacy-first identiteitswallet waarin <em>jij</em> bepaalt wat je deelt, wanneer en met wie.</p>
+
+<h2>Waarom digitale identiteit een privacy-first heroverweging nodig heeft</h2>
+
+<p>De <strong>eIDAS 2.0-verordening</strong> (EU 2024/1183) van de EU introduceert de Europese Digitale Identiteitswallet — een verplicht framework voor alle EU-lidstaten om hun burgers een digitale wallet voor identiteitscredentials aan te bieden. De verordening vereist dat wallets selectieve openbaarmaking ondersteunen, wat betekent dat een gebruiker een specifiek attribuut kan bewijzen (zoals ouder zijn dan 18) zonder de onderliggende credential te onthullen (de volledige geboortedatum en andere persoonlijke gegevens).</p>
+
+<p>Dit is een fundamentele verschuiving. In plaats van gecentraliseerde identiteitsproviders die je data bewaren en elke verificatie bemiddelen, maken eIDAS 2.0-wallets peer-to-peer credentialuitwisseling mogelijk — tussen een persoon en een dienst, of tussen organisaties.</p>
+
+<p>De EDI Wallet-demo maakt dit tastbaar. In plaats van te lezen over verifieerbare referenties en selectieve openbaarmaking, ervaar je ze.</p>
+
+<h2>Wat de demo laat zien</h2>
+
+<p>De demo simuleert een complete SSI-walletinteractiecyclus:</p>
+
+<ul>
+  <li><strong>Credential-uitgifte:</strong> Een credential-uitgever (zoals een universiteit, overheidsinstantie of werkgever) geeft een verifieerbare referentie uit aan je wallet. Je ziet de structuur van de credential — de claims die het bevat, de digitale handtekening van de uitgever en de vervaldatum.</li>
+  <li><strong>Credential-opslag:</strong> De credential wordt opgeslagen in je wallet, georganiseerd en toegankelijk. Je bepaalt welke credentials in je wallet staan en kunt ze intrekken of verwijderen.</li>
+  <li><strong>Credential-presentatie met selectieve openbaarmaking:</strong> Wanneer een verificateur (een dienst of organisatie) om bewijs vraagt, kies jij precies welke attributen je deelt. De wallet genereert een cryptografisch bewijs dat aan het verzoek van de verificateur voldoet zonder iets te onthullen buiten wat je hebt gekozen om openbaar te maken.</li>
+  <li><strong>QR-gebaseerde presentatiestroom:</strong> De demo bevat een realistische QR-scanstroom — het mechanisme dat wordt gebruikt bij echte eIDAS 2.0-interacties — zodat je kunt zien hoe verificatie in persoon en online in de praktijk werkt.</li>
+</ul>
+
+<h2>Voor wie het bedoeld is</h2>
+
+<p><strong>Identiteitsarchitecten en ontwikkelaars</strong> die digitale identiteitssystemen, walletapplicaties of verificateur-integraties bouwen, krijgen hands-on vertrouwdheid met het SSI-interactiemodel en begrijpen hoe eIDAS 2.0-nalevingsvereisten vertalen naar echte implementatiekeuzes.</p>
+
+<p><strong>Digitale overheidsteams</strong> die werken aan nationale eIDAS 2.0-walletimplementaties of digitale diensttransformatie vinden de demo een nuttig referentiepunt voor hoe een conforme walletinteractie er vanuit het perspectief van de gebruiker uitziet en aanvoelt.</p>
+
+<p><strong>Privacyonderzoekers en functionarissen voor gegevensbescherming</strong> kunnen de demo gebruiken om te begrijpen hoe selectieve openbaarmaking in de praktijk werkt — en hoe het verschilt van de op toestemming gebaseerde dataminimalisatiebenaderingen die de meeste huidige systemen gebruiken.</p>
+
+<p><strong>Productmanagers en UX-ontwerpers</strong> die diensten bouwen die eIDAS 2.0-walletcredentials moeten accepteren, kunnen de verificatiestroom verkennen en begrijpen wat hun gebruikers aan de walletkant van de interactie zullen ervaren.</p>
+
+<h2>Hoe je de demo gebruikt</h2>
+
+<ol>
+  <li><strong>Ga via de poort naar binnen.</strong> Vul je naam en organisatie in om toegang te krijgen tot de demo-omgeving. Er is geen account of speciale software nodig.</li>
+  <li><strong>Ontvang een credential.</strong> De demo geeft een verifieerbare referentie uit aan je gesimuleerde wallet — bijvoorbeeld een professionele kwalificatie of een leeftijdsverificatiecredential. Je kunt de structuur van de credential en de attestatie van de uitgever inspecteren.</li>
+  <li><strong>Sla het op in je wallet.</strong> De credential wordt toegevoegd aan je wallet. Verken de walletinterface om te zien hoe credentials georganiseerd zijn en welke informatie aan de houder wordt getoond.</li>
+  <li><strong>Scan een QR-code om te presenteren.</strong> Navigeer naar een verificatiescenario en scan de QR-code om een presentatieverzoek te activeren. De wallet toont je precies wat de verificateur vraagt.</li>
+  <li><strong>Kies wat je openbaar maakt.</strong> Selecteer welke attributen je wilt delen als reactie op het verzoek van de verificateur. De wallet genereert een selectief openbaarmakingsbewijs — en je kunt zien wat de verificateur ontvangt versus wat privé in je wallet blijft.</li>
+</ol>
+
+<div style="background: linear-gradient(135deg, #243644 0%, #1B2833 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Bekijk het in actie</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Ervaar credentialbeheer en selectieve openbaarmaking uit eerste hand</p>
+  <p style="color: #8CA9BF; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">Ontvang credentials, sla ze op in een privacy-first wallet en presenteer alleen wat nodig is — met QR-scanning en eIDAS 2.0 selectieve openbaarmaking.</p>
+  <a href="https://demos.regenstudio.world/EDI-wallet/gate.html" style="display: inline-block; background: #00914B; color: #FFFFFF; font-weight: 600; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none; transition: background 0.2s;">Verken de EDI Wallet-demo &rarr;</a>
+</div>
+
+<p>Geïnteresseerd in hoe digitale identiteit samenhangt met productpaspoorten en vertrouwen in de toeleveringsketen? Lees ons artikel over <a href="/blog/trusted-dpps/">Betrouwbare Digitale Productpaspoorten</a> — dat verkent hoe SSI en verifieerbare referenties de vertrouwensarchitectuur van conforme DPP-systemen ondersteunen.</p>
+
+<p style="text-align: center; margin-top: 24px;">Wil je ontdekken hoe een EDI-wallet zou kunnen werken in de context van jouw organisatie? Neem contact op via <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>

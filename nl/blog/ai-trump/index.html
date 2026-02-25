@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Praat met AI alsof het Trump is | Regen Studio Blog</title>
+  <meta name="description" content="Een gesprek voeren met ChatGPT is hetzelfde als het in Donald Trumps oor fluisteren. Een persoonlijk verhaal over AI, privacy en waarom we denkmodellen nodig hebben voor digitale zelfverdediging — mede geschreven met ChatGPT.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.regenstudio.world/nl/blog/ai-trump/">
+
+  <!-- Hreflang alternates -->
+  <link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/ai-trump/">
+  <link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/ai-trump/">
+  <link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/ai-trump/">
+  <link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/ai-trump/">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.regenstudio.world/nl/blog/ai-trump/">
+  <meta property="og:title" content="Praat met AI alsof het Trump is | Regen Studio Blog">
+  <meta property="og:description" content="Een gesprek voeren met ChatGPT is hetzelfde als het in Donald Trumps oor fluisteren. Een persoonlijk verhaal over AI, privacy en waarom we denkmodellen nodig hebben voor digitale zelfverdediging — mede geschreven met ChatGPT.">
+  <meta property="og:image" content="https://www.regenstudio.world/Blogs/ai-trump/HeaderTRUMPAtivo 30.webp">
+  <meta property="og:image:alt" content="Praat met AI alsof het Trump is — een denkmodel voor digitale zelfverdediging in het tijdperk van kunstmatige intelligentie">
+  <meta property="og:site_name" content="Regen Studio">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="article:published_time" content="2025-05-22">
+  <meta property="article:modified_time" content="2025-05-22">
+  <meta property="article:author" content="Yvo Hunink de Paiva">
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Praat met AI alsof het Trump is | Regen Studio Blog">
+  <meta name="twitter:description" content="Een gesprek voeren met ChatGPT is hetzelfde als het in Donald Trumps oor fluisteren. Een persoonlijk verhaal over AI, privacy en waarom we denkmodellen nodig hebben voor digitale zelfverdediging — mede geschreven met ChatGPT.">
+  <meta name="twitter:image" content="https://www.regenstudio.world/Blogs/ai-trump/HeaderTRUMPAtivo 30.webp">
+
+  <!-- JSON-LD Article Schema -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Praat met AI alsof het Trump is","description":"Een gesprek voeren met ChatGPT is hetzelfde als het in Donald Trumps oor fluisteren. Een persoonlijk verhaal over AI, privacy en waarom we denkmodellen nodig hebben voor digitale zelfverdediging &mdash; mede geschreven met ChatGPT.","image":"https://www.regenstudio.world/Blogs/ai-trump/HeaderTRUMPAtivo 30.webp","datePublished":"2025-05-22","inLanguage":"nl","author":{"@type":"Person","name":"Yvo Hunink de Paiva"},"publisher":{"@type":"Organization","name":"Regen Studio","url":"https://www.regenstudio.world","logo":{"@type":"ImageObject","url":"https://www.regenstudio.world/Images/Logo-Text-on-the-sideAtivo 2.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.regenstudio.world/nl/blog/ai-trump/"}}</script>
+
+  <!-- JSON-LD Breadcrumb Schema -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startpagina","item":"https://www.regenstudio.world/nl/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.regenstudio.world/nl/blog.html"},{"@type":"ListItem","position":3,"name":"Praat met AI alsof het Trump is","item":"https://www.regenstudio.world/nl/blog/ai-trump/"}]}</script>
+
+  <!-- RSS Discovery -->
+  <link rel="alternate" type="application/rss+xml" title="Regen Studio Blog" href="https://www.regenstudio.world/feed.xml">
+
+  <!-- Slug marker for blog.js hydration -->
+  <meta name="blog-post-slug" content="ai-trump">
+
+  <link rel="icon" type="image/png" href="../../../Images/favicon.png">
+  <link rel="stylesheet" href="../../../assets/fonts/fonts.css">
+  <link rel="stylesheet" href="../../../style.css">
+  <link rel="stylesheet" href="../../../blog.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="../../../nl/index.html" class="nav__logo">
+        <img src="../../../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="../../../nl/index.html#about">Vision</a></li>
+        <li><a href="../../../nl/index.html#focus">Our Focus</a></li>
+        <li><a href="../../../nl/index.html#services">Services</a></li>
+        <li><a href="../../../nl/index.html#clients">Who We Serve</a></li>
+        <li><a href="../../../nl/blog.html">Blog</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Demos</a></li>
+        <li class="nav__contact-wrap">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <a href="../../..//#contact-form" class="nav__contact-popover-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Post Header (pre-rendered, JS hydrates) -->
+  <div id="main-content"></div>
+  <section class="post-header" id="postHeader">
+      <div class="container">
+        <a href="../../../nl/blog.html" class="post-header__back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Terug naar Blog</a>
+        <div class="post-header__categories"><span class="post-header__category post-header__category--magenta">AI</span><span class="post-header__category post-header__category--gray">Vision &amp; Strategy</span></div>
+        <h1 class="post-header__title">Praat met AI alsof het Trump is</h1>
+        <p class="post-header__subtitle">Een simpele strategie voor digitale zelfverdediging in het tijdperk van AI</p>
+        <div class="post-header__meta">
+          <div class="post-header__author">
+            <span class="post-header__author-name">Yvo Hunink de Paiva</span>
+            <span class="post-header__author-role">Regeneratief innovatieontwerp</span>
+          </div>
+          <div class="post-header__meta-divider"></div>
+          <div class="post-header__meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> <time datetime="2025-05-22">22 mei 2025</time></div>
+          <div class="post-header__meta-divider"></div>
+          <div class="post-header__meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 8 min leestijd</div>
+        </div>
+      </div></section>
+
+  <!-- Featured Image (pre-rendered) -->
+  <section class="post-featured-image" id="postFeaturedImage">
+      <div class="container">
+        <img src="../../../Blogs/ai-trump/HeaderTRUMPAtivo 30.webp" alt="Praat met AI alsof het Trump is — een denkmodel voor digitale zelfverdediging in het tijdperk van kunstmatige intelligentie">
+      </div></section>
+
+  <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
+  <section class="post-content" id="postContent">
+      <div class="post-content__inner">
+        <p class="post-answer-capsule"><strong>Een gesprek voeren met ChatGPT is hetzelfde als het in Donald Trumps oor fluisteren. Een persoonlijk verhaal over AI, privacy en waarom we denkmodellen nodig hebben voor digitale zelfverdediging — mede geschreven met ChatGPT.</strong></p>
+        <div class="post-content__body" id="post-content"><p>Tot voor kort dacht ik dat ik digitale zelfverdediging goed onder de knie had. Maar er is iets verschoven.</p>
+
+<p>Een paar dagen geleden bevonden mijn vrouw en ik ons in een gesprek met <strong>ChatGPT in de rol van relatietherapeut</strong>. We deelden echte emoties en intieme gedachten.</p>
+
+<p>Het speelde de rol van onafhankelijke derde perfect en hielp ons zonder ruzie uit te zoeken dat we allebei gewoon gehoord wilden worden&hellip;</p>
+
+<p>Maar met wie praten we eigenlijk? We geven OpenAI informatie die bedoeld is om ons te helpen, maar in de verkeerde handen ook gebruikt kan worden om een wig tussen ons te drijven. Zowel bestaande als nieuwe ontwikkelingen in de VS geven serieuze aanleiding tot zorgen over onze privacy.</p>
+
+<p>Deze urgentie inspireerde een denkmodel dat ik nu dagelijks gebruik.</p>
+
+<blockquote>
+  <p>&ldquo;Een gesprek voeren met ChatGPT is hetzelfde als het in Donald Trumps oor fluisteren.&rdquo;</p>
+</blockquote>
+
+<p>Ironisch genoeg is dit bericht mede geschreven met hulp van ChatGPT. <a href="https://chatgpt.com/share/685b693d-4b68-8001-bbac-a0fa6b140001" target="_blank" rel="noopener"><sup>[lees het gesprek &rarr;]</sup></a> Ik bedacht dat het me in gevaar kan brengen voor toekomstige visumaanvragen voor de VS, maar ik heb toch geen zin om erheen te gaan. Nadat de Nederlandse Koning Willem-Alexander Trump in zijn paleis liet slapen, lijken de Nederlanders buiten schot. Voorlopig.</p>
+
+<p>Dus ik neem het risico! Laten we uitpakken waarom dit ertoe doet, en hoe je jezelf &mdash; en je gemeenschap &mdash; kunt beschermen tegen de onzichtbare extractieve krachten achter het scherm.</p>
+
+<h2>Risico's van juridische jurisdicties</h2>
+
+<figure class="figure--seventy">
+  <img src="../../../Blogs/ai-trump/Do you know who makes the rules.webp" alt="Weet je wie de regels maakt?">
+</figure>
+
+<p>Zelfs wanneer van een overheid verwacht kan worden dat ze de wet volgt, kan die wet serieuze risico's vertegenwoordigen.</p>
+
+<p>De meerderheid van de LLM's die vandaag in gebruik zijn, is eigendom van, wordt beheerd door en valt onder het bestuur van Amerikaanse bedrijven die moeten voldoen aan wetten zoals de CLOUD Act, die de overheid de bevoegdheid geeft om alle gegevens op servers van Amerikaanse bedrijven op te vragen &mdash; zelfs als die zich niet in de VS bevinden. Zelfs &lsquo;ethische AI-modellen&rsquo; zoals het in de VS gevestigde Claude lopen dat risico.</p>
+
+<p>Echter, sinds vorige maand wordt onze privacy bedreigd vanuit een andere onverwachte hoek. Een rechtszaak aangespannen door de New York Times tegen OpenAI wegens auteursrechtschending. <a href="https://harvardlawreview.org/blog/2024/04/nyt-v-openai-the-timess-about-face/" target="_blank" rel="noopener"><sup>[&rarr;]</sup></a></p>
+
+<p>In deze rechtszaak oordeelde de rechter in het voordeel van de New York Times: OpenAI moet <strong>alle gebruikers- en API-gegevens voor onbepaalde tijd bewaren</strong> &mdash; iets wat OpenAI terecht zegt serieus in strijd te zijn met hun privacybeloften. <a href="https://openai.com/index/response-to-nyt-data-demands/" target="_blank" rel="noopener"><sup>[&rarr;]</sup></a> In combinatie met de CLOUD Act kan dit rampzalig uitpakken voor alle gebruikers van in de VS gevestigde AI-modellen.</p>
+
+<p>Hoewel OpenAI nog niet aan deze rechterlijke uitspraak voldoet, is het misschien een goed idee om <strong>je gegevens te verwijderen zolang het nog kan</strong>.</p>
+
+<h2>Digitale profilering in het tijdperk van AI</h2>
+
+<figure class="figure--seventy">
+  <img src="../../../Blogs/ai-trump/Do you know who is watching.webp" alt="Weet je wie er meekijkt?">
+</figure>
+
+<p>De stukjes van onze verspreide digitale zelven worden al lang van het web geschraapt en geclusterd tot <strong>profielen die worden verkocht aan de hoogstbiedende datahongerige koper</strong>.</p>
+
+<p>Deze profielverkopen hebben als doel <strong>ons gedrag te beïnvloeden</strong>. <a href="https://en.wikipedia.org/wiki/The_Social_Dilemma" target="_blank" rel="noopener"><sup>[&rarr;]</sup></a> Niet alleen wat we kopen, maar hoe we denken. We hebben het niet alleen over individuele risico&rsquo;s, maar ook over collectieve risico&rsquo;s.</p>
+
+<p>Gebruik van dergelijke profielen heeft <strong>extremisme en soms geweld</strong> aangewakkerd tegen instellingen en minderheidsgemeenschappen. Het Cambridge Analytica-schandaal toonde beroemd aan hoe Rusland de kracht van profielen gebruikte om de Amerikaanse verkiezingen te beïnvloeden. <a href="https://www.politico.eu/article/christopher-wylie-to-us-lawmakers-steve-bannon-ordered-vladimir-putin-messaging-tests-russia-cambridge-analytica/" target="_blank" rel="noopener"><sup>[&rarr;]</sup></a></p>
+
+<p>En dat was voordat we ChatGPT begonnen te gebruiken als relatietherapeut.</p>
+
+<p>ChatGPT en andere <strong>AI-modellen vormen momenteel een nog groter risico</strong> voor onze digitale &mdash; en daarmee fysieke &mdash; veiligheid, vanwege hoe gedetailleerd dergelijke profielen nu kunnen worden en hoe waarschijnlijk het antwoord van ChatGPT voor waarheid zal worden aangenomen.</p>
+
+<p>Wie weet wat we al hebben weggegeven? Deze bedrijven krijgen nooit eerder geziene toegang tot informatie over ons werk, ons thuis en onze gedachten. <strong>Dergelijke macht in de verkeerde handen kan verwoestend zijn.</strong></p>
+
+<p>Wat er kan gebeuren:</p>
+
+<ul>
+  <li>Gegevens van gebruikers wereldwijd zijn onderworpen aan jurisdicties of overheden met de <strong>macht om je gegevens te verkrijgen</strong>.</li>
+  <li>Gebruikers lopen het risico dat deze <strong>gegevens tegen hen worden gebruikt</strong>.</li>
+  <li>Trainingsdatasets en modelbeslissingen zijn niet verifieerbaar of controleerbaar door het publiek. Ze lopen het risico <strong>gecensureerd te worden door gevestigde belangen</strong> of inherente vooroordelen te bevatten.</li>
+  <li>Individuen zouden potentieel zelfs <strong>gericht kunnen worden voor specifieke gedragsveranderingen</strong> via AI-gesprekken, aangezien het sturen van gedachten subtieler dan ooit kan worden gedaan.</li>
+</ul>
+
+<p>We kunnen <strong>grootschalige collectieve en individuele gedragsveranderingscampagnes</strong> verwachten die we nog niet eerder hebben gezien.</p>
+
+<p>Terwijl de Amerikaanse president de wereld met een mes op de rug houdt, heeft hij de banden met deze bedrijven versterkt en zelfs een vicepresident gekozen om hun belangen te vertegenwoordigen. <a href="https://www.npr.org/2024/07/17/g-s1-11654/five-things-to-know-about-jd-vances-connections-to-tech-billionaires" target="_blank" rel="noopener"><sup>[&rarr;]</sup></a></p>
+
+<h2>AI als risico voor onze veiligheid</h2>
+
+<figure class="figure--seventy">
+  <img src="../../../Blogs/ai-trump/Do you know who is influencing you.webp" alt="Weet je wie jou beïnvloedt?">
+</figure>
+
+<p>Vandaag arriveerde Trump in Den Haag voor de NAVO-top &mdash; de stad waar Regen Studio is opgericht. De voormalige Nederlandse premier, nu secretaris-generaal van de NAVO, Mark Rutte, prees Trump openlijk <a href="https://www.ft.com/content/ce9eb7e4-7989-45f6-a3b3-3cdec73a8540" target="_blank" rel="noopener"><sup>[&rarr;]</sup></a> voor het goedgekeurd krijgen van de 5% defensie-uitgaven van NAVO-landen, en noemde de aanvallen op Iran &lsquo;werkelijk buitengewoon&rsquo; &mdash; terwijl veel experts en zelfs Macron <a href="https://www.politico.eu/article/emmanuel-macron-iran-israel-us-legal-war-mena/" target="_blank" rel="noopener"><sup>[&rarr;]</sup></a> beweren dat het in strijd is met het internationaal recht.</p>
+
+<p>NAVO-bondgenoten worden geacht elkaars veiligheid te waarborgen. <a href="https://www.nato.int/cps/en/natohq/topics_110496.htm" target="_blank" rel="noopener"><sup>[&rarr;]</sup></a> Echter, een <strong>gebrek aan digitale veiligheid brengt ons ook fysiek in gevaar</strong>, zoals de toename van polarisatie en geweld door digitale profilering ons heeft laten zien.</p>
+
+<p>Rutte lijkt ervan overtuigd dat de Amerikanen onze enige kans op veiligheid zijn. Maar zou hij zijn meest intieme details met Trump delen? Rutte misschien niet &mdash; maar elke ChatGPT-gebruiker doet dat in feite wel. Laat staan de potentiële lekken van gevoelige informatie doordat werknemers vertrouwelijke documenten delen. Overal waar we afhankelijkheid van modellen als ChatGPT zien, hebben we een probleem: <strong>een strategische afhankelijkheid zonder democratisch toezicht</strong>. We hebben het over collectieve digitale en fysieke soevereiniteit.</p>
+
+<p><strong>Geen privacy, geen vrede.</strong> <a href="https://www.tandfonline.com/doi/full/10.1080/26884674.2022.2061392" target="_blank" rel="noopener"><sup>[&rarr;]</sup></a></p>
+
+<p>Voor de VS is het misschien al te laat. Nu er wordt vermoed dat Elon Musks Grok traint op overheidsdata die mogelijk persoonlijke informatie bevat, <a href="https://www.reuters.com/sustainability/boards-policy-regulation/musks-doge-expanding-his-grok-ai-us-government-raising-conflict-concerns-2025-05-23/" target="_blank" rel="noopener"><sup>[&rarr;]</sup></a> escaleren de risico&rsquo;s. Andere landen met machtsambities volgen snel &mdash; DeepSeek wordt nu beschuldigd van het verzenden van gevoelige gegevens naar de Chinese overheid. <a href="https://abcnews.go.com/US/deepseek-coding-capability-transfer-users-data-directly-chinese/story?id=118465451" target="_blank" rel="noopener"><sup>[&rarr;]</sup></a></p>
+
+<p>In die zin maakt Rutte die Trumps gedrag zonder kritiek legitimeert, bondgenoten aantoonbaar minder veilig, als zij de stroom van hun gegevens niet stoppen naar plaatsen waar die tegen hen gebruikt kunnen worden.</p>
+
+<p>Zelfs bij het maken van deze blog verhinderde ChatGPT me bepaalde kritische of satirische afbeeldingen van Trump te genereren &mdash; hoewel het bij nader testen ook geen vergelijkbare afbeeldingen van de Ayatollah van Iran of Britney Spears toestond. Het laat zien: <strong>we spelen volgens de regels van OpenAI</strong>, die Trump op de een of andere manier zal willen beïnvloeden.</p>
+
+<p>Gelukkig worden er AI-modellen gebouwd met privacy, transparantie en regionale controle als uitgangspunt &mdash; zoals <a href="https://gpt-nl.nl/" target="_blank" rel="noopener">GPT-NL van TNO</a> in Nederland, of <a href="https://chat.maritaca.ai/auth" target="_blank" rel="noopener">Chat Maritaca</a> van onderzoekers van Unicamp in Brazilië. Het gebruik van dergelijke tools is één manier om <strong>digitale zelfverdediging te beoefenen in AI-gesprekken</strong>.</p>
+
+<h2>Digitale zelfverdediging met denkmodellen &mdash; doe alsof ChatGPT Trump is</h2>
+
+<figure class="figure--seventy">
+  <img src="../../../Blogs/ai-trump/Do you know who you are really speaking to.webp" alt="Weet je met wie je echt praat?">
+</figure>
+
+<p>Het klinkt belachelijk, ik weet het. Maar blijf even bij me &mdash; dit is een praktische strategie voor iedereen die <strong>privacy, waardigheid of democratische autonomie waardeert in het tijdperk van kunstmatige intelligentie</strong>.</p>
+
+<p>Het idee is dit: stel je voor dat alles wat je intypt in ChatGPT rechtstreeks naar iemand als Donald Trump gaat &mdash; of preciezer, naar een systeem dat <strong>benaderd of misbruikt zou kunnen worden door actoren met vergelijkbare minachting voor je privacy of toestemming</strong>.</p>
+
+<p>Dit is niet zomaar een metafoor. Deze <strong>&ldquo;Trump-test&rdquo;</strong> is een van meerdere denkmodellen om je privacy te beschermen in conversationele AI. Andere zijn:</p>
+
+<ul>
+  <li><strong>De visumtest</strong> &mdash; Zou je dit zeggen tijdens een grenscontrole?</li>
+  <li><strong>De krantentest</strong> &mdash; Zou je willen dat dit met je naam wordt gepubliceerd?</li>
+  <li><strong>De chantagetest</strong> &mdash; Zou deze informatie gebruikt kunnen worden om je te manipuleren?</li>
+</ul>
+
+<h2>Een strategie voor digitale zelfverdediging</h2>
+
+<figure class="figure--seventy">
+  <img src="../../../Blogs/ai-trump/Do you know how to protect yourself.webp" alt="Weet je hoe je jezelf kunt beschermen?">
+</figure>
+
+<p>Naast de &lsquo;Trump-test&rsquo; en variaties daarop, zijn er andere dingen die je kunt doen om jezelf te beschermen. Hier een kort overzicht:</p>
+
+<ul>
+  <li><strong>&lsquo;Zeg nooit ik tegen een AI&rsquo;</strong> &mdash; Beoefen gespreks hygiëne: depersonaliseer, abstraheer, fictionaliseer. Het helpt een grens te bewaren tussen jou en het algoritme.</li>
+  <li><strong>&lsquo;Zoek uit wie er bestuurt&rsquo;</strong> &mdash; Kies transparante en ethische organisaties. Kies voor open-source modellen die getraind zijn op verifieerbare datasets.</li>
+  <li><strong>&lsquo;Houd het op je apparaat&rsquo;</strong> &mdash; Investeer in lokaal draaiende alternatieven. Bekijk <a href="https://ollama.com/" target="_blank" rel="noopener">Ollama</a> en draai het in je console, of probeer <a href="https://msty.app/" target="_blank" rel="noopener">Msty</a> als je meer modellen of een soepelere interface wilt.</li>
+</ul>
+
+<h2>Van generatieve naar regeneratieve AI</h2>
+
+<figure class="figure--seventy">
+  <img src="../../../Blogs/ai-trump/Are you protected by and from AI.webp" alt="Word je beschermd door en tegen AI?">
+</figure>
+
+<p>Bij Regen Studio geloven we in de mogelijkheid van <strong>regeneratieve AI</strong> &mdash; technologie die:</p>
+
+<ul>
+  <li>Mensen helpt groeien, leren en verbinden.</li>
+  <li>Gemeenschappen en de natuur versterkt, in plaats van eraan te onttrekken.</li>
+  <li>Niet tegen ons kan worden gebruikt.</li>
+</ul>
+
+<p>Dat laatste punt is cruciaal. Ik heb het niet over een of andere &lsquo;Skynet&rsquo; AI die op hol slaat, maar <strong>mensen die AI gebruiken tegen andere mensen</strong>.</p>
+
+<p>Want als we regeneratieve AI niet bewust definiëren, wordt het standaard extractief. Dit hebben we eerder gezien.</p>
+
+<h2>Slotgedachten</h2>
+
+<p>Social media beloofde ons mondiale verbinding. <strong>Wat we kregen was manipulatie, polarisatie en massasurveillance.</strong> Laten we niet diezelfde weg inslaan met AI.</p>
+
+<p>In plaats daarvan moeten we ons afvragen:</p>
+
+<ul>
+  <li>Waar gaan mijn gegevens naartoe?</li>
+  <li>Wie controleert het model?</li>
+  <li>Breng ik mezelf in gevaar?</li>
+</ul>
+
+<p>Zonder dat wordt <strong>AI bewapend &mdash; niet gedemocratiseerd</strong>.</p>
+
+<p>Je hoeft niet te stoppen met het gebruik van ChatGPT. Ik ben er ook niet mee gestopt. Maar <strong>je moet wel stoppen met ertegen praten alsof het een vertrouwde vriend of je therapeut is</strong>.</p>
+
+<p>Privacy gaat niet over paranoia. Het gaat over het bewaren van de ruimte waar <strong>je gedachten van jou zijn</strong>.</p>
+
+<blockquote>
+  <p>Als je AI-tools bouwt die het verdienen om regeneratief te worden genoemd &mdash; <a href="http://regenstudio.world/">laten we verbinden op regenstudio.world</a>.</p>
+</blockquote>
+
+<p><strong>Wil je dieper duiken?</strong> Je kunt <a href="https://chatgpt.com/share/685b693d-4b68-8001-bbac-a0fa6b140001" target="_blank" rel="noopener">het volledige ChatGPT-gesprek lezen dat is gebruikt bij het maken van deze blog</a>, met een verrassend introspectieve wending aan het eind.</p>
+
+<p><em>&ldquo;Ik beschouw mezelf als onderdeel van de &lsquo;verloren generatie&rsquo; op het internet. Het merendeel van mijn gegevens op het wereldwijde web is volledig buiten mijn controle. Een digitale samenleving met de controle terug in handen van mensen zelf is mogelijk &mdash; en bij Regen Studio probeer ik die te helpen creëren.&rdquo;</em><br>
+&mdash; <a href="https://www.linkedin.com/in/yvo-hunink-63917a41/" target="_blank" rel="noopener">Yvo Hunink</a>, Oprichter Regen Studio &middot; <a href="mailto:yvo.hunink@regenstudio.world">yvo.hunink@regenstudio.world</a></p>
+</div>
+      </div></section>
+
+  <!-- Related Posts (rendered by JS) -->
+  <section class="related-posts" id="relatedPosts"></section>
+
+  <!-- Footer -->
+  <footer class="footer" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="Regen Studio">
+    <meta itemprop="url" content="https://www.regenstudio.world">
+    <meta itemprop="email" content="info@regenstudio.world">
+    <meta itemprop="description" content="Regenerative innovation design studio pioneering systemic innovations at the intersection of technology, society, and nature.">
+    <link itemprop="logo" href="https://www.regenstudio.world/Images/Logo-Text-on-the-sideAtivo 2.svg">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../../../nl/index.html" class="footer__logo">
+          <img src="../../../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img">
+        </a>
+        <p>Pioneering innovations in the regeneration of our natural, human, and urban ecosystems.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="../../../nl/index.html#about">Our Vision</a></li>
+            <li><a href="../../../nl/index.html#focus">Our Focus</a></li>
+            <li><a href="../../../nl/index.html#services">Services</a></li>
+            <li><a href="../../../nl/index.html#clients">Who We Serve</a></li>
+            <li><a href="../../../nl/blog.html">Blog</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Demos</a></li>
+            <li><a href="../../../nl/about.html">About</a></li>
+            <li><a href="../../../nl/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Connect</h4>
+          <ul>
+            <li>
+              <span class="footer__email-row">
+                <span class="footer__email-address">info@regenstudio.world</span>
+                <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+              </span>
+            </li>
+            <li><a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" itemprop="sameAs">LinkedIn</a></li>
+            <li><a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" itemprop="sameAs">Bluesky</a></li>
+            <li><a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" itemprop="sameAs">Mastodon</a></li>
+          </ul>
+        </div>
+        <div class="footer__col footer__col--locations">
+          <h4>Locations</h4>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">The Netherlands</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio B.V.</p>
+              <p class="footer__address"><span itemprop="streetAddress">Stollenbergweg 43</span>, <span itemprop="postalCode">6571 AB</span>, <span itemprop="addressLocality">Berg en Dal</span></p>
+              <meta itemprop="addressCountry" content="NL">
+            </div>
+            <p class="footer__reg">KVK 90337948</p>
+          </div>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">Brazil</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio Consultoria LTDA</p>
+              <p class="footer__address"><span itemprop="streetAddress">Av. Washington Lu&iacute;s 1527, 174B</span><br><span itemprop="postalCode">04662-002</span>, <span itemprop="addressLocality">S&atilde;o Paulo</span></p>
+              <meta itemprop="addressCountry" content="BR">
+            </div>
+            <p class="footer__reg">CNPJ 57.579.114/0001-55</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Regen Studio. All rights reserved. &middot; <a href="../../../privacy.html">Privacy Policy</a> &middot; <a href="../../../nl/about.html">About</a> &middot; <a href="../../../admin/">Admin</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/i18n.js" defer></script>
+  <script src="../../../blog.js" defer></script>
+  <script src="../../../assets/js/tracker.js" defer></script>
+</body>
+</html>

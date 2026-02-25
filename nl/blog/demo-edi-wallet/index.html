@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Probeer de EDI Wallet-demo: Een privacy-first digitale identiteitswallet | Regen Studio Blog</title>
+  <meta name="description" content="Bekijk een zelfsoevereine identiteitswallet in de praktijk. De EDI Wallet-demo laat je verifieerbare referenties ontvangen, opslaan en presenteren met selectieve openbaarmaking — volgens het eIDAS 2.0-framework.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.regenstudio.world/nl/blog/demo-edi-wallet/">
+
+  <!-- Hreflang alternates -->
+  <link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/demo-edi-wallet/">
+  <link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/demo-edi-wallet/">
+  <link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/demo-edi-wallet/">
+  <link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/demo-edi-wallet/">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.regenstudio.world/nl/blog/demo-edi-wallet/">
+  <meta property="og:title" content="Probeer de EDI Wallet-demo: Een privacy-first digitale identiteitswallet | Regen Studio Blog">
+  <meta property="og:description" content="Bekijk een zelfsoevereine identiteitswallet in de praktijk. De EDI Wallet-demo laat je verifieerbare referenties ontvangen, opslaan en presenteren met selectieve openbaarmaking — volgens het eIDAS 2.0-framework.">
+  <meta property="og:image" content="https://www.regenstudio.world/Images/demo-edi-wallet.svg">
+  <meta property="og:image:alt" content="EDI Wallet-demo — Privacy-first digitale identiteitswallet onder eIDAS 2.0">
+  <meta property="og:site_name" content="Regen Studio">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="article:published_time" content="2026-02-10">
+  <meta property="article:modified_time" content="2026-02-10">
+  <meta property="article:author" content="Yvo Hunink de Paiva">
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Probeer de EDI Wallet-demo: Een privacy-first digitale identiteitswallet | Regen Studio Blog">
+  <meta name="twitter:description" content="Bekijk een zelfsoevereine identiteitswallet in de praktijk. De EDI Wallet-demo laat je verifieerbare referenties ontvangen, opslaan en presenteren met selectieve openbaarmaking — volgens het eIDAS 2.0-framework.">
+  <meta name="twitter:image" content="https://www.regenstudio.world/Images/demo-edi-wallet.svg">
+
+  <!-- JSON-LD Article Schema -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Probeer de EDI Wallet-demo: Een privacy-first digitale identiteitswallet","description":"Bekijk een zelfsoevereine identiteitswallet in de praktijk. De EDI Wallet-demo laat je verifieerbare referenties ontvangen, opslaan en presenteren met selectieve openbaarmaking — volgens het eIDAS 2.0-framework.","image":"https://www.regenstudio.world/Images/demo-edi-wallet.svg","datePublished":"2026-02-10","inLanguage":"nl","author":{"@type":"Person","name":"Yvo Hunink de Paiva"},"publisher":{"@type":"Organization","name":"Regen Studio","url":"https://www.regenstudio.world","logo":{"@type":"ImageObject","url":"https://www.regenstudio.world/Images/Logo-Text-on-the-sideAtivo 2.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.regenstudio.world/nl/blog/demo-edi-wallet/"}}</script>
+
+  <!-- JSON-LD Breadcrumb Schema -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startpagina","item":"https://www.regenstudio.world/nl/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.regenstudio.world/nl/blog.html"},{"@type":"ListItem","position":3,"name":"Probeer de EDI Wallet-demo: Een privacy-first digitale identiteitswallet","item":"https://www.regenstudio.world/nl/blog/demo-edi-wallet/"}]}</script>
+
+  <!-- RSS Discovery -->
+  <link rel="alternate" type="application/rss+xml" title="Regen Studio Blog" href="https://www.regenstudio.world/feed.xml">
+
+  <!-- Slug marker for blog.js hydration -->
+  <meta name="blog-post-slug" content="demo-edi-wallet">
+
+  <link rel="icon" type="image/png" href="../../../Images/favicon.png">
+  <link rel="stylesheet" href="../../../assets/fonts/fonts.css">
+  <link rel="stylesheet" href="../../../style.css">
+  <link rel="stylesheet" href="../../../blog.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="../../../nl/index.html" class="nav__logo">
+        <img src="../../../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="../../../nl/index.html#about">Vision</a></li>
+        <li><a href="../../../nl/index.html#focus">Our Focus</a></li>
+        <li><a href="../../../nl/index.html#services">Services</a></li>
+        <li><a href="../../../nl/index.html#clients">Who We Serve</a></li>
+        <li><a href="../../../nl/blog.html">Blog</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Demos</a></li>
+        <li class="nav__contact-wrap">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <a href="../../..//#contact-form" class="nav__contact-popover-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Post Header (pre-rendered, JS hydrates) -->
+  <div id="main-content"></div>
+  <section class="post-header" id="postHeader">
+      <div class="container">
+        <a href="../../../nl/blog.html" class="post-header__back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Terug naar Blog</a>
+        <div class="post-header__categories"><span class="post-header__category post-header__category--magenta">Digital Identity</span><span class="post-header__category post-header__category--magenta">Privacy-by-Design</span></div>
+        <h1 class="post-header__title">Probeer de EDI Wallet-demo: Een privacy-first digitale identiteitswallet</h1>
+        <p class="post-header__subtitle">Ervaar credentialbeheer, QR-scanning en selectieve openbaarmaking onder eIDAS 2.0</p>
+        <div class="post-header__meta">
+          <div class="post-header__author">
+            <span class="post-header__author-name">Yvo Hunink de Paiva</span>
+            <span class="post-header__author-role">Regeneratief Innovatieontwerp</span>
+          </div>
+          <div class="post-header__meta-divider"></div>
+          <div class="post-header__meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> <time datetime="2026-02-10">10 februari 2026</time></div>
+          <div class="post-header__meta-divider"></div>
+          <div class="post-header__meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 4 min leestijd</div>
+        </div>
+      </div></section>
+
+  <!-- Featured Image (pre-rendered) -->
+  <section class="post-featured-image" id="postFeaturedImage">
+      <div class="container">
+        <img src="../../../Images/demo-edi-wallet.svg" alt="EDI Wallet-demo — Privacy-first digitale identiteitswallet onder eIDAS 2.0">
+      </div></section>
+
+  <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
+  <section class="post-content" id="postContent">
+      <div class="post-content__inner">
+        <p class="post-answer-capsule"><strong>Bekijk een zelfsoevereine identiteitswallet in de praktijk. De EDI Wallet-demo laat je verifieerbare referenties ontvangen, opslaan en presenteren met selectieve openbaarmaking — volgens het eIDAS 2.0-framework.</strong></p>
+        <div class="post-content__body" id="post-content"><p>Digitale identiteit is kapot. De meeste systemen vragen je vandaag om al je persoonlijke gegevens over te dragen om één enkel feit te verifiëren — je leeftijd, je professionele kwalificatie, je staatsburgerschap. Het resultaat is een surveillance-economie waarin persoonlijke data de prijs is van deelname. De EDI Wallet-demo laat een ander pad zien: een privacy-first identiteitswallet waarin <em>jij</em> bepaalt wat je deelt, wanneer en met wie.</p>
+
+<h2>Waarom digitale identiteit een privacy-first heroverweging nodig heeft</h2>
+
+<p>De <strong>eIDAS 2.0-verordening</strong> (EU 2024/1183) van de EU introduceert de Europese Digitale Identiteitswallet — een verplicht framework voor alle EU-lidstaten om hun burgers een digitale wallet voor identiteitscredentials aan te bieden. De verordening vereist dat wallets selectieve openbaarmaking ondersteunen, wat betekent dat een gebruiker een specifiek attribuut kan bewijzen (zoals ouder zijn dan 18) zonder de onderliggende credential te onthullen (de volledige geboortedatum en andere persoonlijke gegevens).</p>
+
+<p>Dit is een fundamentele verschuiving. In plaats van gecentraliseerde identiteitsproviders die je data bewaren en elke verificatie bemiddelen, maken eIDAS 2.0-wallets peer-to-peer credentialuitwisseling mogelijk — tussen een persoon en een dienst, of tussen organisaties.</p>
+
+<p>De EDI Wallet-demo maakt dit tastbaar. In plaats van te lezen over verifieerbare referenties en selectieve openbaarmaking, ervaar je ze.</p>
+
+<h2>Wat de demo laat zien</h2>
+
+<p>De demo simuleert een complete SSI-walletinteractiecyclus:</p>
+
+<ul>
+  <li><strong>Credential-uitgifte:</strong> Een credential-uitgever (zoals een universiteit, overheidsinstantie of werkgever) geeft een verifieerbare referentie uit aan je wallet. Je ziet de structuur van de credential — de claims die het bevat, de digitale handtekening van de uitgever en de vervaldatum.</li>
+  <li><strong>Credential-opslag:</strong> De credential wordt opgeslagen in je wallet, georganiseerd en toegankelijk. Je bepaalt welke credentials in je wallet staan en kunt ze intrekken of verwijderen.</li>
+  <li><strong>Credential-presentatie met selectieve openbaarmaking:</strong> Wanneer een verificateur (een dienst of organisatie) om bewijs vraagt, kies jij precies welke attributen je deelt. De wallet genereert een cryptografisch bewijs dat aan het verzoek van de verificateur voldoet zonder iets te onthullen buiten wat je hebt gekozen om openbaar te maken.</li>
+  <li><strong>QR-gebaseerde presentatiestroom:</strong> De demo bevat een realistische QR-scanstroom — het mechanisme dat wordt gebruikt bij echte eIDAS 2.0-interacties — zodat je kunt zien hoe verificatie in persoon en online in de praktijk werkt.</li>
+</ul>
+
+<h2>Voor wie het bedoeld is</h2>
+
+<p><strong>Identiteitsarchitecten en ontwikkelaars</strong> die digitale identiteitssystemen, walletapplicaties of verificateur-integraties bouwen, krijgen hands-on vertrouwdheid met het SSI-interactiemodel en begrijpen hoe eIDAS 2.0-nalevingsvereisten vertalen naar echte implementatiekeuzes.</p>
+
+<p><strong>Digitale overheidsteams</strong> die werken aan nationale eIDAS 2.0-walletimplementaties of digitale diensttransformatie vinden de demo een nuttig referentiepunt voor hoe een conforme walletinteractie er vanuit het perspectief van de gebruiker uitziet en aanvoelt.</p>
+
+<p><strong>Privacyonderzoekers en functionarissen voor gegevensbescherming</strong> kunnen de demo gebruiken om te begrijpen hoe selectieve openbaarmaking in de praktijk werkt — en hoe het verschilt van de op toestemming gebaseerde dataminimalisatiebenaderingen die de meeste huidige systemen gebruiken.</p>
+
+<p><strong>Productmanagers en UX-ontwerpers</strong> die diensten bouwen die eIDAS 2.0-walletcredentials moeten accepteren, kunnen de verificatiestroom verkennen en begrijpen wat hun gebruikers aan de walletkant van de interactie zullen ervaren.</p>
+
+<h2>Hoe je de demo gebruikt</h2>
+
+<ol>
+  <li><strong>Ga via de poort naar binnen.</strong> Vul je naam en organisatie in om toegang te krijgen tot de demo-omgeving. Er is geen account of speciale software nodig.</li>
+  <li><strong>Ontvang een credential.</strong> De demo geeft een verifieerbare referentie uit aan je gesimuleerde wallet — bijvoorbeeld een professionele kwalificatie of een leeftijdsverificatiecredential. Je kunt de structuur van de credential en de attestatie van de uitgever inspecteren.</li>
+  <li><strong>Sla het op in je wallet.</strong> De credential wordt toegevoegd aan je wallet. Verken de walletinterface om te zien hoe credentials georganiseerd zijn en welke informatie aan de houder wordt getoond.</li>
+  <li><strong>Scan een QR-code om te presenteren.</strong> Navigeer naar een verificatiescenario en scan de QR-code om een presentatieverzoek te activeren. De wallet toont je precies wat de verificateur vraagt.</li>
+  <li><strong>Kies wat je openbaar maakt.</strong> Selecteer welke attributen je wilt delen als reactie op het verzoek van de verificateur. De wallet genereert een selectief openbaarmakingsbewijs — en je kunt zien wat de verificateur ontvangt versus wat privé in je wallet blijft.</li>
+</ol>
+
+<div style="background: linear-gradient(135deg, #243644 0%, #1B2833 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Bekijk het in actie</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Ervaar credentialbeheer en selectieve openbaarmaking uit eerste hand</p>
+  <p style="color: #8CA9BF; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">Ontvang credentials, sla ze op in een privacy-first wallet en presenteer alleen wat nodig is — met QR-scanning en eIDAS 2.0 selectieve openbaarmaking.</p>
+  <a href="https://demos.regenstudio.world/EDI-wallet/gate.html" style="display: inline-block; background: #00914B; color: #FFFFFF; font-weight: 600; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none; transition: background 0.2s;">Verken de EDI Wallet-demo &rarr;</a>
+</div>
+
+<p>Geïnteresseerd in hoe digitale identiteit samenhangt met productpaspoorten en vertrouwen in de toeleveringsketen? Lees ons artikel over <a href="/blog/trusted-dpps/">Betrouwbare Digitale Productpaspoorten</a> — dat verkent hoe SSI en verifieerbare referenties de vertrouwensarchitectuur van conforme DPP-systemen ondersteunen.</p>
+
+<p style="text-align: center; margin-top: 24px;">Wil je ontdekken hoe een EDI-wallet zou kunnen werken in de context van jouw organisatie? Neem contact op via <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>
+</div>
+      </div></section>
+
+  <!-- Related Posts (rendered by JS) -->
+  <section class="related-posts" id="relatedPosts"></section>
+
+  <!-- Footer -->
+  <footer class="footer" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="Regen Studio">
+    <meta itemprop="url" content="https://www.regenstudio.world">
+    <meta itemprop="email" content="info@regenstudio.world">
+    <meta itemprop="description" content="Regenerative innovation design studio pioneering systemic innovations at the intersection of technology, society, and nature.">
+    <link itemprop="logo" href="https://www.regenstudio.world/Images/Logo-Text-on-the-sideAtivo 2.svg">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../../../nl/index.html" class="footer__logo">
+          <img src="../../../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img">
+        </a>
+        <p>Pioneering innovations in the regeneration of our natural, human, and urban ecosystems.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="../../../nl/index.html#about">Our Vision</a></li>
+            <li><a href="../../../nl/index.html#focus">Our Focus</a></li>
+            <li><a href="../../../nl/index.html#services">Services</a></li>
+            <li><a href="../../../nl/index.html#clients">Who We Serve</a></li>
+            <li><a href="../../../nl/blog.html">Blog</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Demos</a></li>
+            <li><a href="../../../nl/about.html">About</a></li>
+            <li><a href="../../../nl/faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Connect</h4>
+          <ul>
+            <li>
+              <span class="footer__email-row">
+                <span class="footer__email-address">info@regenstudio.world</span>
+                <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+              </span>
+            </li>
+            <li><a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" itemprop="sameAs">LinkedIn</a></li>
+            <li><a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" itemprop="sameAs">Bluesky</a></li>
+            <li><a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" itemprop="sameAs">Mastodon</a></li>
+          </ul>
+        </div>
+        <div class="footer__col footer__col--locations">
+          <h4>Locations</h4>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">The Netherlands</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio B.V.</p>
+              <p class="footer__address"><span itemprop="streetAddress">Stollenbergweg 43</span>, <span itemprop="postalCode">6571 AB</span>, <span itemprop="addressLocality">Berg en Dal</span></p>
+              <meta itemprop="addressCountry" content="NL">
+            </div>
+            <p class="footer__reg">KVK 90337948</p>
+          </div>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">Brazil</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio Consultoria LTDA</p>
+              <p class="footer__address"><span itemprop="streetAddress">Av. Washington Lu&iacute;s 1527, 174B</span><br><span itemprop="postalCode">04662-002</span>, <span itemprop="addressLocality">S&atilde;o Paulo</span></p>
+              <meta itemprop="addressCountry" content="BR">
+            </div>
+            <p class="footer__reg">CNPJ 57.579.114/0001-55</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Regen Studio. All rights reserved. &middot; <a href="../../../privacy.html">Privacy Policy</a> &middot; <a href="../../../nl/about.html">About</a> &middot; <a href="../../../admin/">Admin</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/i18n.js" defer></script>
+  <script src="../../../blog.js" defer></script>
+  <script src="../../../assets/js/tracker.js" defer></script>
+</body>
+</html>
