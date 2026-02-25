@@ -98,8 +98,8 @@
   }
 
   // --- Locale detection ---
-  var pageLang = document.documentElement.lang || 'en';
-  var langCode = pageLang === 'nl' ? 'nl' : pageLang === 'pt-BR' ? 'pt' : 'en';
+  var pageLang = (document.documentElement.lang || 'en').toLowerCase();
+  var langCode = pageLang === 'nl' ? 'nl' : pageLang.startsWith('pt') ? 'pt' : 'en';
   var localePrefix = langCode === 'en' ? '' : '/' + langCode;
 
   // --- Path helper: detect depth from root, accounting for locale prefix ---
@@ -997,7 +997,7 @@
         }
 
         // Success — redirect to thank-you page
-        const langPrefix = document.documentElement.lang === 'nl' ? '/nl' : document.documentElement.lang === 'pt-BR' ? '/pt' : '';
+        const langPrefix = localePrefix;
         window.location.href = langPrefix + '/thank-you.html';
         // Fallback if redirect blocked
         form.style.display = 'none';

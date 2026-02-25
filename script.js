@@ -1569,7 +1569,8 @@
           });
         }
         // Success — redirect to thank-you page
-        var langPrefix = document.documentElement.lang === 'nl' ? '/nl' : document.documentElement.lang === 'pt-BR' ? '/pt' : '';
+        var htmlLang = (document.documentElement.lang || 'en').toLowerCase();
+        var langPrefix = htmlLang === 'nl' ? '/nl' : htmlLang.startsWith('pt') ? '/pt' : '';
         window.location.href = langPrefix + '/thank-you.html';
         // Fallback if redirect blocked
         form.style.display = 'none';
