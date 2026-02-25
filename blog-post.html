@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+  (function(){var p=new URLSearchParams(location.search).get('post');
+  if(p)location.replace('/blog/'+encodeURIComponent(p)+'/');})();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Blog Post | Regen Studio</title>
   <meta name="description" content="Read insights on regenerative innovation from Regen Studio.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.regenstudio.world/blog-post.html">
+  <meta property="og:title" content="Blog Post | Regen Studio">
+  <meta property="og:description" content="Read insights on regenerative innovation from Regen Studio.">
+  <meta property="og:image" content="https://www.regenstudio.world/Images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog Post | Regen Studio">
+  <meta name="twitter:description" content="Read insights on regenerative innovation from Regen Studio.">
+  <meta name="twitter:image" content="https://www.regenstudio.world/Images/og-image.png">
   <link rel="icon" type="image/png" href="Images/favicon.png">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
   <link rel="stylesheet" href="style.css">

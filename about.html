@@ -12,8 +12,17 @@
   <meta property="og:title" content="About Regen Studio">
   <meta property="og:description" content="Regenerative innovation design studio based in The Netherlands and Brazil. We pioneer systemic innovations at the intersection of technology, society, and nature.">
   <meta property="og:image" content="https://www.regenstudio.world/Images/og-image.png">
+  <meta property="og:image:alt" content="About Regen Studio — Regenerative Innovation Design">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About Regen Studio">
+  <meta name="twitter:description" content="Regenerative innovation design studio based in The Netherlands and Brazil. We pioneer systemic innovations at the intersection of technology, society, and nature.">
+  <meta name="twitter:image" content="https://www.regenstudio.world/Images/og-image.png">
 
   <link rel="canonical" href="https://www.regenstudio.world/about.html">
+  <link rel="alternate" hreflang="en" href="https://www.regenstudio.world/about.html">
+  <link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/about.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/about.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/about.html">
   <link rel="icon" type="image/png" href="Images/favicon.png">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
   <link rel="stylesheet" href="style.css">
@@ -98,6 +107,52 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.regenstudio.world/" },
+      { "@type": "ListItem", "position": 2, "name": "About", "item": "https://www.regenstudio.world/about.html" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "About Regen Studio",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".about-hero__lead"]
+    },
+    "url": "https://www.regenstudio.world/about.html"
+  }
+  </script>
+  <!-- Certification schema — uncomment when sustainability certification is obtained
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Regen Studio",
+    "url": "https://www.regenstudio.world",
+    "hasCertification": [
+      {
+        "@type": "Certification",
+        "name": "CERTIFICATION_NAME",
+        "certificationIdentification": "CERT_ID",
+        "certificationStatus": "CertificationActive",
+        "issuedBy": {
+          "@type": "Organization",
+          "name": "ISSUING_BODY"
+        },
+        "validFrom": "YYYY-MM-DD",
+        "expires": "YYYY-MM-DD"
+      }
+    ]
+  }
+  </script>
+  -->
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
@@ -150,6 +205,7 @@
       <a href="index.html" class="privacy-back">&larr; Back to Home</a>
       <p class="about-hero__label">About Regen Studio</p>
       <h1 class="about-hero__title">Innovations that regenerate <em>humans, cities, and nature</em></h1>
+      <p class="about-hero__lead"><strong>Regen Studio is a Netherlands-based innovation design studio specialising in <a href="/what-is-a-digital-product-passport/">Digital Product Passports</a>, EU circular economy regulations, and regenerative innovation for governments, industry, and research institutes.</strong></p>
       <p class="about-hero__lead">We are a regenerative innovation design studio pioneering systemic change at the intersection of technology, society, and nature. From The Netherlands and Brazil, we help organisations design innovations that create lasting positive impact.</p>
     </section>
 
@@ -322,7 +378,7 @@
         <div id="contact-success" class="regen-form__success" style="display:none">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
           <h3>Message sent!</h3>
-          <p>We'll get back to you as soon as possible.</p>
+          <p>We'll be in touch shortly.</p>
         </div>
         <div class="regen-form__divider"><span>or email us directly</span></div>
         <div style="display:flex;justify-content:center;">
@@ -512,6 +568,7 @@
       });
     })();
   </script>
+  <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/tracker.js" defer></script>
 </body>
 </html>

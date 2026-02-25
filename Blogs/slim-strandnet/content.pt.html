@@ -1,0 +1,156 @@
+<div style="display:flex;align-items:center;justify-content:center;gap:28px;padding:24px 40px;background:#F0FAF4;border-radius:12px;border:1px solid #D1FAE5;margin-bottom:40px;flex-wrap:wrap;">
+  <img src="Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" style="height:34px;width:auto;">
+  <span style="color:#00914B;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">em colaboração com</span>
+  <div style="display:flex;align-items:center;gap:14px;flex-shrink:0;">
+    <img src="Images/client-logos/OIP-3.svg" alt="Cidade de The Hague — Den Haag" style="height:52px;width:auto;">
+    <span style="color:#D1D5DB;font-size:18px;font-weight:300;">&amp;</span>
+    <img src="Images/client-logos/OIP.svg" alt="Living Lab Scheveningen" style="height:46px;width:auto;">
+  </div>
+</div>
+
+<p>Em 2016, The Hague começou a construir uma <strong>cooperativa de energia comunitária e microrrede inteligente</strong> no promontório norte do porto de Scheveningen — anos antes do congestionamento da rede se tornar uma crise nacional na Holanda, e anos antes de qualquer pessoa usar o termo netcongestie como razão para bloquear novas conexões. O que a motivou não foi uma crise, mas uma convicção: que o sistema elétrico do futuro precisaria ser mais inteligente, mais local e mais cooperativo. Quando o problema da rede chegou à porta de Scheveningen, <strong>a solução já estava sendo construída</strong>.</p>
+
+<p>Essa solução é o <strong>Slim Strandnet</strong> (em holandês, Rede Inteligente de Praia). Hoje é uma microrrede privada funcional de 1 megawatt que opera com energia solar, uma <strong>bateria de segunda vida de veículos elétricos</strong>, software de gestão de energia de código aberto e uma cooperativa governada conjuntamente pelo município e empreendedores locais de praia. Em 2025, foi nomeada uma das <strong>3 melhores inovações governamentais da Holanda</strong>, entre 60 inscrições para a competição anual <em>Beste Overheidsinnovatie van het Jaar</em> (Melhor Inovação Governamental do Ano) organizada pela Associação de Gestão Governamental (VOM).</p>
+
+<p>O fundador da Regen Studio foi quem colocou este projeto em movimento — inicialmente em seu cargo na cidade de The Hague, onde era responsável por estabelecer o Slim Strandnet como parte do Living Lab Scheveningen. Após fundar a Regen Studio, esse envolvimento continuou: orientando a equipe, fornecendo consultoria em design de sistemas e governança, e apoiando o desenvolvimento contínuo do projeto à medida que crescia de conceito a reconhecimento nacional.</p>
+
+<h2>Congestionamento da rede na Holanda: por que o Slim Strandnet estava anos à frente</h2>
+
+<p>Quando as pessoas dizem que a rede elétrica holandesa está "cheia", geralmente querem dizer algo mais específico: <strong>netcongestie administrativa</strong> (congestionamento administrativo da rede). Esta não é uma situação em que os cabos físicos não conseguem mais transportar eletricidade — a infraestrutura física muitas vezes ainda tem espaço. O que se esgotou é a capacidade <em>alocada</em>: a soma de todas as capacidades de conexão individuais que os operadores de rede comprometeram com seus clientes. Quando esses compromissos coletivamente excedem o que a rede pode garantir entregar simultaneamente, o operador fecha a área para novas conexões — mesmo que, na prática, nem todos consumam seu máximo ao mesmo tempo.</p>
+
+<p>Essa distinção é importante, porque significa que o problema é parcialmente de design de sistema e coordenação, não puramente de hardware. O Slim Strandnet aborda exatamente isso: ao gerenciar fluxos locais de energia de forma inteligente, ele reduz a demanda de pico na rede pública e, portanto, a capacidade alocada que os participantes precisam reservar.</p>
+
+<p>O edifício municipal do porto em Scheveningen foi o primeiro a enfrentar esse problema — por volta de 2021, quando precisou expandir sua conexão e descobriu que a rede pública não podia acomodá-la. A equipe do edifício procurou o projeto Slim Strandnet para explorar se uma conexão à microrrede privada era possível. Era — e isso se tornou a prova de conceito para usar a rede inteligente como alternativa estrutural à expansão da rede pública.</p>
+
+<p>O caso do pavilhão de praia <strong>HITO</strong> foi ainda mais agudo. O HITO não conseguia se conectar à rede pública de forma alguma: nenhuma capacidade estava disponível e nenhum cronograma de reforço estava à vista. Sem conexão, o projeto simplesmente não poderia prosseguir. O Slim Strandnet tornou-se uma tábua de salvação — o único caminho viável para eletricidade para o novo clube de praia. Sem a microrrede cooperativa, o HITO nunca teria aberto.</p>
+
+<p>O resultado: <strong>33% mais eficiência no uso da rede local</strong>, medido em relação a uma configuração não gerenciada. O congestionamento da rede que teria bloqueado o desenvolvimento foi resolvido não esperando por investimentos em infraestrutura, mas projetando uso mais inteligente do que já existia.</p>
+
+<h2>Três princípios: Descentralizado, Digital, Democrático</h2>
+
+<p>A filosofia de design do projeto é capturada em três palavras.</p>
+
+<p><strong>Descentralizado.</strong> A microrrede é uma rede privada de baixa tensão, independente da infraestrutura pública congestionada. A energia gerada no promontório norte do porto — principalmente por painéis solares em quiosques ao longo dos renovados boulevards Noord e Morales e em estruturas no píer — é consumida localmente. O que não pode ser consumido imediatamente é armazenado na bateria. Apenas o excedente e o déficit que não podem ser tratados localmente fluem de e para a rede pública. Isso reduz o impacto de pico na rede pública e diminui a capacidade alocada que os participantes precisam reservar.</p>
+
+<p><strong>Digital.</strong> A camada de coordenação é construída inteiramente com tecnologia de código aberto. O sistema de gestão de energia (EMS), fornecido pela <strong>OpenRemote</strong> e implementado pela <strong>Kersten Techniek</strong>, monitora todos os ativos em tempo real: inversores solares, a bateria, estações de carregamento de veículos elétricos, bombas de calor, freezers e refrigeradores comerciais nos pavilhões de praia. Ele prevê padrões de geração e consumo, cria sinais dinâmicos de preços internos que automaticamente deslocam cargas flexíveis para períodos de menor demanda, e oferece flexibilidade excedente aos operadores de rede via GOPACS — a plataforma nacional de gestão de congestionamento usada pela Stedin e TenneT. Como o software é totalmente de código aberto, o modelo é livremente replicável por qualquer outro município, corporação de habitação ou comunidade de energia na Holanda. O Slim Strandnet também participa do <strong>U2Demo</strong>, um projeto de pesquisa europeu envolvendo 20 parceiros em 8 países dedicado a desenvolver estratégias de código aberto, descentralizadas e centradas no consumidor para comércio de energia peer-to-peer e sistemas de energia comunitária.</p>
+
+<p><strong>Democrático.</strong> O Slim Strandnet não é administrado apenas pelo município. Uma <strong>cooperativa de energia público-privada (energiecoöperatie)</strong> foi estabelecida, reunindo a cidade de The Hague e os empreendedores de praia como parceiros iguais que governam conjuntamente a rede. Essa cooperativa decide coletivamente sobre acordos de compartilhamento de energia, preços e prioridades de investimento, e opera sem fins lucrativos: qualquer excedente financeiro é devolvido aos participantes ou redirecionado para a comunidade.</p>
+
+<h2>Um município dentro de uma cooperativa de energia: por que este modelo de governança é único</h2>
+
+<p>Um dos aspectos mais distintivos do Slim Strandnet — e um que atraiu atenção significativa do júri de inovação governamental — é que um município holandês está participando como membro igual de uma cooperativa de energia ao lado de empreendedores privados. Governos locais raramente assumiram esse papel. Normalmente, os municípios estabelecem regras, concedem licenças ou financiam infraestrutura; eles não cogovernaram operações comerciais ao lado de proprietários de pavilhões de praia em pé de igualdade.</p>
+
+<p>O que torna isso ainda mais notável é o contexto jurídico dos próprios pavilhões de praia. Os pavilhões de praia de Scheveningen têm o status de <strong>roerende goed</strong> — propriedade móvel. Como estão situados na linha costeira, onde a lei exige que as estruturas possam ser desmontadas e removidas se necessário, não são classificados como imóveis no sentido convencional. Isso cria genuína complexidade jurídica para qualquer estrutura cooperativa: como você constrói um arranjo de governança energética compartilhada em torno de participantes cujo ativo principal é juridicamente definido como temporário? O Slim Strandnet trabalhou isso cuidadosamente, criando um modelo cooperativo robusto o suficiente para funcionar como instituição de longo prazo enquanto acomoda o status jurídico móvel de seus membros empreendedores. É um design de governança que outras comunidades costeiras e de estruturas temporárias podem precisar replicar.</p>
+
+<p>No Slim Strandnet, a cidade de The Hague está na mesma cooperativa que o Strandpaviljoen Aloha, The Shore e HITO — com responsabilidades compartilhadas, riscos compartilhados e recompensas compartilhadas. O júri da competição <em>Overheidsinnovatie van het Jaar</em> descreveu isso explicitamente como "uma solução regional inteligente para um problema criado em nível nacional", destacando a participação voluntária dos empreendedores de praia como característica definidora. É um modelo de governança que poderia se tornar um modelo para comunidades de energia em toda a Holanda à medida que a nova Lei de Energia (<em>Energiewet</em>), que entrou em vigor em janeiro de 2026, formalmente possibilita exatamente esse tipo de compartilhamento de energia em redes públicas.</p>
+
+<h2>Seis inovações sob um guarda-chuva de rede inteligente</h2>
+
+<p>O Slim Strandnet não é uma única tecnologia, mas um guarda-chuva para um conjunto de inovações interconectadas, cada uma testando uma dimensão diferente de como um sistema de energia mais inteligente e mais circular pode ser.</p>
+
+<h3>A bateria de praia — construída com baterias recicladas de veículos elétricos</h3>
+
+<p>O elemento mais visualmente marcante do Slim Strandnet é a <strong>bateria estacionária de 360 kWh (strandbatterij)</strong>, construída a partir de células de bateria colhidas de veículos elétricos em fim de vida útil. Baterias de veículos elétricos que não são mais adequadas para uso automotivo — tipicamente quando retêm cerca de 70–80% de sua capacidade original — ainda têm potencial substancial de armazenamento de energia. Em vez de reciclá-las imediatamente, o Slim Strandnet lhes dá uma <strong>segunda vida</strong> produtiva em uma aplicação estacionária.</p>
+
+<p>O impacto prático é significativo. A bateria pode alimentar um pavilhão de praia — incluindo todos os seus freezers, refrigeradores e iluminação — por aproximadamente dois dias inteiros com energia solar armazenada. Ela permitiu que a pista de gelo do <strong>BeachStadium</strong> mantivesse seu gelo congelado 24 horas por dia usando apenas geração solar diurna. E quando o festival de música de verão <em>Live on the Beach</em> — um dos maiores festivais de praia da Holanda — aconteceu em Scheveningen, todo o evento funcionou com energia sustentável da rede em vez dos geradores a diesel que tradicionalmente alimentam eventos ao ar livre. Aproximadamente 3.500 kWh de energia renovável foram consumidos durante esse evento.</p>
+
+<h3>Painéis solares circulares e reparáveis</h3>
+
+<p>Painéis solares convencionais são difíceis de reparar: quando um componente falha, o painel inteiro é tipicamente substituído e descartado. O Slim Strandnet testou <strong>painéis solares circulares e desmontáveis</strong> projetados pela <strong>Biosphere Solar</strong>, uma startup holandesa cujos painéis podem ser desmontados, reparados no nível do componente e remontados — mudando fundamentalmente a economia de fim de vida da infraestrutura solar. A cidade de The Hague é o cliente de lançamento da Biosphere Solar, e os painéis circulares foram apresentados ao público no Open Energiedag em setembro de 2025. Essa abordagem reduz tanto o desperdício quanto o custo total do ciclo de vida da geração solar, tornando-a uma escolha natural para um projeto que tem os princípios da economia circular em seu núcleo.</p>
+
+<h3>Carregamento inteligente de veículos elétricos</h3>
+
+<p>As estações de carregamento de veículos elétricos estão conectadas à rede Slim Strandnet e gerenciadas pelo sistema de gestão de energia. Em vez de carregar sob demanda — o que criaria picos que estressam a rede local — o EMS programa o carregamento com base na disponibilidade solar, estado da bateria e condições da rede. Quando a geração solar é alta e a demanda baixa, o carregamento de veículos elétricos é antecipado. Durante períodos de pico de demanda, o carregamento é atrasado ou reduzido. Alguns veículos também têm potencial para <strong>carregamento bidirecional (V2G)</strong>, devolvendo eletricidade à rede durante momentos de alta demanda, aumentando ainda mais a flexibilidade da rede.</p>
+
+<h3>Conexão sustentável para eventos</h3>
+
+<p>Um ponto de conexão reservável para eventos foi estabelecido no BeachStadium e ao longo dos quiosques do boulevard, acessível via <em>stroomkaart.nl</em>. Os organizadores de eventos agora podem utilizar eletricidade renovável da microrrede Slim Strandnet em vez de alugar geradores a diesel. Isso elimina tanto o ruído quanto as emissões que historicamente acompanhavam grandes eventos ao ar livre na orla de Scheveningen — e torna eventos sustentáveis comercialmente acessíveis, já que reservar energia da rede é significativamente mais barato do que o aluguel de geradores.</p>
+
+<h3>Energia de costa para embarcações — walstroom</h3>
+
+<p>O Slim Strandnet está estendendo seu alcance ao porto de Scheveningen com <strong>walstroom</strong> — infraestrutura de energia de costa que permite que embarcações atracadas no porto se conectem à rede elétrica em vez de manter seus motores a diesel funcionando no berço. Navios e barcos tipicamente mantêm seus motores em marcha lenta para alimentar sistemas de bordo enquanto atracados; o walstroom elimina essa fonte de ruído, poluição do ar e consumo de combustível. Estender o fornecimento de energia limpa do Slim Strandnet para a orla do porto é uma expansão natural da lógica da microrrede: substituir combustíveis fósseis no ponto de consumo, usando energia renovável gerada localmente e gerenciada por uma rede inteligente.</p>
+
+<h3>Governança da comunidade de energia e justiça energética</h3>
+
+<p>O modelo de governança cooperativa vai além da eficiência operacional. Desde o início, a ambição era clara: as receitas geradas pelos painéis solares não deveriam beneficiar apenas os membros diretos da cooperativa. A ideia original era usar uma parte dessas receitas para comprar painéis solares para moradores que não podem arcar com a instalação — democratizando o acesso à transição energética para aqueles que são mais expostos ao aumento dos custos de energia, mas menos capazes de investir em soluções.</p>
+
+<p>A primeira prova desse princípio tomou a forma de uma contribuição financeira direta — uma doação das receitas financeiras iniciais da rede para o <strong>banco de alimentos local (voedselbank)</strong>, como um primeiro ato concreto de solidariedade social. Foi uma prova de intenção: que a governança da cooperativa foi projetada para gerar benefício comunitário, não apenas eficiência operacional.</p>
+
+<p>A solução que está emergindo agora é mais estrutural. A visão é uma <strong>cooperativa social de energia municipal</strong> — uma organização guarda-chuva maior à qual a cooperativa Slim Strandnet poderia se tornar uma <em>cooperativa filha</em>. O modelo funciona assim: cada cooperativa de energia local, através de seu design de governança, incorpora uma contribuição financeira para a cooperativa social municipal. Essa cooperativa então usa as receitas reunidas para financiar acesso à energia renovável para domicílios que não podem participar diretamente — por meio de painéis solares, tarifas reduzidas ou outros mecanismos. Se cooperativas de energia locais em toda The Hague adotarem essa estrutura, a transição energética deixa de ser algo que beneficia apenas aqueles que podem pagar por um telhado. Torna-se um sistema que funciona para todos — e que paga seu próprio dividendo social dentro de sua própria lógica econômica.</p>
+
+<p>É isso que o projeto quer dizer quando se descreve como construindo "um sistema de energia melhor e mais justo". O júri da competição <em>Overheidsinnovatie van het Jaar</em> achou essa dimensão convincente: o Slim Strandnet não é apenas uma solução técnica para um problema administrativo de rede. É uma tentativa de tornar a transição energética estruturalmente justa.</p>
+
+<a href="/pt/blog/energy-justice-the-hague/" style="text-decoration:none;display:block;max-width:520px;margin:28px auto;">
+  <article style="display:flex;flex-direction:row;background:#fff;border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;transition:box-shadow .2s,border-color .2s;">
+    <div style="width:160px;min-width:160px;overflow:hidden;">
+      <img src="Blogs/energy-justice-the-hague/ENergy Justice headerAtivo 54.webp" alt="Design de experimento de justiça energética para The Hague — direcionando receitas da cooperativa solar para domicílios vulneráveis" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div style="padding:18px 20px;flex:1;display:flex;flex-direction:column;justify-content:center;">
+      <div style="display:flex;gap:6px;margin-bottom:10px;">
+        <span class="blog-card__category blog-card__category--gold">Client Project</span>
+        <span class="blog-card__category blog-card__category--orange">Energy Justice</span>
+      </div>
+      <p style="font-size:0.95rem;font-weight:600;color:#1A2533;line-height:1.35;margin:0 0 6px;">Justiça Energética por Design: como ajudamos The Hague a projetar cooperativas de energia que mudaram políticas locais de assistência social</p>
+      <p style="font-size:0.8rem;color:#6B7280;line-height:1.5;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">The Hague testou se as receitas da cooperativa solar Slim Strandnet poderiam ser direcionadas diretamente para pessoas em necessidade — e o experimento desencadeou uma mudança na política de assistência social.</p>
+    </div>
+  </article>
+</a>
+
+<h2>Uma parceria construída sobre ambição compartilhada — com Stedin e Kansen voor West</h2>
+
+<p>A <strong>Stedin</strong>, a distribuidora regional de eletricidade, é parceira estrutural do Slim Strandnet desde o início — não meramente uma operadora de rede em torno da qual o projeto trabalha, mas uma codesenvolvedora engajada tanto na arquitetura técnica quanto na financeira do projeto. Junto com a cidade de The Hague, a Stedin ajudou a garantir financiamento por meio do <strong>Kansen voor West</strong>, o programa do Fundo Europeu de Desenvolvimento Regional (FEDER) para o oeste da Holanda. O projeto recebeu 621.857 euros em financiamento FEDER como parte de um orçamento total de 1,55 milhão de euros, com o restante cofinanciado pelos parceiros públicos.</p>
+
+<p>O envolvimento da Stedin reflete uma escolha estratégica mais ampla: em vez de simplesmente construir mais cabos para resolver o congestionamento da rede, a distribuidora está ativamente coinvestindo em soluções locais de redes inteligentes que reduzem a necessidade de reforço. O Slim Strandnet faz parte da própria agenda de pesquisa e desenvolvimento da Stedin, e a empresa sinalizou sua intenção de replicar as inovações comprovadas do modelo em outras redes de baixa tensão em toda a Holanda. A expansão do walstroom no porto é uma dimensão dessa parceria — aplicando a mesma lógica de gestão local de energia renovável a embarcações no porto.</p>
+
+<h2>A arquitetura técnica</h2>
+
+<p>A espinha dorsal técnica da rede conecta painéis solares, a bateria, carregadores de veículos elétricos, bombas de calor e sistemas de refrigeração comercial via uma rede de fibra óptica à plataforma OpenRemote EMS. O sistema opera em dois níveis: um <strong>EMS de nível distrital</strong> que coordena ativos compartilhados (a bateria, o campo solar, a conexão de eventos) e <strong>sistemas de gestão de energia residencial (HEMS)</strong> individuais para cada edifício participante. Cada HEMS participa voluntariamente dentro do framework compartilhado da cooperativa.</p>
+
+<p>Modelos de previsão predizem geração solar e demanda por tipo de dia e estação. Tarifas internas dinâmicas criam sinais de preço automáticos: quando a energia flui da rede local para um edifício, a tarifa difere de quando um edifício está alimentando excedente de volta para a cooperativa. Esses sinais incentivam os participantes a deslocar cargas flexíveis — um ciclo de freezer de um pavilhão de praia, o tempo de operação de uma bomba de calor, uma sessão de carregamento de veículo elétrico — sem exigir intervenção manual. O resultado é comportamento coordenado e amigável à rede que emerge de sinais econômicos em vez de comandos.</p>
+
+<p>A flexibilidade excedente é oferecida à Stedin e TenneT por meio do <strong>GOPACS</strong>, a plataforma nacional de gestão de congestionamento de rede. Quando a rede nacional precisa de alívio, a bateria ou cargas flexíveis do Slim Strandnet podem responder — e a cooperativa recebe compensação por esse serviço. A microrrede local participa assim da estabilidade da rede nacional, transformando uma comunidade de energia de bairro em um ativo para o sistema mais amplo.</p>
+
+<h2>Uma inovação governamental top 3 na Holanda</h2>
+
+<p>Em 2025, o Slim Strandnet foi indicado para a <em>Beste Overheidsinnovatie van het Jaar</em> (Melhor Inovação Governamental do Ano), a competição anual organizada pela Associação de Gestão Governamental (VOM). De 60 inscrições, 32 avançaram para avaliação do júri. O Slim Strandnet chegou à lista dos 10 semifinalistas, depois apresentou em um evento estilo Dragon's Den em Utrecht em 19 de setembro de 2025, antes de ser selecionado como um dos três finalistas.</p>
+
+<p>O júri realizou uma visita ao local em Scheveningen em 1 de outubro de 2025. A cerimônia de premiação foi realizada no <em>Koninklijke Schouwburg</em> (Teatro Real) em The Hague em 27 de novembro de 2025. O Slim Strandnet recebeu uma <strong>honrosa posição no top 3</strong> — reconhecido ao lado do vencedor como uma das três melhores inovações governamentais do país.</p>
+
+<p>A descrição do júri: <em>"Het slimme, decentrale energienet. Een slimme regionale oplossing voor een probleem, dat op nationaal niveau is gecreëerd."</em> — "A rede de energia inteligente e descentralizada. Uma solução regional inteligente para um problema criado em nível nacional." Eles destacaram o uso de tecnologia de código aberto e o envolvimento voluntário dos empreendedores de praia como características definidoras.</p>
+
+<p>A indicação foi significativa não apenas como reconhecimento do projeto, mas como um sinal mais amplo: soluções de redes inteligentes, antes consideradas um tópico técnico de nicho, tornaram-se respostas essenciais a um desafio nacional. O que o Slim Strandnet entendeu em 2016, a Holanda ainda está alcançando em 2025. A transição energética nem sempre requer nova infraestrutura — às vezes requer design mais inteligente do que já existe.</p>
+
+<h2>O papel da Regen Studio</h2>
+
+<p>O fundador da Regen Studio iniciou o Slim Strandnet durante seu período na cidade de The Hague, onde era responsável por estabelecer o projeto dentro do Living Lab Scheveningen. O design conceitual, a arquitetura de parcerias e a filosofia de três palavras — Descentralizado, Digital, Democrático — têm suas origens nesse trabalho inicial.</p>
+
+<p>Após fundar a Regen Studio, a conexão com o projeto continuou em uma forma diferente: orientando a equipe municipal, fornecendo consultoria estratégica e de design, e apoiando a evolução do projeto por fases sucessivas de expansão. Esse é o tipo de engajamento que está no coração do que a Regen Studio faz — não chegar com soluções prontas, mas construir capacidade e direção ao lado das pessoas que levam o trabalho adiante.</p>
+
+<p>O projeto é agora um local de demonstração visitado por ministérios, delegações europeias e operadores de rede de toda a Holanda e além. Em setembro de 2025, 25 funcionários do Ministério do Clima e Crescimento Verde da Holanda visitaram Scheveningen para ver a infraestrutura de armazenamento flexível do Slim Strandnet pessoalmente. A Stedin anunciou planos para replicar as inovações comprovadas em outras redes de baixa tensão em todo o país.</p>
+
+<p>O que começou como um experimento visionário em uma praia holandesa em 2016 tornou-se um ponto de referência para como a transição energética se parece quando é bem feita: tecnicamente robusta, aberta por design, governada democraticamente e construída com benefício comunitário em seu núcleo.</p>
+
+<p style="font-size:0.88rem;color:#6B7280;margin-bottom:4px;">Leia mais sobre como projetamos comunidades de energia inteligentes:</p>
+<a href="/pt/blog/energy-hubs/" style="text-decoration:none;display:block;max-width:520px;margin:0 auto 28px;">
+  <article style="display:flex;flex-direction:row;background:#fff;border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;transition:box-shadow .2s,border-color .2s;">
+    <div style="width:160px;min-width:160px;overflow:hidden;">
+      <img src="Blogs/energy-hubs/HeaderAtivo 49Fides.png" alt="Hub de energia inteligente com painéis solares, turbinas eólicas, armazenamento de bateria e skyline de uma cidade" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div style="padding:18px 20px;flex:1;display:flex;flex-direction:column;justify-content:center;">
+      <div style="display:flex;gap:6px;margin-bottom:10px;">
+        <span class="blog-card__category blog-card__category--orange">Energy Communities</span>
+        <span class="blog-card__category blog-card__category--orange">Smart Grids</span>
+      </div>
+      <p style="font-size:0.95rem;font-weight:600;color:#1A2533;line-height:1.35;margin:0 0 6px;">Energy Hubs: como os projetamos como comunidades de energia inteligentes</p>
+      <p style="font-size:0.8rem;color:#6B7280;line-height:1.5;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Sistemas de energia inteligentes são mais do que tecnologia. Eles são sustentados por comunidades locais que percebem que podem retomar o controle sobre suas próprias redes de energia. Veja como projetamos Energy Hubs.</p>
+    </div>
+  </article>
+</a>
+
+<figure>
+  <img src="Blogs/slim-strandnet/ENergy Justice Slim Strandnet DPPsAtivo 50.webp" alt="Justiça Energética e Slim Strandnet — conectando a rede inteligente de praia a uma transição energética mais justa">
+</figure>
+
+<blockquote>
+  <p>Interessado em como comunidades de energia inteligentes poderiam funcionar para sua cidade, organização ou bairro? <a href="mailto:info@regenstudio.world">Entre em contato</a> para explorar o que é possível.</p>
+</blockquote>

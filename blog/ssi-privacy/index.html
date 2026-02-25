@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Designing for Privacy with Self-Sovereign Identity | Regen Studio Blog</title>
+  <meta name="description" content="In an era where personal data is continuously harvested and monetized, Self-Sovereign Identity places the control over personal data back into the hands of individuals.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.regenstudio.world/blog/ssi-privacy/">
+
+  <!-- Hreflang alternates -->
+  <link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/ssi-privacy/">
+  <link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/ssi-privacy/">
+  <link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/ssi-privacy/">
+  <link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/ssi-privacy/">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.regenstudio.world/blog/ssi-privacy/">
+  <meta property="og:title" content="Designing for Privacy with Self-Sovereign Identity | Regen Studio Blog">
+  <meta property="og:description" content="In an era where personal data is continuously harvested and monetized, Self-Sovereign Identity places the control over personal data back into the hands of individuals.">
+  <meta property="og:image" content="https://www.regenstudio.world/Blogs/ssi-privacy/SSI headerAtivo 45Fides.webp">
+  <meta property="og:image:alt" content="Designing for Privacy with Self-Sovereign Identity">
+  <meta property="og:site_name" content="Regen Studio">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2024-09-24">
+  <meta property="article:modified_time" content="2024-09-24">
+  <meta property="article:author" content="Yvo Hunink de Paiva">
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Designing for Privacy with Self-Sovereign Identity | Regen Studio Blog">
+  <meta name="twitter:description" content="In an era where personal data is continuously harvested and monetized, Self-Sovereign Identity places the control over personal data back into the hands of individuals.">
+  <meta name="twitter:image" content="https://www.regenstudio.world/Blogs/ssi-privacy/SSI headerAtivo 45Fides.webp">
+
+  <!-- JSON-LD Article Schema -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Designing for Privacy with Self-Sovereign Identity","description":"In an era where personal data is continuously harvested and monetized, Self-Sovereign Identity places the control over personal data back into the hands of individuals.","image":"https://www.regenstudio.world/Blogs/ssi-privacy/SSI headerAtivo 45Fides.webp","datePublished":"2024-09-24","inLanguage":"en","author":{"@type":"Person","name":"Yvo Hunink de Paiva"},"publisher":{"@type":"Organization","name":"Regen Studio","url":"https://www.regenstudio.world","logo":{"@type":"ImageObject","url":"https://www.regenstudio.world/Images/Logo-Text-on-the-sideAtivo 2.svg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.regenstudio.world/blog/ssi-privacy/"}}</script>
+
+  <!-- JSON-LD Breadcrumb Schema -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.regenstudio.world/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.regenstudio.world/blog.html"},{"@type":"ListItem","position":3,"name":"Designing for Privacy with Self-Sovereign Identity","item":"https://www.regenstudio.world/blog/ssi-privacy/"}]}</script>
+
+  <!-- RSS Discovery -->
+  <link rel="alternate" type="application/rss+xml" title="Regen Studio Blog" href="https://www.regenstudio.world/feed.xml">
+
+  <!-- Slug marker for blog.js hydration -->
+  <meta name="blog-post-slug" content="ssi-privacy">
+
+  <link rel="icon" type="image/png" href="../../Images/favicon.png">
+  <link rel="stylesheet" href="../../assets/fonts/fonts.css">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../blog.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="../../index.html" class="nav__logo">
+        <img src="../../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="../../index.html#about">Vision</a></li>
+        <li><a href="../../index.html#focus">Our Focus</a></li>
+        <li><a href="../../index.html#services">Services</a></li>
+        <li><a href="../../index.html#clients">Who We Serve</a></li>
+        <li><a href="../../blog.html">Blog</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Demos</a></li>
+        <li class="nav__contact-wrap">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <a href="../..//#contact-form" class="nav__contact-popover-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Post Header (pre-rendered, JS hydrates) -->
+  <div id="main-content"></div>
+  <section class="post-header" id="postHeader">
+      <div class="container">
+        <a href="../../blog.html" class="post-header__back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Blog</a>
+        <div class="post-header__categories"><span class="post-header__category post-header__category--magenta">Digital Identity</span><span class="post-header__category post-header__category--magenta">Privacy-by-Design</span><span class="post-header__category post-header__category--gray">Vision &amp; Strategy</span></div>
+        <h1 class="post-header__title">Designing for Privacy with Self-Sovereign Identity</h1>
+        <p class="post-header__subtitle">How SSI places the control over personal data back into the hands of individuals</p>
+        <div class="post-header__meta">
+          <div class="post-header__author">
+            <span class="post-header__author-name">Yvo Hunink de Paiva</span>
+            <span class="post-header__author-role">Regenerative Innovation Design</span>
+          </div>
+          <div class="post-header__meta-divider"></div>
+          <div class="post-header__meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> <time datetime="2024-09-24">September 24, 2024</time></div>
+          <div class="post-header__meta-divider"></div>
+          <div class="post-header__meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 5 min read</div>
+        </div>
+      </div></section>
+
+  <!-- Featured Image (pre-rendered) -->
+  <section class="post-featured-image" id="postFeaturedImage">
+      <div class="container">
+        <img src="../../Blogs/ssi-privacy/SSI headerAtivo 45Fides.webp" alt="Designing for Privacy with Self-Sovereign Identity">
+      </div></section>
+
+  <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
+  <section class="post-content" id="postContent">
+      <div class="post-content__inner">
+        <p class="post-answer-capsule"><strong>In an era where personal data is continuously harvested and monetized, Self-Sovereign Identity places the control over personal data back into the hands of individuals.</strong></p>
+        <div class="post-content__body" id="post-content"><p>In an era where personal data is continuously harvested and monetized, the concept of privacy &mdash; a fundamental right &mdash; has become a complex challenge. <strong>Our data is being stolen from us, used to influence us and manipulate us politically.</strong> Our digital lifestyle is not ending anytime soon. On the contrary, we continue digitizing.</p>
+
+<p>At Regen Studio, we think we need value-driven, responsible and privacy-first technologies to safeguard individual privacy and autonomy. In our quest for a digital space where people can be protected, we came across Self-Sovereign Identities (SSI), a form of digital identity that places the control over personal data back into the hands of individuals.</p>
+
+<h2>The Role of Designing for Privacy</h2>
+
+<p>Privacy-by-Design is an approach that embeds privacy into the design of systems and processes from the outset, rather than as an afterthought. By designing systems with privacy from the start, we can create environments that inherently protect personal data, reducing risks associated with data breaches, identity theft, and unauthorized access.</p>
+
+<p>From our experience working with governments, we have seen that even when intentions are good, regulation is in place or internal processes are designed, large organisations tend to allow grave privacy risks in their organisation, sometimes resulting in breaches. Entire copies of Citizen Databases on the personal computer of employees, to facilitate work, are not uncommon, let alone the amount of emails that are sent around with personal information in them for which consent was not given.</p>
+
+<p>One of the goals of Privacy-by-Design is data minimization, so for example claims about yourself without exposing unnecessary details. For instance, imagine verifying your age without revealing your exact date of birth or sharing proof of your address without exposing your full name. Or perhaps participate in a voting from a local government project, with only having to proof you are a citizen of the neighborhood to get access. The SSI community is building tools that help us do that in the most privacy-friendly way.</p>
+
+<h2>What is Self-Sovereign Identity (SSI)?</h2>
+
+<p>SSI is an attribute-based digital identity management model that allows individuals to own, control, and share their personal data without relying on a central authority that manages that identity (e.g. Login with Facebook). It allows for the creation of bottom-up trust networks. Unlike traditional digital identity systems, SSI empowers users with full control over their information, deciding who can access it and revoke that access. The movement around SSI initially formed itself around <a href="https://www.lifewithalacrity.com/article/the-path-to-self-soverereign-identity/">a set of 10 values by Christopher Allen</a>, to design an internet with better protection of the individual. This way of approaching digital identity aligns with the core principles of &ldquo;privacy-by-design,&rdquo; a focus that Regen Studio prioritizes in its projects.</p>
+
+<h2>Some Ways in Which SSI Supports Privacy-by-Design</h2>
+
+<ul>
+  <li><strong>Decentralized cryptography:</strong> SSIs frequently operate on decentralized networks, eliminating the need for centralized databases that are often targeted by cyberattacks, whilst still maintaining a common record of anonymous transactions that can be used as a proof, or a trust anchor. By removing single points of failure, SSIs offer a robust defense against unauthorized data access and introduces a layer of immutability.</li>
+  <li><strong>User Control:</strong> Users have the autonomy to manage their data, deciding which information to share, with whom, and for how long. Users can create new identifiers for each transaction, meaning your activity can not be traced by crossing information from different organisations, such as an e-mail address used for accounts. This contrasts sharply with traditional identity systems where data is often shared without the user&rsquo;s explicit consent.</li>
+  <li><strong>Selective Disclosure:</strong> With SSIs, individuals can selectively disclose information based on the context, ensuring that only the necessary data is shared. This is a game-changer for protecting sensitive information and reducing data exposure.</li>
+  <li><strong>Interoperability and Portability:</strong> SSIs are designed to be interoperable across different platforms, enabling seamless use without compromising security. This portability further empowers individuals, providing consistent privacy protections regardless of the platform or service.</li>
+</ul>
+
+<p>SSI is not free from risk of turning out the opposite of what it was designed to be. When friction to ask for digital proof goes down, we might risking having to excessively scan QR codes to get into places. And what about &ldquo;privacy is a luxury for the rich only&rdquo; becoming a reality worse as organisations start incentivizing individuals to share their data, which only those in need of money will do. However, if we keep the principles it was designed on in mind, and evaluate for them, we can make the promise of a people-first Internet a reality.</p>
+
+<div style="background: linear-gradient(135deg, #243644 0%, #1B2833 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">See it in action</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Experience an SSI-based identity wallet</p>
+  <p style="color: #8CA9BF; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">Try our interactive EDI Wallet demo &mdash; a privacy-first digital identity wallet built on Self-Sovereign Identity principles, with verifiable credentials and selective disclosure.</p>
+  <a href="https://demos.regenstudio.world/EDI-wallet/gate.html" style="display: inline-block; background: #00914B; color: #FFFFFF; font-weight: 600; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none; transition: background 0.2s;">Explore the EDI Wallet Demo &rarr;</a>
+</div>
+
+<h2>Dutch Blockchain Coalition</h2>
+<h3>Pioneering Designing for Privacy with Self-Sovereign Identity</h3>
+
+<p>Our client, the <a href="https://dutchblockchaincoalition.org/">Dutch Blockchain Coalition</a>, has been at the forefront of research and development in the field of SSI. Their work is pivotal in creating standardised SSI frameworks that prioritize privacy and data protection. By focusing on interoperable, user-centric solutions, they are paving the way for broader adoption of privacy-preserving digital identities in Europe and beyond. The Coalition&rsquo;s efforts in establishing the SSI ecosystem are instrumental in shaping a future where privacy is not a luxury but a default setting in all digital interactions.</p>
+
+<p>As we continue to collaborate with thought leaders like the Dutch Blockchain Coalition, we are committed to building systems that prioritize privacy and respect for individual rights at every stage, whilst understanding their risks.</p>
+
+<figure>
+  <img src="../../Blogs/ssi-privacy/SSI footerAtivo 46.webp" alt="Self-Sovereign Identity ecosystem overview">
+</figure>
+
+<p>Reach out to us through <a href="mailto:info@regenstudio.world">info@regenstudio.world</a> if you want us designing systems for privacy with self-sovereign identities for you.</p>
+</div>
+      </div></section>
+
+  <!-- Related Posts (rendered by JS) -->
+  <section class="related-posts" id="relatedPosts"></section>
+
+  <!-- Footer -->
+  <footer class="footer" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="Regen Studio">
+    <meta itemprop="url" content="https://www.regenstudio.world">
+    <meta itemprop="email" content="info@regenstudio.world">
+    <meta itemprop="description" content="Regenerative innovation design studio pioneering systemic innovations at the intersection of technology, society, and nature.">
+    <link itemprop="logo" href="https://www.regenstudio.world/Images/Logo-Text-on-the-sideAtivo 2.svg">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../../index.html" class="footer__logo">
+          <img src="../../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img">
+        </a>
+        <p>Pioneering innovations in the regeneration of our natural, human, and urban ecosystems.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="../../index.html#about">Our Vision</a></li>
+            <li><a href="../../index.html#focus">Our Focus</a></li>
+            <li><a href="../../index.html#services">Services</a></li>
+            <li><a href="../../index.html#clients">Who We Serve</a></li>
+            <li><a href="../../blog.html">Blog</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Demos</a></li>
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Connect</h4>
+          <ul>
+            <li>
+              <span class="footer__email-row">
+                <span class="footer__email-address">info@regenstudio.world</span>
+                <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+              </span>
+            </li>
+            <li><a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" itemprop="sameAs">LinkedIn</a></li>
+            <li><a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" itemprop="sameAs">Bluesky</a></li>
+            <li><a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" itemprop="sameAs">Mastodon</a></li>
+          </ul>
+        </div>
+        <div class="footer__col footer__col--locations">
+          <h4>Locations</h4>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">The Netherlands</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio B.V.</p>
+              <p class="footer__address"><span itemprop="streetAddress">Stollenbergweg 43</span>, <span itemprop="postalCode">6571 AB</span>, <span itemprop="addressLocality">Berg en Dal</span></p>
+              <meta itemprop="addressCountry" content="NL">
+            </div>
+            <p class="footer__reg">KVK 90337948</p>
+          </div>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">Brazil</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio Consultoria LTDA</p>
+              <p class="footer__address"><span itemprop="streetAddress">Av. Washington Lu&iacute;s 1527, 174B</span><br><span itemprop="postalCode">04662-002</span>, <span itemprop="addressLocality">S&atilde;o Paulo</span></p>
+              <meta itemprop="addressCountry" content="BR">
+            </div>
+            <p class="footer__reg">CNPJ 57.579.114/0001-55</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Regen Studio. All rights reserved. &middot; <a href="../../privacy.html">Privacy Policy</a> &middot; <a href="../../about.html">About</a> &middot; <a href="../../admin/">Admin</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/i18n.js" defer></script>
+  <script src="../../blog.js" defer></script>
+  <script src="../../assets/js/tracker.js" defer></script>
+</body>
+</html>
