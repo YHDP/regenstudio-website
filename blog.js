@@ -737,7 +737,7 @@
       <div id="post-contact-success" class="regen-form__success" style="display:none">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
         <h3>Message sent!</h3>
-        <p>We'll be in touch shortly.</p>
+        <p>We will be in touch soon.</p>
       </div>
       <div class="regen-form__divider"><span>${t("blog.cta_or_email", "or email us directly")}</span></div>
       <div class="copyable-email copyable-email--compact">
@@ -751,6 +751,28 @@
     `;
     const postInner = postContainer.querySelector('.post-content__inner');
     if (postInner) postInner.appendChild(ctaBanner);
+
+    // Social follow card
+    const followCard = document.createElement('div');
+    followCard.className = 'follow-card';
+    followCard.innerHTML = `
+      <p class="follow-card__heading">${t("follow.heading", "Follow us")}</p>
+      <div class="follow-card__links">
+        <a href="${COMPANY.profiles.linkedin}" target="_blank" rel="noopener" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          LinkedIn
+        </a>
+        <a href="${COMPANY.profiles.bluesky}" target="_blank" rel="noopener" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 600 530" fill="currentColor"><path d="m136 33c66 49 136 149 164 202 28-53 98-153 164-202 47-35 123-76 123-21 0 11-7 94-11 107-14 47-63 59-108 52 78 14 98 58 55 103-82 86-177-22-191-99-14 77-109 185-191 99-43-45-23-89 55-103-45 7-94-5-108-52-4-13-11-96-11-107 0-55 76-14 123 21z"/></svg>
+          Bluesky
+        </a>
+        <a href="${COMPANY.profiles.mastodon}" target="_blank" rel="noopener me" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.26 13.12c-.31 1.58-2.76 3.31-5.58 3.65-1.47.17-2.91.33-4.45.26-2.52-.11-4.51-.58-4.51-.58 0 .24.01.47.04.69.3 2.25 2.22 2.38 4.05 2.44 1.84.07 3.48-.45 3.48-.45l.08 1.68s-1.29.69-3.59.82c-1.27.07-2.84-.03-4.67-.52C2.79 20.17 2.15 16.59 2.03 12.96c-.04-1.07-.01-2.08-.01-2.92 0-3.69 2.42-4.77 2.42-4.77C5.66 4.62 7.56 4.17 9.53 4.15h.05c1.97.02 3.87.47 5.09 1.12 0 0 2.42 1.08 2.42 4.77 0 0 .03 2.72-.37 4.08z"/><path d="M18.19 9.04v4.66h-1.85V9.18c0-.95-.4-1.44-1.2-1.44-.88 0-1.33.57-1.33 1.71v2.48h-1.84v-2.48c0-1.14-.44-1.71-1.33-1.71-.8 0-1.2.49-1.2 1.44v4.52H7.59V9.04c0-.95.24-1.71.73-2.27.5-.56 1.16-.85 1.97-.85.95 0 1.67.36 2.14 1.09l.46.77.46-.77c.47-.73 1.19-1.09 2.14-1.09.81 0 1.46.29 1.97.85.49.56.73 1.32.73 2.27z" fill="var(--color-bg)"/></svg>
+          Mastodon
+        </a>
+      </div>
+    `;
+    if (postInner) postInner.appendChild(followCard);
 
     // Scroll-triggered floating CTA
     initScrollCTA();
@@ -946,7 +968,10 @@
           throw new Error(data.error || 'Something went wrong');
         }
 
-        // Success
+        // Success — redirect to thank-you page
+        const langPrefix = document.documentElement.lang === 'nl' ? '/nl' : document.documentElement.lang === 'pt-BR' ? '/pt' : '';
+        window.location.href = langPrefix + '/thank-you.html';
+        // Fallback if redirect blocked
         form.style.display = 'none';
         const successEl = document.getElementById(successId);
         if (successEl) successEl.style.display = 'flex';

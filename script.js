@@ -1568,7 +1568,10 @@
             throw new Error(data.error || 'Something went wrong');
           });
         }
-        // Success
+        // Success — redirect to thank-you page
+        var langPrefix = document.documentElement.lang === 'nl' ? '/nl' : document.documentElement.lang === 'pt-BR' ? '/pt' : '';
+        window.location.href = langPrefix + '/thank-you.html';
+        // Fallback if redirect blocked
         form.style.display = 'none';
         var successEl = document.getElementById('contact-success');
         if (successEl) successEl.style.display = 'flex';
