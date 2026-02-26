@@ -88,6 +88,7 @@
   ];
 
   const canvas = document.getElementById('canvas');
+  if (!canvas) return; // No canvas on this page — skip simulation entirely
   const ctx = canvas.getContext('2d');
   const canvasWrap = document.querySelector('.hero-canvas-wrap');
   let W, H, dpr;
@@ -1317,13 +1318,10 @@
 
   function initPage() {
     var nav = document.getElementById('nav');
-    var navToggle = document.getElementById('navToggle');
-    var navLinks = document.getElementById('navLinks');
 
-    // --- Navbar scroll effect (rAF-batched) ---
+    // --- Canvas scroll fade (rAF-batched) ---
     var scrollRafPending = false;
-    function onScroll() {
-      nav.classList.toggle('nav--scrolled', window.scrollY > 60);
+    window.addEventListener('scroll', function () {
       if (!scrollRafPending) {
         scrollRafPending = true;
         requestAnimationFrame(function () {
@@ -1331,9 +1329,7 @@
           updateCanvasScrollFade();
         });
       }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    }, { passive: true });
 
     // --- Viewport toggle (desktop ↔ mobile preview) ---
     var viewportToggle = document.getElementById('viewportToggle');
@@ -1383,62 +1379,6 @@
         }
       });
     }
-
-    // --- Nav contact popover ---
-    var navContactBtn = document.getElementById('navContactBtn');
-    var navContactPopover = document.getElementById('navContactPopover');
-    if (navContactBtn && navContactPopover) {
-      navContactBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        navContactPopover.classList.toggle('open');
-      });
-      document.addEventListener('click', function (e) {
-        if (!e.target.closest('.nav__contact-wrap')) {
-          navContactPopover.classList.remove('open');
-        }
-      });
-    }
-
-    // --- Mobile menu toggle (iOS scroll lock) ---
-    var savedScrollY = 0;
-
-    function openNav() {
-      savedScrollY = window.scrollY;
-      document.body.classList.add('nav-open');
-      document.body.style.top = -savedScrollY + 'px';
-      navToggle.classList.add('active');
-      navLinks.classList.add('open');
-    }
-
-    function closeNav() {
-      document.body.classList.remove('nav-open');
-      document.body.style.top = '';
-      window.scrollTo(0, savedScrollY);
-      navToggle.classList.remove('active');
-      navLinks.classList.remove('open');
-    }
-
-    navToggle.addEventListener('click', function () {
-      if (navLinks.classList.contains('open')) {
-        closeNav();
-      } else {
-        openNav();
-      }
-    });
-
-    navLinks.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        closeNav();
-      });
-    });
-
-    // --- Close menu on orientation change ---
-    window.addEventListener('orientationchange', function () {
-      if (navLinks.classList.contains('open')) {
-        closeNav();
-      }
-    });
 
     // --- Hero entrance animations ---
     var heroElements = document.querySelectorAll('.hero .animate-in');
@@ -1493,52 +1433,7 @@
       observer.observe(el);
     });
 
-    // --- Smooth scroll for anchor links ---
-    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        var target = document.querySelector(link.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          var offset = nav.offsetHeight + 20;
-          var top = target.getBoundingClientRect().top + window.scrollY - offset;
-          window.scrollTo({ top: top, behavior: 'smooth' });
-        }
-      });
-    });
 
-    // --- Copy-to-clipboard for email buttons ---
-    document.addEventListener('click', function (e) {
-      // CTA copyable email button
-      var copyBtn = e.target.closest('.copyable-email__btn');
-      if (copyBtn) {
-        var email = copyBtn.getAttribute('data-email');
-        navigator.clipboard.writeText(email).then(function () {
-          var label = copyBtn.querySelector('.copyable-email__label');
-          copyBtn.classList.add('copied');
-          if (label) label.textContent = t('nav.copied', 'Copied!');
-          showToast(t('toast.email_copied', 'Email copied to clipboard!'));
-          setTimeout(function () {
-            copyBtn.classList.remove('copied');
-            if (label) label.textContent = t('nav.copy', 'Copy');
-          }, 2000);
-        });
-        return;
-      }
-
-      // Footer copy button
-      var footerBtn = e.target.closest('.footer__copy-btn');
-      if (footerBtn) {
-        var email = footerBtn.getAttribute('data-email');
-        navigator.clipboard.writeText(email).then(function () {
-          footerBtn.classList.add('copied');
-          showToast(t('toast.email_copied', 'Email copied to clipboard!'));
-          setTimeout(function () {
-            footerBtn.classList.remove('copied');
-          }, 2000);
-        });
-        return;
-      }
-    });
 
     // --- Active nav link on scroll ---
     var sections = document.querySelectorAll('section[id]');
@@ -1571,16 +1466,7 @@
         }
       });
 
-      // Toggle section-nav sticky when scrolled past hero
-      var sectionNav = document.querySelector('.section-nav');
-      var hero = document.querySelector('.hero');
-      if (sectionNav && hero) {
-        if (window.scrollY >= hero.offsetHeight - 69) {
-          sectionNav.classList.add('section-nav--sticky');
-        } else {
-          sectionNav.classList.remove('section-nav--sticky');
-        }
-      }
+      // Section-nav active state is handled above via sectionNavBtns
     }
 
     var activeLinkRafPending = false;

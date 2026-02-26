@@ -564,6 +564,7 @@ ${buildHead(post, lang, availableLangs)}
 
   ${fixedFooter}
 
+  <script src="${ap}assets/js/nav.js" defer></script>
   <script src="${ap}assets/js/i18n.js" defer></script>
   <script src="${ap}blog.js" defer></script>
   <script src="${ap}assets/js/tracker.js" defer></script>

@@ -96,6 +96,7 @@
       <a href="index.html" class="nav__logo">
         <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
       </a>
+      <!-- Mobile slide-in menu -->
       <ul class="nav__links" id="navLinks">
         <li><a href="about.html" data-i18n="nav.about">Over Ons</a></li>
         <li><a href="vision.html" data-i18n="nav.vision">Visie</a></li>
@@ -126,9 +127,44 @@
           </div>
         </li>
       </ul>
-      <button class="nav__toggle" id="navToggle" aria-label="Menu openen">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__actions">
+        <!-- Desktop dropdown menu -->
+        <button class="nav__menu-btn" aria-expanded="false" aria-controls="navDropdown">
+          Menu <span class="nav__menu-btn__arrow">&#9662;</span>
+        </button>
+        <div class="nav__dropdown" id="navDropdown">
+          <a href="vision.html" data-i18n="nav.vision">Visie</a>
+          <a href="innovation-services.html" data-i18n="nav.services">Diensten</a>
+          <a href="../problem-analysis/" data-i18n="nav.problem_analysis">Probleemanalyse</a>
+          <a href="blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="about.html" data-i18n="nav.about">Over Ons</a>
+          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+        </div>
+        <div class="nav__contact-wrap nav__contact-wrap--desktop">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtnDesktop">Contact</button>
+          <div class="nav__contact-popover" id="navContactPopoverDesktop">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Stuur ons een bericht — we horen graag van je.</p>
+              <a href="#services-contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Stuur ons een bericht
+              </a>
+              <div class="nav__contact-popover-divider">of mail ons direct</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="E-mailadres kopi&euml;ren">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Kopieer</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="nav__toggle" id="navToggle" aria-label="Menu openen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -139,117 +175,65 @@
       <a href="../nl/index.html#services" class="privacy-back">&larr; Terug naar Diensten</a>
       <p class="about-hero__label">Innovatiediensten</p>
       <h1 class="about-hero__title">Innovatiediensten voor <em>systemische impact</em></h1>
-      <p class="about-hero__lead"><strong>Regen Studio biedt 10 innovatiediensten — van probleemanalyse en design sprints tot living labs en stakeholderengagement — afgestemd op complexe omgevingen met meerdere belanghebbenden in overheid, bedrijfsleven en onderzoek.</strong></p>
-      <p class="about-hero__lead">Door de jaren heen zagen we veel innovaties mislukken. En hoewel dat niet per se slecht is, merkten we dat vooral in complexe stakeholderomgevingen zelfs goede idee&euml;n vroegtijdig sneuvelen. We besloten dat te veranderen. We passen verschillende soorten innovatiediensten toe, gebaseerd op wat in de praktijk werkt. Elke dienst benut de kracht van innovatie op een andere manier en kan worden afgestemd op jouw voorkeuren.</p>
-      <p class="about-hero__lead" style="margin-top: 16px;">Onze innovatiediensten richten zich niet alleen op de creatieve delen van het proces, maar houden ook rekening met rapportage, besluitvormingsstructuren, inkoopprocessen en ethische overwegingen. We hebben sjablonen beschikbaar die alle stappen beschrijven die genomen moeten worden. Zo helpen we je om innovaties te ontwerpen &eacute;n te adopteren. Laten we samen ontdekken hoe we jouw problemen kunnen oplossen en de toekomst kunnen veranderen.</p>
+      <p class="about-hero__lead"><strong>Wij bieden 10 innovatiediensten — van probleemanalyse en design sprints tot living labs en stakeholder engagement — afgestemd op complexe multi-stakeholder omgevingen. Elke dienst dekt de creatieve, operationele en ethische dimensies van innovatie, met kant-en-klare templates om elke stap te begeleiden.</strong></p>
     </section>
 
     <!-- Services Grid -->
     <section class="about-section">
       <h2 class="about-section__title">Onze 10 Innovatiediensten</h2>
       <div class="inno-services__grid">
-
-        <details class="inno-service" open>
-          <summary>
-            <div class="inno-service__image">
-              <img src="../Images/Services/Innovation Services Sub/Innovation Services-10 -problem analysis.webp" alt="Probleemanalyse">
-            </div>
-            <h3 class="inno-service__title">Probleemanalyse</h3>
-          </summary>
-          <p class="inno-service__subtitle">Vind de grondoorzaken <a href="../problem-analysis/" class="inno-service__link">Meer informatie &rarr;</a></p>
-        </details>
-
-        <details class="inno-service" open>
-          <summary>
-            <div class="inno-service__image">
-              <img src="../Images/Services/Innovation Services Sub/Innovation Services-11-ideation.webp" alt="Idee&euml;nvorming">
-            </div>
-            <h3 class="inno-service__title">Idee&euml;nvorming</h3>
-          </summary>
-          <p class="inno-service__subtitle">Schets de toekomst van mogelijkheden <a href="/nl/blog/slim-laadplein-vruchtenbuurt/" class="inno-service__link">Meer informatie &rarr;</a></p>
-        </details>
-
-        <details class="inno-service" open>
-          <summary>
-            <div class="inno-service__image">
-              <img src="../Images/Services/Innovation Services Sub/Innovation Services-12-prototyping.webp" alt="Prototyping">
-            </div>
-            <h3 class="inno-service__title">Prototyping</h3>
-          </summary>
-          <p class="inno-service__subtitle">Bouw een ruwe oplossing <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="inno-service__link">Meer informatie &rarr;</a></p>
-        </details>
-
-        <details class="inno-service" open>
-          <summary>
-            <div class="inno-service__image">
-              <img src="../Images/Services/Innovation Services Sub/solution validation.webp" alt="Oplossingsvalidatie">
-            </div>
-            <h3 class="inno-service__title">Oplossingsvalidatie</h3>
-          </summary>
-          <p class="inno-service__subtitle">Doorsta alle checks <a href="/nl/blog/energy-justice-the-hague/" class="inno-service__link">Meer informatie &rarr;</a></p>
-        </details>
-
-        <details class="inno-service" open>
-          <summary>
-            <div class="inno-service__image">
-              <img src="../Images/Services/Innovation Services Sub/Experiment Design.webp" alt="Experimentontwerp">
-            </div>
-            <h3 class="inno-service__title">Experimentontwerp</h3>
-          </summary>
-          <p class="inno-service__subtitle">Test je oplossing in de praktijk <a href="/nl/blog/energy-justice-the-hague/" class="inno-service__link">Meer informatie &rarr;</a></p>
-        </details>
-
-        <details class="inno-service" open>
-          <summary>
-            <div class="inno-service__image">
-              <img src="../Images/Services/Innovation Services Sub/DesignSprint.webp" alt="Design Sprints">
-            </div>
-            <h3 class="inno-service__title">Design Sprints</h3>
-          </summary>
-          <p class="inno-service__subtitle">Een innovatie-snelkookpan</p>
-        </details>
-
-        <details class="inno-service" open>
-          <summary>
-            <div class="inno-service__image">
-              <img src="../Images/Services/Innovation Services Sub/Innovation Process Design.webp" alt="Innovatieprocesontwerp">
-            </div>
-            <h3 class="inno-service__title">Innovatieprocesontwerp</h3>
-          </summary>
-          <p class="inno-service__subtitle">Een op maat gemaakte opzet voor jouw context <a href="/nl/blog/a-custom-digital-innovation-process-for-the-hague/" class="inno-service__link">Meer informatie &rarr;</a></p>
-        </details>
-
-        <details class="inno-service" open>
-          <summary>
-            <div class="inno-service__image">
-              <img src="../Images/Services/Innovation Services Sub/Innovation Community Design.webp" alt="Innovatiesysteemontwerp">
-            </div>
-            <h3 class="inno-service__title">Innovatiesysteemontwerp</h3>
-          </summary>
-          <p class="inno-service__subtitle">Cre&euml;er een co-creatiegemeenschap</p>
-        </details>
-
-        <details class="inno-service" open>
-          <summary>
-            <div class="inno-service__image">
-              <img src="../Images/Services/Innovation Services Sub/Innovation Coaching.webp" alt="Innovatiecoaching">
-            </div>
-            <h3 class="inno-service__title">Innovatiecoaching</h3>
-          </summary>
-          <p class="inno-service__subtitle">Ondersteun je team <a href="/nl/blog/Blog%201/" class="inno-service__link">Meer informatie &rarr;</a></p>
-        </details>
-
-        <details class="inno-service" open>
-          <summary>
-            <div class="inno-service__image">
-              <img src="../Images/Services/Innovation Services Sub/Innovation Management.webp" alt="Innovatiemanagement">
-            </div>
-            <h3 class="inno-service__title">Innovatiemanagement</h3>
-          </summary>
-          <p class="inno-service__subtitle">Effectieve innovatie-operatie</p>
-        </details>
-
+        <div class="inno-service" data-service="0">
+          <div class="inno-service__image"><img src="../Images/Services/Innovation Services Sub/Innovation Services-10 -problem analysis.webp" alt="Probleemanalyse"></div>
+          <h3 class="inno-service__title">Probleemanalyse</h3>
+          <p class="inno-service__teaser">Vind de grondoorzaken</p>
+        </div>
+        <div class="inno-service" data-service="1">
+          <div class="inno-service__image"><img src="../Images/Services/Innovation Services Sub/Innovation Services-11-ideation.webp" alt="Ideevorming"></div>
+          <h3 class="inno-service__title">Ideevorming</h3>
+          <p class="inno-service__teaser">Schets de toekomst</p>
+        </div>
+        <div class="inno-service" data-service="2">
+          <div class="inno-service__image"><img src="../Images/Services/Innovation Services Sub/Innovation Services-12-prototyping.webp" alt="Prototyping"></div>
+          <h3 class="inno-service__title">Prototyping</h3>
+          <p class="inno-service__teaser">Bouw een ruwe oplossing</p>
+        </div>
+        <div class="inno-service" data-service="3">
+          <div class="inno-service__image"><img src="../Images/Services/Innovation Services Sub/solution validation.webp" alt="Oplossingsvalidatie"></div>
+          <h3 class="inno-service__title">Oplossingsvalidatie</h3>
+          <p class="inno-service__teaser">Doorsta alle checks</p>
+        </div>
+        <div class="inno-service" data-service="4">
+          <div class="inno-service__image"><img src="../Images/Services/Innovation Services Sub/Experiment Design.webp" alt="Experimentontwerp"></div>
+          <h3 class="inno-service__title">Experimentontwerp</h3>
+          <p class="inno-service__teaser">Test in de praktijk</p>
+        </div>
+        <div class="inno-service" data-service="5">
+          <div class="inno-service__image"><img src="../Images/Services/Innovation Services Sub/DesignSprint.webp" alt="Design Sprints"></div>
+          <h3 class="inno-service__title">Design Sprints</h3>
+          <p class="inno-service__teaser">Innovatie-snelkookpan</p>
+        </div>
+        <div class="inno-service" data-service="6">
+          <div class="inno-service__image"><img src="../Images/Services/Innovation Services Sub/Innovation Process Design.webp" alt="Procesontwerp"></div>
+          <h3 class="inno-service__title">Procesontwerp</h3>
+          <p class="inno-service__teaser">Een opzet op maat</p>
+        </div>
+        <div class="inno-service" data-service="7">
+          <div class="inno-service__image"><img src="../Images/Services/Innovation Services Sub/Innovation Community Design.webp" alt="Systeemontwerp"></div>
+          <h3 class="inno-service__title">Systeemontwerp</h3>
+          <p class="inno-service__teaser">Co-creatiegemeenschap</p>
+        </div>
+        <div class="inno-service" data-service="8">
+          <div class="inno-service__image"><img src="../Images/Services/Innovation Services Sub/Innovation Coaching.webp" alt="Coaching"></div>
+          <h3 class="inno-service__title">Coaching</h3>
+          <p class="inno-service__teaser">Ondersteun je team</p>
+        </div>
+        <div class="inno-service" data-service="9">
+          <div class="inno-service__image"><img src="../Images/Services/Innovation Services Sub/Innovation Management.webp" alt="Management"></div>
+          <h3 class="inno-service__title">Management</h3>
+          <p class="inno-service__teaser">Effectieve operatie</p>
+        </div>
       </div>
+      <div class="inno-services__detail" id="serviceDetail"></div>
     </section>
 
     <!-- Related Stories -->
@@ -298,7 +282,55 @@
       </div>
     </section>
 
+    <!-- FAQ -->
+    <section class="about-section faq-section">
+      <h2 class="about-section__title">Veelgestelde Vragen</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary class="faq-item__q">Waarom mislukken goede idee&euml;n vaak in complexe stakeholderomgevingen?</summary>
+          <p class="faq-item__a">In multi-stakeholder settings — overheid, brancheconsortia, onderzoeksprogramma's — moet innovatie navigeren door rapportagevereisten, besluitvormingsstructuren, inkoopregels en ethische toetsing. Een goed concept kan bij elk van die poorten vastlopen. Onze diensten richten zich op elke dimensie, niet alleen de creatieve vonk.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q">Hoe houden jullie diensten rekening met niet-creatieve dimensies zoals inkoop en ethiek?</summary>
+          <p class="faq-item__a">Elke dienst wordt geleverd met templates die de volledige levenscyclus dekken: van ideevorming via besluitvormingspoorten, compliancechecks en inkoopvereisten. We integreren ethische overwegingen en rapportagestandaarden vanaf het begin in plaats van ze achteraf toe te voegen.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q">Kan ik meerdere diensten combineren in &eacute;&eacute;n opdracht?</summary>
+          <p class="faq-item__a">Ja. De meeste projecten combineren twee tot vier diensten — bijvoorbeeld Probleemanalyse gevolgd door een Design Sprint en Experimentontwerp. We stemmen de volgorde af op jouw context en planning.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q">Wat is de typische doorlooptijd van een opdracht?</summary>
+          <p class="faq-item__a">Dat varieert sterk. Een gerichte Design Sprint duurt 4-5 dagen; een Innovatieprocesontwerp met stakeholder engagement kan enkele maanden beslaan. We scopen elk project individueel.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q">Werken jullie met publieke organisaties?</summary>
+          <p class="faq-item__a">Absoluut — gemeenten, regionale ontwikkelingsmaatschappijen en EU-gefinancierde programma's vormen een kernonderdeel van onze praktijk. We begrijpen publieke inkoop, co-creatiemandaten en open-innovatie frameworks.</p>
+        </details>
+      </div>
+    </section>
+
   </main>
+
+  <!-- Social follow card -->
+  <section class="container" style="padding-bottom: 64px;">
+    <div class="follow-card">
+      <p class="follow-card__heading">Volg ons</p>
+      <div class="follow-card__links">
+        <a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 600 530" fill="currentColor"><path d="m136 33c66 49 136 149 164 202 28-53 98-153 164-202 47-35 123-76 123-21 0 11-7 94-11 107-14 47-63 59-108 52 78 14 98 58 55 103-82 86-177-22-191-99-14 77-109 185-191 99-43-45-23-89 55-103-45 7-94-5-108-52-4-13-11-96-11-107 0-55 76-14 123 21z"/></svg>
+          Bluesky
+        </a>
+        <a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.26 13.12c-.31 1.58-2.76 3.31-5.58 3.65-1.47.17-2.91.33-4.45.26-2.52-.11-4.51-.58-4.51-.58 0 .24.01.47.04.69.3 2.25 2.22 2.38 4.05 2.44 1.84.07 3.48-.45 3.48-.45l.08 1.68s-1.29.69-3.59.82c-1.27.07-2.84-.03-4.67-.52C2.79 20.17 2.15 16.59 2.03 12.96c-.04-1.07-.01-2.08-.01-2.92 0-3.69 2.42-4.77 2.42-4.77C5.66 4.62 7.56 4.17 9.53 4.15h.05c1.97.02 3.87.47 5.09 1.12 0 0 2.42 1.08 2.42 4.77 0 0 .03 2.72-.37 4.08z"/><path d="M18.19 9.04v4.66h-1.85V9.18c0-.95-.4-1.44-1.2-1.44-.88 0-1.33.57-1.33 1.71v2.48h-1.84v-2.48c0-1.14-.44-1.71-1.33-1.71-.8 0-1.2.49-1.2 1.44v4.52H7.59V9.04c0-.95.24-1.71.73-2.27.5-.56 1.16-.85 1.97-.85.95 0 1.67.36 2.14 1.09l.46.77.46-.77c.47-.73 1.19-1.09 2.14-1.09.81 0 1.46.29 1.97.85.49.56.73 1.32.73 2.27z" fill="var(--color-bg)"/></svg>
+          Mastodon
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
@@ -373,13 +405,48 @@
 
   <script>
     (function() {
-      // Collapse service cards on mobile so they start as an accordion
-      if (window.innerWidth <= 640) {
-        var cards = document.querySelectorAll('.inno-service[open]');
-        for (var i = 0; i < cards.length; i++) {
-          cards[i].removeAttribute('open');
-        }
-      }
+      // Service card click-to-expand detail panel
+      var serviceData = [
+        { title: 'Probleemanalyse', desc: 'Systemische analyse van complexe multi-stakeholder uitdagingen. We brengen grondoorzaken, stakeholderdynamiek en hefboompunten in kaart om het echte probleem te defini\u00ebren voordat we naar oplossingen springen.', link: '../problem-analysis/', linkText: 'Meer informatie' },
+        { title: 'Ideevorming', desc: 'Creatieve sessies die innovatieve oplossingsconcepten genereren. Met gestructureerde ideevormingsmethoden helpen we teams verder te kijken dan voor de hand liggende antwoorden en echt nieuwe mogelijkheden te schetsen.', link: '/nl/blog/slim-laadplein-vruchtenbuurt/', linkText: 'Bekijk casestudy' },
+        { title: 'Prototyping', desc: 'Snelle bouw van ruwe oplossingen om kernaannames te testen. We bouwen functionele prototypes \u2014 van interactieve demo\u2019s tot service-blueprints \u2014 zodat idee\u00ebn snel tastbaar worden.', link: 'https://demos.regenstudio.world', linkText: 'Bekijk demo\u2019s', external: true },
+        { title: 'Oplossingsvalidatie', desc: 'Gestructureerde validatie tegen technische, regelgevings- en gebruikersacceptatiecriteria. We zorgen ervoor dat je oplossing alle checks doorstaat voordat je opschaalt.', link: '/nl/blog/energy-justice-the-hague/', linkText: 'Bekijk casestudy' },
+        { title: 'Experimentontwerp', desc: 'Ontwerp rigoureuze experimenten in de praktijk om je oplossing te testen. We defini\u00ebren hypotheses, metrics en leercycli voor evidencebased iteratie.', link: '/nl/blog/energy-justice-the-hague/', linkText: 'Bekijk casestudy' },
+        { title: 'Design Sprints', desc: 'Een innovatie-snelkookpan: 4-5 intensieve dagen om van uitdaging naar gevalideerd prototype te gaan. Ideaal wanneer de tijd kort is en de belangen hoog.' },
+        { title: 'Innovatieprocesontwerp', desc: 'Een innovatieopzet op maat voor jouw context \u2014 met governance, besluitvormingspoorten, inkoopvereisten en stakeholderrollen. We ontwerpen het proces, niet alleen het resultaat.', link: '/nl/blog/a-custom-digital-innovation-process-for-the-hague/', linkText: 'Bekijk casestudy' },
+        { title: 'Innovatiesysteemontwerp', desc: 'Bouw een co-creatiegemeenschap of innovatie-ecosysteem. We ontwerpen samenwerkingsstructuren tussen organisaties die innovatie in stand houden voorbij een enkel project.' },
+        { title: 'Innovatiecoaching', desc: 'Hands-on ondersteuning voor je team om intern innovatievermogen op te bouwen. We coachen teams door echte uitdagingen terwijl we methoden en mindsets overdragen.', link: '/nl/blog/Blog%201/', linkText: 'Bekijk casestudy' },
+        { title: 'Innovatiemanagement', desc: 'Effectieve innovatie-operatie \u2014 portfoliomanagement, KPI\u2019s, rapportage en governance. We helpen organisaties innovatie te runnen als een gedisciplineerde, herhaalbare praktijk.' }
+      ];
+      var detailPanel = document.getElementById('serviceDetail');
+      var serviceCards = document.querySelectorAll('.inno-service[data-service]');
+      serviceCards.forEach(function(card) {
+        card.addEventListener('click', function() {
+          var idx = parseInt(card.getAttribute('data-service'), 10);
+          var data = serviceData[idx];
+          var wasActive = card.classList.contains('active');
+          serviceCards.forEach(function(c) { c.classList.remove('active'); });
+          if (wasActive) {
+            detailPanel.classList.remove('open');
+            detailPanel.innerHTML = '';
+            return;
+          }
+          card.classList.add('active');
+          var img = card.querySelector('img');
+          var linkHtml = data.link
+            ? '<a href="' + data.link + '" class="inno-services__detail-link"' + (data.external ? ' target="_blank" rel="noopener"' : '') + '>' + data.linkText + ' &rarr;</a>'
+            : '';
+          detailPanel.innerHTML =
+            '<div class="inno-services__detail-header">' +
+              '<img src="' + img.src + '" alt="' + data.title + '" class="inno-services__detail-img">' +
+              '<h3 class="inno-services__detail-title">' + data.title + '</h3>' +
+            '</div>' +
+            '<p class="inno-services__detail-body">' + data.desc + '</p>' +
+            linkHtml;
+          detailPanel.classList.add('open');
+          detailPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+      });
 
       // Contact form submission
       var form = document.getElementById('contact-form');
@@ -430,54 +497,6 @@
           });
         });
       }
-
-      var navToggle = document.getElementById('navToggle');
-      var navLinks = document.getElementById('navLinks');
-      if (navToggle && navLinks) {
-        navToggle.addEventListener('click', function() {
-          navToggle.classList.toggle('active');
-          navLinks.classList.toggle('open');
-          document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
-        });
-      }
-      var navContactBtn = document.getElementById('navContactBtn');
-      var navContactPopover = document.getElementById('navContactPopover');
-      if (navContactBtn && navContactPopover) {
-        navContactBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          navContactPopover.classList.toggle('open');
-        });
-        document.addEventListener('click', function(e) {
-          if (!e.target.closest('.nav__contact-wrap')) {
-            navContactPopover.classList.remove('open');
-          }
-        });
-      }
-      document.addEventListener('click', function(e) {
-        var copyBtn = e.target.closest('.copyable-email__btn');
-        if (copyBtn) {
-          var email = copyBtn.getAttribute('data-email');
-          navigator.clipboard.writeText(email).then(function() {
-            var label = copyBtn.querySelector('.copyable-email__label');
-            copyBtn.classList.add('copied');
-            if (label) label.textContent = 'Gekopieerd!';
-            setTimeout(function() {
-              copyBtn.classList.remove('copied');
-              if (label) label.textContent = 'Kopieer';
-            }, 2000);
-          });
-          return;
-        }
-        var footerBtn = e.target.closest('.footer__copy-btn');
-        if (footerBtn) {
-          var email = footerBtn.getAttribute('data-email');
-          navigator.clipboard.writeText(email).then(function() {
-            footerBtn.classList.add('copied');
-            setTimeout(function() { footerBtn.classList.remove('copied'); }, 2000);
-          });
-        }
-      });
 
       // Load 3 random Innovation Services blog posts
       var innoGrid = document.getElementById('innoBlogGrid');
@@ -537,6 +556,7 @@
       }
     })();
   </script>
+  <script src="../assets/js/nav.js" defer></script>
   <script src="../assets/js/i18n.js" defer></script>
   <script src="../assets/js/tracker.js" defer></script>
 </body>
