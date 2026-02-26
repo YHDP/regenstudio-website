@@ -442,6 +442,78 @@
           "@type": "Answer",
           "text": "As demos do Sistema DPP e da Carteira EDI s\u00e3o protegidas por senha porque cont\u00eam funcionalidades detalhadas de prot\u00f3tipo que se beneficiam de uma apresenta\u00e7\u00e3o guiada. Para solicitar acesso, entre em contato com o Regen Studio pelo e-mail info@regenstudio.world ou use o formul\u00e1rio de contato na p\u00e1gina de FAQ. Agendaremos uma breve introdu\u00e7\u00e3o para gui\u00e1-lo pela demo e discutir como os conceitos se aplicam \u00e0 sua organiza\u00e7\u00e3o."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Por que boas ideias frequentemente falham em ambientes complexos com múltiplos atores?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Em ambientes multi-stakeholder — governo, consórcios industriais, programas de pesquisa — a inovação deve navegar por requisitos de relatórios, estruturas de tomada de decisão, regras de aquisição e revisão ética."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como seus serviços consideram dimensões não criativas como aquisições e ética?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cada serviço vem com templates que cobrem todo o ciclo de vida: da ideação às etapas de decisão, verificações de conformidade e alinhamento de aquisições."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Posso combinar múltiplos serviços de inovação em um único projeto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. A maioria dos projetos combina dois a quatro serviços — por exemplo, Análise de Problemas seguida de Design Sprint e Design de Experimentos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual é a duração típica de um projeto de serviços de inovação?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Varia bastante. Um Design Sprint focado dura 4-5 dias; um Design de Processos de Inovação com engajamento de stakeholders pode se estender por vários meses."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Vocês trabalham com organizações do setor público?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutamente — municípios, agências de desenvolvimento regional e programas financiados pela UE são parte central da nossa prática."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Por que começar com análise de problemas em vez de pular para soluções?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fazer o diagnóstico errado é o erro mais caro na inovação — desperdiça recursos em soluções que não abordam o problema real."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como vocês decidem quais métodos de análise usar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Analisamos seu contexto — o cenário de stakeholders, disponibilidade de dados, cronograma do projeto e cultura organizacional — e então projetamos uma sessão personalizada."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "As sessões de análise de problemas podem ser realizadas remotamente?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. Cada método em nossa caixa de ferramentas possui ferramental físico e online disponível."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O que acontece após a análise de problemas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A análise de problemas alimenta diretamente nossos outros serviços de inovação — geralmente Ideação ou Design Sprints."
+        }
       }
     ]
   }
@@ -559,6 +631,7 @@
       <a href="../index.html" class="nav__logo">
         <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
       </a>
+      <!-- Mobile slide-in menu -->
       <ul class="nav__links" id="navLinks">
         <li><a href="about.html" data-i18n="nav.about">Sobre Nós</a></li>
         <li><a href="vision.html" data-i18n="nav.vision">Visão</a></li>
@@ -589,9 +662,44 @@
           </div>
         </li>
       </ul>
-      <button class="nav__toggle" id="navToggle" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__actions">
+        <!-- Desktop dropdown menu -->
+        <button class="nav__menu-btn" aria-expanded="false" aria-controls="navDropdown">
+          Menu <span class="nav__menu-btn__arrow">&#9662;</span>
+        </button>
+        <div class="nav__dropdown" id="navDropdown">
+          <a href="vision.html" data-i18n="nav.vision">Visão</a>
+          <a href="innovation-services.html" data-i18n="nav.services">Serviços</a>
+          <a href="../problem-analysis/" data-i18n="nav.problem_analysis">Análise de Problemas</a>
+          <a href="blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="about.html" data-i18n="nav.about">Sobre</a>
+          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+        </div>
+        <div class="nav__contact-wrap nav__contact-wrap--desktop">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtnDesktop">Fale Conosco</button>
+          <div class="nav__contact-popover" id="navContactPopoverDesktop">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Envie uma mensagem — adoraríamos ouvir de você.</p>
+              <a href="#faq-contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Envie uma mensagem
+              </a>
+              <div class="nav__contact-popover-divider">ou envie um e-mail diretamente</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copiar endereço de e-mail">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copiar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="nav__toggle" id="navToggle" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -623,6 +731,7 @@
       <a href="#faq-digital" class="faq-categories__link">Sociedade Digital</a>
       <a href="#faq-nature" class="faq-categories__link">Natureza Resiliente</a>
       <a href="#faq-innovation" class="faq-categories__link">Servi\u00e7os de Inova\u00e7\u00e3o</a>
+      <a href="#faq-problem-analysis" class="faq-categories__link">Análise de Problemas</a>
       <a href="#faq-demos" class="faq-categories__link">Demos e Ferramentas</a>
     </nav>
     <!-- About Regen Studio -->
@@ -1059,6 +1168,77 @@
           </div>
         </details>
 
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">Por que boas ideias frequentemente falham em ambientes complexos com múltiplos atores?</summary>
+          <div class="dpp-faq__answer">
+            <p>Em ambientes multi-stakeholder — governo, consórcios industriais, programas de pesquisa — a inovação deve navegar por requisitos de relatórios, estruturas de tomada de decisão, regras de aquisição e revisão ética.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">Como seus serviços consideram dimensões não criativas como aquisições e ética?</summary>
+          <div class="dpp-faq__answer">
+            <p>Cada serviço vem com templates que cobrem todo o ciclo de vida: da ideação às etapas de decisão, verificações de conformidade e alinhamento de aquisições.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">Posso combinar múltiplos serviços de inovação em um único projeto?</summary>
+          <div class="dpp-faq__answer">
+            <p>Sim. A maioria dos projetos combina dois a quatro serviços — por exemplo, <a href="problem-analysis/">Análise de Problemas</a> seguida de Design Sprint e Design de Experimentos.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">Qual é a duração típica de um projeto de serviços de inovação?</summary>
+          <div class="dpp-faq__answer">
+            <p>Varia bastante. Um Design Sprint focado dura 4&ndash;5 dias; um Design de Processos de Inovação com engajamento de stakeholders pode se estender por vários meses.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">Vocês trabalham com organizações do setor público?</summary>
+          <div class="dpp-faq__answer">
+            <p>Absolutamente — municípios, agências de desenvolvimento regional e programas financiados pela UE são parte central da nossa prática.</p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- Análise de Problemas -->
+    <section class="about-section dpp-faq" id="faq-problem-analysis">
+      <h2 class="about-section__title">Análise de Problemas</h2>
+      <div class="dpp-faq__list">
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">Por que começar com análise de problemas em vez de pular para soluções?</summary>
+          <div class="dpp-faq__answer">
+            <p>Fazer o diagnóstico errado é o erro mais caro na inovação — desperdiça recursos em soluções que não abordam o problema real.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">Como vocês decidem quais métodos de análise usar?</summary>
+          <div class="dpp-faq__answer">
+            <p>Analisamos seu contexto — o cenário de stakeholders, disponibilidade de dados, cronograma do projeto e cultura organizacional — e então projetamos uma sessão personalizada.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">As sessões de análise de problemas podem ser realizadas remotamente?</summary>
+          <div class="dpp-faq__answer">
+            <p>Sim. Cada método em nossa caixa de ferramentas possui ferramental físico e online disponível.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">O que acontece após a análise de problemas?</summary>
+          <div class="dpp-faq__answer">
+            <p>A análise de problemas alimenta diretamente nossos outros <a href="innovation-services.html">serviços de inovação</a> — geralmente Ideação ou Design Sprints.</p>
+          </div>
+        </details>
+
       </div>
     </section>
 
@@ -1150,6 +1330,27 @@
     </section>
 
   </main>
+
+  <!-- Social follow card -->
+  <section class="container" style="padding-bottom: 64px;">
+    <div class="follow-card">
+      <p class="follow-card__heading">Siga-nos</p>
+      <div class="follow-card__links">
+        <a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 600 530" fill="currentColor"><path d="m136 33c66 49 136 149 164 202 28-53 98-153 164-202 47-35 123-76 123-21 0 11-7 94-11 107-14 47-63 59-108 52 78 14 98 58 55 103-82 86-177-22-191-99-14 77-109 185-191 99-43-45-23-89 55-103-45 7-94-5-108-52-4-13-11-96-11-107 0-55 76-14 123 21z"/></svg>
+          Bluesky
+        </a>
+        <a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.26 13.12c-.31 1.58-2.76 3.31-5.58 3.65-1.47.17-2.91.33-4.45.26-2.52-.11-4.51-.58-4.51-.58 0 .24.01.47.04.69.3 2.25 2.22 2.38 4.05 2.44 1.84.07 3.48-.45 3.48-.45l.08 1.68s-1.29.69-3.59.82c-1.27.07-2.84-.03-4.67-.52C2.79 20.17 2.15 16.59 2.03 12.96c-.04-1.07-.01-2.08-.01-2.92 0-3.69 2.42-4.77 2.42-4.77C5.66 4.62 7.56 4.17 9.53 4.15h.05c1.97.02 3.87.47 5.09 1.12 0 0 2.42 1.08 2.42 4.77 0 0 .03 2.72-.37 4.08z"/><path d="M18.19 9.04v4.66h-1.85V9.18c0-.95-.4-1.44-1.2-1.44-.88 0-1.33.57-1.33 1.71v2.48h-1.84v-2.48c0-1.14-.44-1.71-1.33-1.71-.8 0-1.2.49-1.2 1.44v4.52H7.59V9.04c0-.95.24-1.71.73-2.27.5-.56 1.16-.85 1.97-.85.95 0 1.67.36 2.14 1.09l.46.77.46-.77c.47-.73 1.19-1.09 2.14-1.09.81 0 1.46.29 1.97.85.49.56.73 1.32.73 2.27z" fill="var(--color-bg)"/></svg>
+          Mastodon
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
@@ -1274,55 +1475,9 @@
         });
       }
 
-      var navToggle = document.getElementById('navToggle');
-      var navLinks = document.getElementById('navLinks');
-      if (navToggle && navLinks) {
-        navToggle.addEventListener('click', function() {
-          navToggle.classList.toggle('active');
-          navLinks.classList.toggle('open');
-          document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
-        });
-      }
-      var navContactBtn = document.getElementById('navContactBtn');
-      var navContactPopover = document.getElementById('navContactPopover');
-      if (navContactBtn && navContactPopover) {
-        navContactBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          navContactPopover.classList.toggle('open');
-        });
-        document.addEventListener('click', function(e) {
-          if (!e.target.closest('.nav__contact-wrap')) {
-            navContactPopover.classList.remove('open');
-          }
-        });
-      }
-      document.addEventListener('click', function(e) {
-        var copyBtn = e.target.closest('.copyable-email__btn');
-        if (copyBtn) {
-          var email = copyBtn.getAttribute('data-email');
-          navigator.clipboard.writeText(email).then(function() {
-            var label = copyBtn.querySelector('.copyable-email__label');
-            copyBtn.classList.add('copied');
-            if (label) label.textContent = 'Copiado!';
-            setTimeout(function() {
-              copyBtn.classList.remove('copied');
-              if (label) label.textContent = 'Copiar';
-            }, 2000);
-          });
-          return;
-        }
-        var footerBtn = e.target.closest('.footer__copy-btn');
-        if (footerBtn) {
-          var email = footerBtn.getAttribute('data-email');
-          navigator.clipboard.writeText(email).then(function() {
-            footerBtn.classList.add('copied');
-            setTimeout(function() { footerBtn.classList.remove('copied'); }, 2000);
-          });
-        }
-      });
     })();
   </script>
+  <script src="../assets/js/nav.js" defer></script>
   <script src="../assets/js/i18n.js" defer></script>
   <script src="../assets/js/tracker.js" defer></script>
 </body>

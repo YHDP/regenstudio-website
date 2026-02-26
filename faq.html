@@ -440,6 +440,78 @@
           "@type": "Answer",
           "text": "The DPP System and EDI Wallet demos are password-protected because they contain detailed prototype functionality that benefits from a guided walkthrough. To request access, contact Regen Studio at info@regenstudio.world or use the contact form on the FAQ page. We will schedule a brief introduction to walk you through the demo and discuss how the concepts apply to your organisation."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do good ideas often fail in complex stakeholder environments?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In multi-stakeholder settings — government, industry consortia, research programmes — innovation must navigate reporting requirements, decision-making structures, procurement rules and ethical review. A great concept can stall at any of those gates. Our services address every dimension, not just the creative spark."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do your services account for non-creative dimensions like procurement and ethics?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Each service comes with templates that cover the full lifecycle: from ideation through decision gates, compliance checks and procurement alignment. We integrate ethical considerations and reporting standards from the start rather than bolting them on afterwards."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I combine multiple innovation services in a single engagement?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Most projects combine two to four services — for example Problem Analysis followed by a Design Sprint and Experiment Design. We tailor the sequence to your context and timeline."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the typical duration of an innovation services engagement?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It varies widely. A focused Design Sprint runs 4-5 days; an Innovation Process Design with stakeholder engagement can span several months. We scope every project individually."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you work with public-sector organisations?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely — municipalities, regional development agencies and EU-funded programmes are a core part of our practice. We understand public procurement, co-creation mandates and open-innovation frameworks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why start with problem analysis instead of jumping to solutions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Getting the diagnosis wrong is the most expensive mistake in innovation — it wastes resources on solutions that don't address the real issue. Problem analysis ensures you solve the right problem."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you decide which problem analysis methods to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We look at your context — the stakeholder landscape, data availability, project timeline and organisational culture — then design a custom session combining the most effective methods."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can problem analysis sessions be run remotely?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every method in our toolbox has both physical and online tooling available. We've facilitated fully remote, hybrid and in-person sessions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens after the problem analysis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Problem analysis feeds directly into our other innovation services — typically Ideation or Design Sprints. The output is a clear problem definition, stakeholder map and priority list that guides solution design."
+        }
       }
     ]
   }
@@ -556,6 +628,7 @@
       <a href="index.html" class="nav__logo">
         <img src="Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
       </a>
+      <!-- Mobile slide-in menu -->
       <ul class="nav__links" id="navLinks">
         <li><a href="about.html" data-i18n="nav.about">About</a></li>
         <li><a href="vision.html" data-i18n="nav.vision">Vision</a></li>
@@ -586,9 +659,44 @@
           </div>
         </li>
       </ul>
-      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__actions">
+        <!-- Desktop dropdown menu -->
+        <button class="nav__menu-btn" aria-expanded="false" aria-controls="navDropdown">
+          Menu <span class="nav__menu-btn__arrow">&#9662;</span>
+        </button>
+        <div class="nav__dropdown" id="navDropdown">
+          <a href="vision.html" data-i18n="nav.vision">Vision</a>
+          <a href="innovation-services.html" data-i18n="nav.services">Services</a>
+          <a href="problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
+          <a href="blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="about.html" data-i18n="nav.about">About</a>
+          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+        </div>
+        <div class="nav__contact-wrap nav__contact-wrap--desktop">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtnDesktop">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopoverDesktop">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <a href="#faq-contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -620,6 +728,7 @@
       <a href="#faq-digital" class="faq-categories__link">Digital Society</a>
       <a href="#faq-nature" class="faq-categories__link">Resilient Nature</a>
       <a href="#faq-innovation" class="faq-categories__link">Innovation Services</a>
+      <a href="#faq-problem-analysis" class="faq-categories__link">Problem Analysis</a>
       <a href="#faq-demos" class="faq-categories__link">Demos &amp; Tools</a>
     </nav>
 
@@ -1060,6 +1169,77 @@
           </div>
         </details>
 
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">Why do good ideas often fail in complex stakeholder environments?</summary>
+          <div class="dpp-faq__answer">
+            <p>In multi-stakeholder settings — government, industry consortia, research programmes — innovation must navigate reporting requirements, decision-making structures, procurement rules and ethical review. A great concept can stall at any of those gates. Our services address every dimension, not just the creative spark.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">How do your services account for non-creative dimensions like procurement and ethics?</summary>
+          <div class="dpp-faq__answer">
+            <p>Each service comes with templates that cover the full lifecycle: from ideation through decision gates, compliance checks and procurement alignment. We integrate ethical considerations and reporting standards from the start rather than bolting them on afterwards.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">Can I combine multiple innovation services in a single engagement?</summary>
+          <div class="dpp-faq__answer">
+            <p>Yes. Most projects combine two to four services — for example <a href="problem-analysis/">Problem Analysis</a> followed by a Design Sprint and Experiment Design. We tailor the sequence to your context and timeline.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">What is the typical duration of an innovation services engagement?</summary>
+          <div class="dpp-faq__answer">
+            <p>It varies widely. A focused Design Sprint runs 4&ndash;5 days; an Innovation Process Design with stakeholder engagement can span several months. We scope every project individually.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">Do you work with public-sector organisations?</summary>
+          <div class="dpp-faq__answer">
+            <p>Absolutely — municipalities, regional development agencies and EU-funded programmes are a core part of our practice. We understand public procurement, co-creation mandates and open-innovation frameworks.</p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- Problem Analysis -->
+    <section class="about-section dpp-faq" id="faq-problem-analysis">
+      <h2 class="about-section__title">Problem Analysis</h2>
+      <div class="dpp-faq__list">
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">Why start with problem analysis instead of jumping to solutions?</summary>
+          <div class="dpp-faq__answer">
+            <p>Getting the diagnosis wrong is the most expensive mistake in innovation — it wastes resources on solutions that don't address the real issue. <a href="problem-analysis/">Problem analysis</a> ensures you solve the right problem.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">How do you decide which problem analysis methods to use?</summary>
+          <div class="dpp-faq__answer">
+            <p>We look at your context — the stakeholder landscape, data availability, project timeline and organisational culture — then design a custom session combining the most effective methods.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">Can problem analysis sessions be run remotely?</summary>
+          <div class="dpp-faq__answer">
+            <p>Yes. Every method in our toolbox has both physical and online tooling available. We've facilitated fully remote, hybrid and in-person sessions.</p>
+          </div>
+        </details>
+
+        <details class="dpp-faq__item">
+          <summary class="dpp-faq__question">What happens after the problem analysis?</summary>
+          <div class="dpp-faq__answer">
+            <p>Problem analysis feeds directly into our other <a href="innovation-services.html">innovation services</a> — typically Ideation or Design Sprints. The output is a clear problem definition, stakeholder map and priority list that guides solution design.</p>
+          </div>
+        </details>
+
       </div>
     </section>
 
@@ -1151,6 +1331,27 @@
     </section>
 
   </main>
+
+  <!-- Social follow card -->
+  <section class="container" style="padding-bottom: 64px;">
+    <div class="follow-card">
+      <p class="follow-card__heading">Follow us</p>
+      <div class="follow-card__links">
+        <a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 600 530" fill="currentColor"><path d="m136 33c66 49 136 149 164 202 28-53 98-153 164-202 47-35 123-76 123-21 0 11-7 94-11 107-14 47-63 59-108 52 78 14 98 58 55 103-82 86-177-22-191-99-14 77-109 185-191 99-43-45-23-89 55-103-45 7-94-5-108-52-4-13-11-96-11-107 0-55 76-14 123 21z"/></svg>
+          Bluesky
+        </a>
+        <a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.26 13.12c-.31 1.58-2.76 3.31-5.58 3.65-1.47.17-2.91.33-4.45.26-2.52-.11-4.51-.58-4.51-.58 0 .24.01.47.04.69.3 2.25 2.22 2.38 4.05 2.44 1.84.07 3.48-.45 3.48-.45l.08 1.68s-1.29.69-3.59.82c-1.27.07-2.84-.03-4.67-.52C2.79 20.17 2.15 16.59 2.03 12.96c-.04-1.07-.01-2.08-.01-2.92 0-3.69 2.42-4.77 2.42-4.77C5.66 4.62 7.56 4.17 9.53 4.15h.05c1.97.02 3.87.47 5.09 1.12 0 0 2.42 1.08 2.42 4.77 0 0 .03 2.72-.37 4.08z"/><path d="M18.19 9.04v4.66h-1.85V9.18c0-.95-.4-1.44-1.2-1.44-.88 0-1.33.57-1.33 1.71v2.48h-1.84v-2.48c0-1.14-.44-1.71-1.33-1.71-.8 0-1.2.49-1.2 1.44v4.52H7.59V9.04c0-.95.24-1.71.73-2.27.5-.56 1.16-.85 1.97-.85.95 0 1.67.36 2.14 1.09l.46.77.46-.77c.47-.73 1.19-1.09 2.14-1.09.81 0 1.46.29 1.97.85.49.56.73 1.32.73 2.27z" fill="var(--color-bg)"/></svg>
+          Mastodon
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
@@ -1275,55 +1476,9 @@
         });
       }
 
-      var navToggle = document.getElementById('navToggle');
-      var navLinks = document.getElementById('navLinks');
-      if (navToggle && navLinks) {
-        navToggle.addEventListener('click', function() {
-          navToggle.classList.toggle('active');
-          navLinks.classList.toggle('open');
-          document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
-        });
-      }
-      var navContactBtn = document.getElementById('navContactBtn');
-      var navContactPopover = document.getElementById('navContactPopover');
-      if (navContactBtn && navContactPopover) {
-        navContactBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          navContactPopover.classList.toggle('open');
-        });
-        document.addEventListener('click', function(e) {
-          if (!e.target.closest('.nav__contact-wrap')) {
-            navContactPopover.classList.remove('open');
-          }
-        });
-      }
-      document.addEventListener('click', function(e) {
-        var copyBtn = e.target.closest('.copyable-email__btn');
-        if (copyBtn) {
-          var email = copyBtn.getAttribute('data-email');
-          navigator.clipboard.writeText(email).then(function() {
-            var label = copyBtn.querySelector('.copyable-email__label');
-            copyBtn.classList.add('copied');
-            if (label) label.textContent = 'Copied!';
-            setTimeout(function() {
-              copyBtn.classList.remove('copied');
-              if (label) label.textContent = 'Copy';
-            }, 2000);
-          });
-          return;
-        }
-        var footerBtn = e.target.closest('.footer__copy-btn');
-        if (footerBtn) {
-          var email = footerBtn.getAttribute('data-email');
-          navigator.clipboard.writeText(email).then(function() {
-            footerBtn.classList.add('copied');
-            setTimeout(function() { footerBtn.classList.remove('copied'); }, 2000);
-          });
-        }
-      });
     })();
   </script>
+  <script src="assets/js/nav.js" defer></script>
   <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/tracker.js" defer></script>
 </body>

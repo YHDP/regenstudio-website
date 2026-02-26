@@ -11,78 +11,6 @@
   var _i18n = window.__i18n || { t: function (k, f) { return f || k; }, lang: 'en' };
   function t(key, fallback) { return _i18n.t(key, fallback); }
 
-  // --- Shared: Navbar scroll & mobile toggle ---
-  function initNav() {
-    const nav = document.getElementById('nav');
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
-
-    if (!nav) return;
-
-    const onScroll = () => {
-      nav.classList.toggle('nav--scrolled', window.scrollY > 60);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    // Nav contact popover
-    const navContactBtn = document.getElementById('navContactBtn');
-    const navContactPopover = document.getElementById('navContactPopover');
-    if (navContactBtn && navContactPopover) {
-      navContactBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        navContactPopover.classList.toggle('open');
-      });
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('.nav__contact-wrap')) {
-          navContactPopover.classList.remove('open');
-        }
-      });
-    }
-
-    if (navToggle && navLinks) {
-      let savedScrollY = 0;
-
-      function openNav() {
-        savedScrollY = window.scrollY;
-        document.body.classList.add('nav-open');
-        document.body.style.top = -savedScrollY + 'px';
-        navToggle.classList.add('active');
-        navLinks.classList.add('open');
-      }
-
-      function closeNav() {
-        document.body.classList.remove('nav-open');
-        document.body.style.top = '';
-        window.scrollTo(0, savedScrollY);
-        navToggle.classList.remove('active');
-        navLinks.classList.remove('open');
-      }
-
-      navToggle.addEventListener('click', () => {
-        if (navLinks.classList.contains('open')) {
-          closeNav();
-        } else {
-          openNav();
-        }
-      });
-
-      navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          closeNav();
-        });
-      });
-
-      // Close menu on orientation change
-      window.addEventListener('orientationchange', () => {
-        if (navLinks.classList.contains('open')) {
-          closeNav();
-        }
-      });
-    }
-  }
-
   // --- Utility: Reading time ---
   function calcReadingTime(html) {
     const text = html.replace(/<[^>]*>/g, '');
@@ -1054,7 +982,6 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    initNav();
     initCopyButtons();
     initBlogListing();
     initClientProjectsListing();
