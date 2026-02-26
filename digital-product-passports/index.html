@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; frame-src https://player.vimeo.com https://w.soundcloud.com; object-src 'none'; base-uri 'self'; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co">
   <title>Digital Product Passport Advisory &amp; ESPR Compliance | Regen Studio</title>
   <meta name="description" content="Independent Digital Product Passport (DPP) advisory for brands, supply chains, governments, and industry associations. ESPR compliance roadmaps, data architecture, and circular economy strategy from Regen Studio.">
 
@@ -146,12 +147,13 @@
         <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
       </a>
       <ul class="nav__links" id="navLinks">
-        <li><a href="../index.html#about">Vision</a></li>
-        <li><a href="../index.html#focus">Our Focus</a></li>
-        <li><a href="../index.html#services">Services</a></li>
-        <li><a href="../index.html#clients">Who We Serve</a></li>
-        <li><a href="../blog.html">Blog</a></li>
-        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Demos</a></li>
+        <li><a href="../about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="../vision.html" data-i18n="nav.vision">Vision</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="../innovation-services.html" data-i18n="nav.services">Services</a></li>
+        <li><a href="../digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
+        <li><a href="../digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
+        <li><a href="../blog.html" data-i18n="nav.blog">Blog</a></li>
         <li class="nav__contact-wrap">
           <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
           <div class="nav__contact-popover" id="navContactPopover">
@@ -197,9 +199,9 @@
         <p class="dpp-hero__label">Digital Product Passport Advisory</p>
         <p class="dpp-hero__updated">Last updated: <time datetime="2026-02-24">February 2026</time></p>
         <h1 class="dpp-hero__title"><dfn>Digital Product Passport</dfn> advisory for <em>every product</em></h1>
-        <p class="dpp-hero__lead"><strong>A <abbr title="Digital Product Passport">DPP</abbr> is a structured digital record carrying product information — materials, origin, environmental impact, and end-of-life options — throughout a product's lifecycle, mandated by multiple EU regulations.</strong></p>
-        <p class="dpp-hero__lead">Every product has a journey — from raw material to finished good, from first use to end-of-life. Digital Product Passports make that journey visible, trustworthy, and actionable. They are the connective tissue of a <a href="../index.html#focus">circular economy</a>: enabling better decisions by consumers, regulators, recyclers, and everyone in between.</p>
-        <p class="dpp-hero__lead">Multiple EU regulations are turning this vision into law. The <a href="/blog/espr-textile-delegated-act/"><abbr title="Ecodesign for Sustainable Products Regulation">ESPR</abbr></a> provides the overarching framework, while product-specific regulations — including the <a href="/what-is-a-digital-product-passport/">EU Battery Regulation</a>, the revised Toys Safety Regulation, the Detergents Regulation, and the <a href="/blog/cpr-digital-product-passport/"><abbr title="Construction Products Regulation">CPR</abbr></a> — each introduce their own DPP requirements. The stakes are high — and so is the complexity of getting it right.</p>
+        <p class="dpp-hero__lead"><strong>A <abbr title="Digital Product Passport">DPP</abbr> is a structured digital record carrying product information — materials, origin, environmental impact, and end-of-life options — throughout a product's lifecycle, mandated by multiple EU regulations and driven by many voluntary initiatives.</strong></p>
+        <p class="dpp-hero__lead dpp-hero__lead--detail">Every product has a journey — from raw material to finished good, from first use to end-of-life. Digital Product Passports make that journey visible, trustworthy, and actionable. They are the connective tissue of a <a href="../index.html#focus">circular economy</a>: enabling better decisions by consumers, regulators, recyclers, and everyone in between.</p>
+        <p class="dpp-hero__lead dpp-hero__lead--detail">Multiple EU regulations are turning this vision into law. The <a href="/blog/espr-textile-delegated-act/"><abbr title="Ecodesign for Sustainable Products Regulation">ESPR</abbr></a> provides the overarching framework, while product-specific regulations — including the <a href="/what-is-a-digital-product-passport/">EU Battery Regulation</a>, the revised Toys Safety Regulation, the Detergents Regulation, and the <a href="/blog/cpr-digital-product-passport/"><abbr title="Construction Products Regulation">CPR</abbr></a> — each introduce their own DPP requirements. The stakes are high — and so is the complexity of getting it right.</p>
         <p class="dpp-hero__lead">Regen Studio acts as an independent advisor in the DPP ecosystem. We don't sell software or build platforms — we help organisations navigate the landscape, shape their strategy, and design systems that go beyond compliance toward genuine <a href="/blog/dpp-regenerative-economies/">circularity and regeneration</a>.</p>
         <div class="dpp-hero__actions">
           <a href="#dpp-services" class="btn btn--primary">Explore Our Services</a>
@@ -216,7 +218,7 @@
     <!-- Product Groups -->
     <section class="about-section" id="dpp-products">
       <h2 class="about-section__title">Which Products Need a Passport?</h2>
-      <p class="dpp-hero__lead">Digital Product Passports are mandated across several EU regulations — each with its own timeline. Some DPP dates are legally confirmed, others are estimated based on delegated acts in preparation or identified in the ESPR working plan. Below you'll find 22 product groups with nearer DPP obligations, plus 19 transitioning from the Ecodesign Directive under Article 79.</p>
+      <p class="dpp-hero__lead">Digital Product Passports are mandated across several EU regulations — each with its own timeline. Explore the product groups below.</p>
 
       <!-- Gated content wrapper -->
       <div class="dpp-gate" id="dppGate">
@@ -544,7 +546,7 @@
               <button type="submit" class="btn btn--primary dpp-gate__btn">Unlock</button>
             </div>
             <label class="regen-form__checkbox regen-form__checkbox--light">
-              <input type="checkbox" name="newsletter_opt_in" value="1" checked>
+              <input type="checkbox" name="newsletter_opt_in" value="1">
               <span>Keep me updated on DPP regulation changes</span>
             </label>
             <p class="dpp-gate__disclaimer">By submitting you agree to our <a href="../privacy.html">Privacy Policy</a>.</p>
@@ -744,6 +746,9 @@
       <div class="dpp-blogs__grid" id="dppBlogGrid">
         <!-- Populated by JS — noscript fallback below for crawlers -->
       </div>
+      <div style="text-align:center;margin-top:24px;">
+        <a href="/blog.html#cat=Digital+Product+Passport" class="btn btn--outline">All Digital Product Passport Stories &rarr;</a>
+      </div>
       <noscript>
         <div class="dpp-blogs__grid">
           <a class="blog-card" href="/blog/espr-textile-delegated-act/">
@@ -787,7 +792,7 @@
           </div>
           <textarea name="message" placeholder="Tell us about your project..." class="regen-form__input regen-form__textarea" aria-label="Message"></textarea>
           <label class="regen-form__checkbox">
-            <input type="checkbox" name="newsletter_opt_in" value="1" checked>
+            <input type="checkbox" name="newsletter_opt_in" value="1">
             <span>Also subscribe me to the Regen Studio newsletter</span>
           </label>
           <button type="submit" class="btn btn--primary btn--large regen-form__submit">Send Message</button>
@@ -889,14 +894,14 @@
         <div class="footer__col">
           <h4>Navigate</h4>
           <ul>
-            <li><a href="../index.html#about">Our Vision</a></li>
-            <li><a href="../index.html#focus">Our Focus</a></li>
-            <li><a href="../index.html#services">Services</a></li>
-            <li><a href="../index.html#clients">Who We Serve</a></li>
-            <li><a href="../blog.html">Blog</a></li>
-            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Demos</a></li>
-            <li><a href="../about.html">About</a></li>
-            <li><a href="../faq.html">FAQ</a></li>
+            <li><a href="../about.html" data-i18n="footer.about">About</a></li>
+            <li><a href="../vision.html" data-i18n="footer.vision">Vision</a></li>
+            <li><a href="../innovation-services.html" data-i18n="footer.services">Services</a></li>
+            <li><a href="../digital-product-passports/" data-i18n="footer.product_passports">Product Passports</a></li>
+            <li><a href="../digital-identities/" data-i18n="footer.digital_identity">Digital Identity</a></li>
+            <li><a href="../blog.html" data-i18n="footer.blog">Blog</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+            <li><a href="../faq.html" data-i18n="footer.faq">FAQ</a></li>
           </ul>
         </div>
         <div class="footer__col">
@@ -939,7 +944,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; 2026 Regen Studio. All rights reserved. &middot; <a href="../privacy.html">Privacy Policy</a> &middot; <a href="../about.html">About</a> &middot; <a href="../admin/">Admin</a></p>
+        <p>&copy; 2026 Regen Studio. All rights reserved. &middot; <a href="../privacy.html">Privacy Policy</a> &middot; <a href="../terms.html">Terms of Use</a> &middot; <a href="../about.html">About</a> &middot; <a href="../admin/">Admin</a></p>
       </div>
     </div>
   </footer>
@@ -1231,6 +1236,8 @@
               dppBlogs[i] = dppBlogs[j];
               dppBlogs[j] = tmp;
             }
+
+            dppBlogs = dppBlogs.slice(0, 3);
 
             dppBlogs.forEach(function(blog) {
               var card = document.createElement('a');

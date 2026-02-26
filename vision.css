@@ -1,0 +1,413 @@
+/* ========================================
+   Vision Page — Styles
+   Scroll-driven narrative with canvas animation
+   ======================================== */
+
+/* --- Canvas & Page Shell --- */
+.vision-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.vision-page {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Shared Section Styles --- */
+.vision-section {
+  position: relative;
+  padding: clamp(60px, 8vw, 120px) 0;
+}
+
+.vision-section__inner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Semi-transparent card style for content sections */
+.vision-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: var(--radius);
+  padding: clamp(32px, 5vw, 56px);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* --- Breather Spacers --- */
+.vision-breather {
+  height: 40vh;
+  position: relative;
+}
+
+/* --- Hero Section --- */
+.vision-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 80px;
+}
+
+.vision-hero__accent {
+  width: clamp(80px, 12vw, 140px);
+  height: auto;
+  margin-bottom: 32px;
+  filter: drop-shadow(0 4px 20px rgba(0, 145, 75, 0.15));
+  animation: vision-float 6s ease-in-out infinite;
+}
+
+@keyframes vision-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.vision-hero__mission {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--color-navy);
+  line-height: 1.3;
+  max-width: 720px;
+  margin-bottom: 0;
+}
+
+.vision-hero__mission em {
+  font-style: italic;
+  color: var(--color-primary);
+}
+
+.vision-hero__scroll {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  animation: vision-bounce 2s ease-in-out infinite;
+}
+
+.vision-hero__scroll svg {
+  opacity: 0.5;
+}
+
+@keyframes vision-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* --- Problem Section --- */
+.vision-problem__text {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  line-height: 1.75;
+  color: var(--color-text);
+  margin-bottom: 24px;
+}
+
+.vision-problem__text:last-of-type {
+  margin-bottom: 32px;
+}
+
+.vision-callout {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  font-weight: 700;
+  color: var(--color-navy);
+  line-height: 1.4;
+  padding: 20px 0 20px 24px;
+  border-left: 3px solid var(--color-primary);
+  margin: 32px 0;
+}
+
+.vision-callout--second {
+  border-left-color: var(--color-teal);
+}
+
+.vision-problem__cta {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-top: 24px;
+}
+
+/* --- Content Sections (System, Regeneration) --- */
+.vision-content__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.vision-content__text {
+  font-size: clamp(1rem, 1.6vw, 1.1rem);
+  line-height: 1.75;
+  color: var(--color-text);
+  margin-bottom: 20px;
+}
+
+.vision-content__text:last-child {
+  margin-bottom: 0;
+}
+
+/* --- RIS + Ecosystems Section --- */
+.vision-ecosystems__intro {
+  font-size: clamp(1rem, 1.6vw, 1.1rem);
+  line-height: 1.75;
+  color: var(--color-text);
+  margin-bottom: 40px;
+}
+
+.vision-ecosystems__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.vision-eco-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius);
+  padding: clamp(24px, 3vw, 36px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: var(--shadow-sm);
+  border-top: 3px solid var(--accent-color, var(--color-primary));
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.vision-eco-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.vision-eco-card--natural { --accent-color: #00914B; }
+.vision-eco-card--human   { --accent-color: #009BBB; }
+.vision-eco-card--urban   { --accent-color: #FFA92D; }
+
+.vision-eco-card__title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: 12px;
+}
+
+.vision-eco-card__text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+/* --- Studio Section --- */
+.vision-studio {
+  position: relative;
+}
+
+.vision-studio__rain {
+  position: absolute;
+  top: 0;
+  right: -40px;
+  width: 200px;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* --- CTA Section --- */
+.vision-cta {
+  background: var(--color-bg-light);
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Section Reveal Animations --- */
+.vision-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.vision-reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered entrance for ecosystem cards */
+.vision-eco-card.vision-reveal {
+  transition-delay: 0ms;
+}
+
+.vision-eco-card.vision-reveal:nth-child(2) {
+  transition-delay: 100ms;
+}
+
+.vision-eco-card.vision-reveal:nth-child(3) {
+  transition-delay: 200ms;
+}
+
+/* --- Back link --- */
+.vision-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  transition: color var(--transition);
+}
+
+.vision-back:hover {
+  color: var(--color-primary);
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+/* Large desktop */
+@media (min-width: 1200px) {
+  .vision-ecosystems__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .vision-ecosystems__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .vision-canvas--desktop {
+    display: none;
+  }
+
+  .vision-hero {
+    min-height: 80vh;
+    padding-top: 72px;
+  }
+
+  .vision-breather {
+    height: 25vh;
+  }
+
+  .vision-card {
+    padding: clamp(24px, 4vw, 36px);
+    border-radius: var(--radius-sm);
+  }
+
+  .vision-section__inner {
+    padding: 0 16px;
+  }
+
+  .vision-callout {
+    padding-left: 16px;
+    font-size: 1.1rem;
+  }
+
+  .vision-studio__rain {
+    display: none;
+  }
+
+  .vision-ecosystems__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 479px) {
+  .vision-section {
+    padding: 48px 0;
+  }
+
+  .vision-hero__mission {
+    font-size: 1.4rem;
+  }
+
+  .vision-content__title {
+    font-size: 1.3rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .vision-canvas {
+    display: none !important;
+  }
+
+  .vision-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .vision-hero__accent {
+    animation: none;
+  }
+
+  .vision-hero__scroll {
+    animation: none;
+  }
+
+  .vision-eco-card {
+    transition: none;
+  }
+}
+
+/* --- Mobile accent animations --- */
+@media (max-width: 767px) {
+  .vision-callout {
+    animation: vision-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes vision-pulse {
+    0%, 100% { border-left-color: var(--color-primary); }
+    50% { border-left-color: var(--color-orange); }
+  }
+
+  .vision-callout--second {
+    animation-name: vision-pulse-teal;
+  }
+
+  @keyframes vision-pulse-teal {
+    0%, 100% { border-left-color: var(--color-teal); }
+    50% { border-left-color: var(--color-emerald); }
+  }
+
+  .vision-eco-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vision-eco-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    animation: vision-shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes vision-shimmer {
+    0% { left: -50%; }
+    100% { left: 150%; }
+  }
+}

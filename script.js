@@ -11,6 +11,44 @@
   var _i18n = window.__i18n || { t: function (k, f) { return f || k; }, lang: 'en' };
   function t(key, fallback) { return _i18n.t(key, fallback); }
 
+  // --- Locale detection (mirrors blog.js pattern) ---
+  var _pageLang = (document.documentElement.lang || 'en').toLowerCase();
+  var _langCode = _pageLang === 'nl' ? 'nl' : _pageLang.startsWith('pt') ? 'pt' : 'en';
+  var _localePrefix = _langCode === 'en' ? '' : '/' + _langCode;
+
+  // --- Category translation (mirrors blog.js CATEGORY_I18N) ---
+  var _CATEGORY_I18N = {
+    'Circular Economy': 'categories.circular_economy',
+    'Digital Product Passport': 'categories.dpp',
+    'Circular Business Models': 'categories.circular_models',
+    'Energy Transition': 'categories.energy_transition',
+    'Smart Grids': 'categories.smart_grids',
+    'Energy Communities': 'categories.energy_communities',
+    'Energy Justice': 'categories.energy_justice',
+    'Liveable Cities': 'categories.liveable_cities',
+    'Living Labs': 'categories.living_labs',
+    'Digital Participation': 'categories.digital_participation',
+    'Urban Greening': 'categories.urban_greening',
+    'Digital Society': 'categories.digital_society',
+    'Digital Identity': 'categories.digital_identity',
+    'Privacy-by-Design': 'categories.privacy_by_design',
+    'Innovation Services': 'categories.innovation_services',
+    'Vision & Strategy': 'categories.vision_strategy',
+    'Out-of-the-Box Ideas': 'categories.out_of_the_box',
+    'Client Projects': 'categories.client_projects',
+    'AI': 'categories.ai',
+    'Visual Storytelling': 'categories.visual_storytelling',
+    'Biodiversity': 'categories.biodiversity',
+    'Reforestation': 'categories.reforestation',
+    'Regenerative Agriculture': 'categories.regenerative_agriculture',
+    'Resilient Nature': 'categories.resilient_nature',
+    'Services': 'categories.services'
+  };
+  function _translateCategory(cat) {
+    var key = _CATEGORY_I18N[cat];
+    return key ? t(key, cat) : cat;
+  }
+
   // =============================================
   // 1. TRIANGLE SIMULATION (from trial2)
   // =============================================
@@ -816,7 +854,7 @@
     var logoImg = new Image();
     var logoLoaded = false;
     logoImg.onload = function () { logoLoaded = true; };
-    logoImg.src = 'Images/Logo-Text-on-the-sideAtivo 2.svg';
+    logoImg.src = '/Images/Logo-Text-on-the-sideAtivo 2.svg';
 
     function roundRect(ctx, x, y, w, h, r) {
       ctx.beginPath();
@@ -1180,7 +1218,7 @@
     var track = document.getElementById('clientLogosTrack');
     if (!track) return;
 
-    fetch('Images/client-logos/logos.json')
+    fetch('/Images/client-logos/logos.json')
       .then(function (r) { return r.json(); })
       .then(function (files) {
         if (!files.length) return;
@@ -1189,7 +1227,7 @@
         var html = '';
         for (var round = 0; round < 2; round++) {
           files.forEach(function (file) {
-            html += '<img src="Images/client-logos/' + file + '" alt="Client logo" loading="lazy">';
+            html += '<img src="/Images/client-logos/' + file + '" alt="Client logo" loading="lazy">';
           });
         }
         track.innerHTML = html;
@@ -1207,11 +1245,17 @@
     var grid = document.getElementById('blogPreviewGrid');
     if (!grid) return;
 
-    fetch('Blogs/blogs.json')
+    var langSuffix = _langCode !== 'en' ? '.' + _langCode : '';
+
+    fetch('/Blogs/blogs.json')
       .then(function (r) { return r.json(); })
       .then(function (folders) {
         return Promise.all(folders.map(function (folder) {
-          return fetch('Blogs/' + folder + '/meta.json')
+          var base = '/Blogs/' + folder + '/';
+          var metaPromise = langSuffix
+            ? fetch(base + 'meta' + langSuffix + '.json').then(function (r) { return r.ok ? r : fetch(base + 'meta.json'); })
+            : fetch(base + 'meta.json');
+          return metaPromise
             .then(function (r) { return r.json(); })
             .then(function (meta) { meta._folder = folder; return meta; });
         }));
@@ -1225,18 +1269,20 @@
         published.forEach(function (blog) {
           var card = document.createElement('a');
           card.className = 'blog-card';
-          card.href = '/blog/' + encodeURIComponent(blog.slug) + '/';
+          card.href = _localePrefix + '/blog/' + encodeURIComponent(blog.slug) + '/';
 
           var imageHtml;
           if (blog.featuredImage) {
-            imageHtml = '<img class="blog-card__image" src="Blogs/' + blog._folder + '/' + blog.featuredImage + '" alt="' + (blog.featuredImageAlt || '') + '">';
+            imageHtml = '<img class="blog-card__image" src="/Blogs/' + blog._folder + '/' + blog.featuredImage + '" alt="' + (blog.featuredImageAlt || '') + '">';
           } else {
             imageHtml = '<div class="blog-card__placeholder"></div>';
           }
 
-          var category = blog.categories && blog.categories[0] ? blog.categories[0] : 'Insight';
+          var rawCategory = blog.categories && blog.categories[0] ? blog.categories[0] : 'Insight';
+          var category = _translateCategory(rawCategory);
           var date = new Date(blog.date + 'T00:00:00');
-          var dateStr = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+          var dateLocale = _langCode === 'nl' ? 'nl-NL' : _langCode === 'pt' ? 'pt-BR' : 'en-US';
+          var dateStr = date.toLocaleDateString(dateLocale, { year: 'numeric', month: 'short', day: 'numeric' });
 
           card.innerHTML =
             imageHtml +
@@ -1246,7 +1292,7 @@
               '<p class="blog-card__excerpt">' + (blog.excerpt || blog.subtitle || '') + '</p>' +
               '<div class="blog-card__meta">' +
                 '<span>' + dateStr + '</span>' +
-                '<span class="blog-card__read">Read more &rarr;</span>' +
+                '<span class="blog-card__read">' + t('blog.read_more', 'Read more') + ' &rarr;</span>' +
               '</div>' +
             '</div>';
 
@@ -1511,6 +1557,30 @@
           }
         }
       });
+
+      // Update section-nav active state
+      var sectionNavBtns = document.querySelectorAll('.section-nav__btn');
+      sectionNavBtns.forEach(function(btn) {
+        var href = btn.getAttribute('href');
+        var sectionId = href ? href.replace('#', '') : '';
+        var section = sectionId ? document.getElementById(sectionId) : null;
+        if (section && scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Toggle section-nav sticky when scrolled past hero
+      var sectionNav = document.querySelector('.section-nav');
+      var hero = document.querySelector('.hero');
+      if (sectionNav && hero) {
+        if (window.scrollY >= hero.offsetHeight - 69) {
+          sectionNav.classList.add('section-nav--sticky');
+        } else {
+          sectionNav.classList.remove('section-nav--sticky');
+        }
+      }
     }
 
     var activeLinkRafPending = false;
@@ -1614,6 +1684,10 @@
 
   try { if (sessionStorage.getItem('_regen_no_cookies')) return; } catch (e) { return; }
 
+  // --- i18n helper (same pattern as main IIFE) ---
+  var _i18n = window.__i18n || { t: function (k, f) { return f || k; }, lang: 'en' };
+  function t(key, fallback) { return _i18n.t(key, fallback); }
+
   function dismiss(banner) {
     banner.classList.add('privacy-banner--closing');
     setTimeout(function () { banner.remove(); }, 300);
@@ -1624,16 +1698,17 @@
     var banner = document.createElement('div');
     banner.className = 'privacy-banner';
 
-    var privacyHref = 'privacy.html';
-    var depth = window.location.pathname.replace(/\/[^/]*$/, '').split('/').filter(Boolean).length;
-    if (depth > 0) privacyHref = new Array(depth + 1).join('../') + 'privacy.html';
+    // Build locale-aware privacy link (absolute path)
+    var pageLang = (document.documentElement.lang || 'en').toLowerCase();
+    var langPrefix = pageLang === 'nl' ? '/nl' : pageLang.startsWith('pt') ? '/pt' : '';
+    var privacyHref = langPrefix + '/privacy.html';
 
     banner.innerHTML =
       '<div class="privacy-banner__inner">' +
         '<svg class="privacy-banner__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' +
-        '<p class="privacy-banner__text"><strong>Your visit is private.</strong> No cookies, no trackers, no data collection. ' +
-          '<a class="privacy-banner__link" href="' + privacyHref + '">How we protect your privacy</a></p>' +
-        '<button class="privacy-banner__btn" type="button" aria-label="Dismiss">' +
+        '<p class="privacy-banner__text"><strong>' + t('privacy_banner.title', 'Your visit is private.') + '</strong> ' + t('privacy_banner.text', 'No cookies, no trackers, no data collection.') + ' ' +
+          '<a class="privacy-banner__link" href="' + privacyHref + '">' + t('privacy_banner.link', 'How we protect your privacy') + '</a></p>' +
+        '<button class="privacy-banner__btn" type="button" aria-label="' + t('privacy_banner.dismiss', 'Dismiss') + '">' +
           '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
         '</button>' +
       '</div>';
