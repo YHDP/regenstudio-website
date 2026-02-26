@@ -55,16 +55,42 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: left;
   padding-top: 80px;
 }
 
-.vision-hero__accent {
-  width: clamp(80px, 12vw, 140px);
+.vision-hero__card {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 24px;
+}
+
+.vision-hero__layout {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 4vw, 48px);
+}
+
+.vision-hero__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.vision-hero__label {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+
+.vision-hero__illustration {
+  width: clamp(120px, 15vw, 220px);
   height: auto;
-  margin-bottom: 32px;
-  filter: drop-shadow(0 4px 20px rgba(0, 145, 75, 0.15));
-  animation: vision-float 6s ease-in-out infinite;
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 20px rgba(0, 145, 75, 0.10));
 }
 
 @keyframes vision-float {
@@ -78,7 +104,6 @@
   font-weight: 700;
   color: var(--color-navy);
   line-height: 1.3;
-  max-width: 720px;
   margin-bottom: 0;
 }
 
@@ -107,6 +132,27 @@
   50% { transform: translateY(8px); }
 }
 
+/* --- Breather Eye Accent --- */
+.vision-breather--eye {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vision-breather__eye {
+  width: clamp(56px, 8vw, 100px);
+  height: auto;
+  opacity: 0.25;
+  pointer-events: none;
+  animation: vision-eye-bounce 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 2px 12px rgba(0, 145, 75, 0.1));
+}
+
+@keyframes vision-eye-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+
 /* --- Problem Section --- */
 .vision-problem__text {
   font-size: clamp(1rem, 1.8vw, 1.15rem);
@@ -119,19 +165,33 @@
   margin-bottom: 32px;
 }
 
+.vision-problem__headline {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 32px;
+}
+
 .vision-callout {
   font-family: var(--font-serif);
   font-size: clamp(1.15rem, 2.2vw, 1.5rem);
   font-weight: 700;
   color: var(--color-navy);
   line-height: 1.4;
-  padding: 20px 0 20px 24px;
-  border-left: 3px solid var(--color-primary);
+  text-align: center;
+  background: rgba(0, 145, 75, 0.04);
+  border-radius: 16px;
+  padding: 28px 32px;
+  border: 1px solid rgba(0, 145, 75, 0.1);
   margin: 32px 0;
 }
 
 .vision-callout--second {
-  border-left-color: var(--color-teal);
+  background: rgba(0, 155, 187, 0.04);
+  border-color: rgba(0, 155, 187, 0.1);
 }
 
 .vision-problem__cta {
@@ -139,6 +199,12 @@
   font-weight: 600;
   color: var(--color-primary);
   margin-top: 24px;
+  text-align: center;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 /* --- Content Sections (System, Regeneration) --- */
@@ -216,21 +282,17 @@
   position: relative;
 }
 
-.vision-studio__rain {
-  position: absolute;
-  top: 0;
-  right: -40px;
-  width: 200px;
-  opacity: 0.08;
-  pointer-events: none;
-  z-index: -1;
-}
-
 /* --- CTA Section --- */
 .vision-cta {
   background: var(--color-bg-light);
   position: relative;
   z-index: 2;
+}
+
+/* --- Footer above canvas --- */
+.vision-page ~ .footer {
+  position: relative;
+  z-index: 1;
 }
 
 /* --- Section Reveal Animations --- */
@@ -295,12 +357,31 @@
 /* Mobile */
 @media (max-width: 767px) {
   .vision-canvas--desktop {
-    display: none;
+    opacity: 0.45;
   }
 
   .vision-hero {
     min-height: 80vh;
     padding-top: 72px;
+  }
+
+  .vision-hero__layout {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .vision-hero__illustration {
+    width: clamp(80px, 20vw, 140px);
+    order: -1;
+    margin-bottom: 8px;
+  }
+
+  .vision-hero__label {
+    text-align: center;
+  }
+
+  .vision-hero__card {
+    margin: 0 16px;
   }
 
   .vision-breather {
@@ -317,16 +398,23 @@
   }
 
   .vision-callout {
-    padding-left: 16px;
+    padding: 24px 20px;
     font-size: 1.1rem;
-  }
-
-  .vision-studio__rain {
-    display: none;
   }
 
   .vision-ecosystems__grid {
     grid-template-columns: 1fr;
+  }
+
+  .inno-services-cta {
+    padding-left: 16px;
+    padding-right: 16px;
+    overflow: hidden;
+  }
+
+  .inno-services-cta__inner {
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }
 
@@ -357,7 +445,7 @@
     transition: none;
   }
 
-  .vision-hero__accent {
+  .vision-breather__eye {
     animation: none;
   }
 
@@ -377,8 +465,8 @@
   }
 
   @keyframes vision-pulse {
-    0%, 100% { border-left-color: var(--color-primary); }
-    50% { border-left-color: var(--color-orange); }
+    0%, 100% { border-color: rgba(0, 145, 75, 0.1); }
+    50% { border-color: rgba(0, 145, 75, 0.25); }
   }
 
   .vision-callout--second {
@@ -386,8 +474,8 @@
   }
 
   @keyframes vision-pulse-teal {
-    0%, 100% { border-left-color: var(--color-teal); }
-    50% { border-left-color: var(--color-emerald); }
+    0%, 100% { border-color: rgba(0, 155, 187, 0.1); }
+    50% { border-color: rgba(0, 155, 187, 0.25); }
   }
 
   .vision-eco-card {

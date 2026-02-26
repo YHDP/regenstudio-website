@@ -107,7 +107,7 @@
   }
   </script>
 </head>
-<body>
+<body class="home">
   <a href="#main-content" class="skip-link">Ir para o conte&uacute;do</a>
 
   <!-- Navigation -->
@@ -116,6 +116,7 @@
       <a href="#" class="nav__logo">
         <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
       </a>
+      <!-- Mobile slide-in menu -->
       <ul class="nav__links" id="navLinks">
         <li><a href="about.html" data-i18n="nav.about">Sobre Nós</a></li>
         <li><a href="vision.html" data-i18n="nav.vision">Visão</a></li>
@@ -147,6 +148,39 @@
         </li>
       </ul>
       <div class="nav__actions">
+        <!-- Desktop dropdown menu -->
+        <button class="nav__menu-btn" aria-expanded="false" aria-controls="navDropdown">
+          Menu <span class="nav__menu-btn__arrow">&#9662;</span>
+        </button>
+        <div class="nav__dropdown" id="navDropdown">
+          <a href="vision.html" data-i18n="nav.vision">Visão</a>
+          <a href="innovation-services.html" data-i18n="nav.services">Serviços</a>
+          <a href="../problem-analysis/" data-i18n="nav.problem_analysis">Análise de Problemas</a>
+          <a href="blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="about.html" data-i18n="nav.about">Sobre</a>
+          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+        </div>
+        <div class="nav__contact-wrap nav__contact-wrap--desktop">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtnDesktop">Fale Conosco</button>
+          <div class="nav__contact-popover" id="navContactPopoverDesktop">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Envie uma mensagem — adoramos ouvir de voc&ecirc;.</p>
+              <a href="#contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Envie uma mensagem
+              </a>
+              <div class="nav__contact-popover-divider">ou envie um e-mail diretamente</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copiar endere&ccedil;o de e-mail">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copiar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
         <button class="viewport-toggle" id="viewportToggle" aria-label="Alternar visualiza&ccedil;&atilde;o">
           <svg class="viewport-toggle__icon viewport-toggle__icon--desktop" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="16" height="11" rx="1.5"/><line x1="6" y1="17" x2="14" y2="17"/><line x1="10" y1="14" x2="10" y2="17"/></svg>
           <svg class="viewport-toggle__icon viewport-toggle__icon--mobile" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="10" height="16" rx="2"/><line x1="8.5" y1="15" x2="11.5" y2="15"/></svg>
@@ -240,6 +274,20 @@
         <div class="hero__actions animate-in">
           <a href="#focus" class="btn btn--primary">Explore Nosso Trabalho</a>
         </div>
+
+        <!-- Section nav: subtle inline pills -->
+        <nav class="section-nav animate-in" aria-label="Seções da página">
+          <div class="section-nav__track">
+            <a href="#focus" class="section-nav__btn">Nosso Foco</a>
+            <a href="#clients" class="section-nav__btn">Quem Atendemos</a>
+            <a href="#blog-preview" class="section-nav__btn">Histórias</a>
+            <a href="#services" class="section-nav__btn">Serviços</a>
+            <a href="#about" class="section-nav__btn">Visão</a>
+            <a href="#demos" class="section-nav__btn">Demos</a>
+            <a href="#contact" class="section-nav__btn">Contato</a>
+          </div>
+        </nav>
+
         <div class="hero__locations animate-in">
           <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Haia, NL</span>
           <span class="hero__locations-divider">&bull;</span>
@@ -249,19 +297,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Section nav: sits above scroll arrow on mobile, sticky on scroll -->
-    <nav class="section-nav" aria-label="Seções da página">
-      <div class="section-nav__track">
-        <a href="#focus" class="section-nav__btn">Nosso Foco</a>
-        <a href="#clients" class="section-nav__btn">Quem Atendemos</a>
-        <a href="#blog-preview" class="section-nav__btn">Histórias</a>
-        <a href="#services" class="section-nav__btn">Serviços</a>
-        <a href="#about" class="section-nav__btn">Visão</a>
-        <a href="#demos" class="section-nav__btn">Demos</a>
-        <a href="#contact" class="section-nav__btn">Contato</a>
-      </div>
-    </nav>
 
     <!-- Scroll indicator -->
     <div class="hero__scroll">
@@ -688,9 +723,6 @@
         <div class="blog-preview__grid" id="blogPreviewGrid">
           <!-- Populated by JS -->
         </div>
-        <div style="text-align:center;margin-top:24px;">
-          <a href="blog.html#cat=Digital+Product+Passport" class="btn btn--outline">Todas as Hist&oacute;rias de Passaporte Digital do Produto &rarr;</a>
-        </div>
       </div>
     </section>
 
@@ -942,9 +974,6 @@
     <section class="section cta" id="contact">
       <div class="container">
         <div class="cta__inner">
-          <div class="cta__logo">
-            <img src="../Images/Website Logo.svg" alt="Regen Studio" class="cta__logo-img">
-          </div>
           <p class="section__label">Vamos Criar Juntos</p>
           <h2 class="cta__title">Pronto para projetar inova&ccedil;&otilde;es que regeneram?</h2>
           <p class="cta__text">Seja voc&ecirc; uma ag&ecirc;ncia governamental, empreendedor, ONG ou universidade &mdash; adorar&iacute;amos explorar como a inova&ccedil;&atilde;o regenerativa pode transformar o seu trabalho.</p>
@@ -1056,6 +1085,7 @@
 
   </div><!-- /.content-wrap -->
 
+  <script src="../assets/js/nav.js" defer></script>
   <script src="../assets/js/i18n.js" defer></script>
   <script src="../script.js" defer></script>
   <script src="../assets/js/tracker.js" defer></script>

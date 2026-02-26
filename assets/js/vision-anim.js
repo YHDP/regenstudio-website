@@ -1,6 +1,6 @@
 // ========================================
 // Vision Page — Scroll-Driven Animation
-// 6-phase desktop spectacle + mobile ambient
+// 5-phase desktop spectacle + mobile ambient
 // ========================================
 
 (function () {
@@ -124,14 +124,12 @@
       this.x = Math.random() * W;
       this.y = Math.random() * H;
       this.size = 6 + Math.random() * 14;
-      this.speed = 0.15 + Math.random() * 0.35;
-      this.drift = (Math.random() - 0.5) * 0.3;
       this.rotation = Math.random() * Math.PI * 2;
       this.rotSpeed = (Math.random() - 0.5) * 0.005;
       this.color = pickRandom(PALETTE);
       this.opacity = 0.15 + Math.random() * 0.2;
-      this.parallax = 0.3 + (this.size / 20) * 0.7; // larger = slower
       this.phase = Math.random() * Math.PI * 2;
+      this.phaseY = Math.random() * Math.PI * 2;
     }
 
     function initMobile() {
@@ -157,6 +155,8 @@
       ctx.restore();
     }
 
+    var MOBILE_BOND_DIST = 120;
+
     function mobileLoop(time) {
       mobileRaf = requestAnimationFrame(mobileLoop);
       if (!isVisible) return;
@@ -167,19 +167,47 @@
 
       ctx.clearRect(0, 0, W, H);
 
+      // Global horizontal drift — all triangles sway together
+      var globalDriftX = Math.sin(time * 0.00015) * 0.3;
+
       for (var i = 0; i < mobileTris.length; i++) {
         var t = mobileTris[i];
-        t.y -= t.speed * t.parallax;
-        t.x += t.drift + Math.sin(time * 0.0003 + t.phase) * 0.2;
+
+        // Per-triangle organic sine/cosine drift
+        t.x += globalDriftX + Math.sin(time * 0.0003 + t.phase) * 0.15;
+        t.y += Math.cos(time * 0.00025 + t.phaseY) * 0.15;
         t.rotation += t.rotSpeed;
         t.opacity = 0.1 + Math.sin(time * 0.0004 + t.phase) * 0.08;
 
-        // Wrap around
-        if (t.y < -t.size * 2) { t.y = H + t.size * 2; t.x = Math.random() * W; }
+        // Soft wrap around (horizontal and vertical)
         if (t.x < -t.size * 2) t.x = W + t.size;
         if (t.x > W + t.size * 2) t.x = -t.size;
+        if (t.y < -t.size * 2) t.y = H + t.size;
+        if (t.y > H + t.size * 2) t.y = -t.size;
+      }
 
-        drawMobileTri(t);
+      // Draw bond lines between nearby triangles
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(0, 145, 75, 0.04)';
+      ctx.lineWidth = 0.5;
+      for (var i = 0; i < mobileTris.length; i++) {
+        for (var j = i + 1; j < mobileTris.length; j++) {
+          var a = mobileTris[i];
+          var b = mobileTris[j];
+          var dx = b.x - a.x;
+          var dy = b.y - a.y;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          if (d < MOBILE_BOND_DIST) {
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+          }
+        }
+      }
+      ctx.stroke();
+
+      // Draw triangles on top
+      for (var i = 0; i < mobileTris.length; i++) {
+        drawMobileTri(mobileTris[i]);
       }
     }
 
@@ -304,7 +332,7 @@
     return result;
   }
 
-  // --- Mouse (desktop only, re-enabled in phase 6) ---
+  // --- Mouse (desktop only) ---
   var mouse = { x: -9999, y: -9999, active: false };
 
   canvas.addEventListener('mousemove', function (e) {
@@ -329,8 +357,11 @@
     this.trail = [];
     this.trailMax = 4;
     this.phase = Math.random() * Math.PI * 2;
-    this.family = 0; // 0=natural, 1=human, 2=urban (used in phase 5)
+    this.family = 0; // 0=natural, 1=human, 2=urban
     this.alive = true;
+    // Mesh target positions for phase 5
+    this.meshX = 0;
+    this.meshY = 0;
   }
 
   Triangle.prototype.randomize = function () {
@@ -456,8 +487,8 @@
     ctx.globalAlpha = 1;
   }
 
-  // --- Draw bond lines ---
-  function drawBonds(tris, bondSet) {
+  // --- Draw bond lines (batch — for phases 1,2,4,5) ---
+  function drawBondsBatch(tris, bondSet) {
     if (!bondSet || !bondSet.size) return;
     ctx.beginPath();
     ctx.strokeStyle = 'rgba(0, 145, 75, ' + CFG.bondLineOpacity + ')';
@@ -467,9 +498,51 @@
       var a = tris[parseInt(parts[0])];
       var b = tris[parseInt(parts[1])];
       if (!a || !b || !a.alive || !b.alive) return;
-      // Curved bezier
       var mx = (a.x + b.x) / 2 + (Math.random() - 0.5) * 10;
       var my = (a.y + b.y) / 2 + (Math.random() - 0.5) * 10;
+      ctx.moveTo(a.x, a.y);
+      ctx.quadraticCurveTo(mx, my, b.x, b.y);
+    });
+    ctx.stroke();
+  }
+
+  // --- Draw bond lines (per-bond — for phase 3 oscillating bonds) ---
+  function drawBondsPerBond(tris, bondLifecycles) {
+    for (var key in bondLifecycles) {
+      var bl = bondLifecycles[key];
+      if (bl.strength <= 0.01) continue;
+      var parts = key.split('-');
+      var a = tris[parseInt(parts[0])];
+      var b = tris[parseInt(parts[1])];
+      if (!a || !b || !a.alive || !b.alive) continue;
+
+      var alpha = CFG.bondLineOpacity * bl.strength * 1.5;
+      var lw = 0.5 + bl.strength * 1.2;
+
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(0, 145, 75, ' + alpha + ')';
+      ctx.lineWidth = lw;
+      var mx = (a.x + b.x) / 2 + (Math.random() - 0.5) * 8;
+      var my = (a.y + b.y) / 2 + (Math.random() - 0.5) * 8;
+      ctx.moveTo(a.x, a.y);
+      ctx.quadraticCurveTo(mx, my, b.x, b.y);
+      ctx.stroke();
+    }
+  }
+
+  // --- Draw bond lines (mesh — for phase 5, subtle interwoven web) ---
+  function drawBondsMesh(tris, bondSet) {
+    if (!bondSet || !bondSet.size) return;
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgba(0, 145, 75, 0.06)';
+    ctx.lineWidth = 0.5;
+    bondSet.forEach(function (key) {
+      var parts = key.split('-');
+      var a = tris[parseInt(parts[0])];
+      var b = tris[parseInt(parts[1])];
+      if (!a || !b || !a.alive || !b.alive) return;
+      var mx = (a.x + b.x) / 2 + (Math.random() - 0.5) * 6;
+      var my = (a.y + b.y) / 2 + (Math.random() - 0.5) * 6;
       ctx.moveTo(a.x, a.y);
       ctx.quadraticCurveTo(mx, my, b.x, b.y);
     });
@@ -516,26 +589,87 @@
   }
 
   // ========================================
-  // PHASE DIRECTOR
+  // DYNAMIC PHASE SYSTEM
   // ========================================
-  // Maps scroll 0→1 to phase 1→6
-  var phases = [
-    { start: 0,    end: 0.15 }, // Phase 1: Genesis Rain
-    { start: 0.15, end: 0.30 }, // Phase 2: Awakening Chaos
-    { start: 0.30, end: 0.50 }, // Phase 3: System Emergence
-    { start: 0.50, end: 0.65 }, // Phase 4: Regeneration Waterfall
-    { start: 0.65, end: 0.85 }, // Phase 5: Three Swarms
-    { start: 0.85, end: 1.00 }, // Phase 6: Convergence
-  ];
+  // Compute phase boundaries from actual section positions
 
-  function getActivePhase(scroll) {
-    for (var i = 0; i < phases.length; i++) {
-      if (scroll >= phases[i].start && scroll < phases[i].end) {
-        var local = (scroll - phases[i].start) / (phases[i].end - phases[i].start);
-        return { index: i, local: local };
+  var sectionOffsets = []; // { phase, center } sorted by center
+  var phaseBoundaries = []; // { start, end, phase }
+
+  function computeSectionOffsets() {
+    var sections = document.querySelectorAll('[data-phase]');
+    if (!sections.length) return;
+
+    var docH = document.documentElement.scrollHeight;
+    var vpH = window.innerHeight;
+    var scrollable = Math.max(docH - vpH, 1);
+
+    // Gather unique phases and their centers
+    var phaseMap = {}; // phase -> first center encountered
+    var entries = [];
+
+    for (var i = 0; i < sections.length; i++) {
+      var sec = sections[i];
+      var phase = parseInt(sec.getAttribute('data-phase'));
+      var rect = sec.getBoundingClientRect();
+      var absTop = rect.top + window.scrollY;
+      var absCenter = absTop + rect.height / 2;
+      // Phase 3: trigger when section top enters viewport (+ small offset)
+      // instead of waiting for center, so the network appears earlier
+      var triggerPoint = (phase === 3)
+        ? absTop + vpH * 0.25
+        : absCenter;
+      // Convert to scroll progress (0-1)
+      var centerProgress = Math.max(0, Math.min(1, (triggerPoint - vpH / 2) / scrollable));
+
+      if (!(phase in phaseMap)) {
+        phaseMap[phase] = centerProgress;
+        entries.push({ phase: phase, center: centerProgress });
       }
     }
-    return { index: 5, local: 1 };
+
+    // Sort by center position
+    entries.sort(function (a, b) { return a.center - b.center; });
+    sectionOffsets = entries;
+
+    // Build boundaries: midpoints between consecutive section centers
+    phaseBoundaries = [];
+    for (var i = 0; i < entries.length; i++) {
+      var start, end;
+      if (i === 0) {
+        start = 0;
+      } else {
+        start = (entries[i - 1].center + entries[i].center) / 2;
+      }
+      if (i === entries.length - 1) {
+        end = 1;
+      } else {
+        end = (entries[i].center + entries[i + 1].center) / 2;
+      }
+      phaseBoundaries.push({
+        phase: entries[i].phase,
+        start: start,
+        end: end
+      });
+    }
+  }
+
+  function getActivePhase(scroll) {
+    for (var i = 0; i < phaseBoundaries.length; i++) {
+      var pb = phaseBoundaries[i];
+      if (scroll >= pb.start && scroll < pb.end) {
+        var local = (pb.end - pb.start) > 0
+          ? (scroll - pb.start) / (pb.end - pb.start)
+          : 0;
+        return { index: pb.phase, local: local };
+      }
+    }
+    // Fallback: last phase
+    if (phaseBoundaries.length > 0) {
+      var last = phaseBoundaries[phaseBoundaries.length - 1];
+      return { index: last.phase, local: 1 };
+    }
+    return { index: 1, local: 0 };
   }
 
   // ========================================
@@ -553,16 +687,18 @@
     for (var i = 0; i < count; i++) {
       var t = new Triangle(i);
       t.randomize();
-      // Assign family for phase 5
+      // Assign family
       if (i < count / 3) t.family = 0;
       else if (i < (count * 2) / 3) t.family = 1;
       else t.family = 2;
       tris.push(t);
     }
+    // Compute mesh target positions
+    computeMeshPositions();
   }
 
   // ========================================
-  // PHASE 1: GENESIS RAIN (0–15%)
+  // PHASE 1: CONTINUOUS RAIN (hero)
   // ========================================
   function phase1_init() {
     for (var i = 0; i < tris.length; i++) {
@@ -578,13 +714,15 @@
   }
 
   function phase1_update(local, time) {
-    var splashY = H * 0.8;
     var wind = Math.sin(time * 0.0003) * 0.4;
+    var TERMINAL_VY = 4; // max 4px/frame
 
     for (var i = 0; i < tris.length; i++) {
       var t = tris[i];
       // Gravity
       t.vy += 0.08;
+      // Terminal velocity cap
+      if (t.vy > TERMINAL_VY) t.vy = TERMINAL_VY;
       // Wind
       t.vx += wind * 0.01;
       t.vx *= 0.98;
@@ -594,16 +732,9 @@
       t.x += t.vx;
       t.y += t.vy;
 
-      // Splash at threshold
-      if (t.y > splashY && t.vy > 0) {
-        t.vy *= -0.3;
-        t.vx += (Math.random() - 0.5) * 2;
-        t.y = splashY;
-        if (quality > 0.7) addSplash(t.x, t.y, t.color);
-      }
-
-      // Reset above viewport when fallen too far
-      if (t.y > H + 40) {
+      // When triangle passes bottom edge, splash and respawn at top
+      if (t.y > H + 10) {
+        if (quality > 0.7) addSplash(t.x, H, t.color);
         t.x = Math.random() * W;
         t.y = -rand(20, 80);
         t.vy = rand(0.5, 2);
@@ -617,7 +748,7 @@
   }
 
   // ========================================
-  // PHASE 2: AWAKENING CHAOS (15–30%)
+  // PHASE 2: AWAKENING CHAOS (problem section)
   // ========================================
   var turbulenceTimer = 0;
   var turbulenceCenter = { x: 0, y: 0 };
@@ -629,7 +760,7 @@
 
     // Turbulence burst every ~4 seconds
     if (turbulenceTimer <= 0) {
-      turbulenceTimer = rand(180, 300); // 3–5s at 60fps
+      turbulenceTimer = rand(180, 300); // 3-5s at 60fps
       turbulenceCenter.x = rand(W * 0.2, W * 0.8);
       turbulenceCenter.y = rand(H * 0.2, H * 0.8);
       turbulenceActive = true;
@@ -680,45 +811,63 @@
   }
 
   // ========================================
-  // PHASE 3: SYSTEM EMERGENCE (30–50%)
+  // PHASE 3: OSCILLATING BOND NETWORK (system approach)
   // ========================================
-  function phase3_update(local, time) {
-    // 3 attractor points that grow stronger
-    var attractors = [
-      { x: W * 0.25, y: H * 0.4 },
-      { x: W * 0.5,  y: H * 0.55 },
-      { x: W * 0.75, y: H * 0.4 },
-    ];
+  // Bond lifecycles: key -> { birth, lifespan, strength, fadingOut }
+  var bondLifecycles = {};
 
-    var strength = smoothstep(0, 0.5, local) * 0.015;
+  function phase3_update(local, time) {
     bonds.clear();
 
+    // Gentle attractor to keep triangles distributed (not clustering)
+    var centerX = W / 2;
+    var centerY = H / 2;
+
     buildGrid(tris);
+
+    var now = time;
+
+    // Update existing bond lifecycles
+    for (var key in bondLifecycles) {
+      var bl = bondLifecycles[key];
+      var age = (now - bl.birth) / 1000; // seconds
+
+      if (age > bl.lifespan && !bl.fadingOut) {
+        bl.fadingOut = true;
+        bl.fadeStart = now;
+      }
+
+      if (bl.fadingOut) {
+        var fadeProgress = (now - bl.fadeStart) / 1000; // 1s fade out
+        bl.strength = Math.max(0, 1 - fadeProgress);
+        if (bl.strength <= 0) {
+          delete bondLifecycles[key];
+          continue;
+        }
+      } else if (age < 0.6) {
+        // Fade in (600ms)
+        bl.strength = age / 0.6;
+      } else {
+        // Breathing oscillation while alive
+        bl.strength = 0.6 + Math.sin(now * 0.003 + bl.birth * 0.01) * 0.4;
+      }
+    }
 
     for (var i = 0; i < tris.length; i++) {
       var t = tris[i];
 
-      // Attract toward nearest attractor
-      var closest = 0, closestD = Infinity;
-      for (var a = 0; a < attractors.length; a++) {
-        var d = dist(t.x, t.y, attractors[a].x, attractors[a].y);
-        if (d < closestD) { closestD = d; closest = a; }
-      }
-
-      var ax = attractors[closest].x;
-      var ay = attractors[closest].y;
-      var dx = ax - t.x;
-      var dy = ay - t.y;
+      // Very gentle attractor pull toward viewport center to keep distributed
+      var dx = centerX - t.x;
+      var dy = centerY - t.y;
       var d = Math.sqrt(dx * dx + dy * dy);
-
-      if (d > 1) {
-        var f = strength * Math.min(1, d / 200);
-        t.vx += (dx / d) * f * d * 0.05;
-        t.vy += (dy / d) * f * d * 0.05;
+      if (d > 200) {
+        var pullF = 0.0005;
+        t.vx += (dx / d) * pullF;
+        t.vy += (dy / d) * pullF;
       }
 
-      // Bonding with nearby triangles
-      var neighbors = getNeighbors(t.x, t.y, t.size * 3);
+      // Bond detection with nearby triangles
+      var neighbors = getNeighbors(t.x, t.y, t.size * 4);
       t.bondCount = 0;
 
       for (var ni = 0; ni < neighbors.length; ni++) {
@@ -729,25 +878,51 @@
         var bdy = b.y - t.y;
         var bd = Math.sqrt(bdx * bdx + bdy * bdy);
         var idealDist = (t.size + b.size) * CFG.bondDist;
+        var bondRange = idealDist * 2;
 
-        if (bd < idealDist * 1.5 && local > 0.3) {
-          bonds.add(bondKey(i, j));
-          t.bondCount++;
-          b.bondCount++;
+        if (bd < bondRange && local > 0.15) {
+          var bk = bondKey(i, j);
 
-          // Spring force
-          if (bd > idealDist) {
-            var springF = (bd - idealDist) * CFG.bondSpring * local;
-            t.vx += (bdx / bd) * springF;
-            t.vy += (bdy / bd) * springF;
-            b.vx -= (bdx / bd) * springF;
-            b.vy -= (bdy / bd) * springF;
+          // Create new bond lifecycle if not existing
+          if (!bondLifecycles[bk]) {
+            bondLifecycles[bk] = {
+              birth: now,
+              lifespan: 3 + Math.random() * 12, // 3-15s
+              strength: 0,
+              fadingOut: false,
+              fadeStart: 0
+            };
+          }
+
+          var bl = bondLifecycles[bk];
+          if (bl.strength > 0.01) {
+            bonds.add(bk);
+            t.bondCount++;
+            b.bondCount++;
+
+            // Spring force modulated by bond strength
+            if (bd > idealDist) {
+              var springF = (bd - idealDist) * CFG.bondSpring * local * bl.strength;
+              t.vx += (bdx / bd) * springF;
+              t.vy += (bdy / bd) * springF;
+              b.vx -= (bdx / bd) * springF;
+              b.vy -= (bdy / bd) * springF;
+            }
           }
         }
+      }
 
-        // Separation
-        if (bd < (t.size + b.size) * CFG.separation && bd > 0) {
-          var sep = ((t.size + b.size) * CFG.separation - bd) * 0.05;
+      // Separation — stronger than default to prevent clustering with weak attractor
+      for (var ni = 0; ni < neighbors.length; ni++) {
+        var j = neighbors[ni];
+        if (j <= i) continue;
+        var b = tris[j];
+        var bdx = b.x - t.x;
+        var bdy = b.y - t.y;
+        var bd = Math.sqrt(bdx * bdx + bdy * bdy);
+        var sepThresh = (t.size + b.size) * CFG.separation * 1.4;
+        if (bd < sepThresh && bd > 0) {
+          var sep = (sepThresh - bd) * 0.1;
           t.vx -= (bdx / bd) * sep;
           t.vy -= (bdy / bd) * sep;
           b.vx += (bdx / bd) * sep;
@@ -755,7 +930,7 @@
         }
       }
 
-      // Damping depends on bonding
+      // Damping
       var damp = t.bondCount > 0 ? CFG.dampBonded : CFG.dampFree;
       t.vx *= damp;
       t.vy *= damp;
@@ -771,7 +946,7 @@
       t.trail.push({ x: t.x, y: t.y });
       if (t.trail.length > t.trailMax) t.trail.shift();
 
-      // Boundary
+      // Soft boundary
       if (t.x < -50) t.vx += 0.5;
       if (t.x > W + 50) t.vx -= 0.5;
       if (t.y < -50) t.vy += 0.5;
@@ -780,189 +955,35 @@
   }
 
   // ========================================
-  // PHASE 4: REGENERATION WATERFALL (50–65%)
+  // PHASE 4: CALM CONVERGENCE (regeneration)
   // ========================================
   function phase4_update(local, time) {
-    bonds.clear();
-    var streams = [
-      { x: W * 0.3, family: GREEN_FAMILY },
-      { x: W * 0.5, family: TEAL_FAMILY },
-      { x: W * 0.7, family: ORANGE_FAMILY },
-    ];
-    var arcY = H * 0.75;
-
-    for (var i = 0; i < tris.length; i++) {
-      var t = tris[i];
-      var streamIdx = i % 3;
-      var stream = streams[streamIdx];
-      var streamX = stream.x + Math.sin(time * 0.001 + i * 0.1) * 30;
-
-      // Cascade down
-      if (t.y < arcY) {
-        // Falling phase: attract toward stream and fall
-        var pullX = (streamX - t.x) * 0.02;
-        t.vx += pullX;
-        t.vy += 0.12; // gravity
-        t.vx += (Math.random() - 0.5) * 0.3; // turbulence
-
-        // Muted/smaller
-        t.opacity = lerp(t.baseOpacity * 0.5, t.baseOpacity * 0.7, t.y / arcY);
-        t.color = desaturate(pickRandom(stream.family), 0.3);
-      } else {
-        // Rising phase: parabolic arc outward then rise
-        t.vy -= 0.15; // buoyancy
-        t.vx += (t.x > W / 2 ? 0.05 : -0.05) * (1 + Math.sin(time * 0.002));
-
-        // Vivid/growing
-        t.opacity = lerp(t.baseOpacity, Math.min(0.8, t.baseOpacity * 1.3), (t.y - arcY) / (H - arcY));
-        t.color = pickRandom(stream.family);
-        t.size = lerp(t.size, t.size * 1.002, 0.1);
-        t.size = Math.min(t.size, CFG.maxSize * 1.3);
-      }
-
-      t.vx *= 0.98;
-      t.vy *= 0.98;
-      t.x += t.vx;
-      t.y += t.vy;
-      t.rotation += t.rotSpeed * 2;
-
-      // Reset: wrap vertically
-      if (t.y < -60) {
-        t.y = H + rand(20, 60);
-        t.x = stream.x + rand(-60, 60);
-        t.vy = 0;
-        t.vx = 0;
-      }
-      if (t.y > H + 60) {
-        t.y = -rand(20, 60);
-        t.x = stream.x + rand(-60, 60);
-        t.vy = rand(0.5, 2);
-        t.vx = 0;
-      }
-
-      // Motion trail
-      t.trail.push({ x: t.x, y: t.y });
-      if (t.trail.length > 6) t.trail.shift();
-    }
-  }
-
-  // ========================================
-  // PHASE 5: THREE SWARMS (65–85%)
-  // ========================================
-  function phase5_update(local, time) {
-    bonds.clear();
-
-    var swarmCenters = [
-      { x: W * 0.22, y: H * 0.5 },  // Natural (green) — left
-      { x: W * 0.5,  y: H * 0.5 },  // Human (teal) — center
-      { x: W * 0.78, y: H * 0.5 },  // Urban (orange) — right
-    ];
-
-    for (var i = 0; i < tris.length; i++) {
-      var t = tris[i];
-      var f = t.family; // 0, 1, 2
-      var center = swarmCenters[f];
-
-      // Set color family
-      if (f === 0) t.color = pickRandom(GREEN_FAMILY);
-      else if (f === 1) t.color = pickRandom(TEAL_FAMILY);
-      else t.color = pickRandom(ORANGE_FAMILY);
-
-      t.opacity = t.baseOpacity;
-
-      var dx = center.x - t.x;
-      var dy = center.y - t.y;
-      var d = Math.sqrt(dx * dx + dy * dy);
-
-      // Swarm-specific behaviors
-      if (f === 0) {
-        // Natural: Boids flocking, canopy oscillation
-        var oscillate = Math.sin(time * 0.0008 + t.phase) * 40;
-        var targetY = center.y + oscillate;
-        t.vx += (center.x - t.x) * 0.003;
-        t.vy += (targetY - t.y) * 0.003;
-        // Boid alignment: gentle steering
-        t.vx += Math.cos(time * 0.0005 + i * 0.2) * 0.05;
-        t.vy += Math.sin(time * 0.0005 + i * 0.2) * 0.05;
-        t.rotation += 0.003;
-      } else if (f === 1) {
-        // Human: Heartbeat expand/contract
-        var heartbeat = Math.sin(time * 0.0015) * 0.5 + 0.5; // 0→1
-        var targetDist = 60 + heartbeat * 80;
-        if (d > 1) {
-          var pullStrength = (d > targetDist) ? 0.01 : -0.005;
-          t.vx += (dx / d) * pullStrength * d * 0.05;
-          t.vy += (dy / d) * pullStrength * d * 0.05;
-        }
-        // Synchronized rotation
-        t.rotation = Math.sin(time * 0.001 + t.phase) * 0.5;
-      } else {
-        // Urban: Grid formation ↔ organic distortion
-        var gridPhase = Math.sin(time * 0.001) * 0.5 + 0.5; // 0→1
-        var perRow = Math.ceil(Math.sqrt(tris.length / 3));
-        var localIdx = i - Math.floor(tris.length * 2 / 3);
-        var gridX = center.x - 80 + (localIdx % perRow) * 20;
-        var gridY = center.y - 80 + Math.floor(localIdx / perRow) * 20;
-        var organicX = center.x + Math.cos(t.phase + time * 0.0005) * 60;
-        var organicY = center.y + Math.sin(t.phase + time * 0.0005) * 60;
-        var tx = lerp(organicX, gridX, gridPhase);
-        var ty = lerp(organicY, gridY, gridPhase);
-        t.vx += (tx - t.x) * 0.02;
-        t.vy += (ty - t.y) * 0.02;
-        // Snap rotation in grid phase
-        t.rotation = lerp(t.rotation, 0, gridPhase * 0.05);
-      }
-
-      t.vx *= 0.96;
-      t.vy *= 0.96;
-      t.x += t.vx;
-      t.y += t.vy;
-
-      // Trail
-      t.trail.push({ x: t.x, y: t.y });
-      if (t.trail.length > t.trailMax) t.trail.shift();
-    }
-
-    // Cross-swarm connection lines (faint)
-    if (quality > 0.7 && local > 0.3) {
-      ctx.beginPath();
-      ctx.strokeStyle = 'rgba(87, 129, 161, 0.04)';
-      ctx.lineWidth = 0.5;
-      for (var s = 0; s < 3; s++) {
-        var next = (s + 1) % 3;
-        // Draw a few connecting lines between nearest triangles of different swarms
-        var startIdx = Math.floor(tris.length * s / 3);
-        var endIdx = Math.floor(tris.length * next / 3);
-        for (var j = 0; j < 3; j++) {
-          var ai = startIdx + Math.floor(Math.random() * (tris.length / 3));
-          var bi = endIdx + Math.floor(Math.random() * (tris.length / 3));
-          if (ai < tris.length && bi < tris.length) {
-            ctx.moveTo(tris[ai].x, tris[ai].y);
-            ctx.lineTo(tris[bi].x, tris[bi].y);
-          }
-        }
-      }
-      ctx.stroke();
-    }
-  }
-
-  // ========================================
-  // PHASE 6: CONVERGENCE (85–100%)
-  // ========================================
-  function phase6_update(local, time) {
-    var centerX = W / 2;
-    var centerY = H / 2;
-    var breath = Math.sin(time * 0.001) * 15;
-    var pullStrength = smoothstep(0, 0.5, local) * 0.025;
+    // TWO side attractors at ~25% and ~75% of viewport width
+    var attractorLX = W * 0.25;
+    var attractorRX = W * 0.75;
+    var attractorY = H / 2;
+    // Slow breathing (14s cycle) with per-triangle phase offset
+    var breathBase = time * 0.000449; // 2*PI/14000
+    // Gentle center attraction (3x weaker than old convergence: 0.008 vs 0.025)
+    var pullStrength = smoothstep(0, 0.5, local) * 0.008;
 
     buildGrid(tris);
+    bonds.clear();
 
     for (var i = 0; i < tris.length; i++) {
       var t = tris[i];
 
-      // Pull toward center
-      var dx = centerX - t.x;
-      var dy = centerY + breath - t.y;
+      // Assign attractor: left half of initial x goes to left attractor, right to right
+      // Use triangle id parity as a stable split (roughly 50/50)
+      var isLeftGroup = (t.id % 2 === 0);
+      var targetX = isLeftGroup ? attractorLX : attractorRX;
+      // Per-triangle breathing phase offset for de-synchronized pulsing
+      var breathOffset = t.phase; // randomized at creation
+      var breath = Math.sin(breathBase + breathOffset) * 35;
+
+      // Pull toward assigned attractor
+      var dx = targetX - t.x;
+      var dy = attractorY + breath - t.y;
       var d = Math.sqrt(dx * dx + dy * dy);
 
       if (d > 1) {
@@ -970,7 +991,28 @@
         t.vy += (dy / d) * pullStrength * Math.min(d, 200) * 0.05;
       }
 
-      // Bonding (strong)
+      // Burst emission every ~4s
+      var burstPhase = Math.sin(time * 0.0016) * 0.5 + 0.5; // 0-1 cycle ~4s
+      if (burstPhase > 0.92 && d < 80) {
+        // Burst: push triangles outward from attractor
+        t.vx += (t.x - targetX) * 0.02;
+        t.vy += (t.y - (attractorY + breath)) * 0.02;
+      }
+
+      // Close-range repulsion
+      if (d < 15 && d > 0) {
+        t.vx += (t.x - targetX) / d * 0.3;
+        t.vy += (t.y - attractorY) / d * 0.3;
+      }
+
+      // Gentle orbital drift with noise for less rigid orbits
+      var orbitCenterX = isLeftGroup ? attractorLX : attractorRX;
+      var orbitAngle = Math.atan2(t.y - attractorY, t.x - orbitCenterX);
+      var orbitNoise = Math.sin(time * 0.0005 + t.phase * 2.7) * 0.015;
+      t.vx += Math.cos(orbitAngle + Math.PI / 2) * (0.02 + orbitNoise);
+      t.vy += Math.sin(orbitAngle + Math.PI / 2) * (0.02 + orbitNoise);
+
+      // Standard bonding
       var neighbors = getNeighbors(t.x, t.y, t.size * 3);
       t.bondCount = 0;
 
@@ -988,7 +1030,7 @@
           t.bondCount++;
           b.bondCount++;
           if (bd > idealDist) {
-            var springF = (bd - idealDist) * CFG.bondSpring * 1.5;
+            var springF = (bd - idealDist) * CFG.bondSpring * 1.2;
             t.vx += (bdx / bd) * springF;
             t.vy += (bdy / bd) * springF;
             b.vx -= (bdx / bd) * springF;
@@ -997,7 +1039,7 @@
         }
 
         if (bd < (t.size + b.size) * CFG.separation && bd > 0) {
-          var sep = ((t.size + b.size) * CFG.separation - bd) * 0.06;
+          var sep = ((t.size + b.size) * CFG.separation - bd) * 0.05;
           t.vx -= (bdx / bd) * sep;
           t.vy -= (bdy / bd) * sep;
           b.vx += (bdx / bd) * sep;
@@ -1005,20 +1047,8 @@
         }
       }
 
-      // Mouse interaction (re-enabled in phase 6)
-      if (mouse.active && local > 0.3) {
-        var mdx = mouse.x - t.x;
-        var mdy = mouse.y - t.y;
-        var md = Math.sqrt(mdx * mdx + mdy * mdy);
-        if (md < CFG.attractRadius && md > 1) {
-          var mf = CFG.attractForce * (1 - md / CFG.attractRadius) * local;
-          t.vx += (mdx / md) * mf * md * 0.1;
-          t.vy += (mdy / md) * mf * md * 0.1;
-        }
-      }
-
-      // Damping
-      var damp = t.bondCount > 0 ? CFG.dampBonded : CFG.dampFree;
+      // Strong damping for calm feel
+      var damp = t.bondCount > 0 ? 0.90 : 0.95;
       t.vx *= damp;
       t.vy *= damp;
       t.x += t.vx;
@@ -1034,15 +1064,125 @@
       if (t.trail.length > t.trailMax) t.trail.shift();
     }
 
-    // Ripple waves through formation
-    if (local > 0.5 && quality > 0.7) {
-      var ripplePhase = time * 0.002;
+    // Subtle ripple opacity waves at half speed — emanate from both attractors
+    if (local > 0.3 && quality > 0.7) {
+      var ripplePhase = time * 0.001;
       for (var i = 0; i < tris.length; i++) {
         var t = tris[i];
-        var rd = dist(t.x, t.y, centerX, centerY);
+        var isLeft = (t.id % 2 === 0);
+        var rCenterX = isLeft ? attractorLX : attractorRX;
+        var rd = dist(t.x, t.y, rCenterX, attractorY);
         var ripple = Math.sin(rd * 0.03 - ripplePhase) * 0.5 + 0.5;
         t.opacity = lerp(t.baseOpacity * 0.7, t.baseOpacity, ripple);
       }
+    }
+  }
+
+  // ========================================
+  // PHASE 5: MESH NETWORK (RIS through footer — FINAL STATE)
+  // ========================================
+  function computeMeshPositions() {
+    if (!tris.length) return;
+    // Distribute target positions across full viewport in a relaxed grid
+    var count = tris.length;
+    var cols = Math.ceil(Math.sqrt(count * (W / H)));
+    var rows = Math.ceil(count / cols);
+    var cellW = W / cols;
+    var cellH = H / rows;
+
+    for (var i = 0; i < count; i++) {
+      var col = i % cols;
+      var row = Math.floor(i / cols);
+      // Center of cell with random jitter
+      tris[i].meshX = (col + 0.5) * cellW + (Math.random() - 0.5) * cellW * 0.4;
+      tris[i].meshY = (row + 0.5) * cellH + (Math.random() - 0.5) * cellH * 0.4;
+    }
+  }
+
+  function phase5_update(local, time) {
+    bonds.clear();
+
+    // Bond detection range grows gently with scroll (densifies the network grid)
+    var bondRangeMultiplier = 1.0 + local * 1.2; // 1.0 -> 2.2
+
+    // Shared wavy drift — all triangles sway together in slow unison
+    var waveX = Math.sin(time * 0.00008) * 0.03;
+    var waveY = Math.cos(time * 0.00006) * 0.02;
+
+    buildGrid(tris);
+
+    for (var i = 0; i < tris.length; i++) {
+      var t = tris[i];
+
+      // Gentle per-triangle organic drift (each one unique)
+      t.vx += Math.sin(time * 0.00012 + t.phase) * 0.012;
+      t.vy += Math.cos(time * 0.00008 + t.phase * 1.3) * 0.012;
+
+      // Shared wave — moves everything in soft unison
+      t.vx += waveX;
+      t.vy += waveY;
+
+      // Bond detection + balanced spring: light attraction at range, equal repulsion up close
+      var searchRange = t.size * 3 * bondRangeMultiplier;
+      var neighbors = getNeighbors(t.x, t.y, searchRange);
+      t.bondCount = 0;
+
+      for (var ni = 0; ni < neighbors.length; ni++) {
+        var j = neighbors[ni];
+        if (j <= i) continue;
+        var b = tris[j];
+        var bdx = b.x - t.x;
+        var bdy = b.y - t.y;
+        var bd = Math.sqrt(bdx * bdx + bdy * bdy);
+        var idealDist = (t.size + b.size) * CFG.bondDist;
+        var threshold = idealDist * 1.5 * bondRangeMultiplier;
+
+        if (bd < threshold) {
+          bonds.add(bondKey(i, j));
+          t.bondCount++;
+          b.bondCount++;
+
+          // Balanced spring: pull toward idealDist, push away if closer
+          // Same strength in both directions — no net clustering
+          var displacement = bd - idealDist;
+          var springF = displacement * 0.0004;
+          t.vx += (bdx / bd) * springF;
+          t.vy += (bdy / bd) * springF;
+          b.vx -= (bdx / bd) * springF;
+          b.vy -= (bdy / bd) * springF;
+        }
+
+        // Equal repulsion when too close — mirrors the attraction strength
+        if (bd < idealDist * 0.7 && bd > 0) {
+          var repel = (idealDist * 0.7 - bd) * 0.001;
+          t.vx -= (bdx / bd) * repel;
+          t.vy -= (bdy / bd) * repel;
+          b.vx += (bdx / bd) * repel;
+          b.vy += (bdy / bd) * repel;
+        }
+      }
+
+      // Damping — keeps movement calm and wavy
+      t.vx *= 0.94;
+      t.vy *= 0.94;
+      t.x += t.vx;
+      t.y += t.vy;
+
+      // Soft viewport boundary
+      var margin = 40;
+      if (t.x < margin) t.vx += (margin - t.x) * 0.01;
+      if (t.x > W - margin) t.vx -= (t.x - (W - margin)) * 0.01;
+      if (t.y < margin) t.vy += (margin - t.y) * 0.01;
+      if (t.y > H - margin) t.vy -= (t.y - (H - margin)) * 0.01;
+
+      // Restore full color
+      t.color = t.baseColor;
+      t.opacity = t.baseOpacity;
+      t.rotation += t.rotSpeed * 0.3;
+
+      // Trail
+      t.trail.push({ x: t.x, y: t.y });
+      if (t.trail.length > t.trailMax) t.trail.shift();
     }
   }
 
@@ -1056,19 +1196,18 @@
     var prevPhase = currentPhase;
     currentPhase = newPhase;
 
-    if (newPhase === 0 && prevPhase === -1) {
+    if (newPhase === 1 && prevPhase === -1) {
       phase1_init();
     }
 
-    // Smooth repositioning for major phase changes
-    if (newPhase === 3 && prevPhase !== 3) {
-      // Entering waterfall: spread triangles across streams
-      var streams = [W * 0.3, W * 0.5, W * 0.7];
-      for (var i = 0; i < tris.length; i++) {
-        var si = i % 3;
-        tris[i].x = lerp(tris[i].x, streams[si] + rand(-40, 40), 0.3);
-        tris[i].y = lerp(tris[i].y, rand(-60, H * 0.3), 0.3);
-      }
+    // Clear bond lifecycles when leaving phase 3
+    if (prevPhase === 3 && newPhase !== 3) {
+      bondLifecycles = {};
+    }
+
+    // Compute mesh positions when entering phase 5
+    if (newPhase === 5 && prevPhase !== 5) {
+      computeMeshPositions();
     }
   }
 
@@ -1076,6 +1215,7 @@
   // MAIN RENDER LOOP
   // ========================================
   var lastTime = 0;
+  var usePerBondRendering = false;
 
   function frame(time) {
     requestAnimationFrame(frame);
@@ -1090,18 +1230,19 @@
 
     var p = getActivePhase(scrollProgress);
     transitionPhase(p.index);
+    usePerBondRendering = (p.index === 3);
+    var useMeshBondRendering = (p.index === 5);
 
     // Update dust
     updateDust(time);
 
     // Update triangles per phase
     switch (p.index) {
-      case 0: phase1_update(p.local, time); break;
-      case 1: phase2_update(p.local, time); break;
-      case 2: phase3_update(p.local, time); break;
-      case 3: phase4_update(p.local, time); break;
-      case 4: phase5_update(p.local, time); break;
-      case 5: phase6_update(p.local, time); break;
+      case 1: phase1_update(p.local, time); break;
+      case 2: phase2_update(p.local, time); break;
+      case 3: phase3_update(p.local, time); break;
+      case 4: phase4_update(p.local, time); break;
+      case 5: phase5_update(p.local, time); break;
     }
 
     // Update splashes
@@ -1114,8 +1255,14 @@
     // 2. Motion trails
     drawTrails(tris);
 
-    // 3. Bond lines
-    drawBonds(tris, bonds);
+    // 3. Bond lines (phase-aware rendering)
+    if (usePerBondRendering) {
+      drawBondsPerBond(tris, bondLifecycles);
+    } else if (useMeshBondRendering) {
+      drawBondsMesh(tris, bonds);
+    } else {
+      drawBondsBatch(tris, bonds);
+    }
 
     // 4. Triangles
     for (var i = 0; i < tris.length; i++) {
@@ -1153,6 +1300,7 @@
   // --- Init ---
   window.addEventListener('resize', function () {
     resize();
+    computeSectionOffsets();
     // If crossing mobile/desktop threshold, reload
     var nowMobile = window.innerWidth < 768;
     if (nowMobile !== isMobile) {
@@ -1167,6 +1315,7 @@
   createDust();
   phase1_init();
   updateScroll();
+  computeSectionOffsets();
   setupDesktopReveals();
   requestAnimationFrame(frame);
 

@@ -63,6 +63,7 @@
       <a href="../index.html" class="nav__logo">
         <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
       </a>
+      <!-- Mobile slide-in menu -->
       <ul class="nav__links" id="navLinks">
         <li><a href="../about.html" data-i18n="nav.about">About</a></li>
         <li><a href="../vision.html" data-i18n="nav.vision">Vision</a></li>
@@ -93,9 +94,44 @@
           </div>
         </li>
       </ul>
-      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__actions">
+        <!-- Desktop dropdown menu -->
+        <button class="nav__menu-btn" aria-expanded="false" aria-controls="navDropdown">
+          Menu <span class="nav__menu-btn__arrow">&#9662;</span>
+        </button>
+        <div class="nav__dropdown" id="navDropdown">
+          <a href="../vision.html" data-i18n="nav.vision">Vision</a>
+          <a href="../innovation-services.html" data-i18n="nav.services">Services</a>
+          <a href="../problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
+          <a href="../blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="../about.html" data-i18n="nav.about">About</a>
+          <a href="../faq.html" data-i18n="nav.faq">FAQ</a>
+        </div>
+        <div class="nav__contact-wrap nav__contact-wrap--desktop">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtnDesktop">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopoverDesktop">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <a href="#pa-contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -115,12 +151,7 @@
       <div class="pa-hero__text">
         <p class="pa-hero__label">Problem Analysis</p>
         <h1 class="pa-hero__title">Find the <em>root causes</em></h1>
-        <p class="pa-hero__lead">Solving the wrong problem might be the biggest innovation mistake to make. Therefore, starting your innovation journey with an extensive problem analysis is a must! The head of the Industrial Engineering Department of Yale University famously said, &ldquo;If I had only one hour to solve a problem, I would spend up to two-thirds of that hour in attempting to define what the problem is.&rdquo; (So no this wasn&rsquo;t Einstein).</p>
-        <p class="pa-hero__lead">We have numerous exercises and methodologies in our toolbox for problem definition, of which the most important ones are mentioned here. Although normally we design custom brainstorming sessions, where we tend to look at the context of the client to determine the exact combination of exercises required and sometimes invent new ones.</p>
-        <p class="pa-hero__lead"><strong>For each method we have physical and online tooling available!</strong></p>
-        <div class="pa-hero__actions">
-          <a href="#pa-contact" class="btn btn--outline">Get in Touch</a>
-        </div>
+        <p class="pa-hero__lead"><strong>Solving the wrong problem is the costliest innovation mistake. We use 11 proven methods — from Socratic Questioning to Systems Mapping — to define the real challenge before designing solutions. Each method has physical and online tooling available, and we often combine or custom-design exercises for your context.</strong></p>
       </div>
       <div class="pa-hero__visual">
         <div class="pa-hero__image">
@@ -204,13 +235,17 @@
           <h3 class="pa-method__title">The Iceberg Model</h3>
         </div>
 
-        <div class="pa-method">
+        <div class="pa-method pa-method--wide">
           <div class="pa-method__image">
             <img src="../Images/Problem Analysis/CustomBrainstorming.png" alt="Custom Brainstorming" loading="lazy">
           </div>
           <h3 class="pa-method__title">Custom Brainstorming</h3>
         </div>
 
+      </div>
+      <div class="pa-methods__detail" id="paMethodDetail"></div>
+      <div style="text-align:center;margin:48px 0;">
+        <a href="#pa-contact" class="btn btn--primary">Get in Touch</a>
       </div>
     </section>
 
@@ -273,7 +308,51 @@
       </div>
     </section>
 
+    <!-- FAQ -->
+    <section class="about-section faq-section">
+      <h2 class="about-section__title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary class="faq-item__q">Why start with problem analysis instead of jumping to solutions?</summary>
+          <p class="faq-item__a">As Yale's Industrial Engineering Department famously stated: "If I had only one hour to solve a problem, I would spend up to two-thirds of that hour in attempting to define what the problem is." Getting the diagnosis wrong is the most expensive mistake in innovation — it wastes resources on solutions that don't address the real issue.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q">How do you decide which methods to use for our project?</summary>
+          <p class="faq-item__a">We look at your context — the stakeholder landscape, data availability, project timeline and organisational culture — then design a custom brainstorming session combining the most effective methods. Sometimes we invent entirely new exercises tailored to your situation.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q">Can sessions be run remotely?</summary>
+          <p class="faq-item__a">Yes. Every method in our toolbox has both physical and online tooling available. We've facilitated fully remote, hybrid and in-person sessions — each with the same methodological rigour.</p>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-item__q">What happens after the problem analysis?</summary>
+          <p class="faq-item__a">Problem analysis feeds directly into our other innovation services — typically Ideation or Design Sprints. The output is a clear problem definition, stakeholder map and priority list that guides solution design.</p>
+        </details>
+      </div>
+    </section>
+
   </main>
+
+  <!-- Social follow card -->
+  <section class="container" style="padding-bottom: 64px;">
+    <div class="follow-card">
+      <p class="follow-card__heading">Follow us</p>
+      <div class="follow-card__links">
+        <a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 600 530" fill="currentColor"><path d="m136 33c66 49 136 149 164 202 28-53 98-153 164-202 47-35 123-76 123-21 0 11-7 94-11 107-14 47-63 59-108 52 78 14 98 58 55 103-82 86-177-22-191-99-14 77-109 185-191 99-43-45-23-89 55-103-45 7-94-5-108-52-4-13-11-96-11-107 0-55 76-14 123 21z"/></svg>
+          Bluesky
+        </a>
+        <a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.26 13.12c-.31 1.58-2.76 3.31-5.58 3.65-1.47.17-2.91.33-4.45.26-2.52-.11-4.51-.58-4.51-.58 0 .24.01.47.04.69.3 2.25 2.22 2.38 4.05 2.44 1.84.07 3.48-.45 3.48-.45l.08 1.68s-1.29.69-3.59.82c-1.27.07-2.84-.03-4.67-.52C2.79 20.17 2.15 16.59 2.03 12.96c-.04-1.07-.01-2.08-.01-2.92 0-3.69 2.42-4.77 2.42-4.77C5.66 4.62 7.56 4.17 9.53 4.15h.05c1.97.02 3.87.47 5.09 1.12 0 0 2.42 1.08 2.42 4.77 0 0 .03 2.72-.37 4.08z"/><path d="M18.19 9.04v4.66h-1.85V9.18c0-.95-.4-1.44-1.2-1.44-.88 0-1.33.57-1.33 1.71v2.48h-1.84v-2.48c0-1.14-.44-1.71-1.33-1.71-.8 0-1.2.49-1.2 1.44v4.52H7.59V9.04c0-.95.24-1.71.73-2.27.5-.56 1.16-.85 1.97-.85.95 0 1.67.36 2.14 1.09l.46.77.46-.77c.47-.73 1.19-1.09 2.14-1.09.81 0 1.46.29 1.97.85.49.56.73 1.32.73 2.27z" fill="var(--color-bg)"/></svg>
+          Mastodon
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
@@ -348,6 +427,45 @@
 
   <script>
     (function() {
+      // PA method card click-to-expand detail panel
+      var paMethodData = [
+        { title: 'Socratic Questioning', desc: 'A structured dialogue technique using iterative "why" questions to challenge assumptions and uncover deeper root causes. Also known as the 5 Whys method, it strips away surface symptoms to reach the fundamental drivers of a problem.' },
+        { title: 'Empathy Mapping', desc: 'A collaborative tool to visualise what stakeholders say, think, feel and do. It builds shared understanding of user needs and pain points, revealing emotional and cognitive dimensions that surveys miss.' },
+        { title: 'Personas', desc: 'Fictional but research-based profiles representing key user segments. Personas make abstract stakeholder groups concrete, helping teams design for real human needs rather than assumptions.' },
+        { title: 'Customer and User Journey', desc: 'A step-by-step map of the experience people have when interacting with a product, service or system. It highlights pain points, moments of delight and opportunities for intervention across the entire journey.' },
+        { title: 'Assumption Mapping', desc: 'Systematic identification and prioritisation of the assumptions underlying a project. By plotting assumptions on an evidence-vs-impact matrix, teams can focus validation efforts where they matter most.' },
+        { title: 'Stakeholder Mapping', desc: 'Visual analysis of all actors involved in or affected by a challenge — their interests, influence and relationships. Essential for multi-stakeholder environments where alignment determines success.' },
+        { title: 'Systems Mapping', desc: 'A visual representation of how different elements in a system are connected and influence each other. It reveals feedback loops, leverage points and unintended consequences that linear thinking misses.' },
+        { title: 'Causal Loop Diagrams', desc: 'Formal diagrams showing circular cause-and-effect relationships within a system. They make reinforcing and balancing feedback loops visible, enabling teams to identify where interventions will have the greatest effect.' },
+        { title: 'Root Cause Mapping', desc: 'A structured approach to trace symptoms back to their underlying causes, often combining fishbone diagrams with collaborative analysis. It prevents the common trap of treating symptoms instead of causes.' },
+        { title: 'The Iceberg Model', desc: 'A systems thinking framework that looks beneath visible events to reveal patterns, structures and mental models. It helps teams move from reactive problem-solving to addressing the deepest systemic drivers.' },
+        { title: 'Custom Brainstorming', desc: 'Tailored brainstorming sessions designed specifically for your context. We combine and adapt methods — or invent entirely new exercises — to match your stakeholder landscape, data availability and project timeline.' }
+      ];
+      var paDetail = document.getElementById('paMethodDetail');
+      var paMethods = document.querySelectorAll('.pa-method');
+      paMethods.forEach(function(card, idx) {
+        card.addEventListener('click', function() {
+          var data = paMethodData[idx];
+          var wasActive = card.classList.contains('active');
+          paMethods.forEach(function(c) { c.classList.remove('active'); });
+          if (wasActive) {
+            paDetail.classList.remove('open');
+            paDetail.innerHTML = '';
+            return;
+          }
+          card.classList.add('active');
+          var img = card.querySelector('img');
+          paDetail.innerHTML =
+            '<div class="pa-methods__detail-header">' +
+              '<img src="' + img.src + '" alt="' + data.title + '" class="pa-methods__detail-img">' +
+              '<h3 class="pa-methods__detail-title">' + data.title + '</h3>' +
+            '</div>' +
+            '<p class="pa-methods__detail-body">' + data.desc + '</p>';
+          paDetail.classList.add('open');
+          paDetail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+      });
+
       // Contact form submission
       var form = document.getElementById('contact-form');
       if (form) {
@@ -398,61 +516,9 @@
         });
       }
 
-      // Nav toggle
-      var navToggle = document.getElementById('navToggle');
-      var navLinks = document.getElementById('navLinks');
-      if (navToggle && navLinks) {
-        navToggle.addEventListener('click', function() {
-          navToggle.classList.toggle('active');
-          navLinks.classList.toggle('open');
-          document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
-        });
-      }
-
-      // Nav contact popover
-      var navContactBtn = document.getElementById('navContactBtn');
-      var navContactPopover = document.getElementById('navContactPopover');
-      if (navContactBtn && navContactPopover) {
-        navContactBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          navContactPopover.classList.toggle('open');
-        });
-        document.addEventListener('click', function(e) {
-          if (!e.target.closest('.nav__contact-wrap')) {
-            navContactPopover.classList.remove('open');
-          }
-        });
-      }
-
-      // Copy email buttons
-      document.addEventListener('click', function(e) {
-        var copyBtn = e.target.closest('.copyable-email__btn');
-        if (copyBtn) {
-          var email = copyBtn.getAttribute('data-email');
-          navigator.clipboard.writeText(email).then(function() {
-            var label = copyBtn.querySelector('.copyable-email__label');
-            copyBtn.classList.add('copied');
-            if (label) label.textContent = 'Copied!';
-            setTimeout(function() {
-              copyBtn.classList.remove('copied');
-              if (label) label.textContent = 'Copy';
-            }, 2000);
-          });
-          return;
-        }
-        var footerBtn = e.target.closest('.footer__copy-btn');
-        if (footerBtn) {
-          var email = footerBtn.getAttribute('data-email');
-          navigator.clipboard.writeText(email).then(function() {
-            footerBtn.classList.add('copied');
-            setTimeout(function() { footerBtn.classList.remove('copied'); }, 2000);
-          });
-        }
-      });
-
     })();
   </script>
+  <script src="../assets/js/nav.js" defer></script>
   <script src="../assets/js/i18n.js" defer></script>
   <script src="../assets/js/tracker.js"></script>
 </body>

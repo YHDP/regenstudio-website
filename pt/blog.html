@@ -73,6 +73,7 @@
       <a href="../index.html" class="nav__logo">
         <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
       </a>
+      <!-- Mobile slide-in menu -->
       <ul class="nav__links" id="navLinks">
         <li><a href="about.html" data-i18n="nav.about">Sobre Nós</a></li>
         <li><a href="vision.html" data-i18n="nav.vision">Visão</a></li>
@@ -103,9 +104,44 @@
           </div>
         </li>
       </ul>
-      <button class="nav__toggle" id="navToggle" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__actions">
+        <!-- Desktop dropdown menu -->
+        <button class="nav__menu-btn" aria-expanded="false" aria-controls="navDropdown">
+          Menu <span class="nav__menu-btn__arrow">&#9662;</span>
+        </button>
+        <div class="nav__dropdown" id="navDropdown">
+          <a href="vision.html" data-i18n="nav.vision">Visão</a>
+          <a href="innovation-services.html" data-i18n="nav.services">Serviços</a>
+          <a href="../problem-analysis/" data-i18n="nav.problem_analysis">Análise de Problemas</a>
+          <a href="blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="about.html" data-i18n="nav.about">Sobre</a>
+          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+        </div>
+        <div class="nav__contact-wrap nav__contact-wrap--desktop">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtnDesktop">Fale Conosco</button>
+          <div class="nav__contact-popover" id="navContactPopoverDesktop">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Envie uma mensagem — adoraríamos ouvir de você.</p>
+              <a href="#blog-contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Envie uma mensagem
+              </a>
+              <div class="nav__contact-popover-divider">ou envie um e-mail diretamente</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copiar endereço de e-mail">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copiar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="nav__toggle" id="navToggle" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -214,6 +250,27 @@
     </div>
   </section>
 
+  <!-- Social follow card -->
+  <section class="container" style="padding-bottom: 64px;">
+    <div class="follow-card">
+      <p class="follow-card__heading">Siga-nos</p>
+      <div class="follow-card__links">
+        <a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 600 530" fill="currentColor"><path d="m136 33c66 49 136 149 164 202 28-53 98-153 164-202 47-35 123-76 123-21 0 11-7 94-11 107-14 47-63 59-108 52 78 14 98 58 55 103-82 86-177-22-191-99-14 77-109 185-191 99-43-45-23-89 55-103-45 7-94-5-108-52-4-13-11-96-11-107 0-55 76-14 123 21z"/></svg>
+          Bluesky
+        </a>
+        <a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.26 13.12c-.31 1.58-2.76 3.31-5.58 3.65-1.47.17-2.91.33-4.45.26-2.52-.11-4.51-.58-4.51-.58 0 .24.01.47.04.69.3 2.25 2.22 2.38 4.05 2.44 1.84.07 3.48-.45 3.48-.45l.08 1.68s-1.29.69-3.59.82c-1.27.07-2.84-.03-4.67-.52C2.79 20.17 2.15 16.59 2.03 12.96c-.04-1.07-.01-2.08-.01-2.92 0-3.69 2.42-4.77 2.42-4.77C5.66 4.62 7.56 4.17 9.53 4.15h.05c1.97.02 3.87.47 5.09 1.12 0 0 2.42 1.08 2.42 4.77 0 0 .03 2.72-.37 4.08z"/><path d="M18.19 9.04v4.66h-1.85V9.18c0-.95-.4-1.44-1.2-1.44-.88 0-1.33.57-1.33 1.71v2.48h-1.84v-2.48c0-1.14-.44-1.71-1.33-1.71-.8 0-1.2.49-1.2 1.44v4.52H7.59V9.04c0-.95.24-1.71.73-2.27.5-.56 1.16-.85 1.97-.85.95 0 1.67.36 2.14 1.09l.46.77.46-.77c.47-.73 1.19-1.09 2.14-1.09.81 0 1.46.29 1.97.85.49.56.73 1.32.73 2.27z" fill="var(--color-bg)"/></svg>
+          Mastodon
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
     <meta itemprop="name" content="Regen Studio">
@@ -286,6 +343,7 @@
     </div>
   </footer>
 
+  <script src="../assets/js/nav.js" defer></script>
   <script src="../assets/js/i18n.js" defer></script>
   <script src="../blog.js" defer></script>
   <script src="../assets/js/tracker.js" defer></script>

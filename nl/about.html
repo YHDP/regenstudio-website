@@ -167,6 +167,7 @@
       <a href="../index.html" class="nav__logo">
         <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
       </a>
+      <!-- Mobile slide-in menu -->
       <ul class="nav__links" id="navLinks">
         <li><a href="about.html" data-i18n="nav.about">Over Ons</a></li>
         <li><a href="vision.html" data-i18n="nav.vision">Visie</a></li>
@@ -197,9 +198,44 @@
           </div>
         </li>
       </ul>
-      <button class="nav__toggle" id="navToggle" aria-label="Menu openen">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__actions">
+        <!-- Desktop dropdown menu -->
+        <button class="nav__menu-btn" aria-expanded="false" aria-controls="navDropdown">
+          Menu <span class="nav__menu-btn__arrow">&#9662;</span>
+        </button>
+        <div class="nav__dropdown" id="navDropdown">
+          <a href="vision.html" data-i18n="nav.vision">Visie</a>
+          <a href="innovation-services.html" data-i18n="nav.services">Diensten</a>
+          <a href="../problem-analysis/" data-i18n="nav.problem_analysis">Probleemanalyse</a>
+          <a href="blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="about.html" data-i18n="nav.about">Over Ons</a>
+          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+        </div>
+        <div class="nav__contact-wrap nav__contact-wrap--desktop">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtnDesktop">Neem Contact Op</button>
+          <div class="nav__contact-popover" id="navContactPopoverDesktop">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Stuur ons een bericht — we horen graag van je.</p>
+              <a href="#about-contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Stuur ons een bericht
+              </a>
+              <div class="nav__contact-popover-divider">of mail ons direct</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="E-mailadres kopiëren">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Kopiëren</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="nav__toggle" id="navToggle" aria-label="Menu openen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -257,26 +293,24 @@
       </div>
     </section>
 
-    <!-- Connect -->
-    <section class="about-section about-section--connect">
-      <h2 class="about-section__title">Verbind met ons</h2>
-      <div class="about-connect">
-        <a href="mailto:info@regenstudio.world" class="about-connect__link about-connect__link--email">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          info@regenstudio.world
-        </a>
-        <a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" class="about-connect__link">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" class="about-connect__link">
-          <svg width="20" height="20" viewBox="0 0 600 530" fill="currentColor"><path d="m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"/></svg>
-          Bluesky
-        </a>
-        <a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" class="about-connect__link">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.547c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054 19.648 19.648 0 0 0 4.581.536h.353c1.578 0 3.168-.091 4.718-.39.038-.007.077-.013.112-.026 2.437-.503 4.756-2.075 4.992-6.048.009-.155.043-1.625.043-1.784 0-.544.199-3.858-.077-5.89z"/></svg>
-          Mastodon
-        </a>
+    <!-- Follow us -->
+    <section class="container" style="padding-top: 16px; padding-bottom: 16px;">
+      <div class="follow-card">
+        <p class="follow-card__heading">Volg ons</p>
+        <div class="follow-card__links">
+          <a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" class="follow-card__link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" class="follow-card__link">
+            <svg width="18" height="18" viewBox="0 0 600 530" fill="currentColor"><path d="m136 33c66 49 136 149 164 202 28-53 98-153 164-202 47-35 123-76 123-21 0 11-7 94-11 107-14 47-63 59-108 52 78 14 98 58 55 103-82 86-177-22-191-99-14 77-109 185-191 99-43-45-23-89 55-103-45 7-94-5-108-52-4-13-11-96-11-107 0-55 76-14 123 21z"/></svg>
+            Bluesky
+          </a>
+          <a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" class="follow-card__link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.26 13.12c-.31 1.58-2.76 3.31-5.58 3.65-1.47.17-2.91.33-4.45.26-2.52-.11-4.51-.58-4.51-.58 0 .24.01.47.04.69.3 2.25 2.22 2.38 4.05 2.44 1.84.07 3.48-.45 3.48-.45l.08 1.68s-1.29.69-3.59.82c-1.27.07-2.84-.03-4.67-.52C2.79 20.17 2.15 16.59 2.03 12.96c-.04-1.07-.01-2.08-.01-2.92 0-3.69 2.42-4.77 2.42-4.77C5.66 4.62 7.56 4.17 9.53 4.15h.05c1.97.02 3.87.47 5.09 1.12 0 0 2.42 1.08 2.42 4.77 0 0 .03 2.72-.37 4.08z"/><path d="M18.19 9.04v4.66h-1.85V9.18c0-.95-.4-1.44-1.2-1.44-.88 0-1.33.57-1.33 1.71v2.48h-1.84v-2.48c0-1.14-.44-1.71-1.33-1.71-.8 0-1.2.49-1.2 1.44v4.52H7.59V9.04c0-.95.24-1.71.73-2.27.5-.56 1.16-.85 1.97-.85.95 0 1.67.36 2.14 1.09l.46.77.46-.77c.47-.73 1.19-1.09 2.14-1.09.81 0 1.46.29 1.97.85.49.56.73 1.32.73 2.27z" fill="var(--color-bg)"/></svg>
+            Mastodon
+          </a>
+        </div>
       </div>
     </section>
 
@@ -524,55 +558,9 @@
         });
       }
 
-      var navToggle = document.getElementById('navToggle');
-      var navLinks = document.getElementById('navLinks');
-      if (navToggle && navLinks) {
-        navToggle.addEventListener('click', function() {
-          navToggle.classList.toggle('active');
-          navLinks.classList.toggle('open');
-          document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
-        });
-      }
-      var navContactBtn = document.getElementById('navContactBtn');
-      var navContactPopover = document.getElementById('navContactPopover');
-      if (navContactBtn && navContactPopover) {
-        navContactBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          navContactPopover.classList.toggle('open');
-        });
-        document.addEventListener('click', function(e) {
-          if (!e.target.closest('.nav__contact-wrap')) {
-            navContactPopover.classList.remove('open');
-          }
-        });
-      }
-      document.addEventListener('click', function(e) {
-        var copyBtn = e.target.closest('.copyable-email__btn');
-        if (copyBtn) {
-          var email = copyBtn.getAttribute('data-email');
-          navigator.clipboard.writeText(email).then(function() {
-            var label = copyBtn.querySelector('.copyable-email__label');
-            copyBtn.classList.add('copied');
-            if (label) label.textContent = 'Gekopieerd!';
-            setTimeout(function() {
-              copyBtn.classList.remove('copied');
-              if (label) label.textContent = 'Kopiëren';
-            }, 2000);
-          });
-          return;
-        }
-        var footerBtn = e.target.closest('.footer__copy-btn');
-        if (footerBtn) {
-          var email = footerBtn.getAttribute('data-email');
-          navigator.clipboard.writeText(email).then(function() {
-            footerBtn.classList.add('copied');
-            setTimeout(function() { footerBtn.classList.remove('copied'); }, 2000);
-          });
-        }
-      });
     })();
   </script>
+  <script src="../assets/js/nav.js" defer></script>
   <script src="../assets/js/i18n.js" defer></script>
   <script src="../assets/js/tracker.js" defer></script>
 </body>

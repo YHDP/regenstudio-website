@@ -62,6 +62,7 @@
       <a href="index.html" class="nav__logo">
         <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
       </a>
+      <!-- Mobile slide-in menu -->
       <ul class="nav__links" id="navLinks">
         <li><a href="about.html" data-i18n="nav.about">Over Ons</a></li>
         <li><a href="vision.html" data-i18n="nav.vision">Visie</a></li>
@@ -92,9 +93,44 @@
           </div>
         </li>
       </ul>
-      <button class="nav__toggle" id="navToggle" aria-label="Menu openen">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__actions">
+        <!-- Desktop dropdown menu -->
+        <button class="nav__menu-btn" aria-expanded="false" aria-controls="navDropdown">
+          Menu <span class="nav__menu-btn__arrow">&#9662;</span>
+        </button>
+        <div class="nav__dropdown" id="navDropdown">
+          <a href="vision.html" data-i18n="nav.vision">Visie</a>
+          <a href="innovation-services.html" data-i18n="nav.services">Diensten</a>
+          <a href="../problem-analysis/" data-i18n="nav.problem_analysis">Probleemanalyse</a>
+          <a href="blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="about.html" data-i18n="nav.about">Over Ons</a>
+          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+        </div>
+        <div class="nav__contact-wrap nav__contact-wrap--desktop">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtnDesktop">Contact</button>
+          <div class="nav__contact-popover" id="navContactPopoverDesktop">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Neem contact met ons op &mdash; we horen graag van je.</p>
+              <a href="#vision-contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Stuur ons een bericht
+              </a>
+              <div class="nav__contact-popover-divider">of mail ons direct</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Kopieer e-mailadres">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Kopieer</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="nav__toggle" id="navToggle" aria-label="Menu openen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -104,10 +140,17 @@
   <main class="vision-page" id="main-content">
 
     <!-- Section 1: Hero -->
-    <section class="vision-section vision-hero">
-      <a href="index.html" class="vision-back">&larr; Terug naar Home</a>
-      <img src="../Vision/EyeVisionAtivo 1.png" alt="" class="vision-hero__accent" loading="eager">
-      <h1 class="vision-hero__mission">Het ontwerpen van baanbrekende oplossingen die op wereldwijde schaal het herstel van <em>natuurlijke, menselijke en stedelijke ecosystemen</em> bewerkstelligen.</h1>
+    <section class="vision-section vision-hero" data-phase="1">
+      <div class="vision-card vision-hero__card">
+        <a href="index.html" class="vision-back">&larr; Terug naar Home</a>
+        <div class="vision-hero__layout">
+          <div class="vision-hero__text">
+            <p class="vision-hero__label">Onze Visie</p>
+            <h1 class="vision-hero__mission">Het ontwerpen van baanbrekende oplossingen die op wereldwijde schaal het herstel van <em>natuurlijke, menselijke en stedelijke ecosystemen</em> bewerkstelligen.</h1>
+          </div>
+          <img src="../Vision/VisionAtivo 3.svg" alt="" class="vision-hero__illustration" loading="eager">
+        </div>
+      </div>
       <div class="vision-hero__scroll" aria-hidden="true">
         <span>Scroll om te ontdekken</span>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
@@ -115,20 +158,22 @@
     </section>
 
     <!-- Section 2: Problem -->
-    <section class="vision-section vision-reveal">
+    <section class="vision-section vision-reveal" data-phase="2">
       <div class="vision-section__inner">
-        <p class="vision-problem__text">Onze wereld verandert steeds sneller. Duizend jaar geleden waren we volledig onderhevig aan het complexe systeem van de natuur. Vandaag heeft onze soort de wereld veroverd en menselijke en stedelijke ecosystemen gecre&euml;erd die steeds meer druk uitoefenen op zichzelf en de natuurlijke systemen die haar ondersteunen. We naderen snel omslagpunten die kunnen leiden tot onherstelbare schade &mdash; met het voortbestaan van de mensheid op het spel, althans zoals we dat nu kennen.</p>
-        <p class="vision-problem__text"><strong>Het is tijd voor een verandering in onze manier van werken.</strong></p>
-        <div class="vision-callout">We moeten van ge&iuml;soleerde activiteiten overstappen naar een complexe systeembenadering voor innovatie.</div>
-        <div class="vision-callout vision-callout--second">We moeten verder kijken dan duurzaamheid en ons richten op regeneratie.</div>
-        <p class="vision-problem__cta">Laat ons je vertellen waarom.</p>
+        <div class="vision-card">
+          <p class="vision-problem__text">Onze wereld verandert steeds sneller. Duizend jaar geleden waren we volledig onderhevig aan het complexe systeem van de natuur. Vandaag heeft onze soort de wereld veroverd en menselijke en stedelijke ecosystemen gecre&euml;erd die steeds meer druk uitoefenen op zichzelf en de natuurlijke systemen die haar ondersteunen. We naderen snel omslagpunten die kunnen leiden tot onherstelbare schade &mdash; met het voortbestaan van de mensheid op het spel, althans zoals we dat nu kennen.</p>
+          <p class="vision-problem__headline">Het is tijd voor een verandering in onze manier van werken.</p>
+          <div class="vision-callout">We moeten van ge&iuml;soleerde activiteiten overstappen naar een complexe systeembenadering voor innovatie.</div>
+          <div class="vision-callout vision-callout--second">We moeten verder kijken dan duurzaamheid en ons richten op regeneratie.</div>
+          <p class="vision-problem__cta">Laat ons je vertellen waarom <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></p>
+        </div>
       </div>
     </section>
 
     <div class="vision-breather" aria-hidden="true"></div>
 
     <!-- Section 3: System Approach -->
-    <section class="vision-section vision-reveal">
+    <section class="vision-section vision-reveal" data-phase="3">
       <div class="vision-section__inner">
         <div class="vision-card">
           <h2 class="vision-content__title">Van ge&iuml;soleerde activiteiten naar een complexe systeembenadering</h2>
@@ -141,7 +186,7 @@
     <div class="vision-breather" aria-hidden="true"></div>
 
     <!-- Section 4: Regeneration -->
-    <section class="vision-section vision-reveal">
+    <section class="vision-section vision-reveal" data-phase="4">
       <div class="vision-section__inner">
         <div class="vision-card">
           <h2 class="vision-content__title">Van duurzaamheid naar regeneratie</h2>
@@ -151,10 +196,12 @@
       </div>
     </section>
 
-    <div class="vision-breather" aria-hidden="true"></div>
+    <div class="vision-breather vision-breather--eye" aria-hidden="true">
+      <img src="../Vision/EyeVisionAtivo 1.png" alt="" class="vision-breather__eye" loading="lazy">
+    </div>
 
     <!-- Section 5: Regenerative Innovation Systems + 3 Ecosystems -->
-    <section class="vision-section vision-reveal">
+    <section class="vision-section vision-reveal" data-phase="5">
       <div class="vision-section__inner">
         <div class="vision-card" style="margin-bottom: 40px;">
           <h2 class="vision-content__title">Regeneratieve Innovatiesystemen</h2>
@@ -181,10 +228,9 @@
     <div class="vision-breather" aria-hidden="true"></div>
 
     <!-- Section 6: Regen Studio -->
-    <section class="vision-section vision-studio vision-reveal">
+    <section class="vision-section vision-studio vision-reveal" data-phase="5">
       <div class="vision-section__inner">
         <div class="vision-card">
-          <img src="../Vision/Visual Identity Rain.png" alt="" class="vision-studio__rain" loading="lazy">
           <h2 class="vision-content__title">Regen Studio</h2>
           <p class="vision-content__text">Bij Regen Studio kiezen we onze projecten zorgvuldig uit en accepteren alleen projecten met potentieel voor regeneratie in natuurlijke, stedelijke of menselijke ecosystemen. We beschouwen onszelf als ontwerpers die processen ontwikkelen om uitdagingen te identificeren, idee&euml;n te genereren, prototypes te ontwikkelen, oplossingen binnen ecosystemen te valideren en ze in levensechte situaties te testen. We willen ook bijdragen aan het veld door de kennis over regeneratieve innovatiesystemen uit te breiden.</p>
           <p class="vision-content__text">We werken niet alleen. Onze expertise ligt in het samenbrengen van mensen rond een gemeenschappelijke uitdaging en het bieden van een duidelijk, concreet pad om die op te lossen. Wij begeleiden jou en je innovatie-ecosystemen door het complexe proces van verandering &mdash; naar oplossingen die regeneratie realiseren binnen onze levensloop en op wereldschaal.</p>
@@ -193,7 +239,7 @@
     </section>
 
     <!-- Section 7: Contact CTA -->
-    <section class="vision-section vision-cta" id="vision-contact">
+    <section class="vision-section vision-cta" id="vision-contact" data-phase="5">
       <div class="inno-services-cta__inner">
         <p class="section__label">Laten We Samen Cre&euml;ren</p>
         <h2 class="cta__title">Klaar om regeneratieve innovatie te verkennen?</h2>
@@ -231,6 +277,27 @@
     </section>
 
   </main>
+
+  <!-- Social follow card -->
+  <section class="container" style="padding-bottom: 64px;">
+    <div class="follow-card">
+      <p class="follow-card__heading">Volg ons</p>
+      <div class="follow-card__links">
+        <a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 600 530" fill="currentColor"><path d="m136 33c66 49 136 149 164 202 28-53 98-153 164-202 47-35 123-76 123-21 0 11-7 94-11 107-14 47-63 59-108 52 78 14 98 58 55 103-82 86-177-22-191-99-14 77-109 185-191 99-43-45-23-89 55-103-45 7-94-5-108-52-4-13-11-96-11-107 0-55 76-14 123 21z"/></svg>
+          Bluesky
+        </a>
+        <a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" class="follow-card__link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.26 13.12c-.31 1.58-2.76 3.31-5.58 3.65-1.47.17-2.91.33-4.45.26-2.52-.11-4.51-.58-4.51-.58 0 .24.01.47.04.69.3 2.25 2.22 2.38 4.05 2.44 1.84.07 3.48-.45 3.48-.45l.08 1.68s-1.29.69-3.59.82c-1.27.07-2.84-.03-4.67-.52C2.79 20.17 2.15 16.59 2.03 12.96c-.04-1.07-.01-2.08-.01-2.92 0-3.69 2.42-4.77 2.42-4.77C5.66 4.62 7.56 4.17 9.53 4.15h.05c1.97.02 3.87.47 5.09 1.12 0 0 2.42 1.08 2.42 4.77 0 0 .03 2.72-.37 4.08z"/><path d="M18.19 9.04v4.66h-1.85V9.18c0-.95-.4-1.44-1.2-1.44-.88 0-1.33.57-1.33 1.71v2.48h-1.84v-2.48c0-1.14-.44-1.71-1.33-1.71-.8 0-1.2.49-1.2 1.44v4.52H7.59V9.04c0-.95.24-1.71.73-2.27.5-.56 1.16-.85 1.97-.85.95 0 1.67.36 2.14 1.09l.46.77.46-.77c.47-.73 1.19-1.09 2.14-1.09.81 0 1.46.29 1.97.85.49.56.73 1.32.73 2.27z" fill="var(--color-bg)"/></svg>
+          Mastodon
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
@@ -354,56 +421,10 @@
         });
       }
 
-      var navToggle = document.getElementById('navToggle');
-      var navLinks = document.getElementById('navLinks');
-      if (navToggle && navLinks) {
-        navToggle.addEventListener('click', function() {
-          navToggle.classList.toggle('active');
-          navLinks.classList.toggle('open');
-          document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
-        });
-      }
-      var navContactBtn = document.getElementById('navContactBtn');
-      var navContactPopover = document.getElementById('navContactPopover');
-      if (navContactBtn && navContactPopover) {
-        navContactBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          navContactPopover.classList.toggle('open');
-        });
-        document.addEventListener('click', function(e) {
-          if (!e.target.closest('.nav__contact-wrap')) {
-            navContactPopover.classList.remove('open');
-          }
-        });
-      }
-      document.addEventListener('click', function(e) {
-        var copyBtn = e.target.closest('.copyable-email__btn');
-        if (copyBtn) {
-          var email = copyBtn.getAttribute('data-email');
-          navigator.clipboard.writeText(email).then(function() {
-            var label = copyBtn.querySelector('.copyable-email__label');
-            copyBtn.classList.add('copied');
-            if (label) label.textContent = 'Gekopieerd!';
-            setTimeout(function() {
-              copyBtn.classList.remove('copied');
-              if (label) label.textContent = 'Kopieer';
-            }, 2000);
-          });
-          return;
-        }
-        var footerBtn = e.target.closest('.footer__copy-btn');
-        if (footerBtn) {
-          var email = footerBtn.getAttribute('data-email');
-          navigator.clipboard.writeText(email).then(function() {
-            footerBtn.classList.add('copied');
-            setTimeout(function() { footerBtn.classList.remove('copied'); }, 2000);
-          });
-        }
-      });
     })();
   </script>
   <script src="../assets/js/vision-anim.js"></script>
+  <script src="../assets/js/nav.js" defer></script>
   <script src="../assets/js/i18n.js" defer></script>
   <script src="../assets/js/tracker.js" defer></script>
 </body>

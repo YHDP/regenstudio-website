@@ -61,6 +61,7 @@
       <a href="../../../nl/index.html" class="nav__logo">
         <img src="../../../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
       </a>
+      <!-- Mobile slide-in menu -->
       <ul class="nav__links" id="navLinks">
         <li><a href="../../../nl/about.html" data-i18n="nav.about">About</a></li>
         <li><a href="../../../nl/vision.html" data-i18n="nav.vision">Vision</a></li>
@@ -91,9 +92,44 @@
           </div>
         </li>
       </ul>
-      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__actions">
+        <!-- Desktop dropdown menu -->
+        <button class="nav__menu-btn" aria-expanded="false" aria-controls="navDropdown">
+          Menu <span class="nav__menu-btn__arrow">&#9662;</span>
+        </button>
+        <div class="nav__dropdown" id="navDropdown">
+          <a href="../../../nl/vision.html" data-i18n="nav.vision">Vision</a>
+          <a href="../../../nl/innovation-services.html" data-i18n="nav.services">Services</a>
+          <a href="../../../problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
+          <a href="../../../nl/blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="../../../nl/about.html" data-i18n="nav.about">About</a>
+          <a href="../../../nl/faq.html" data-i18n="nav.faq">FAQ</a>
+        </div>
+        <div class="nav__contact-wrap nav__contact-wrap--desktop">
+          <button class="btn btn--small nav__contact-btn">Get in Touch</button>
+          <div class="nav__contact-popover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <a href="../../../nl/#contact-form" class="nav__contact-popover-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -276,6 +312,7 @@
     </div>
   </footer>
 
+  <script src="../../../assets/js/nav.js" defer></script>
   <script src="../../../assets/js/i18n.js" defer></script>
   <script src="../../../blog.js" defer></script>
   <script src="../../../assets/js/tracker.js" defer></script>
