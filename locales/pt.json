@@ -4,10 +4,13 @@
     "label": "Português",
     "dir": "ltr"
   },
+  "nav.about": "Sobre Nós",
   "nav.vision": "Visão",
   "nav.focus": "Nosso Foco",
   "nav.services": "Serviços",
   "nav.clients": "Para Quem",
+  "nav.product_passports": "Passaporte do Produto",
+  "nav.digital_identity": "Identidade Digital",
   "nav.blog": "Blog",
   "nav.demos": "Demos",
   "nav.contact": "Fale Conosco",
@@ -20,13 +23,15 @@
   "nav.toggle": "Abrir menu",
 
   "footer.navigate": "Navegação",
-  "footer.vision": "Nossa Visão",
+  "footer.about": "Sobre Nós",
+  "footer.vision": "Visão",
   "footer.focus": "Nosso Foco",
   "footer.services": "Serviços",
   "footer.clients": "Para Quem",
+  "footer.product_passports": "Passaporte do Produto",
+  "footer.digital_identity": "Identidade Digital",
   "footer.blog": "Blog",
   "footer.demos": "Demos",
-  "footer.about": "Sobre Nós",
   "footer.faq": "FAQ",
   "footer.connect": "Contato",
   "footer.locations": "Localizações",
@@ -47,6 +52,7 @@
   "form.success_title": "Mensagem enviada!",
   "form.success_text": "Entraremos em contato em breve.",
   "form.error_default": "Falha ao enviar. Tente novamente.",
+  "form.error_generic": "Algo deu errado",
 
   "blog.read_more": "Leia mais",
   "blog.read": "Leia",
@@ -80,8 +86,11 @@
   "blog.cta_or_email": "ou envie um e-mail diretamente",
   "blog.cta_floating_text": "Gostando do que lê?",
   "blog.cta_floating_link": "ou envie-nos uma mensagem",
+  "blog.no_client_projects": "Nenhum projeto de cliente encontrado",
 
   "toast.email_copied": "E-mail copiado!",
+  "toast.link_copied": "Link copiado!",
+  "toast.linkedin_tag": "Digite @Regen Studio na publicação para nos marcar!",
 
   "cta.explore_services": "Conheça Nossos Serviços",
   "cta.get_in_touch": "Fale Conosco",
@@ -120,5 +129,16 @@
   "hero.freeze": "Congele sua criação",
   "hero.unfreeze": "Descongele",
 
-  "follow.heading": "Siga-nos"
+  "privacy_banner.title": "Sua visita é privada.",
+  "privacy_banner.text": "Sem cookies, sem rastreadores, sem coleta de dados.",
+  "privacy_banner.link": "Como protegemos sua privacidade",
+  "privacy_banner.dismiss": "Fechar",
+
+  "follow.heading": "Siga-nos",
+
+  "vision.read_full": "Leia toda a nossa vis\u00e3o",
+  "vision.scroll": "Role para explorar",
+  "vision.back": "Voltar ao In\u00edcio",
+  "vision.cta_title": "Pronto para explorar inova\u00e7\u00e3o regenerativa?",
+  "vision.cta_text": "Conte-nos sobre o seu desafio e encontraremos juntos o caminho para a regenera\u00e7\u00e3o."
 }

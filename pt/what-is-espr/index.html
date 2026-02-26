@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; frame-src https://player.vimeo.com https://w.soundcloud.com; object-src 'none'; base-uri 'self'; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co">
   <title>O que &eacute; o ESPR? Regulamento de Ecodesign para Produtos Sustent&aacute;veis da UE | Regen Studio</title>
   <meta name="description" content="O que &eacute; o ESPR? O Regulamento de Ecodesign para Produtos Sustent&aacute;veis (UE 2024/1781) estabelece requisitos de sustentabilidade e Passaportes Digitais de Produto para produtos vendidos na UE.">
 
@@ -170,12 +171,13 @@
         <img src="../../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
       </a>
       <ul class="nav__links" id="navLinks">
-        <li><a href="../../pt/index.html#about">Vis&atilde;o</a></li>
-        <li><a href="../../pt/index.html#focus">Nosso Foco</a></li>
-        <li><a href="../../pt/index.html#services">Servi&ccedil;os</a></li>
-        <li><a href="../../pt/index.html#clients">Para Quem</a></li>
-        <li><a href="../../pt/blog.html">Blog</a></li>
-        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Demos</a></li>
+        <li><a href="../about.html" data-i18n="nav.about">Sobre Nós</a></li>
+        <li><a href="../vision.html" data-i18n="nav.vision">Visão</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="../innovation-services.html" data-i18n="nav.services">Serviços</a></li>
+        <li><a href="../../digital-product-passports/" data-i18n="nav.product_passports">Passaporte do Produto</a></li>
+        <li><a href="../../digital-identities/" data-i18n="nav.digital_identity">Identidade Digital</a></li>
+        <li><a href="../blog.html" data-i18n="nav.blog">Blog</a></li>
         <li class="nav__contact-wrap">
           <button class="btn btn--small nav__contact-btn" id="navContactBtn">Contato</button>
           <div class="nav__contact-popover" id="navContactPopover">
@@ -283,7 +285,7 @@
           <li><strong>Artigo 12</strong> &mdash; determina a cria&ccedil;&atilde;o de um <strong>registro centralizado de DPP da UE</strong>, possibilitando fiscaliza&ccedil;&atilde;o transfronteiri&ccedil;a de mercado e prevenindo passaportes falsos ou duplicados</li>
           <li><strong>Artigo 14</strong> &mdash; exige que os DPPs permane&ccedil;am acess&iacute;veis por <strong>pelo menos 10 anos</strong> ap&oacute;s a &uacute;ltima unidade de um modelo de produto ser colocada no mercado</li>
         </ul>
-        <p>Embora o ESPR forne&ccedil;a o quadro geral de DPP, outras regulamenta&ccedil;&otilde;es da UE introduzem seus pr&oacute;prios requisitos de DPP espec&iacute;ficos por produto. O Regulamento de Baterias da UE exige passaportes de baterias a partir de <time datetime="2027-02">fevereiro de 2027</time>, o <abbr title="Regulamento de Embalagens e Res&iacute;duos de Embalagens">PPWR</abbr> exige DPPs de embalagens a partir de <time datetime="2028-08">agosto de 2028</time>, e o <abbr title="Regulamento de Produtos de Constru&ccedil;&atilde;o">CPR</abbr> introduz informa&ccedil;&atilde;o digital de produto para produtos de constru&ccedil;&atilde;o. Leia nossos guias detalhados sobre o <a href="../../blog/cpr-digital-product-passport/">CPR e Passaportes Digitais de Produto</a> e <a href="../../blog/espr-textile-delegated-act/">o ato delegado esperado do ESPR para t&ecirc;xteis</a>.</p>
+        <p>Embora o ESPR forne&ccedil;a o quadro geral de DPP, outras regulamenta&ccedil;&otilde;es da UE introduzem seus pr&oacute;prios requisitos de DPP espec&iacute;ficos por produto. O Regulamento de Baterias da UE exige passaportes de baterias a partir de <time datetime="2027-02">fevereiro de 2027</time>, o <abbr title="Regulamento de Embalagens e Res&iacute;duos de Embalagens">PPWR</abbr> exige DPPs de embalagens a partir de <time datetime="2028-08">agosto de 2028</time>, e o <abbr title="Regulamento de Produtos de Constru&ccedil;&atilde;o">CPR</abbr> introduz informa&ccedil;&atilde;o digital de produto para produtos de constru&ccedil;&atilde;o. Leia nossos guias detalhados sobre o <a href="../../pt/blog/cpr-digital-product-passport/">CPR e Passaportes Digitais de Produto</a> e <a href="../../pt/blog/espr-textile-delegated-act/">o ato delegado esperado do ESPR para t&ecirc;xteis</a>.</p>
       </section>
 
       <section id="espr-timeline">
@@ -350,7 +352,7 @@
         <p>A Regen Studio oferece consultoria independente sobre conformidade com o ESPR e Passaportes Digitais de Produto &mdash; sem software para vender, apenas orienta&ccedil;&atilde;o estrat&eacute;gica clara.</p>
         <a href="../../pt/innovation-services.html" class="btn btn--primary">Explore Nossos Servi&ccedil;os</a>
         <a href="../../pt/digital-product-passports/#dpp-contact" class="btn btn--outline" style="margin-left: 12px;">Entre em Contato</a>
-        <p style="margin-top: 16px; font-size: 0.95rem;">Saiba mais sobre o <a href="../../pt/digital-product-passports/">panorama dos Passaportes Digitais de Produto</a> ou explore nossa <a href="../../blog/espr-textile-delegated-act/">an&aacute;lise do ato delegado esperado para t&ecirc;xteis</a>.</p>
+        <p style="margin-top: 16px; font-size: 0.95rem;">Saiba mais sobre o <a href="../../pt/digital-product-passports/">panorama dos Passaportes Digitais de Produto</a> ou explore nossa <a href="../../pt/blog/espr-textile-delegated-act/">an&aacute;lise do ato delegado esperado para t&ecirc;xteis</a>.</p>
       </div>
     </article>
 
@@ -372,14 +374,14 @@
         <div class="footer__col">
           <h4>Navegar</h4>
           <ul>
-            <li><a href="../../pt/index.html#about">Nossa Vis&atilde;o</a></li>
-            <li><a href="../../pt/index.html#focus">Nosso Foco</a></li>
-            <li><a href="../../pt/index.html#services">Servi&ccedil;os</a></li>
-            <li><a href="../../pt/index.html#clients">Para Quem</a></li>
-            <li><a href="../../pt/blog.html">Blog</a></li>
-            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Demos</a></li>
-            <li><a href="../../pt/about.html">Sobre</a></li>
-            <li><a href="../../pt/faq.html">FAQ</a></li>
+            <li><a href="../about.html" data-i18n="footer.about">Sobre Nós</a></li>
+            <li><a href="../vision.html" data-i18n="footer.vision">Visão</a></li>
+            <li><a href="../innovation-services.html" data-i18n="footer.services">Serviços</a></li>
+            <li><a href="../../digital-product-passports/" data-i18n="footer.product_passports">Passaporte do Produto</a></li>
+            <li><a href="../../digital-identities/" data-i18n="footer.digital_identity">Identidade Digital</a></li>
+            <li><a href="../blog.html" data-i18n="footer.blog">Blog</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+            <li><a href="../faq.html" data-i18n="footer.faq">FAQ</a></li>
           </ul>
         </div>
         <div class="footer__col">

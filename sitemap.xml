@@ -47,6 +47,12 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://www.regenstudio.world/terms.html</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://www.regenstudio.world/client-projects.html</loc>
     <lastmod>2026-02-25</lastmod>
     <changefreq>monthly</changefreq>
@@ -351,6 +357,10 @@
     <lastmod>2026-02-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/cpr-digital-product-passport/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/cpr-digital-product-passport/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/cpr-digital-product-passport/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/cpr-digital-product-passport/" />
   </url>
   <url>
     <loc>https://www.regenstudio.world/blog/espr-textile-delegated-act/</loc>
@@ -691,6 +701,26 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/slim-strandnet/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/slim-strandnet/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/slim-strandnet/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/blog/cpr-digital-product-passport/</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/cpr-digital-product-passport/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/cpr-digital-product-passport/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/cpr-digital-product-passport/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/cpr-digital-product-passport/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/blog/cpr-digital-product-passport/</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/cpr-digital-product-passport/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/cpr-digital-product-passport/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/cpr-digital-product-passport/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/cpr-digital-product-passport/" />
   </url>
   <url>
     <loc>https://www.regenstudio.world/nl/blog/espr-textile-delegated-act/</loc>

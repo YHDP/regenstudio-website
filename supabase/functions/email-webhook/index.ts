@@ -39,6 +39,21 @@ async function verifySignature(
   return expected === signature;
 }
 
+/** Strip IP addresses and other PII from webhook payload before storage */
+function sanitizePayload(obj: Record<string, unknown>): Record<string, unknown> {
+  const ipKeys = new Set(["ip", "ip_address", "client_ip", "sender_ip", "remote_addr", "user_agent"]);
+  const result: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(obj)) {
+    if (ipKeys.has(key.toLowerCase())) continue;
+    if (value && typeof value === "object" && !Array.isArray(value)) {
+      result[key] = sanitizePayload(value as Record<string, unknown>);
+    } else {
+      result[key] = value;
+    }
+  }
+  return result;
+}
+
 Deno.serve(async (req) => {
   if (req.method !== "POST") {
     return new Response(JSON.stringify({ error: "Method not allowed" }), {
@@ -103,7 +118,7 @@ Deno.serve(async (req) => {
     message_id: messageId,
     recipient,
     metadata: payload.data || payload.metadata || {},
-    raw_payload: payload,
+    raw_payload: sanitizePayload(payload),
   });
 
   if (insertError) {

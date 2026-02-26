@@ -41,6 +41,16 @@
 - Tables: `newsletter_subscribers`, `email_events`
 - Edge Functions: contact-form, newsletter-send, newsletter-subscribe, email-webhook
 
+### Required Environment Variables
+| Variable | Used by | Description |
+|----------|---------|-------------|
+| `SUPABASE_URL` | All 4 functions | Supabase project URL (auto-injected by Supabase) |
+| `SUPABASE_SERVICE_ROLE_KEY` | All 4 functions | Supabase service-role key (auto-injected by Supabase) |
+| `LETTERMINT_API_TOKEN` | contact-form | Lettermint API token for sending transactional emails |
+| `LETTERMINT_API_KEY` | newsletter-send | Lettermint API key (Bearer auth) for batch newsletter sends |
+| `NEWSLETTER_SEND_SECRET` | newsletter-send | Shared secret for `x-newsletter-secret` header auth |
+| `LETTERMINT_WEBHOOK_SECRET` | email-webhook | HMAC secret for verifying Lettermint webhook signatures |
+
 ## CPR Blog (`Blogs/cpr-digital-product-passport/content.html`)
 - ~1920-line interactive article with 37 product family cards + popup modals
 - All data is inline: each `<article class="cpr-card">` has data attributes:

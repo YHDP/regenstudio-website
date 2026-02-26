@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; frame-src https://player.vimeo.com https://w.soundcloud.com; object-src 'none'; base-uri 'self'; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co">
+  <title>Terms of Use | Regen Studio</title>
+  <meta name="description" content="Terms of use, digital product sales terms, refund policy, and disclaimer for Regen Studio's websites and services.">
+  <link rel="canonical" href="https://www.regenstudio.world/terms.html">
+  <link rel="icon" type="image/png" href="Images/favicon.png">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.regenstudio.world/" },
+      { "@type": "ListItem", "position": 2, "name": "Terms of Use", "item": "https://www.regenstudio.world/terms.html" }
+    ]
+  }
+  </script>
+  <style>
+    .terms-hero {
+      background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-dark) 60%, #1a3040 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 120px 24px 56px;
+      text-align: center;
+    }
+    .terms-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(60deg, rgba(99,102,241,0.08) 0%, transparent 40%),
+        linear-gradient(200deg, rgba(0,155,187,0.06) 0%, transparent 40%),
+        linear-gradient(320deg, rgba(0,145,75,0.05) 0%, transparent 30%);
+      pointer-events: none;
+    }
+    .terms-hero__accent {
+      height: 4px;
+      display: flex;
+      position: absolute;
+      top: 0; left: 0; right: 0;
+    }
+    .terms-hero__accent span:nth-child(1) { flex: 3; background: #00914B; }
+    .terms-hero__accent span:nth-child(2) { flex: 2; background: #009BBB; }
+    .terms-hero__accent span:nth-child(3) { flex: 2; background: #6366F1; }
+    .terms-hero__accent span:nth-child(4) { flex: 1.5; background: #FFA92D; }
+    .terms-hero__accent span:nth-child(5) { flex: 1.5; background: #93093F; }
+    .terms-hero__tri {
+      position: absolute;
+      width: 0; height: 0;
+      border-left: var(--tri-size, 8px) solid transparent;
+      border-right: var(--tri-size, 8px) solid transparent;
+      border-bottom: calc(var(--tri-size, 8px) * 1.73) solid var(--tri-color, rgba(99,102,241,0.15));
+      pointer-events: none;
+    }
+    .tri-1 { --tri-size: 10px; --tri-color: rgba(99,102,241,0.12); top: 18%; left: 8%; transform: rotate(25deg); }
+    .tri-2 { --tri-size: 6px; --tri-color: rgba(0,155,187,0.15); top: 30%; left: 15%; transform: rotate(-40deg); }
+    .tri-3 { --tri-size: 12px; --tri-color: rgba(0,145,75,0.1); top: 60%; right: 12%; transform: rotate(160deg); }
+    .tri-4 { --tri-size: 7px; --tri-color: rgba(255,169,45,0.15); top: 20%; right: 18%; transform: rotate(75deg); }
+    .tri-5 { --tri-size: 9px; --tri-color: rgba(147,9,63,0.1); bottom: 25%; left: 20%; transform: rotate(-20deg); }
+    .tri-6 { --tri-size: 5px; --tri-color: rgba(99,102,241,0.14); bottom: 30%; right: 25%; transform: rotate(200deg); }
+    .terms-hero__icon {
+      width: 56px; height: 56px;
+      background: rgba(99,102,241,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .terms-hero__icon svg { color: #C7D2FE; }
+    .terms-hero h1 {
+      color: white;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      margin: 0 0 8px;
+      position: relative;
+    }
+    .terms-hero__sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.95rem;
+      margin: 0;
+      position: relative;
+    }
+    .terms-hero__updated {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.8rem;
+      margin: 16px 0 0;
+      position: relative;
+    }
+
+    .privacy-page { padding-top: 0; }
+    .privacy-page h1, .privacy-page .privacy-updated, .privacy-page .privacy-back { display: none; }
+
+    .tldr-card {
+      max-width: 720px;
+      margin: -32px auto 40px;
+      position: relative; z-index: 1;
+      background: white;
+      border-radius: 16px;
+      border: 1px solid var(--color-border);
+      box-shadow: 0 12px 40px rgba(36,54,68,0.1);
+      padding: 32px 36px;
+    }
+    .tldr-card h2 {
+      font-size: 0.75rem !important;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-primary);
+      margin: 0 0 20px !important;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .tldr-card ul {
+      list-style: none !important;
+      padding: 0 !important; margin: 0 !important;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 32px;
+    }
+    .tldr-card li {
+      font-size: 0.88rem;
+      color: var(--color-text-secondary, #5781A1);
+      display: flex; align-items: flex-start; gap: 10px; line-height: 1.6;
+    }
+    .tldr-card li::before {
+      content: '' !important;
+      flex-shrink: 0;
+      width: 6px; height: 6px;
+      margin-top: 7px;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+    .tldr-card li:nth-child(1)::before { background: #6366F1; }
+    .tldr-card li:nth-child(2)::before { background: #009BBB; }
+    .tldr-card li:nth-child(3)::before { background: #00914B; }
+    .tldr-card li:nth-child(4)::before { background: #FFA92D; }
+    .tldr-card li:nth-child(5)::before { background: #93093F; }
+    .tldr-card li:nth-child(6)::before { background: #6366F1; }
+
+    .priv-section { margin-bottom: 40px; }
+    .priv-section__header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+    }
+    .priv-section__icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .priv-section__icon svg { width: 18px; height: 18px; }
+    .priv-section__icon--emerald { background: rgba(0,145,75,0.1); color: #00914B; }
+    .priv-section__icon--teal { background: rgba(0,155,187,0.1); color: #009BBB; }
+    .priv-section__icon--indigo { background: rgba(99,102,241,0.1); color: #6366F1; }
+    .priv-section__icon--amber { background: rgba(255,169,45,0.1); color: #d97706; }
+    .priv-section__icon--crimson { background: rgba(147,9,63,0.1); color: #93093F; }
+    .priv-section h2 {
+      font-size: 1.15rem !important;
+      font-weight: 700 !important;
+      color: var(--color-text, #243644) !important;
+      margin: 0 !important;
+    }
+
+    .priv-divider {
+      height: 3px; display: flex; margin: 40px 0; border-radius: 3px; overflow: hidden;
+    }
+    .priv-divider span:nth-child(1) { flex: 3; background: #00914B; }
+    .priv-divider span:nth-child(2) { flex: 2; background: #009BBB; }
+    .priv-divider span:nth-child(3) { flex: 2; background: #6366F1; }
+    .priv-divider span:nth-child(4) { flex: 1.5; background: #FFA92D; }
+    .priv-divider span:nth-child(5) { flex: 1.5; background: #93093F; }
+
+    .contact-box {
+      background: var(--color-bg-light, #F8F9FA);
+      border: 1px solid var(--color-border);
+      border-radius: 12px; padding: 24px; text-align: center;
+    }
+    .contact-box p { margin: 0 0 12px; }
+    .contact-box a.cta {
+      display: inline-block; background: var(--color-primary);
+      color: white; padding: 10px 24px; border-radius: 99px;
+      font-size: 0.88rem; font-weight: 600; text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .contact-box a.cta:hover { background: var(--color-primary-hover); color: white; }
+
+    @media (max-width: 640px) {
+      .terms-hero { padding: 100px 16px 40px; }
+      .tldr-card ul { grid-template-columns: 1fr; }
+      .tldr-card { margin: -24px 16px 0; padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- Navigation -->
+  <nav class="nav nav--scrolled" id="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__logo">
+        <img src="Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="vision.html" data-i18n="nav.vision">Vision</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="innovation-services.html" data-i18n="nav.services">Services</a></li>
+        <li><a href="digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
+        <li><a href="digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+        <li class="nav__contact-wrap">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <a href="/#contact-form" class="nav__contact-popover-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="terms-hero" id="main-content">
+    <div class="terms-hero__accent"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="terms-hero__tri tri-1"></div>
+    <div class="terms-hero__tri tri-2"></div>
+    <div class="terms-hero__tri tri-3"></div>
+    <div class="terms-hero__tri tri-4"></div>
+    <div class="terms-hero__tri tri-5"></div>
+    <div class="terms-hero__tri tri-6"></div>
+    <div class="terms-hero__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    </div>
+    <h1>Terms of Use</h1>
+    <p class="terms-hero__sub">Fair and transparent terms for using our websites and services.</p>
+    <p class="terms-hero__updated">Last updated: 25 February 2026</p>
+  </section>
+
+  <!-- TL;DR -->
+  <div class="tldr-card">
+    <h2>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+      The short version
+    </h2>
+    <ul>
+      <li>Our content is informational &mdash; not legal or regulatory advice</li>
+      <li>Blog content is shared under CC BY-NC 4.0 (non-commercial with attribution)</li>
+      <li>Digital reports are single-user licence, delivered immediately</li>
+      <li>Refunds available within 14 days if the report has not been downloaded</li>
+      <li>Dutch law applies, with the courts of Arnhem as jurisdiction</li>
+      <li>Read our <a href="privacy.html">Privacy Policy</a> for how we handle your data</li>
+    </ul>
+  </div>
+
+  <main class="privacy-page">
+
+    <!-- General terms -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--indigo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </div>
+        <h2>General terms</h2>
+      </div>
+      <p>These terms govern your use of the websites at <strong>regenstudio.world</strong> and <strong>demos.regenstudio.world</strong>, and the services offered through them. By using our websites, you agree to these terms.</p>
+      <p><strong>Regen Studio B.V.</strong> is registered in The Netherlands (KVK 90337948), with activities in Berg en Dal, The Netherlands and S&atilde;o Paulo, Brazil (CNPJ 57.579.114/0001-55).</p>
+      <p>You must be at least 16 years of age to use our services or submit personal data through our forms. Our services are directed at businesses and professionals.</p>
+      <p>We reserve the right to modify, update, or remove content at any time without prior notice. We aim to keep all information accurate and current, but do not guarantee completeness.</p>
+    </section>
+
+    <!-- Intellectual property -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--teal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h2>Intellectual property</h2>
+      </div>
+      <p>All content on our websites &mdash; including text, graphics, logos, illustrations, and software &mdash; is the property of Regen Studio B.V. unless otherwise indicated.</p>
+      <p><strong>Blog content</strong> is published under a <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a> licence. You may share and adapt blog content for non-commercial purposes, provided you give appropriate credit to Regen Studio and link back to the original article.</p>
+      <p><strong>Code snippets</strong> included in blog posts and demos are provided for educational purposes and may be used freely in your own projects without restriction.</p>
+      <p>The Regen Studio name, logo, and visual identity may not be used without prior written permission.</p>
+    </section>
+
+    <div class="priv-divider"><span></span><span></span><span></span><span></span><span></span></div>
+
+    <!-- Digital product sales -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--emerald">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <h2>Digital product sales</h2>
+      </div>
+      <p>We offer digital reports (such as CPR DPP Readiness Reports) for purchase through our demos website. The following terms apply to all digital product purchases:</p>
+      <ul>
+        <li><strong>Products:</strong> Digital reports delivered via email and/or download link.</li>
+        <li><strong>Payment:</strong> Processed securely by <a href="https://www.mollie.com" target="_blank" rel="noopener">Mollie B.V.</a>, a Dutch payment service provider regulated by De Nederlandsche Bank. All prices are in EUR.</li>
+        <li><strong>VAT:</strong> Prices are inclusive of Dutch VAT (21%) where applicable. Business customers within the EU with a valid VAT ID may be exempt under the reverse-charge mechanism.</li>
+        <li><strong>Delivery:</strong> Reports are delivered immediately upon successful payment via email and a secure download link. Access to the download link requires email verification.</li>
+        <li><strong>Licence:</strong> Each purchase grants a single-user licence. Reports may not be redistributed, resold, or shared publicly without prior written permission.</li>
+        <li><strong>Accuracy:</strong> Reports are based on publicly available information at the time of generation. While we strive for accuracy, report content is informational and should not be treated as legal or regulatory advice.</li>
+      </ul>
+    </section>
+
+    <!-- Refund policy -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+        </div>
+        <h2>Refund policy</h2>
+      </div>
+      <p>We want you to be satisfied with your purchase. Our refund policy complies with the EU Consumer Rights Directive (2011/83/EU):</p>
+      <ul>
+        <li><strong>Before download:</strong> You may request a full refund within 14 days of purchase if the report has not yet been downloaded.</li>
+        <li><strong>After download:</strong> Because digital content is supplied immediately upon your request, the right of withdrawal does not apply once the download has begun (Art. 16(m) of the Consumer Rights Directive). By downloading the report, you acknowledge and agree to this.</li>
+        <li><strong>Defective reports:</strong> If your report contains material errors or is not as described, contact us within 30 days and we will either correct the report or issue a refund at our discretion.</li>
+      </ul>
+      <p>To request a refund, contact us at <a href="mailto:info@regenstudio.world">info@regenstudio.world</a> with your order details.</p>
+    </section>
+
+    <div class="priv-divider"><span></span><span></span><span></span><span></span><span></span></div>
+
+    <!-- Disclaimer -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--crimson">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h2>Disclaimer</h2>
+      </div>
+      <p>The content published on our websites &mdash; including blog posts, reports, interactive tools, and demos &mdash; is provided for <strong>informational and educational purposes only</strong>. It does not constitute legal, regulatory, financial, or professional advice.</p>
+      <p>Information about EU regulations (including the Construction Products Regulation, ESPR, Battery Regulation, and others) is based on publicly available sources and our own analysis. Regulatory frameworks evolve frequently; we cannot guarantee that all information is current or complete at the time you read it.</p>
+      <p>For the most current regulatory information, always consult official EU sources such as the <a href="https://eur-lex.europa.eu" target="_blank" rel="noopener">Official Journal of the European Union</a> and seek advice from qualified legal or regulatory professionals.</p>
+      <p>This website and its content were developed with the assistance of AI tools. All AI-generated or AI-assisted content is reviewed by our team for accuracy before publication.</p>
+    </section>
+
+    <!-- Limitation of liability -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--indigo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h2>Limitation of liability</h2>
+      </div>
+      <p>To the maximum extent permitted by applicable law, Regen Studio B.V. shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our websites or services, including but not limited to loss of profits, data, or business opportunities.</p>
+      <p>Our total aggregate liability for any claim arising from or related to our services shall not exceed the amount you paid to us in the twelve (12) months preceding the claim.</p>
+      <p>Nothing in these terms excludes or limits our liability for fraud, gross negligence, wilful misconduct, or any other liability that cannot be excluded under applicable law.</p>
+    </section>
+
+    <!-- Governing law -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--teal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <h2>Governing law and jurisdiction</h2>
+      </div>
+      <p>These terms are governed by the laws of The Netherlands. Any disputes arising from or in connection with these terms shall be submitted to the exclusive jurisdiction of the courts of Arnhem, The Netherlands.</p>
+      <p>For consumers residing in the EU, this choice of jurisdiction does not affect your rights under mandatory consumer protection laws of your country of residence.</p>
+    </section>
+
+    <!-- Changes -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+        </div>
+        <h2>Changes to these terms</h2>
+      </div>
+      <p>We may update these terms from time to time. Any changes will be posted on this page with an updated date. Continued use of our websites after changes are posted constitutes acceptance of the revised terms.</p>
+    </section>
+
+    <div class="priv-divider"><span></span><span></span><span></span><span></span><span></span></div>
+
+    <!-- Contact -->
+    <div class="contact-box">
+      <p><strong>Questions about these terms?</strong></p>
+      <p>We&rsquo;re happy to clarify anything. Reach out and we&rsquo;ll get back to you.</p>
+      <a href="mailto:info@regenstudio.world" class="cta">Contact us</a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="Regen Studio">
+    <meta itemprop="url" content="https://www.regenstudio.world">
+    <meta itemprop="email" content="info@regenstudio.world">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo">
+          <img src="Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img">
+        </a>
+        <p>Pioneering innovations in the regeneration of our natural, human, and urban ecosystems.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="about.html" data-i18n="footer.about">About</a></li>
+            <li><a href="vision.html" data-i18n="footer.vision">Vision</a></li>
+            <li><a href="innovation-services.html" data-i18n="footer.services">Services</a></li>
+            <li><a href="digital-product-passports/" data-i18n="footer.product_passports">Product Passports</a></li>
+            <li><a href="digital-identities/" data-i18n="footer.digital_identity">Digital Identity</a></li>
+            <li><a href="blog.html" data-i18n="footer.blog">Blog</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+            <li><a href="faq.html" data-i18n="footer.faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Connect</h4>
+          <ul>
+            <li>
+              <span class="footer__email-row">
+                <span class="footer__email-address">info@regenstudio.world</span>
+                <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+              </span>
+            </li>
+            <li><a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" itemprop="sameAs">LinkedIn</a></li>
+            <li><a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" itemprop="sameAs">Bluesky</a></li>
+            <li><a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" itemprop="sameAs">Mastodon</a></li>
+          </ul>
+        </div>
+        <div class="footer__col footer__col--locations">
+          <h4>Locations</h4>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">The Netherlands</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio B.V.</p>
+              <p class="footer__address"><span itemprop="streetAddress">Stollenbergweg 43</span>, <span itemprop="postalCode">6571 AB</span>, <span itemprop="addressLocality">Berg en Dal</span></p>
+              <meta itemprop="addressCountry" content="NL">
+            </div>
+            <p class="footer__reg">KVK 90337948</p>
+          </div>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">Brazil</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio Consultoria LTDA</p>
+              <p class="footer__address"><span itemprop="streetAddress">Av. Washington Lu&iacute;s 1527, 174B</span><br><span itemprop="postalCode">04662-002</span>, <span itemprop="addressLocality">S&atilde;o Paulo</span></p>
+              <meta itemprop="addressCountry" content="BR">
+            </div>
+            <p class="footer__reg">CNPJ 57.579.114/0001-55</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Regen Studio. All rights reserved. &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms of Use</a> &middot; <a href="about.html">About</a> &middot; <a href="admin/">Admin</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      var navToggle = document.getElementById('navToggle');
+      var navLinks = document.getElementById('navLinks');
+      if (navToggle && navLinks) {
+        navToggle.addEventListener('click', function() {
+          navToggle.classList.toggle('active');
+          navLinks.classList.toggle('open');
+          document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+        });
+      }
+      var navContactBtn = document.getElementById('navContactBtn');
+      var navContactPopover = document.getElementById('navContactPopover');
+      if (navContactBtn && navContactPopover) {
+        navContactBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          navContactPopover.classList.toggle('open');
+        });
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('.nav__contact-wrap')) {
+            navContactPopover.classList.remove('open');
+          }
+        });
+      }
+      document.addEventListener('click', function(e) {
+        var copyBtn = e.target.closest('.copyable-email__btn');
+        if (copyBtn) {
+          var email = copyBtn.getAttribute('data-email');
+          navigator.clipboard.writeText(email).then(function() {
+            var label = copyBtn.querySelector('.copyable-email__label');
+            copyBtn.classList.add('copied');
+            if (label) label.textContent = 'Copied!';
+            setTimeout(function() {
+              copyBtn.classList.remove('copied');
+              if (label) label.textContent = 'Copy';
+            }, 2000);
+          });
+          return;
+        }
+        var footerBtn = e.target.closest('.footer__copy-btn');
+        if (footerBtn) {
+          var email = footerBtn.getAttribute('data-email');
+          navigator.clipboard.writeText(email).then(function() {
+            footerBtn.classList.add('copied');
+            setTimeout(function() { footerBtn.classList.remove('copied'); }, 2000);
+          });
+        }
+      });
+    })();
+  </script>
+  <script src="assets/js/i18n.js" defer></script>
+  <script src="assets/js/tracker.js"></script>
+</body>
+</html>

@@ -103,7 +103,7 @@ function calcReadingTime(html: string): number {
 
 function formatDate(dateStr: string, lang: Lang = "en"): string {
   const d = new Date(dateStr + "T00:00:00");
-  const locale = lang === "nl" ? "nl-NL" : lang === "pt" ? "pt-BR" : "en-US";
+  const locale = lang === "nl" ? "nl-NL" : lang === "pt" ? "pt-BR" : "en-GB";
   return d.toLocaleDateString(locale, {
     year: "numeric",
     month: "long",
@@ -350,6 +350,7 @@ function buildHead(post: BlogPost, lang: Lang = "en", availableLangs: Lang[] = [
 
   return `  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; frame-src https://player.vimeo.com https://w.soundcloud.com; object-src 'none'; base-uri 'self'; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co">
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(cleanDesc)}">
 
@@ -498,12 +499,15 @@ function extractFooter(template: string): string {
 function localizePageLinks(html: string, lang: Lang, ap: string): string {
   if (lang === "en") return html;
   const pages = ["index.html", "blog.html", "about.html", "faq.html",
-    "client-projects.html", "innovation-services.html"];
+    "client-projects.html", "innovation-services.html", "vision.html",
+    "privacy.html", "terms.html", "thank-you.html"];
   let result = html;
   for (const page of pages) {
     // Match href="<ap><page>" (with optional #fragment or ?query)
     result = result.replaceAll(`href="${ap}${page}`, `href="${ap}${lang}/${page}`);
   }
+  // Also localize root-relative fragment links like ../..//#contact-form → ../../nl/#contact-form
+  result = result.replaceAll(`href="${ap}/#`, `href="${ap}${lang}/#`);
   return result;
 }
 
@@ -622,6 +626,12 @@ function generateSitemap(
     { loc: `${SITE_URL}/faq.html`, lastmod: today, changefreq: "monthly", priority: "0.8", alternates: staticAlternates("/faq.html") },
     {
       loc: `${SITE_URL}/privacy.html`,
+      lastmod: today,
+      changefreq: "yearly",
+      priority: "0.3",
+    },
+    {
+      loc: `${SITE_URL}/terms.html`,
       lastmod: today,
       changefreq: "yearly",
       priority: "0.3",

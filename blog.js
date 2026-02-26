@@ -123,24 +123,29 @@
     const resp = await fetch(basePath + 'Blogs/blogs.json');
     const folders = await resp.json();
 
-    const blogs = await Promise.all(folders.map(async (folder) => {
-      const base = basePath + 'Blogs/' + folder + '/';
+    const results = await Promise.all(folders.map(async (folder) => {
+      try {
+        const base = basePath + 'Blogs/' + folder + '/';
 
-      // Fetch locale-specific meta/content, fall back to English
-      const [metaResp, contentResp] = await Promise.all([
-        langSuffix
-          ? fetch(base + 'meta' + langSuffix + '.json').then(function (r) { return r.ok ? r : fetch(base + 'meta.json'); })
-          : fetch(base + 'meta.json'),
-        langSuffix
-          ? fetch(base + 'content' + langSuffix + '.html').then(function (r) { return r.ok ? r : fetch(base + 'content.html'); })
-          : fetch(base + 'content.html')
-      ]);
-      const meta = await metaResp.json();
-      const content = await contentResp.text();
-      return { ...meta, content, readingTime: calcReadingTime(content) };
+        // Fetch locale-specific meta/content, fall back to English
+        const [metaResp, contentResp] = await Promise.all([
+          langSuffix
+            ? fetch(base + 'meta' + langSuffix + '.json').then(function (r) { return r.ok ? r : fetch(base + 'meta.json'); })
+            : fetch(base + 'meta.json'),
+          langSuffix
+            ? fetch(base + 'content' + langSuffix + '.html').then(function (r) { return r.ok ? r : fetch(base + 'content.html'); })
+            : fetch(base + 'content.html')
+        ]);
+        const meta = await metaResp.json();
+        const content = await contentResp.text();
+        return { ...meta, content, readingTime: calcReadingTime(content) };
+      } catch (e) {
+        console.warn('Skipping blog post "' + folder + '":', e.message || e);
+        return null;
+      }
     }));
 
-    return blogs.filter(b => b.published).sort((a, b) => new Date(b.date) - new Date(a.date));
+    return results.filter(b => b && b.published).sort((a, b) => new Date(b.date) - new Date(a.date));
   }
 
   // --- Related posts (weighted scoring) ---
@@ -582,7 +587,7 @@
     const clientBlogs = blogs.filter(b => b.categories && b.categories.includes('Client Projects'));
 
     if (clientBlogs.length === 0) {
-      grid.innerHTML = `<div class="blog-no-results"><h3 class="blog-no-results__title">No client projects found</h3></div>`;
+      grid.innerHTML = `<div class="blog-no-results"><h3 class="blog-no-results__title">${t("blog.no_client_projects", "No client projects found")}</h3></div>`;
       return;
     }
 
@@ -686,9 +691,9 @@
           <div class="post-share__card">
             <p class="post-share__label">${t("blog.share_label", "Share this article")}</p>
             <div class="post-share__buttons post-share__buttons--primary">
-              <button class="share-btn share-btn--native share-btn--lg" id="shareNative" title="Share via apps on your device">${icons.share} Share</button>
-              <button class="share-btn share-btn--copy share-btn--lg" id="shareCopy" title="Copy link">${icons.link} ${t("blog.share_copy", "Copy link")}</button>
-              <button class="share-btn share-btn--email share-btn--lg" id="shareEmail" title="Share via Email">${icons.email} Email</button>
+              <button class="share-btn share-btn--native share-btn--lg" id="shareNative" title="${t("blog.share_native", "Share")}">${icons.share} ${t("blog.share_native", "Share")}</button>
+              <button class="share-btn share-btn--copy share-btn--lg" id="shareCopy" title="${t("blog.share_copy", "Copy link")}">${icons.link} ${t("blog.share_copy", "Copy link")}</button>
+              <button class="share-btn share-btn--email share-btn--lg" id="shareEmail" title="${t("blog.share_email", "Email")}">${icons.email} ${t("blog.share_email", "Email")}</button>
             </div>
             <div class="post-share__divider">
               <span>${t("blog.share_or", "or share on")}</span>
@@ -740,7 +745,7 @@
     // LinkedIn — pre-fill text in composer, prompt user to @tag
     document.getElementById('shareLinkedIn').addEventListener('click', () => {
       window.open('https://www.linkedin.com/feed/?shareActive=true&text=' + encodeURIComponent(msgs.linkedin), '_blank', 'width=600,height=600');
-      showToast('Type @Regen Studio in the post to tag us!');
+      showToast(t("toast.linkedin_tag", "Type @Regen Studio in the post to tag us!"));
     });
 
     // Mastodon — via Share2Fedi (handles instance selection)
@@ -768,7 +773,7 @@
       navigator.clipboard.writeText(pageUrl).then(() => {
         this.classList.add('share-btn--copied');
         this.innerHTML = `${icons.link} ${t("blog.share_copied", "Copied!")}`;
-        showToast('Link copied to clipboard!');
+        showToast(t("toast.link_copied", "Link copied to clipboard!"));
         setTimeout(() => {
           this.classList.remove('share-btn--copied');
           this.innerHTML = `${icons.link} ${t("blog.share_copy", "Copy link")}`;
@@ -785,21 +790,21 @@
       <p class="post-cta-banner__text">${t("blog.cta_text", "Interested in working together on regenerative innovation?")}</p>
       <form id="post-contact-form" class="regen-form regen-form--compact">
         <div class="regen-form__row">
-          <input type="text" name="name" placeholder="Your name" class="regen-form__input" required>
-          <input type="email" name="email" placeholder="Email address" class="regen-form__input" required>
+          <input type="text" name="name" placeholder="${t("form.name", "Your name")}" class="regen-form__input" required>
+          <input type="email" name="email" placeholder="${t("form.email", "Email address")}" class="regen-form__input" required>
         </div>
-        <textarea name="message" placeholder="What's on your mind?" class="regen-form__input regen-form__textarea" rows="2"></textarea>
+        <textarea name="message" placeholder="${t("blog.form_message", "What's on your mind?")}" class="regen-form__input regen-form__textarea" rows="2"></textarea>
         <label class="regen-form__checkbox">
-          <input type="checkbox" name="newsletter_opt_in" value="1" checked>
-          <span>Also subscribe me to the Regen Studio newsletter</span>
+          <input type="checkbox" name="newsletter_opt_in" value="1">
+          <span>${t("form.newsletter", "Also subscribe me to the Regen Studio newsletter")}</span>
         </label>
-        <button type="submit" class="btn btn--primary regen-form__submit">Send Message</button>
-        <p class="regen-form__disclaimer">Your data is stored in the EU and not shared with third parties. <a href="${basePath}privacy.html">Privacy Policy</a></p>
+        <button type="submit" class="btn btn--primary regen-form__submit">${t("form.submit", "Send Message")}</button>
+        <p class="regen-form__disclaimer">${t("form.disclaimer", "Your data is stored in the EU and not shared with third parties.")} <a href="${basePath}privacy.html">${t("form.privacy_link", "Privacy Policy")}</a></p>
       </form>
       <div id="post-contact-success" class="regen-form__success" style="display:none">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
-        <h3>Message sent!</h3>
-        <p>We will be in touch soon.</p>
+        <h3>${t("form.success_title", "Message sent!")}</h3>
+        <p>${t("form.success_text", "We'll be in touch shortly.")}</p>
       </div>
       <div class="regen-form__divider"><span>${t("blog.cta_or_email", "or email us directly")}</span></div>
       <div class="copyable-email copyable-email--compact">
@@ -807,7 +812,7 @@
         <button class="copyable-email__btn" data-email="${COMPANY.email}" aria-label="Copy email address">
           <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-          <span class="copyable-email__label">Copy</span>
+          <span class="copyable-email__label">${t("nav.copy", "Copy")}</span>
         </button>
       </div>
     `;
@@ -939,10 +944,10 @@
           const label = copyBtn.querySelector('.copyable-email__label');
           copyBtn.classList.add('copied');
           if (label) label.textContent = t("nav.copied", "Copied!");
-          showToast('Email copied to clipboard!');
+          showToast(t("toast.email_copied", "Email copied to clipboard!"));
           setTimeout(() => {
             copyBtn.classList.remove('copied');
-            if (label) label.textContent = 'Copy';
+            if (label) label.textContent = t("nav.copy", "Copy");
           }, 2000);
         });
         return;
@@ -954,7 +959,7 @@
         const email = footerBtn.getAttribute('data-email');
         navigator.clipboard.writeText(email).then(() => {
           footerBtn.classList.add('copied');
-          showToast('Email copied to clipboard!');
+          showToast(t("toast.email_copied", "Email copied to clipboard!"));
           setTimeout(() => {
             footerBtn.classList.remove('copied');
           }, 2000);
@@ -1001,7 +1006,7 @@
       const submitBtn = form.querySelector('.regen-form__submit');
       const originalText = submitBtn.textContent;
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
+      submitBtn.textContent = t("form.sending", "Sending...");
 
       // Clear previous errors
       const existingError = form.querySelector('.regen-form__error');
@@ -1027,7 +1032,7 @@
 
         if (!res.ok) {
           const data = await res.json().catch(() => ({}));
-          throw new Error(data.error || 'Something went wrong');
+          throw new Error(data.error || t("form.error_generic", "Something went wrong"));
         }
 
         // Success — redirect to thank-you page
@@ -1040,7 +1045,7 @@
       } catch (err) {
         const errorEl = document.createElement('p');
         errorEl.className = 'regen-form__error';
-        errorEl.textContent = err.message || 'Failed to send. Please try again.';
+        errorEl.textContent = err.message || t("form.error_default", "Failed to send. Please try again.");
         submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;

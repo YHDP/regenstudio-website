@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; frame-src https://player.vimeo.com https://w.soundcloud.com; object-src 'none'; base-uri 'self'; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co">
   <title>Regen Studio | Design de Inova&ccedil;&atilde;o Regenerativa</title>
   <meta name="description" content="Consultoria em Passaporte Digital de Produto e design de inova&ccedil;&atilde;o regenerativa. Navegue as regulamenta&ccedil;&otilde;es da economia circular da UE — ESPR, CPR, Regulamento de Baterias. Sediada na Holanda.">
 
@@ -116,12 +117,13 @@
         <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
       </a>
       <ul class="nav__links" id="navLinks">
-        <li><a href="#focus">Nosso Foco</a></li>
-        <li><a href="#about">Vis&atilde;o</a></li>
-        <li><a href="#services">Servi&ccedil;os</a></li>
-        <li><a href="#clients">Para Quem</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Demos</a></li>
+        <li><a href="about.html" data-i18n="nav.about">Sobre Nós</a></li>
+        <li><a href="vision.html" data-i18n="nav.vision">Visão</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="innovation-services.html" data-i18n="nav.services">Serviços</a></li>
+        <li><a href="../digital-product-passports/" data-i18n="nav.product_passports">Passaporte do Produto</a></li>
+        <li><a href="../digital-identities/" data-i18n="nav.digital_identity">Identidade Digital</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
         <li class="nav__contact-wrap">
           <button class="btn btn--small nav__contact-btn" id="navContactBtn">Fale Conosco</button>
           <div class="nav__contact-popover" id="navContactPopover">
@@ -237,7 +239,6 @@
         </p>
         <div class="hero__actions animate-in">
           <a href="#focus" class="btn btn--primary">Explore Nosso Trabalho</a>
-          <a href="#about" class="btn btn--outline">Nossa Vis&atilde;o</a>
         </div>
         <div class="hero__locations animate-in">
           <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Haia, NL</span>
@@ -249,9 +250,22 @@
       </div>
     </div>
 
+    <!-- Section nav: sits above scroll arrow on mobile, sticky on scroll -->
+    <nav class="section-nav" aria-label="Seções da página">
+      <div class="section-nav__track">
+        <a href="#focus" class="section-nav__btn">Nosso Foco</a>
+        <a href="#clients" class="section-nav__btn">Quem Atendemos</a>
+        <a href="#blog-preview" class="section-nav__btn">Histórias</a>
+        <a href="#services" class="section-nav__btn">Serviços</a>
+        <a href="#about" class="section-nav__btn">Visão</a>
+        <a href="#demos" class="section-nav__btn">Demos</a>
+        <a href="#contact" class="section-nav__btn">Contato</a>
+      </div>
+    </nav>
+
     <!-- Scroll indicator -->
     <div class="hero__scroll">
-      <a href="#about" aria-label="Rolar para baixo">
+      <a href="#focus" aria-label="Rolar para baixo">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 13 12 18 17 13"/><line x1="12" y1="6" x2="12" y2="18"/></svg>
       </a>
     </div>
@@ -334,7 +348,7 @@
               <div class="focus__case-accent"></div>
               <div class="focus__case-body">
                 <span class="focus__case-label">Caso em Destaque</span>
-                <span class="focus__case-name"><abbr title="Passaporte Digital de Produto">DPP</abbr>s — Passaportes Digitais de Produto</span>
+                <span class="focus__case-name">Passaportes Digitais de Produto</span>
               </div>
               <span class="focus__case-indicator"></span>
             </a>
@@ -450,6 +464,7 @@
             <span class="copyable-email copyable-email--inline">
               <span class="copyable-email__address">info@regenstudio.world</span>
               <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Copiar e-mail">
+                <span data-i18n="nav.copy">Copiar</span>
                 <svg class="copyable-email__icon copyable-email__icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
               </button>
@@ -462,7 +477,7 @@
       </div>
     </section>
 
-    <!-- Polygon Divider: Focus to Vision -->
+    <!-- Polygon Divider: Focus to Clients -->
     <div class="polygon-divider" aria-hidden="true">
       <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <polygon points="0,0 0,60 1440,60 1440,20 1200,50 900,10 600,45 300,5" fill="#F8F9FA"/>
@@ -470,111 +485,6 @@
         <polygon points="900,60 935,28 970,60" fill="#FFA92D" opacity="0.22"/>
       </svg>
     </div>
-
-    <!-- About / Vision -->
-    <section class="section about section-decoration" id="about">
-      <div class="container">
-        <div class="section__grid section__grid--2col">
-          <div class="about__text">
-            <p class="section__label">Nossa Vis&atilde;o</p>
-            <h2 class="section__title">Sistemas que funcionam para as pessoas <em>&amp; o planeta</em></h2>
-            <p class="about__lead">
-              Acreditamos que as inova&ccedil;&otilde;es mais impactantes n&atilde;o apenas resolvem problemas &mdash; elas regeneram os sistemas que tocam. Por meio de inspira&ccedil;&atilde;o, beleza e anos de expertise, transformamos sistemas para que funcionem em uma era de seres humanos vivendo em equil&iacute;brio consigo mesmos, suas comunidades, suas cidades e seu planeta.
-            </p>
-            <p>
-              A Regen Studio ajuda voc&ecirc; a projetar inova&ccedil;&otilde;es a partir de uma perspectiva sist&ecirc;mica com impacto regenerativo. As inova&ccedil;&otilde;es mais bem-sucedidas, que conseguem mudar sistemas e gerar impacto positivo, combinam elementos tecnol&oacute;gicos, sociais, pol&iacute;ticos e naturais.
-            </p>
-          </div>
-          <div class="about__visual">
-            <div class="about__circle-group">
-              <div class="about__circle about__circle--1">
-                <span>Natural</span>
-              </div>
-              <div class="about__circle about__circle--2">
-                <span>Humano</span>
-              </div>
-              <div class="about__circle about__circle--3">
-                <span>Urbano</span>
-              </div>
-              <div class="about__circle-center">
-                <img src="../Images/WhiteLogoCompactNoText.svg" alt="Regen Studio" class="about__circle-logo">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Polygon Divider: Vision to Services -->
-    <div class="polygon-divider" aria-hidden="true">
-      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="0,60 0,20 300,50 600,0 900,40 1200,10 1440,45 1440,60" fill="#F8F9FA"/>
-        <polygon class="divider-accent divider-accent--1" points="500,60 530,30 560,60" fill="#65DD35" opacity="0.20"/>
-        <polygon class="divider-accent divider-accent--2" points="1050,60 1080,38 1110,60" fill="#009BBB" opacity="0.18"/>
-        <polygon class="divider-accent divider-accent--3" points="780,60 800,42 820,60" fill="#FFA92D" opacity="0.15"/>
-      </svg>
-    </div>
-
-    <!-- Services -->
-    <section class="section services" id="services">
-      <div class="container">
-        <p class="section__label section__label--center">O Que Fazemos</p>
-        <h2 class="section__title section__title--center">Servi&ccedil;os projetados para impacto sist&ecirc;mico</h2>
-        <div class="services__grid">
-          <article class="service service--linked">
-            <a href="innovation-services.html" class="service__overlay" aria-label="Servi&ccedil;os de Inova&ccedil;&atilde;o — Saiba mais"></a>
-            <div class="service__image">
-              <img src="../Images/Services/Innovation Services.png" alt="Ilustra&ccedil;&atilde;o servi&ccedil;os de inova&ccedil;&atilde;o" loading="lazy" />
-            </div>
-            <h3 class="service__title">Servi&ccedil;os de Inova&ccedil;&atilde;o</h3>
-            <p class="service__text">Do design de processos &agrave; consultoria e arquitetura de sistemas &mdash; desenvolvemos abordagens de inova&ccedil;&atilde;o sob medida para ambientes complexos com m&uacute;ltiplas partes interessadas.</p>
-            <span class="service__link">Saiba mais &rarr;</span>
-          </article>
-          <article class="service service--linked">
-            <a href="blog.html#cat=Vision%20%26%20Strategy" class="service__overlay" aria-label="Vis&atilde;o &amp; Estrat&eacute;gia — Ver hist&oacute;rias"></a>
-            <div class="service__image">
-              <img src="../Images/Services/VisioncreationAtivo 8.png" alt="Ilustra&ccedil;&atilde;o vis&atilde;o &amp; estrat&eacute;gia" loading="lazy" />
-            </div>
-            <h3 class="service__title">Vis&atilde;o &amp; Estrat&eacute;gia</h3>
-            <p class="service__text">Ajudamos voc&ecirc; a determinar o futuro desejado e criar caminhos claros para alcan&ccedil;&aacute;-lo, alinhando partes interessadas em torno de uma vis&atilde;o regenerativa compartilhada.</p>
-            <span class="service__link">Ver hist&oacute;rias &rarr;</span>
-          </article>
-          <article class="service service--linked">
-            <a href="blog.html#cat=Visual%20Storytelling" class="service__overlay" aria-label="Storytelling Visual — Ver hist&oacute;rias"></a>
-            <div class="service__image">
-              <img src="../Images/Services/Visual Storytelling.png" alt="Ilustra&ccedil;&atilde;o storytelling visual" loading="lazy" />
-            </div>
-            <h3 class="service__title">Storytelling Visual</h3>
-            <p class="service__text">Narrativas visuais envolventes que comunicam mudan&ccedil;a, tornando a inova&ccedil;&atilde;o sist&ecirc;mica complexa acess&iacute;vel e inspiradora.</p>
-            <span class="service__link">Ver hist&oacute;rias &rarr;</span>
-          </article>
-          <article class="service service--linked">
-            <a href="blog.html#cat=Out-of-the-Box%20Ideas" class="service__overlay" aria-label="Ideias Fora da Caixa — Ver hist&oacute;rias"></a>
-            <div class="service__image">
-              <img src="../Images/Services/Out of the Box.png" alt="Ilustra&ccedil;&atilde;o ideias fora da caixa" loading="lazy" />
-            </div>
-            <h3 class="service__title">Ideias Fora da Caixa</h3>
-            <p class="service__text">Sess&otilde;es criativas colaborativas onde exploramos solu&ccedil;&otilde;es n&atilde;o convencionais para seus desafios regenerativos mais ambiciosos.</p>
-            <span class="service__link">Ver hist&oacute;rias &rarr;</span>
-          </article>
-        </div>
-        <div class="section__soft-cta">
-          <span class="section__soft-cta-text">Precisa disso para a sua organiza&ccedil;&atilde;o?</span>
-          <span class="section__soft-cta-email">
-            <span class="copyable-email copyable-email--inline">
-              <span class="copyable-email__address">info@regenstudio.world</span>
-              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Copiar e-mail">
-                <svg class="copyable-email__icon copyable-email__icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              </button>
-              <a class="soft-cta__form-link" href="#contact" aria-label="Enviar uma mensagem">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              </a>
-            </span>
-          </span>
-        </div>
-      </div>
-    </section>
 
     <!-- Clients -->
     <section class="section clients" id="clients">
@@ -690,6 +600,20 @@
             </div>
             <h3>Universidades</h3>
           </div>
+          <div class="client-type">
+            <div class="client-type__icon">
+              <!-- You?: person silhouette with question mark -->
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                <!-- Head -->
+                <circle cx="18" cy="12" r="6" fill="currentColor" opacity="0.7"/>
+                <!-- Body -->
+                <path d="M8,36 Q8,22 18,22 Q28,22 28,36" fill="currentColor" opacity="0.5"/>
+                <!-- Question mark -->
+                <text x="34" y="30" font-size="20" font-weight="700" fill="currentColor" opacity="0.8" text-anchor="middle" font-family="sans-serif">?</text>
+              </svg>
+            </div>
+            <h3>Voc&ecirc;?</h3>
+          </div>
         </div>
 
         <!-- Client logos carousel -->
@@ -728,6 +652,7 @@
             <span class="copyable-email copyable-email--inline">
               <span class="copyable-email__address">info@regenstudio.world</span>
               <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Copiar e-mail">
+                <span data-i18n="nav.copy">Copiar</span>
                 <svg class="copyable-email__icon copyable-email__icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
               </button>
@@ -763,15 +688,187 @@
         <div class="blog-preview__grid" id="blogPreviewGrid">
           <!-- Populated by JS -->
         </div>
+        <div style="text-align:center;margin-top:24px;">
+          <a href="blog.html#cat=Digital+Product+Passport" class="btn btn--outline">Todas as Hist&oacute;rias de Passaporte Digital do Produto &rarr;</a>
+        </div>
       </div>
     </section>
 
-    <!-- Polygon Divider: Blog to Demos -->
+    <!-- Polygon Divider: Blog to Services -->
+    <div class="polygon-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,60 0,20 300,50 600,0 900,40 1200,10 1440,45 1440,60" fill="#F8F9FA"/>
+        <polygon class="divider-accent divider-accent--1" points="500,60 530,30 560,60" fill="#65DD35" opacity="0.20"/>
+        <polygon class="divider-accent divider-accent--2" points="1050,60 1080,38 1110,60" fill="#009BBB" opacity="0.18"/>
+        <polygon class="divider-accent divider-accent--3" points="780,60 800,42 820,60" fill="#FFA92D" opacity="0.15"/>
+      </svg>
+    </div>
+
+    <!-- Services -->
+    <section class="section services" id="services">
+      <div class="container">
+        <p class="section__label section__label--center">O Que Fazemos</p>
+        <h2 class="section__title section__title--center">Servi&ccedil;os projetados para impacto sist&ecirc;mico</h2>
+        <div class="services__grid">
+          <article class="service service--linked">
+            <a href="innovation-services.html" class="service__overlay" aria-label="Servi&ccedil;os de Inova&ccedil;&atilde;o — Saiba mais"></a>
+            <div class="service__image">
+              <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-label="Ilustração serviços de inovação">
+                <circle cx="60" cy="60" r="60" fill="#00914B" opacity="0.05"/>
+                <polygon points="60,14 28,70 92,70" fill="#00914B" opacity="0.12"/>
+                <polygon points="60,22 36,64 84,64" fill="#00914B" opacity="0.2"/>
+                <polygon points="38,48 16,95 60,95" fill="#00914B" opacity="0.1"/>
+                <polygon points="82,48 60,95 104,95" fill="#00914B" opacity="0.1"/>
+                <polygon points="48,58 38,76 58,76" fill="#00914B" opacity="0.3"/>
+                <polygon points="72,58 62,76 82,76" fill="#00914B" opacity="0.3"/>
+                <polygon points="60,38 50,56 70,56" fill="#00914B" opacity="0.45"/>
+                <polygon points="60,15 56,24 64,24" fill="#00914B" opacity="0.7"/>
+                <polygon points="20,90 16,98 24,98" fill="#00914B" opacity="0.5"/>
+                <polygon points="100,90 96,98 104,98" fill="#00914B" opacity="0.5"/>
+                <line x1="60" y1="22" x2="22" y2="93" stroke="#00914B" stroke-width="0.8" opacity="0.12"/>
+                <line x1="60" y1="22" x2="100" y2="93" stroke="#00914B" stroke-width="0.8" opacity="0.12"/>
+                <line x1="22" y1="93" x2="100" y2="93" stroke="#00914B" stroke-width="0.8" opacity="0.12"/>
+              </svg>
+            </div>
+            <h3 class="service__title">Servi&ccedil;os de Inova&ccedil;&atilde;o</h3>
+            <p class="service__text">Do design de processos &agrave; consultoria e arquitetura de sistemas &mdash; desenvolvemos abordagens de inova&ccedil;&atilde;o sob medida para ambientes complexos com m&uacute;ltiplas partes interessadas.</p>
+            <span class="service__link">Saiba mais &rarr;</span>
+          </article>
+          <article class="service service--linked">
+            <a href="blog.html#cat=Vision%20%26%20Strategy" class="service__overlay" aria-label="Vis&atilde;o &amp; Estrat&eacute;gia — Ver hist&oacute;rias"></a>
+            <div class="service__image">
+              <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-label="Ilustração visão e estratégia">
+                <circle cx="60" cy="60" r="60" fill="#009BBB" opacity="0.05"/>
+                <polygon points="60,10 45,42 75,42" fill="#009BBB" opacity="0.45"/>
+                <polygon points="60,6 55,16 65,16" fill="#009BBB" opacity="0.7"/>
+                <polygon points="60,18 52,34 68,34" fill="#009BBB" opacity="0.55"/>
+                <polygon points="32,32 26,44 42,40" fill="#009BBB" opacity="0.2"/>
+                <polygon points="88,32 94,44 78,40" fill="#009BBB" opacity="0.2"/>
+                <polygon points="22,22 18,30 28,28" fill="#009BBB" opacity="0.1"/>
+                <polygon points="98,22 102,30 92,28" fill="#009BBB" opacity="0.1"/>
+                <polygon points="42,56 20,105 64,105" fill="#009BBB" opacity="0.1"/>
+                <polygon points="78,56 100,105 56,105" fill="#009BBB" opacity="0.1"/>
+                <polygon points="52,64 38,100 66,100" fill="#009BBB" opacity="0.18"/>
+                <polygon points="68,64 82,100 54,100" fill="#009BBB" opacity="0.18"/>
+                <polygon points="60,50 54,105 66,105" fill="#009BBB" opacity="0.3"/>
+              </svg>
+            </div>
+            <h3 class="service__title">Vis&atilde;o &amp; Estrat&eacute;gia</h3>
+            <p class="service__text">Ajudamos voc&ecirc; a determinar o futuro desejado e criar caminhos claros para alcan&ccedil;&aacute;-lo, alinhando partes interessadas em torno de uma vis&atilde;o regenerativa compartilhada.</p>
+            <span class="service__link">Ver hist&oacute;rias &rarr;</span>
+          </article>
+          <article class="service service--linked">
+            <a href="blog.html#cat=Visual%20Storytelling" class="service__overlay" aria-label="Storytelling Visual — Ver hist&oacute;rias"></a>
+            <div class="service__image">
+              <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-label="Ilustração storytelling visual">
+                <circle cx="60" cy="60" r="60" fill="#93093F" opacity="0.04"/>
+                <polygon points="15,92 10,104 28,104" fill="#93093F" opacity="0.12"/>
+                <polygon points="28,74 18,94 48,94" fill="#93093F" opacity="0.18"/>
+                <polygon points="44,55 30,80 64,80" fill="#93093F" opacity="0.24"/>
+                <polygon points="60,36 42,66 82,66" fill="#93093F" opacity="0.32"/>
+                <polygon points="78,20 58,50 100,50" fill="#93093F" opacity="0.42"/>
+                <polygon points="78,22 72,34 84,34" fill="#93093F" opacity="0.6"/>
+                <polygon points="98,32 94,40 102,40" fill="#93093F" opacity="0.25"/>
+                <polygon points="108,44 104,52 112,52" fill="#93093F" opacity="0.12"/>
+                <polygon points="10,98 7,104 13,104" fill="#93093F" opacity="0.35"/>
+                <line x1="16" y1="98" x2="98" y2="32" stroke="#93093F" stroke-width="0.8" opacity="0.08"/>
+              </svg>
+            </div>
+            <h3 class="service__title">Storytelling Visual</h3>
+            <p class="service__text">Narrativas visuais envolventes que comunicam mudan&ccedil;a, tornando a inova&ccedil;&atilde;o sist&ecirc;mica complexa acess&iacute;vel e inspiradora.</p>
+            <span class="service__link">Ver hist&oacute;rias &rarr;</span>
+          </article>
+          <article class="service service--linked">
+            <a href="blog.html#cat=Out-of-the-Box%20Ideas" class="service__overlay" aria-label="Ideias Fora da Caixa — Ver hist&oacute;rias"></a>
+            <div class="service__image">
+              <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-label="Ilustração ideias fora da caixa">
+                <circle cx="60" cy="60" r="60" fill="#E71846" opacity="0.04"/>
+                <rect x="36" y="44" width="48" height="48" rx="3" fill="none" stroke="#E71846" stroke-width="1.5" opacity="0.18"/>
+                <polygon points="52,38 44,16 60,16" fill="#E71846" opacity="0.45"/>
+                <polygon points="68,38 78,12 90,28" fill="#E71846" opacity="0.32"/>
+                <polygon points="32,56 10,50 18,68" fill="#E71846" opacity="0.28"/>
+                <polygon points="88,58 110,44 106,66" fill="#E71846" opacity="0.22"/>
+                <polygon points="42,38 26,22 34,40" fill="#E71846" opacity="0.35"/>
+                <polygon points="84,44 100,28 96,48" fill="#E71846" opacity="0.18"/>
+                <polygon points="30,14 26,24 34,24" fill="#E71846" opacity="0.12"/>
+                <polygon points="102,16 98,26 106,26" fill="#E71846" opacity="0.1"/>
+                <polygon points="8,38 5,46 11,46" fill="#E71846" opacity="0.08"/>
+                <polygon points="114,72 110,78 118,78" fill="#E71846" opacity="0.06"/>
+                <polygon points="60,56 50,74 70,74" fill="#E71846" opacity="0.12"/>
+                <polygon points="60,60 54,70 66,70" fill="#E71846" opacity="0.22"/>
+              </svg>
+            </div>
+            <h3 class="service__title">Ideias Fora da Caixa</h3>
+            <p class="service__text">Sess&otilde;es criativas colaborativas onde exploramos solu&ccedil;&otilde;es n&atilde;o convencionais para seus desafios regenerativos mais ambiciosos.</p>
+            <span class="service__link">Ver hist&oacute;rias &rarr;</span>
+          </article>
+        </div>
+        <div class="section__soft-cta">
+          <span class="section__soft-cta-text">Precisa disso para a sua organiza&ccedil;&atilde;o?</span>
+          <span class="section__soft-cta-email">
+            <span class="copyable-email copyable-email--inline">
+              <span class="copyable-email__address">info@regenstudio.world</span>
+              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Copiar e-mail">
+                <span data-i18n="nav.copy">Copiar</span>
+                <svg class="copyable-email__icon copyable-email__icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              </button>
+              <a class="soft-cta__form-link" href="#contact" aria-label="Enviar uma mensagem">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </a>
+            </span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Polygon Divider: Services to Vision -->
     <div class="polygon-divider" aria-hidden="true">
       <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <polygon points="0,60 200,20 500,50 800,10 1100,40 1440,0 1440,60" fill="#F8F9FA"/>
         <polygon points="400,60 430,34 460,60" fill="#009BBB" opacity="0.18"/>
         <polygon points="900,60 925,38 950,60" fill="#00914B" opacity="0.20"/>
+      </svg>
+    </div>
+
+    <!-- About / Vision -->
+    <section class="section about section-decoration" id="about">
+      <div class="container">
+        <div class="section__grid section__grid--2col">
+          <div class="about__text">
+            <p class="section__label">Nossa Vis&atilde;o</p>
+            <h2 class="section__title">Sistemas que funcionam para as pessoas <em>&amp; o planeta</em></h2>
+            <p class="about__lead">
+              Acreditamos que as inova&ccedil;&otilde;es mais impactantes n&atilde;o apenas resolvem problemas &mdash; elas regeneram os sistemas que tocam. Por meio de inspira&ccedil;&atilde;o, beleza e anos de expertise, transformamos sistemas para que funcionem em uma era de seres humanos vivendo em equil&iacute;brio consigo mesmos, suas comunidades, suas cidades e seu planeta.
+            </p>
+            <a href="/pt/vision.html" class="btn btn--outline">Leia toda a nossa vis&atilde;o &rarr;</a>
+          </div>
+          <div class="about__visual">
+            <div class="about__circle-group">
+              <div class="about__circle about__circle--1">
+                <span>Natural</span>
+              </div>
+              <div class="about__circle about__circle--2">
+                <span>Humano</span>
+              </div>
+              <div class="about__circle about__circle--3">
+                <span>Urbano</span>
+              </div>
+              <div class="about__circle-center">
+                <img src="../Images/WhiteLogoCompactNoText.svg" alt="Regen Studio" class="about__circle-logo">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Polygon Divider: Vision to Demos -->
+    <div class="polygon-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,60 200,15 500,45 800,5 1100,40 1440,10 1440,60" fill="#F8F9FA"/>
+        <polygon points="300,60 330,34 360,60" fill="#FFA92D" opacity="0.18"/>
+        <polygon points="850,60 880,36 910,60" fill="#E71846" opacity="0.20"/>
       </svg>
     </div>
 
@@ -858,7 +955,7 @@
             </div>
             <textarea name="message" placeholder="Conte-nos sobre o seu projeto..." class="regen-form__input regen-form__textarea" aria-label="Mensagem"></textarea>
             <label class="regen-form__checkbox">
-              <input type="checkbox" name="newsletter_opt_in" value="1" checked>
+              <input type="checkbox" name="newsletter_opt_in" value="1">
               <span>Inscreva-me tamb&eacute;m na newsletter da Regen Studio</span>
             </label>
             <button type="submit" class="btn btn--primary btn--large regen-form__submit">Enviar Mensagem</button>
@@ -902,14 +999,14 @@
           <div class="footer__col">
             <h4>Navega&ccedil;&atilde;o</h4>
             <ul>
-              <li><a href="#about">Nossa Vis&atilde;o</a></li>
-              <li><a href="#focus">Nosso Foco</a></li>
-              <li><a href="#services">Servi&ccedil;os</a></li>
-              <li><a href="#clients">Para Quem</a></li>
-              <li><a href="blog.html">Blog</a></li>
-              <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Demos</a></li>
-              <li><a href="about.html">Sobre N&oacute;s</a></li>
-              <li><a href="faq.html">Perguntas Frequentes</a></li>
+              <li><a href="about.html" data-i18n="footer.about">Sobre Nós</a></li>
+              <li><a href="vision.html" data-i18n="footer.vision">Visão</a></li>
+              <li><a href="innovation-services.html" data-i18n="footer.services">Serviços</a></li>
+              <li><a href="../digital-product-passports/" data-i18n="footer.product_passports">Passaporte do Produto</a></li>
+              <li><a href="../digital-identities/" data-i18n="footer.digital_identity">Identidade Digital</a></li>
+              <li><a href="blog.html" data-i18n="footer.blog">Blog</a></li>
+              <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+              <li><a href="faq.html" data-i18n="footer.faq">FAQ</a></li>
             </ul>
           </div>
           <div class="footer__col">
@@ -952,7 +1049,7 @@
           </div>
         </div>
         <div class="footer__bottom">
-          <p>&copy; 2026 Regen Studio. Todos os direitos reservados. &middot; <a href="privacy.html">Pol&iacute;tica de Privacidade</a> &middot; <a href="about.html">Sobre N&oacute;s</a> &middot; <a href="admin/">Admin</a></p>
+          <p>&copy; 2026 Regen Studio. Todos os direitos reservados. &middot; <a href="privacy.html">Pol&iacute;tica de Privacidade</a> &middot; <a href="terms.html">Termos de Uso</a> &middot; <a href="about.html">Sobre N&oacute;s</a> &middot; <a href="admin/">Admin</a></p>
         </div>
       </div>
     </footer>
