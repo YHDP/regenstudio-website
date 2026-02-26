@@ -4,10 +4,13 @@
     "label": "Nederlands",
     "dir": "ltr"
   },
+  "nav.about": "Over Ons",
   "nav.vision": "Visie",
   "nav.focus": "Ons Focus",
   "nav.services": "Diensten",
-  "nav.clients": "Voor Wie",
+  "nav.clients": "Voor Wie?",
+  "nav.product_passports": "Productpaspoorten",
+  "nav.digital_identity": "Digitale Identiteit",
   "nav.blog": "Blog",
   "nav.demos": "Demo's",
   "nav.contact": "Contact",
@@ -20,13 +23,15 @@
   "nav.toggle": "Menu openen",
 
   "footer.navigate": "Navigatie",
-  "footer.vision": "Onze Visie",
+  "footer.about": "Over Ons",
+  "footer.vision": "Visie",
   "footer.focus": "Ons Focus",
   "footer.services": "Diensten",
-  "footer.clients": "Voor Wie",
+  "footer.clients": "Voor Wie?",
+  "footer.product_passports": "Productpaspoorten",
+  "footer.digital_identity": "Digitale Identiteit",
   "footer.blog": "Blog",
   "footer.demos": "Demo's",
-  "footer.about": "Over Ons",
   "footer.faq": "FAQ",
   "footer.connect": "Contact",
   "footer.locations": "Locaties",
@@ -47,6 +52,7 @@
   "form.success_title": "Bericht verstuurd!",
   "form.success_text": "We nemen snel contact met je op.",
   "form.error_default": "Versturen mislukt. Probeer het opnieuw.",
+  "form.error_generic": "Er is iets misgegaan",
 
   "blog.read_more": "Lees meer",
   "blog.read": "Lees",
@@ -80,8 +86,11 @@
   "blog.cta_or_email": "of mail ons direct",
   "blog.cta_floating_text": "Bevalt wat je leest?",
   "blog.cta_floating_link": "of stuur ons een bericht",
+  "blog.no_client_projects": "Geen klantprojecten gevonden",
 
   "toast.email_copied": "E-mailadres gekopieerd!",
+  "toast.link_copied": "Link gekopieerd naar klembord!",
+  "toast.linkedin_tag": "Typ @Regen Studio in het bericht om ons te taggen!",
 
   "cta.explore_services": "Bekijk Onze Diensten",
   "cta.get_in_touch": "Neem Contact Op",
@@ -120,5 +129,16 @@
   "hero.freeze": "Bevries je creatie",
   "hero.unfreeze": "Ontdooien",
 
-  "follow.heading": "Volg ons"
+  "privacy_banner.title": "Je bezoek is privé.",
+  "privacy_banner.text": "Geen cookies, geen trackers, geen dataverzameling.",
+  "privacy_banner.link": "Hoe we je privacy beschermen",
+  "privacy_banner.dismiss": "Sluiten",
+
+  "follow.heading": "Volg ons",
+
+  "vision.read_full": "Lees onze volledige visie",
+  "vision.scroll": "Scroll om te ontdekken",
+  "vision.back": "Terug naar Home",
+  "vision.cta_title": "Klaar om regeneratieve innovatie te verkennen?",
+  "vision.cta_text": "Vertel ons over je uitdaging en we vinden samen het pad naar regeneratie."
 }

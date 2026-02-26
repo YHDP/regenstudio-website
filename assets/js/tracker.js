@@ -14,7 +14,7 @@
 (function () {
   'use strict';
 
-  var ENDPOINT = 'https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/track-report-event';
+  var ENDPOINT = 'https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/private-track-report-event';
   var SITE = 'www';
   var pageLoadTime = Date.now();
 

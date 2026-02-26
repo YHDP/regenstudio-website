@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; frame-src https://player.vimeo.com https://w.soundcloud.com; object-src 'none'; base-uri 'self'; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co">
   <title>Privacy Policy | Regen Studio</title>
   <meta name="description" content="How Regen Studio handles your data: zero cookies, privacy-preserving analytics, EU-hosted infrastructure. Compliant with GDPR, LGPD, and ePrivacy Directive.">
   <link rel="canonical" href="https://www.regenstudio.world/privacy.html">
@@ -288,12 +289,13 @@
         <img src="Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
       </a>
       <ul class="nav__links" id="navLinks">
-        <li><a href="index.html#about">Vision</a></li>
-        <li><a href="index.html#focus">Our Focus</a></li>
-        <li><a href="index.html#services">Services</a></li>
-        <li><a href="index.html#clients">Who We Serve</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Demos</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="vision.html" data-i18n="nav.vision">Vision</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="innovation-services.html" data-i18n="nav.services">Services</a></li>
+        <li><a href="digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
+        <li><a href="digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
         <li class="nav__contact-wrap">
           <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
           <div class="nav__contact-popover" id="navContactPopover">
@@ -338,7 +340,7 @@
     </div>
     <h1>Privacy Policy</h1>
     <p class="privacy-hero__sub">How we handle your data — transparently, minimally, and with respect.</p>
-    <p class="privacy-hero__updated">Last updated: 24 February 2026</p>
+    <p class="privacy-hero__updated">Last updated: 25 February 2026</p>
   </section>
 
   <!-- TL;DR -->
@@ -368,7 +370,7 @@
         <h2>Data controller</h2>
       </div>
       <p><strong>Regen Studio B.V.</strong> is the data controller responsible for your personal data as described in this policy. Regen Studio is a design and innovation studio registered in The Netherlands (KVK 90337948), with activities in The Hague, The Netherlands and S&atilde;o Paulo, Brazil (CNPJ 57.579.114/0001-55).</p>
-      <p>This privacy policy applies to the websites at <strong>regenstudio.world</strong>, <strong>regenstudio.space</strong>, and <strong>demos.regenstudio.space</strong>, and to all services offered through these domains.</p>
+      <p>This privacy policy applies to the websites at <strong>regenstudio.world</strong> and <strong>demos.regenstudio.world</strong>, and to all services offered through these domains.</p>
       <p>Contact: <a href="mailto:info@regenstudio.world">info@regenstudio.world</a></p>
     </section>
 
@@ -390,14 +392,14 @@
       </ul>
       <p>Purpose: to respond to your inquiry, send newsletters, and notify our team. Legal basis: <strong>legitimate interest</strong> (GDPR Art. 6(1)(f) / LGPD Art. 7(IX)) and <strong>consent</strong> (GDPR Art. 6(1)(a) / LGPD Art. 7(I)).</p>
 
-      <p><strong>Demo access requests and magic links</strong> (demos.regenstudio.space)</p>
+      <p><strong>Demo access requests and magic links</strong> (demos.regenstudio.world)</p>
       <ul>
         <li>Your email address</li>
         <li>A cryptographic hash of the access token (the raw token is never stored server-side)</li>
       </ul>
       <p>Purpose: to verify your identity and grant demo access. Legal basis: <strong>performance of a contract</strong> (GDPR Art. 6(1)(b) / LGPD Art. 7(V)).</p>
 
-      <p><strong>Report purchases</strong> (demos.regenstudio.space/cpr-dpp-tracker)</p>
+      <p><strong>Report purchases</strong> (demos.regenstudio.world/cpr-dpp-tracker)</p>
       <ul>
         <li>Your email address</li>
         <li>Selected report type and product family</li>
@@ -445,7 +447,7 @@
         </div>
         <h2>Privacy-preserving analytics</h2>
       </div>
-      <p>On the demos site, we collect aggregate page view statistics to understand which pages are visited. This system is designed from the ground up to be privacy-preserving:</p>
+      <p>On both our websites, we collect aggregate page view statistics to understand which pages are visited. This system is designed from the ground up to be privacy-preserving:</p>
 
       <div class="analytics-box">
         <h3>
@@ -480,6 +482,7 @@
         <li><strong>Content unlock tokens</strong> &mdash; when you provide your email to access gated content (e.g., product family details), we store a timestamp recording when you unlocked access.</li>
       </ul>
       <p>In both cases, the stored value contains <strong>no personal data</strong> (no email, no name). All tokens are programmatically enforced to expire after 24 hours: the code checks the stored timestamp against the current time and removes expired tokens automatically.</p>
+      <p>We also use <code>sessionStorage</code> (tab-scoped, automatically cleared when you close the tab) to store the previous page path within the same browsing session. This is used solely to understand internal navigation patterns in aggregate analytics. No personal data is stored.</p>
       <p>This storage is <strong>strictly necessary</strong> to provide the service you requested and is exempt from consent under ePrivacy Directive Art. 5(3).</p>
     </section>
 
@@ -657,7 +660,7 @@
         </div>
         <h2>How to exercise your rights</h2>
       </div>
-      <p>To exercise any of your rights, contact us at <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>. We will acknowledge your request within 5 business days and respond substantively within 30 days.</p>
+      <p>To exercise any of your rights, contact us at <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>. We will acknowledge your request within 5 business days and respond substantively within 15 days (in compliance with LGPD Art. 18 &sect;5).</p>
       <p>If you request deletion, we will erase all personal data we hold about you, except where retention is required by law (e.g., invoice records under Dutch tax law).</p>
     </section>
 
@@ -672,6 +675,19 @@
       <p>Our services are directed at businesses and professionals. We do not knowingly collect personal data from children under 16. If you believe we have inadvertently collected data from a child, please contact us and we will delete it promptly.</p>
     </section>
 
+    <!-- AI tools transparency -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--indigo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h2>Use of AI tools</h2>
+      </div>
+      <p>In the spirit of transparency, we disclose that AI-assisted tools (including Claude by Anthropic) are used in the development of this website and in the creation and editing of content. All AI-generated or AI-assisted content is reviewed by our team for accuracy before publication.</p>
+      <p>No personal data you provide through our forms or services is shared with AI tools. AI assistance is limited to website development, content writing, and internal research. Your data never enters AI training pipelines.</p>
+      <p>For the most current regulatory information published on our blog, we always recommend consulting official EU sources such as the <a href="https://eur-lex.europa.eu" target="_blank" rel="noopener">Official Journal of the European Union</a>.</p>
+    </section>
+
     <!-- Changes -->
     <section class="priv-section">
       <div class="priv-section__header">
@@ -680,7 +696,7 @@
         </div>
         <h2>Changes to this policy</h2>
       </div>
-      <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated date.</p>
+      <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated date. If we make material changes that affect how we handle your personal data, we will notify existing newsletter subscribers by email.</p>
     </section>
 
     <div class="priv-divider"><span></span><span></span><span></span><span></span><span></span></div>
@@ -710,14 +726,14 @@
         <div class="footer__col">
           <h4>Navigate</h4>
           <ul>
-            <li><a href="index.html#about">Our Vision</a></li>
-            <li><a href="index.html#focus">Our Focus</a></li>
-            <li><a href="index.html#services">Services</a></li>
-            <li><a href="index.html#clients">Who We Serve</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Demos</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="about.html" data-i18n="footer.about">About</a></li>
+            <li><a href="vision.html" data-i18n="footer.vision">Vision</a></li>
+            <li><a href="innovation-services.html" data-i18n="footer.services">Services</a></li>
+            <li><a href="digital-product-passports/" data-i18n="footer.product_passports">Product Passports</a></li>
+            <li><a href="digital-identities/" data-i18n="footer.digital_identity">Digital Identity</a></li>
+            <li><a href="blog.html" data-i18n="footer.blog">Blog</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+            <li><a href="faq.html" data-i18n="footer.faq">FAQ</a></li>
           </ul>
         </div>
         <div class="footer__col">
@@ -760,7 +776,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; 2026 Regen Studio. All rights reserved. &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="about.html">About</a> &middot; <a href="admin/">Admin</a></p>
+        <p>&copy; 2026 Regen Studio. All rights reserved. &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms of Use</a> &middot; <a href="about.html">About</a> &middot; <a href="admin/">Admin</a></p>
       </div>
     </div>
   </footer>
