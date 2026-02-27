@@ -675,9 +675,37 @@
     figure:has(img[src*="timeline"]) {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
     }
     figure:has(img[src*="timeline"]) img {
       min-width: 600px;
+      scroll-snap-align: start;
+    }
+  }
+
+  /* Mobile: table scroll hint and compact sizing */
+  @media (max-width: 600px) {
+    .cpr-table-wrap {
+      position: relative;
+    }
+    .cpr-table-wrap::after {
+      content: 'Scroll \2192';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 0.65rem;
+      color: var(--cpr-text-secondary, #6b7280);
+      background: rgba(255,255,255,0.9);
+      padding: 2px 8px;
+      border-radius: 4px;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+    .cpr-table-wrap table {
+      font-size: 0.6rem;
+    }
+    .cpr-table-wrap th {
+      white-space: nowrap;
     }
   }
 </style>
