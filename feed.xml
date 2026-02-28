@@ -5,8 +5,19 @@
     <link>https://www.regenstudio.world/blog.html</link>
     <description>Innovations that regenerate Humans, Cities and Nature.</description>
     <language>en</language>
-    <pubDate>Sun, 22 Feb 2026 00:00:00 GMT</pubDate>
+    <pubDate>Fri, 27 Feb 2026 00:00:00 GMT</pubDate>
     <atom:link href="https://www.regenstudio.world/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mapping ESPR Impact: How Zuid-Holland Used Data to Prepare Its Businesses for Digital Product Passports</title>
+      <link>https://www.regenstudio.world/blog/mapping-regional-espr-impact-for-zuid-holland/</link>
+      <guid isPermaLink="true">https://www.regenstudio.world/blog/mapping-regional-espr-impact-for-zuid-holland/</guid>
+      <pubDate>Fri, 27 Feb 2026 00:00:00 GMT</pubDate>
+      <description>The EU&apos;s Ecodesign for Sustainable Products Regulation will require Digital Product Passports for a growing number of product categories. Most regional governments have no idea which businesses in their territory will be affected. Zuid-Holland decided to find out — and turned the insights into a funded support program.</description>
+      <author>Yvo Hunink de Paiva</author>
+      <category>Digital Product Passport</category>
+      <category>Vision &amp; Strategy</category>
+      <enclosure url="https://www.regenstudio.world/Blogs/mapping-regional-espr-impact-for-zuid-holland/economy-zuid-holland.png" type="image/png" />
+    </item>
     <item>
       <title>The Construction Innovator Paradox: Why Innovative Construction Products May Face Digital Product Passports First</title>
       <link>https://www.regenstudio.world/blog/construction-products-innovation-dpp/</link>
@@ -227,17 +238,6 @@
       <category>Urban Greening</category>
       <category>Biodiversity</category>
       <enclosure url="https://www.regenstudio.world/Blogs/urban-jungle/Header Urban JungleAtivo 47.webp" type="image/webp" />
-    </item>
-    <item>
-      <title>Innovation Theatre — Playfully Building Capacity for Change</title>
-      <link>https://www.regenstudio.world/blog/Innovation-Theatre/</link>
-      <guid isPermaLink="true">https://www.regenstudio.world/blog/Innovation-Theatre/</guid>
-      <pubDate>Tue, 29 Oct 2024 00:00:00 GMT</pubDate>
-      <description>Innovation Theatre merges Regen&apos;s smart city innovation process with Brazilian Theatre of the Oppressed methodologies, empowering communities to design solutions to their own challenges.</description>
-      <author>Yvo Hunink de Paiva</author>
-      <category>Out-of-the-Box Ideas</category>
-      <category>Liveable Cities</category>
-      <enclosure url="https://www.regenstudio.world/Blogs/Innovation-Theatre/Header - Innovation Theatre.jpg" type="image/jpeg" />
     </item>
   </channel>
 </rss>
