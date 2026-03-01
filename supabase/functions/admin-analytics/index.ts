@@ -2,9 +2,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const ALLOWED_ORIGINS = [
   "https://demos.regenstudio.world",
-  "https://demos.regenstudio.space",
   "https://www.regenstudio.world",
-  "https://www.regenstudio.space",
   "https://regenstudio.world",
 ];
 
