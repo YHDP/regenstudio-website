@@ -67,7 +67,7 @@
 
 ## Privacy Rules — MANDATORY
 
-This site follows a **zero third-party connections** policy. Both regenstudio.world and demos.regenstudio.space promise visitors in their privacy policies that all assets are self-hosted and no cookies are set.
+This site follows a **zero third-party connections** policy. Both regenstudio.world and demos.regenstudio.world promise visitors in their privacy policies that all assets are self-hosted and no cookies are set.
 
 - **NEVER add Google Fonts, CDN-hosted scripts, or any external `<link>`/`<script>` tags**
   - If a new font or library is needed, download the files and self-host them

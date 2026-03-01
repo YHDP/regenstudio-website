@@ -577,6 +577,7 @@
           <h3 class="dpp-gate__title">Unlock the full product overview</h3>
           <p class="dpp-gate__text">Enter your email to access our complete DPP regulatory tracker with all product groups, regulation citations, and source legislation links.</p>
           <form class="dpp-gate__form" id="dppGateForm">
+            <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;overflow:hidden" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
             <div class="dpp-gate__input-row">
               <input type="email" name="email" placeholder="Your work email" class="dpp-gate__input" required aria-label="Work email address">
               <button type="submit" class="btn btn--primary dpp-gate__btn">Unlock</button>
@@ -822,6 +823,7 @@
         <h2 class="cta__title">Ready to start your Digital Product Passport journey?</h2>
         <p class="cta__text">Tell us about your challenge and we'll explore how our Digital Product Passport advisory can help.</p>
         <form id="contact-form" class="regen-form">
+            <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;overflow:hidden" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
           <div class="regen-form__row">
             <input type="text" name="name" placeholder="Your name" class="regen-form__input" required aria-label="Your name">
             <input type="email" name="email" placeholder="Email address" class="regen-form__input" required aria-label="Email address">
@@ -1027,6 +1029,7 @@
           e.preventDefault();
           var btn = gateForm.querySelector('.dpp-gate__btn');
           var email = gateForm.querySelector('input[name="email"]').value;
+          var hpField = gateForm.querySelector('input[name="website"]');
           var nlCheckbox = gateForm.querySelector('input[name="newsletter_opt_in"]');
           var newsletterOptIn = nlCheckbox ? nlCheckbox.checked : false;
           btn.disabled = true;
@@ -1041,6 +1044,7 @@
             body: JSON.stringify({
               name: '',
               email: email,
+              website: hpField ? hpField.value : '',
               message: 'DPP product overview unlock',
               source: 'dpp_gate',
               page_url: window.location.href,
