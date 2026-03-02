@@ -140,5 +140,13 @@
   "vision.scroll": "Scroll to explore",
   "vision.back": "Back to Home",
   "vision.cta_title": "Ready to explore regenerative innovation?",
-  "vision.cta_text": "Tell us about your challenge and we'll find the path to regeneration together."
+  "vision.cta_text": "Tell us about your challenge and we'll find the path to regeneration together.",
+
+  "antibot.captcha_label": "Quick verification",
+  "antibot.captcha_hint": "Rotate the triangle to point upward",
+  "antibot.captcha_verified": "Verified",
+  "antibot.error_too_fast": "Please take a moment to fill out the form.",
+  "antibot.error_captcha": "Please complete the triangle verification.",
+  "antibot.pow_solving": "Verifying...",
+  "antibot.error_generic": "Verification failed. Please try again."
 }

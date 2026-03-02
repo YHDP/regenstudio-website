@@ -28,6 +28,7 @@
   <link rel="icon" type="image/png" href="../Images/favicon.png">
   <link rel="stylesheet" href="../assets/fonts/fonts.css">
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../assets/css/antibot.css">
 
   <!-- Structured data for AI crawlers and search engines -->
   <script type="application/ld+json">
@@ -401,8 +402,7 @@
         <p class="section__label">Laten We Samenwerken</p>
         <h2 class="cta__title">Geïnteresseerd in samenwerking?</h2>
         <p class="cta__text">Vertel ons over je uitdaging en we verkennen hoe regeneratieve innovatie kan helpen.</p>
-        <form id="contact-form" class="regen-form">
-            <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;overflow:hidden" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <form id="contact-form" class="regen-form" data-source="about_page">
           <div class="regen-form__row">
             <input type="text" name="name" placeholder="Je naam" class="regen-form__input" required aria-label="Je naam">
             <input type="email" name="email" placeholder="E-mailadres" class="regen-form__input" required aria-label="E-mailadres">
@@ -507,62 +507,10 @@
     </div>
   </footer>
 
-  <script>
-    (function() {
-      // Contact form submission
-      var form = document.getElementById('contact-form');
-      if (form) {
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-          var submitBtn = form.querySelector('.regen-form__submit');
-          var originalText = submitBtn.textContent;
-          submitBtn.disabled = true;
-          submitBtn.textContent = 'Versturen...';
-
-          var existingError = form.querySelector('.regen-form__error');
-          if (existingError) existingError.remove();
-
-          var formData = new FormData(form);
-          var nlCheckbox = form.querySelector('input[name="newsletter_opt_in"]');
-          var payload = {
-            name: formData.get('name') || '',
-            email: formData.get('email') || '',
-            message: formData.get('message') || '',
-            source: 'about_page',
-            page_url: window.location.href,
-            newsletter_opt_in: nlCheckbox ? nlCheckbox.checked : false
-          };
-
-          fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          })
-          .then(function(res) {
-            if (!res.ok) {
-              return res.json().catch(function() { return {}; }).then(function(data) {
-                throw new Error(data.error || 'Er is iets misgegaan');
-              });
-            }
-            form.style.display = 'none';
-            var successEl = document.getElementById('contact-success');
-            if (successEl) successEl.style.display = 'flex';
-          })
-          .catch(function(err) {
-            var errorEl = document.createElement('p');
-            errorEl.className = 'regen-form__error';
-            errorEl.textContent = err.message || 'Versturen mislukt. Probeer het opnieuw.';
-            submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
-          });
-        });
-      }
-
-    })();
-  </script>
   <script src="../assets/js/nav.js" defer></script>
   <script src="../assets/js/i18n.js" defer></script>
+  <script src="../assets/js/antibot.js" defer></script>
+  <script src="../assets/js/forms.js" defer></script>
   <script src="../assets/js/tracker.js" defer></script>
 </body>
 </html>

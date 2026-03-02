@@ -140,5 +140,13 @@
   "vision.scroll": "Scroll om te ontdekken",
   "vision.back": "Terug naar Home",
   "vision.cta_title": "Klaar om regeneratieve innovatie te verkennen?",
-  "vision.cta_text": "Vertel ons over je uitdaging en we vinden samen het pad naar regeneratie."
+  "vision.cta_text": "Vertel ons over je uitdaging en we vinden samen het pad naar regeneratie.",
+
+  "antibot.captcha_label": "Snelle verificatie",
+  "antibot.captcha_hint": "Draai de driehoek zodat hij omhoog wijst",
+  "antibot.captcha_verified": "Geverifieerd",
+  "antibot.error_too_fast": "Neem even de tijd om het formulier in te vullen.",
+  "antibot.error_captcha": "Voltooi de driehoekverificatie.",
+  "antibot.pow_solving": "Verifi\u00ebren...",
+  "antibot.error_generic": "Verificatie mislukt. Probeer het opnieuw."
 }

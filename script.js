@@ -1490,6 +1490,11 @@
     var form = document.getElementById('contact-form');
     if (!form) return;
 
+    // Protect with antibot
+    if (window.Antibot) {
+      window.Antibot.protect(form);
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -1502,46 +1507,70 @@
       var existingError = form.querySelector('.regen-form__error');
       if (existingError) existingError.remove();
 
-      var formData = new FormData(form);
-      var nlCheckbox = form.querySelector('input[name="newsletter_opt_in"]');
-      var payload = {
-        name: formData.get('name') || '',
-        email: formData.get('email') || '',
-        message: formData.get('message') || '',
-        website: formData.get('website') || '',
-        source: 'website_contact',
-        page_url: window.location.href,
-        newsletter_opt_in: nlCheckbox ? nlCheckbox.checked : false,
-      };
+      function doSubmit(antibotPayload) {
+        var formData = new FormData(form);
+        var nlCheckbox = form.querySelector('input[name="newsletter_opt_in"]');
+        var payload = {
+          name: formData.get('name') || '',
+          email: formData.get('email') || '',
+          message: formData.get('message') || '',
+          source: 'website_contact',
+          page_url: window.location.href,
+          newsletter_opt_in: nlCheckbox ? nlCheckbox.checked : false,
+        };
 
-      fetch(EDGE_FUNCTION_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
-      .then(function (res) {
-        if (!res.ok) {
-          return res.json().catch(function () { return {}; }).then(function (data) {
-            throw new Error(data.error || 'Something went wrong');
-          });
+        // Merge antibot fields
+        if (antibotPayload) {
+          for (var key in antibotPayload) {
+            if (antibotPayload.hasOwnProperty(key)) {
+              payload[key] = antibotPayload[key];
+            }
+          }
         }
-        // Success — redirect to thank-you page
-        var htmlLang = (document.documentElement.lang || 'en').toLowerCase();
-        var langPrefix = htmlLang === 'nl' ? '/nl' : htmlLang.startsWith('pt') ? '/pt' : '';
-        window.location.href = langPrefix + '/thank-you.html';
-        // Fallback if redirect blocked
-        form.style.display = 'none';
-        var successEl = document.getElementById('contact-success');
-        if (successEl) successEl.style.display = 'flex';
-      })
-      .catch(function (err) {
-        var errorEl = document.createElement('p');
-        errorEl.className = 'regen-form__error';
-        errorEl.textContent = err.message || t('form.error_default', 'Failed to send. Please try again.');
-        submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-      });
+
+        fetch(EDGE_FUNCTION_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+        .then(function (res) {
+          if (!res.ok) {
+            return res.json().catch(function () { return {}; }).then(function (data) {
+              throw new Error(data.error || 'Something went wrong');
+            });
+          }
+          // Success — redirect to thank-you page
+          var htmlLang = (document.documentElement.lang || 'en').toLowerCase();
+          var langPrefix = htmlLang === 'nl' ? '/nl' : htmlLang.startsWith('pt') ? '/pt' : '';
+          window.location.href = langPrefix + '/thank-you.html';
+          // Fallback if redirect blocked
+          form.style.display = 'none';
+          var successEl = document.getElementById('contact-success');
+          if (successEl) successEl.style.display = 'flex';
+        })
+        .catch(function (err) {
+          var errorEl = document.createElement('p');
+          errorEl.className = 'regen-form__error';
+          errorEl.textContent = err.message || t('form.error_default', 'Failed to send. Please try again.');
+          submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        });
+      }
+
+      // Validate antibot before submitting
+      if (window.Antibot) {
+        window.Antibot.validate(form).then(doSubmit).catch(function (errMsg) {
+          var errorEl = document.createElement('p');
+          errorEl.className = 'regen-form__error';
+          errorEl.textContent = errMsg;
+          submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        });
+      } else {
+        doSubmit(null);
+      }
     });
   }
 

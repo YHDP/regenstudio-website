@@ -391,7 +391,8 @@ ${hreflangSection}
   <link rel="icon" type="image/png" href="${ap}Images/favicon.png">
   <link rel="stylesheet" href="${ap}assets/fonts/fonts.css">
   <link rel="stylesheet" href="${ap}style.css">
-  <link rel="stylesheet" href="${ap}blog.css">`;
+  <link rel="stylesheet" href="${ap}blog.css">
+  <link rel="stylesheet" href="${ap}assets/css/antibot.css">`;
 }
 
 // --- Build pre-rendered body sections ---
@@ -566,6 +567,7 @@ ${buildHead(post, lang, availableLangs)}
 
   <script src="${ap}assets/js/nav.js" defer></script>
   <script src="${ap}assets/js/i18n.js" defer></script>
+  <script src="${ap}assets/js/antibot.js" defer></script>
   <script src="${ap}blog.js" defer></script>
   <script src="${ap}assets/js/tracker.js" defer></script>
 </body>
