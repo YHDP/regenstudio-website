@@ -140,5 +140,13 @@
   "vision.scroll": "Role para explorar",
   "vision.back": "Voltar ao In\u00edcio",
   "vision.cta_title": "Pronto para explorar inova\u00e7\u00e3o regenerativa?",
-  "vision.cta_text": "Conte-nos sobre o seu desafio e encontraremos juntos o caminho para a regenera\u00e7\u00e3o."
+  "vision.cta_text": "Conte-nos sobre o seu desafio e encontraremos juntos o caminho para a regenera\u00e7\u00e3o.",
+
+  "antibot.captcha_label": "Verifica\u00e7\u00e3o r\u00e1pida",
+  "antibot.captcha_hint": "Gire o tri\u00e2ngulo para apontar para cima",
+  "antibot.captcha_verified": "Verificado",
+  "antibot.error_too_fast": "Reserve um momento para preencher o formul\u00e1rio.",
+  "antibot.error_captcha": "Complete a verifica\u00e7\u00e3o do tri\u00e2ngulo.",
+  "antibot.pow_solving": "Verificando...",
+  "antibot.error_generic": "Falha na verifica\u00e7\u00e3o. Tente novamente."
 }

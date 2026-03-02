@@ -484,6 +484,7 @@
     // Bind email gate form
     var gateForm=modalBody.querySelector('#sepGateForm');
     if(gateForm){
+      if(window.Antibot) window.Antibot.protect(gateForm);
       gateForm.addEventListener('submit',function(e){
         e.preventDefault();
         var btn=gateForm.querySelector('.sep-btn');
@@ -494,31 +495,47 @@
         var err=gateForm.closest('.sep-gate__banner').querySelector('.sep-form-error');
         if(err)err.remove();
 
-        fetch(SUPABASE_FN,{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({name:'',email:emailVal,message:'Innovation process phase template unlock',source:'innovation_gate',newsletter:newsletter,page_url:window.location.href})
-        }).then(function(res){
-          if(!res.ok) return res.json().catch(function(){return{};}).then(function(d){throw new Error(d.error||'Something went wrong');});
-          localStorage.setItem(GATE_KEY,Date.now().toString());
-          isUnlocked=true;
-          openModal(p);
-        }).catch(function(er){
-          var el=document.createElement('p');
-          el.className='sep-form-error';
-          el.textContent=er.message||'Failed. Please try again.';
-          gateForm.closest('.sep-gate__banner').appendChild(el);
-          btn.disabled=false; btn.textContent='Unlock';
-        });
+        function doSubmit(antibotPayload){
+          var payload={name:'',email:emailVal,message:'Innovation process phase template unlock',source:'innovation_gate',newsletter:newsletter,page_url:window.location.href};
+          if(antibotPayload){for(var k in antibotPayload){if(antibotPayload.hasOwnProperty(k))payload[k]=antibotPayload[k];}}
+          fetch(SUPABASE_FN,{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(payload)
+          }).then(function(res){
+            if(!res.ok) return res.json().catch(function(){return{};}).then(function(d){throw new Error(d.error||'Something went wrong');});
+            localStorage.setItem(GATE_KEY,Date.now().toString());
+            isUnlocked=true;
+            openModal(p);
+          }).catch(function(er){
+            var el=document.createElement('p');
+            el.className='sep-form-error';
+            el.textContent=er.message||'Failed. Please try again.';
+            gateForm.closest('.sep-gate__banner').appendChild(el);
+            btn.disabled=false; btn.textContent='Unlock';
+          });
+        }
+
+        if(window.Antibot){
+          window.Antibot.validate(gateForm).then(doSubmit).catch(function(errMsg){
+            var el=document.createElement('p');
+            el.className='sep-form-error';
+            el.textContent=errMsg||'Verification failed. Please try again.';
+            gateForm.closest('.sep-gate__banner').appendChild(el);
+            btn.disabled=false; btn.textContent='Unlock';
+          });
+        } else { doSubmit(null); }
       });
     }
 
     // Bind CTA form
     var ctaForm=modalBody.querySelector('#sepCtaForm');
     if(ctaForm){
+      if(window.Antibot) window.Antibot.protect(ctaForm);
       ctaForm.addEventListener('submit',function(e){
         e.preventDefault();
         var btn=ctaForm.querySelector('.sep-btn');
+        var originalText=btn.textContent;
         var nameVal=ctaForm.querySelector('input[name="name"]').value;
         var orgVal=ctaForm.querySelector('input[name="organization"]').value;
         var emailVal=ctaForm.querySelector('input[name="email"]').value;
@@ -527,26 +544,38 @@
         var newsletter=nlBox&&nlBox.checked?'yes':'no';
         btn.disabled=true; btn.textContent='Sending\u2026';
 
-        fetch(SUPABASE_FN,{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({name:nameVal,email:emailVal,message:(orgVal?'['+orgVal+'] ':'')+(msgVal||'Innovation journey interest'),source:'innovation_cta',newsletter:newsletter,page_url:window.location.href})
-        }).then(function(res){
-          if(!res.ok) throw new Error('Something went wrong');
-          btn.textContent='\u2713 We\u2019ll be in touch!';
-          btn.style.background='#059669';
-        }).catch(function(){
-          btn.disabled=false; btn.textContent='Get in touch';
-        });
+        function doSubmit(antibotPayload){
+          var payload={name:nameVal,email:emailVal,message:(orgVal?'['+orgVal+'] ':'')+(msgVal||'Innovation journey interest'),source:'innovation_cta',newsletter:newsletter,page_url:window.location.href};
+          if(antibotPayload){for(var k in antibotPayload){if(antibotPayload.hasOwnProperty(k))payload[k]=antibotPayload[k];}}
+          fetch(SUPABASE_FN,{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(payload)
+          }).then(function(res){
+            if(!res.ok) throw new Error('Something went wrong');
+            btn.textContent='\u2713 We\u2019ll be in touch!';
+            btn.style.background='#059669';
+          }).catch(function(){
+            btn.disabled=false; btn.textContent=originalText;
+          });
+        }
+
+        if(window.Antibot){
+          window.Antibot.validate(ctaForm).then(doSubmit).catch(function(errMsg){
+            btn.disabled=false; btn.textContent=originalText;
+          });
+        } else { doSubmit(null); }
       });
     }
 
     // Bind premium contact form
     var premForm=modalBody.querySelector('#sepPremiumForm');
     if(premForm){
+      if(window.Antibot) window.Antibot.protect(premForm);
       premForm.addEventListener('submit',function(e){
         e.preventDefault();
         var btn=premForm.querySelector('.sep-btn');
+        var originalText=btn.textContent;
         var nameVal=premForm.querySelector('input[name="name"]').value;
         var orgVal=premForm.querySelector('input[name="organization"]').value;
         var emailVal=premForm.querySelector('input[name="email"]').value;
@@ -555,17 +584,27 @@
         var newsletter=nlBox&&nlBox.checked?'yes':'no';
         btn.disabled=true; btn.textContent='Sending\u2026';
 
-        fetch(SUPABASE_FN,{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({name:nameVal,email:emailVal,message:(orgVal?'['+orgVal+'] ':'')+(msgVal||'Phase template enquiry')+' \u2014 Phase: '+d.name,source:'innovation_premium',newsletter:newsletter,page_url:window.location.href})
-        }).then(function(res){
-          if(!res.ok) throw new Error('Something went wrong');
-          btn.textContent='\u2713 Message sent!';
-          btn.style.background='#059669';
-        }).catch(function(){
-          btn.disabled=false; btn.textContent='Send message';
-        });
+        function doSubmit(antibotPayload){
+          var payload={name:nameVal,email:emailVal,message:(orgVal?'['+orgVal+'] ':'')+(msgVal||'Phase template enquiry')+' \u2014 Phase: '+d.name,source:'innovation_premium',newsletter:newsletter,page_url:window.location.href};
+          if(antibotPayload){for(var k in antibotPayload){if(antibotPayload.hasOwnProperty(k))payload[k]=antibotPayload[k];}}
+          fetch(SUPABASE_FN,{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(payload)
+          }).then(function(res){
+            if(!res.ok) throw new Error('Something went wrong');
+            btn.textContent='\u2713 Message sent!';
+            btn.style.background='#059669';
+          }).catch(function(){
+            btn.disabled=false; btn.textContent=originalText;
+          });
+        }
+
+        if(window.Antibot){
+          window.Antibot.validate(premForm).then(doSubmit).catch(function(errMsg){
+            btn.disabled=false; btn.textContent=originalText;
+          });
+        } else { doSubmit(null); }
       });
     }
 

@@ -2008,6 +2008,14 @@
       gate.classList.add('cpr-gate--locked');
     }
 
+    // Protect with antibot
+    if (window.Antibot) {
+      window.Antibot.protect(gateForm);
+      var captcha = gateForm.querySelector('.antibot-captcha');
+      var disclaimer = gateForm.querySelector('.cpr-gate__disclaimer');
+      if (captcha && disclaimer) gateForm.insertBefore(captcha, disclaimer);
+    }
+
     gateForm.addEventListener('submit', function(e) {
       e.preventDefault();
       var btn = gateForm.querySelector('.cpr-gate__btn');
@@ -2018,43 +2026,65 @@
       var existingError = gateForm.querySelector('.cpr-gate__error');
       if (existingError) existingError.remove();
 
-      fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      function doGateSubmit(antibotPayload) {
+        var payload = {
           name: '',
           email: email,
           message: 'CPR product family tracker unlock',
           source: 'cpr_gate',
           page_url: window.location.href
-        })
-      })
-      .then(function(res) {
-        if (!res.ok) {
-          return res.json().catch(function() { return {}; }).then(function(data) {
-            throw new Error(data.error || 'Algo correu mal');
-          });
+        };
+        if (antibotPayload) {
+          for (var k in antibotPayload) {
+            if (antibotPayload.hasOwnProperty(k)) payload[k] = antibotPayload[k];
+          }
         }
-        localStorage.setItem(GATE_KEY, Date.now().toString());
-        gate.classList.remove('cpr-gate--locked');
-        var overlay = document.getElementById('cprGateOverlay');
-        overlay.classList.remove('cpr-gate__overlay--fixed');
-        overlay.classList.remove('cpr-gate__overlay--bottom');
-        overlay.style.position = 'absolute';
-        overlay.style.top = '280px';
-        var card = overlay.querySelector('.cpr-gate__card');
-        card.innerHTML = '<h3 class="cpr-gate__title">Obrigado!</h3>' +
-          '<p class="cpr-gate__text">Obrigado por partilhar o seu e-mail para desbloquear todas as 37 famílias de produtos do RPC. Se isto foi valioso para si, gostaríamos de saber. Contacte-nos em <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>';
-        setTimeout(function() { overlay.style.display = 'none'; }, 6000);
-      })
-      .catch(function(err) {
-        var errorEl = document.createElement('p');
-        errorEl.className = 'cpr-gate__error';
-        errorEl.textContent = err.message || 'Falhou. Tente novamente.';
-        gateForm.appendChild(errorEl);
-        btn.disabled = false;
-        btn.textContent = 'Desbloquear';
-      });
+
+        fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+        .then(function(res) {
+          if (!res.ok) {
+            return res.json().catch(function() { return {}; }).then(function(data) {
+              throw new Error(data.error || 'Algo correu mal');
+            });
+          }
+          localStorage.setItem(GATE_KEY, Date.now().toString());
+          gate.classList.remove('cpr-gate--locked');
+          var overlay = document.getElementById('cprGateOverlay');
+          overlay.classList.remove('cpr-gate__overlay--fixed');
+          overlay.classList.remove('cpr-gate__overlay--bottom');
+          overlay.style.position = 'absolute';
+          overlay.style.top = '280px';
+          var card = overlay.querySelector('.cpr-gate__card');
+          card.innerHTML = '<h3 class="cpr-gate__title">Obrigado!</h3>' +
+            '<p class="cpr-gate__text">Obrigado por partilhar o seu e-mail para desbloquear todas as 37 famílias de produtos do RPC. Se isto foi valioso para si, gostaríamos de saber. Contacte-nos em <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>';
+          setTimeout(function() { overlay.style.display = 'none'; }, 6000);
+        })
+        .catch(function(err) {
+          var errorEl = document.createElement('p');
+          errorEl.className = 'cpr-gate__error';
+          errorEl.textContent = err.message || 'Falhou. Tente novamente.';
+          gateForm.appendChild(errorEl);
+          btn.disabled = false;
+          btn.textContent = 'Desbloquear';
+        });
+      }
+
+      if (window.Antibot) {
+        window.Antibot.validate(gateForm).then(doGateSubmit).catch(function(errMsg) {
+          var errorEl = document.createElement('p');
+          errorEl.className = 'cpr-gate__error';
+          errorEl.textContent = errMsg;
+          gateForm.appendChild(errorEl);
+          btn.disabled = false;
+          btn.textContent = 'Desbloquear';
+        });
+      } else {
+        doGateSubmit(null);
+      }
     });
   }
 
