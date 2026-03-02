@@ -908,6 +908,14 @@
     // Blog post CTA form
     setupForm('post-contact-form', 'post-contact-success', 'blog_post_contact');
 
+    // Protect existing forms with antibot on load
+    if (window.Antibot) {
+      const blogForm = document.getElementById('blog-contact-form');
+      if (blogForm) window.Antibot.protect(blogForm);
+      const postForm = document.getElementById('post-contact-form');
+      if (postForm) window.Antibot.protect(postForm);
+    }
+
     // Smooth scroll for scroll-cta form link
     document.addEventListener('click', (e) => {
       const link = e.target.closest('.scroll-cta__form-link');
@@ -922,6 +930,20 @@
         }
       }
     });
+
+    // Observe for dynamically rendered forms (blog post contact form)
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        for (const node of mutation.addedNodes) {
+          if (node.nodeType !== 1) continue;
+          const form = node.id === 'post-contact-form' ? node : node.querySelector && node.querySelector('#post-contact-form');
+          if (form && !form.dataset.antibotProtected && window.Antibot) {
+            window.Antibot.protect(form);
+          }
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 
   function setupForm(formId, successId, source) {
@@ -940,43 +962,67 @@
       const existingError = form.querySelector('.regen-form__error');
       if (existingError) existingError.remove();
 
-      const formData = new FormData(form);
-      const newsletterCheckbox = form.querySelector('input[name="newsletter_opt_in"]');
-      const payload = {
-        name: formData.get('name') || '',
-        email: formData.get('email') || '',
-        message: formData.get('message') || '',
-        source: source,
-        page_url: window.location.href,
-        newsletter_opt_in: newsletterCheckbox ? newsletterCheckbox.checked : false,
-      };
+      async function doSubmit(antibotPayload) {
+        const formData = new FormData(form);
+        const newsletterCheckbox = form.querySelector('input[name="newsletter_opt_in"]');
+        const payload = {
+          name: formData.get('name') || '',
+          email: formData.get('email') || '',
+          message: formData.get('message') || '',
+          source: source,
+          page_url: window.location.href,
+          newsletter_opt_in: newsletterCheckbox ? newsletterCheckbox.checked : false,
+        };
 
-      try {
-        const res = await fetch(EDGE_FUNCTION_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-
-        if (!res.ok) {
-          const data = await res.json().catch(() => ({}));
-          throw new Error(data.error || t("form.error_generic", "Something went wrong"));
+        // Merge antibot fields
+        if (antibotPayload) {
+          Object.assign(payload, antibotPayload);
         }
 
-        // Success — redirect to thank-you page
-        const langPrefix = localePrefix;
-        window.location.href = langPrefix + '/thank-you.html';
-        // Fallback if redirect blocked
-        form.style.display = 'none';
-        const successEl = document.getElementById(successId);
-        if (successEl) successEl.style.display = 'flex';
-      } catch (err) {
-        const errorEl = document.createElement('p');
-        errorEl.className = 'regen-form__error';
-        errorEl.textContent = err.message || t("form.error_default", "Failed to send. Please try again.");
-        submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
+        try {
+          const res = await fetch(EDGE_FUNCTION_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          if (!res.ok) {
+            const data = await res.json().catch(() => ({}));
+            throw new Error(data.error || t("form.error_generic", "Something went wrong"));
+          }
+
+          // Success — redirect to thank-you page
+          const langPrefix = localePrefix;
+          window.location.href = langPrefix + '/thank-you.html';
+          // Fallback if redirect blocked
+          form.style.display = 'none';
+          const successEl = document.getElementById(successId);
+          if (successEl) successEl.style.display = 'flex';
+        } catch (err) {
+          const errorEl = document.createElement('p');
+          errorEl.className = 'regen-form__error';
+          errorEl.textContent = err.message || t("form.error_default", "Failed to send. Please try again.");
+          submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+      }
+
+      // Validate antibot before submitting
+      if (window.Antibot) {
+        try {
+          const antibotPayload = await window.Antibot.validate(form);
+          await doSubmit(antibotPayload);
+        } catch (errMsg) {
+          const errorEl = document.createElement('p');
+          errorEl.className = 'regen-form__error';
+          errorEl.textContent = errMsg;
+          submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+      } else {
+        await doSubmit(null);
       }
     });
   }

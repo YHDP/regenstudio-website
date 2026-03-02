@@ -27,6 +27,7 @@
   <link rel="icon" type="image/png" href="../Images/favicon.png">
   <link rel="stylesheet" href="../assets/fonts/fonts.css">
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../assets/css/antibot.css">
 
   <!-- Structured data: Service + FAQ + Breadcrumb -->
   <script type="application/ld+json">
@@ -577,7 +578,6 @@
           <h3 class="dpp-gate__title">Unlock the full product overview</h3>
           <p class="dpp-gate__text">Enter your email to access our complete DPP regulatory tracker with all product groups, regulation citations, and source legislation links.</p>
           <form class="dpp-gate__form" id="dppGateForm">
-            <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;overflow:hidden" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
             <div class="dpp-gate__input-row">
               <input type="email" name="email" placeholder="Your work email" class="dpp-gate__input" required aria-label="Work email address">
               <button type="submit" class="btn btn--primary dpp-gate__btn">Unlock</button>
@@ -822,8 +822,7 @@
         <p class="section__label">Let's Create Together</p>
         <h2 class="cta__title">Ready to start your Digital Product Passport journey?</h2>
         <p class="cta__text">Tell us about your challenge and we'll explore how our Digital Product Passport advisory can help.</p>
-        <form id="contact-form" class="regen-form">
-            <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;overflow:hidden" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <form id="contact-form" class="regen-form" data-source="dpp_page">
           <div class="regen-form__row">
             <input type="text" name="name" placeholder="Your name" class="regen-form__input" required aria-label="Your name">
             <input type="email" name="email" placeholder="Email address" class="regen-form__input" required aria-label="Email address">
@@ -1025,11 +1024,28 @@
           gate.classList.add('dpp-gate--locked');
         }
 
+        // Protect gate form with antibot (deferred — antibot.js loads after this inline script)
+        function protectGateForm() {
+          if (window.Antibot) {
+            window.Antibot.protect(gateForm);
+            // Reposition CAPTCHA: place after checkbox, before disclaimer
+            var captcha = gateForm.querySelector('.antibot-captcha');
+            var disclaimer = gateForm.querySelector('.dpp-gate__disclaimer');
+            if (captcha && disclaimer) {
+              gateForm.insertBefore(captcha, disclaimer);
+            }
+          }
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', protectGateForm);
+        } else {
+          protectGateForm();
+        }
+
         gateForm.addEventListener('submit', function(e) {
           e.preventDefault();
           var btn = gateForm.querySelector('.dpp-gate__btn');
           var email = gateForm.querySelector('input[name="email"]').value;
-          var hpField = gateForm.querySelector('input[name="website"]');
           var nlCheckbox = gateForm.querySelector('input[name="newsletter_opt_in"]');
           var newsletterOptIn = nlCheckbox ? nlCheckbox.checked : false;
           btn.disabled = true;
@@ -1038,93 +1054,66 @@
           var existingError = gateForm.querySelector('.dpp-gate__error');
           if (existingError) existingError.remove();
 
-          fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
+          function doGateSubmit(antibotPayload) {
+            var payload = {
               name: '',
               email: email,
-              website: hpField ? hpField.value : '',
               message: 'DPP product overview unlock',
               source: 'dpp_gate',
               page_url: window.location.href,
               newsletter_opt_in: newsletterOptIn
+            };
+            if (antibotPayload) {
+              for (var key in antibotPayload) {
+                if (antibotPayload.hasOwnProperty(key)) payload[key] = antibotPayload[key];
+              }
+            }
+
+            fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
             })
-          })
-          .then(function(res) {
-            if (!res.ok) {
-              return res.json().catch(function() { return {}; }).then(function(data) {
-                throw new Error(data.error || 'Something went wrong');
-              });
-            }
-            localStorage.setItem(GATE_KEY, Date.now().toString());
-            gate.classList.remove('dpp-gate--locked');
-            var overlay = document.getElementById('dppGateOverlay');
-            var card = overlay.querySelector('.dpp-gate__card');
-            card.innerHTML = '<h3 class="dpp-gate__title">Thank you!</h3>' +
-              '<p class="dpp-gate__text">Thanks for sharing your email to unlock all product group information surrounding Digital Product Passports. If this was valuable to you, we\u2019d love to know. Reach out to us at <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>';
-            setTimeout(function() { overlay.style.display = 'none'; }, 6000);
-          })
-          .catch(function(err) {
-            var errorEl = document.createElement('p');
-            errorEl.className = 'dpp-gate__error';
-            errorEl.textContent = err.message || 'Failed. Please try again.';
-            gateForm.appendChild(errorEl);
-            btn.disabled = false;
-            btn.textContent = 'Unlock';
-          });
+            .then(function(res) {
+              if (!res.ok) {
+                return res.json().catch(function() { return {}; }).then(function(data) {
+                  throw new Error(data.error || 'Something went wrong');
+                });
+              }
+              localStorage.setItem(GATE_KEY, Date.now().toString());
+              gate.classList.remove('dpp-gate--locked');
+              var overlay = document.getElementById('dppGateOverlay');
+              var card = overlay.querySelector('.dpp-gate__card');
+              card.innerHTML = '<h3 class="dpp-gate__title">Thank you!</h3>' +
+                '<p class="dpp-gate__text">Thanks for sharing your email to unlock all product group information surrounding Digital Product Passports. If this was valuable to you, we\u2019d love to know. Reach out to us at <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>';
+              setTimeout(function() { overlay.style.display = 'none'; }, 6000);
+            })
+            .catch(function(err) {
+              var errorEl = document.createElement('p');
+              errorEl.className = 'dpp-gate__error';
+              errorEl.textContent = err.message || 'Failed. Please try again.';
+              gateForm.appendChild(errorEl);
+              btn.disabled = false;
+              btn.textContent = 'Unlock';
+            });
+          }
+
+          if (window.Antibot) {
+            window.Antibot.validate(gateForm).then(doGateSubmit).catch(function(errMsg) {
+              var errorEl = document.createElement('p');
+              errorEl.className = 'dpp-gate__error';
+              errorEl.textContent = errMsg;
+              gateForm.appendChild(errorEl);
+              btn.disabled = false;
+              btn.textContent = 'Unlock';
+            });
+          } else {
+            doGateSubmit(null);
+          }
         });
       }
 
-      // Contact form submission
-      var form = document.getElementById('contact-form');
-      if (form) {
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-          var submitBtn = form.querySelector('.regen-form__submit');
-          var originalText = submitBtn.textContent;
-          submitBtn.disabled = true;
-          submitBtn.textContent = 'Sending...';
-
-          var existingError = form.querySelector('.regen-form__error');
-          if (existingError) existingError.remove();
-
-          var formData = new FormData(form);
-          var nlCheckbox = form.querySelector('input[name="newsletter_opt_in"]');
-          var payload = {
-            name: formData.get('name') || '',
-            email: formData.get('email') || '',
-            message: formData.get('message') || '',
-            source: 'dpp_page',
-            page_url: window.location.href,
-            newsletter_opt_in: nlCheckbox ? nlCheckbox.checked : false
-          };
-
-          fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          })
-          .then(function(res) {
-            if (!res.ok) {
-              return res.json().catch(function() { return {}; }).then(function(data) {
-                throw new Error(data.error || 'Something went wrong');
-              });
-            }
-            form.style.display = 'none';
-            var successEl = document.getElementById('contact-success');
-            if (successEl) successEl.style.display = 'flex';
-          })
-          .catch(function(err) {
-            var errorEl = document.createElement('p');
-            errorEl.className = 'regen-form__error';
-            errorEl.textContent = err.message || 'Failed to send. Please try again.';
-            submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
-          });
-        });
-      }
+      // Contact form handled by forms.js via data-source="dpp_page"
 
       // DPP info modal
       var modal = document.getElementById('dppInfoModal');
@@ -1283,6 +1272,8 @@
   </script>
   <script src="../assets/js/nav.js" defer></script>
   <script src="../assets/js/i18n.js" defer></script>
+  <script src="../assets/js/antibot.js" defer></script>
+  <script src="../assets/js/forms.js" defer></script>
   <script src="../assets/js/tracker.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,89 @@
+/* ========================================
+   Anti-Bot Protection Styles
+   ======================================== */
+
+/* Honeypot field — positioned off-screen, not display:none (avoids bot detection) */
+.antibot-hp {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+/* CAPTCHA widget container */
+.antibot-captcha {
+  margin: 16px 0;
+  padding: 16px;
+  border: 1px solid var(--color-border, #E4E2E2);
+  border-radius: 12px;
+  background: var(--color-surface, #F0F0F0);
+  text-align: center;
+}
+
+.antibot-captcha__label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-navy, #243644);
+  margin-bottom: 8px;
+}
+
+.antibot-captcha__hint {
+  display: block;
+  font-size: 12px;
+  color: var(--color-navy-light, #5781A1);
+  margin-bottom: 12px;
+}
+
+.antibot-captcha__canvas {
+  display: block;
+  margin: 0 auto 8px;
+  cursor: grab;
+  touch-action: none;
+  border-radius: 8px;
+}
+
+.antibot-captcha__canvas:active {
+  cursor: grabbing;
+}
+
+.antibot-captcha__status {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-navy-light, #5781A1);
+  min-height: 20px;
+  transition: color 0.3s ease;
+}
+
+/* Solved state */
+.antibot-captcha--solved {
+  border-color: var(--color-emerald, #00914B);
+}
+
+.antibot-captcha--solved .antibot-captcha__status {
+  color: var(--color-emerald, #00914B);
+}
+
+.antibot-captcha--solved .antibot-captcha__canvas {
+  cursor: default;
+}
+
+/* PoW spinner */
+.antibot-pow-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--color-border, #E4E2E2);
+  border-top-color: var(--color-teal, #009BBB);
+  border-radius: 50%;
+  animation: antibot-spin 0.6s linear infinite;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+@keyframes antibot-spin {
+  to { transform: rotate(360deg); }
+}

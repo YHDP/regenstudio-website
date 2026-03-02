@@ -1,5 +1,14 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
+// SHA-256 helper for PoW verification and rate limiting
+async function sha256(input: string): Promise<string> {
+  const data = new TextEncoder().encode(input);
+  const hash = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(hash))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
 const ALLOWED_ORIGINS = [
   "https://www.regenstudio.world",
   "https://regenstudio.world",
@@ -33,14 +42,6 @@ Deno.serve(async (req) => {
     const body = await req.json();
     const { name, email, organization, message, source, demo_id, page_url, newsletter_opt_in } = body;
 
-    // Honeypot check — if filled, silently accept but do nothing
-    if (body.website) {
-      return new Response(JSON.stringify({ success: true }), {
-        status: 200,
-        headers: { ...getCorsHeaders(req), "Content-Type": "application/json" },
-      });
-    }
-
     // Validate required fields
     if (!email || !source) {
       return new Response(
@@ -57,12 +58,97 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Insert into Supabase
+    // =============================================
+    // ANTI-BOT VALIDATION (5 layers)
+    // =============================================
+
+    // Layer 1: Honeypot — if filled, silently drop (return 200 to not reveal detection)
+    if (body.website_url) {
+      return new Response(JSON.stringify({ success: true }), {
+        status: 200,
+        headers: { ...getCorsHeaders(req), "Content-Type": "application/json" },
+      });
+    }
+
+    // Layer 2: Time check — reject if submitted faster than 3 seconds
+    const antibotTs = Number(body.antibot_ts);
+    if (antibotTs) {
+      const elapsed = Date.now() - antibotTs;
+      if (elapsed < 3000) {
+        return new Response(
+          JSON.stringify({ error: "Please take a moment to fill out the form." }),
+          { status: 400, headers: { ...getCorsHeaders(req), "Content-Type": "application/json" } }
+        );
+      }
+      // Nonce/timestamp must be within 5 minutes
+      if (elapsed > 5 * 60 * 1000) {
+        return new Response(
+          JSON.stringify({ error: "Form session expired. Please refresh and try again." }),
+          { status: 400, headers: { ...getCorsHeaders(req), "Content-Type": "application/json" } }
+        );
+      }
+    }
+
+    // Layer 3: Proof-of-Work verification
+    const powNonce = body.antibot_pow_nonce;
+    const powSolution = body.antibot_pow_solution;
+    const powHash = body.antibot_pow_hash;
+    if (powNonce && powHash !== undefined) {
+      // Verify: SHA-256(nonce + ':' + solution) must start with '0000'
+      const expectedHash = await sha256(powNonce + ":" + powSolution);
+      if (expectedHash !== powHash || !expectedHash.startsWith("0000")) {
+        return new Response(
+          JSON.stringify({ error: "Verification failed. Please try again." }),
+          { status: 400, headers: { ...getCorsHeaders(req), "Content-Type": "application/json" } }
+        );
+      }
+      // Check nonce timestamp not expired (nonce format: hex_timestamp + '_' + random)
+      const nonceTs = parseInt(powNonce.split("_")[0], 16);
+      if (Date.now() - nonceTs > 5 * 60 * 1000) {
+        return new Response(
+          JSON.stringify({ error: "Verification expired. Please refresh and try again." }),
+          { status: 400, headers: { ...getCorsHeaders(req), "Content-Type": "application/json" } }
+        );
+      }
+    }
+
+    // Layer 4: CAPTCHA must be solved
+    if (body.antibot_captcha === false) {
+      return new Response(
+        JSON.stringify({ error: "Please complete the verification." }),
+        { status: 400, headers: { ...getCorsHeaders(req), "Content-Type": "application/json" } }
+      );
+    }
+
+    // Create Supabase client (needed for rate limit and DB insert)
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL")!,
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
 
+    // Layer 5: Rate limiting — hash IP + today's date, max 5 per hour
+    const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+                     req.headers.get("cf-connecting-ip") || "unknown";
+    const today = new Date().toISOString().slice(0, 10);
+    const ipHash = await sha256(clientIp + ":" + today);
+
+    const { data: rlCount, error: rlError } = await supabase.rpc(
+      "check_and_increment_rate_limit",
+      { p_ip_hash: ipHash }
+    );
+
+    if (!rlError && rlCount > 5) {
+      return new Response(
+        JSON.stringify({ error: "Too many submissions. Please try again later." }),
+        { status: 429, headers: { ...getCorsHeaders(req), "Content-Type": "application/json" } }
+      );
+    }
+
+    // =============================================
+    // END ANTI-BOT VALIDATION
+    // =============================================
+
+    // Insert into Supabase (anti-bot fields are NOT stored)
     const { error: dbError } = await supabase.from("contact_submissions").insert({
       name: name || null,
       email,
