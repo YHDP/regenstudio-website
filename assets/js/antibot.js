@@ -233,21 +233,29 @@
 
   TriangleCaptcha.prototype.checkSolved = function () {
     if (this.solved) return;
-    // Check if angle is within tolerance of 0 (upright)
+    // Accept all 3 equilateral orientations: 0°, 120°, 240° (any vertex up)
     var a = this.angle % 360;
-    var diff = Math.min(a, 360 - a);
-    if (diff <= this.tolerance) {
-      this.solved = true;
-      this.animateSnap();
+    var targets = [0, 120, 240];
+    for (var i = 0; i < targets.length; i++) {
+      var diff = Math.abs(a - targets[i]);
+      if (diff > 180) diff = 360 - diff;
+      if (diff <= this.tolerance) {
+        this.solved = true;
+        this.snapTarget = targets[i];
+        this.animateSnap();
+        return;
+      }
     }
   };
 
   TriangleCaptcha.prototype.animateSnap = function () {
     var self = this;
     var startAngle = this.angle;
-    // Calculate shortest path to 0
-    var target = 0;
-    if (startAngle > 180) startAngle = startAngle - 360;
+    var target = this.snapTarget || 0;
+    // Calculate shortest path to target
+    var delta = startAngle - target;
+    if (delta > 180) delta -= 360;
+    if (delta < -180) delta += 360;
     var startTime = performance.now();
     var duration = 200;
 
@@ -256,12 +264,12 @@
       var progress = Math.min(elapsed / duration, 1);
       // Ease out cubic
       var eased = 1 - Math.pow(1 - progress, 3);
-      self.angle = startAngle * (1 - eased);
+      self.angle = (target + delta * (1 - eased) + 360) % 360;
       self.draw();
       if (progress < 1) {
         requestAnimationFrame(animate);
       } else {
-        self.angle = 0;
+        self.angle = target;
         self.draw();
         self.onSolved();
       }
@@ -396,13 +404,28 @@
       // 4. Proof-of-Work
       var nonce = generateNonce();
 
-      // Show spinner in status
+      // Show spinner in captcha status and disable submit button for clear feedback
       var statusEl = captcha.statusEl;
       var prevStatus = statusEl.textContent;
       statusEl.innerHTML = '<span class="antibot-pow-spinner"></span>' + t('antibot.pow_solving', 'Verifying...');
+      captcha.container.classList.add('antibot-captcha--verifying');
+
+      // Find and disable submit button during PoW
+      var submitBtn = form.querySelector('[type="submit"], .regen-form__submit, .contact-submit, .dpp-gate__btn');
+      var prevBtnText = '';
+      if (submitBtn) {
+        prevBtnText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = t('antibot.pow_btn', 'Verifying...');
+      }
 
       solvePoW(nonce).then(function (result) {
         statusEl.textContent = prevStatus;
+        captcha.container.classList.remove('antibot-captcha--verifying');
+        // Restore button to previous text (e.g. "Sending...") for the fetch phase
+        if (submitBtn && prevBtnText) {
+          submitBtn.textContent = prevBtnText;
+        }
         resolve({
           website_url: '',
           antibot_ts: ts,
@@ -413,6 +436,11 @@
         });
       }).catch(function () {
         statusEl.textContent = prevStatus;
+        captcha.container.classList.remove('antibot-captcha--verifying');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = prevBtnText;
+        }
         reject(t('antibot.error_generic', 'Verification failed. Please try again.'));
       });
     });

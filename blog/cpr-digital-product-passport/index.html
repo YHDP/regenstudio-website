@@ -51,6 +51,7 @@
   <link rel="stylesheet" href="../../assets/fonts/fonts.css">
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="../../blog.css">
+  <link rel="stylesheet" href="../../assets/css/antibot.css">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
@@ -70,7 +71,7 @@
         <li><a href="../../digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
         <li><a href="../../digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
         <li><a href="../../blog.html" data-i18n="nav.blog">Blog</a></li>
-        <li class="nav__contact-wrap">
+          <li class="nav__contact-wrap">
           <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
           <div class="nav__contact-popover" id="navContactPopover">
             <div class="nav__contact-popover-inner">
@@ -102,6 +103,7 @@
           <a href="../../innovation-services.html" data-i18n="nav.services">Services</a>
           <a href="../../problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
           <a href="../../blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="https://demos.regenstudio.world" target="_blank" data-i18n="nav.demos">Demos</a>
           <a href="../../about.html" data-i18n="nav.about">About</a>
           <a href="../../faq.html" data-i18n="nav.faq">FAQ</a>
         </div>
@@ -2268,6 +2270,14 @@
       gate.classList.add('cpr-gate--locked');
     }
 
+    // Protect with antibot
+    if (window.Antibot) {
+      window.Antibot.protect(gateForm);
+      var captcha = gateForm.querySelector('.antibot-captcha');
+      var disclaimer = gateForm.querySelector('.cpr-gate__disclaimer');
+      if (captcha && disclaimer) gateForm.insertBefore(captcha, disclaimer);
+    }
+
     gateForm.addEventListener('submit', function(e) {
       e.preventDefault();
       var btn = gateForm.querySelector('.cpr-gate__btn');
@@ -2278,43 +2288,65 @@
       var existingError = gateForm.querySelector('.cpr-gate__error');
       if (existingError) existingError.remove();
 
-      fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      function doGateSubmit(antibotPayload) {
+        var payload = {
           name: '',
           email: email,
           message: 'CPR product family tracker unlock',
           source: 'cpr_gate',
           page_url: window.location.href
-        })
-      })
-      .then(function(res) {
-        if (!res.ok) {
-          return res.json().catch(function() { return {}; }).then(function(data) {
-            throw new Error(data.error || 'Something went wrong');
-          });
+        };
+        if (antibotPayload) {
+          for (var k in antibotPayload) {
+            if (antibotPayload.hasOwnProperty(k)) payload[k] = antibotPayload[k];
+          }
         }
-        localStorage.setItem(GATE_KEY, Date.now().toString());
-        gate.classList.remove('cpr-gate--locked');
-        var overlay = document.getElementById('cprGateOverlay');
-        overlay.classList.remove('cpr-gate__overlay--fixed');
-        overlay.classList.remove('cpr-gate__overlay--bottom');
-        overlay.style.position = 'absolute';
-        overlay.style.top = '280px';
-        var card = overlay.querySelector('.cpr-gate__card');
-        card.innerHTML = '<h3 class="cpr-gate__title">Thank you!</h3>' +
-          '<p class="cpr-gate__text">Thanks for sharing your email to unlock all 37 CPR product families. If this was valuable to you, we\u2019d love to know. Reach out to us at <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>';
-        setTimeout(function() { overlay.style.display = 'none'; }, 6000);
-      })
-      .catch(function(err) {
-        var errorEl = document.createElement('p');
-        errorEl.className = 'cpr-gate__error';
-        errorEl.textContent = err.message || 'Failed. Please try again.';
-        gateForm.appendChild(errorEl);
-        btn.disabled = false;
-        btn.textContent = 'Unlock';
-      });
+
+        fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+        .then(function(res) {
+          if (!res.ok) {
+            return res.json().catch(function() { return {}; }).then(function(data) {
+              throw new Error(data.error || 'Something went wrong');
+            });
+          }
+          localStorage.setItem(GATE_KEY, Date.now().toString());
+          gate.classList.remove('cpr-gate--locked');
+          var overlay = document.getElementById('cprGateOverlay');
+          overlay.classList.remove('cpr-gate__overlay--fixed');
+          overlay.classList.remove('cpr-gate__overlay--bottom');
+          overlay.style.position = 'absolute';
+          overlay.style.top = '280px';
+          var card = overlay.querySelector('.cpr-gate__card');
+          card.innerHTML = '<h3 class="cpr-gate__title">Thank you!</h3>' +
+            '<p class="cpr-gate__text">Thanks for sharing your email to unlock all 37 CPR product families. If this was valuable to you, we\u2019d love to know. Reach out to us at <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>';
+          setTimeout(function() { overlay.style.display = 'none'; }, 6000);
+        })
+        .catch(function(err) {
+          var errorEl = document.createElement('p');
+          errorEl.className = 'cpr-gate__error';
+          errorEl.textContent = err.message || 'Failed. Please try again.';
+          gateForm.appendChild(errorEl);
+          btn.disabled = false;
+          btn.textContent = 'Unlock';
+        });
+      }
+
+      if (window.Antibot) {
+        window.Antibot.validate(gateForm).then(doGateSubmit).catch(function(errMsg) {
+          var errorEl = document.createElement('p');
+          errorEl.className = 'cpr-gate__error';
+          errorEl.textContent = errMsg;
+          gateForm.appendChild(errorEl);
+          btn.disabled = false;
+          btn.textContent = 'Unlock';
+        });
+      } else {
+        doGateSubmit(null);
+      }
     });
   }
 
@@ -2524,6 +2556,7 @@
 
   <script src="../../assets/js/nav.js" defer></script>
   <script src="../../assets/js/i18n.js" defer></script>
+  <script src="../../assets/js/antibot.js" defer></script>
   <script src="../../blog.js" defer></script>
   <script src="../../assets/js/tracker.js" defer></script>
 </body>
