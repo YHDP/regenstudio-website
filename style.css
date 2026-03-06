@@ -416,7 +416,6 @@ em:only-of-type {
   display: flex;
   align-items: center;
   gap: 2px;
-  margin-left: 8px;
   font-size: 0.8rem;
   font-weight: 500;
 }
@@ -443,6 +442,20 @@ em:only-of-type {
   color: var(--color-text-light, #6b7280);
   opacity: 0.4;
   user-select: none;
+}
+
+/* Desktop: show only the nav__actions switcher */
+@media (min-width: 769px) {
+  .nav__links .lang-switcher {
+    display: none;
+  }
+}
+
+/* Mobile: hide the desktop switcher, show the one in slide-in nav */
+@media (max-width: 768px) {
+  .lang-switcher--desktop {
+    display: none;
+  }
 }
 
 /* --- Nav Contact Popover --- */
