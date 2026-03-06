@@ -221,7 +221,7 @@ Deno.serve(async (req) => {
       const confirmationBody = isAccessRequest
         ? `Hi ${displayName},\n\nWe've received your request for access to ${demoLabel}. We'll review it and get back to you shortly.\n\n---\n\nAbout Regen Studio\nWe pioneer systemic innovations at the intersection of technology, society, and nature — helping organizations create positive impact through new solutions.\n\nOur focus: Energy Transition, Circular Economy, Digital Society, Liveable Cities, Resilient Nature\n\nWebsite: https://www.regenstudio.world\nDemos: https://demos.regenstudio.world\nBlog: https://www.regenstudio.world/blog.html\n\nBest regards,\nThe Regen Studio team`
         : isDppGate
-        ? `Hi ${displayName},\n\nThank you for sharing your email address with us to unlock all product group information surrounding Digital Product Passports.\n\nYou now have access to our full regulatory tracker with 33 product groups, DPP obligation dates, status indicators, and links to the source legislation.\n\nIf this was valuable to you, we'd love to know. Reach out to us at info@regenstudio.world.\n\nExplore more:\n- DPP Product Overview: https://www.regenstudio.world/dpp.html\n- Our Demos: https://demos.regenstudio.world\n- Blog: https://www.regenstudio.world/blog.html\n\nBest regards,\nThe Regen Studio team`
+        ? `Hi ${displayName},\n\nThank you for sharing your email address with us to unlock all product group information surrounding Digital Product Passports.\n\nYou now have access to our full regulatory tracker with 33 product groups, DPP obligation dates, status indicators, and links to the source legislation.\n\nIf this was valuable to you, we'd love to know. Reach out to us at info@regenstudio.world.\n\nExplore more:\n- DPP Product Overview: https://www.regenstudio.world/digital-product-passports/\n- CPR DPP Tracker (interactive demo): https://demos.regenstudio.world/cpr-dpp-tracker/\n- Our Demos: https://demos.regenstudio.world\n- Blog: https://www.regenstudio.world/blog.html\n\nBest regards,\nThe Regen Studio team`
         : `Hi ${displayName},\n\nThank you for reaching out. We received your message and will get back to you as soon as possible.\n\n---\n\nAbout Regen Studio\nWe pioneer systemic innovations at the intersection of technology, society, and nature — helping organizations create positive impact through new solutions.\n\nOur focus: Energy Transition, Circular Economy, Digital Society, Liveable Cities, Resilient Nature\n\nWebsite: https://www.regenstudio.world\nDemos: https://demos.regenstudio.world\nBlog: https://www.regenstudio.world/blog.html\n\nBest regards,\nThe Regen Studio team`;
 
       const aboutSection = `
@@ -249,7 +249,10 @@ Deno.serve(async (req) => {
            <p style="margin:0 0 16px">You now have access to our full regulatory tracker with <strong>33 product groups</strong>, DPP obligation dates, status indicators, and links to the source legislation.</p>
            <p style="margin:0 0 16px">If this was valuable to you, we'd love to know. Reach out to us at <a href="mailto:info@regenstudio.world" style="color:#00914B;text-decoration:none;font-weight:600">info@regenstudio.world</a>.</p>
            <div style="text-align:center;margin:24px 0 8px">
-             <a href="https://www.regenstudio.world/dpp.html#dpp-products" style="display:inline-block;background:#00914B;color:white;padding:12px 28px;border-radius:99px;font-size:14px;font-weight:600;text-decoration:none">View DPP Product Overview</a>
+             <a href="https://www.regenstudio.world/digital-product-passports/#dpp-products" style="display:inline-block;background:#00914B;color:white;padding:12px 28px;border-radius:99px;font-size:14px;font-weight:600;text-decoration:none">View DPP Product Overview</a>
+           </div>
+           <div style="text-align:center;margin:8px 0 0">
+             <a href="https://demos.regenstudio.world/cpr-dpp-tracker/" style="display:inline-block;background:#009BBB;color:white;padding:10px 24px;border-radius:99px;font-size:13px;font-weight:600;text-decoration:none">Explore the CPR DPP Tracker Demo</a>
            </div>
            ${aboutSection}`;
 
