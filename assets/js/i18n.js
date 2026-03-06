@@ -151,18 +151,7 @@
     return "/" + targetLang + path;
   }
 
-  function injectSwitcher() {
-    // Inject language switcher into nav if not already present
-    var existing = document.querySelector(".lang-switcher");
-    if (existing) return;
-
-    var nav = document.querySelector(".nav__links");
-    if (!nav) return;
-
-    var li = document.createElement("li");
-    li.className = "lang-switcher";
-    li.setAttribute("aria-label", "Language");
-
+  function buildSwitcherHTML() {
     var html = "";
     for (var i = 0; i < SUPPORTED.length; i++) {
       var lang = SUPPORTED[i];
@@ -176,14 +165,43 @@
         ' data-lang="' + lang + '"' + aria +
         ' hreflang="' + lang + '">' + label + "</a>";
     }
-    li.innerHTML = html;
+    return html;
+  }
 
-    // Insert before the contact button (last li)
-    var contactWrap = nav.querySelector(".nav__contact-wrap");
-    if (contactWrap) {
-      nav.insertBefore(li, contactWrap);
-    } else {
-      nav.appendChild(li);
+  function injectSwitcher() {
+    // Inject language switcher into mobile nav (.nav__links) if not already present
+    if (!document.querySelector(".nav__links .lang-switcher")) {
+      var nav = document.querySelector(".nav__links");
+      if (nav) {
+        var li = document.createElement("li");
+        li.className = "lang-switcher";
+        li.setAttribute("aria-label", "Language");
+        li.innerHTML = buildSwitcherHTML();
+        var contactWrap = nav.querySelector(".nav__contact-wrap");
+        if (contactWrap) {
+          nav.insertBefore(li, contactWrap);
+        } else {
+          nav.appendChild(li);
+        }
+      }
+    }
+
+    // Inject language switcher into desktop nav (.nav__actions) if not already present
+    if (!document.querySelector(".nav__actions .lang-switcher")) {
+      var actions = document.querySelector(".nav__actions");
+      if (actions) {
+        var div = document.createElement("div");
+        div.className = "lang-switcher lang-switcher--desktop";
+        div.setAttribute("aria-label", "Language");
+        div.innerHTML = buildSwitcherHTML();
+        // Insert before the contact wrap (desktop)
+        var desktopContact = actions.querySelector(".nav__contact-wrap--desktop");
+        if (desktopContact) {
+          actions.insertBefore(div, desktopContact);
+        } else {
+          actions.appendChild(div);
+        }
+      }
     }
   }
 
