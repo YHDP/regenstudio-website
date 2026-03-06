@@ -51,6 +51,7 @@
   <link rel="stylesheet" href="../../../assets/fonts/fonts.css">
   <link rel="stylesheet" href="../../../style.css">
   <link rel="stylesheet" href="../../../blog.css">
+  <link rel="stylesheet" href="../../../assets/css/antibot.css">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
@@ -70,7 +71,7 @@
         <li><a href="../../../digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
         <li><a href="../../../digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
         <li><a href="../../../pt/blog.html" data-i18n="nav.blog">Blog</a></li>
-        <li class="nav__contact-wrap">
+          <li class="nav__contact-wrap">
           <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
           <div class="nav__contact-popover" id="navContactPopover">
             <div class="nav__contact-popover-inner">
@@ -102,6 +103,7 @@
           <a href="../../../pt/innovation-services.html" data-i18n="nav.services">Services</a>
           <a href="../../../problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
           <a href="../../../pt/blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="https://demos.regenstudio.world" target="_blank" data-i18n="nav.demos">Demos</a>
           <a href="../../../pt/about.html" data-i18n="nav.about">About</a>
           <a href="../../../pt/faq.html" data-i18n="nav.faq">FAQ</a>
         </div>
@@ -149,7 +151,7 @@
           <div class="post-header__meta-divider"></div>
           <div class="post-header__meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> <time datetime="2026-02-15">15 de fevereiro de 2026</time></div>
           <div class="post-header__meta-divider"></div>
-          <div class="post-header__meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 110 min de leitura</div>
+          <div class="post-header__meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 111 min de leitura</div>
         </div>
       </div></section>
 
@@ -2173,6 +2175,14 @@
       gate.classList.add('cpr-gate--locked');
     }
 
+    // Protect with antibot
+    if (window.Antibot) {
+      window.Antibot.protect(gateForm);
+      var captcha = gateForm.querySelector('.antibot-captcha');
+      var disclaimer = gateForm.querySelector('.cpr-gate__disclaimer');
+      if (captcha && disclaimer) gateForm.insertBefore(captcha, disclaimer);
+    }
+
     gateForm.addEventListener('submit', function(e) {
       e.preventDefault();
       var btn = gateForm.querySelector('.cpr-gate__btn');
@@ -2183,43 +2193,65 @@
       var existingError = gateForm.querySelector('.cpr-gate__error');
       if (existingError) existingError.remove();
 
-      fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      function doGateSubmit(antibotPayload) {
+        var payload = {
           name: '',
           email: email,
           message: 'CPR product family tracker unlock',
           source: 'cpr_gate',
           page_url: window.location.href
-        })
-      })
-      .then(function(res) {
-        if (!res.ok) {
-          return res.json().catch(function() { return {}; }).then(function(data) {
-            throw new Error(data.error || 'Algo correu mal');
-          });
+        };
+        if (antibotPayload) {
+          for (var k in antibotPayload) {
+            if (antibotPayload.hasOwnProperty(k)) payload[k] = antibotPayload[k];
+          }
         }
-        localStorage.setItem(GATE_KEY, Date.now().toString());
-        gate.classList.remove('cpr-gate--locked');
-        var overlay = document.getElementById('cprGateOverlay');
-        overlay.classList.remove('cpr-gate__overlay--fixed');
-        overlay.classList.remove('cpr-gate__overlay--bottom');
-        overlay.style.position = 'absolute';
-        overlay.style.top = '280px';
-        var card = overlay.querySelector('.cpr-gate__card');
-        card.innerHTML = '<h3 class="cpr-gate__title">Obrigado!</h3>' +
-          '<p class="cpr-gate__text">Obrigado por partilhar o seu e-mail para desbloquear todas as 37 famílias de produtos do RPC. Se isto foi valioso para si, gostaríamos de saber. Contacte-nos em <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>';
-        setTimeout(function() { overlay.style.display = 'none'; }, 6000);
-      })
-      .catch(function(err) {
-        var errorEl = document.createElement('p');
-        errorEl.className = 'cpr-gate__error';
-        errorEl.textContent = err.message || 'Falhou. Tente novamente.';
-        gateForm.appendChild(errorEl);
-        btn.disabled = false;
-        btn.textContent = 'Desbloquear';
-      });
+
+        fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+        .then(function(res) {
+          if (!res.ok) {
+            return res.json().catch(function() { return {}; }).then(function(data) {
+              throw new Error(data.error || 'Algo correu mal');
+            });
+          }
+          localStorage.setItem(GATE_KEY, Date.now().toString());
+          gate.classList.remove('cpr-gate--locked');
+          var overlay = document.getElementById('cprGateOverlay');
+          overlay.classList.remove('cpr-gate__overlay--fixed');
+          overlay.classList.remove('cpr-gate__overlay--bottom');
+          overlay.style.position = 'absolute';
+          overlay.style.top = '280px';
+          var card = overlay.querySelector('.cpr-gate__card');
+          card.innerHTML = '<h3 class="cpr-gate__title">Obrigado!</h3>' +
+            '<p class="cpr-gate__text">Obrigado por partilhar o seu e-mail para desbloquear todas as 37 famílias de produtos do RPC. Se isto foi valioso para si, gostaríamos de saber. Contacte-nos em <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>';
+          setTimeout(function() { overlay.style.display = 'none'; }, 6000);
+        })
+        .catch(function(err) {
+          var errorEl = document.createElement('p');
+          errorEl.className = 'cpr-gate__error';
+          errorEl.textContent = err.message || 'Falhou. Tente novamente.';
+          gateForm.appendChild(errorEl);
+          btn.disabled = false;
+          btn.textContent = 'Desbloquear';
+        });
+      }
+
+      if (window.Antibot) {
+        window.Antibot.validate(gateForm).then(doGateSubmit).catch(function(errMsg) {
+          var errorEl = document.createElement('p');
+          errorEl.className = 'cpr-gate__error';
+          errorEl.textContent = errMsg;
+          gateForm.appendChild(errorEl);
+          btn.disabled = false;
+          btn.textContent = 'Desbloquear';
+        });
+      } else {
+        doGateSubmit(null);
+      }
     });
   }
 
@@ -2429,6 +2461,7 @@
 
   <script src="../../../assets/js/nav.js" defer></script>
   <script src="../../../assets/js/i18n.js" defer></script>
+  <script src="../../../assets/js/antibot.js" defer></script>
   <script src="../../../blog.js" defer></script>
   <script src="../../../assets/js/tracker.js" defer></script>
 </body>

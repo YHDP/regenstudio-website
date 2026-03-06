@@ -51,6 +51,7 @@
   <link rel="stylesheet" href="../../../assets/fonts/fonts.css">
   <link rel="stylesheet" href="../../../style.css">
   <link rel="stylesheet" href="../../../blog.css">
+  <link rel="stylesheet" href="../../../assets/css/antibot.css">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
@@ -70,7 +71,7 @@
         <li><a href="../../../digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
         <li><a href="../../../digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
         <li><a href="../../../pt/blog.html" data-i18n="nav.blog">Blog</a></li>
-        <li class="nav__contact-wrap">
+          <li class="nav__contact-wrap">
           <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
           <div class="nav__contact-popover" id="navContactPopover">
             <div class="nav__contact-popover-inner">
@@ -102,6 +103,7 @@
           <a href="../../../pt/innovation-services.html" data-i18n="nav.services">Services</a>
           <a href="../../../problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
           <a href="../../../pt/blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="https://demos.regenstudio.world" target="_blank" data-i18n="nav.demos">Demos</a>
           <a href="../../../pt/about.html" data-i18n="nav.about">About</a>
           <a href="../../../pt/faq.html" data-i18n="nav.faq">FAQ</a>
         </div>
@@ -648,6 +650,7 @@
 
     var gateForm=modalBody.querySelector('#sepGateForm');
     if(gateForm){
+      if(window.Antibot) window.Antibot.protect(gateForm);
       gateForm.addEventListener('submit',function(e){
         e.preventDefault();
         var btn=gateForm.querySelector('.sep-btn');
@@ -658,30 +661,46 @@
         var err=gateForm.closest('.sep-gate__banner').querySelector('.sep-form-error');
         if(err)err.remove();
 
-        fetch(SUPABASE_FN,{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({name:'',email:emailVal,message:'Innovation process phase template unlock',source:'innovation_gate',newsletter:newsletter,page_url:window.location.href})
-        }).then(function(res){
-          if(!res.ok) return res.json().catch(function(){return{};}).then(function(d){throw new Error(d.error||'Algo deu errado');});
-          localStorage.setItem(GATE_KEY,Date.now().toString());
-          isUnlocked=true;
-          openModal(p);
-        }).catch(function(er){
-          var el=document.createElement('p');
-          el.className='sep-form-error';
-          el.textContent=er.message||'Falhou. Tente novamente.';
-          gateForm.closest('.sep-gate__banner').appendChild(el);
-          btn.disabled=false; btn.textContent='Desbloquear';
-        });
+        function doSubmit(antibotPayload){
+          var payload={name:'',email:emailVal,message:'Innovation process phase template unlock',source:'innovation_gate',newsletter:newsletter,page_url:window.location.href};
+          if(antibotPayload){for(var k in antibotPayload){if(antibotPayload.hasOwnProperty(k))payload[k]=antibotPayload[k];}}
+          fetch(SUPABASE_FN,{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(payload)
+          }).then(function(res){
+            if(!res.ok) return res.json().catch(function(){return{};}).then(function(d){throw new Error(d.error||'Algo deu errado');});
+            localStorage.setItem(GATE_KEY,Date.now().toString());
+            isUnlocked=true;
+            openModal(p);
+          }).catch(function(er){
+            var el=document.createElement('p');
+            el.className='sep-form-error';
+            el.textContent=er.message||'Falhou. Tente novamente.';
+            gateForm.closest('.sep-gate__banner').appendChild(el);
+            btn.disabled=false; btn.textContent='Desbloquear';
+          });
+        }
+
+        if(window.Antibot){
+          window.Antibot.validate(gateForm).then(doSubmit).catch(function(errMsg){
+            var el=document.createElement('p');
+            el.className='sep-form-error';
+            el.textContent=errMsg||'Verificação falhou. Tente novamente.';
+            gateForm.closest('.sep-gate__banner').appendChild(el);
+            btn.disabled=false; btn.textContent='Desbloquear';
+          });
+        } else { doSubmit(null); }
       });
     }
 
     var ctaForm=modalBody.querySelector('#sepCtaForm');
     if(ctaForm){
+      if(window.Antibot) window.Antibot.protect(ctaForm);
       ctaForm.addEventListener('submit',function(e){
         e.preventDefault();
         var btn=ctaForm.querySelector('.sep-btn');
+        var originalText=btn.textContent;
         var nameVal=ctaForm.querySelector('input[name="name"]').value;
         var orgVal=ctaForm.querySelector('input[name="organization"]').value;
         var emailVal=ctaForm.querySelector('input[name="email"]').value;
@@ -690,25 +709,37 @@
         var newsletter=nlBox&&nlBox.checked?'yes':'no';
         btn.disabled=true; btn.textContent='Enviando\u2026';
 
-        fetch(SUPABASE_FN,{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({name:nameVal,email:emailVal,message:(orgVal?'['+orgVal+'] ':'')+(msgVal||'Interesse em jornada de inova\u00E7\u00E3o'),source:'innovation_cta',newsletter:newsletter,page_url:window.location.href})
-        }).then(function(res){
-          if(!res.ok) throw new Error('Algo deu errado');
-          btn.textContent='\u2713 Entraremos em contato!';
-          btn.style.background='#059669';
-        }).catch(function(){
-          btn.disabled=false; btn.textContent='Entrar em contato';
-        });
+        function doSubmit(antibotPayload){
+          var payload={name:nameVal,email:emailVal,message:(orgVal?'['+orgVal+'] ':'')+(msgVal||'Interesse em jornada de inova\u00E7\u00E3o'),source:'innovation_cta',newsletter:newsletter,page_url:window.location.href};
+          if(antibotPayload){for(var k in antibotPayload){if(antibotPayload.hasOwnProperty(k))payload[k]=antibotPayload[k];}}
+          fetch(SUPABASE_FN,{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(payload)
+          }).then(function(res){
+            if(!res.ok) throw new Error('Algo deu errado');
+            btn.textContent='\u2713 Entraremos em contato!';
+            btn.style.background='#059669';
+          }).catch(function(){
+            btn.disabled=false; btn.textContent=originalText;
+          });
+        }
+
+        if(window.Antibot){
+          window.Antibot.validate(ctaForm).then(doSubmit).catch(function(errMsg){
+            btn.disabled=false; btn.textContent=originalText;
+          });
+        } else { doSubmit(null); }
       });
     }
 
     var premForm=modalBody.querySelector('#sepPremiumForm');
     if(premForm){
+      if(window.Antibot) window.Antibot.protect(premForm);
       premForm.addEventListener('submit',function(e){
         e.preventDefault();
         var btn=premForm.querySelector('.sep-btn');
+        var originalText=btn.textContent;
         var nameVal=premForm.querySelector('input[name="name"]').value;
         var orgVal=premForm.querySelector('input[name="organization"]').value;
         var emailVal=premForm.querySelector('input[name="email"]').value;
@@ -717,17 +748,27 @@
         var newsletter=nlBox&&nlBox.checked?'yes':'no';
         btn.disabled=true; btn.textContent='Enviando\u2026';
 
-        fetch(SUPABASE_FN,{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({name:nameVal,email:emailVal,message:(orgVal?'['+orgVal+'] ':'')+(msgVal||'Consulta sobre modelo de fase')+' \u2014 Fase: '+d.name,source:'innovation_premium',newsletter:newsletter,page_url:window.location.href})
-        }).then(function(res){
-          if(!res.ok) throw new Error('Algo deu errado');
-          btn.textContent='\u2713 Mensagem enviada!';
-          btn.style.background='#059669';
-        }).catch(function(){
-          btn.disabled=false; btn.textContent='Enviar mensagem';
-        });
+        function doSubmit(antibotPayload){
+          var payload={name:nameVal,email:emailVal,message:(orgVal?'['+orgVal+'] ':'')+(msgVal||'Consulta sobre modelo de fase')+' \u2014 Fase: '+d.name,source:'innovation_premium',newsletter:newsletter,page_url:window.location.href};
+          if(antibotPayload){for(var k in antibotPayload){if(antibotPayload.hasOwnProperty(k))payload[k]=antibotPayload[k];}}
+          fetch(SUPABASE_FN,{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(payload)
+          }).then(function(res){
+            if(!res.ok) throw new Error('Algo deu errado');
+            btn.textContent='\u2713 Mensagem enviada!';
+            btn.style.background='#059669';
+          }).catch(function(){
+            btn.disabled=false; btn.textContent=originalText;
+          });
+        }
+
+        if(window.Antibot){
+          window.Antibot.validate(premForm).then(doSubmit).catch(function(errMsg){
+            btn.disabled=false; btn.textContent=originalText;
+          });
+        } else { doSubmit(null); }
       });
     }
 
@@ -856,6 +897,7 @@
 
   <script src="../../../assets/js/nav.js" defer></script>
   <script src="../../../assets/js/i18n.js" defer></script>
+  <script src="../../../assets/js/antibot.js" defer></script>
   <script src="../../../blog.js" defer></script>
   <script src="../../../assets/js/tracker.js" defer></script>
 </body>

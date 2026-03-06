@@ -71,6 +71,15 @@
   cursor: default;
 }
 
+/* Verifying state (during PoW) */
+.antibot-captcha--verifying {
+  border-color: var(--color-teal, #009BBB);
+}
+
+.antibot-captcha--verifying .antibot-captcha__status {
+  color: var(--color-teal, #009BBB);
+}
+
 /* PoW spinner */
 .antibot-pow-spinner {
   display: inline-block;
