@@ -418,21 +418,30 @@
     let activeTags = new Set();
 
     function readHashState() {
-      const hash = decodeURIComponent(window.location.hash.slice(1));
+      var raw = window.location.hash.slice(1);
       activeCategories.clear();
       activeTags.clear();
 
-      if (!hash) return;
-      const params = new URLSearchParams(hash);
-      (params.get('cat') || '').split(',').filter(Boolean).forEach(c => activeCategories.add(c));
-      (params.get('tag') || '').split(',').filter(Boolean).forEach(t => activeTags.add(t));
+      if (!raw) return;
+      // Handle both old format (fully encoded via encodeURIComponent) and
+      // new format (only values encoded, literal & as separator).
+      // Try URLSearchParams on raw hash first — handles %26 in values correctly.
+      var params = new URLSearchParams(raw);
+      var cat = params.get('cat');
+      // If no result, try decoding first (old fully-encoded format: cat%3Dvalue)
+      if (!cat && raw.indexOf('%3D') !== -1) {
+        params = new URLSearchParams(decodeURIComponent(raw));
+        cat = params.get('cat');
+      }
+      (cat || '').split(',').filter(Boolean).forEach(function(c) { activeCategories.add(c); });
+      ((params.get('tag') || '')).split(',').filter(Boolean).forEach(function(t) { activeTags.add(t); });
     }
 
     function writeHashState() {
-      const parts = [];
-      if (activeCategories.size) parts.push('cat=' + [...activeCategories].join(','));
-      if (activeTags.size) parts.push('tag=' + [...activeTags].join(','));
-      window.location.hash = parts.length ? encodeURIComponent(parts.join('&')) : '';
+      var parts = [];
+      if (activeCategories.size) parts.push('cat=' + [...activeCategories].map(encodeURIComponent).join(','));
+      if (activeTags.size) parts.push('tag=' + [...activeTags].map(encodeURIComponent).join(','));
+      window.location.hash = parts.length ? parts.join('&') : '';
     }
 
     function updatePillStates() {
@@ -778,7 +787,7 @@
 
     if (related.length > 0) {
       const primaryCategory = post.categories && post.categories[0]
-        ? `#${encodeURIComponent('cat=' + post.categories[0])}`
+        ? `#cat=${encodeURIComponent(post.categories[0])}`
         : '';
       relatedSection.innerHTML = `
         <div class="container">
