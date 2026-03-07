@@ -16,13 +16,19 @@
 # Node (if ever used for local tooling)
 node_modules/
 
-# Supabase local
+# Supabase (all infrastructure — source of truth is Proton Drive)
 .supabase/
-supabase/.temp/
+supabase/
 
-# Supabase migrations & cron (infrastructure — kept in Proton Drive, not public repo)
-supabase/migrations/
-supabase/cron-jobs*
+# Blog source files (drafts, not served to visitors)
+*.rtf
+*.xlsx
+*.pptx
+
+# Internal docs
+Blogs/BLOG_GUIDE.md
+Newsletter/README.md
+Newsletter/template.json
 
 # Experimental pages
 trial.html
