@@ -1,0 +1,55 @@
+-- Cron job schedules for Supabase pg_cron
+-- Run this SQL in the Supabase Dashboard → SQL Editor (NOT committed to git)
+--
+-- Prerequisites: pg_cron and pg_net extensions must be enabled
+-- (Dashboard → Database → Extensions → search "pg_cron" / "pg_net" → Enable)
+
+-- ── Rotate analytics salt daily at 00:00 UTC ──
+SELECT cron.schedule(
+  'rotate-analytics-salt',
+  '0 0 * * *',
+  $$SELECT rotate_analytics_salt()$$
+);
+
+-- ── Aggregate analytics daily at 03:00 UTC ──
+-- Replace YOUR_AGGREGATE_SECRET with the value of your AGGREGATE_SECRET env var
+SELECT cron.schedule(
+  'aggregate-analytics-daily',
+  '0 3 * * *',
+  $$SELECT net.http_post(
+    url := 'https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/aggregate-analytics',
+    headers := jsonb_build_object(
+      'Content-Type', 'application/json',
+      'x-aggregate-secret', 'YOUR_AGGREGATE_SECRET'
+    ),
+    body := jsonb_build_object('date', (CURRENT_DATE - 1)::text)
+  )$$
+);
+
+-- ── Delete raw analytics data daily at 03:30 UTC (after aggregation) ──
+SELECT cron.schedule(
+  'cleanup-analytics-raw',
+  '30 3 * * *',
+  $$SELECT cleanup_analytics_raw()$$
+);
+
+-- ── Clean up rate limits daily at 04:00 UTC ──
+SELECT cron.schedule(
+  'cleanup-rate-limits',
+  '0 4 * * *',
+  $$SELECT cleanup_rate_limits()$$
+);
+
+-- ── Clean up email events weekly on Sunday at 02:00 UTC ──
+SELECT cron.schedule(
+  'cleanup-email-events',
+  '0 2 * * 0',
+  $$SELECT cleanup_email_events()$$
+);
+
+-- ── Clean up unsubscribed newsletter records daily at 02:05 UTC ──
+SELECT cron.schedule(
+  'cleanup-unsubscribed',
+  '5 2 * * *',
+  $$SELECT cleanup_unsubscribed()$$
+);

@@ -105,7 +105,7 @@ Deno.serve(async (req) => {
       .eq("key", "analytics_daily_salt")
       .single();
 
-    const salt = saltRow?.value || "fallback";
+    const salt = saltRow?.value || crypto.randomUUID();
     const visitorHash = await sha256(`${salt}:${ip}:${ua}`);
 
     // 3. For page_view events: store visitor hash for unique counting (existing behavior)
