@@ -38,10 +38,15 @@
     }
   }
 
-  // ── Referrer domain ──
+  // ── Referrer domain (external only — internal navigation uses from_page) ──
   var referrerDomain = null;
   try {
-    if (document.referrer) referrerDomain = new URL(document.referrer).hostname;
+    if (document.referrer) {
+      var rh = new URL(document.referrer).hostname;
+      if (rh !== 'www.regenstudio.world' && rh !== 'regenstudio.world' && rh !== 'demos.regenstudio.world') {
+        referrerDomain = rh;
+      }
+    }
   } catch (e) { /* malformed referrer */ }
 
   // ── From-page tracking (sessionStorage, tab-scoped, no personal data) ──
