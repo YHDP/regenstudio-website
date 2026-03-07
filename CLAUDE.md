@@ -14,8 +14,8 @@
 - `/Blogs/` — JSON-based blog CMS (35+ posts, each in `slug/` with `meta.json` + `content.html`)
 - `/Blogs/blogs.json` — Master index of all post slugs (newest first)
 - `/Images/` — SVGs, logos, client logos, illustrations
-- `/supabase/functions/` — 4 Edge Functions (contact-form, newsletter-send/subscribe, email-webhook)
-- `/Newsletter/` — Email template + docs
+- `/supabase/functions/` — symlink → Proton Drive (7 Edge Functions, not in git)
+- `/supabase/migrations/` — gitignored, source of truth on Proton Drive
 - `script.js` — Main app logic (nav, animations, forms) — 1563 lines
 - `blog.js` — Blog listing, filtering, rendering — 892 lines
 - `trial2.js` — Hero canvas animation (triangle physics) — 634 lines
@@ -64,6 +64,18 @@
 - No build step or propagation script — all 37 cards are edited directly in the HTML
 - When editing data-info: lines are very long single-line HTML strings; use `grep -o` to extract exact substrings before editing
 - Fact-checking: always verify standard year designations (EN vs national adoption year), AVCP decision numbers, OJ-cited harmonised status vs newer non-harmonised revisions, and cross-check counts across data-dpp-range, data-standards summary, and data-info narrative
+
+## Repo Hygiene (public GitHub Pages repo)
+
+This repo is PUBLIC. Before committing, verify no file falls into these categories:
+- **Secrets/credentials**: env vars, API keys, password hashes, auth tokens
+- **Infrastructure code**: Supabase migrations, cron SQL, Edge Function source (→ Proton Drive)
+- **Source drafts**: RTF, DOCX, XLSX, PPTX files (→ Proton Drive)
+- **Unlinked large files**: PDFs/images not referenced from any HTML page
+- **Internal docs**: process guides, templates, READMEs for internal workflows
+
+When creating new files, ask: "Does a visitor's browser need this?" If no → gitignore + Proton Drive.
+Edge functions are symlinked from Proton Drive: `supabase/functions/ → CLAUDE CODE SYNC FOLDER/supabase-functions/`
 
 ## Privacy Architecture
 
