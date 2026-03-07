@@ -20,6 +20,10 @@ node_modules/
 .supabase/
 supabase/.temp/
 
+# Supabase migrations & cron (infrastructure — kept in Proton Drive, not public repo)
+supabase/migrations/
+supabase/cron-jobs*
+
 # Experimental pages
 trial.html
 trial2.html
