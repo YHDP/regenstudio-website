@@ -59,9 +59,17 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           Acquisition
         </button>
+        <button class="admin-nav-btn" data-view="hourly">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Hourly
+        </button>
         <button class="admin-nav-btn" data-view="funnel">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
           Funnel
+        </button>
+        <button class="admin-nav-btn" data-view="realtime">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7" stroke-dasharray="4 2"/><circle cx="12" cy="12" r="11" stroke-dasharray="2 3"/></svg>
+          Realtime
         </button>
       </nav>
     </aside>
@@ -84,6 +92,7 @@
             <option value="90">Last 90 days</option>
             <option value="custom">Custom range</option>
           </select>
+          <button class="admin-btn-sm admin-btn--outline" id="exportCsv" title="Export current view as CSV">Export CSV</button>
           <div class="admin-custom-range" id="customRange" style="display:none">
             <input type="date" id="dateFrom" class="admin-date-input">
             <span>to</span>
@@ -95,11 +104,12 @@
 
       <!-- View: Overview -->
       <section class="admin-view active" id="view-overview">
-        <div class="admin-kpi-grid">
-          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiViews">—</span><span class="admin-kpi__label">Total Views</span></div>
-          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiUniques">—</span><span class="admin-kpi__label">Unique Visitors</span></div>
-          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiDepth">—</span><span class="admin-kpi__label">Avg Session Depth</span></div>
-          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiTime">—</span><span class="admin-kpi__label">Avg Time on Page</span></div>
+        <div class="admin-kpi-grid admin-kpi-grid--5">
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiViews">—</span><span class="admin-kpi__delta" id="kpiViewsDelta"></span><span class="admin-kpi__label">Total Views</span></div>
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiUniques">—</span><span class="admin-kpi__delta" id="kpiUniquesDelta"></span><span class="admin-kpi__label">Unique Visitors</span></div>
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiBounce">—</span><span class="admin-kpi__delta" id="kpiBounceDelta"></span><span class="admin-kpi__label">Bounce Rate</span></div>
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiDepth">—</span><span class="admin-kpi__delta" id="kpiDepthDelta"></span><span class="admin-kpi__label">Avg Depth</span></div>
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiTime">—</span><span class="admin-kpi__delta" id="kpiTimeDelta"></span><span class="admin-kpi__label">Avg Time</span></div>
         </div>
         <div class="admin-chart-panel">
           <h3>Daily Trend</h3>
@@ -112,7 +122,7 @@
         <div class="admin-table-panel">
           <h3>Pages by Views</h3>
           <table class="admin-table" id="tablePages">
-            <thead><tr><th id="thSite" style="display:none">Site</th><th>Page</th><th>Views</th><th>Uniques</th><th>Avg Time</th></tr></thead>
+            <thead><tr><th id="thSite" style="display:none">Site</th><th>Page</th><th>Views</th><th>Uniques</th><th>Avg Time</th><th>Exit %</th></tr></thead>
             <tbody></tbody>
           </table>
         </div>
@@ -174,7 +184,7 @@
             <canvas id="chartReferrers"></canvas>
           </div>
           <div class="admin-chart-panel">
-            <h3>Countries</h3>
+            <h3>Countries (Unique Visitors)</h3>
             <canvas id="chartCountries"></canvas>
           </div>
         </div>
@@ -187,6 +197,32 @@
             <h3>Browsers</h3>
             <canvas id="chartBrowsers"></canvas>
           </div>
+        </div>
+        <div class="admin-table-panel">
+          <h3>Referrer Quality</h3>
+          <table class="admin-table" id="tableRefQuality">
+            <thead><tr><th>Source</th><th>Sessions</th><th>Avg Depth</th><th>Avg Time</th><th>Bounce %</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- View: Hourly -->
+      <section class="admin-view" id="view-hourly">
+        <div class="admin-chart-panel">
+          <h3>Activity Heatmap (UTC)</h3>
+          <div id="heatmapContainer" class="admin-heatmap"></div>
+        </div>
+      </section>
+
+      <!-- View: Realtime -->
+      <section class="admin-view" id="view-realtime">
+        <div class="admin-table-panel">
+          <h3>Recent Events (last 48h)</h3>
+          <table class="admin-table" id="tableRealtime">
+            <thead><tr><th>Time</th><th>Event</th><th>Page</th><th>Country</th><th>Device</th><th>Referrer</th></tr></thead>
+            <tbody></tbody>
+          </table>
         </div>
       </section>
 

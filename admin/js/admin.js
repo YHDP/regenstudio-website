@@ -3,7 +3,8 @@
  * - Password auth (SHA-256 client-side → Bearer token)
  * - Site filter (all / www / demos)
  * - View switching, date range picker
- * - Chart.js rendering for all 6 views
+ * - Chart.js rendering for all views
+ * - CSV export, period comparison, scroll funnel, heatmap, realtime
  */
 (function () {
   'use strict';
@@ -17,6 +18,7 @@
   var token = null;
   var charts = {};
   var currentView = 'overview';
+  var lastViewData = null; // For CSV export
 
   // DOM refs
   var gate = document.getElementById('gate');
@@ -33,6 +35,7 @@
   var siteFilter = document.getElementById('siteFilter');
   var thSite = document.getElementById('thSite');
   var funnelNote = document.getElementById('funnelNote');
+  var exportBtn = document.getElementById('exportCsv');
 
   // ── SHA-256 helper ──
   function sha256(str) {
@@ -114,7 +117,10 @@
     })
     .then(function (data) {
       setLoading(view, false);
-      if (data) callback(data);
+      if (data) {
+        lastViewData = { view: view, data: data };
+        callback(data);
+      }
     })
     .catch(function (err) {
       setLoading(view, false);
@@ -135,6 +141,23 @@
     if (s < 60) return s + 's';
     var m = Math.floor(s / 60);
     return m + 'm ' + (s % 60) + 's';
+  }
+
+  // ── Delta formatting ──
+  function setDelta(elId, current, previous, invertColors) {
+    var el = document.getElementById(elId);
+    if (!el) return;
+    if (!previous || previous === 0) {
+      el.textContent = '';
+      el.className = 'admin-kpi__delta';
+      return;
+    }
+    var pct = ((current - previous) / previous * 100).toFixed(0);
+    var sign = pct > 0 ? '+' : '';
+    el.textContent = sign + pct + '%';
+    var isUp = pct > 0;
+    if (invertColors) isUp = !isUp; // For bounce rate, up is bad
+    el.className = 'admin-kpi__delta ' + (pct == 0 ? 'admin-kpi__delta--neutral' : isUp ? 'admin-kpi__delta--up' : 'admin-kpi__delta--down');
   }
 
   // ── Destroy chart before recreating ──
@@ -173,6 +196,85 @@
     }
   }
 
+  // ── CSV export ──
+  function exportCsv() {
+    if (!lastViewData) return;
+    var rows = [];
+    var d = lastViewData.data;
+    var v = lastViewData.view;
+
+    if (v === 'overview') {
+      rows.push(['Date', 'Views', 'Uniques']);
+      var dates = Object.keys(d.dailyViews || {}).sort();
+      dates.forEach(function (dt) {
+        rows.push([dt, d.dailyViews[dt] || 0, d.dailyUniques[dt] || 0]);
+      });
+    } else if (v === 'pages') {
+      rows.push(['Page', 'Views', 'Uniques', 'Avg Time (s)', 'Exit %']);
+      (d.pages || []).forEach(function (p) {
+        rows.push([p.pathname, p.views, p.uniques, Math.round((p.avgTimeMs || 0) / 1000), p.exitRate || 0]);
+      });
+    } else if (v === 'navigation') {
+      rows.push(['From', 'To', 'Count']);
+      (d.flows || []).forEach(function (f) { rows.push([f.from_page, f.to_page, f.count]); });
+    } else if (v === 'engagement') {
+      rows.push(['Metric', 'Value']);
+      ['scroll_25', 'scroll_50', 'scroll_75', 'scroll_100'].forEach(function (k) {
+        rows.push([k, d.scrollDepth[k] || 0]);
+      });
+      rows.push([]);
+      rows.push(['Time Bucket', 'Count']);
+      Object.keys(d.timeBuckets || {}).forEach(function (k) { rows.push([k, d.timeBuckets[k]]); });
+    } else if (v === 'acquisition') {
+      rows.push(['Referrer', 'Views']);
+      Object.keys(d.referrers || {}).sort(function (a, b) { return d.referrers[b] - d.referrers[a]; }).forEach(function (k) {
+        rows.push([k, d.referrers[k]]);
+      });
+      rows.push([]);
+      rows.push(['Country', 'Unique Visitors']);
+      Object.keys(d.countries || {}).sort(function (a, b) { return d.countries[b] - d.countries[a]; }).forEach(function (k) {
+        rows.push([k, d.countries[k]]);
+      });
+      if (d.referrerQuality) {
+        rows.push([]);
+        rows.push(['Source', 'Sessions', 'Avg Depth', 'Avg Time (s)', 'Bounce %']);
+        d.referrerQuality.forEach(function (r) {
+          rows.push([r.referrer, r.sessions, r.avgDepth, Math.round(r.avgTimeMs / 1000), r.bounceRate]);
+        });
+      }
+    } else if (v === 'hourly') {
+      var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      rows.push(['Day/Hour'].concat(Array.from({ length: 24 }, function (_, i) { return String(i); })));
+      (d.matrix || []).forEach(function (row, i) {
+        rows.push([dayNames[i]].concat(row));
+      });
+    } else if (v === 'realtime') {
+      rows.push(['Time', 'Event', 'Page', 'Country', 'Device', 'Referrer']);
+      (d.events || []).forEach(function (e) {
+        rows.push([e.created_at, e.event_type, e.pathname, e.country, e.device_type, e.referrer]);
+      });
+    } else if (v === 'funnel') {
+      rows.push(['Step', 'Name', 'Visitors']);
+      (d.funnel || []).forEach(function (s) { rows.push([s.step, s.name, s.visitors]); });
+    }
+
+    if (rows.length === 0) return;
+
+    var csv = rows.map(function (r) {
+      return r.map(function (c) {
+        var s = String(c == null ? '' : c);
+        return s.indexOf(',') >= 0 || s.indexOf('"') >= 0 ? '"' + s.replace(/"/g, '""') + '"' : s;
+      }).join(',');
+    }).join('\n');
+
+    var blob = new Blob([csv], { type: 'text/csv' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'analytics-' + v + '-' + getDateRange().from + '.csv';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
   // Site label helpers
   var SITE_LABELS = { www: 'www', demos: 'demos' };
 
@@ -185,10 +287,22 @@
   // ═══════════════════════════════════════════════
 
   function renderOverviewFromData(d) {
-    document.getElementById('kpiViews').textContent = fmtNum(d.kpis.totalViews);
-    document.getElementById('kpiUniques').textContent = fmtNum(d.kpis.totalUniques);
-    document.getElementById('kpiDepth').textContent = d.kpis.avgDepth || '—';
-    document.getElementById('kpiTime').textContent = fmtTime(d.kpis.avgTimeMs);
+    var k = d.kpis;
+    document.getElementById('kpiViews').textContent = fmtNum(k.totalViews);
+    document.getElementById('kpiUniques').textContent = fmtNum(k.totalUniques);
+    document.getElementById('kpiBounce').textContent = k.bounceRate + '%';
+    document.getElementById('kpiDepth').textContent = k.avgDepth || '—';
+    document.getElementById('kpiTime').textContent = fmtTime(k.avgTimeMs);
+
+    // Period-over-period deltas
+    if (d.prevKpis) {
+      var p = d.prevKpis;
+      setDelta('kpiViewsDelta', k.totalViews, p.totalViews);
+      setDelta('kpiUniquesDelta', k.totalUniques, p.totalUniques);
+      setDelta('kpiBounceDelta', k.bounceRate, p.bounceRate, true); // inverted: lower bounce = better
+      setDelta('kpiDepthDelta', k.avgDepth, p.avgDepth);
+      setDelta('kpiTimeDelta', k.avgTimeMs, p.avgTimeMs);
+    }
 
     var dates = Object.keys(d.dailyViews).sort();
     var viewValues = dates.map(function (dt) { return d.dailyViews[dt] || 0; });
@@ -236,7 +350,6 @@
   }
 
   function renderPages() {
-    // Show/hide Site column header
     var showSite = showSiteColumn();
     thSite.style.display = showSite ? '' : 'none';
 
@@ -244,7 +357,7 @@
       var rows = (d.pages || []).map(function (p) {
         var row = [];
         if (showSite) row.push(SITE_LABELS[p.site] || p.site);
-        row.push(p.pathname, p.views, p.uniques, fmtTime(p.avgTimeMs));
+        row.push(p.pathname, p.views, p.uniques, fmtTime(p.avgTimeMs), p.exitRate + '%');
         return row;
       });
       fillTable('tablePages', rows);
@@ -272,9 +385,11 @@
 
   function renderEngagement() {
     fetchView('engagement', function (d) {
-      // Scroll depth bar chart
+      // Scroll depth as funnel (percentage of page views)
       var scrollLabels = ['scroll_25', 'scroll_50', 'scroll_75', 'scroll_100'];
+      var base = d.totalPageViews || 1;
       var scrollValues = scrollLabels.map(function (k) { return d.scrollDepth[k] || 0; });
+      var scrollPct = scrollValues.map(function (v) { return +(v / base * 100).toFixed(1); });
       var scrollDisplay = ['25%', '50%', '75%', '100%'];
 
       makeChart('chartScroll', {
@@ -282,15 +397,30 @@
         data: {
           labels: scrollDisplay,
           datasets: [{
-            label: 'Sessions',
-            data: scrollValues,
+            label: '% of visitors',
+            data: scrollPct,
             backgroundColor: [COLORS[0], COLORS[1], COLORS[2], COLORS[3]]
           }]
         },
         options: {
           responsive: true,
-          scales: { y: { beginAtZero: true, ticks: { precision: 0 } } },
-          plugins: { legend: { display: false } }
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              ticks: { callback: function (v) { return v + '%'; } }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function (ctx) {
+                  return ctx.parsed.y + '% (' + scrollValues[ctx.dataIndex] + ' events)';
+                }
+              }
+            }
+          }
         }
       });
 
@@ -346,7 +476,7 @@
         }
       });
 
-      // Countries bar
+      // Countries bar (unique visitors)
       var countryLabels = Object.keys(d.countries || {}).sort(function (a, b) {
         return (d.countries[b] || 0) - (d.countries[a] || 0);
       }).slice(0, 10);
@@ -357,7 +487,7 @@
         data: {
           labels: countryLabels,
           datasets: [{
-            label: 'Views',
+            label: 'Unique Visitors',
             data: countryValues,
             backgroundColor: COLORS[1]
           }]
@@ -409,11 +539,60 @@
           plugins: { legend: { position: 'right' } }
         }
       });
+
+      // Referrer quality table
+      var rqRows = (d.referrerQuality || []).map(function (r) {
+        return [r.referrer, r.sessions, r.avgDepth, fmtTime(r.avgTimeMs), r.bounceRate + '%'];
+      });
+      fillTable('tableRefQuality', rqRows);
+    });
+  }
+
+  function renderHourly() {
+    fetchView('hourly', function (d) {
+      var matrix = d.matrix || [];
+      var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      var container = document.getElementById('heatmapContainer');
+      if (!container) return;
+
+      // Find max value for color scaling
+      var maxVal = 0;
+      matrix.forEach(function (row) {
+        row.forEach(function (v) { if (v > maxVal) maxVal = v; });
+      });
+
+      var html = '<table><thead><tr><th></th>';
+      for (var h = 0; h < 24; h++) {
+        html += '<th>' + h + '</th>';
+      }
+      html += '</tr></thead><tbody>';
+
+      for (var dow = 0; dow < 7; dow++) {
+        html += '<tr><th>' + dayNames[dow] + '</th>';
+        for (var hr = 0; hr < 24; hr++) {
+          var val = (matrix[dow] && matrix[dow][hr]) || 0;
+          var level = maxVal > 0 ? Math.ceil(val / maxVal * 5) : 0;
+          if (val === 0) level = 0;
+          html += '<td class="hm-' + level + '" title="' + dayNames[dow] + ' ' + hr + ':00 UTC — ' + val + ' views">' + (val || '') + '</td>';
+        }
+        html += '</tr>';
+      }
+      html += '</tbody></table>';
+      container.innerHTML = html;
+    });
+  }
+
+  function renderRealtime() {
+    fetchView('realtime', function (d) {
+      var rows = (d.events || []).map(function (e) {
+        var time = e.created_at ? e.created_at.replace('T', ' ').slice(0, 19) : '—';
+        return [time, e.event_type, e.pathname, e.country || 'XX', e.device_type || '—', e.referrer || 'direct'];
+      });
+      fillTable('tableRealtime', rows);
     });
   }
 
   function renderFunnel() {
-    // Show note when filtered to www-only
     var site = getSite();
     funnelNote.style.display = (site === 'www') ? '' : 'none';
 
@@ -448,7 +627,9 @@
     navigation: renderNavigation,
     engagement: renderEngagement,
     acquisition: renderAcquisition,
-    funnel: renderFunnel
+    hourly: renderHourly,
+    funnel: renderFunnel,
+    realtime: renderRealtime
   };
 
   var viewTitles = {
@@ -457,7 +638,9 @@
     navigation: 'Navigation',
     engagement: 'Engagement',
     acquisition: 'Acquisition',
-    funnel: 'Funnel'
+    hourly: 'Hourly Activity',
+    funnel: 'Funnel',
+    realtime: 'Realtime'
   };
 
   // ── Switch view ──
@@ -488,7 +671,6 @@
     if (!pw) return;
 
     sha256(pw).then(function (hash) {
-      // Test against API
       var range = getDateRange();
       var site = getSite();
       return fetch(API_URL + '?view=overview&from=' + range.from + '&to=' + range.to + '&site=' + site, {
@@ -502,7 +684,7 @@
           token = hash;
           gate.style.display = 'none';
           dashboard.style.display = '';
-          // Render initial overview from the data we already have
+          lastViewData = { view: 'overview', data: data };
           renderOverviewFromData(data);
         });
       });
@@ -538,5 +720,8 @@
   siteFilter.addEventListener('change', function () {
     if (token) switchView(currentView);
   });
+
+  // ── CSV export ──
+  exportBtn.addEventListener('click', exportCsv);
 
 })();
