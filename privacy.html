@@ -377,7 +377,7 @@
     </div>
     <h1>Privacy Policy</h1>
     <p class="privacy-hero__sub">How we handle your data — transparently, minimally, and with respect.</p>
-    <p class="privacy-hero__updated">Last updated: 25 February 2026</p>
+    <p class="privacy-hero__updated">Last updated: 7 March 2026</p>
   </section>
 
   <!-- TL;DR -->
@@ -389,7 +389,7 @@
     <ul>
       <li>No cookies are set on any of our websites</li>
       <li>All fonts, scripts, and stylesheets are self-hosted on both sites</li>
-      <li>Analytics are privacy-preserving: no personal data stored</li>
+      <li>Analytics are privacy-preserving: no cookies, no raw IPs, visitor identity resets daily</li>
       <li>Your data is stored in the EU (Frankfurt, Germany)</li>
       <li>We never sell, rent, or share your data</li>
       <li>Compliant with GDPR, LGPD, and ePrivacy Directive</li>
@@ -484,7 +484,7 @@
         </div>
         <h2>Privacy-preserving analytics</h2>
       </div>
-      <p>On both our websites, we collect aggregate page view statistics to understand which pages are visited. This system is designed from the ground up to be privacy-preserving:</p>
+      <p>On both our websites, we collect analytics data to understand which pages are visited, how visitors navigate between pages, and how they engage with content. This system is designed from the ground up to be privacy-preserving:</p>
 
       <div class="analytics-box">
         <h3>
@@ -492,17 +492,18 @@
           How it works
         </h3>
         <div class="analytics-flow">
-          <div class="analytics-flow__step">Your browser sends<br><code>page path</code> only</div>
+          <div class="analytics-flow__step">Your browser sends<br><code>page path + event type</code></div>
           <span class="analytics-flow__arrow">&rarr;</span>
           <div class="analytics-flow__step">Server hashes your IP<br>with a <strong>daily-rotating salt</strong></div>
           <span class="analytics-flow__arrow">&rarr;</span>
-          <div class="analytics-flow__step">Only <strong>aggregate counters</strong><br>persist long-term</div>
+          <div class="analytics-flow__step">Raw events deleted after <strong>48 hours</strong>;<br>only aggregates persist</div>
         </div>
-        <p>Your IP address is used solely to generate a one-way hash for unique visitor counting. The hash formula is: <code>SHA-256(daily_salt + IP + UA)</code>. The raw IP is <strong>never stored</strong>. The salt is automatically rotated every 24 hours via a scheduled database function, making it impossible to track visitors across days. The raw hashes are deleted within 24 hours; only aggregate counts persist.</p>
-        <p>No session IDs, no cookies, no full URLs, and no user-agent strings are stored. Only the page path, country code (derived from Cloudflare&rsquo;s edge), and referrer domain are included in aggregate counters.</p>
+        <p>Your IP address is used solely to generate a one-way hash for unique visitor counting. The hash formula is: <code>SHA-256(daily_salt + IP + UA)</code>. The raw IP is <strong>never stored</strong>. The salt is automatically rotated every 24 hours via a scheduled database function, making it impossible to track visitors across days.</p>
+        <p>Each analytics event records the following data points: page path, event type (page view, scroll depth reached, or page exit), referrer domain (where you came from), country code (derived from Cloudflare&rsquo;s edge network), device category (mobile, tablet, or desktop), and browser family (e.g., Chrome, Safari). For page exits, time spent on the page is also recorded. Your user-agent string is used to derive device category and browser family but is <strong>not stored</strong>.</p>
+        <p>Raw event data (including visitor hashes) is automatically deleted after 48 hours. Only aggregate counters &mdash; with no visitor-level detail &mdash; persist long-term. No session IDs, no cookies, and no full URLs are stored.</p>
       </div>
 
-      <p>Because we set no cookies and store no personal data, this analytics system does not require consent under the ePrivacy Directive (Art. 5(3)) or the Dutch Telecommunicatiewet (Art. 11.7a(3)). This architecture mirrors the approach recognized by the French CNIL as exempt from consent requirements.</p>
+      <p>Because we set no cookies, store no raw IP addresses, and use a daily-rotating salt that prevents cross-day tracking, this analytics system does not require consent under the ePrivacy Directive (Art. 5(3)) or the Dutch Telecommunicatiewet (Art. 11.7a(3)). The legal basis for this processing is <strong>legitimate interest</strong> (GDPR Art. 6(1)(f)): understanding aggregate website usage to improve our content and services. This architecture mirrors the approach recognized by the French CNIL as exempt from cookie consent requirements.</p>
     </section>
 
     <!-- Local storage -->
@@ -538,7 +539,7 @@
       <div class="processor-grid">
         <div class="processor-card">
           <p class="processor-card__name">Supabase Inc.</p>
-          <p class="processor-card__role">Database hosting, server-side functions, and authentication. All data stored in the EU (Frankfurt, Germany).</p>
+          <p class="processor-card__role">Database hosting, server-side functions, authentication, and analytics processing. All data stored in the EU (Frankfurt, Germany).</p>
           <span class="processor-card__tag processor-card__tag--eu">EU hosted</span>
         </div>
         <div class="processor-card">
@@ -597,7 +598,7 @@
         <li>To generate and send invoices</li>
         <li>To send newsletters (only with your explicit consent)</li>
         <li>To notify our team of submissions and orders</li>
-        <li>To understand aggregate website usage (privacy-preserving analytics, demos site only)</li>
+        <li>To understand aggregate website usage (privacy-preserving analytics, both sites)</li>
       </ul>
       <p>We do not use your data for marketing (beyond opted-in newsletters), profiling, or automated decision-making.</p>
     </section>
@@ -636,7 +637,7 @@
         <li><strong>Email event logs:</strong> raw webhook payloads from our email delivery service are automatically deleted after 90 days.</li>
         <li><strong>Magic link tokens:</strong> hashed tokens expire after 15 minutes and can no longer be used for authentication. Used and expired links are automatically deleted after 7 days.</li>
         <li><strong>Report orders and invoices:</strong> retained for at least 7 years as required by Dutch tax law (Algemene wet inzake rijksbelastingen, Art. 52).</li>
-        <li><strong>Analytics visitor hashes:</strong> deleted within 24 hours. Only aggregate counters persist. The hashing salt is rotated daily via automated scheduled function.</li>
+        <li><strong>Analytics raw events and visitor hashes:</strong> automatically deleted after 48 hours. Only aggregate counters (with no visitor-level detail) persist long-term. The hashing salt is rotated daily via automated scheduled function, making cross-day visitor identification impossible.</li>
         <li><strong>Browser localStorage tokens:</strong> expire automatically after 24 hours, enforced programmatically.</li>
       </ul>
     </section>
