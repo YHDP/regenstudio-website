@@ -63,10 +63,41 @@
     return siteFilter.value;
   }
 
+  // ── Error banner ──
+  function showError(msg) {
+    var el = document.getElementById('adminError');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'adminError';
+      el.style.cssText = 'background:#FEF2F2;border:1px solid #FECACA;color:#991B1B;padding:10px 16px;border-radius:8px;font-size:0.85rem;margin-bottom:16px;display:none;';
+      var main = document.querySelector('.admin-main');
+      if (main) main.insertBefore(el, main.querySelector('.admin-topbar').nextSibling);
+    }
+    el.textContent = msg;
+    el.style.display = msg ? '' : 'none';
+  }
+
+  // ── Loading state ──
+  function setLoading(viewId, loading) {
+    var panel = document.getElementById('view-' + viewId);
+    if (!panel) return;
+    var existing = panel.querySelector('.admin-loading');
+    if (loading && !existing) {
+      var div = document.createElement('div');
+      div.className = 'admin-loading';
+      div.textContent = 'Loading\u2026';
+      panel.insertBefore(div, panel.firstChild);
+    } else if (!loading && existing) {
+      existing.remove();
+    }
+  }
+
   // ── Fetch helper ──
   function fetchView(view, callback) {
     var range = getDateRange();
     var url = API_URL + '?view=' + view + '&from=' + range.from + '&to=' + range.to + '&site=' + getSite();
+    showError('');
+    setLoading(view, true);
     fetch(url, {
       headers: { 'Authorization': 'Bearer ' + token }
     })
@@ -78,12 +109,16 @@
         token = null;
         return null;
       }
+      if (!r.ok) throw new Error('Server returned ' + r.status);
       return r.json();
     })
     .then(function (data) {
+      setLoading(view, false);
       if (data) callback(data);
     })
     .catch(function (err) {
+      setLoading(view, false);
+      showError('Failed to load ' + view + ' data. Check your connection and try again.');
       console.error('Fetch error:', err);
     });
   }
@@ -149,54 +184,55 @@
   // View renderers
   // ═══════════════════════════════════════════════
 
-  function renderOverview() {
-    fetchView('overview', function (d) {
-      document.getElementById('kpiViews').textContent = fmtNum(d.kpis.totalViews);
-      document.getElementById('kpiUniques').textContent = fmtNum(d.kpis.totalUniques);
-      document.getElementById('kpiDepth').textContent = d.kpis.avgDepth || '—';
-      document.getElementById('kpiTime').textContent = fmtTime(d.kpis.avgTimeMs);
+  function renderOverviewFromData(d) {
+    document.getElementById('kpiViews').textContent = fmtNum(d.kpis.totalViews);
+    document.getElementById('kpiUniques').textContent = fmtNum(d.kpis.totalUniques);
+    document.getElementById('kpiDepth').textContent = d.kpis.avgDepth || '—';
+    document.getElementById('kpiTime').textContent = fmtTime(d.kpis.avgTimeMs);
 
-      // Daily trend line chart
-      var dates = Object.keys(d.dailyViews).sort();
-      var viewValues = dates.map(function (dt) { return d.dailyViews[dt] || 0; });
-      var uniqueValues = dates.map(function (dt) { return d.dailyUniques[dt] || 0; });
-      var labels = dates.map(function (dt) { return dt.slice(5); }); // MM-DD
+    var dates = Object.keys(d.dailyViews).sort();
+    var viewValues = dates.map(function (dt) { return d.dailyViews[dt] || 0; });
+    var uniqueValues = dates.map(function (dt) { return d.dailyUniques[dt] || 0; });
+    var labels = dates.map(function (dt) { return dt.slice(5); });
 
-      makeChart('chartOverviewTrend', {
-        type: 'line',
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: 'Views',
-              data: viewValues,
-              borderColor: COLORS[0],
-              backgroundColor: COLORS_LIGHT[0],
-              fill: true,
-              tension: 0.3,
-              pointRadius: 2
-            },
-            {
-              label: 'Uniques',
-              data: uniqueValues,
-              borderColor: COLORS[1],
-              backgroundColor: COLORS_LIGHT[1],
-              fill: true,
-              tension: 0.3,
-              pointRadius: 2
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          interaction: { mode: 'index', intersect: false },
-          scales: {
-            y: { beginAtZero: true, ticks: { precision: 0 } }
+    makeChart('chartOverviewTrend', {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Views',
+            data: viewValues,
+            borderColor: COLORS[0],
+            backgroundColor: COLORS_LIGHT[0],
+            fill: true,
+            tension: 0.3,
+            pointRadius: 2
           },
-          plugins: { legend: { position: 'bottom' } }
-        }
-      });
+          {
+            label: 'Uniques',
+            data: uniqueValues,
+            borderColor: COLORS[1],
+            backgroundColor: COLORS_LIGHT[1],
+            fill: true,
+            tension: 0.3,
+            pointRadius: 2
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        scales: {
+          y: { beginAtZero: true, ticks: { precision: 0 } }
+        },
+        plugins: { legend: { position: 'bottom' } }
+      }
     });
+  }
+
+  function renderOverview() {
+    fetchView('overview', renderOverviewFromData);
   }
 
   function renderPages() {
@@ -474,53 +510,6 @@
       gateError.textContent = 'Connection error. Please try again.';
     });
   });
-
-  function renderOverviewFromData(d) {
-    document.getElementById('kpiViews').textContent = fmtNum(d.kpis.totalViews);
-    document.getElementById('kpiUniques').textContent = fmtNum(d.kpis.totalUniques);
-    document.getElementById('kpiDepth').textContent = d.kpis.avgDepth || '—';
-    document.getElementById('kpiTime').textContent = fmtTime(d.kpis.avgTimeMs);
-
-    var dates = Object.keys(d.dailyViews).sort();
-    var viewValues = dates.map(function (dt) { return d.dailyViews[dt] || 0; });
-    var uniqueValues = dates.map(function (dt) { return d.dailyUniques[dt] || 0; });
-    var labels = dates.map(function (dt) { return dt.slice(5); });
-
-    makeChart('chartOverviewTrend', {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: 'Views',
-            data: viewValues,
-            borderColor: COLORS[0],
-            backgroundColor: COLORS_LIGHT[0],
-            fill: true,
-            tension: 0.3,
-            pointRadius: 2
-          },
-          {
-            label: 'Uniques',
-            data: uniqueValues,
-            borderColor: COLORS[1],
-            backgroundColor: COLORS_LIGHT[1],
-            fill: true,
-            tension: 0.3,
-            pointRadius: 2
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        interaction: { mode: 'index', intersect: false },
-        scales: {
-          y: { beginAtZero: true, ticks: { precision: 0 } }
-        },
-        plugins: { legend: { position: 'bottom' } }
-      }
-    });
-  }
 
   // ── Sidebar nav ──
   document.querySelectorAll('.admin-nav-btn').forEach(function (btn) {
