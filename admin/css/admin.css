@@ -302,6 +302,17 @@ body {
   background: var(--emerald-hover);
 }
 
+.admin-btn--outline {
+  background: var(--surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.admin-btn--outline:hover {
+  background: var(--bg);
+  color: var(--text-primary);
+}
+
 /* ── Views ── */
 .admin-view {
   display: none;
@@ -317,6 +328,10 @@ body {
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-md);
   margin-bottom: var(--space-lg);
+}
+
+.admin-kpi-grid--5 {
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .admin-kpi {
@@ -342,6 +357,17 @@ body {
   letter-spacing: 0.05em;
   font-weight: 600;
 }
+
+.admin-kpi__delta {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.admin-kpi__delta--up { color: var(--emerald); }
+.admin-kpi__delta--down { color: #E71846; }
+.admin-kpi__delta--neutral { color: var(--text-muted); }
 
 /* ── Chart Panel ── */
 .admin-chart-panel {
@@ -424,6 +450,41 @@ body {
   font-size: 0.9rem;
 }
 
+/* ── Heatmap ── */
+.admin-heatmap {
+  overflow-x: auto;
+}
+
+.admin-heatmap table {
+  border-collapse: collapse;
+  font-size: 0.75rem;
+  width: 100%;
+}
+
+.admin-heatmap th {
+  padding: 4px 6px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+.admin-heatmap td {
+  width: 3.5%;
+  text-align: center;
+  padding: 6px 2px;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  color: var(--text-primary);
+}
+
+.admin-heatmap .hm-0 { background: var(--bg); color: var(--text-muted); }
+.admin-heatmap .hm-1 { background: rgba(0,145,75,0.1); }
+.admin-heatmap .hm-2 { background: rgba(0,145,75,0.25); }
+.admin-heatmap .hm-3 { background: rgba(0,145,75,0.4); color: white; }
+.admin-heatmap .hm-4 { background: rgba(0,145,75,0.6); color: white; }
+.admin-heatmap .hm-5 { background: rgba(0,145,75,0.8); color: white; }
+
 /* ── Funnel Note ── */
 .admin-funnel-note {
   background: rgba(255, 169, 45, 0.1);
@@ -475,7 +536,8 @@ body {
     padding: var(--space-md);
   }
 
-  .admin-kpi-grid {
+  .admin-kpi-grid,
+  .admin-kpi-grid--5 {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -485,7 +547,8 @@ body {
 }
 
 @media (max-width: 480px) {
-  .admin-kpi-grid {
+  .admin-kpi-grid,
+  .admin-kpi-grid--5 {
     grid-template-columns: 1fr;
   }
 
