@@ -303,7 +303,7 @@
   <!-- Navigation -->
   <nav class="nav nav--scrolled" id="nav">
     <div class="nav__inner container">
-      <a href="../index.html" class="nav__logo">
+      <a href="index.html" class="nav__logo">
         <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
       </a>
       <!-- Mobile slide-in menu -->
@@ -445,8 +445,8 @@
         <li>Sua mensagem (se fornecida)</li>
         <li>A URL da p&aacute;gina de onde voc&ecirc; enviou o formul&aacute;rio</li>
       </ul>
-      <p>Finalidade: responder &agrave; sua solicita&ccedil;&atilde;o, enviar newsletters e notificar nossa equipe. Base legal: <strong>interesse leg&iacute;timo</strong> (LGPD Art. 7(IX) / GDPR Art. 6(1)(f)) e <strong>consentimento</strong> (LGPD Art. 7(I) / GDPR Art. 6(1)(a)).</p>
-      <p>Para prevenir abuso, os envios de formul&aacute;rios de contato s&atilde;o limitados em quantidade. Um hash unidirecional do seu endere&ccedil;o IP (combinado com a data atual) &eacute; armazenado temporariamente por at&eacute; 24 horas para contar envios por janela de tempo. O IP bruto nunca &eacute; armazenado. Base legal: <strong>interesse leg&iacute;timo</strong> (LGPD Art. 7(IX) / GDPR Art. 6(1)(f)).</p>
+      <p>Finalidade: responder &agrave; sua solicita&ccedil;&atilde;o, enviar newsletters e notificar nossa equipe. Base legal: <strong>interesse leg&iacute;timo</strong> (LGPD Art. 10 / GDPR Art. 6(1)(f)) e <strong>consentimento</strong> (LGPD Art. 7(I) / GDPR Art. 6(1)(a)).</p>
+      <p>Para prevenir abuso, os envios de formul&aacute;rios de contato s&atilde;o limitados em quantidade. Um hash unidirecional do seu endere&ccedil;o IP (combinado com a data atual) &eacute; armazenado temporariamente por at&eacute; 24 horas para contar envios por janela de tempo. O IP bruto nunca &eacute; armazenado. Base legal: <strong>interesse leg&iacute;timo</strong> (LGPD Art. 10 / GDPR Art. 6(1)(f)).</p>
 
       <p><strong>Solicita&ccedil;&otilde;es de acesso a demos e magic links</strong> (demos.regenstudio.world)</p>
       <ul>
@@ -517,12 +517,12 @@
           <span class="analytics-flow__arrow">&rarr;</span>
           <div class="analytics-flow__step">Eventos brutos deletados ap&oacute;s <strong>48 horas</strong>;<br>apenas agregados persistem</div>
         </div>
-        <p>Seu endere&ccedil;o IP &eacute; utilizado unicamente para gerar um hash unidirecional para contagem de visitantes &uacute;nicos. A f&oacute;rmula do hash &eacute;: <code>SHA-256(daily_salt + IP + UA)</code>. O IP bruto <strong>nunca &eacute; armazenado</strong>. O salt &eacute; rotacionado automaticamente a cada 24 horas por uma fun&ccedil;&atilde;o agendada no banco de dados, tornando imposs&iacute;vel rastrear visitantes entre dias.</p>
+        <p>Seu endere&ccedil;o IP &eacute; utilizado unicamente para gerar um hash unidirecional para contagem de visitantes &uacute;nicos. A f&oacute;rmula do hash &eacute;: <code>SHA-256(daily_salt : IP : UA)</code>. O IP bruto <strong>nunca &eacute; armazenado</strong>. O salt &eacute; rotacionado automaticamente a cada 24 horas por uma fun&ccedil;&atilde;o agendada no banco de dados, tornando imposs&iacute;vel rastrear visitantes entre dias.</p>
         <p>Cada evento de analytics registra os seguintes dados: caminho da p&aacute;gina, tipo de evento (visualiza&ccedil;&atilde;o de p&aacute;gina, profundidade de rolagem alcan&ccedil;ada ou sa&iacute;da da p&aacute;gina), dom&iacute;nio de refer&ecirc;ncia (de onde voc&ecirc; veio), c&oacute;digo do pa&iacute;s (derivado principalmente da configura&ccedil;&atilde;o de fuso hor&aacute;rio do seu navegador, ex.: &ldquo;Europe/Amsterdam&rdquo; &rarr; NL; se indispon&iacute;vel, um c&oacute;digo de pa&iacute;s aproximado da rede de borda do provedor de hospedagem pode ser usado como alternativa &mdash; nenhum dos m&eacute;todos fornece geolocaliza&ccedil;&atilde;o precisa), categoria do dispositivo (celular, tablet ou desktop) e fam&iacute;lia do navegador (ex.: Chrome, Safari). Para sa&iacute;das de p&aacute;gina, o tempo gasto na p&aacute;gina tamb&eacute;m &eacute; registrado. Sua string de user-agent &eacute; usada para derivar a categoria do dispositivo e a fam&iacute;lia do navegador, mas <strong>n&atilde;o &eacute; armazenada</strong>.</p>
         <p>Dados brutos de eventos (incluindo hashes de visitantes) s&atilde;o automaticamente deletados ap&oacute;s 48 horas. Apenas contadores agregados &mdash; sem nenhum detalhe em n&iacute;vel de visitante &mdash; persistem a longo prazo. Nenhum ID de sess&atilde;o, nenhum cookie e nenhuma URL completa s&atilde;o armazenados.</p>
       </div>
 
-      <p>Como n&atilde;o definimos cookies, n&atilde;o armazenamos endere&ccedil;os IP brutos e utilizamos um salt com rota&ccedil;&atilde;o di&aacute;ria que impede o rastreamento entre dias, este sistema de analytics n&atilde;o requer consentimento sob a Diretiva ePrivacy (Art. 5(3)) ou a Telecommunicatiewet holandesa (Art. 11.7a(3)). A base legal para este tratamento &eacute; <strong>interesse leg&iacute;timo</strong> (LGPD Art. 7(IX) / GDPR Art. 6(1)(f)): compreender o uso agregado do site para melhorar nosso conte&uacute;do e servi&ccedil;os. Esta arquitetura segue a abordagem reconhecida pela CNIL francesa como isenta dos requisitos de consentimento para cookies.</p>
+      <p>Como n&atilde;o definimos cookies, n&atilde;o armazenamos endere&ccedil;os IP brutos e utilizamos um salt com rota&ccedil;&atilde;o di&aacute;ria que impede o rastreamento entre dias, este sistema de analytics n&atilde;o requer consentimento sob a Diretiva ePrivacy (Art. 5(3)) ou a Telecommunicatiewet holandesa (Art. 11.7a(3)). A base legal para este tratamento &eacute; <strong>interesse leg&iacute;timo</strong> (LGPD Art. 10 / GDPR Art. 6(1)(f)): compreender o uso agregado do site para melhorar nosso conte&uacute;do e servi&ccedil;os. Esta arquitetura segue a abordagem reconhecida pela CNIL francesa como isenta dos requisitos de consentimento para cookies.</p>
     </section>
 
     <!-- Armazenamento local -->
@@ -774,7 +774,7 @@
     <meta itemprop="email" content="info@regenstudio.world">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <a href="../index.html" class="footer__logo">
+        <a href="index.html" class="footer__logo">
           <img src="../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img">
         </a>
         <p>Pioneiros em inova&ccedil;&otilde;es para a regenera&ccedil;&atilde;o dos nossos ecossistemas naturais, humanos e urbanos.</p>
@@ -833,7 +833,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; 2026 Regen Studio. Todos os direitos reservados. &middot; <a href="privacy.html">Pol&iacute;tica de Privacidade</a> &middot; <a href="terms.html">Termos de Uso</a> &middot; <a href="about.html">Sobre</a> &middot; <a href="../admin/">Admin</a></p>
+        <p>&copy; 2026 Regen Studio. Todos os direitos reservados. &middot; <a href="privacy.html">Pol&iacute;tica de Privacidade</a> &middot; <a href="../terms.html">Termos de Uso</a> &middot; <a href="about.html">Sobre</a> &middot; <a href="../admin/">Admin</a></p>
       </div>
     </div>
   </footer>

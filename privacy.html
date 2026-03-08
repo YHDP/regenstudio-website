@@ -445,8 +445,8 @@
         <li>Your message (if provided)</li>
         <li>The page URL you submitted from</li>
       </ul>
-      <p>Purpose: to respond to your inquiry, send newsletters, and notify our team. Legal basis: <strong>legitimate interest</strong> (GDPR Art. 6(1)(f) / LGPD Art. 7(IX)) and <strong>consent</strong> (GDPR Art. 6(1)(a) / LGPD Art. 7(I)).</p>
-      <p>To prevent abuse, contact form submissions are rate-limited. A one-way hash of your IP address (combined with the current date) is temporarily stored for up to 24 hours to count submissions per time window. The raw IP is never stored. Legal basis: <strong>legitimate interest</strong> (GDPR Art. 6(1)(f)).</p>
+      <p>Purpose: to respond to your inquiry, send newsletters, and notify our team. Legal basis: <strong>legitimate interest</strong> (GDPR Art. 6(1)(f) / LGPD Art. 10) and <strong>consent</strong> (GDPR Art. 6(1)(a) / LGPD Art. 7(I)).</p>
+      <p>To prevent abuse, contact form submissions are rate-limited. A one-way hash of your IP address (combined with the current date) is temporarily stored for up to 24 hours to count submissions per time window. The raw IP is never stored. Legal basis: <strong>legitimate interest</strong> (GDPR Art. 6(1)(f) / LGPD Art. 10).</p>
 
       <p><strong>Demo access requests and magic links</strong> (demos.regenstudio.world)</p>
       <ul>
@@ -517,12 +517,12 @@
           <span class="analytics-flow__arrow">&rarr;</span>
           <div class="analytics-flow__step">Raw events deleted after <strong>48 hours</strong>;<br>only aggregates persist</div>
         </div>
-        <p>Your IP address is used solely to generate a one-way hash for unique visitor counting. The hash formula is: <code>SHA-256(daily_salt + IP + UA)</code>. The raw IP is <strong>never stored</strong>. The salt is automatically rotated every 24 hours via a scheduled database function, making it impossible to track visitors across days.</p>
+        <p>Your IP address is used solely to generate a one-way hash for unique visitor counting. The hash formula is: <code>SHA-256(daily_salt : IP : UA)</code>. The raw IP is <strong>never stored</strong>. The salt is automatically rotated every 24 hours via a scheduled database function, making it impossible to track visitors across days.</p>
         <p>Each analytics event records the following data points: page path, event type (page view, scroll depth reached, or page exit), referrer domain (where you came from), country code (derived primarily from your browser&rsquo;s timezone setting, e.g., &ldquo;Europe/Amsterdam&rdquo; &rarr; NL; if unavailable, a coarse country code from the hosting provider&rsquo;s edge network may be used as a fallback &mdash; neither method provides precise geolocation), device category (mobile, tablet, or desktop), and browser family (e.g., Chrome, Safari). For page exits, time spent on the page is also recorded. Your user-agent string is used to derive device category and browser family but is <strong>not stored</strong>.</p>
         <p>Raw event data (including visitor hashes) is automatically deleted after 48 hours. Only aggregate counters &mdash; with no visitor-level detail &mdash; persist long-term. No session IDs, no cookies, and no full URLs are stored.</p>
       </div>
 
-      <p>Because we set no cookies, store no raw IP addresses, and use a daily-rotating salt that prevents cross-day tracking, this analytics system does not require consent under the ePrivacy Directive (Art. 5(3)) or the Dutch Telecommunicatiewet (Art. 11.7a(3)). The legal basis for this processing is <strong>legitimate interest</strong> (GDPR Art. 6(1)(f)): understanding aggregate website usage to improve our content and services. This architecture mirrors the approach recognized by the French CNIL as exempt from cookie consent requirements.</p>
+      <p>Because we set no cookies, store no raw IP addresses, and use a daily-rotating salt that prevents cross-day tracking, this analytics system does not require consent under the ePrivacy Directive (Art. 5(3)) or the Dutch Telecommunicatiewet (Art. 11.7a(3)). The legal basis for this processing is <strong>legitimate interest</strong> (GDPR Art. 6(1)(f) / LGPD Art. 10): understanding aggregate website usage to improve our content and services. This architecture mirrors the approach recognized by the French CNIL as exempt from cookie consent requirements.</p>
     </section>
 
     <!-- Local storage -->
@@ -840,6 +840,6 @@
 
   <script src="assets/js/nav.js" defer></script>
   <script src="assets/js/i18n.js" defer></script>
-  <script src="assets/js/tracker.js"></script>
+  <script src="assets/js/tracker.js" defer></script>
 </body>
 </html>

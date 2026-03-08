@@ -303,7 +303,7 @@
   <!-- Navigation -->
   <nav class="nav nav--scrolled" id="nav">
     <div class="nav__inner container">
-      <a href="../index.html" class="nav__logo">
+      <a href="index.html" class="nav__logo">
         <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
       </a>
       <!-- Mobile slide-in menu -->
@@ -445,8 +445,8 @@
         <li>Uw bericht (indien opgegeven)</li>
         <li>De pagina-URL van waaruit u het formulier hebt verstuurd</li>
       </ul>
-      <p>Doel: om op uw vraag te reageren, nieuwsbrieven te verzenden en ons team te informeren. Grondslag: <strong>gerechtvaardigd belang</strong> (AVG art. 6(1)(f) / LGPD art. 7(IX)) en <strong>toestemming</strong> (AVG art. 6(1)(a) / LGPD art. 7(I)).</p>
-      <p>Ter voorkoming van misbruik worden contactformulierinzendingen beperkt in aantal. Een eenrichtingshash van uw IP-adres (gecombineerd met de huidige datum) wordt tijdelijk tot 24 uur opgeslagen om inzendingen per tijdsvenster te tellen. Het ruwe IP-adres wordt nooit opgeslagen. Grondslag: <strong>gerechtvaardigd belang</strong> (AVG art. 6(1)(f)).</p>
+      <p>Doel: om op uw vraag te reageren, nieuwsbrieven te verzenden en ons team te informeren. Grondslag: <strong>gerechtvaardigd belang</strong> (AVG art. 6(1)(f) / LGPD art. 10) en <strong>toestemming</strong> (AVG art. 6(1)(a) / LGPD art. 7(I)).</p>
+      <p>Ter voorkoming van misbruik worden contactformulierinzendingen beperkt in aantal. Een eenrichtingshash van uw IP-adres (gecombineerd met de huidige datum) wordt tijdelijk tot 24 uur opgeslagen om inzendingen per tijdsvenster te tellen. Het ruwe IP-adres wordt nooit opgeslagen. Grondslag: <strong>gerechtvaardigd belang</strong> (AVG art. 6(1)(f) / LGPD art. 10).</p>
 
       <p><strong>Demo-toegangsverzoeken en magic links</strong> (demos.regenstudio.world)</p>
       <ul>
@@ -517,12 +517,12 @@
           <span class="analytics-flow__arrow">&rarr;</span>
           <div class="analytics-flow__step">Ruwe events worden na <strong>48 uur</strong> verwijderd;<br>alleen aggregaten blijven bewaard</div>
         </div>
-        <p>Uw IP-adres wordt uitsluitend gebruikt om een eenrichtings-hash te genereren voor het tellen van unieke bezoekers. De hash-formule is: <code>SHA-256(daily_salt + IP + UA)</code>. Het ruwe IP-adres wordt <strong>nooit opgeslagen</strong>. De salt wordt elke 24 uur automatisch geroteerd via een geplande databasefunctie, waardoor het onmogelijk is bezoekers over dagen heen te volgen.</p>
+        <p>Uw IP-adres wordt uitsluitend gebruikt om een eenrichtings-hash te genereren voor het tellen van unieke bezoekers. De hash-formule is: <code>SHA-256(daily_salt : IP : UA)</code>. Het ruwe IP-adres wordt <strong>nooit opgeslagen</strong>. De salt wordt elke 24 uur automatisch geroteerd via een geplande databasefunctie, waardoor het onmogelijk is bezoekers over dagen heen te volgen.</p>
         <p>Elk analytics-event registreert de volgende datapunten: paginapad, eventtype (paginaweergave, bereikte scrolldiepte of paginaverlating), verwijzend domein (waar u vandaan kwam), landcode (voornamelijk afgeleid van de tijdzone-instelling van uw browser, bijv. &ldquo;Europe/Amsterdam&rdquo; &rarr; NL; indien niet beschikbaar kan een grove landcode van het edge-netwerk van de hostingprovider als terugvaloptie worden gebruikt &mdash; geen van beide methoden biedt nauwkeurige geolocatie), apparaatcategorie (mobiel, tablet of desktop) en browserfamilie (bijv. Chrome, Safari). Bij paginaverlating wordt ook de tijd op de pagina geregistreerd. Uw user-agent-string wordt gebruikt om apparaatcategorie en browserfamilie af te leiden, maar wordt <strong>niet opgeslagen</strong>.</p>
         <p>Ruwe eventgegevens (inclusief bezoekers-hashes) worden na 48 uur automatisch verwijderd. Alleen geaggregeerde tellers &mdash; zonder detail op bezoekerniveau &mdash; blijven langdurig bewaard. Er worden geen sessie-ID&rsquo;s, geen cookies en geen volledige URL&rsquo;s opgeslagen.</p>
       </div>
 
-      <p>Omdat wij geen cookies plaatsen, geen ruwe IP-adressen opslaan en een dagelijks wisselende salt gebruiken die tracking over dagen heen voorkomt, vereist dit analytics-systeem geen toestemming op grond van de ePrivacy-richtlijn (art. 5(3)) of de Telecommunicatiewet (art. 11.7a(3)). De grondslag voor deze verwerking is <strong>gerechtvaardigd belang</strong> (AVG art. 6(1)(f)): inzicht in geaggregeerd websitegebruik om onze inhoud en diensten te verbeteren. Deze architectuur komt overeen met de benadering die door de Franse CNIL als vrijgesteld van cookietoestemming wordt erkend.</p>
+      <p>Omdat wij geen cookies plaatsen, geen ruwe IP-adressen opslaan en een dagelijks wisselende salt gebruiken die tracking over dagen heen voorkomt, vereist dit analytics-systeem geen toestemming op grond van de ePrivacy-richtlijn (art. 5(3)) of de Telecommunicatiewet (art. 11.7a(3)). De grondslag voor deze verwerking is <strong>gerechtvaardigd belang</strong> (AVG art. 6(1)(f) / LGPD art. 10): inzicht in geaggregeerd websitegebruik om onze inhoud en diensten te verbeteren. Deze architectuur komt overeen met de benadering die door de Franse CNIL als vrijgesteld van cookietoestemming wordt erkend.</p>
     </section>
 
     <!-- Lokale opslag -->
@@ -774,7 +774,7 @@
     <meta itemprop="email" content="info@regenstudio.world">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <a href="../index.html" class="footer__logo">
+        <a href="index.html" class="footer__logo">
           <img src="../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img">
         </a>
         <p>Pionieren in innovaties voor de regeneratie van onze natuurlijke, menselijke en stedelijke ecosystemen.</p>
@@ -833,7 +833,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; 2026 Regen Studio. Alle rechten voorbehouden. &middot; <a href="privacy.html">Privacybeleid</a> &middot; <a href="terms.html">Gebruiksvoorwaarden</a> &middot; <a href="about.html">Over Ons</a> &middot; <a href="../admin/">Admin</a></p>
+        <p>&copy; 2026 Regen Studio. Alle rechten voorbehouden. &middot; <a href="privacy.html">Privacybeleid</a> &middot; <a href="../terms.html">Gebruiksvoorwaarden</a> &middot; <a href="about.html">Over Ons</a> &middot; <a href="../admin/">Admin</a></p>
       </div>
     </div>
   </footer>
