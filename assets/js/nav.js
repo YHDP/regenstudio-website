@@ -116,10 +116,10 @@
       navigator.clipboard.writeText(email).then(function () {
         var label = copyBtn.querySelector('.copyable-email__label');
         copyBtn.classList.add('copied');
-        if (label) label.textContent = 'Copied!';
+        if (label) label.textContent = (window.__i18n && window.__i18n.t) ? window.__i18n.t('nav.copied', 'Copied!') : 'Copied!';
         setTimeout(function () {
           copyBtn.classList.remove('copied');
-          if (label) label.textContent = 'Copy';
+          if (label) label.textContent = (window.__i18n && window.__i18n.t) ? window.__i18n.t('nav.copy', 'Copy') : 'Copy';
         }, 2000);
       });
       return;

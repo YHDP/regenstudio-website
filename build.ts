@@ -46,10 +46,41 @@ const UI: Record<Lang, {
   minRead: string;
   home: string;
   blog: string;
+  footerNavigate: string;
+  footerConnect: string;
+  footerLocations: string;
+  footerNetherlands: string;
+  footerBrazil: string;
+  footerAllRights: string;
+  footerPrivacy: string;
+  footerTerms: string;
+  footerAbout: string;
+  footerTagline: string;
 }> = {
-  en: { backToBlog: "Back to Blog", minRead: "min read", home: "Home", blog: "Blog" },
-  nl: { backToBlog: "Terug naar Blog", minRead: "min leestijd", home: "Startpagina", blog: "Blog" },
-  pt: { backToBlog: "Voltar ao Blog", minRead: "min de leitura", home: "Início", blog: "Blog" },
+  en: {
+    backToBlog: "Back to Blog", minRead: "min read", home: "Home", blog: "Blog",
+    footerNavigate: "Navigate", footerConnect: "Connect", footerLocations: "Locations",
+    footerNetherlands: "The Netherlands", footerBrazil: "Brazil",
+    footerAllRights: "All rights reserved.",
+    footerPrivacy: "Privacy Policy", footerTerms: "Terms of Use", footerAbout: "About",
+    footerTagline: "Pioneering innovations in the regeneration of our natural, human, and urban ecosystems.",
+  },
+  nl: {
+    backToBlog: "Terug naar Blog", minRead: "min leestijd", home: "Startpagina", blog: "Blog",
+    footerNavigate: "Navigatie", footerConnect: "Contact", footerLocations: "Locaties",
+    footerNetherlands: "Nederland", footerBrazil: "Brazili\u00EB",
+    footerAllRights: "Alle rechten voorbehouden.",
+    footerPrivacy: "Privacybeleid", footerTerms: "Gebruiksvoorwaarden", footerAbout: "Over Ons",
+    footerTagline: "Baanbrekende innovaties voor het herstel van onze natuur, steden en menselijke ecosystemen.",
+  },
+  pt: {
+    backToBlog: "Voltar ao Blog", minRead: "min de leitura", home: "In\u00EDcio", blog: "Blog",
+    footerNavigate: "Navega\u00E7\u00E3o", footerConnect: "Contato", footerLocations: "Localiza\u00E7\u00F5es",
+    footerNetherlands: "Holanda", footerBrazil: "Brasil",
+    footerAllRights: "Todos os direitos reservados.",
+    footerPrivacy: "Pol\u00EDtica de Privacidade", footerTerms: "Termos de Uso", footerAbout: "Sobre",
+    footerTagline: "Inova\u00E7\u00F5es pioneiras para a regenera\u00E7\u00E3o dos nossos ecossistemas naturais, urbanos e humanos.",
+  },
 };
 
 /** Get the URL prefix for a language (empty for English, "/nl" or "/pt" for others) */
@@ -499,9 +530,10 @@ function extractFooter(template: string): string {
  *  e.g. "../../../index.html" → "../../../nl/index.html" */
 function localizePageLinks(html: string, lang: Lang, ap: string): string {
   if (lang === "en") return html;
+  // Note: terms.html is excluded — no NL/PT terms pages exist, so terms links always go to EN
   const pages = ["index.html", "blog.html", "about.html", "faq.html",
     "client-projects.html", "innovation-services.html", "vision.html",
-    "privacy.html", "terms.html", "thank-you.html"];
+    "privacy.html", "thank-you.html"];
   let result = html;
   for (const page of pages) {
     // Match href="<ap><page>" (with optional #fragment or ?query)
@@ -510,6 +542,29 @@ function localizePageLinks(html: string, lang: Lang, ap: string): string {
   // Also localize root-relative fragment links like ../..//#contact-form → ../../nl/#contact-form
   result = result.replaceAll(`href="${ap}/#`, `href="${ap}${lang}/#`);
   return result;
+}
+
+// --- Translate footer text for non-English pages ---
+
+function translateFooter(html: string, lang: Lang): string {
+  if (lang === "en") return html;
+  const ui = UI[lang];
+  const en = UI["en"];
+  return html
+    // Section headings
+    .replace(`<h4>${en.footerNavigate}</h4>`, `<h4>${ui.footerNavigate}</h4>`)
+    .replace(`<h4>${en.footerConnect}</h4>`, `<h4>${ui.footerConnect}</h4>`)
+    .replace(`<h4>${en.footerLocations}</h4>`, `<h4>${ui.footerLocations}</h4>`)
+    // Country names
+    .replace(`>${en.footerNetherlands}</p>`, `>${ui.footerNetherlands}</p>`)
+    .replace(`>${en.footerBrazil}</p>`, `>${ui.footerBrazil}</p>`)
+    // Tagline
+    .replace(`>${en.footerTagline}</p>`, `>${ui.footerTagline}</p>`)
+    // Bottom bar: "All rights reserved." + link labels
+    .replace(en.footerAllRights, ui.footerAllRights)
+    .replace(`>${en.footerPrivacy}</a>`, `>${ui.footerPrivacy}</a>`)
+    .replace(`>${en.footerTerms}</a>`, `>${ui.footerTerms}</a>`)
+    .replaceAll(`>${en.footerAbout}</a>`, `>${ui.footerAbout}</a>`);
 }
 
 // --- Generate a static HTML page for one blog post ---
@@ -528,18 +583,21 @@ function generatePage(
   const adjustedFooter = adjustTemplatePaths(footer, ap);
 
   // Fix the Organization schema URL in footer (it gets wrongly prefixed)
-  const fixedFooter = localizePageLinks(
-    adjustedFooter
-      .replace(
-        `href="${ap}https://www.regenstudio.world"`,
-        `href="${SITE_URL}"`
-      )
-      .replace(
-        `href="${ap}https://www.regenstudio.world/Images/Logo-Text-on-the-sideAtivo 2.svg"`,
-        `href="${SITE_URL}/Images/Logo-Text-on-the-sideAtivo 2.svg"`
-      ),
+  const fixedFooter = translateFooter(
+    localizePageLinks(
+      adjustedFooter
+        .replace(
+          `href="${ap}https://www.regenstudio.world"`,
+          `href="${SITE_URL}"`
+        )
+        .replace(
+          `href="${ap}https://www.regenstudio.world/Images/Logo-Text-on-the-sideAtivo 2.svg"`,
+          `href="${SITE_URL}/Images/Logo-Text-on-the-sideAtivo 2.svg"`
+        ),
+      lang,
+      ap,
+    ),
     lang,
-    ap,
   );
 
   return `<!DOCTYPE html>
@@ -597,6 +655,7 @@ function generateSitemap(
   const translatedPages = new Set([
     "/", "/about.html", "/blog.html", "/faq.html",
     "/client-projects.html", "/innovation-services.html",
+    "/vision.html", "/privacy.html", "/thank-you.html",
     "/what-is-a-digital-product-passport/", "/what-is-espr/",
   ]);
 
@@ -652,6 +711,13 @@ function generateSitemap(
       changefreq: "monthly",
       priority: "0.8",
       alternates: staticAlternates("/innovation-services.html"),
+    },
+    {
+      loc: `${SITE_URL}/vision.html`,
+      lastmod: today,
+      changefreq: "monthly",
+      priority: "0.6",
+      alternates: staticAlternates("/vision.html"),
     },
     {
       loc: `${SITE_URL}/llms.txt`,
@@ -741,7 +807,7 @@ function generateSitemap(
         loc: alts[hreflang],
         lastmod: today,
         changefreq: page.changefreq,
-        priority: String(Math.max(0.5, Number(page.priority) - 0.1)),
+        priority: Math.max(0.5, Number(page.priority) - 0.1).toFixed(1),
         alternates: alts,
       });
     }
@@ -750,7 +816,7 @@ function generateSitemap(
   // English blog entries with language alternates
   const blogEntries: SitemapEntry[] = posts.map((p) => {
     const entry: SitemapEntry = {
-      loc: `${SITE_URL}/blog/${p.slug}/`,
+      loc: `${SITE_URL}/blog/${encodeURIComponent(p.slug)}/`,
       lastmod: p.date,
       changefreq: "monthly",
       priority: "0.7",
@@ -761,9 +827,9 @@ function generateSitemap(
       for (const lang of langs) {
         const hreflang = lang === "pt" ? "pt-BR" : lang;
         const prefix = langPrefix(lang);
-        entry.alternates[hreflang] = `${SITE_URL}${prefix}/blog/${p.slug}/`;
+        entry.alternates[hreflang] = `${SITE_URL}${prefix}/blog/${encodeURIComponent(p.slug)}/`;
       }
-      entry.alternates["x-default"] = `${SITE_URL}/blog/${p.slug}/`;
+      entry.alternates["x-default"] = `${SITE_URL}/blog/${encodeURIComponent(p.slug)}/`;
     }
     return entry;
   });
@@ -777,7 +843,7 @@ function generateSitemap(
       if (!enPost) continue;
       const prefix = langPrefix(lang);
       const entry: SitemapEntry = {
-        loc: `${SITE_URL}${prefix}/blog/${slug}/`,
+        loc: `${SITE_URL}${prefix}/blog/${encodeURIComponent(slug)}/`,
         lastmod: enPost.date,
         changefreq: "monthly",
         priority: "0.6",
@@ -787,9 +853,9 @@ function generateSitemap(
         for (const altLang of langs) {
           const hreflang = altLang === "pt" ? "pt-BR" : altLang;
           const altPrefix = langPrefix(altLang);
-          entry.alternates[hreflang] = `${SITE_URL}${altPrefix}/blog/${slug}/`;
+          entry.alternates[hreflang] = `${SITE_URL}${altPrefix}/blog/${encodeURIComponent(slug)}/`;
         }
-        entry.alternates["x-default"] = `${SITE_URL}/blog/${slug}/`;
+        entry.alternates["x-default"] = `${SITE_URL}/blog/${encodeURIComponent(slug)}/`;
       }
       translatedBlogEntries.push(entry);
     }
