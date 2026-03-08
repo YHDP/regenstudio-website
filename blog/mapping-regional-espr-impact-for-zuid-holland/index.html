@@ -51,29 +51,9 @@
   <link rel="stylesheet" href="../../assets/fonts/fonts.css">
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="../../blog.css">
+  <link rel="stylesheet" href="../../assets/css/antibot.css">
 </head>
 <body>
-  <!-- Password Gate -->
-  <div id="password-gate" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#0a0a0a;z-index:99999;display:flex;align-items:center;justify-content:center;">
-    <div style="text-align:center;max-width:400px;padding:20px;">
-      <h2 style="color:#fff;font-family:Inter,sans-serif;margin-bottom:16px;">This post is password protected</h2>
-      <p style="color:#aaa;font-family:Inter,sans-serif;margin-bottom:24px;font-size:14px;">Enter the password to view this draft.</p>
-      <input id="gate-pw" type="password" placeholder="Password" style="width:100%;padding:12px 16px;border:1px solid #333;border-radius:8px;background:#1a1a1a;color:#fff;font-size:16px;font-family:Inter,sans-serif;box-sizing:border-box;margin-bottom:12px;" autofocus>
-      <button id="gate-btn" style="width:100%;padding:12px 16px;border:none;border-radius:8px;background:#2d6a4f;color:#fff;font-size:16px;font-family:Inter,sans-serif;cursor:pointer;">Enter</button>
-      <p id="gate-err" style="color:#e63946;font-family:Inter,sans-serif;font-size:13px;margin-top:10px;display:none;">Incorrect password</p>
-    </div>
-  </div>
-  <script>
-  (function(){
-    if(sessionStorage.getItem('zh-blog-auth')==='ok'){document.getElementById('password-gate').remove();return;}
-    document.body.style.overflow='hidden';
-    var btn=document.getElementById('gate-btn'),pw=document.getElementById('gate-pw'),err=document.getElementById('gate-err');
-    function tryPw(){if(pw.value==='zuidholland2026'){sessionStorage.setItem('zh-blog-auth','ok');document.getElementById('password-gate').remove();document.body.style.overflow='';}else{err.style.display='block';pw.value='';pw.focus();}}
-    btn.addEventListener('click',tryPw);
-    pw.addEventListener('keydown',function(e){if(e.key==='Enter')tryPw();});
-  })();
-  </script>
-
   <a href="#main-content" class="skip-link">Skip to content</a>
 
   <!-- Navigation -->
@@ -92,7 +72,7 @@
         <li><a href="../../digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
         <li><a href="../../blog.html" data-i18n="nav.blog">Blog</a></li>
           <li class="nav__contact-wrap">
-          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtn">Get in Touch</button>
           <div class="nav__contact-popover" id="navContactPopover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
@@ -123,12 +103,12 @@
           <a href="../../innovation-services.html" data-i18n="nav.services">Services</a>
           <a href="../../problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
           <a href="../../blog.html" data-i18n="nav.blog">Blog</a>
-          <a href="https://demos.regenstudio.world" target="_blank" data-i18n="nav.demos">Demos</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos <span class="sr-only">(opens in new tab)</span></a>
           <a href="../../about.html" data-i18n="nav.about">About</a>
           <a href="../../faq.html" data-i18n="nav.faq">FAQ</a>
         </div>
         <div class="nav__contact-wrap nav__contact-wrap--desktop">
-          <button class="btn btn--small nav__contact-btn">Get in Touch</button>
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false">Get in Touch</button>
           <div class="nav__contact-popover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
@@ -148,16 +128,16 @@
             </div>
           </div>
         </div>
-        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- Post Header (pre-rendered, JS hydrates) -->
-  <div id="main-content"></div>
-  <section class="post-header" id="postHeader">
+  <main id="main-content">
+    <!-- Post Header (pre-rendered, JS hydrates) -->
+    <section class="post-header" id="postHeader">
       <div class="container">
         <a href="../../blog.html" class="post-header__back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Blog</a>
         <div class="post-header__categories"><span class="post-header__category post-header__category--emerald">Digital Product Passport</span><span class="post-header__category post-header__category--gray">Vision &amp; Strategy</span></div>
@@ -175,14 +155,14 @@
         </div>
       </div></section>
 
-  <!-- Featured Image (pre-rendered) -->
-  <section class="post-featured-image" id="postFeaturedImage">
+    <!-- Featured Image (pre-rendered) -->
+    <section class="post-featured-image" id="postFeaturedImage">
       <div class="container">
         <img src="../../Blogs/mapping-regional-espr-impact-for-zuid-holland/headercorrectZHblogAtivo 12webp.webp" alt="Header illustration for the Zuid-Holland ESPR impact mapping blog post">
       </div></section>
 
-  <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
-  <section class="post-content" id="postContent">
+    <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
+    <section class="post-content" id="postContent">
       <div class="post-content__inner">
         <p class="post-answer-capsule"><strong>The EU&#39;s Ecodesign for Sustainable Products Regulation will require Digital Product Passports for a growing number of product categories. Most regional governments have no idea which businesses in their territory will be affected. Zuid-Holland decided to find out — and turned the insights into a funded support program.</strong></p>
         <div class="post-content__body" id="post-content"><div style="padding:24px 40px;background:#F0FAF4;border-radius:12px;border:1px solid #D1FAE5;margin-bottom:40px;">
@@ -290,8 +270,9 @@
 </div>
       </div></section>
 
-  <!-- Related Posts (rendered by JS) -->
-  <section class="related-posts" id="relatedPosts"></section>
+    <!-- Related Posts (rendered by JS) -->
+    <section class="related-posts" id="relatedPosts"></section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
@@ -368,6 +349,7 @@
 
   <script src="../../assets/js/nav.js" defer></script>
   <script src="../../assets/js/i18n.js" defer></script>
+  <script src="../../assets/js/antibot.js" defer></script>
   <script src="../../blog.js" defer></script>
   <script src="../../assets/js/tracker.js" defer></script>
 </body>
