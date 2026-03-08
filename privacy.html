@@ -6,6 +6,20 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; frame-src https://player.vimeo.com https://w.soundcloud.com; object-src 'none'; base-uri 'self'; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co">
   <title>Privacy Policy | Regen Studio</title>
   <meta name="description" content="How Regen Studio handles your data: zero cookies, privacy-preserving analytics, EU-hosted infrastructure. Compliant with GDPR, LGPD, and ePrivacy Directive.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.regenstudio.world/privacy.html">
+  <meta property="og:title" content="Privacy Policy | Regen Studio">
+  <meta property="og:description" content="How Regen Studio handles your data: zero cookies, privacy-preserving analytics, EU-hosted infrastructure. Compliant with GDPR, LGPD, and ePrivacy Directive.">
+  <meta property="og:image" content="https://www.regenstudio.world/Images/og-image.png">
+  <meta property="og:image:alt" content="Privacy Policy — Regen Studio">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Privacy Policy | Regen Studio">
+  <meta name="twitter:description" content="How Regen Studio handles your data: zero cookies, privacy-preserving analytics, EU-hosted infrastructure. Compliant with GDPR, LGPD, and ePrivacy Directive.">
+  <meta name="twitter:image" content="https://www.regenstudio.world/Images/og-image.png">
+
   <link rel="canonical" href="https://www.regenstudio.world/privacy.html">
   <link rel="alternate" hreflang="en" href="https://www.regenstudio.world/privacy.html">
   <link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/privacy.html">
@@ -427,11 +441,12 @@
 
       <p><strong>Contact forms and newsletter subscriptions</strong> (regenstudio.world)</p>
       <ul>
-        <li>Your name, email address, and organisation (if provided)</li>
+        <li>Your name and email address</li>
         <li>Your message (if provided)</li>
         <li>The page URL you submitted from</li>
       </ul>
       <p>Purpose: to respond to your inquiry, send newsletters, and notify our team. Legal basis: <strong>legitimate interest</strong> (GDPR Art. 6(1)(f) / LGPD Art. 7(IX)) and <strong>consent</strong> (GDPR Art. 6(1)(a) / LGPD Art. 7(I)).</p>
+      <p>To prevent abuse, contact form submissions are rate-limited. A one-way hash of your IP address (combined with the current date) is temporarily stored for up to 24 hours to count submissions per time window. The raw IP is never stored. Legal basis: <strong>legitimate interest</strong> (GDPR Art. 6(1)(f)).</p>
 
       <p><strong>Demo access requests and magic links</strong> (demos.regenstudio.world)</p>
       <ul>
@@ -503,7 +518,7 @@
           <div class="analytics-flow__step">Raw events deleted after <strong>48 hours</strong>;<br>only aggregates persist</div>
         </div>
         <p>Your IP address is used solely to generate a one-way hash for unique visitor counting. The hash formula is: <code>SHA-256(daily_salt + IP + UA)</code>. The raw IP is <strong>never stored</strong>. The salt is automatically rotated every 24 hours via a scheduled database function, making it impossible to track visitors across days.</p>
-        <p>Each analytics event records the following data points: page path, event type (page view, scroll depth reached, or page exit), referrer domain (where you came from), country code (derived from your browser&rsquo;s timezone setting, e.g., &ldquo;Europe/Amsterdam&rdquo; &rarr; NL &mdash; not precise geolocation), device category (mobile, tablet, or desktop), and browser family (e.g., Chrome, Safari). For page exits, time spent on the page is also recorded. Your user-agent string is used to derive device category and browser family but is <strong>not stored</strong>.</p>
+        <p>Each analytics event records the following data points: page path, event type (page view, scroll depth reached, or page exit), referrer domain (where you came from), country code (derived primarily from your browser&rsquo;s timezone setting, e.g., &ldquo;Europe/Amsterdam&rdquo; &rarr; NL; if unavailable, a coarse country code from the hosting provider&rsquo;s edge network may be used as a fallback &mdash; neither method provides precise geolocation), device category (mobile, tablet, or desktop), and browser family (e.g., Chrome, Safari). For page exits, time spent on the page is also recorded. Your user-agent string is used to derive device category and browser family but is <strong>not stored</strong>.</p>
         <p>Raw event data (including visitor hashes) is automatically deleted after 48 hours. Only aggregate counters &mdash; with no visitor-level detail &mdash; persist long-term. No session IDs, no cookies, and no full URLs are stored.</p>
       </div>
 
@@ -618,7 +633,7 @@
       <p>We do not sell, rent, or share your personal data with any third parties beyond the sub-processors listed above. Below is a breakdown of exactly what each party can access:</p>
       <ul>
         <li><strong>Regen Studio team</strong> &mdash; full access to all data stored in our systems (contact submissions, orders, newsletter lists, analytics dashboards).</li>
-        <li><strong>Supabase</strong> &mdash; hosts all personal data server-side: contact form entries (name, email, organisation, message), report orders (email, billing address, VAT ID, invoice records), newsletter subscriber lists, magic link tokens, and analytics hashes.</li>
+        <li><strong>Supabase</strong> &mdash; hosts all personal data server-side: contact form entries (name, email, message), report orders (email, billing address, VAT ID, invoice records), newsletter subscriber lists, magic link tokens, and analytics hashes.</li>
         <li><strong>Lettermint</strong> &mdash; receives email addresses and message content for every transactional email we send: contact form confirmations, magic links, purchase receipts, invoice PDFs, download links, and newsletter editions.</li>
         <li><strong>Mollie</strong> &mdash; receives only payment amounts, an internal order ID, and a redirect URL. Buyer personal details (name, address, VAT ID) are <strong>not</strong> sent to Mollie and remain in our database.</li>
         <li><strong>Proton Mail</strong> &mdash; our team mailbox. Internal notification emails (containing contact form submissions, order alerts, and magic link requests) are delivered here by Lettermint. Your replies to us are also stored in this inbox.</li>

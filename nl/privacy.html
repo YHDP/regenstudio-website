@@ -441,11 +441,12 @@
 
       <p><strong>Contactformulieren en nieuwsbriefinschrijvingen</strong> (regenstudio.world)</p>
       <ul>
-        <li>Uw naam, e-mailadres en organisatie (indien opgegeven)</li>
+        <li>Uw naam en e-mailadres</li>
         <li>Uw bericht (indien opgegeven)</li>
         <li>De pagina-URL van waaruit u het formulier hebt verstuurd</li>
       </ul>
       <p>Doel: om op uw vraag te reageren, nieuwsbrieven te verzenden en ons team te informeren. Grondslag: <strong>gerechtvaardigd belang</strong> (AVG art. 6(1)(f) / LGPD art. 7(IX)) en <strong>toestemming</strong> (AVG art. 6(1)(a) / LGPD art. 7(I)).</p>
+      <p>Ter voorkoming van misbruik worden contactformulierinzendingen beperkt in aantal. Een eenrichtingshash van uw IP-adres (gecombineerd met de huidige datum) wordt tijdelijk tot 24 uur opgeslagen om inzendingen per tijdsvenster te tellen. Het ruwe IP-adres wordt nooit opgeslagen. Grondslag: <strong>gerechtvaardigd belang</strong> (AVG art. 6(1)(f)).</p>
 
       <p><strong>Demo-toegangsverzoeken en magic links</strong> (demos.regenstudio.world)</p>
       <ul>
@@ -517,7 +518,7 @@
           <div class="analytics-flow__step">Ruwe events worden na <strong>48 uur</strong> verwijderd;<br>alleen aggregaten blijven bewaard</div>
         </div>
         <p>Uw IP-adres wordt uitsluitend gebruikt om een eenrichtings-hash te genereren voor het tellen van unieke bezoekers. De hash-formule is: <code>SHA-256(daily_salt + IP + UA)</code>. Het ruwe IP-adres wordt <strong>nooit opgeslagen</strong>. De salt wordt elke 24 uur automatisch geroteerd via een geplande databasefunctie, waardoor het onmogelijk is bezoekers over dagen heen te volgen.</p>
-        <p>Elk analytics-event registreert de volgende datapunten: paginapad, eventtype (paginaweergave, bereikte scrolldiepte of paginaverlating), verwijzend domein (waar u vandaan kwam), landcode (afgeleid van de tijdzone-instelling van uw browser, bijv. &ldquo;Europe/Amsterdam&rdquo; &rarr; NL &mdash; geen nauwkeurige geolocatie), apparaatcategorie (mobiel, tablet of desktop) en browserfamilie (bijv. Chrome, Safari). Bij paginaverlating wordt ook de tijd op de pagina geregistreerd. Uw user-agent-string wordt gebruikt om apparaatcategorie en browserfamilie af te leiden, maar wordt <strong>niet opgeslagen</strong>.</p>
+        <p>Elk analytics-event registreert de volgende datapunten: paginapad, eventtype (paginaweergave, bereikte scrolldiepte of paginaverlating), verwijzend domein (waar u vandaan kwam), landcode (voornamelijk afgeleid van de tijdzone-instelling van uw browser, bijv. &ldquo;Europe/Amsterdam&rdquo; &rarr; NL; indien niet beschikbaar kan een grove landcode van het edge-netwerk van de hostingprovider als terugvaloptie worden gebruikt &mdash; geen van beide methoden biedt nauwkeurige geolocatie), apparaatcategorie (mobiel, tablet of desktop) en browserfamilie (bijv. Chrome, Safari). Bij paginaverlating wordt ook de tijd op de pagina geregistreerd. Uw user-agent-string wordt gebruikt om apparaatcategorie en browserfamilie af te leiden, maar wordt <strong>niet opgeslagen</strong>.</p>
         <p>Ruwe eventgegevens (inclusief bezoekers-hashes) worden na 48 uur automatisch verwijderd. Alleen geaggregeerde tellers &mdash; zonder detail op bezoekerniveau &mdash; blijven langdurig bewaard. Er worden geen sessie-ID&rsquo;s, geen cookies en geen volledige URL&rsquo;s opgeslagen.</p>
       </div>
 
@@ -632,7 +633,7 @@
       <p>Wij verkopen, verhuren of delen uw persoonsgegevens niet met derden buiten de hierboven genoemde verwerkers. Hieronder staat precies wat elke partij kan inzien:</p>
       <ul>
         <li><strong>Regen Studio-team</strong> &mdash; volledige toegang tot alle gegevens die in onze systemen zijn opgeslagen (contactinzendingen, bestellingen, abonneelijsten, analytics-dashboards).</li>
-        <li><strong>Supabase</strong> &mdash; host alle persoonsgegevens server-side: contactformulierinzendingen (naam, e-mail, organisatie, bericht), rapportbestellingen (e-mail, factuuradres, btw-nummer, factuurgegevens), abonneelijsten voor de nieuwsbrief, magic link-tokens en analytics-hashes.</li>
+        <li><strong>Supabase</strong> &mdash; host alle persoonsgegevens server-side: contactformulierinzendingen (naam, e-mail, bericht), rapportbestellingen (e-mail, factuuradres, btw-nummer, factuurgegevens), abonneelijsten voor de nieuwsbrief, magic link-tokens en analytics-hashes.</li>
         <li><strong>Lettermint</strong> &mdash; ontvangt e-mailadressen en berichtinhoud voor elke transactionele e-mail die wij verzenden: bevestigingen van contactformulieren, magic links, aankoopbonnen, factuur-PDF&rsquo;s, downloadlinks en nieuwsbriefedities.</li>
         <li><strong>Mollie</strong> &mdash; ontvangt uitsluitend betalingsbedragen, een intern bestelnummer en een redirect-URL. Persoonlijke gegevens van de koper (naam, adres, btw-nummer) worden <strong>niet</strong> naar Mollie verzonden en blijven in onze database.</li>
         <li><strong>Proton Mail</strong> &mdash; onze team-inbox. Interne meldingsmails (met contactformulierinzendingen, bestelwaarschuwingen en magic link-verzoeken) worden hier door Lettermint afgeleverd. Uw antwoorden aan ons worden ook in deze inbox opgeslagen.</li>

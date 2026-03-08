@@ -1622,7 +1622,7 @@
     banner.innerHTML =
       '<div class="privacy-banner__inner">' +
         '<svg class="privacy-banner__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' +
-        '<p class="privacy-banner__text"><strong>' + t('privacy_banner.title', 'Your visit is private.') + '</strong> ' + t('privacy_banner.text', 'No cookies, no trackers, no data collection.') + ' ' +
+        '<p class="privacy-banner__text"><strong>' + t('privacy_banner.title', 'Your visit is private.') + '</strong> ' + t('privacy_banner.text', 'No cookies, no trackers. Privacy-preserving analytics only.') + ' ' +
           '<a class="privacy-banner__link" href="' + privacyHref + '">' + t('privacy_banner.link', 'How we protect your privacy') + '</a></p>' +
         '<button class="privacy-banner__btn" type="button" aria-label="' + t('privacy_banner.dismiss', 'Dismiss') + '">' +
           '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +

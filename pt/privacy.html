@@ -320,7 +320,7 @@
           <div class="nav__contact-popover" id="navContactPopover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Envie uma mensagem &mdash; ador&iacute;amos ouvir de voc&ecirc;.</p>
-              <a href="#about-contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+              <a href="../index.html#contact-form" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 Envie uma mensagem
               </a>
@@ -356,7 +356,7 @@
           <div class="nav__contact-popover" id="navContactPopoverDesktop">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Envie uma mensagem &mdash; ador&iacute;amos ouvir de voc&ecirc;.</p>
-              <a href="#about-contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+              <a href="../index.html#contact-form" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 Envie uma mensagem
               </a>
@@ -441,11 +441,12 @@
 
       <p><strong>Formul&aacute;rios de contato e inscri&ccedil;&otilde;es na newsletter</strong> (regenstudio.world)</p>
       <ul>
-        <li>Seu nome, endere&ccedil;o de e-mail e organiza&ccedil;&atilde;o (se fornecido)</li>
+        <li>Seu nome e endere&ccedil;o de e-mail</li>
         <li>Sua mensagem (se fornecida)</li>
         <li>A URL da p&aacute;gina de onde voc&ecirc; enviou o formul&aacute;rio</li>
       </ul>
       <p>Finalidade: responder &agrave; sua solicita&ccedil;&atilde;o, enviar newsletters e notificar nossa equipe. Base legal: <strong>interesse leg&iacute;timo</strong> (LGPD Art. 7(IX) / GDPR Art. 6(1)(f)) e <strong>consentimento</strong> (LGPD Art. 7(I) / GDPR Art. 6(1)(a)).</p>
+      <p>Para prevenir abuso, os envios de formul&aacute;rios de contato s&atilde;o limitados em quantidade. Um hash unidirecional do seu endere&ccedil;o IP (combinado com a data atual) &eacute; armazenado temporariamente por at&eacute; 24 horas para contar envios por janela de tempo. O IP bruto nunca &eacute; armazenado. Base legal: <strong>interesse leg&iacute;timo</strong> (LGPD Art. 7(IX) / GDPR Art. 6(1)(f)).</p>
 
       <p><strong>Solicita&ccedil;&otilde;es de acesso a demos e magic links</strong> (demos.regenstudio.world)</p>
       <ul>
@@ -517,7 +518,7 @@
           <div class="analytics-flow__step">Eventos brutos deletados ap&oacute;s <strong>48 horas</strong>;<br>apenas agregados persistem</div>
         </div>
         <p>Seu endere&ccedil;o IP &eacute; utilizado unicamente para gerar um hash unidirecional para contagem de visitantes &uacute;nicos. A f&oacute;rmula do hash &eacute;: <code>SHA-256(daily_salt + IP + UA)</code>. O IP bruto <strong>nunca &eacute; armazenado</strong>. O salt &eacute; rotacionado automaticamente a cada 24 horas por uma fun&ccedil;&atilde;o agendada no banco de dados, tornando imposs&iacute;vel rastrear visitantes entre dias.</p>
-        <p>Cada evento de analytics registra os seguintes dados: caminho da p&aacute;gina, tipo de evento (visualiza&ccedil;&atilde;o de p&aacute;gina, profundidade de rolagem alcan&ccedil;ada ou sa&iacute;da da p&aacute;gina), dom&iacute;nio de refer&ecirc;ncia (de onde voc&ecirc; veio), c&oacute;digo do pa&iacute;s (derivado da configura&ccedil;&atilde;o de fuso hor&aacute;rio do seu navegador, ex.: &ldquo;Europe/Amsterdam&rdquo; &rarr; NL &mdash; n&atilde;o &eacute; geolocaliza&ccedil;&atilde;o precisa), categoria do dispositivo (celular, tablet ou desktop) e fam&iacute;lia do navegador (ex.: Chrome, Safari). Para sa&iacute;das de p&aacute;gina, o tempo gasto na p&aacute;gina tamb&eacute;m &eacute; registrado. Sua string de user-agent &eacute; usada para derivar a categoria do dispositivo e a fam&iacute;lia do navegador, mas <strong>n&atilde;o &eacute; armazenada</strong>.</p>
+        <p>Cada evento de analytics registra os seguintes dados: caminho da p&aacute;gina, tipo de evento (visualiza&ccedil;&atilde;o de p&aacute;gina, profundidade de rolagem alcan&ccedil;ada ou sa&iacute;da da p&aacute;gina), dom&iacute;nio de refer&ecirc;ncia (de onde voc&ecirc; veio), c&oacute;digo do pa&iacute;s (derivado principalmente da configura&ccedil;&atilde;o de fuso hor&aacute;rio do seu navegador, ex.: &ldquo;Europe/Amsterdam&rdquo; &rarr; NL; se indispon&iacute;vel, um c&oacute;digo de pa&iacute;s aproximado da rede de borda do provedor de hospedagem pode ser usado como alternativa &mdash; nenhum dos m&eacute;todos fornece geolocaliza&ccedil;&atilde;o precisa), categoria do dispositivo (celular, tablet ou desktop) e fam&iacute;lia do navegador (ex.: Chrome, Safari). Para sa&iacute;das de p&aacute;gina, o tempo gasto na p&aacute;gina tamb&eacute;m &eacute; registrado. Sua string de user-agent &eacute; usada para derivar a categoria do dispositivo e a fam&iacute;lia do navegador, mas <strong>n&atilde;o &eacute; armazenada</strong>.</p>
         <p>Dados brutos de eventos (incluindo hashes de visitantes) s&atilde;o automaticamente deletados ap&oacute;s 48 horas. Apenas contadores agregados &mdash; sem nenhum detalhe em n&iacute;vel de visitante &mdash; persistem a longo prazo. Nenhum ID de sess&atilde;o, nenhum cookie e nenhuma URL completa s&atilde;o armazenados.</p>
       </div>
 
@@ -632,7 +633,7 @@
       <p>N&atilde;o vendemos, alugamos ou compartilhamos seus dados pessoais com terceiros al&eacute;m dos suboperadores listados acima. Abaixo est&aacute; um detalhamento de exatamente o que cada parte pode acessar:</p>
       <ul>
         <li><strong>Equipe do Regen Studio</strong> &mdash; acesso completo a todos os dados armazenados em nossos sistemas (envios de contato, pedidos, listas de newsletter, pain&eacute;is de analytics).</li>
-        <li><strong>Supabase</strong> &mdash; hospeda todos os dados pessoais no servidor: entradas de formul&aacute;rios de contato (nome, e-mail, organiza&ccedil;&atilde;o, mensagem), pedidos de relat&oacute;rios (e-mail, endere&ccedil;o de cobran&ccedil;a, VAT ID, registros de faturas), listas de assinantes de newsletter, tokens de magic link e hashes de analytics.</li>
+        <li><strong>Supabase</strong> &mdash; hospeda todos os dados pessoais no servidor: entradas de formul&aacute;rios de contato (nome, e-mail, mensagem), pedidos de relat&oacute;rios (e-mail, endere&ccedil;o de cobran&ccedil;a, VAT ID, registros de faturas), listas de assinantes de newsletter, tokens de magic link e hashes de analytics.</li>
         <li><strong>Lettermint</strong> &mdash; recebe endere&ccedil;os de e-mail e conte&uacute;do de mensagens para cada e-mail transacional que enviamos: confirma&ccedil;&otilde;es de formul&aacute;rios de contato, magic links, recibos de compra, PDFs de faturas, links de download e edi&ccedil;&otilde;es de newsletter.</li>
         <li><strong>Mollie</strong> &mdash; recebe apenas valores de pagamento, um ID de pedido interno e uma URL de redirecionamento. Dados pessoais do comprador (nome, endere&ccedil;o, VAT ID) <strong>n&atilde;o</strong> s&atilde;o enviados &agrave; Mollie e permanecem em nosso banco de dados.</li>
         <li><strong>Proton Mail</strong> &mdash; nossa caixa de correio. E-mails de notifica&ccedil;&atilde;o interna (contendo envios de formul&aacute;rios de contato, alertas de pedidos e solicita&ccedil;&otilde;es de magic link) s&atilde;o entregues aqui pelo Lettermint. Suas respostas para n&oacute;s tamb&eacute;m s&atilde;o armazenadas nesta caixa de entrada.</li>
