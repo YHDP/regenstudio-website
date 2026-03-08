@@ -176,6 +176,24 @@ The `/thank-you.html` page (and `/nl/thank-you.html`, `/pt/thank-you.html`) incl
 4. Update `privacy.html` sub-processors section to disclose the new tracker
 5. Test the form → thank-you redirect flow to confirm the pixel fires
 
+## Operational Docs (Proton Drive — private, synced across devices)
+
+All at `~/Library/CloudStorage/ProtonDrive-yvhu@proton.me-folder/CLAUDE CODE SYNC FOLDER/`:
+
+| File | Purpose | When to check |
+|------|---------|---------------|
+| `backlog.md` | Persistent task backlog | Before starting work (pick up items); after finishing work (add deferred items) |
+| `Website sessions Episodic memory/session-handoff.md` | Session context for continuity | Start of session (read); end of session (update) |
+
+In-repo docs at `docs/collaboration/`:
+
+| File | Purpose | When to check |
+|------|---------|---------------|
+| `known-bugs.md` | Bug tracker | Start of session; when discovering or fixing bugs |
+| `recurring-patterns.md` | Lessons learned | Before translation, SEO, or multi-file work |
+
+**Backlog discipline**: When a task is deferred during a session (design decision needed, out of scope, blocked), add it to `backlog.md` before the session ends. When completing a backlog item, mark it done with the date.
+
 ## Current Status
 - Live site with 35+ blog posts, newsletter system, contact forms
 - Hero triangle canvas animation active
