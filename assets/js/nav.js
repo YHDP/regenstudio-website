@@ -24,23 +24,28 @@
       e.stopPropagation();
       var isOpen = menuDropdown.classList.toggle('open');
       menuBtn.classList.toggle('open', isOpen);
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
     });
     document.addEventListener('click', function (e) {
       if (!e.target.closest('.nav__dropdown') && !e.target.closest('.nav__menu-btn')) {
         menuDropdown.classList.remove('open');
         menuBtn.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
       }
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && menuDropdown.classList.contains('open')) {
         menuDropdown.classList.remove('open');
         menuBtn.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.focus();
       }
     });
     menuDropdown.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
         menuDropdown.classList.remove('open');
         menuBtn.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
       });
     });
   }
@@ -50,18 +55,37 @@
     var btn = wrap.querySelector('.nav__contact-btn');
     var popover = wrap.querySelector('.nav__contact-popover');
     if (btn && popover) {
+      popover.setAttribute('role', 'dialog');
+      popover.setAttribute('aria-label', 'Contact options');
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
-        popover.classList.toggle('open');
+        var isOpen = popover.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
       });
     }
   });
+  function closeAllPopovers() {
+    document.querySelectorAll('.nav__contact-popover').forEach(function (p) {
+      p.classList.remove('open');
+    });
+    document.querySelectorAll('.nav__contact-btn').forEach(function (b) {
+      b.setAttribute('aria-expanded', 'false');
+    });
+  }
   document.addEventListener('click', function (e) {
     if (!e.target.closest('.nav__contact-wrap')) {
-      document.querySelectorAll('.nav__contact-popover').forEach(function (p) {
-        p.classList.remove('open');
-      });
+      closeAllPopovers();
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      var openPopover = document.querySelector('.nav__contact-popover.open');
+      if (openPopover) {
+        closeAllPopovers();
+        var triggerBtn = openPopover.closest('.nav__contact-wrap').querySelector('.nav__contact-btn');
+        if (triggerBtn) triggerBtn.focus();
+      }
     }
   });
 
@@ -76,6 +100,7 @@
       document.body.classList.add('nav-open');
       document.body.style.top = -savedScrollY + 'px';
       navToggle.classList.add('active');
+      navToggle.setAttribute('aria-expanded', 'true');
       navLinks.classList.add('open');
     }
 
@@ -84,6 +109,7 @@
       document.body.style.top = '';
       window.scrollTo(0, savedScrollY);
       navToggle.classList.remove('active');
+      navToggle.setAttribute('aria-expanded', 'false');
       navLinks.classList.remove('open');
     }
 

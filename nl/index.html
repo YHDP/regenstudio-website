@@ -121,7 +121,7 @@
       <ul class="nav__links" id="navLinks">
         <li><a href="about.html" data-i18n="nav.about">Over Ons</a></li>
         <li><a href="vision.html" data-i18n="nav.vision">Visie</a></li>
-        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demo's</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="nav.demos">Demo's</a></li>
         <li><a href="innovation-services.html" data-i18n="nav.services">Diensten</a></li>
         <li><a href="../digital-product-passports/" data-i18n="nav.product_passports">Productpaspoorten</a></li>
         <li><a href="../digital-identities/" data-i18n="nav.digital_identity">Digitale Identiteit</a></li>
@@ -158,7 +158,7 @@
           <a href="innovation-services.html" data-i18n="nav.services">Diensten</a>
           <a href="../problem-analysis/" data-i18n="nav.problem_analysis">Probleemanalyse</a>
           <a href="blog.html" data-i18n="nav.blog">Blog</a>
-          <a href="https://demos.regenstudio.world" target="_blank" data-i18n="nav.demos">Demos</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos <span class="sr-only">(opens in new tab)</span></a>
           <a href="about.html" data-i18n="nav.about">Over Ons</a>
           <a href="faq.html" data-i18n="nav.faq">FAQ</a>
         </div>
@@ -195,13 +195,13 @@
   </nav>
 
   <!-- Freeze button (fixed, top-right) -->
-  <button class="freeze-btn" id="freezeBtn">
+  <button class="freeze-btn" id="freezeBtn" aria-expanded="false" aria-controls="freezePanel">
     <svg class="freeze-btn__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
     <span class="freeze-btn__text">Bevries je creatie</span>
   </button>
 
   <!-- Freeze share panel -->
-  <div class="freeze-panel" id="freezePanel">
+  <div class="freeze-panel" id="freezePanel" role="region" aria-label="Share your creation">
     <p class="freeze-panel__msg">Er is kunst ontstaan uit dit ecosysteem van driehoeken, door jouw hand! Deel het met de wereld.</p>
     <div class="freeze-panel__divider"></div>
     <p class="freeze-panel__note"><strong>Waarom Dit Belangrijk Is</strong><br>We hebben deze animatie niet alleen gemaakt omdat het er mooi uitziet (al vinden we dat wel). Het is een levende metafoor voor hoe wij over regeneratieve innovatie denken. <a href="/nl/blog/emergent-triangles/">Lees meer</a></p>
@@ -242,7 +242,7 @@
   </div>
 
   <!-- Hero: Interactive Triangle Canvas -->
-  <div id="main-content"></div>
+  <main id="main-content">
   <header class="hero" id="hero">
     <!-- Ambient gradient orbs (behind canvas) -->
     <div class="hero-ambient">
@@ -253,7 +253,7 @@
 
     <!-- Canvas for triangle simulation -->
     <div class="hero-canvas-wrap">
-      <canvas id="canvas"></canvas>
+      <canvas id="canvas" aria-hidden="true"></canvas>
     </div>
 
     <!-- Hero text overlay -->
@@ -912,10 +912,10 @@
             <p class="section__label">Probeer Het Zelf</p>
             <h2 class="section__title">Interactieve Demo's</h2>
           </div>
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="btn btn--outline btn--small">Bekijk alle demo's &rarr;</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" class="btn btn--outline btn--small">Bekijk alle demo's &rarr;</a>
         </div>
         <div class="demos-preview__grid demos-preview__grid--3">
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="demos-preview__card">
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" class="demos-preview__card">
             <div class="demos-preview__card-visual">
               <img src="../Images/demo-edi-wallet.svg" alt="EDI Wallet voorbeeld" class="demos-preview__card-img" loading="lazy">
               <span class="demos-preview__card-badge">Demo</span>
@@ -929,7 +929,7 @@
               <span class="demos-preview__card-link">Bekijk demo's &rarr;</span>
             </div>
           </a>
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="demos-preview__card">
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" class="demos-preview__card">
             <div class="demos-preview__card-visual">
               <img src="../Images/demo-dpp-system.svg" alt="DPP Systeem voorbeeld" class="demos-preview__card-img" loading="lazy">
               <span class="demos-preview__card-badge">Demo</span>
@@ -943,7 +943,7 @@
               <span class="demos-preview__card-link">Bekijk demo's &rarr;</span>
             </div>
           </a>
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="demos-preview__card">
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" class="demos-preview__card">
             <div class="demos-preview__card-visual">
               <img src="../Images/demo-battery-passport.svg" alt="Batterijpaspoort Checker voorbeeld" class="demos-preview__card-img" loading="lazy">
               <span class="demos-preview__card-badge">Demo</span>
@@ -990,7 +990,7 @@
             <button type="submit" class="btn btn--primary btn--large regen-form__submit">Verstuur Bericht</button>
             <p class="regen-form__disclaimer">Je gegevens worden opgeslagen in de EU en niet gedeeld met derden. <a href="privacy.html">Privacybeleid</a></p>
           </form>
-          <div id="contact-success" class="regen-form__success" style="display:none">
+          <div id="contact-success" class="regen-form__success" role="status" style="display:none">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
             <h3>Bericht verzonden!</h3>
             <p>We nemen binnenkort contact met je op.</p>
@@ -1009,6 +1009,8 @@
         </div>
       </div>
     </section>
+
+  </main>
 
     <!-- Footer -->
     <footer class="footer" itemscope itemtype="https://schema.org/Organization">
@@ -1034,7 +1036,7 @@
             <li><a href="../digital-product-passports/" data-i18n="footer.product_passports">Productpaspoorten</a></li>
             <li><a href="../digital-identities/" data-i18n="footer.digital_identity">Digitale Identiteit</a></li>
             <li><a href="blog.html" data-i18n="footer.blog">Blog</a></li>
-            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demo's</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="footer.demos">Demo's</a></li>
             <li><a href="faq.html" data-i18n="footer.faq">FAQ</a></li>
             </ul>
           </div>

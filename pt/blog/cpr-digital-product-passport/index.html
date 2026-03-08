@@ -66,7 +66,7 @@
       <ul class="nav__links" id="navLinks">
         <li><a href="../../../pt/about.html" data-i18n="nav.about">About</a></li>
         <li><a href="../../../pt/vision.html" data-i18n="nav.vision">Vision</a></li>
-        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="nav.demos">Demos</a></li>
         <li><a href="../../../pt/innovation-services.html" data-i18n="nav.services">Services</a></li>
         <li><a href="../../../digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
         <li><a href="../../../digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
@@ -103,7 +103,7 @@
           <a href="../../../pt/innovation-services.html" data-i18n="nav.services">Services</a>
           <a href="../../../problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
           <a href="../../../pt/blog.html" data-i18n="nav.blog">Blog</a>
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="nav.demos">Demos</a>
           <a href="../../../pt/about.html" data-i18n="nav.about">About</a>
           <a href="../../../pt/faq.html" data-i18n="nav.faq">FAQ</a>
         </div>
@@ -128,7 +128,7 @@
             </div>
           </div>
         </div>
-        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -1346,7 +1346,7 @@
     <p class="cpr-gate__text">Insira o seu e-mail para aceder ao nosso rastreador completo de famílias de produtos do RPC com as 37 famílias, progresso dos marcos e datas estimadas de obrigação do DPP.</p>
     <form class="cpr-gate__form" id="cprGateForm">
       <div class="cpr-gate__input-row">
-        <input type="email" name="email" placeholder="O seu e-mail profissional" class="cpr-gate__input" required>
+        <input type="email" name="email" placeholder="O seu e-mail profissional" aria-label="O seu e-mail profissional" class="cpr-gate__input" required>
         <button type="submit" class="btn btn--primary cpr-gate__btn">Desbloquear</button>
       </div>
       <p class="cpr-gate__disclaimer">Ao enviar, concorda com a nossa <a href="../privacy.html">Política de Privacidade</a>.</p>
@@ -2157,7 +2157,30 @@
   backdrop.addEventListener('click', closeModal);
   closeBtn.addEventListener('click', closeModal);
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal();
+    if (modal.getAttribute('aria-hidden') !== 'false') return;
+    if (e.key === 'Escape') { closeModal(); return; }
+    if (e.key === 'Tab') {
+      var focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (focusable.length === 0) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+  });
+
+  document.querySelectorAll('.cpr-card').forEach(function(card) {
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(card);
+      }
+    });
   });
 })();
 </script>
@@ -2412,7 +2435,7 @@
             <li><a href="../../../digital-product-passports/" data-i18n="footer.product_passports">Product Passports</a></li>
             <li><a href="../../../digital-identities/" data-i18n="footer.digital_identity">Digital Identity</a></li>
             <li><a href="../../../pt/blog.html" data-i18n="footer.blog">Blog</a></li>
-            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="footer.demos">Demos</a></li>
             <li><a href="../../../pt/faq.html" data-i18n="footer.faq">FAQ</a></li>
           </ul>
         </div>

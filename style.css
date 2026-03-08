@@ -69,8 +69,8 @@
   --color-primary-glow: rgba(0, 145, 75, 0.15);
   --color-accent: #009BBB;
   --color-text: #243644;
-  --color-text-secondary: #5781A1;
-  --color-text-muted: #9B9B9B;
+  --color-text-secondary: #4B6F8D;
+  --color-text-muted: #737373;
 
   /* Typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -91,6 +91,19 @@
 
   /* Ease */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Screen-reader only utility --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* --- Focus-Visible ---
@@ -1361,7 +1374,7 @@ em:only-of-type {
 .section-nav__track::-webkit-scrollbar { display: none; }
 .section-nav__btn {
   display: inline-block;
-  padding: 4px 10px;
+  padding: 6px 12px;
   border-radius: 14px;
   font-size: 0.68rem;
   font-weight: 500;
@@ -2453,7 +2466,7 @@ em:only-of-type {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
   cursor: pointer;
   transition: all var(--transition);
 }
@@ -2642,7 +2655,7 @@ em:only-of-type {
 }
 
 .footer__brand p {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.65);
   font-size: 0.9rem;
   margin-top: 16px;
   max-width: 360px;
@@ -2673,7 +2686,7 @@ em:only-of-type {
 
 .footer__col a {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
   transition: color var(--transition);
 }
 
@@ -2715,7 +2728,7 @@ em:only-of-type {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
   margin-bottom: 6px;
 }
 
@@ -2728,14 +2741,14 @@ em:only-of-type {
 
 .footer__address {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.5;
   margin-bottom: 4px;
 }
 
 .footer__reg {
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.6);
   font-family: monospace;
 }
 
@@ -2748,11 +2761,11 @@ em:only-of-type {
 
 .footer__bottom p {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .footer__bottom a {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
   transition: color var(--transition);
 }
 
@@ -5908,7 +5921,7 @@ a.dpp-product--linked {
   }
 
   .section-nav__btn {
-    padding: 4px 10px;
+    padding: 6px 12px;
     font-size: 0.7rem;
   }
 
