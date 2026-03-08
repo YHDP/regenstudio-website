@@ -1642,22 +1642,20 @@
   }
 }
 
-/* Inline preview cards — vertical on mobile */
-@media (max-width: 600px) {
-  .blog-preview-card,
-  [style*="display:flex"][style*="border-radius"] {
-    flex-direction: column !important;
-  }
-  .blog-preview-card img,
-  [style*="display:flex"][style*="border-radius"] img {
-    width: 100% !important;
-    min-width: 100% !important;
-    max-height: 200px;
-    object-fit: cover;
-    border-radius: 12px 12px 0 0 !important;
-  }
-  .blog-preview-card > div:last-child,
-  [style*="display:flex"][style*="border-radius"] > div:last-child {
-    padding: 16px !important;
-  }
+/* --- Focus-Visible --- */
+.filter-pill:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
+
+.blog-card:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+
+.tag-search__input:focus-visible {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+

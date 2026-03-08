@@ -259,6 +259,11 @@
   box-shadow: var(--shadow-lg);
 }
 
+.vision-eco-card:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 .vision-eco-card--natural { --accent-color: #00914B; }
 .vision-eco-card--human   { --accent-color: #009BBB; }
 .vision-eco-card--urban   { --accent-color: #FFA92D; }
@@ -340,6 +345,12 @@
 
 .vision-back:hover {
   color: var(--color-primary);
+}
+
+.vision-back:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 /* ========================================

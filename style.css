@@ -93,6 +93,81 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* --- Focus-Visible ---
+   Per-component keyboard focus indicators.
+   Uses :focus-visible so mouse clicks don't show outlines. */
+
+/* Buttons — emerald ring around the pill shape */
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Nav links */
+.nav__links a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Nav controls */
+.nav__toggle:focus-visible,
+.nav__menu-btn:focus-visible,
+.nav__contact-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Nav dropdown links */
+.nav__dropdown a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
+/* Contact popover links */
+.nav__contact-popover-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Language switcher */
+.lang-switcher__link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Viewport toggle */
+.viewport-toggle:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Footer links + copy button */
+.footer a:focus-visible,
+.footer__copy-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Privacy banner dismiss */
+.privacy-banner__btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Generic links (catch-all baseline) */
+a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* Skip to content link */
 .skip-link {
   position: absolute;
@@ -3066,7 +3141,7 @@ em:only-of-type {
   color: var(--color-text-muted);
 }
 
-.regen-form__input:focus {
+.regen-form__input:focus-visible {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
@@ -3501,45 +3576,6 @@ em:only-of-type {
   opacity: 0.7;
 }
 
-/* Connect */
-.about-connect {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 24px;
-}
-
-.about-connect__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 24px;
-  background: var(--color-surface, #fff);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--color-text);
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.about-connect__link:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.about-connect__link svg {
-  flex-shrink: 0;
-  opacity: 0.7;
-}
-
-.about-connect__link:hover svg {
-  opacity: 1;
-}
-
 /* About page responsive */
 @media (max-width: 640px) {
   .about-services {
@@ -3552,14 +3588,6 @@ em:only-of-type {
 
   .about-focus {
     grid-template-columns: 1fr;
-  }
-
-  .about-connect {
-    flex-direction: column;
-  }
-
-  .about-connect__link {
-    justify-content: center;
   }
 }
 
@@ -4557,8 +4585,9 @@ a.dpp-product--linked {
   transition: border-color var(--transition);
 }
 
-.dpp-gate__input:focus {
+.dpp-gate__input:focus-visible {
   border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 .dpp-gate__btn {

@@ -166,6 +166,11 @@
   .cpr-toc__link:hover {
     text-decoration: underline;
   }
+  .cpr-toc__link:focus-visible {
+    outline: 2px solid var(--color-primary, #00914B);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 
   .sr-only {
     position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -178,6 +183,7 @@
     border-radius: 12px; transition: border-color 0.2s ease, box-shadow 0.2s ease; cursor: pointer;
   }
   .cpr-card:hover { border-color: var(--color-primary, #00914B); box-shadow: 0 2px 12px rgba(0,145,75,0.08); }
+  .cpr-card:focus-visible { outline: 2px solid var(--color-primary, #00914B); outline-offset: 2px; }
   .cpr-card img { width: 56px; height: 56px; object-fit: contain; margin-bottom: 10px; }
   .cpr-card__name { font-size: 0.82rem; font-weight: 600; color: var(--color-text, #1a1a1a); line-height: 1.35; min-height: 2.2em; display: flex; align-items: center; }
   .cpr-card__family { display: block; font-size: 0.66rem; font-weight: 400; color: var(--color-text-secondary, #6b7280); margin-top: 4px; line-height: 1.3; opacity: 0.8; }
@@ -209,6 +215,7 @@
     display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.15s;
   }
   .cpr-modal__close:hover { background: rgba(0,0,0,0.08); }
+  .cpr-modal__close:focus-visible { outline: 2px solid var(--color-primary, #00914B); outline-offset: 2px; border-radius: 50%; }
   .cpr-modal__header {
     padding: 28px 28px 0; display: flex; gap: 16px; align-items: flex-start;
   }
