@@ -1064,6 +1064,67 @@ async function main() {
     Deno.exit(1);
   }
   console.log("All files verified.");
+
+  // --- JSON-LD lint: warn if HTML entities appear in structured data ---
+  const HTML_ENTITIES = [
+    { entity: "&mdash;", unicode: "\u2014" },
+    { entity: "&ndash;", unicode: "\u2013" },
+    { entity: "&rsquo;", unicode: "\u2019" },
+    { entity: "&lsquo;", unicode: "\u2018" },
+    { entity: "&rdquo;", unicode: "\u201D" },
+    { entity: "&ldquo;", unicode: "\u201C" },
+    { entity: "&hellip;", unicode: "\u2026" },
+    { entity: "&amp;", unicode: "&" },
+    { entity: "&nbsp;", unicode: " " },
+  ];
+  const jsonLdPattern = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g;
+  let lintWarnings = 0;
+
+  // Lint source meta.json files
+  for (const post of posts) {
+    for (const lang of SUPPORTED_LANGS) {
+      const suffix = lang === "en" ? "" : `.${lang}`;
+      const metaPath = `${baseDir}/Blogs/${post.slug}/meta${suffix}.json`;
+      try {
+        const metaText = await Deno.readTextFile(metaPath);
+        for (const { entity } of HTML_ENTITIES) {
+          if (metaText.includes(entity)) {
+            console.warn(`  LINT: ${metaPath} contains "${entity}" — use Unicode instead`);
+            lintWarnings++;
+          }
+        }
+      } catch { /* file doesn't exist */ }
+    }
+  }
+
+  // Lint generated JSON-LD blocks
+  const generatedDirs = [
+    ...posts.map((p) => `${baseDir}/blog/${p.slug}/index.html`),
+    ...Array.from(translatedPosts.entries()).flatMap(([lang, langPosts]) =>
+      langPosts.map((p) => `${baseDir}/${lang}/blog/${p.slug}/index.html`)
+    ),
+  ];
+  for (const filePath of generatedDirs) {
+    try {
+      const html = await Deno.readTextFile(filePath);
+      let match;
+      while ((match = jsonLdPattern.exec(html)) !== null) {
+        const jsonLd = match[1];
+        for (const { entity } of HTML_ENTITIES) {
+          if (jsonLd.includes(entity)) {
+            console.warn(`  LINT: ${filePath} JSON-LD contains "${entity}"`);
+            lintWarnings++;
+          }
+        }
+      }
+    } catch { /* file doesn't exist */ }
+  }
+
+  if (lintWarnings > 0) {
+    console.warn(`\n${lintWarnings} JSON-LD lint warning(s) — fix HTML entities in source meta.json files.`);
+  } else {
+    console.log("JSON-LD lint: clean.");
+  }
 }
 
 main();
