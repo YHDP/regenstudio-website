@@ -634,13 +634,13 @@
       <ul class="nav__links" id="navLinks">
         <li><a href="about.html" data-i18n="nav.about">About</a></li>
         <li><a href="vision.html" data-i18n="nav.vision">Vision</a></li>
-        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
         <li><a href="innovation-services.html" data-i18n="nav.services">Services</a></li>
         <li><a href="digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
         <li><a href="digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
         <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
           <li class="nav__contact-wrap">
-          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtn">Get in Touch</button>
           <div class="nav__contact-popover" id="navContactPopover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
@@ -676,7 +676,7 @@
           <a href="faq.html" data-i18n="nav.faq">FAQ</a>
         </div>
         <div class="nav__contact-wrap nav__contact-wrap--desktop">
-          <button class="btn btn--small nav__contact-btn" id="navContactBtnDesktop">Get in Touch</button>
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtnDesktop">Get in Touch</button>
           <div class="nav__contact-popover" id="navContactPopoverDesktop">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
@@ -703,7 +703,7 @@
     </div>
   </nav>
 
-  <main class="faq-page">
+  <main class="faq-page" id="main-content">
 
     <!-- Breadcrumb -->
     <nav class="dpp-breadcrumb" aria-label="Breadcrumb">
@@ -808,7 +808,7 @@
           <div class="dpp-faq__answer">
             <p>The EU Battery Regulation (2023/1542) is the first EU regulation to mandate Digital Product Passports. From <strong>February 2027</strong>, batteries placed on the EU market — including EV batteries, industrial batteries above 2 kWh, and light means of transport (LMT) batteries — must carry a digital passport with over 80 data attributes.</p>
             <p>These cover battery chemistry, capacity, expected lifetime, carbon footprint, recycled content, collection and recycling information, and due diligence data on raw material sourcing. The regulation also introduces a battery carbon footprint declaration, performance and durability requirements, minimum recycled content thresholds (rising over time), and extended producer responsibility.</p>
-            <p>It is the most advanced DPP framework currently in force and serves as a reference point for other product categories. Try our <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener">Battery Passport Checker</a> to assess your obligations.</p>
+            <p>It is the most advanced DPP framework currently in force and serves as a reference point for other product categories. Try our <a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Battery Passport Checker</a> to assess your obligations.</p>
           </div>
         </details>
 
@@ -816,7 +816,7 @@
           <summary class="dpp-faq__question">What is the Construction Products Regulation (CPR)?</summary>
           <div class="dpp-faq__answer">
             <p>The new Construction Products Regulation (2024/3110) replaces the original CPR (305/2011) and covers <strong>37 product families</strong> — from cement and concrete to insulation, doors, chimneys, and structural timber. The CPR establishes EU-wide rules for placing construction products on the market based on harmonised technical specifications (harmonised European standards and European Assessment Documents).</p>
-            <p>Chapter X of the new CPR introduces a Digital Product Passport framework for construction products, but specific DPP requirements depend on the development and citation of harmonised standards by CEN/CENELEC, which is ongoing. Regen Studio tracks all 37 product families, their harmonised standards status, and DPP readiness in the <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener">CPR DPP Tracker</a>. Read our <a href="/blog/cpr-digital-product-passport/">detailed analysis of all 37 product families</a>.</p>
+            <p>Chapter X of the new CPR introduces a Digital Product Passport framework for construction products, but specific DPP requirements depend on the development and citation of harmonised standards by CEN/CENELEC, which is ongoing. Regen Studio tracks all 37 product families, their harmonised standards status, and DPP readiness in the <a href="https://demos.regenstudio.world" target="_blank" rel="noopener">CPR DPP Tracker</a>. Read our <a href="/blog/cpr-digital-product-passport/">detailed analysis of all 37 product families</a>.</p>
           </div>
         </details>
 
@@ -1056,7 +1056,7 @@
           <summary class="dpp-faq__question">What is a European Digital Identity (EDI) wallet?</summary>
           <div class="dpp-faq__answer">
             <p>A European Digital Identity wallet is a secure app that allows EU citizens to store and share verified identity credentials — such as a driving licence, diploma, or proof of address — digitally, under their own control. Mandated by the revised eIDAS 2.0 Regulation, EDI wallets use <strong>selective disclosure</strong>: you share only the specific data points needed (for example, proving you are over 18 without revealing your birth date).</p>
-            <p>Regen Studio has built an <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener">interactive prototype of an EDI wallet</a> to demonstrate how selective disclosure and credential management work in practice. Read more about <a href="/blog/ssi-privacy/">self-sovereign identity and privacy</a>.</p>
+            <p>Regen Studio has built an <a href="https://demos.regenstudio.world" target="_blank" rel="noopener">interactive prototype of an EDI wallet</a> to demonstrate how selective disclosure and credential management work in practice. Read more about <a href="/blog/ssi-privacy/">self-sovereign identity and privacy</a>.</p>
           </div>
         </details>
 
@@ -1080,7 +1080,7 @@
           <summary class="dpp-faq__question">What is selective disclosure?</summary>
           <div class="dpp-faq__answer">
             <p>Selective disclosure is the ability to share only specific attributes from a credential without revealing the full underlying data. For example, proving you are over 18 without revealing your exact date of birth, or proving you hold a valid driver's licence without sharing your home address.</p>
-            <p>This is a fundamental privacy mechanism in eIDAS 2.0 wallets and SSI systems. It is made possible through cryptographic techniques that allow a verifier to confirm a claim is true — signed by a trusted issuer — without seeing the data that isn't relevant to the interaction. Our <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener">EDI Wallet demo</a> lets you experience selective disclosure in practice.</p>
+            <p>This is a fundamental privacy mechanism in eIDAS 2.0 wallets and SSI systems. It is made possible through cryptographic techniques that allow a verifier to confirm a claim is true — signed by a trusted issuer — without seeing the data that isn't relevant to the interaction. Our <a href="https://demos.regenstudio.world" target="_blank" rel="noopener">EDI Wallet demo</a> lets you experience selective disclosure in practice.</p>
           </div>
         </details>
 
@@ -1254,7 +1254,7 @@
         <details class="dpp-faq__item">
           <summary class="dpp-faq__question">What interactive demos does Regen Studio offer?</summary>
           <div class="dpp-faq__answer">
-            <p>Regen Studio hosts five interactive demos at <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener">demos.regenstudio.world</a>. Three are freely accessible:</p>
+            <p>Regen Studio hosts five interactive demos at <a href="https://demos.regenstudio.world" target="_blank" rel="noopener">demos.regenstudio.world</a>. Three are freely accessible:</p>
             <ul>
               <li><strong>Battery Passport Checker</strong> — a quick DPP obligation assessment for battery producers</li>
               <li><strong>AI Tax &rarr; UBI</strong> — a policy simulation exploring how AI taxation could fund universal basic income</li>
@@ -1272,7 +1272,7 @@
         <details class="dpp-faq__item">
           <summary class="dpp-faq__question">What is the CPR DPP Tracker?</summary>
           <div class="dpp-faq__answer">
-            <p>The <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener">CPR DPP Tracker</a> is an interactive tool that maps the DPP readiness of all 37 product families under the Construction Products Regulation (2024/3110). For each family, it shows the relevant harmonised European standards (hENs), European Assessment Documents (EADs), standardisation request status, and estimated DPP timeline.</p>
+            <p>The <a href="https://demos.regenstudio.world" target="_blank" rel="noopener">CPR DPP Tracker</a> is an interactive tool that maps the DPP readiness of all 37 product families under the Construction Products Regulation (2024/3110). For each family, it shows the relevant harmonised European standards (hENs), European Assessment Documents (EADs), standardisation request status, and estimated DPP timeline.</p>
             <p>The tracker is updated monthly as CEN/CENELEC standards progress. The same research is available as a comprehensive <strong>paid PDF report</strong> — a 200-plus page reference document with detailed per-family analysis, timeline visualisations, and regulatory cross-references. Read more about our <a href="/blog/cpr-digital-product-passport/">CPR product family research</a>.</p>
           </div>
         </details>
@@ -1280,7 +1280,7 @@
         <details class="dpp-faq__item">
           <summary class="dpp-faq__question">What is the Battery Passport Checker?</summary>
           <div class="dpp-faq__answer">
-            <p>The <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener">Battery Passport Checker</a> is a free online tool that helps battery producers, importers, and brands determine their Digital Product Passport obligations under the EU Battery Regulation (2023/1542).</p>
+            <p>The <a href="https://demos.regenstudio.world" target="_blank" rel="noopener">Battery Passport Checker</a> is a free online tool that helps battery producers, importers, and brands determine their Digital Product Passport obligations under the EU Battery Regulation (2023/1542).</p>
             <p>In about one minute, users answer questions about their battery type (EV, industrial, LMT, portable, SLI), capacity, and market placement — and receive a personalised assessment of which DPP requirements apply and when. The tool generates a downloadable PDF summary covering all battery categories defined in the regulation.</p>
           </div>
         </details>
@@ -1378,7 +1378,7 @@
             <li><a href="digital-product-passports/" data-i18n="footer.product_passports">Product Passports</a></li>
             <li><a href="digital-identities/" data-i18n="footer.digital_identity">Digital Identity</a></li>
             <li><a href="blog.html" data-i18n="footer.blog">Blog</a></li>
-            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
             <li><a href="faq.html" data-i18n="footer.faq">FAQ</a></li>
           </ul>
         </div>

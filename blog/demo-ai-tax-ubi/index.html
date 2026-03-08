@@ -66,13 +66,13 @@
       <ul class="nav__links" id="navLinks">
         <li><a href="../../about.html" data-i18n="nav.about">About</a></li>
         <li><a href="../../vision.html" data-i18n="nav.vision">Vision</a></li>
-        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
         <li><a href="../../innovation-services.html" data-i18n="nav.services">Services</a></li>
         <li><a href="../../digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
         <li><a href="../../digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
         <li><a href="../../blog.html" data-i18n="nav.blog">Blog</a></li>
           <li class="nav__contact-wrap">
-          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtn">Get in Touch</button>
           <div class="nav__contact-popover" id="navContactPopover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
@@ -103,12 +103,12 @@
           <a href="../../innovation-services.html" data-i18n="nav.services">Services</a>
           <a href="../../problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
           <a href="../../blog.html" data-i18n="nav.blog">Blog</a>
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="nav.demos">Demos</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos <span class="sr-only">(opens in new tab)</span></a>
           <a href="../../about.html" data-i18n="nav.about">About</a>
           <a href="../../faq.html" data-i18n="nav.faq">FAQ</a>
         </div>
         <div class="nav__contact-wrap nav__contact-wrap--desktop">
-          <button class="btn btn--small nav__contact-btn">Get in Touch</button>
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false">Get in Touch</button>
           <div class="nav__contact-popover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
@@ -135,9 +135,9 @@
     </div>
   </nav>
 
-  <!-- Post Header (pre-rendered, JS hydrates) -->
-  <div id="main-content"></div>
-  <section class="post-header" id="postHeader">
+  <main id="main-content">
+    <!-- Post Header (pre-rendered, JS hydrates) -->
+    <section class="post-header" id="postHeader">
       <div class="container">
         <a href="../../blog.html" class="post-header__back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Blog</a>
         <div class="post-header__categories"><span class="post-header__category post-header__category--gray">Vision &amp; Strategy</span><span class="post-header__category post-header__category--gray">Innovation Services</span></div>
@@ -155,14 +155,14 @@
         </div>
       </div></section>
 
-  <!-- Featured Image (pre-rendered) -->
-  <section class="post-featured-image" id="postFeaturedImage">
+    <!-- Featured Image (pre-rendered) -->
+    <section class="post-featured-image" id="postFeaturedImage">
       <div class="container">
         <img src="../../Images/demo-ai-tax-ubi.svg" alt="AI Tax → UBI Simulator — Modelling automation taxation and universal basic income">
       </div></section>
 
-  <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
-  <section class="post-content" id="postContent">
+    <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
+    <section class="post-content" id="postContent">
       <div class="post-content__inner">
         <p class="post-answer-capsule"><strong>What if taxing AI-driven automation could fund a universal basic income? Our interactive simulator lets you set the policy parameters and see the numbers play out — revenue collected, monthly payments per citizen, and how it evolves year on year.</strong></p>
         <div class="post-content__body" id="post-content"><p>As AI adoption accelerates, so does a pressing question: who benefits? Automation drives productivity and profit — but the gains accrue disproportionately to capital, while labour markets absorb the disruption. One policy response gaining serious traction is an <strong>AI tax</strong>: a levy on companies with high automation levels, with the proceeds distributed as a Universal Basic Income (UBI) to citizens. Our interactive simulator lets you model exactly how that could work — and what the numbers look like under different policy assumptions.</p>
@@ -219,8 +219,9 @@
 </div>
       </div></section>
 
-  <!-- Related Posts (rendered by JS) -->
-  <section class="related-posts" id="relatedPosts"></section>
+    <!-- Related Posts (rendered by JS) -->
+    <section class="related-posts" id="relatedPosts"></section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
@@ -246,7 +247,7 @@
             <li><a href="../../digital-product-passports/" data-i18n="footer.product_passports">Product Passports</a></li>
             <li><a href="../../digital-identities/" data-i18n="footer.digital_identity">Digital Identity</a></li>
             <li><a href="../../blog.html" data-i18n="footer.blog">Blog</a></li>
-            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
             <li><a href="../../faq.html" data-i18n="footer.faq">FAQ</a></li>
           </ul>
         </div>

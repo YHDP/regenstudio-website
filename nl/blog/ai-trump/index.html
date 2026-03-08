@@ -66,13 +66,13 @@
       <ul class="nav__links" id="navLinks">
         <li><a href="../../../nl/about.html" data-i18n="nav.about">About</a></li>
         <li><a href="../../../nl/vision.html" data-i18n="nav.vision">Vision</a></li>
-        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
         <li><a href="../../../nl/innovation-services.html" data-i18n="nav.services">Services</a></li>
         <li><a href="../../../digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
         <li><a href="../../../digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
         <li><a href="../../../nl/blog.html" data-i18n="nav.blog">Blog</a></li>
           <li class="nav__contact-wrap">
-          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtn">Get in Touch</button>
           <div class="nav__contact-popover" id="navContactPopover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
@@ -103,12 +103,12 @@
           <a href="../../../nl/innovation-services.html" data-i18n="nav.services">Services</a>
           <a href="../../../problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
           <a href="../../../nl/blog.html" data-i18n="nav.blog">Blog</a>
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="nav.demos">Demos</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos <span class="sr-only">(opens in new tab)</span></a>
           <a href="../../../nl/about.html" data-i18n="nav.about">About</a>
           <a href="../../../nl/faq.html" data-i18n="nav.faq">FAQ</a>
         </div>
         <div class="nav__contact-wrap nav__contact-wrap--desktop">
-          <button class="btn btn--small nav__contact-btn">Get in Touch</button>
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false">Get in Touch</button>
           <div class="nav__contact-popover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
@@ -135,9 +135,9 @@
     </div>
   </nav>
 
-  <!-- Post Header (pre-rendered, JS hydrates) -->
-  <div id="main-content"></div>
-  <section class="post-header" id="postHeader">
+  <main id="main-content">
+    <!-- Post Header (pre-rendered, JS hydrates) -->
+    <section class="post-header" id="postHeader">
       <div class="container">
         <a href="../../../nl/blog.html" class="post-header__back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Terug naar Blog</a>
         <div class="post-header__categories"><span class="post-header__category post-header__category--magenta">AI</span><span class="post-header__category post-header__category--gray">Vision &amp; Strategy</span></div>
@@ -155,14 +155,14 @@
         </div>
       </div></section>
 
-  <!-- Featured Image (pre-rendered) -->
-  <section class="post-featured-image" id="postFeaturedImage">
+    <!-- Featured Image (pre-rendered) -->
+    <section class="post-featured-image" id="postFeaturedImage">
       <div class="container">
         <img src="../../../Blogs/ai-trump/HeaderTRUMPAtivo 30.webp" alt="Praat met AI alsof het Trump is — een denkmodel voor digitale zelfverdediging in het tijdperk van kunstmatige intelligentie">
       </div></section>
 
-  <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
-  <section class="post-content" id="postContent">
+    <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
+    <section class="post-content" id="postContent">
       <div class="post-content__inner">
         <p class="post-answer-capsule"><strong>Een gesprek voeren met ChatGPT is hetzelfde als het in Donald Trumps oor fluisteren. Een persoonlijk verhaal over AI, privacy en waarom we denkmodellen nodig hebben voor digitale zelfverdediging — mede geschreven met ChatGPT.</strong></p>
         <div class="post-content__body" id="post-content"><p>Tot voor kort dacht ik dat ik digitale zelfverdediging goed onder de knie had. Maar er is iets verschoven.</p>
@@ -331,8 +331,9 @@
 </div>
       </div></section>
 
-  <!-- Related Posts (rendered by JS) -->
-  <section class="related-posts" id="relatedPosts"></section>
+    <!-- Related Posts (rendered by JS) -->
+    <section class="related-posts" id="relatedPosts"></section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
@@ -358,7 +359,7 @@
             <li><a href="../../../digital-product-passports/" data-i18n="footer.product_passports">Product Passports</a></li>
             <li><a href="../../../digital-identities/" data-i18n="footer.digital_identity">Digital Identity</a></li>
             <li><a href="../../../nl/blog.html" data-i18n="footer.blog">Blog</a></li>
-            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
             <li><a href="../../../nl/faq.html" data-i18n="footer.faq">FAQ</a></li>
           </ul>
         </div>
