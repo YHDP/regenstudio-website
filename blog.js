@@ -1039,6 +1039,7 @@
         } catch (errMsg) {
           const errorEl = document.createElement('p');
           errorEl.className = 'regen-form__error';
+          errorEl.setAttribute('role', 'alert');
           errorEl.textContent = errMsg;
           submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
           submitBtn.disabled = false;

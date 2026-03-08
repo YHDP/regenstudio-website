@@ -608,18 +608,19 @@ ${buildHead(post, lang, availableLangs)}
 <body>
   ${adjustedNav}
 
-  <!-- Post Header (pre-rendered, JS hydrates) -->
-  <div id="main-content"></div>
-  <section class="post-header" id="postHeader">${buildPreRenderedHeader(post, lang)}</section>
+  <main id="main-content">
+    <!-- Post Header (pre-rendered, JS hydrates) -->
+    <section class="post-header" id="postHeader">${buildPreRenderedHeader(post, lang)}</section>
 
-  <!-- Featured Image (pre-rendered) -->
-  <section class="post-featured-image" id="postFeaturedImage">${buildPreRenderedFeaturedImage(post, lang)}</section>
+    <!-- Featured Image (pre-rendered) -->
+    <section class="post-featured-image" id="postFeaturedImage">${buildPreRenderedFeaturedImage(post, lang)}</section>
 
-  <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
-  <section class="post-content" id="postContent">${buildPreRenderedContent(post, lang)}</section>
+    <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
+    <section class="post-content" id="postContent">${buildPreRenderedContent(post, lang)}</section>
 
-  <!-- Related Posts (rendered by JS) -->
-  <section class="related-posts" id="relatedPosts"></section>
+    <!-- Related Posts (rendered by JS) -->
+    <section class="related-posts" id="relatedPosts"></section>
+  </main>
 
   ${fixedFooter}
 

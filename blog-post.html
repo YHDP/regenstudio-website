@@ -38,13 +38,13 @@
       <ul class="nav__links" id="navLinks">
         <li><a href="about.html" data-i18n="nav.about">About</a></li>
         <li><a href="vision.html" data-i18n="nav.vision">Vision</a></li>
-        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
         <li><a href="innovation-services.html" data-i18n="nav.services">Services</a></li>
         <li><a href="digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
         <li><a href="digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
         <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
           <li class="nav__contact-wrap">
-          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtn">Get in Touch</button>
           <div class="nav__contact-popover" id="navContactPopover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
@@ -75,12 +75,12 @@
           <a href="innovation-services.html" data-i18n="nav.services">Services</a>
           <a href="problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
           <a href="blog.html" data-i18n="nav.blog">Blog</a>
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="nav.demos">Demos</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos <span class="sr-only">(opens in new tab)</span></a>
           <a href="about.html" data-i18n="nav.about">About</a>
           <a href="faq.html" data-i18n="nav.faq">FAQ</a>
         </div>
         <div class="nav__contact-wrap nav__contact-wrap--desktop">
-          <button class="btn btn--small nav__contact-btn">Get in Touch</button>
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false">Get in Touch</button>
           <div class="nav__contact-popover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
@@ -107,18 +107,19 @@
     </div>
   </nav>
 
-  <!-- Post Header (rendered by JS) -->
-  <div id="main-content"></div>
-  <section class="post-header" id="postHeader"></section>
+  <main id="main-content">
+    <!-- Post Header (rendered by JS) -->
+    <section class="post-header" id="postHeader"></section>
 
-  <!-- Featured Image (rendered by JS) -->
-  <section class="post-featured-image" id="postFeaturedImage"></section>
+    <!-- Featured Image (rendered by JS) -->
+    <section class="post-featured-image" id="postFeaturedImage"></section>
 
-  <!-- Post Content (rendered by JS) -->
-  <section class="post-content" id="postContent"></section>
+    <!-- Post Content (rendered by JS) -->
+    <section class="post-content" id="postContent"></section>
 
-  <!-- Related Posts (rendered by JS) -->
-  <section class="related-posts" id="relatedPosts"></section>
+    <!-- Related Posts (rendered by JS) -->
+    <section class="related-posts" id="relatedPosts"></section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
@@ -144,7 +145,7 @@
             <li><a href="digital-product-passports/" data-i18n="footer.product_passports">Product Passports</a></li>
             <li><a href="digital-identities/" data-i18n="footer.digital_identity">Digital Identity</a></li>
             <li><a href="blog.html" data-i18n="footer.blog">Blog</a></li>
-            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
             <li><a href="faq.html" data-i18n="footer.faq">FAQ</a></li>
           </ul>
         </div>

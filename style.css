@@ -2446,7 +2446,7 @@ em:only-of-type {
 
 .footer__email-address {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.6);
   user-select: all;
   -webkit-user-select: all;
   transition: color var(--transition);

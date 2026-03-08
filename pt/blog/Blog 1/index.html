@@ -66,13 +66,13 @@
       <ul class="nav__links" id="navLinks">
         <li><a href="../../../pt/about.html" data-i18n="nav.about">About</a></li>
         <li><a href="../../../pt/vision.html" data-i18n="nav.vision">Vision</a></li>
-        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
         <li><a href="../../../pt/innovation-services.html" data-i18n="nav.services">Services</a></li>
         <li><a href="../../../digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
         <li><a href="../../../digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
         <li><a href="../../../pt/blog.html" data-i18n="nav.blog">Blog</a></li>
           <li class="nav__contact-wrap">
-          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtn">Get in Touch</button>
           <div class="nav__contact-popover" id="navContactPopover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
@@ -103,12 +103,12 @@
           <a href="../../../pt/innovation-services.html" data-i18n="nav.services">Services</a>
           <a href="../../../problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
           <a href="../../../pt/blog.html" data-i18n="nav.blog">Blog</a>
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="nav.demos">Demos</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos <span class="sr-only">(opens in new tab)</span></a>
           <a href="../../../pt/about.html" data-i18n="nav.about">About</a>
           <a href="../../../pt/faq.html" data-i18n="nav.faq">FAQ</a>
         </div>
         <div class="nav__contact-wrap nav__contact-wrap--desktop">
-          <button class="btn btn--small nav__contact-btn">Get in Touch</button>
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false">Get in Touch</button>
           <div class="nav__contact-popover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
@@ -135,9 +135,9 @@
     </div>
   </nav>
 
-  <!-- Post Header (pre-rendered, JS hydrates) -->
-  <div id="main-content"></div>
-  <section class="post-header" id="postHeader">
+  <main id="main-content">
+    <!-- Post Header (pre-rendered, JS hydrates) -->
+    <section class="post-header" id="postHeader">
       <div class="container">
         <a href="../../../pt/blog.html" class="post-header__back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Voltar ao Blog</a>
         <div class="post-header__categories"><span class="post-header__category post-header__category--teal">Living Labs</span><span class="post-header__category post-header__category--teal">Digital Participation</span><span class="post-header__category post-header__category--gray">Innovation Services</span><span class="post-header__category post-header__category--gold">Client Projects</span></div>
@@ -155,14 +155,14 @@
         </div>
       </div></section>
 
-  <!-- Featured Image (pre-rendered) -->
-  <section class="post-featured-image" id="postFeaturedImage">
+    <!-- Featured Image (pre-rendered) -->
+    <section class="post-featured-image" id="postFeaturedImage">
       <div class="container">
         <img src="../../../Blogs/Blog 1/guiding headerAtivo 60.webp" alt="Skyline de The Hague — consultoria em inovação para a equipe de inovação digital e smart city da cidade">
       </div></section>
 
-  <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
-  <section class="post-content" id="postContent">
+    <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
+    <section class="post-content" id="postContent">
       <div class="post-content__inner">
         <p class="post-answer-capsule"><strong>O Centro de Expertise em Inovação Digital &amp; Smart City da cidade de The Hague solicitou a ajuda dos serviços de consultoria em inovação da Regen Studio para orientar sua equipe rumo a inovações digitais de impacto.</strong></p>
         <div class="post-content__body" id="post-content"><div style="display:flex;align-items:center;justify-content:center;gap:28px;padding:24px 40px;background:#F0FAF4;border-radius:12px;border:1px solid #D1FAE5;margin-bottom:40px;flex-wrap:wrap;">
@@ -256,8 +256,9 @@
 </div>
       </div></section>
 
-  <!-- Related Posts (rendered by JS) -->
-  <section class="related-posts" id="relatedPosts"></section>
+    <!-- Related Posts (rendered by JS) -->
+    <section class="related-posts" id="relatedPosts"></section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
@@ -283,7 +284,7 @@
             <li><a href="../../../digital-product-passports/" data-i18n="footer.product_passports">Product Passports</a></li>
             <li><a href="../../../digital-identities/" data-i18n="footer.digital_identity">Digital Identity</a></li>
             <li><a href="../../../pt/blog.html" data-i18n="footer.blog">Blog</a></li>
-            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
             <li><a href="../../../pt/faq.html" data-i18n="footer.faq">FAQ</a></li>
           </ul>
         </div>

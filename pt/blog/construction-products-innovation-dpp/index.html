@@ -66,13 +66,13 @@
       <ul class="nav__links" id="navLinks">
         <li><a href="../../../pt/about.html" data-i18n="nav.about">About</a></li>
         <li><a href="../../../pt/vision.html" data-i18n="nav.vision">Vision</a></li>
-        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
         <li><a href="../../../pt/innovation-services.html" data-i18n="nav.services">Services</a></li>
         <li><a href="../../../digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
         <li><a href="../../../digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
         <li><a href="../../../pt/blog.html" data-i18n="nav.blog">Blog</a></li>
           <li class="nav__contact-wrap">
-          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Get in Touch</button>
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtn">Get in Touch</button>
           <div class="nav__contact-popover" id="navContactPopover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
@@ -103,12 +103,12 @@
           <a href="../../../pt/innovation-services.html" data-i18n="nav.services">Services</a>
           <a href="../../../problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
           <a href="../../../pt/blog.html" data-i18n="nav.blog">Blog</a>
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="nav.demos">Demos</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos <span class="sr-only">(opens in new tab)</span></a>
           <a href="../../../pt/about.html" data-i18n="nav.about">About</a>
           <a href="../../../pt/faq.html" data-i18n="nav.faq">FAQ</a>
         </div>
         <div class="nav__contact-wrap nav__contact-wrap--desktop">
-          <button class="btn btn--small nav__contact-btn">Get in Touch</button>
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false">Get in Touch</button>
           <div class="nav__contact-popover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
@@ -135,9 +135,9 @@
     </div>
   </nav>
 
-  <!-- Post Header (pre-rendered, JS hydrates) -->
-  <div id="main-content"></div>
-  <section class="post-header" id="postHeader">
+  <main id="main-content">
+    <!-- Post Header (pre-rendered, JS hydrates) -->
+    <section class="post-header" id="postHeader">
       <div class="container">
         <a href="../../../pt/blog.html" class="post-header__back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Voltar ao Blog</a>
         <div class="post-header__categories"><span class="post-header__category post-header__category--emerald">Digital Product Passport</span><span class="post-header__category post-header__category--gray">Vision &amp; Strategy</span></div>
@@ -155,14 +155,14 @@
         </div>
       </div></section>
 
-  <!-- Featured Image (pre-rendered) -->
-  <section class="post-featured-image" id="postFeaturedImage">
+    <!-- Featured Image (pre-rendered) -->
+    <section class="post-featured-image" id="postFeaturedImage">
       <div class="container">
         <img src="../../../Blogs/construction-products-innovation-dpp/featured.webp" alt="Duas rotas para a marcação CE sob o Regulamento de Produtos de Construção — normas harmonizadas e Documentos Europeus de Avaliação — ambas levando a obrigações do Passaporte Digital de Produto">
       </div></section>
 
-  <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
-  <section class="post-content" id="postContent">
+    <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
+    <section class="post-content" id="postContent">
       <div class="post-content__inner">
         <p class="post-answer-capsule"><strong>Todos assumem que as obrigações de DPP serão implementadas família por família. Mas o sistema de duas rotas para marcação CE do CPR significa que produtos inovadores usando a rota EAD/ETA podem enfrentar requisitos de Passaporte Digital de Produto anos antes dos produtos convencionais cobertos por normas harmonizadas — e não há como escapar.</strong></p>
         <div class="post-content__body" id="post-content"><p>O <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R3110" target="_blank" rel="noopener">Regulamento de Produtos de Construção (UE) 2024/3110</a> introduz um framework de Passaporte Digital de Produto (DPP) no Capítulo X (Artigos 75–80) que eventualmente cobrirá todos os produtos de construção colocados no mercado da UE com marcação CE. A maioria das análises do setor foca na implementação família por família, impulsionada pelo Plano de Trabalho da Comissão e pelo desenvolvimento de novas especificações técnicas harmonizadas. Mas essa abordagem perde uma característica estrutural crítica: <strong>a obrigação de DPP está vinculada à Declaração de Desempenho e Conformidade (DoPC), e as normas harmonizadas não são a única forma pela qual estas são exigidas. Há também a rota dos Documentos Europeus de Avaliação (EADs), usados para marcações CE voluntárias em produtos de construção de certas famílias, que também exigirão uma DoPC.</strong></p>
@@ -472,8 +472,9 @@
 </div>
       </div></section>
 
-  <!-- Related Posts (rendered by JS) -->
-  <section class="related-posts" id="relatedPosts"></section>
+    <!-- Related Posts (rendered by JS) -->
+    <section class="related-posts" id="relatedPosts"></section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
@@ -499,7 +500,7 @@
             <li><a href="../../../digital-product-passports/" data-i18n="footer.product_passports">Product Passports</a></li>
             <li><a href="../../../digital-identities/" data-i18n="footer.digital_identity">Digital Identity</a></li>
             <li><a href="../../../pt/blog.html" data-i18n="footer.blog">Blog</a></li>
-            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
             <li><a href="../../../pt/faq.html" data-i18n="footer.faq">FAQ</a></li>
           </ul>
         </div>
