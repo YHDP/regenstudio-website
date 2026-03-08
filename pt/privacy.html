@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; frame-src https://player.vimeo.com https://w.soundcloud.com; object-src 'none'; base-uri 'self'; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co">
+  <title>Pol&iacute;tica de Privacidade | Regen Studio</title>
+  <meta name="description" content="Como o Regen Studio trata seus dados: zero cookies, analytics que preservam a privacidade, infraestrutura hospedada na UE. Em conformidade com LGPD, GDPR e Diretiva ePrivacy.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.regenstudio.world/pt/privacy.html">
+  <meta property="og:title" content="Pol&iacute;tica de Privacidade | Regen Studio">
+  <meta property="og:description" content="Como o Regen Studio trata seus dados: zero cookies, analytics que preservam a privacidade, infraestrutura hospedada na UE. Em conformidade com LGPD, GDPR e Diretiva ePrivacy.">
+  <meta property="og:image" content="https://www.regenstudio.world/Images/og-image.png">
+  <meta property="og:image:alt" content="Pol&iacute;tica de Privacidade &mdash; Regen Studio">
+  <meta property="og:locale" content="pt_BR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pol&iacute;tica de Privacidade | Regen Studio">
+  <meta name="twitter:description" content="Como o Regen Studio trata seus dados: zero cookies, analytics que preservam a privacidade, infraestrutura hospedada na UE. Em conformidade com LGPD, GDPR e Diretiva ePrivacy.">
+  <meta name="twitter:image" content="https://www.regenstudio.world/Images/og-image.png">
+
+  <link rel="canonical" href="https://www.regenstudio.world/pt/privacy.html">
+  <link rel="alternate" hreflang="en" href="https://www.regenstudio.world/privacy.html">
+  <link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/privacy.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/privacy.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/privacy.html">
+  <link rel="icon" type="image/png" href="../Images/favicon.png">
+  <link rel="stylesheet" href="../assets/fonts/fonts.css">
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "In\u00edcio", "item": "https://www.regenstudio.world/" },
+      { "@type": "ListItem", "position": 2, "name": "Pol\u00edtica de Privacidade", "item": "https://www.regenstudio.world/pt/privacy.html" }
+    ]
+  }
+  </script>
+  <style>
+    /* ── Privacy page — visual enhancements ── */
+    .privacy-hero {
+      background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-dark) 60%, #1a3040 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 120px 24px 56px;
+      text-align: center;
+    }
+    .privacy-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(60deg, rgba(0,145,75,0.08) 0%, transparent 40%),
+        linear-gradient(200deg, rgba(0,155,187,0.06) 0%, transparent 40%),
+        linear-gradient(320deg, rgba(99,102,241,0.05) 0%, transparent 30%);
+      pointer-events: none;
+    }
+    .privacy-hero__accent {
+      height: 4px;
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+    .privacy-hero__accent span:nth-child(1) { flex: 3; background: #00914B; }
+    .privacy-hero__accent span:nth-child(2) { flex: 2; background: #009BBB; }
+    .privacy-hero__accent span:nth-child(3) { flex: 2; background: #6366F1; }
+    .privacy-hero__accent span:nth-child(4) { flex: 1.5; background: #FFA92D; }
+    .privacy-hero__accent span:nth-child(5) { flex: 1.5; background: #93093F; }
+    .privacy-hero__tri {
+      position: absolute;
+      width: 0; height: 0;
+      border-left: var(--tri-size, 8px) solid transparent;
+      border-right: var(--tri-size, 8px) solid transparent;
+      border-bottom: calc(var(--tri-size, 8px) * 1.73) solid var(--tri-color, rgba(0,145,75,0.15));
+      pointer-events: none;
+    }
+    .tri-1 { --tri-size: 10px; --tri-color: rgba(0,145,75,0.12); top: 18%; left: 8%; transform: rotate(25deg); }
+    .tri-2 { --tri-size: 6px; --tri-color: rgba(0,155,187,0.15); top: 30%; left: 15%; transform: rotate(-40deg); }
+    .tri-3 { --tri-size: 12px; --tri-color: rgba(99,102,241,0.1); top: 60%; right: 12%; transform: rotate(160deg); }
+    .tri-4 { --tri-size: 7px; --tri-color: rgba(255,169,45,0.15); top: 20%; right: 18%; transform: rotate(75deg); }
+    .tri-5 { --tri-size: 9px; --tri-color: rgba(147,9,63,0.1); bottom: 25%; left: 20%; transform: rotate(-20deg); }
+    .tri-6 { --tri-size: 5px; --tri-color: rgba(0,145,75,0.14); bottom: 30%; right: 25%; transform: rotate(200deg); }
+    .tri-7 { --tri-size: 14px; --tri-color: rgba(0,155,187,0.08); top: 45%; left: 5%; transform: rotate(110deg); }
+    .tri-8 { --tri-size: 8px; --tri-color: rgba(255,169,45,0.12); bottom: 15%; right: 8%; transform: rotate(-65deg); }
+    .privacy-hero__shield {
+      width: 56px; height: 56px;
+      background: rgba(0,145,75,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .privacy-hero__shield svg { color: #AFF9D7; }
+    .privacy-hero h1 {
+      color: white;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      margin: 0 0 8px;
+      position: relative;
+    }
+    .privacy-hero__sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.95rem;
+      margin: 0;
+      position: relative;
+    }
+    .privacy-hero__updated {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.8rem;
+      margin: 16px 0 0;
+      position: relative;
+    }
+
+    /* Override .privacy-page defaults for the new layout */
+    .privacy-page { padding-top: 0; }
+    .privacy-page h1, .privacy-page .privacy-updated, .privacy-page .privacy-back { display: none; }
+
+    /* ── TL;DR card ── */
+    .tldr-card {
+      max-width: 720px;
+      margin: -32px auto 40px;
+      position: relative;
+      z-index: 1;
+      background: white;
+      border-radius: 16px;
+      border: 1px solid var(--color-border);
+      box-shadow: 0 12px 40px rgba(36,54,68,0.1);
+      padding: 32px 36px;
+    }
+    .tldr-card h2 {
+      font-size: 0.75rem !important;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-primary);
+      margin: 0 0 20px !important;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tldr-card ul {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 32px;
+    }
+    .tldr-card li {
+      font-size: 0.88rem;
+      color: var(--color-text-secondary, #5781A1);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.6;
+    }
+    .tldr-card li::before {
+      content: '' !important;
+      flex-shrink: 0;
+      width: 6px; height: 6px;
+      margin-top: 7px;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+    .tldr-card li:nth-child(1)::before { background: #00914B; }
+    .tldr-card li:nth-child(2)::before { background: #009BBB; }
+    .tldr-card li:nth-child(3)::before { background: #6366F1; }
+    .tldr-card li:nth-child(4)::before { background: #FFA92D; }
+    .tldr-card li:nth-child(5)::before { background: #93093F; }
+    .tldr-card li:nth-child(6)::before { background: #00914B; }
+
+    /* ── Section with icon ── */
+    .priv-section { margin-bottom: 40px; }
+    .priv-section__header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+    }
+    .priv-section__icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .priv-section__icon svg { width: 18px; height: 18px; }
+    .priv-section__icon--emerald { background: rgba(0,145,75,0.1); color: #00914B; }
+    .priv-section__icon--teal { background: rgba(0,155,187,0.1); color: #009BBB; }
+    .priv-section__icon--indigo { background: rgba(99,102,241,0.1); color: #6366F1; }
+    .priv-section__icon--amber { background: rgba(255,169,45,0.1); color: #d97706; }
+    .priv-section__icon--crimson { background: rgba(147,9,63,0.1); color: #93093F; }
+    .priv-section h2 {
+      font-size: 1.15rem !important;
+      font-weight: 700 !important;
+      color: var(--color-text, #243644) !important;
+      margin: 0 !important;
+    }
+
+    /* ── Sub-processor cards ── */
+    .processor-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 16px 0;
+    }
+    .processor-card {
+      background: var(--color-bg-light, #F8F9FA);
+      border: 1px solid var(--color-border);
+      border-radius: 12px; padding: 16px;
+    }
+    .processor-card__name { font-size: 0.88rem; font-weight: 700; color: var(--color-text, #243644); margin: 0 0 4px; }
+    .processor-card__role { font-size: 0.78rem; color: var(--color-text-secondary, #5781A1); margin: 0 0 8px; line-height: 1.5; }
+    .processor-card__tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 600;
+      padding: 2px 8px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .processor-card__tag--eu { background: rgba(0,145,75,0.1); color: #00914B; }
+    .processor-card__tag--nl { background: rgba(0,155,187,0.1); color: #009BBB; }
+    .processor-card__tag--us { background: rgba(255,169,45,0.1); color: #d97706; }
+
+    /* ── Analytics deep-dive ── */
+    .analytics-box {
+      background: linear-gradient(135deg, rgba(0,145,75,0.04), rgba(0,155,187,0.04));
+      border: 1px solid rgba(0,145,75,0.15);
+      border-radius: 12px; padding: 24px; margin: 16px 0;
+    }
+    .analytics-box h3 {
+      font-size: 0.85rem; font-weight: 700; color: var(--color-text, #243644);
+      margin: 0 0 8px; display: flex; align-items: center; gap: 8px;
+    }
+    .analytics-box p { font-size: 0.85rem; line-height: 1.6; }
+    .analytics-box code {
+      font-size: 0.78rem; background: rgba(0,0,0,0.05);
+      padding: 2px 6px; border-radius: 4px; font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .analytics-flow {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 12px 0;
+    }
+    .analytics-flow__step {
+      background: white; border: 1px solid var(--color-border);
+      border-radius: 8px; padding: 8px 12px;
+      font-size: 0.78rem; color: var(--color-text, #243644);
+      font-weight: 500; text-align: center; line-height: 1.4;
+    }
+    .analytics-flow__arrow { color: var(--color-text-muted, #9B9B9B); font-size: 0.9rem; }
+
+    /* ── Rights comparison ── */
+    .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+    .rights-col {
+      background: var(--color-bg-light, #F8F9FA);
+      border: 1px solid var(--color-border);
+      border-radius: 12px; padding: 20px;
+    }
+    .rights-col h3 { font-size: 0.82rem; font-weight: 700; margin: 0 0 4px; }
+    .rights-col__ref { font-size: 0.72rem; color: var(--color-text-muted, #9B9B9B); margin: 0 0 12px; display: block; }
+    .rights-col ul { list-style: none !important; padding: 0 !important; margin: 0 !important; }
+    .rights-col li {
+      font-size: 0.82rem; padding: 4px 0;
+      border-bottom: 1px solid var(--color-border);
+      display: flex; align-items: flex-start; gap: 6px; line-height: 1.5;
+    }
+    .rights-col li:last-child { border-bottom: none; }
+    .rights-col li::before {
+      content: '\2713' !important; color: var(--color-primary);
+      font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── Divider ── */
+    .priv-divider {
+      height: 3px; display: flex; margin: 40px 0; border-radius: 3px; overflow: hidden;
+    }
+    .priv-divider span:nth-child(1) { flex: 3; background: #00914B; }
+    .priv-divider span:nth-child(2) { flex: 2; background: #009BBB; }
+    .priv-divider span:nth-child(3) { flex: 2; background: #6366F1; }
+    .priv-divider span:nth-child(4) { flex: 1.5; background: #FFA92D; }
+    .priv-divider span:nth-child(5) { flex: 1.5; background: #93093F; }
+
+    /* ── Contact box ── */
+    .contact-box {
+      background: var(--color-bg-light, #F8F9FA);
+      border: 1px solid var(--color-border);
+      border-radius: 12px; padding: 24px; text-align: center;
+    }
+    .contact-box p { margin: 0 0 12px; }
+    .contact-box a.cta {
+      display: inline-block; background: var(--color-primary);
+      color: white; padding: 10px 24px; border-radius: 99px;
+      font-size: 0.88rem; font-weight: 600; text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .contact-box a.cta:hover { background: var(--color-primary-hover); color: white; }
+
+    @media (max-width: 640px) {
+      .privacy-hero { padding: 100px 16px 40px; }
+      .tldr-card ul { grid-template-columns: 1fr; }
+      .tldr-card { margin: -24px 16px 0; padding: 20px; }
+      .processor-grid { grid-template-columns: 1fr; }
+      .rights-grid { grid-template-columns: 1fr; }
+      .analytics-flow { flex-direction: column; align-items: stretch; }
+      .analytics-flow__arrow { text-align: center; transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Pular para o conte&uacute;do</a>
+
+  <!-- Navigation -->
+  <nav class="nav nav--scrolled" id="nav">
+    <div class="nav__inner container">
+      <a href="../index.html" class="nav__logo">
+        <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
+      </a>
+      <!-- Mobile slide-in menu -->
+      <ul class="nav__links" id="navLinks">
+        <li><a href="about.html" data-i18n="nav.about">Sobre N&oacute;s</a></li>
+        <li><a href="vision.html" data-i18n="nav.vision">Vis&atilde;o</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="innovation-services.html" data-i18n="nav.services">Servi&ccedil;os</a></li>
+        <li><a href="../digital-product-passports/" data-i18n="nav.product_passports">Passaporte do Produto</a></li>
+        <li><a href="../digital-identities/" data-i18n="nav.digital_identity">Identidade Digital</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+          <li class="nav__contact-wrap">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtn">Fale Conosco</button>
+          <div class="nav__contact-popover" id="navContactPopover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Envie uma mensagem &mdash; ador&iacute;amos ouvir de voc&ecirc;.</p>
+              <a href="#about-contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Envie uma mensagem
+              </a>
+              <div class="nav__contact-popover-divider">ou envie um e-mail diretamente</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copiar endere&ccedil;o de e-mail">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copiar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="nav__actions">
+        <!-- Desktop dropdown menu -->
+        <button class="nav__menu-btn" aria-expanded="false" aria-controls="navDropdown">
+          Menu <span class="nav__menu-btn__arrow">&#9662;</span>
+        </button>
+        <div class="nav__dropdown" id="navDropdown">
+          <a href="vision.html" data-i18n="nav.vision">Vis&atilde;o</a>
+          <a href="innovation-services.html" data-i18n="nav.services">Servi&ccedil;os</a>
+          <a href="../problem-analysis/" data-i18n="nav.problem_analysis">An&aacute;lise de Problemas</a>
+          <a href="blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="https://demos.regenstudio.world" target="_blank" data-i18n="nav.demos">Demos</a>
+          <a href="about.html" data-i18n="nav.about">Sobre</a>
+          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+        </div>
+        <div class="nav__contact-wrap nav__contact-wrap--desktop">
+          <button class="btn btn--small nav__contact-btn" id="navContactBtnDesktop">Fale Conosco</button>
+          <div class="nav__contact-popover" id="navContactPopoverDesktop">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Envie uma mensagem &mdash; ador&iacute;amos ouvir de voc&ecirc;.</p>
+              <a href="#about-contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Envie uma mensagem
+              </a>
+              <div class="nav__contact-popover-divider">ou envie um e-mail diretamente</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copiar endere&ccedil;o de e-mail">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copiar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="nav__toggle" id="navToggle" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="privacy-hero" id="main-content">
+    <div class="privacy-hero__accent"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="privacy-hero__tri tri-1"></div>
+    <div class="privacy-hero__tri tri-2"></div>
+    <div class="privacy-hero__tri tri-3"></div>
+    <div class="privacy-hero__tri tri-4"></div>
+    <div class="privacy-hero__tri tri-5"></div>
+    <div class="privacy-hero__tri tri-6"></div>
+    <div class="privacy-hero__tri tri-7"></div>
+    <div class="privacy-hero__tri tri-8"></div>
+    <div class="privacy-hero__shield">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <h1>Pol&iacute;tica de Privacidade</h1>
+    <p class="privacy-hero__sub">Como tratamos seus dados &mdash; com transpar&ecirc;ncia, minimiza&ccedil;&atilde;o e respeito.</p>
+    <p class="privacy-hero__updated">&Uacute;ltima atualiza&ccedil;&atilde;o: 7 de mar&ccedil;o de 2026</p>
+  </section>
+
+  <!-- TL;DR -->
+  <div class="tldr-card">
+    <h2>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+      A vers&atilde;o resumida
+    </h2>
+    <ul>
+      <li>Nenhum cookie &eacute; definido em nossos sites</li>
+      <li>Todas as fontes, scripts e folhas de estilo s&atilde;o auto-hospedados em ambos os sites</li>
+      <li>Analytics preservam a privacidade: sem cookies, sem IPs brutos, identidade do visitante &eacute; redefinida diariamente</li>
+      <li>Seus dados s&atilde;o armazenados na UE (Frankfurt, Alemanha)</li>
+      <li>Nunca vendemos, alugamos ou compartilhamos seus dados</li>
+      <li>Em conformidade com LGPD, GDPR e Diretiva ePrivacy</li>
+    </ul>
+  </div>
+
+  <main class="privacy-page">
+
+    <!-- Controlador de dados -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--emerald">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h2>Controlador de dados</h2>
+      </div>
+      <p><strong>Regen Studio B.V.</strong> &eacute; o controlador de dados respons&aacute;vel pelos seus dados pessoais conforme descrito nesta pol&iacute;tica. O Regen Studio &eacute; um est&uacute;dio de design e inova&ccedil;&atilde;o registrado nos Pa&iacute;ses Baixos (KVK 90337948), com atividades em Haia, Pa&iacute;ses Baixos, e S&atilde;o Paulo, Brasil (CNPJ 57.579.114/0001-55).</p>
+      <p>Esta pol&iacute;tica de privacidade se aplica aos sites <strong>regenstudio.world</strong> e <strong>demos.regenstudio.world</strong>, e a todos os servi&ccedil;os oferecidos por meio desses dom&iacute;nios.</p>
+      <p>Contato: <a href="mailto:info@regenstudio.world">info@regenstudio.world</a></p>
+    </section>
+
+    <!-- Quais dados coletamos e por quê -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--teal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h2>Quais dados coletamos e por qu&ecirc;</h2>
+      </div>
+      <p>Coletamos dados pessoais apenas quando voc&ecirc; os fornece ativamente, ou quando estritamente necess&aacute;rio para prestar um servi&ccedil;o que voc&ecirc; solicitou.</p>
+
+      <p><strong>Formul&aacute;rios de contato e inscri&ccedil;&otilde;es na newsletter</strong> (regenstudio.world)</p>
+      <ul>
+        <li>Seu nome, endere&ccedil;o de e-mail e organiza&ccedil;&atilde;o (se fornecido)</li>
+        <li>Sua mensagem (se fornecida)</li>
+        <li>A URL da p&aacute;gina de onde voc&ecirc; enviou o formul&aacute;rio</li>
+      </ul>
+      <p>Finalidade: responder &agrave; sua solicita&ccedil;&atilde;o, enviar newsletters e notificar nossa equipe. Base legal: <strong>interesse leg&iacute;timo</strong> (LGPD Art. 7(IX) / GDPR Art. 6(1)(f)) e <strong>consentimento</strong> (LGPD Art. 7(I) / GDPR Art. 6(1)(a)).</p>
+
+      <p><strong>Solicita&ccedil;&otilde;es de acesso a demos e magic links</strong> (demos.regenstudio.world)</p>
+      <ul>
+        <li>Seu endere&ccedil;o de e-mail</li>
+        <li>Um hash criptogr&aacute;fico do token de acesso (o token bruto nunca &eacute; armazenado no servidor)</li>
+      </ul>
+      <p>Finalidade: verificar sua identidade e conceder acesso ao demo. Base legal: <strong>execu&ccedil;&atilde;o de contrato</strong> (LGPD Art. 7(V) / GDPR Art. 6(1)(b)).</p>
+
+      <p><strong>Compras de relat&oacute;rios</strong> (demos.regenstudio.world/cpr-dpp-tracker)</p>
+      <ul>
+        <li>Seu endere&ccedil;o de e-mail</li>
+        <li>Tipo de relat&oacute;rio selecionado e fam&iacute;lia de produtos</li>
+        <li>C&oacute;digo de desconto (se utilizado)</li>
+        <li>Dados de faturamento: nome da empresa, n&uacute;mero de identifica&ccedil;&atilde;o fiscal (VAT ID), endere&ccedil;o (se fornecido para faturamento)</li>
+      </ul>
+      <p>Finalidade: processar seu pedido, gerar seu relat&oacute;rio, emitir uma fatura e fornecer acesso para download. Ao acessar um relat&oacute;rio ou fatura, voc&ecirc; deve verificar seu endere&ccedil;o de e-mail para evitar divulga&ccedil;&atilde;o n&atilde;o intencional de dados por meio de compartilhamento de URL. Base legal: <strong>execu&ccedil;&atilde;o de contrato</strong> (LGPD Art. 7(V) / GDPR Art. 6(1)(b)).</p>
+    </section>
+
+    <!-- O que NÃO coletamos -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--emerald">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h2>O que N&Atilde;O coletamos</h2>
+      </div>
+      <ul>
+        <li><strong>N&atilde;o</strong> definimos nenhum cookie em nossos sites</li>
+        <li><strong>N&atilde;o</strong> utilizamos pixels de rastreamento, fingerprinting ou scripts de publicidade</li>
+        <li><strong>N&atilde;o</strong> compartilhamos dados com anunciantes, corretores de dados ou plataformas de m&iacute;dia social</li>
+        <li><strong>N&atilde;o</strong> utilizamos seus dados para perfilamento ou tomada de decis&atilde;o automatizada</li>
+        <li><strong>N&atilde;o</strong> utilizamos seus dados para marketing, a menos que voc&ecirc; opte explicitamente por isso (ex.: newsletter)</li>
+      </ul>
+      <p>Em ambos os nossos sites, todas as fontes, scripts e folhas de estilo s&atilde;o auto-hospedados &mdash; nenhuma requisi&ccedil;&atilde;o a ativos de terceiros &eacute; feita quando voc&ecirc; navega na p&aacute;gina.</p>
+    </section>
+
+    <!-- Mídias incorporadas de terceiros -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <h2>M&iacute;dias incorporadas de terceiros</h2>
+      </div>
+      <p>Um pequeno n&uacute;mero de posts do blog cont&eacute;m v&iacute;deos incorporados (Vimeo) ou players de &aacute;udio (SoundCloud). Essas incorpora&ccedil;&otilde;es <strong>n&atilde;o s&atilde;o carregadas automaticamente</strong>. Em vez disso, voc&ecirc; ver&aacute; uma tela de consentimento informado explicando exatamente quais dados ser&atilde;o compartilhados com o terceiro (endere&ccedil;o IP, tipo de navegador, sistema operacional, URL da p&aacute;gina). A incorpora&ccedil;&atilde;o s&oacute; &eacute; carregada ap&oacute;s voc&ecirc; clicar explicitamente em &ldquo;Eu entendo.&rdquo;</p>
+      <p>Ap&oacute;s o consentimento e o carregamento da incorpora&ccedil;&atilde;o, a pol&iacute;tica de privacidade do pr&oacute;prio terceiro se aplica aos dados que eles recebem. N&atilde;o controlamos o tratamento que eles realizam.</p>
+    </section>
+
+    <!-- Analytics que preservam a privacidade -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--indigo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h2>Analytics que preservam a privacidade</h2>
+      </div>
+      <p>Em ambos os nossos sites, coletamos dados de analytics para entender quais p&aacute;ginas s&atilde;o visitadas, como os visitantes navegam entre p&aacute;ginas e como interagem com o conte&uacute;do. Este sistema foi projetado desde o in&iacute;cio para preservar a privacidade:</p>
+
+      <div class="analytics-box">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Como funciona
+        </h3>
+        <div class="analytics-flow">
+          <div class="analytics-flow__step">Seu navegador envia<br><code>caminho da p&aacute;gina + tipo de evento</code></div>
+          <span class="analytics-flow__arrow">&rarr;</span>
+          <div class="analytics-flow__step">O servidor gera um hash do seu IP<br>com um <strong>salt que rotaciona diariamente</strong></div>
+          <span class="analytics-flow__arrow">&rarr;</span>
+          <div class="analytics-flow__step">Eventos brutos deletados ap&oacute;s <strong>48 horas</strong>;<br>apenas agregados persistem</div>
+        </div>
+        <p>Seu endere&ccedil;o IP &eacute; utilizado unicamente para gerar um hash unidirecional para contagem de visitantes &uacute;nicos. A f&oacute;rmula do hash &eacute;: <code>SHA-256(daily_salt + IP + UA)</code>. O IP bruto <strong>nunca &eacute; armazenado</strong>. O salt &eacute; rotacionado automaticamente a cada 24 horas por uma fun&ccedil;&atilde;o agendada no banco de dados, tornando imposs&iacute;vel rastrear visitantes entre dias.</p>
+        <p>Cada evento de analytics registra os seguintes dados: caminho da p&aacute;gina, tipo de evento (visualiza&ccedil;&atilde;o de p&aacute;gina, profundidade de rolagem alcan&ccedil;ada ou sa&iacute;da da p&aacute;gina), dom&iacute;nio de refer&ecirc;ncia (de onde voc&ecirc; veio), c&oacute;digo do pa&iacute;s (derivado da configura&ccedil;&atilde;o de fuso hor&aacute;rio do seu navegador, ex.: &ldquo;Europe/Amsterdam&rdquo; &rarr; NL &mdash; n&atilde;o &eacute; geolocaliza&ccedil;&atilde;o precisa), categoria do dispositivo (celular, tablet ou desktop) e fam&iacute;lia do navegador (ex.: Chrome, Safari). Para sa&iacute;das de p&aacute;gina, o tempo gasto na p&aacute;gina tamb&eacute;m &eacute; registrado. Sua string de user-agent &eacute; usada para derivar a categoria do dispositivo e a fam&iacute;lia do navegador, mas <strong>n&atilde;o &eacute; armazenada</strong>.</p>
+        <p>Dados brutos de eventos (incluindo hashes de visitantes) s&atilde;o automaticamente deletados ap&oacute;s 48 horas. Apenas contadores agregados &mdash; sem nenhum detalhe em n&iacute;vel de visitante &mdash; persistem a longo prazo. Nenhum ID de sess&atilde;o, nenhum cookie e nenhuma URL completa s&atilde;o armazenados.</p>
+      </div>
+
+      <p>Como n&atilde;o definimos cookies, n&atilde;o armazenamos endere&ccedil;os IP brutos e utilizamos um salt com rota&ccedil;&atilde;o di&aacute;ria que impede o rastreamento entre dias, este sistema de analytics n&atilde;o requer consentimento sob a Diretiva ePrivacy (Art. 5(3)) ou a Telecommunicatiewet holandesa (Art. 11.7a(3)). A base legal para este tratamento &eacute; <strong>interesse leg&iacute;timo</strong> (LGPD Art. 7(IX) / GDPR Art. 6(1)(f)): compreender o uso agregado do site para melhorar nosso conte&uacute;do e servi&ccedil;os. Esta arquitetura segue a abordagem reconhecida pela CNIL francesa como isenta dos requisitos de consentimento para cookies.</p>
+    </section>
+
+    <!-- Armazenamento local -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        </div>
+        <h2>Armazenamento local</h2>
+      </div>
+      <p>Utilizamos o <code>localStorage</code> do seu navegador em dois casos:</p>
+      <ul>
+        <li><strong>Tokens de acesso a demos</strong> &mdash; quando voc&ecirc; acessa um demo usando um magic link ou senha, armazenamos um token de sess&atilde;o contendo apenas o identificador do demo e um timestamp de expira&ccedil;&atilde;o. Isso mant&eacute;m voc&ecirc; conectado para que n&atilde;o precise se autenticar novamente a cada carregamento de p&aacute;gina.</li>
+        <li><strong>Tokens de desbloqueio de conte&uacute;do</strong> &mdash; quando voc&ecirc; fornece seu e-mail para acessar conte&uacute;do restrito (ex.: detalhes de fam&iacute;lias de produtos), armazenamos um timestamp registrando quando voc&ecirc; desbloqueou o acesso.</li>
+      </ul>
+      <p>Em ambos os casos, o valor armazenado <strong>n&atilde;o cont&eacute;m dados pessoais</strong> (sem e-mail, sem nome). Todos os tokens s&atilde;o programaticamente for&ccedil;ados a expirar ap&oacute;s 24 horas: o c&oacute;digo verifica o timestamp armazenado em rela&ccedil;&atilde;o ao hor&aacute;rio atual e remove tokens expirados automaticamente.</p>
+      <p>Tamb&eacute;m utilizamos <code>sessionStorage</code> (com escopo de aba, automaticamente limpo quando voc&ecirc; fecha a aba) para armazenar o caminho da p&aacute;gina anterior dentro da mesma sess&atilde;o de navega&ccedil;&atilde;o. Isso &eacute; usado exclusivamente para entender padr&otilde;es de navega&ccedil;&atilde;o interna em analytics agregados. Nenhum dado pessoal &eacute; armazenado.</p>
+      <p>Este armazenamento &eacute; <strong>estritamente necess&aacute;rio</strong> para fornecer o servi&ccedil;o que voc&ecirc; solicitou e &eacute; isento de consentimento sob a Diretiva ePrivacy Art. 5(3).</p>
+    </section>
+
+    <div class="priv-divider"><span></span><span></span><span></span><span></span><span></span></div>
+
+    <!-- Suboperadores e armazenamento de dados -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--teal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h2>Suboperadores e armazenamento de dados</h2>
+      </div>
+      <p>Utilizamos os seguintes servi&ccedil;os de terceiros. Cada um &eacute; contratualmente obrigado a proteger seus dados de acordo com a legisla&ccedil;&atilde;o de prote&ccedil;&atilde;o de dados aplic&aacute;vel.</p>
+
+      <div class="processor-grid">
+        <div class="processor-card">
+          <p class="processor-card__name">Supabase Inc.</p>
+          <p class="processor-card__role">Hospedagem de banco de dados, fun&ccedil;&otilde;es server-side, autentica&ccedil;&atilde;o e processamento de analytics. Todos os dados armazenados na UE (Frankfurt, Alemanha).</p>
+          <span class="processor-card__tag processor-card__tag--eu">Hospedado na UE</span>
+        </div>
+        <div class="processor-card">
+          <p class="processor-card__name">Mollie B.V.</p>
+          <p class="processor-card__role">Processamento de pagamentos para compras de relat&oacute;rios. Provedor de pagamentos holand&ecirc;s regulamentado pelo De Nederlandsche Bank.</p>
+          <span class="processor-card__tag processor-card__tag--nl">Pa&iacute;ses Baixos</span>
+        </div>
+        <div class="processor-card">
+          <p class="processor-card__name">Lettermint</p>
+          <p class="processor-card__role">Entrega de e-mails transacionais: confirma&ccedil;&otilde;es, magic links, recibos de compra, newsletters e notifica&ccedil;&otilde;es internas.</p>
+          <span class="processor-card__tag processor-card__tag--eu">UE</span>
+        </div>
+        <div class="processor-card">
+          <p class="processor-card__name">Exact Online (Exact Group B.V.)</p>
+          <p class="processor-card__role">Software de contabilidade utilizado para gerenciar faturas e registros financeiros. Dados de faturas s&atilde;o compartilhados com nosso contador, <a href="https://blendedbusiness.nl/" target="_blank" rel="noopener">Blended Business</a> (Haia), via Exact Online.</p>
+          <span class="processor-card__tag processor-card__tag--nl">Pa&iacute;ses Baixos</span>
+        </div>
+        <div class="processor-card">
+          <p class="processor-card__name">Proton Mail (Proton AG)</p>
+          <p class="processor-card__role">E-mail com criptografia de ponta a ponta. Envios de formul&aacute;rios de contato e correspond&ecirc;ncia comercial s&atilde;o recebidos e armazenados em nossa caixa de entrada do Proton Mail.</p>
+          <span class="processor-card__tag processor-card__tag--eu">Su&iacute;&ccedil;a</span>
+        </div>
+        <div class="processor-card">
+          <p class="processor-card__name">GitHub (Microsoft)</p>
+          <p class="processor-card__role">Hospedagem de site est&aacute;tico via GitHub Pages. Serve arquivos HTML, CSS, JS e fontes. Nenhum dado pessoal &eacute; armazenado pelo GitHub em nosso nome.</p>
+          <span class="processor-card__tag processor-card__tag--us">Hospedado nos EUA</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transferências internacionais de dados -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--indigo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <h2>Transfer&ecirc;ncias internacionais de dados</h2>
+      </div>
+      <p>Seus dados pessoais (envios de formul&aacute;rios, pedidos) s&atilde;o armazenados na UE (Frankfurt, Alemanha) via Supabase. Pagamentos s&atilde;o processados pela Mollie nos Pa&iacute;ses Baixos. Faturas s&atilde;o gerenciadas pelo Exact Online (Pa&iacute;ses Baixos). E-mails s&atilde;o gerenciados pelo Proton Mail (Su&iacute;&ccedil;a, que possui uma decis&atilde;o de adequa&ccedil;&atilde;o da UE).</p>
+      <p>Os sites est&aacute;ticos s&atilde;o hospedados no GitHub Pages (Estados Unidos). O GitHub serve apenas arquivos est&aacute;ticos e n&atilde;o processa dados pessoais em nosso nome; no entanto, logs padr&atilde;o do servidor HTTP (incluindo endere&ccedil;os IP) podem ser temporariamente retidos pelo GitHub de acordo com sua <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">declara&ccedil;&atilde;o de privacidade</a>.</p>
+      <p>Para transfer&ecirc;ncias para os Estados Unidos, nos baseamos no EU&ndash;US Data Privacy Framework quando aplic&aacute;vel, complementado por Cl&aacute;usulas Contratuais Padr&atilde;o (SCCs). Para transfer&ecirc;ncias a partir do Brasil, estas s&atilde;o cobertas pela LGPD Art. 33 com salvaguardas adequadas.</p>
+    </section>
+
+    <!-- Como usamos seus dados -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--emerald">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <h2>Como usamos seus dados</h2>
+      </div>
+      <ul>
+        <li>Para responder &agrave; sua solicita&ccedil;&atilde;o ou pedido de acesso</li>
+        <li>Para enviar e-mails de confirma&ccedil;&atilde;o ou magic links</li>
+        <li>Para processar compras de relat&oacute;rios e entregar o relat&oacute;rio</li>
+        <li>Para gerar e enviar faturas</li>
+        <li>Para enviar newsletters (somente com seu consentimento expl&iacute;cito)</li>
+        <li>Para notificar nossa equipe sobre envios e pedidos</li>
+        <li>Para entender o uso agregado do site (analytics que preservam a privacidade, em ambos os sites)</li>
+      </ul>
+      <p>N&atilde;o utilizamos seus dados para marketing (al&eacute;m de newsletters com opt-in), perfilamento ou tomada de decis&atilde;o automatizada.</p>
+    </section>
+
+    <!-- Quem tem acesso -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--crimson">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h2>Quem tem acesso</h2>
+      </div>
+      <p>N&atilde;o vendemos, alugamos ou compartilhamos seus dados pessoais com terceiros al&eacute;m dos suboperadores listados acima. Abaixo est&aacute; um detalhamento de exatamente o que cada parte pode acessar:</p>
+      <ul>
+        <li><strong>Equipe do Regen Studio</strong> &mdash; acesso completo a todos os dados armazenados em nossos sistemas (envios de contato, pedidos, listas de newsletter, pain&eacute;is de analytics).</li>
+        <li><strong>Supabase</strong> &mdash; hospeda todos os dados pessoais no servidor: entradas de formul&aacute;rios de contato (nome, e-mail, organiza&ccedil;&atilde;o, mensagem), pedidos de relat&oacute;rios (e-mail, endere&ccedil;o de cobran&ccedil;a, VAT ID, registros de faturas), listas de assinantes de newsletter, tokens de magic link e hashes de analytics.</li>
+        <li><strong>Lettermint</strong> &mdash; recebe endere&ccedil;os de e-mail e conte&uacute;do de mensagens para cada e-mail transacional que enviamos: confirma&ccedil;&otilde;es de formul&aacute;rios de contato, magic links, recibos de compra, PDFs de faturas, links de download e edi&ccedil;&otilde;es de newsletter.</li>
+        <li><strong>Mollie</strong> &mdash; recebe apenas valores de pagamento, um ID de pedido interno e uma URL de redirecionamento. Dados pessoais do comprador (nome, endere&ccedil;o, VAT ID) <strong>n&atilde;o</strong> s&atilde;o enviados &agrave; Mollie e permanecem em nosso banco de dados.</li>
+        <li><strong>Proton Mail</strong> &mdash; nossa caixa de correio. E-mails de notifica&ccedil;&atilde;o interna (contendo envios de formul&aacute;rios de contato, alertas de pedidos e solicita&ccedil;&otilde;es de magic link) s&atilde;o entregues aqui pelo Lettermint. Suas respostas para n&oacute;s tamb&eacute;m s&atilde;o armazenadas nesta caixa de entrada.</li>
+        <li><strong><a href="https://blendedbusiness.nl/" target="_blank" rel="noopener">Blended Business</a></strong> (nosso contador, Haia) &mdash; recebe dados de faturas (nome, nome da empresa, VAT ID, valores) via Exact Online para fins de escritura&ccedil;&atilde;o cont&aacute;bil e declara&ccedil;&atilde;o de impostos.</li>
+        <li><strong>GitHub Pages</strong> &mdash; serve apenas arquivos est&aacute;ticos (HTML, CSS, JS, fontes). Nenhum dado pessoal &eacute; transmitido ao GitHub pelo nosso c&oacute;digo; no entanto, o GitHub pode registrar temporariamente endere&ccedil;os IP em logs padr&atilde;o do servidor conforme sua pr&oacute;pria <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">declara&ccedil;&atilde;o de privacidade</a>.</li>
+      </ul>
+    </section>
+
+    <!-- Retenção de dados -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h2>Reten&ccedil;&atilde;o de dados</h2>
+      </div>
+      <ul>
+        <li><strong>Envios de formul&aacute;rios de contato:</strong> automaticamente exclu&iacute;dos ap&oacute;s 90 dias. Voc&ecirc; pode solicitar a exclus&atilde;o antecipada a qualquer momento.</li>
+        <li><strong>Assinantes da newsletter:</strong> mantidos at&eacute; o cancelamento da inscri&ccedil;&atilde;o. Registros de cancelamento s&atilde;o automaticamente exclu&iacute;dos ap&oacute;s 30 dias (direito &agrave; elimina&ccedil;&atilde;o pela LGPD/GDPR). Voc&ecirc; pode solicitar a exclus&atilde;o completa a qualquer momento.</li>
+        <li><strong>Logs de eventos de e-mail:</strong> payloads brutos de webhooks do nosso servi&ccedil;o de entrega de e-mail s&atilde;o automaticamente exclu&iacute;dos ap&oacute;s 90 dias.</li>
+        <li><strong>Tokens de magic link:</strong> tokens com hash expiram ap&oacute;s 15 minutos e n&atilde;o podem mais ser usados para autentica&ccedil;&atilde;o. Links usados e expirados s&atilde;o automaticamente exclu&iacute;dos ap&oacute;s 7 dias.</li>
+        <li><strong>Pedidos de relat&oacute;rios e faturas:</strong> mantidos por pelo menos 7 anos conforme exigido pela legisla&ccedil;&atilde;o fiscal holandesa (Algemene wet inzake rijksbelastingen, Art. 52).</li>
+        <li><strong>Eventos brutos de analytics e hashes de visitantes:</strong> automaticamente exclu&iacute;dos ap&oacute;s 48 horas. Apenas contadores agregados (sem nenhum detalhe em n&iacute;vel de visitante) persistem a longo prazo. O salt de hash &eacute; rotacionado diariamente via fun&ccedil;&atilde;o agendada automatizada, tornando imposs&iacute;vel a identifica&ccedil;&atilde;o de visitantes entre dias.</li>
+        <li><strong>Tokens de localStorage no navegador:</strong> expiram automaticamente ap&oacute;s 24 horas, com aplica&ccedil;&atilde;o program&aacute;tica.</li>
+      </ul>
+    </section>
+
+    <div class="priv-divider"><span></span><span></span><span></span><span></span><span></span></div>
+
+    <!-- Seus direitos -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--indigo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h2>Seus direitos</h2>
+      </div>
+      <p>Dependendo de onde voc&ecirc; est&aacute; localizado, voc&ecirc; possui direitos espec&iacute;ficos em rela&ccedil;&atilde;o aos seus dados pessoais.</p>
+
+      <div class="rights-grid">
+        <div class="rights-col">
+          <h3>LGPD (Brasil)</h3>
+          <span class="rights-col__ref">Lei 13.709/2018</span>
+          <ul>
+            <li>Confirma&ccedil;&atilde;o da exist&ecirc;ncia de tratamento</li>
+            <li>Acesso aos seus dados pessoais</li>
+            <li>Corre&ccedil;&atilde;o de dados incompletos, inexatos ou desatualizados</li>
+            <li>Anonimiza&ccedil;&atilde;o, bloqueio ou elimina&ccedil;&atilde;o de dados desnecess&aacute;rios</li>
+            <li>Portabilidade dos seus dados</li>
+            <li>Elimina&ccedil;&atilde;o de dados tratados com consentimento</li>
+            <li>Informa&ccedil;&atilde;o sobre entidades com as quais dados foram compartilhados</li>
+            <li>Revoga&ccedil;&atilde;o do consentimento</li>
+          </ul>
+          <p style="font-size:0.78rem;color:var(--color-text-muted);margin:12px 0 0">Autoridade supervisora: <a href="https://www.gov.br/anpd" target="_blank" rel="noopener">ANPD</a></p>
+        </div>
+        <div class="rights-col">
+          <h3>GDPR (Uni&atilde;o Europeia)</h3>
+          <span class="rights-col__ref">Regulamento (UE) 2016/679</span>
+          <ul>
+            <li>Acesso aos seus dados pessoais</li>
+            <li>Retifica&ccedil;&atilde;o de dados inexatos</li>
+            <li>Solicita&ccedil;&atilde;o de elimina&ccedil;&atilde;o (&ldquo;direito ao esquecimento&rdquo;)</li>
+            <li>Restri&ccedil;&atilde;o do tratamento</li>
+            <li>Oposi&ccedil;&atilde;o ao tratamento</li>
+            <li>Portabilidade de dados</li>
+            <li>Revoga&ccedil;&atilde;o do consentimento a qualquer momento</li>
+            <li>Apresenta&ccedil;&atilde;o de reclama&ccedil;&atilde;o junto a uma autoridade supervisora</li>
+          </ul>
+          <p style="font-size:0.78rem;color:var(--color-text-muted);margin:12px 0 0">Autoridade supervisora para os Pa&iacute;ses Baixos: <a href="https://autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener">Autoriteit Persoonsgegevens (AP)</a></p>
+        </div>
+      </div>
+
+      <p>Para visitantes de outras jurisdi&ccedil;&otilde;es, estendemos os mesmos direitos listados acima como boa pr&aacute;tica, independentemente de a legisla&ccedil;&atilde;o local exigir.</p>
+    </section>
+
+    <!-- Como exercer seus direitos -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--emerald">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
+        </div>
+        <h2>Como exercer seus direitos</h2>
+      </div>
+      <p>Para exercer qualquer um dos seus direitos, entre em contato conosco em <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>. Confirmaremos o recebimento da sua solicita&ccedil;&atilde;o em at&eacute; 5 dias &uacute;teis e responderemos de forma substantiva em at&eacute; 15 dias (em conformidade com a LGPD Art. 18 &sect;5).</p>
+      <p>Se voc&ecirc; solicitar a exclus&atilde;o, apagaremos todos os dados pessoais que possu&iacute;mos sobre voc&ecirc;, exceto quando a reten&ccedil;&atilde;o for exigida por lei (ex.: registros de faturas sob a legisla&ccedil;&atilde;o fiscal holandesa).</p>
+    </section>
+
+    <!-- Crianças -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h2>Crian&ccedil;as</h2>
+      </div>
+      <p>Nossos servi&ccedil;os s&atilde;o direcionados a empresas e profissionais. N&atilde;o coletamos intencionalmente dados pessoais de crian&ccedil;as menores de 16 anos. Se voc&ecirc; acredita que inadvertidamente coletamos dados de uma crian&ccedil;a, entre em contato conosco e os excluiremos prontamente.</p>
+    </section>
+
+    <!-- Uso de ferramentas de IA -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--indigo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h2>Uso de ferramentas de IA</h2>
+      </div>
+      <p>No esp&iacute;rito da transpar&ecirc;ncia, divulgamos que ferramentas assistidas por IA (incluindo Claude da Anthropic) s&atilde;o utilizadas no desenvolvimento deste site e na cria&ccedil;&atilde;o e edi&ccedil;&atilde;o de conte&uacute;do. Todo conte&uacute;do gerado ou assistido por IA &eacute; revisado por nossa equipe quanto &agrave; precis&atilde;o antes da publica&ccedil;&atilde;o.</p>
+      <p>Nenhum dado pessoal que voc&ecirc; forne&ccedil;a por meio de nossos formul&aacute;rios ou servi&ccedil;os &eacute; compartilhado com ferramentas de IA. A assist&ecirc;ncia de IA &eacute; limitada ao desenvolvimento do site, reda&ccedil;&atilde;o de conte&uacute;do e pesquisa interna. Seus dados nunca entram em pipelines de treinamento de IA.</p>
+      <p>Para as informa&ccedil;&otilde;es regulat&oacute;rias mais atuais publicadas em nosso blog, sempre recomendamos consultar fontes oficiais da UE, como o <a href="https://eur-lex.europa.eu" target="_blank" rel="noopener">Jornal Oficial da Uni&atilde;o Europeia</a>.</p>
+    </section>
+
+    <!-- Alterações nesta política -->
+    <section class="priv-section">
+      <div class="priv-section__header">
+        <div class="priv-section__icon priv-section__icon--teal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+        </div>
+        <h2>Altera&ccedil;&otilde;es nesta pol&iacute;tica</h2>
+      </div>
+      <p>Podemos atualizar esta pol&iacute;tica de privacidade periodicamente. Quaisquer altera&ccedil;&otilde;es ser&atilde;o publicadas nesta p&aacute;gina com uma data atualizada. Se fizermos altera&ccedil;&otilde;es materiais que afetem a forma como tratamos seus dados pessoais, notificaremos os assinantes existentes da newsletter por e-mail.</p>
+    </section>
+
+    <div class="priv-divider"><span></span><span></span><span></span><span></span><span></span></div>
+
+    <!-- Contato -->
+    <div class="contact-box">
+      <p><strong>D&uacute;vidas sobre sua privacidade?</strong></p>
+      <p>Teremos prazer em explicar qualquer aspecto desta pol&iacute;tica com mais detalhes ou ajud&aacute;-lo a exercer seus direitos.</p>
+      <a href="mailto:info@regenstudio.world" class="cta">Fale conosco</a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="Regen Studio">
+    <meta itemprop="url" content="https://www.regenstudio.world">
+    <meta itemprop="email" content="info@regenstudio.world">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo">
+          <img src="../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img">
+        </a>
+        <p>Pioneiros em inova&ccedil;&otilde;es para a regenera&ccedil;&atilde;o dos nossos ecossistemas naturais, humanos e urbanos.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Navegar</h4>
+          <ul>
+            <li><a href="about.html" data-i18n="footer.about">Sobre N&oacute;s</a></li>
+            <li><a href="vision.html" data-i18n="footer.vision">Vis&atilde;o</a></li>
+            <li><a href="innovation-services.html" data-i18n="footer.services">Servi&ccedil;os</a></li>
+            <li><a href="../digital-product-passports/" data-i18n="footer.product_passports">Passaporte do Produto</a></li>
+            <li><a href="../digital-identities/" data-i18n="footer.digital_identity">Identidade Digital</a></li>
+            <li><a href="blog.html" data-i18n="footer.blog">Blog</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+            <li><a href="faq.html" data-i18n="footer.faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contato</h4>
+          <ul>
+            <li>
+              <span class="footer__email-row">
+                <span class="footer__email-address">info@regenstudio.world</span>
+                <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copiar endere&ccedil;o de e-mail">
+                  <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+              </span>
+            </li>
+            <li><a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" itemprop="sameAs">LinkedIn</a></li>
+            <li><a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" itemprop="sameAs">Bluesky</a></li>
+            <li><a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" itemprop="sameAs">Mastodon</a></li>
+          </ul>
+        </div>
+        <div class="footer__col footer__col--locations">
+          <h4>Localiza&ccedil;&otilde;es</h4>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">Pa&iacute;ses Baixos</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio B.V.</p>
+              <p class="footer__address"><span itemprop="streetAddress">Stollenbergweg 43</span>, <span itemprop="postalCode">6571 AB</span>, <span itemprop="addressLocality">Berg en Dal</span></p>
+              <meta itemprop="addressCountry" content="NL">
+            </div>
+            <p class="footer__reg">KVK 90337948</p>
+          </div>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">Brasil</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio Consultoria LTDA</p>
+              <p class="footer__address"><span itemprop="streetAddress">Av. Washington Lu&iacute;s 1527, 174B</span><br><span itemprop="postalCode">04662-002</span>, <span itemprop="addressLocality">S&atilde;o Paulo</span></p>
+              <meta itemprop="addressCountry" content="BR">
+            </div>
+            <p class="footer__reg">CNPJ 57.579.114/0001-55</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Regen Studio. Todos os direitos reservados. &middot; <a href="privacy.html">Pol&iacute;tica de Privacidade</a> &middot; <a href="terms.html">Termos de Uso</a> &middot; <a href="about.html">Sobre</a> &middot; <a href="../admin/">Admin</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/nav.js" defer></script>
+  <script src="../assets/js/i18n.js" defer></script>
+  <script src="../assets/js/tracker.js"></script>
+</body>
+</html>
