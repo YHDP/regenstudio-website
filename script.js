@@ -807,6 +807,7 @@
       freezeBtn.classList.toggle('frozen', frozen);
       var textEl = freezeBtn.querySelector('.freeze-btn__text');
       var iconEl = freezeBtn.querySelector('.freeze-btn__icon');
+      freezeBtn.setAttribute('aria-expanded', String(frozen));
       if (frozen) {
         textEl.textContent = t('hero.unfreeze', 'Unfreeze');
         iconEl.innerHTML = '<polygon points="6,3 20,12 6,21" fill="currentColor" stroke="none"/>';
@@ -1551,6 +1552,7 @@
         .catch(function (err) {
           var errorEl = document.createElement('p');
           errorEl.className = 'regen-form__error';
+          errorEl.setAttribute('role', 'alert');
           errorEl.textContent = err.message || t('form.error_default', 'Failed to send. Please try again.');
           submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
           submitBtn.disabled = false;
@@ -1563,6 +1565,7 @@
         window.Antibot.validate(form).then(doSubmit).catch(function (errMsg) {
           var errorEl = document.createElement('p');
           errorEl.className = 'regen-form__error';
+          errorEl.setAttribute('role', 'alert');
           errorEl.textContent = errMsg;
           submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
           submitBtn.disabled = false;

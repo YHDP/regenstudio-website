@@ -77,7 +77,7 @@
       <ul class="nav__links" id="navLinks">
         <li><a href="about.html" data-i18n="nav.about">About</a></li>
         <li><a href="vision.html" data-i18n="nav.vision">Vision</a></li>
-        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="nav.demos">Demos</a></li>
         <li><a href="innovation-services.html" data-i18n="nav.services">Services</a></li>
         <li><a href="digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
         <li><a href="digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
@@ -114,7 +114,7 @@
           <a href="innovation-services.html" data-i18n="nav.services">Services</a>
           <a href="problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
           <a href="blog.html" data-i18n="nav.blog">Blog</a>
-          <a href="https://demos.regenstudio.world" target="_blank" data-i18n="nav.demos">Demos</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos <span class="sr-only">(opens in new tab)</span></a>
           <a href="about.html" data-i18n="nav.about">About</a>
           <a href="faq.html" data-i18n="nav.faq">FAQ</a>
         </div>
@@ -139,7 +139,7 @@
             </div>
           </div>
         </div>
-        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -147,7 +147,8 @@
   </nav>
 
   <!-- Blog Hero -->
-  <section class="blog-hero" id="main-content">
+  <main id="main-content">
+  <section class="blog-hero">
     <!-- Decorative triangles -->
     <div class="blog-hero__triangles" aria-hidden="true">
       <div class="blog-hero__tri blog-hero__tri--1"></div>
@@ -233,7 +234,7 @@
           <button type="submit" class="btn btn--primary regen-form__submit">Send Message</button>
           <p class="regen-form__disclaimer">Your data is stored in the EU and not shared with third parties. <a href="privacy.html">Privacy Policy</a></p>
         </form>
-        <div id="blog-contact-success" class="regen-form__success" style="display:none">
+        <div id="blog-contact-success" class="regen-form__success" role="status" style="display:none">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
           <h3>Message sent!</h3>
           <p>We will be in touch soon.</p>
@@ -272,6 +273,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- Footer -->
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
     <meta itemprop="name" content="Regen Studio">
@@ -295,7 +298,7 @@
             <li><a href="digital-product-passports/" data-i18n="footer.product_passports">Product Passports</a></li>
             <li><a href="digital-identities/" data-i18n="footer.digital_identity">Digital Identity</a></li>
             <li><a href="blog.html" data-i18n="footer.blog">Blog</a></li>
-            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" rel="noopener" data-i18n="footer.demos">Demos</a></li>
             <li><a href="faq.html" data-i18n="footer.faq">FAQ</a></li>
           </ul>
         </div>

@@ -478,6 +478,19 @@
       } else {
         grid.innerHTML = filtered.map(renderCard).join('');
       }
+
+      // Announce filter results to screen readers
+      let filterStatus = document.getElementById('blogFilterStatus');
+      if (!filterStatus) {
+        filterStatus = document.createElement('div');
+        filterStatus.id = 'blogFilterStatus';
+        filterStatus.className = 'sr-only';
+        filterStatus.setAttribute('aria-live', 'polite');
+        grid.parentNode.insertBefore(filterStatus, grid);
+      }
+      filterStatus.textContent = filtered.length === 0
+        ? t("blog.no_posts_title", "No posts found")
+        : t("blog.filter_status", "Showing " + filtered.length + " article" + (filtered.length !== 1 ? "s" : ""));
     }
 
     // Pill click handler (delegated)
@@ -727,10 +740,10 @@
       <p class="post-cta-banner__text">${t("blog.cta_text", "Interested in working together on regenerative innovation?")}</p>
       <form id="post-contact-form" class="regen-form regen-form--compact">
         <div class="regen-form__row">
-          <input type="text" name="name" placeholder="${t("form.name", "Your name")}" class="regen-form__input" required>
-          <input type="email" name="email" placeholder="${t("form.email", "Email address")}" class="regen-form__input" required>
+          <input type="text" name="name" placeholder="${t("form.name", "Your name")}" aria-label="${t("form.name", "Your name")}" class="regen-form__input" required>
+          <input type="email" name="email" placeholder="${t("form.email", "Email address")}" aria-label="${t("form.email", "Email address")}" class="regen-form__input" required>
         </div>
-        <textarea name="message" placeholder="${t("blog.form_message", "What's on your mind?")}" class="regen-form__input regen-form__textarea" rows="2"></textarea>
+        <textarea name="message" placeholder="${t("blog.form_message", "What's on your mind?")}" aria-label="${t("blog.form_message", "What's on your mind?")}" class="regen-form__input regen-form__textarea" rows="2"></textarea>
         <label class="regen-form__checkbox">
           <input type="checkbox" name="newsletter_opt_in" value="1">
           <span>${t("form.newsletter", "Also subscribe me to the Regen Studio newsletter")}</span>
@@ -738,7 +751,7 @@
         <button type="submit" class="btn btn--primary regen-form__submit">${t("form.submit", "Send Message")}</button>
         <p class="regen-form__disclaimer">${t("form.disclaimer", "Your data is stored in the EU and not shared with third parties.")} <a href="${basePath}privacy.html">${t("form.privacy_link", "Privacy Policy")}</a></p>
       </form>
-      <div id="post-contact-success" class="regen-form__success" style="display:none">
+      <div id="post-contact-success" class="regen-form__success" role="status" style="display:none">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 10"/></svg>
         <h3>${t("form.success_title", "Message sent!")}</h3>
         <p>${t("form.success_text", "We'll be in touch shortly.")}</p>
@@ -1010,6 +1023,7 @@
         } catch (err) {
           const errorEl = document.createElement('p');
           errorEl.className = 'regen-form__error';
+          errorEl.setAttribute('role', 'alert');
           errorEl.textContent = err.message || t("form.error_default", "Failed to send. Please try again.");
           submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
           submitBtn.disabled = false;
