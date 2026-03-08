@@ -541,6 +541,14 @@ function localizePageLinks(html: string, lang: Lang, ap: string): string {
   }
   // Also localize root-relative fragment links like ../..//#contact-form → ../../nl/#contact-form
   result = result.replaceAll(`href="${ap}/#`, `href="${ap}${lang}/#`);
+  // Translate sr-only accessibility text
+  const srOnlyText: Record<string, string> = {
+    nl: "(opent in een nieuw tabblad)",
+    pt: "(abre em nova aba)",
+  };
+  if (srOnlyText[lang]) {
+    result = result.replaceAll("(opens in new tab)", srOnlyText[lang]);
+  }
   return result;
 }
 
