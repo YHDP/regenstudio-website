@@ -1000,9 +1000,28 @@
 .post-tag:nth-child(6n+5):hover { border-color: rgba(255, 169, 45, 0.3); color: var(--color-orange); }
 .post-tag:nth-child(6n+6):hover { border-color: rgba(101, 221, 53, 0.3); color: var(--color-green); }
 
+/* --- License Notice --- */
+.post-license {
+  margin-top: 40px;
+  padding: 16px 20px;
+  border-left: 3px solid var(--color-teal, #0d9488);
+  background: var(--color-bg-card, #f8fafb);
+  border-radius: 0 8px 8px 0;
+}
+.post-license p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #6b7280);
+  line-height: 1.5;
+}
+.post-license a {
+  color: var(--color-teal, #0d9488);
+  font-weight: 600;
+}
+
 /* --- Share Section --- */
 .post-share {
-  margin-top: 40px;
+  margin-top: 24px;
 }
 
 .post-share__card {
