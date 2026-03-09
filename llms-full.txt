@@ -304,7 +304,7 @@ CPR DPP Tracker features, Battery Passport Checker functionality, overview of al
 Regen Studio follows a zero third-party connections architecture across both its main site (www.regenstudio.world) and demos site (demos.regenstudio.world):
 
 - **Zero cookies**: No cookies are set. No cookie banners needed.
-- **Self-hosted fonts**: Inter, Playfair Display, and Material Icons are served from `assets/fonts/` — no Google Fonts or CDN connections.
+- **Self-hosted fonts**: Inter and Playfair Display are served from `assets/fonts/` — no Google Fonts or CDN connections.
 - **Self-hosted JavaScript**: All scripts are first-party. No external CDN dependencies (no cdnjs, jsdelivr, unpkg).
 - **No tracking**: No Google Analytics, no Meta Pixel, no fingerprinting, no advertising scripts.
 - **Privacy-preserving analytics**: IP addresses are SHA-256 hashed with a daily-rotating salt. Only aggregate counters persist. No raw IPs are stored.
@@ -325,7 +325,7 @@ Regen Studio follows a zero third-party connections architecture across both its
 - **Demos hosting**: GitHub Pages at demos.regenstudio.world
 - **Blog CMS**: JSON-based — each post is a directory with `meta.json` (metadata) and `content.html` (article body), indexed by `blogs.json`
 - **Design system**: CSS custom properties in `:root`, BEM naming convention, responsive via media queries
-- **Fonts**: Self-hosted Inter (sans-serif), Playfair Display (serif), Material Icons
+- **Fonts**: Self-hosted Inter (sans-serif), Playfair Display (serif)
 - **Dependencies**: Zero npm dependencies. Zero external scripts. Zero CDN connections.
 - **Interactive features**: Canvas-based triangle ecosystem on homepage (physics simulation), interactive CPR product family tracker, battery passport questionnaire
 

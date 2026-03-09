@@ -70,6 +70,8 @@
   "blog.no_posts_text": "Try adjusting your filters to find what you're looking for.",
   "blog.clear_filters": "Clear all filters",
   "blog.no_tags": "No tags found",
+  "blog.license": "This article is licensed under",
+  "blog.license_detail": "You may share and adapt for non-commercial purposes with attribution.",
   "blog.share_label": "Share this article",
   "blog.share_or": "or share on",
   "blog.share_native": "Share",

@@ -70,6 +70,8 @@
   "blog.no_posts_text": "Pas je filters aan om te vinden wat je zoekt.",
   "blog.clear_filters": "Alle filters wissen",
   "blog.no_tags": "Geen tags gevonden",
+  "blog.license": "Dit artikel is gelicentieerd onder",
+  "blog.license_detail": "Je mag het delen en bewerken voor niet-commerciële doeleinden met bronvermelding.",
   "blog.share_label": "Deel dit artikel",
   "blog.share_or": "of deel via",
   "blog.share_native": "Deel",

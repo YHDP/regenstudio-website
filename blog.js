@@ -637,6 +637,9 @@
         <div class="post-tags" id="postTags">
           ${post.tags.map(t => `<a href="${pageUrl('blog.html')}#${encodeURIComponent('tag=' + t)}" class="post-tag">#${t}</a>`).join('')}
         </div>
+        <div class="post-license">
+          <p>${t("blog.license", "This article is licensed under")} <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0 <span class="sr-only">${t("blog.opens_new_tab", "(opens in new tab)")}</span></a>. ${t("blog.license_detail", "You may share and adapt for non-commercial purposes with attribution.")}</p>
+        </div>
         <div class="post-share">
           <div class="post-share__card">
             <p class="post-share__label">${t("blog.share_label", "Share this article")}</p>
