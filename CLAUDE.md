@@ -217,6 +217,49 @@ Generators live on Proton Drive (not in git): `CLAUDE CODE SYNC FOLDER/3-marketi
 5. Download, copy to `Images/`, update meta tags
 6. Remove generator files from repo: `rm _og-generator.html _banner-generator.html _landscape*.png`
 
+## Lighthouse Quality Gate
+
+Every page must score **95+** on all four Lighthouse categories (Performance, Accessibility, Best Practices, SEO). Run `CHROME_PATH="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" npx lighthouse <url> --only-categories=performance,accessibility,best-practices,seo --chrome-flags="--headless=new --no-sandbox" --output=json` to verify.
+
+### When to run Lighthouse
+- After adding or significantly modifying any page
+- After changing shared CSS (style.css, blog.css) or shared JS (script.js, blog.js)
+- Before pushing to live — compare against live baseline
+
+### Accessibility rules (prevent contrast/ARIA failures)
+- **Color contrast**: All text must meet WCAG AA 4.5:1 ratio (3:1 for large text ≥18.66px bold or ≥24px). Brand colors (#008545, #009BBB, #FFA92D, #65DD35) are too light for text on light backgrounds — use darkened variants:
+  | Brand color | Accessible text variant | Use for |
+  |-------------|------------------------|---------|
+  | #008545 (emerald) | #006d38 or #006838 | Links on white, tags on tinted bg |
+  | #009BBB (teal) | #00728b or #006E84 | Links on white, tags on tinted bg |
+  | #FFA92D (orange) | #905d16 or #935D0D | Tags on tinted bg |
+  | #65DD35 (green) | #357a1c or #307713 | Tags on tinted bg |
+  | #A0701A (gold) | #7a5814 | Tags on tinted bg |
+  | #93093F (magenta) | #93093F (passes as-is) | — |
+- **Never use `opacity` on containers with text/links** — use explicit muted colors instead
+- **ARIA**: Modal dialogs must use `inert` attribute when hidden (not just `aria-hidden`). Never override `role="listitem"` with `role="button"` — keep semantic roles intact
+- **Headings**: No skipped levels (h1→h3). Footer uses h2. Blog cards use h2
+- **Iframes**: Always include `title` attribute on `<iframe>` elements
+
+### HTML validity rules (prevent W3C validator errors)
+- **No spaces in file paths** — rename files or URL-encode
+- **No duplicate `id` attributes** — each id must be unique per page
+- **`<main>` gets `id="main-content"`**, not `<section>` inside it
+
+### Performance rules
+- Prefer SVG over raster for illustrations (SVGs gzip to ~85% smaller)
+- Preload LCP images with `fetchpriority="high"`
+- `font-display: optional` for decorative fonts (KoHo logo)
+- No uncompressed images >50KB — use WebP for photos, SVG for illustrations
+
+### SEO rules
+- Every page needs `<title>`, `<meta description>`, canonical URL, and OG tags
+- Only `thank-you.html` should have `noindex` — all other pages must be crawlable
+
+### Best Practices rules
+- No console errors — watch for variable shadowing (`const` hoisting in JS)
+- CSP `frame-src` includes `'self'` (for self-hosted PDF embeds)
+
 ## Current Status
 - Live site with 35+ blog posts, newsletter system, contact forms
 - Hero triangle canvas animation active

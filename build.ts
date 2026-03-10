@@ -199,16 +199,19 @@ function resolveImageSrc(slug: string, featuredImage: string, prefix: string): s
 }
 
 /**
- * Adjust content image paths for the page depth.
- * Blog content.html files use root-relative paths like "Blogs/slug/image.webp"
- * and "Images/file.svg" (no leading slash). These need a prefix to resolve
- * correctly from the generated page location.
+ * Adjust content paths for the page depth.
+ * Blog content.html files use root-relative paths like "Blogs/slug/image.webp",
+ * "Images/file.svg", and "assets/css/embed-consent.css" (no leading slash).
+ * These need a prefix to resolve correctly from the generated page at
+ * /blog/<slug>/index.html (depth ../../) or /<lang>/blog/<slug>/index.html
+ * (depth ../../../).
  */
 function adjustContentPaths(content: string, prefix: string): string {
   return content
     .replace(/src="(Blogs\/[^"]+)"/g, `src="${prefix}$1"`)
     .replace(/src="(Images\/[^"]+)"/g, `src="${prefix}$1"`)
-    .replace(/href="(Blogs\/[^"]+)"/g, `href="${prefix}$1"`);
+    .replace(/href="(Blogs\/[^"]+)"/g, `href="${prefix}$1"`)
+    .replace(/href="(assets\/[^"]+)"/g, `href="${prefix}$1"`);
 }
 
 // --- Load all blog posts ---
