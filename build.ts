@@ -560,9 +560,9 @@ function translateFooter(html: string, lang: Lang): string {
   const en = UI["en"];
   return html
     // Section headings
-    .replace(`<h3>${en.footerNavigate}</h3>`, `<h3>${ui.footerNavigate}</h3>`)
-    .replace(`<h3>${en.footerConnect}</h3>`, `<h3>${ui.footerConnect}</h3>`)
-    .replace(`<h3>${en.footerLocations}</h3>`, `<h3>${ui.footerLocations}</h3>`)
+    .replace(`<h2>${en.footerNavigate}</h2>`, `<h2>${ui.footerNavigate}</h2>`)
+    .replace(`<h2>${en.footerConnect}</h2>`, `<h2>${ui.footerConnect}</h2>`)
+    .replace(`<h2>${en.footerLocations}</h2>`, `<h2>${ui.footerLocations}</h2>`)
     // Country names
     .replace(`>${en.footerNetherlands}</p>`, `>${ui.footerNetherlands}</p>`)
     .replace(`>${en.footerBrazil}</p>`, `>${ui.footerBrazil}</p>`)

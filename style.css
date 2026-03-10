@@ -2705,7 +2705,7 @@ em:only-of-type {
   gap: 48px;
 }
 
-.footer__col h3 {
+.footer__col h2 {
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -2749,7 +2749,7 @@ em:only-of-type {
   width: auto;
 }
 
-.footer__col--locations > h3 {
+.footer__col--locations > h2 {
   margin-bottom: 16px;
 }
 
@@ -3381,7 +3381,7 @@ em:only-of-type {
 }
 
 .privacy-page a {
-  color: var(--color-primary);
+  color: #007B40;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -3538,7 +3538,7 @@ em:only-of-type {
   padding: 3px 10px;
   border-radius: 100px;
   background: color-mix(in srgb, var(--accent) 12%, transparent);
-  color: var(--accent);
+  color: var(--accent-text, var(--accent));
 }
 
 /* Services */
@@ -3612,7 +3612,7 @@ em:only-of-type {
 
 .about-location__address {
   font-size: 0.85rem;
-  color: var(--color-text-muted);
+  color: #666;
   line-height: 1.5;
   margin-bottom: 8px;
 }
@@ -3626,7 +3626,7 @@ em:only-of-type {
 .about-location__regs span {
   font-size: 0.73rem;
   font-family: 'SF Mono', 'Fira Code', monospace;
-  color: var(--color-text-muted);
+  color: #666;
 }
 
 /* About page responsive */
