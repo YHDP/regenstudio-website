@@ -90,7 +90,7 @@
   width: clamp(120px, 15vw, 220px);
   height: auto;
   flex-shrink: 0;
-  filter: drop-shadow(0 4px 20px rgba(0, 145, 75, 0.10));
+  filter: drop-shadow(0 4px 20px rgba(0, 133, 69, 0.10));
 }
 
 @keyframes vision-float {
@@ -145,7 +145,7 @@
   opacity: 0.25;
   pointer-events: none;
   animation: vision-eye-bounce 2.5s ease-in-out infinite;
-  filter: drop-shadow(0 2px 12px rgba(0, 145, 75, 0.1));
+  filter: drop-shadow(0 2px 12px rgba(0, 133, 69, 0.1));
 }
 
 @keyframes vision-eye-bounce {
@@ -182,10 +182,10 @@
   color: var(--color-navy);
   line-height: 1.4;
   text-align: center;
-  background: rgba(0, 145, 75, 0.04);
+  background: rgba(0, 133, 69, 0.04);
   border-radius: 16px;
   padding: 28px 32px;
-  border: 1px solid rgba(0, 145, 75, 0.1);
+  border: 1px solid rgba(0, 133, 69, 0.1);
   margin: 32px 0;
 }
 
@@ -264,7 +264,7 @@
   outline-offset: 2px;
 }
 
-.vision-eco-card--natural { --accent-color: #00914B; }
+.vision-eco-card--natural { --accent-color: #008545; }
 .vision-eco-card--human   { --accent-color: #009BBB; }
 .vision-eco-card--urban   { --accent-color: #FFA92D; }
 
@@ -482,8 +482,8 @@
   }
 
   @keyframes vision-pulse {
-    0%, 100% { border-color: rgba(0, 145, 75, 0.1); }
-    50% { border-color: rgba(0, 145, 75, 0.25); }
+    0%, 100% { border-color: rgba(0, 133, 69, 0.1); }
+    50% { border-color: rgba(0, 133, 69, 0.25); }
   }
 
   .vision-callout--second {

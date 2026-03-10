@@ -7,7 +7,7 @@
   --navy: #243644;
   --navy-dark: #1B2833;
   --navy-light: #5781A1;
-  --emerald: #00914B;
+  --emerald: #008545;
   --emerald-hover: #006937;
   --emerald-light: #AFF9D7;
   --teal: #009BBB;
@@ -43,7 +43,7 @@
   --duration: 0.2s;
 
   /* Chart palette */
-  --chart-1: #00914B;  /* emerald */
+  --chart-1: #008545;  /* emerald */
   --chart-2: #009BBB;  /* teal */
   --chart-3: #6366F1;  /* indigo */
   --chart-4: #FFA92D;  /* amber */
@@ -73,7 +73,7 @@ body {
   padding: var(--space-lg);
   background:
     linear-gradient(135deg, rgba(36, 54, 68, 0.03) 25%, transparent 25%),
-    linear-gradient(225deg, rgba(0, 145, 75, 0.03) 25%, transparent 25%),
+    linear-gradient(225deg, rgba(0, 133, 69, 0.03) 25%, transparent 25%),
     var(--bg);
 }
 
@@ -131,7 +131,7 @@ body {
 
 .admin-gate__input:focus {
   border-color: var(--emerald);
-  box-shadow: 0 0 0 3px rgba(0, 145, 75, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 133, 69, 0.1);
 }
 
 .admin-gate__btn {
@@ -193,7 +193,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--emerald-light);
-  background: rgba(0, 145, 75, 0.2);
+  background: rgba(0, 133, 69, 0.2);
   padding: 2px 8px;
   border-radius: var(--radius-full);
 }
@@ -229,7 +229,7 @@ body {
 }
 
 .admin-nav-btn.active {
-  background: rgba(0, 145, 75, 0.2);
+  background: rgba(0, 133, 69, 0.2);
   color: var(--emerald-light);
 }
 
@@ -431,7 +431,7 @@ body {
 }
 
 .admin-table tbody tr:hover {
-  background: rgba(0, 145, 75, 0.03);
+  background: rgba(0, 133, 69, 0.03);
 }
 
 /* ── 2-Column Grid ── */

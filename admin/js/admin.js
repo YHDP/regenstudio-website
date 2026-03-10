@@ -12,7 +12,7 @@
   var API_URL = 'https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/admin-analytics';
 
   // Chart palette
-  var COLORS = ['#00914B', '#009BBB', '#6366F1', '#FFA92D', '#93093F'];
+  var COLORS = ['#008545', '#009BBB', '#6366F1', '#FFA92D', '#93093F'];
   var COLORS_LIGHT = ['rgba(0,145,75,0.15)', 'rgba(0,155,187,0.15)', 'rgba(99,102,241,0.15)', 'rgba(255,169,45,0.15)', 'rgba(147,9,63,0.15)'];
 
   var token = null;

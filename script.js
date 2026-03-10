@@ -783,9 +783,9 @@
         mouse.x, mouse.y, 0,
         mouse.x, mouse.y, CFG.attractRadius
       );
-      grad.addColorStop(0, 'rgba(0, 145, 75, 0.03)');
+      grad.addColorStop(0, 'rgba(0, 133, 69, 0.03)');
       grad.addColorStop(0.5, 'rgba(0, 155, 187, 0.015)');
-      grad.addColorStop(1, 'rgba(0, 145, 75, 0)');
+      grad.addColorStop(1, 'rgba(0, 133, 69, 0)');
       ctx.fillStyle = grad;
       ctx.beginPath();
       ctx.arc(mouse.x, mouse.y, CFG.attractRadius, 0, Math.PI * 2);
@@ -893,7 +893,7 @@
 
       // 2. Subtle gradient accent
       var grad = ec.createRadialGradient(0, LH, 0, 0, LH, LW * 0.5);
-      grad.addColorStop(0, 'rgba(0, 145, 75, 0.035)');
+      grad.addColorStop(0, 'rgba(0, 133, 69, 0.035)');
       grad.addColorStop(0.5, 'rgba(0, 155, 187, 0.02)');
       grad.addColorStop(1, 'transparent');
       ec.fillStyle = grad;
@@ -938,7 +938,7 @@
         centerX - leftW * 0.2, LH * 0.25, 0,
         centerX - leftW * 0.2, LH * 0.25, leftW * 0.7
       );
-      orbGrad.addColorStop(0, 'rgba(0, 145, 75, 0.06)');
+      orbGrad.addColorStop(0, 'rgba(0, 133, 69, 0.06)');
       orbGrad.addColorStop(0.5, 'rgba(0, 155, 187, 0.03)');
       orbGrad.addColorStop(1, 'transparent');
       ec.fillStyle = orbGrad;
@@ -957,7 +957,7 @@
       // Scatter a few tiny decorative triangles in the left panel
       ec.save();
       var decoTris = [
-        { x: centerX - leftW * 0.35, y: LH * 0.15, size: 8, rot: 0.3, color: 'rgba(0, 145, 75, 0.07)' },
+        { x: centerX - leftW * 0.35, y: LH * 0.15, size: 8, rot: 0.3, color: 'rgba(0, 133, 69, 0.07)' },
         { x: centerX + leftW * 0.3, y: LH * 0.22, size: 6, rot: -0.5, color: 'rgba(0, 155, 187, 0.06)' },
         { x: centerX - leftW * 0.25, y: LH * 0.82, size: 10, rot: 0.8, color: 'rgba(255, 169, 45, 0.06)' },
         { x: centerX + leftW * 0.35, y: LH * 0.88, size: 7, rot: -0.2, color: 'rgba(231, 24, 70, 0.05)' },
@@ -994,7 +994,7 @@
       // Decorative line — three tiny triangles instead of a plain line
       var triSize = 4;
       var triGap = 14;
-      var triColors = ['rgba(0, 145, 75, 0.35)', 'rgba(0, 155, 187, 0.3)', 'rgba(255, 169, 45, 0.3)'];
+      var triColors = ['rgba(0, 133, 69, 0.35)', 'rgba(0, 155, 187, 0.3)', 'rgba(255, 169, 45, 0.3)'];
       for (var ti = -1; ti <= 1; ti++) {
         ec.save();
         ec.translate(centerX + ti * triGap, y);
@@ -1038,7 +1038,7 @@
 
       // Website URL
       ec.font = '500 11.5px Inter, -apple-system, sans-serif';
-      ec.fillStyle = 'rgba(0, 145, 75, 0.55)';
+      ec.fillStyle = 'rgba(0, 133, 69, 0.55)';
       ec.fillText('www.regenstudio.world', centerX, y);
 
       ec.textAlign = 'left';
@@ -1272,6 +1272,7 @@
           var card = document.createElement('a');
           card.className = 'blog-card';
           card.href = _localePrefix + '/blog/' + encodeURIComponent(blog.slug) + '/';
+          card.setAttribute('aria-label', blog.title);
 
           var imageHtml;
           if (blog.featuredImage) {

@@ -188,7 +188,7 @@
 
       // Draw bond lines between nearby triangles
       ctx.beginPath();
-      ctx.strokeStyle = 'rgba(0, 145, 75, 0.04)';
+      ctx.strokeStyle = 'rgba(0, 133, 69, 0.04)';
       ctx.lineWidth = 0.5;
       for (var i = 0; i < mobileTris.length; i++) {
         for (var j = i + 1; j < mobileTris.length; j++) {
@@ -491,7 +491,7 @@
   function drawBondsBatch(tris, bondSet) {
     if (!bondSet || !bondSet.size) return;
     ctx.beginPath();
-    ctx.strokeStyle = 'rgba(0, 145, 75, ' + CFG.bondLineOpacity + ')';
+    ctx.strokeStyle = 'rgba(0, 133, 69, ' + CFG.bondLineOpacity + ')';
     ctx.lineWidth = 0.8;
     bondSet.forEach(function (key) {
       var parts = key.split('-');
@@ -520,7 +520,7 @@
       var lw = 0.5 + bl.strength * 1.2;
 
       ctx.beginPath();
-      ctx.strokeStyle = 'rgba(0, 145, 75, ' + alpha + ')';
+      ctx.strokeStyle = 'rgba(0, 133, 69, ' + alpha + ')';
       ctx.lineWidth = lw;
       var mx = (a.x + b.x) / 2 + (Math.random() - 0.5) * 8;
       var my = (a.y + b.y) / 2 + (Math.random() - 0.5) * 8;
@@ -534,7 +534,7 @@
   function drawBondsMesh(tris, bondSet) {
     if (!bondSet || !bondSet.size) return;
     ctx.beginPath();
-    ctx.strokeStyle = 'rgba(0, 145, 75, 0.06)';
+    ctx.strokeStyle = 'rgba(0, 133, 69, 0.06)';
     ctx.lineWidth = 0.5;
     bondSet.forEach(function (key) {
       var parts = key.split('-');
