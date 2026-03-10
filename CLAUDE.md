@@ -161,7 +161,7 @@ Use official EU translations, with English acronym in parentheses on first menti
 - EN: Digital Product Passport (DPP)
 - NL: Digitaal Productpaspoort (DPP)
 - PT: Passaporte Digital do Produto (DPP)
-See `/Users/yvhun/Claude/Werkmappie/PLAN TO LAUNCH WEBSITE/translation-review.md` for the full terminology table.
+See Proton Drive `CLAUDE CODE SYNC FOLDER/3-marketing/translation-review.md` for the full terminology table.
 
 ## Conversion Tracking (Ad Pixels)
 
@@ -194,6 +194,29 @@ In-repo docs at `docs/collaboration/`:
 
 **Backlog discipline**: When a task is deferred during a session (design decision needed, out of scope, blocked), add it to `backlog.md` before the session ends. When completing a backlog item, mark it done with the date.
 
+## OG Images & Social Media Generators
+
+Generators live on Proton Drive (not in git): `CLAUDE CODE SYNC FOLDER/3-marketing/generators/`
+
+### OG Image Generator (`_og-generator.html`)
+- Generates page-specific OG images (1200x630) from the base `Images/og-image.png`
+- **When adding a new page**: add an entry to the PAGES array, copy the generator to the website root, run `python3 -m http.server`, generate the image, copy to `Images/`, update `og:image` + `twitter:image` meta tags on EN/NL/PT pages, then remove the generator from the repo
+- Each page gets: chameleon logo + page title (KoHo Bold) + "REGEN STUDIO" brand mark (KoHo Bold/ExtraLight) + landscape
+- 22 OG images currently in `Images/og-*.png` (homepage EN/NL/PT + 19 page-specific)
+
+### Banner Generator (`_banner-generator.html`)
+- Generates social media banner/header images for LinkedIn, Mastodon, Bluesky
+- **When adding a new social platform**: add a config entry with correct dimensions, copy generator to website root, run local server, generate and download
+- Requires `_landscape.png` and `_landscape-br.png` (also in generators folder)
+
+### Usage workflow
+1. Copy generator + assets to website root: `cp CLAUDE_CODE_SYNC_FOLDER/3-marketing/generators/* .`
+2. Start local server: `python3 -m http.server 8000`
+3. Open `http://localhost:8000/_og-generator.html` (or `_banner-generator.html`)
+4. Preview images, show to user for approval
+5. Download, copy to `Images/`, update meta tags
+6. Remove generator files from repo: `rm _og-generator.html _banner-generator.html _landscape*.png`
+
 ## Current Status
 - Live site with 35+ blog posts, newsletter system, contact forms
 - Hero triangle canvas animation active
@@ -201,3 +224,4 @@ In-repo docs at `docs/collaboration/`:
 - Full trilingual support (EN/NL/PT) — i18n.js + locales + 16 translated core pages + 60 translated blog posts
 - Thank-you page with social follow card and conversion pixel placeholder
 - Form submissions redirect to /thank-you.html on success
+- Page-specific OG images for all pages (22 images)
