@@ -240,11 +240,11 @@ em {
 }
 
 em:nth-of-type(6n+1) {
-  color: var(--color-emerald);
+  color: #006d38;
 }
 
 em:nth-of-type(6n+2) {
-  color: var(--color-teal);
+  color: #00728b;
 }
 
 em:nth-of-type(6n+3) {
@@ -252,20 +252,20 @@ em:nth-of-type(6n+3) {
 }
 
 em:nth-of-type(6n+4) {
-  color: var(--color-red);
+  color: #D51641;
 }
 
 em:nth-of-type(6n+5) {
-  color: var(--color-orange);
+  color: #935D0D;
 }
 
 em:nth-of-type(6n+6) {
-  color: var(--color-green);
+  color: #307713;
 }
 
 /* Fallback: when there's only 1 em or it's the only child */
 em:only-of-type {
-  color: var(--color-emerald);
+  color: #006d38;
 }
 
 .container {
@@ -4364,7 +4364,7 @@ a.dpp-product--linked {
 }
 
 .dpp-status--confirmed { background: #008545; }
-.dpp-status--expected { background: #0077B6; }
+.dpp-status--expected { background: #006699; }
 .dpp-status--planned { background: #E5A100; }
 
 /* Timeline section on card */
@@ -4393,8 +4393,8 @@ a.dpp-product--linked {
   background: rgba(0, 133, 69, 0.08);
 }
 .dpp-product__date--expected {
-  color: #0077B6;
-  background: rgba(0, 119, 182, 0.08);
+  color: #006699;
+  background: rgba(0, 102, 153, 0.08);
 }
 .dpp-product__date--planned {
   color: #B8860B;
@@ -4841,7 +4841,7 @@ a.dpp-product--linked {
   margin-bottom: 16px;
 }
 .dpp-info-modal__status--confirmed { color: #008545; }
-.dpp-info-modal__status--expected { color: #0077B6; }
+.dpp-info-modal__status--expected { color: #006699; }
 .dpp-info-modal__status--planned { color: #B8860B; }
 .dpp-info-modal__citation {
   margin: 0 0 20px;

@@ -208,11 +208,12 @@
   // --- Resolve image paths from static pages ---
   function resolveImagePath(slug, featuredImage) {
     if (!featuredImage) return '';
-    // Images with ../../ prefix are already relative to blog/<slug>/
-    if (basePath && !featuredImage.startsWith('../../')) {
-      return basePath + 'Blogs/' + slug + '/' + featuredImage;
+    // Root-relative images (../../Images/foo.svg): strip prefix, add basePath
+    if (featuredImage.startsWith('../../')) {
+      return basePath + featuredImage.slice(6);
     }
-    return 'Blogs/' + slug + '/' + featuredImage;
+    // Slug-local images (image.webp): build full path from Blogs/<slug>/
+    return (basePath || '') + 'Blogs/' + slug + '/' + featuredImage;
   }
 
   // --- Adjust content paths for page depth ---

@@ -236,7 +236,9 @@ Every page must score **95+** on all four Lighthouse categories (Performance, Ac
   | #FFA92D (orange) | #905d16 or #935D0D | Tags on tinted bg |
   | #65DD35 (green) | #357a1c or #307713 | Tags on tinted bg |
   | #A0701A (gold) | #7a5814 | Tags on tinted bg |
+  | #E71846 (red) | #D51641 | Em cycling text on white |
   | #93093F (magenta) | #93093F (passes as-is) | — |
+  | #0077B6 (blue) | #006699 | DPP status labels on white |
 - **Never use `opacity` on containers with text/links** — use explicit muted colors instead
 - **ARIA**: Modal dialogs must use `inert` attribute when hidden (not just `aria-hidden`). Never override `role="listitem"` with `role="button"` — keep semantic roles intact
 - **Headings**: No skipped levels (h1→h3). Footer uses h2. Blog cards use h2
