@@ -396,7 +396,7 @@ ${hreflangSection}
   <meta property="og:image" content="${imageUrl}">
   <meta property="og:image:alt" content="${escapeHtml(post.featuredImageAlt || post.title)}">
   <meta property="og:site_name" content="${SITE_NAME}">
-  <meta property="og:locale" content="${lang === "nl" ? "nl_NL" : lang === "pt" ? "pt_BR" : "en_US"}">
+  <meta property="og:locale" content="${lang === "nl" ? "nl_NL" : lang === "pt" ? "pt_BR" : "en_GB"}">
   <meta property="article:published_time" content="${post.date}">
   <meta property="article:modified_time" content="${post.date}">
   <meta property="article:author" content="${escapeHtml(post.author.name)}">
