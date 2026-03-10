@@ -733,19 +733,19 @@
 
 /* Post header category pills — color per focus area */
 .post-header__category--emerald {
-  color: var(--color-emerald);
+  color: #006d38;
   background: var(--color-emerald-bg);
   border: 1px solid rgba(0, 133, 69, 0.15);
 }
 
 .post-header__category--orange {
-  color: var(--color-orange);
+  color: #905d16;
   background: var(--color-orange-bg);
   border: 1px solid rgba(255, 169, 45, 0.15);
 }
 
 .post-header__category--teal {
-  color: var(--color-teal);
+  color: #00728b;
   background: var(--color-teal-bg);
   border: 1px solid rgba(0, 155, 187, 0.15);
 }
@@ -757,13 +757,13 @@
 }
 
 .post-header__category--green {
-  color: var(--color-green);
+  color: #357a1c;
   background: var(--color-green-bg);
   border: 1px solid rgba(101, 221, 53, 0.15);
 }
 
 .post-header__category--gold {
-  color: var(--color-gold);
+  color: #7a5814;
   background: var(--color-gold-bg);
   border: 1px solid rgba(160, 112, 26, 0.15);
 }
@@ -922,6 +922,10 @@
   color: var(--color-text);
   margin-bottom: 0;
   line-height: 1.7;
+}
+
+.post-content__body blockquote a {
+  color: #006d38;
 }
 
 .post-content__body figure {
