@@ -1368,59 +1368,15 @@ em:only-of-type {
 
 /* --- Lander image: full-width hero-to-content bridge --- */
 .lander-image {
-  position: relative;
   width: 100%;
   line-height: 0;
   background: #FAFBFC;
-  max-height: 320px;
-  overflow: hidden;
-  padding-top: 40px;
 }
 
-.lander-image > img {
+.lander-image img {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: cover;
-  object-position: center top;
-  max-height: 280px;
-}
-
-.lander-image__logo {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.lander-image__icon {
-  height: 54px;
-  width: auto;
-}
-
-.lander-image__text {
-  display: flex;
-  align-items: baseline;
-  gap: 0.15em;
-  font-size: 30px;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  white-space: nowrap;
-}
-
-.lander-image__regen {
-  font-family: 'KoHo', sans-serif;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.lander-image__studio {
-  font-family: 'KoHo', sans-serif;
-  font-weight: 200;
-  color: var(--color-text);
 }
 
 /* --- Polygon Decorations --- */
