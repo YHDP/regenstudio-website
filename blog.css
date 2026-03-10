@@ -925,7 +925,7 @@
 }
 
 .post-content__body blockquote a {
-  color: #006d38;
+  color: #005C2E;
 }
 
 .post-content__body figure {
@@ -1023,7 +1023,7 @@
   line-height: 1.5;
 }
 .post-license a {
-  color: var(--color-teal, #0d9488);
+  color: #00809B;
   font-weight: 600;
 }
 
@@ -1325,7 +1325,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: #007B40;
   margin-bottom: 8px;
 }
 

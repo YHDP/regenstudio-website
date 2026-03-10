@@ -246,9 +246,9 @@
           ${imageHtml}
         </a>
         <div class="blog-card__body">
-          <h3 class="blog-card__title">
+          <h2 class="blog-card__title">
             <a href="${blogPostUrl(post.slug)}">${post.title}</a>
-          </h3>
+          </h2>
           <p class="blog-card__excerpt">${post.excerpt}</p>
           <div class="blog-card__categories">${cats}</div>
           <div class="blog-card__meta">
