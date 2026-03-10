@@ -1,0 +1,19 @@
+/* KoHo — Logo text subset (characters: R E G N S T U D I O)
+   Source: Google Fonts (OFL 1.1 license)
+   Full KoHo font is on the backlog for site-wide heading use */
+
+@font-face {
+  font-family: 'KoHo';
+  font-style: normal;
+  font-weight: 700;
+  font-display: optional;
+  src: url('koho-logo-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'KoHo';
+  font-style: normal;
+  font-weight: 200;
+  font-display: optional;
+  src: url('koho-logo-200.woff2') format('woff2');
+}

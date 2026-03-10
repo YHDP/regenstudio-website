@@ -36,10 +36,13 @@
   <link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/">
   <link rel="icon" type="image/png" href="Images/favicon.png">
 
-  <link rel="preload" href="Images/Logo-Text-on-the-sideAtivo 2.svg" as="image" type="image/svg+xml">
-  <link rel="preload" href="Images/WebsiteLander.svg" as="image" type="image/svg+xml">
+  <link rel="preload" href="Images/logo-icon.svg" as="image" type="image/svg+xml">
+  <link rel="preload" href="Images/landscape-lander.webp" as="image" type="image/webp">
+  <link rel="preload" href="assets/fonts/koho-logo-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/koho-logo-200.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts/koho.css">
   <link rel="stylesheet" href="assets/fonts/inter.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="assets/fonts/playfair-display.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="style.css">
@@ -123,7 +126,9 @@
   <nav class="nav" id="nav">
     <div class="nav__inner container">
       <a href="#" class="nav__logo">
-        <img src="Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img" width="180" height="48" fetchpriority="high">
+        <img src="Images/logo-icon.svg" alt="" class="nav__logo-icon" width="54" height="48" fetchpriority="high">
+        <span class="nav__logo-text" aria-hidden="true"><span class="nav__logo-regen">REGEN</span> <span class="nav__logo-studio">STUDIO</span></span>
+        <span class="sr-only">Regen Studio</span>
       </a>
       <!-- Mobile slide-in menu -->
       <ul class="nav__links" id="navLinks">
@@ -322,7 +327,11 @@
 
     <!-- Lander image: full-width transition from hero -->
     <div class="lander-image">
-      <img src="Images/WebsiteLander.svg" alt="Regen Studio — Regenerative Innovation Design" width="1921" height="472" fetchpriority="high">
+      <img src="Images/landscape-lander.webp" alt="Colourful geometric cityscape with mountains, trees and nature" width="2943" height="668" fetchpriority="high">
+      <div class="lander-image__logo" aria-hidden="true">
+        <img src="Images/logo-icon.svg" alt="" class="lander-image__icon" width="110" height="98">
+        <span class="lander-image__text"><span class="lander-image__regen">REGEN</span> <span class="lander-image__studio">STUDIO</span></span>
+      </div>
     </div>
 
     <!-- Polygon Divider: Hero to Focus -->
