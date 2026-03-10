@@ -672,9 +672,9 @@
 
     // Share button handlers (matching hero social sharing logic)
     // Always use canonical blog URL in share messages
-    const pageUrl = COMPANY.url + '/blog/' + encodeURIComponent(post.slug) + '/';
+    const shareUrl = COMPANY.url + '/blog/' + encodeURIComponent(post.slug) + '/';
     const pageTitle = post.title;
-    const msgs = buildShareMessages(pageTitle, pageUrl);
+    const msgs = buildShareMessages(pageTitle, shareUrl);
 
     // Native Web Share — uses device share sheet (hidden if unsupported)
     const shareNativeBtn = document.getElementById('shareNative');
@@ -685,7 +685,7 @@
         navigator.share({
           title: pageTitle + ' — ' + COMPANY.name,
           text: msgs.native,
-          url: pageUrl
+          url: shareUrl
         }).catch(() => {});
       });
     }
@@ -708,7 +708,7 @@
 
     // Reddit — open submit page with pre-filled title and URL
     document.getElementById('shareReddit').addEventListener('click', () => {
-      window.open('https://reddit.com/submit?url=' + encodeURIComponent(pageUrl) + '&title=' + encodeURIComponent(msgs.reddit), '_blank', 'width=600,height=500');
+      window.open('https://reddit.com/submit?url=' + encodeURIComponent(shareUrl) + '&title=' + encodeURIComponent(msgs.reddit), '_blank', 'width=600,height=500');
     });
 
     // WhatsApp — native share with text
@@ -723,7 +723,7 @@
 
     // Copy link
     document.getElementById('shareCopy').addEventListener('click', function () {
-      navigator.clipboard.writeText(pageUrl).then(() => {
+      navigator.clipboard.writeText(shareUrl).then(() => {
         this.classList.add('share-btn--copied');
         this.innerHTML = `${icons.link} ${t("blog.share_copied", "Copied!")}`;
         showToast(t("toast.link_copied", "Link copied to clipboard!"));

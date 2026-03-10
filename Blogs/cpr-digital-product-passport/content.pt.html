@@ -364,8 +364,8 @@
   .cpr-gate__input { flex: 1; padding: 10px 14px; font-size: 0.9rem; border: 1px solid var(--color-border, #e5e7eb); border-radius: 8px; outline: none; transition: border-color 0.2s; }
   .cpr-gate__input:focus { border-color: var(--color-primary, #009BBB); }
   .cpr-gate__btn { white-space: nowrap; padding: 10px 24px; font-size: 0.9rem; }
-  .cpr-gate__disclaimer { font-size: 0.72rem; color: var(--color-text-secondary, #64748b); margin-top: 12px; opacity: 0.7; }
-  .cpr-gate__disclaimer a { color: var(--color-primary, #009BBB); text-decoration: underline; }
+  .cpr-gate__disclaimer { font-size: 0.72rem; color: #8c96a1; margin-top: 12px; }
+  .cpr-gate__disclaimer a { color: #006d38; text-decoration: underline; }
   .cpr-gate__error { font-size: 0.82rem; color: var(--color-red, #E71846); margin-top: 8px; }
 
   /* Blurred popup body for cards 2–37 */
@@ -1189,7 +1189,7 @@
 </div><!-- /.cpr-gate -->
 
 <!-- Product family info modal -->
-<div class="cpr-modal" id="cprModal" role="dialog" aria-modal="true" aria-hidden="true">
+<div class="cpr-modal" id="cprModal" role="dialog" aria-modal="true" aria-hidden="true" inert>
   <div class="cpr-modal__backdrop"></div>
   <div class="cpr-modal__card">
     <button class="cpr-modal__close" aria-label="Fechar">&times;</button>
@@ -1974,11 +1974,13 @@
     });
 
     modal.setAttribute('aria-hidden', 'false');
+    modal.removeAttribute('inert');
     closeBtn.focus();
   }
 
   function closeModal() {
     modal.setAttribute('aria-hidden', 'true');
+    modal.setAttribute('inert', '');
   }
 
   document.querySelector('.cpr-grid').addEventListener('click', function(e) {
@@ -2007,7 +2009,6 @@
 
   document.querySelectorAll('.cpr-card').forEach(function(card) {
     card.setAttribute('tabindex', '0');
-    card.setAttribute('role', 'button');
     card.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -2173,17 +2174,17 @@
   <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 24px; line-height: 1.3; text-align: center;">Solicite acesso às nossas demos sobre Passaportes Digitais do Produto e RPC</p>
   <div style="display: flex; gap: 16px; flex-wrap: wrap;">
     <a href="https://demos.regenstudio.world/dpp-system/" style="flex: 1; min-width: 200px; display: block; background: #fff; border-radius: 12px; padding: 20px; text-decoration: none; color: inherit; transition: box-shadow 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-      <div style="font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #10B981; margin-bottom: 6px;">Economia Circular</div>
+      <div style="font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #047857; margin-bottom: 6px;">Economia Circular</div>
       <div style="font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 4px;">DPP System</div>
       <div style="font-size: 0.78rem; color: #64748b; line-height: 1.5;">Plataforma completa de Passaporte Digital do Produto com credenciais verificáveis UNTP, dados de conformidade ESPR e rastreabilidade da cadeia de abastecimento.</div>
     </a>
     <a href="https://demos.regenstudio.world/cpr-dpp-tracker/gate.html" style="flex: 1; min-width: 200px; display: block; background: #fff; border-radius: 12px; padding: 20px; text-decoration: none; color: inherit; transition: box-shadow 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-      <div style="font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #009BBB; margin-bottom: 6px;">Regulamento dos Produtos de Construção</div>
+      <div style="font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #00728b; margin-bottom: 6px;">Regulamento dos Produtos de Construção</div>
       <div style="font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 4px;">CPR DPP Tracker</div>
       <div style="font-size: 0.78rem; color: #64748b; line-height: 1.5;">Rastreador interativo para todas as 37 famílias de produtos — normas harmonizadas, pipelines de EAD e datas estimadas de obrigação DPP.</div>
     </a>
     <a href="https://demos.regenstudio.world/cpr-dpp-tracker/reports.html" style="flex: 1; min-width: 200px; display: block; background: #fff; border-radius: 12px; padding: 20px; text-decoration: none; color: inherit; transition: box-shadow 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-      <div style="font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #008545; margin-bottom: 6px;">Inteligência Regulatória</div>
+      <div style="font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #006d38; margin-bottom: 6px;">Inteligência Regulatória</div>
       <div style="font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 4px;">CPR DPP Report</div>
       <div style="font-size: 0.78rem; color: #64748b; line-height: 1.5;">Relatórios de análise regulatória em PDF — visão geral completa ou aprofundamento por família com tabelas de normas, marcos e análise do percurso DPP.</div>
     </a>
