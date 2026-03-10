@@ -21,7 +21,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: #007B40;
   margin-bottom: 12px;
 }
 
@@ -263,7 +263,7 @@
 
 .filter-pill__count {
   font-size: 0.7rem;
-  opacity: 0.5;
+  color: var(--color-text-muted);
 }
 
 /* Active state — default */
@@ -492,12 +492,14 @@
 .blog-listing {
   padding: 60px 0 var(--section-pad);
   background: var(--color-bg);
+  min-height: 80vh; /* Reserve space before JS renders cards — prevents CLS */
 }
 
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
+  min-height: 1200px; /* Prevent footer jump while blog cards load */
 }
 
 /* --- Blog Card --- */
@@ -570,21 +572,23 @@
   text-transform: uppercase;
   padding: 4px 10px;
   border-radius: 100px;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-light);
 }
 
-/* Category pills — color per focus area */
+/* Category pills — accessible text color per focus area (4.5:1 on pill bg) */
 .blog-card__category--emerald {
-  color: var(--color-emerald);
+  color: #007B40;
   background: var(--color-emerald-bg);
 }
 
 .blog-card__category--orange {
-  color: var(--color-orange);
+  color: #9B671B;
   background: var(--color-orange-bg);
 }
 
 .blog-card__category--teal {
-  color: var(--color-teal);
+  color: #007A93;
   background: var(--color-teal-bg);
 }
 
@@ -594,12 +598,12 @@
 }
 
 .blog-card__category--green {
-  color: var(--color-green);
+  color: #3B821F;
   background: var(--color-green-bg);
 }
 
 .blog-card__category--gold {
-  color: var(--color-gold);
+  color: #8A6016;
   background: var(--color-gold-bg);
 }
 
@@ -1289,7 +1293,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: #007B40;
   margin-bottom: 12px;
 }
 

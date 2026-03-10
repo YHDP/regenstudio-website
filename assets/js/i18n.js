@@ -245,14 +245,8 @@
     }
   }
 
-  // Run on DOMContentLoaded or immediately if already loaded
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
-
   // Expose for external use by blog.js, script.js, etc.
+  // Must be created before init() so markReady() can set .strings and .ready
   window.__i18n = {
     lang: LANG,
     supported: SUPPORTED,
@@ -279,4 +273,11 @@
       _callbacks.push(cb);
     },
   };
+
+  // Run on DOMContentLoaded or immediately if already loaded
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 })();
