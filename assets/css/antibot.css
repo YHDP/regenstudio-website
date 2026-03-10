@@ -60,11 +60,11 @@
 
 /* Solved state */
 .antibot-captcha--solved {
-  border-color: var(--color-emerald, #00914B);
+  border-color: var(--color-emerald, #008545);
 }
 
 .antibot-captcha--solved .antibot-captcha__status {
-  color: var(--color-emerald, #00914B);
+  color: var(--color-emerald, #008545);
 }
 
 .antibot-captcha--solved .antibot-captcha__canvas {

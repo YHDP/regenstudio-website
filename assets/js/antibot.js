@@ -313,7 +313,7 @@
     ctx.save();
     ctx.translate(cx, cy);
     ctx.rotate(this.angle * Math.PI / 180);
-    var color = this.solved ? '#00914B' : '#009BBB';
+    var color = this.solved ? '#008545' : '#009BBB';
     this.drawTriangle(ctx, r, color);
     ctx.restore();
   };
