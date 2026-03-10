@@ -215,6 +215,19 @@
     return 'Blogs/' + slug + '/' + featuredImage;
   }
 
+  // --- Adjust content paths for page depth ---
+  // When blog.js renders content on a static page at /blog/<slug>/, paths like
+  // "Images/foo.svg", "Blogs/slug/file.webp", and "assets/css/file.css" need
+  // the basePath prefix (e.g., "../../") to resolve correctly.
+  function adjustContentPaths(html) {
+    if (!basePath) return html;
+    return html
+      .replace(/src="(Blogs\/[^"]+)"/g, 'src="' + basePath + '$1"')
+      .replace(/src="(Images\/[^"]+)"/g, 'src="' + basePath + '$1"')
+      .replace(/href="(Blogs\/[^"]+)"/g, 'href="' + basePath + '$1"')
+      .replace(/href="(assets\/[^"]+)"/g, 'href="' + basePath + '$1"');
+  }
+
   // --- Locale-aware page URL helper (e.g., blog.html → ../nl/blog.html from a post page) ---
   function pageUrl(page) {
     if (langCode === 'en') return basePath + page;
@@ -633,7 +646,7 @@
     // Render content
     postContainer.innerHTML = `
       <div class="post-content__inner">
-        <div class="post-content__body">${post.content}</div>
+        <div class="post-content__body">${adjustContentPaths(post.content)}</div>
         <div class="post-tags" id="postTags">
           ${post.tags.map(t => `<a href="${pageUrl('blog.html')}#${encodeURIComponent('tag=' + t)}" class="post-tag">#${t}</a>`).join('')}
         </div>
