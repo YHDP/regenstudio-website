@@ -34,7 +34,7 @@
 .antibot-captcha__hint {
   display: block;
   font-size: 12px;
-  color: var(--color-navy-light, #5781A1);
+  color: var(--color-text-secondary, #4B6F8D);
   margin-bottom: 12px;
 }
 

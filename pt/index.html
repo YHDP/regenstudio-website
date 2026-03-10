@@ -33,9 +33,12 @@
   <link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/">
   <link rel="icon" type="image/png" href="../Images/favicon.png">
 
-  <link rel="stylesheet" href="../assets/fonts/fonts.css">
+  <link rel="preload" href="../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/fonts/inter.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="../assets/fonts/playfair-display.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="../assets/css/antibot.css">
+  <link rel="stylesheet" href="../assets/css/antibot.css" media="print" onload="this.media='all'">
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -118,7 +121,7 @@
   <nav class="nav" id="nav">
     <div class="nav__inner container">
       <a href="#" class="nav__logo">
-        <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img" width="180" height="48">
+        <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img" width="180" height="48" fetchpriority="high">
       </a>
       <!-- Mobile slide-in menu -->
       <ul class="nav__links" id="navLinks">
@@ -207,7 +210,7 @@
   <div class="freeze-panel" id="freezePanel" role="region" aria-label="Share your creation">
     <p class="freeze-panel__msg">A arte surgiu deste ecossistema de tri&acirc;ngulos pelas suas m&atilde;os! Compartilhe com o mundo.</p>
     <div class="freeze-panel__divider"></div>
-    <p class="freeze-panel__note"><strong>Por Que Isso Importa</strong><br>N&atilde;o criamos essa anima&ccedil;&atilde;o apenas porque &eacute; bonita (embora achemos que &eacute;). Ela &eacute; uma met&aacute;fora viva de como pensamos sobre inova&ccedil;&atilde;o regenerativa. <a href="/pt/blog/emergent-triangles/">Leia mais</a></p>
+    <p class="freeze-panel__note"><strong>Por Que Isso Importa</strong><br>N&atilde;o criamos essa anima&ccedil;&atilde;o apenas porque &eacute; bonita (embora achemos que &eacute;). Ela &eacute; uma met&aacute;fora viva de como pensamos sobre inova&ccedil;&atilde;o regenerativa. <a href="/pt/blog/emergent-triangles/">Leia sobre Emergent Triangles</a></p>
 
     <!-- Step 1: Download -->
     <button class="freeze-panel__download-cta" id="freezeDownload">
@@ -316,7 +319,7 @@
 
     <!-- Lander image: full-width transition from hero -->
     <div class="lander-image">
-      <img src="../Images/WebsiteLander.svg" alt="Regen Studio — Design de Inova&ccedil;&atilde;o Regenerativa" width="1921" height="472">
+      <img src="../Images/WebsiteLander.svg" alt="Regen Studio — Design de Inova&ccedil;&atilde;o Regenerativa" width="1921" height="472" fetchpriority="high">
     </div>
 
     <!-- Polygon Divider: Hero to Focus -->
@@ -1025,7 +1028,7 @@
       <div class="container footer__inner">
         <div class="footer__brand">
           <a href="#" class="footer__logo">
-            <img src="../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img">
+            <img src="../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img" width="1046" height="492">
           </a>
           <p>Inovando na regenera&ccedil;&atilde;o dos nossos ecossistemas naturais, humanos e urbanos.</p>
         </div>

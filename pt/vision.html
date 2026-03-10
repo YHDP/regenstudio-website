@@ -29,9 +29,12 @@
   <link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/vision.html">
   <link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/vision.html">
   <link rel="icon" type="image/png" href="../Images/favicon.png">
-  <link rel="stylesheet" href="../assets/fonts/fonts.css">
+  <link rel="preload" href="../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/fonts/inter.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="../assets/fonts/playfair-display.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="../assets/css/antibot.css">
+  <link rel="stylesheet" href="../assets/css/antibot.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="../vision.css">
 
   <script type="application/ld+json">
@@ -67,7 +70,7 @@
   <nav class="nav nav--scrolled" id="nav">
     <div class="nav__inner container">
       <a href="index.html" class="nav__logo">
-        <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
+        <img src="../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img" width="180" height="48" fetchpriority="high">
       </a>
       <!-- Mobile slide-in menu -->
       <ul class="nav__links" id="navLinks">
@@ -156,7 +159,7 @@
             <p class="vision-hero__label">Nossa Vis&atilde;o</p>
             <h1 class="vision-hero__mission">Projetar solu&ccedil;&otilde;es pioneiras que alcancem a regenera&ccedil;&atilde;o de <em>ecossistemas naturais, humanos e urbanos</em> em escala global.</h1>
           </div>
-          <img src="../Vision/VisionAtivo 3.svg" alt="Ilustração geométrica de ecossistemas naturais, humanos e urbanos interconectados" class="vision-hero__illustration" width="808" height="1294" loading="eager">
+          <img src="../Vision/VisionAtivo 3.svg" alt="Ilustração geométrica de ecossistemas naturais, humanos e urbanos interconectados" class="vision-hero__illustration" width="808" height="1294" loading="eager" fetchpriority="high">
         </div>
       </div>
       <div class="vision-hero__scroll" aria-hidden="true">
@@ -315,7 +318,7 @@
     <div class="container footer__inner">
       <div class="footer__brand">
         <a href="index.html" class="footer__logo">
-          <img src="../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img">
+          <img src="../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img" width="1046" height="492">
         </a>
         <p>Inova&ccedil;&otilde;es pioneiras para a regenera&ccedil;&atilde;o dos nossos ecossistemas naturais, urbanos e humanos.</p>
       </div>

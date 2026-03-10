@@ -1458,7 +1458,7 @@ em:only-of-type {
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: #007B40;
   margin-bottom: 16px;
 }
 
@@ -2313,7 +2313,7 @@ em:only-of-type {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-primary);
+  color: #007B40;
   background: var(--color-emerald-bg);
   padding: 4px 10px;
   border-radius: 4px;
@@ -2540,7 +2540,7 @@ em:only-of-type {
 .copyable-email--inline .copyable-email__address {
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--color-primary);
+  color: #007B40;
   margin-right: 6px;
 }
 
@@ -3185,7 +3185,7 @@ em:only-of-type {
 }
 
 .regen-form__disclaimer a {
-  color: var(--color-primary);
+  color: #007B40;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -3256,6 +3256,9 @@ em:only-of-type {
   margin-top: 2px;
   accent-color: var(--color-primary);
   flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
 
 .regen-form__checkbox--light {
@@ -4112,12 +4115,12 @@ em:only-of-type {
   object-fit: contain;
 }
 
-.dpp-stakeholder:nth-child(1) .dpp-stakeholder__toggle { color: var(--color-teal); }
+.dpp-stakeholder:nth-child(1) .dpp-stakeholder__toggle { color: #007D96; }
 .dpp-stakeholder:nth-child(2) .dpp-stakeholder__toggle { color: var(--color-emerald); }
 .dpp-stakeholder:nth-child(3) .dpp-stakeholder__toggle { color: var(--color-red); }
-.dpp-stakeholder:nth-child(4) .dpp-stakeholder__toggle { color: var(--color-orange); }
+.dpp-stakeholder:nth-child(4) .dpp-stakeholder__toggle { color: #A06800; }
 .dpp-stakeholder:nth-child(5) .dpp-stakeholder__toggle { color: var(--color-magenta); }
-.dpp-stakeholder:nth-child(6) .dpp-stakeholder__toggle { color: var(--color-green); }
+.dpp-stakeholder:nth-child(6) .dpp-stakeholder__toggle { color: #3E8520; }
 
 .dpp-stakeholder__title {
   font-size: 1.1rem;
@@ -4406,8 +4409,7 @@ a.dpp-product--linked {
 
 .dpp-products__updated {
   font-size: 0.78rem;
-  color: var(--color-text-secondary);
-  opacity: 0.6;
+  color: var(--color-text-muted);
   text-align: right;
   margin-top: 12px;
   margin-bottom: 0;
@@ -4612,9 +4614,8 @@ a.dpp-product--linked {
 
 .dpp-gate__disclaimer {
   font-size: 0.72rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
   margin-top: 12px;
-  opacity: 0.7;
 }
 
 .dpp-gate__disclaimer a {
@@ -5682,6 +5683,7 @@ a.dpp-product--linked {
   max-width: 860px;
   margin: 0 auto;
   padding: 140px clamp(20px, 4vw, 40px) 80px;
+  min-height: 100vh; /* Reserve space to prevent CLS from font/layout shifts */
 }
 
 .faq-page .about-hero {
@@ -5792,14 +5794,15 @@ a.dpp-product--linked {
 }
 
 .privacy-banner__link {
-  color: var(--color-primary);
-  text-decoration: none;
+  color: #FFFFFF;
+  text-decoration: underline;
+  text-underline-offset: 2px;
   white-space: nowrap;
   transition: color 0.2s;
 }
 
 .privacy-banner__link:hover {
-  color: var(--color-primary-hover);
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: underline;
 }
 

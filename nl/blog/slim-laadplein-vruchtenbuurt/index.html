@@ -48,10 +48,13 @@
   <meta name="blog-post-slug" content="slim-laadplein-vruchtenbuurt">
 
   <link rel="icon" type="image/png" href="../../../Images/favicon.png">
-  <link rel="stylesheet" href="../../../assets/fonts/fonts.css">
+  <link rel="preload" href="../../../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../../assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../../assets/fonts/inter.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="../../../assets/fonts/playfair-display.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="../../../style.css">
   <link rel="stylesheet" href="../../../blog.css">
-  <link rel="stylesheet" href="../../../assets/css/antibot.css">
+  <link rel="stylesheet" href="../../../assets/css/antibot.css" media="print" onload="this.media='all'">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
@@ -60,7 +63,7 @@
   <nav class="nav" id="nav">
     <div class="nav__inner container">
       <a href="../../../nl/index.html" class="nav__logo">
-        <img src="../../../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img">
+        <img src="../../../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img" width="180" height="48" fetchpriority="high">
       </a>
       <!-- Mobile slide-in menu -->
       <ul class="nav__links" id="navLinks">
@@ -399,7 +402,7 @@
     <div class="container footer__inner">
       <div class="footer__brand">
         <a href="../../../nl/index.html" class="footer__logo">
-          <img src="../../../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img">
+          <img src="../../../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img" width="1046" height="492">
         </a>
         <p>Baanbrekende innovaties voor het herstel van onze natuur, steden en menselijke ecosystemen.</p>
       </div>
