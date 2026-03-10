@@ -963,7 +963,7 @@
 }
 
 .post-content__body a {
-  color: var(--color-primary);
+  color: #007B40;
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: opacity var(--transition);

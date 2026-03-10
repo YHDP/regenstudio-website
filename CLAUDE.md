@@ -221,10 +221,11 @@ Generators live on Proton Drive (not in git): `CLAUDE CODE SYNC FOLDER/3-marketi
 
 Every page must score **95+** on all four Lighthouse categories (Performance, Accessibility, Best Practices, SEO). Run `CHROME_PATH="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" npx lighthouse <url> --only-categories=performance,accessibility,best-practices,seo --chrome-flags="--headless=new --no-sandbox" --output=json` to verify.
 
-### When to run Lighthouse
+### When to run Lighthouse + W3C Validator
 - After adding or significantly modifying any page
 - After changing shared CSS (style.css, blog.css) or shared JS (script.js, blog.js)
 - Before pushing to live — compare against live baseline
+- **W3C Validator**: Run alongside Lighthouse via `https://validator.w3.org/nu/?doc=<encoded-url>&out=json` (use WebFetch). Catches structural HTML errors Lighthouse misses: duplicate IDs, invalid paths, missing required attributes, nesting violations
 
 ### Accessibility rules (prevent contrast/ARIA failures)
 - **Color contrast**: All text must meet WCAG AA 4.5:1 ratio (3:1 for large text ≥18.66px bold or ≥24px). Brand colors (#008545, #009BBB, #FFA92D, #65DD35) are too light for text on light backgrounds — use darkened variants:
