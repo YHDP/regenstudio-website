@@ -96,7 +96,9 @@
             <option value="90">Last 90 days</option>
             <option value="custom">Custom range</option>
           </select>
+          <button class="admin-btn-sm admin-btn--bots-off" id="botToggle" title="Toggle bot traffic visibility">Bots: Excluded</button>
           <button class="admin-btn-sm admin-btn--outline" id="exportCsv" title="Export current view as CSV">Export CSV</button>
+          <button class="admin-btn-sm admin-btn--outline" id="exportAll" title="Export all views as CSV">Export All</button>
           <div class="admin-custom-range" id="customRange" style="display:none">
             <input type="date" id="dateFrom" class="admin-date-input">
             <span>to</span>
@@ -106,14 +108,17 @@
         </div>
       </div>
 
+      <!-- Bot info banner -->
+      <div class="admin-bot-banner" id="botBanner" style="display:none"></div>
+
       <!-- View: Overview -->
       <section class="admin-view active" id="view-overview">
         <div class="admin-kpi-grid admin-kpi-grid--5">
           <div class="admin-kpi"><span class="admin-kpi__value" id="kpiViews">—</span><span class="admin-kpi__delta" id="kpiViewsDelta"></span><span class="admin-kpi__label">Total Views</span></div>
           <div class="admin-kpi"><span class="admin-kpi__value" id="kpiUniques">—</span><span class="admin-kpi__delta" id="kpiUniquesDelta"></span><span class="admin-kpi__label">Unique Visitors</span></div>
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiBots">—</span><span class="admin-kpi__delta" id="kpiBotsDelta"></span><span class="admin-kpi__label">Detected Bots</span></div>
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiEngaged">—</span><span class="admin-kpi__delta" id="kpiEngagedDelta"></span><span class="admin-kpi__label">Engaged Visitors</span></div>
           <div class="admin-kpi"><span class="admin-kpi__value" id="kpiBounce">—</span><span class="admin-kpi__delta" id="kpiBounceDelta"></span><span class="admin-kpi__label">Bounce Rate</span></div>
-          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiDepth">—</span><span class="admin-kpi__delta" id="kpiDepthDelta"></span><span class="admin-kpi__label">Avg Depth</span></div>
-          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiTime">—</span><span class="admin-kpi__delta" id="kpiTimeDelta"></span><span class="admin-kpi__label">Avg Time</span></div>
         </div>
         <div class="admin-quality-bar" id="overviewQuality" style="display:none">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>

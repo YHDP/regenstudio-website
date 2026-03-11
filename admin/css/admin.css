@@ -513,6 +513,75 @@ body {
   color: var(--emerald);
 }
 
+/* ── Bot Toggle Button ── */
+.admin-btn--bots-off {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--radius);
+  padding: 6px 12px;
+  transition: all 0.15s;
+}
+
+.admin-btn--bots-off:hover {
+  border-color: var(--emerald);
+  color: var(--emerald);
+}
+
+.admin-btn--bots-on {
+  background: rgba(155, 155, 155, 0.12);
+  border: 1px solid #9B9B9B;
+  color: #666;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--radius);
+  padding: 6px 12px;
+  transition: all 0.15s;
+}
+
+.admin-btn--bots-on:hover {
+  border-color: #777;
+  color: #444;
+}
+
+/* ── Bot Info Banner ── */
+.admin-bot-banner {
+  border-radius: var(--radius);
+  padding: 8px 16px;
+  margin-bottom: var(--space-md);
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.admin-bot-banner--excluded {
+  background: rgba(0, 133, 69, 0.06);
+  border: 1px solid rgba(0, 133, 69, 0.2);
+  color: #006838;
+}
+
+.admin-bot-banner--included {
+  background: rgba(155, 155, 155, 0.08);
+  border: 1px solid rgba(155, 155, 155, 0.25);
+  color: #666;
+}
+
+.admin-bot-banner--pending {
+  background: rgba(255, 169, 45, 0.08);
+  border: 1px solid rgba(255, 169, 45, 0.25);
+  color: #905d16;
+}
+
+.admin-bot-banner a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 /* ── Quality Bar (compact summary for Overview) ── */
 .admin-quality-bar {
   background: var(--surface);

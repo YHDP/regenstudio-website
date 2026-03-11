@@ -49,6 +49,9 @@
   var charts = {};
   var currentView = 'overview';
   var lastViewData = null; // For CSV export
+  var botsIncluded = true; // Default: show bot data (filterable)
+  var cachedBotData = null; // { botViews, botUniques, dailyBotViews, hasBotData, ... }
+  var cachedOverviewData = null; // Full overview response for re-render on toggle
 
   // DOM refs
   var gate = document.getElementById('gate');
@@ -190,6 +193,50 @@
     el.className = 'admin-kpi__delta ' + (pct == 0 ? 'admin-kpi__delta--neutral' : isUp ? 'admin-kpi__delta--up' : 'admin-kpi__delta--down');
   }
 
+  // ── Bot toggle ──
+  function toggleBots() {
+    botsIncluded = !botsIncluded;
+    updateToggleButton();
+    updateBotBanner();
+    // Re-render current view with new toggle state
+    if (currentView === 'overview' && cachedOverviewData) {
+      renderOverviewFromData(cachedOverviewData);
+    } else if (token) {
+      switchView(currentView);
+    }
+  }
+
+  function updateToggleButton() {
+    var btn = document.getElementById('botToggle');
+    if (!btn) return;
+    if (botsIncluded) {
+      btn.textContent = 'Bots: Shown';
+      btn.className = 'admin-btn-sm admin-btn--bots-on';
+    } else {
+      btn.textContent = 'Bots: Hidden';
+      btn.className = 'admin-btn-sm admin-btn--bots-off';
+    }
+  }
+
+  function updateBotBanner() {
+    var banner = document.getElementById('botBanner');
+    if (!banner) return;
+    if (!cachedBotData || !cachedBotData.hasBotData) {
+      banner.className = 'admin-bot-banner admin-bot-banner--pending';
+      banner.innerHTML = 'Bot detection active — data will appear after the next daily aggregation runs.';
+      banner.style.display = cachedBotData ? '' : 'none';
+      return;
+    }
+    banner.style.display = '';
+    if (botsIncluded) {
+      banner.className = 'admin-bot-banner admin-bot-banner--included';
+      banner.innerHTML = '<strong>' + fmtNum(cachedBotData.botViews) + ' detected bot views</strong> (' + fmtNum(cachedBotData.botUniques) + ' unique) included in overview. Toggle to hide.';
+    } else {
+      banner.className = 'admin-bot-banner admin-bot-banner--excluded';
+      banner.innerHTML = '<strong>' + fmtNum(cachedBotData.botViews) + ' detected bot views</strong> filtered out. Toggle to show.';
+    }
+  }
+
   // ── Destroy chart before recreating ──
   function makeChart(id, config) {
     if (charts[id]) charts[id].destroy();
@@ -226,97 +273,203 @@
     }
   }
 
-  // ── CSV export ──
-  function exportCsv() {
-    if (!lastViewData) return;
-    var rows = [];
-    var d = lastViewData.data;
-    var v = lastViewData.view;
+  // ── CSV helpers ──
+  function csvFromRows(rows) {
+    return rows.map(function (r) {
+      return r.map(function (c) {
+        var s = String(c == null ? '' : c);
+        return s.indexOf(',') >= 0 || s.indexOf('"') >= 0 || s.indexOf('\n') >= 0 ? '"' + s.replace(/"/g, '""') + '"' : s;
+      }).join(',');
+    }).join('\n');
+  }
 
-    if (v === 'quality') {
-      var q = d.q || {};
+  function downloadCsv(rows, filename) {
+    var csv = csvFromRows(rows);
+    var blob = new Blob([csv], { type: 'text/csv' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  function buildViewCsv(v, d) {
+    var rows = [];
+
+    if (v === 'overview') {
+      var k = d.kpis || {};
+      var showBots = botsIncluded && d.hasBotData;
+      var tv = k.totalViews + (showBots ? (d.botViews || 0) : 0);
+      var tu = k.totalUniques + (showBots ? (d.botUniques || 0) : 0);
+      rows.push(['=== Overview KPIs ===']);
       rows.push(['Metric', 'Value']);
-      rows.push(['Human Visitors', q.humanUniques || 0]);
-      rows.push(['Bot Visitors', q.botUniques || 0]);
-      rows.push(['Human %', (q.humanPct || 0) + '%']);
-      rows.push(['Engaged Avg Time (ms)', q.engagedAvgTime || 0]);
+      rows.push(['Total Views', tv]);
+      rows.push(['Unique Visitors', tu]);
+      rows.push(['Bounce Rate', k.bounceRate + '%']);
+      rows.push(['Avg Depth', k.avgDepth]);
+      rows.push(['Avg Time', fmtTime(k.avgTimeMs)]);
+      if (d.hasBotData) {
+        rows.push(['Detected Bot Views', d.botViews || 0]);
+        rows.push(['Detected Bot Uniques', d.botUniques || 0]);
+      }
+      rows.push([]);
+      rows.push(['=== Daily Trend ===']);
+      var headers = ['Date', 'Human Views', 'Uniques'];
+      if (d.hasBotData) headers.push('Bot Views');
+      rows.push(headers);
+      var dates = Object.keys(d.dailyViews || {}).sort();
+      dates.forEach(function (dt) {
+        var row = [dt, d.dailyViews[dt] || 0, d.dailyUniques[dt] || 0];
+        if (d.hasBotData) row.push((d.dailyBotViews || {})[dt] || 0);
+        rows.push(row);
+      });
+    } else if (v === 'quality') {
+      var q = d.q || {};
+      var engL = q.isEstimate ? 'Engaged Visitors' : 'Human Visitors';
+      var botL = q.isEstimate ? 'Unengaged Visitors' : 'Detected Bot Visitors';
+      rows.push(['=== Traffic Quality KPIs ===']);
+      rows.push(['Metric', 'Value']);
+      rows.push([engL, q.humanUniques || 0]);
+      rows.push([botL, q.botUniques || 0]);
+      rows.push([q.isEstimate ? 'Engagement Rate' : 'Human %', (q.humanPct || 0) + '%']);
+      rows.push(['Engaged Avg Time', fmtTime(q.engagedAvgTime || 0)]);
       rows.push(['Total Unique Visitors', d.totalUniques || 0]);
       rows.push(['Data Source', q.isEstimate ? 'Behavioral estimate' : 'Bot detection']);
       rows.push([]);
+      rows.push(['=== Behavioral Signals ===']);
       rows.push(['Signal', 'Percentage']);
       rows.push(['Time >10s', (q.timeQ || 0) + '%']);
       rows.push(['Scrolled 25%+', (q.scrollQ || 0) + '%']);
       rows.push(['Multi-page', (q.depthQ || 0) + '%']);
-    } else if (v === 'overview') {
-      rows.push(['Date', 'Views', 'Uniques']);
-      var dates = Object.keys(d.dailyViews || {}).sort();
-      dates.forEach(function (dt) {
-        rows.push([dt, d.dailyViews[dt] || 0, d.dailyUniques[dt] || 0]);
-      });
     } else if (v === 'pages') {
+      rows.push(['=== Pages ===']);
       rows.push(['Page', 'Views', 'Uniques', 'Avg Time (s)', 'Exit %']);
       (d.pages || []).forEach(function (p) {
         rows.push([p.pathname, p.views, p.uniques, Math.round((p.avgTimeMs || 0) / 1000), p.exitRate || 0]);
       });
     } else if (v === 'navigation') {
+      rows.push(['=== Navigation Flows ===']);
       rows.push(['From', 'To', 'Count']);
       (d.flows || []).forEach(function (f) { rows.push([f.from_page, f.to_page, f.count]); });
+      rows.push([]);
+      rows.push(['=== Entry Pages ===']);
+      rows.push(['Page', 'Count']);
+      (d.entryPages || []).forEach(function (e) { rows.push([e.page, e.count]); });
+      rows.push([]);
+      rows.push(['=== Exit Pages ===']);
+      rows.push(['Page', 'Count']);
+      (d.exitPages || []).forEach(function (e) { rows.push([e.page, e.count]); });
     } else if (v === 'engagement') {
-      rows.push(['Metric', 'Value']);
+      rows.push(['=== Scroll Depth ===']);
+      rows.push(['Threshold', 'Events', '% of Page Views']);
+      var base = d.totalPageViews || 1;
       ['scroll_25', 'scroll_50', 'scroll_75', 'scroll_100'].forEach(function (k) {
-        rows.push([k, d.scrollDepth[k] || 0]);
+        var val = (d.scrollDepth || {})[k] || 0;
+        rows.push([k.replace('scroll_', '') + '%', val, (val / base * 100).toFixed(1) + '%']);
       });
       rows.push([]);
-      rows.push(['Time Bucket', 'Count']);
-      Object.keys(d.timeBuckets || {}).forEach(function (k) { rows.push([k, d.timeBuckets[k]]); });
+      rows.push(['=== Time on Page ===']);
+      rows.push(['Bucket', 'Sessions']);
+      ['0-10s', '10-30s', '30s-1m', '1-3m', '3m+'].forEach(function (k) { rows.push([k, (d.timeBuckets || {})[k] || 0]); });
+      rows.push([]);
+      rows.push(['=== Click Targets ===']);
+      rows.push(['Page', 'Target', 'Section', 'Clicks']);
+      (d.clicks || []).forEach(function (c) { rows.push([c.pathname, c.target, c.section || '', c.clicks]); });
     } else if (v === 'acquisition') {
+      rows.push(['=== Referrer Sources ===']);
       rows.push(['Referrer', 'Views']);
       Object.keys(d.referrers || {}).sort(function (a, b) { return d.referrers[b] - d.referrers[a]; }).forEach(function (k) {
         rows.push([k, d.referrers[k]]);
       });
       rows.push([]);
+      rows.push(['=== Countries ===']);
       rows.push(['Country', 'Unique Visitors']);
       Object.keys(d.countries || {}).sort(function (a, b) { return d.countries[b] - d.countries[a]; }).forEach(function (k) {
         rows.push([countryName(k), d.countries[k]]);
       });
+      rows.push([]);
+      rows.push(['=== Devices ===']);
+      rows.push(['Device', 'Count']);
+      Object.keys(d.devices || {}).forEach(function (k) { rows.push([k, d.devices[k]]); });
+      rows.push([]);
+      rows.push(['=== Browsers ===']);
+      rows.push(['Browser', 'Count']);
+      Object.keys(d.browsers || {}).sort(function (a, b) { return (d.browsers[b] || 0) - (d.browsers[a] || 0); }).forEach(function (k) { rows.push([k, d.browsers[k]]); });
       if (d.referrerQuality) {
         rows.push([]);
+        rows.push(['=== Referrer Quality ===']);
         rows.push(['Source', 'Sessions', 'Avg Depth', 'Avg Time (s)', 'Bounce %']);
         d.referrerQuality.forEach(function (r) {
           rows.push([r.referrer, r.sessions, r.avgDepth, Math.round(r.avgTimeMs / 1000), r.bounceRate]);
         });
       }
     } else if (v === 'hourly') {
+      rows.push(['=== Hourly Activity Heatmap (UTC) ===']);
       var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
       rows.push(['Day/Hour'].concat(Array.from({ length: 24 }, function (_, i) { return String(i); })));
-      (d.matrix || []).forEach(function (row, i) {
-        rows.push([dayNames[i]].concat(row));
-      });
+      (d.matrix || []).forEach(function (row, i) { rows.push([dayNames[i]].concat(row)); });
     } else if (v === 'realtime') {
+      rows.push(['=== Recent Events ===']);
       rows.push(['Time', 'Event', 'Page', 'Country', 'Device', 'Referrer']);
       (d.events || []).forEach(function (e) {
         rows.push([e.created_at, e.event_type, e.pathname, countryName(e.country || 'XX'), e.device_type, e.referrer]);
       });
     } else if (v === 'funnel') {
+      rows.push(['=== Reports Purchase Funnel ===']);
       rows.push(['Step', 'Name', 'Visitors']);
       (d.funnel || []).forEach(function (s) { rows.push([s.step, s.name, s.visitors]); });
     }
+    return rows;
+  }
 
+  // ── CSV export (current view) ──
+  function exportCsv() {
+    if (!lastViewData) return;
+    var rows = buildViewCsv(lastViewData.view, lastViewData.data);
     if (rows.length === 0) return;
+    var range = getDateRange();
+    downloadCsv(rows, 'analytics-' + lastViewData.view + '-' + range.from + '.csv');
+  }
 
-    var csv = rows.map(function (r) {
-      return r.map(function (c) {
-        var s = String(c == null ? '' : c);
-        return s.indexOf(',') >= 0 || s.indexOf('"') >= 0 ? '"' + s.replace(/"/g, '""') + '"' : s;
-      }).join(',');
-    }).join('\n');
+  // ── CSV export (all views) ──
+  function exportAllCsv() {
+    var range = getDateRange();
+    var site = getSite();
+    var headers = { 'Authorization': 'Bearer ' + token };
+    var base = API_URL + '?from=' + range.from + '&to=' + range.to + '&site=' + site;
+    var views = ['overview', 'pages', 'navigation', 'engagement', 'acquisition', 'hourly', 'funnel', 'realtime'];
 
-    var blob = new Blob([csv], { type: 'text/csv' });
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'analytics-' + v + '-' + getDateRange().from + '.csv';
-    a.click();
-    URL.revokeObjectURL(a.href);
+    showError('');
+    var btn = document.getElementById('exportAll');
+    if (btn) { btn.textContent = 'Exporting...'; btn.disabled = true; }
+
+    Promise.all(views.map(function (v) {
+      return fetch(base + '&view=' + v, { headers: headers })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; });
+    })).then(function (results) {
+      var allRows = [];
+      var range = getDateRange();
+      allRows.push(['Regen Studio Analytics Export']);
+      allRows.push(['Date Range', range.from + ' to ' + range.to]);
+      allRows.push(['Site', getSite()]);
+      allRows.push(['Exported', new Date().toISOString()]);
+      allRows.push([]);
+
+      views.forEach(function (v, i) {
+        if (results[i]) {
+          var viewRows = buildViewCsv(v, results[i]);
+          allRows = allRows.concat(viewRows);
+          allRows.push([]);
+        }
+      });
+
+      downloadCsv(allRows, 'analytics-all-' + range.from + '.csv');
+    }).catch(function () {
+      showError('Failed to export all data.');
+    }).finally(function () {
+      if (btn) { btn.textContent = 'Export All'; btn.disabled = false; }
+    });
   }
 
   // Site label helpers
@@ -331,58 +484,106 @@
   // ═══════════════════════════════════════════════
 
   function renderOverviewFromData(d) {
+    // Cache for toggle re-render
+    cachedOverviewData = d;
+
+    // Cache bot data for banner and toggle
+    cachedBotData = {
+      botViews: d.botViews || 0,
+      botUniques: d.botUniques || 0,
+      dailyBotViews: d.dailyBotViews || {},
+      prevBotViews: d.prevBotViews || 0,
+      prevBotUniques: d.prevBotUniques || 0,
+      hasBotData: d.hasBotData || false
+    };
+    updateBotBanner();
+
     var k = d.kpis;
-    document.getElementById('kpiViews').textContent = fmtNum(k.totalViews);
-    document.getElementById('kpiUniques').textContent = fmtNum(k.totalUniques);
+    var showBots = botsIncluded && cachedBotData.hasBotData;
+
+    // KPIs — include bot counts when toggle is on
+    var totalViews = k.totalViews + (showBots ? cachedBotData.botViews : 0);
+    var totalUniques = k.totalUniques + (showBots ? cachedBotData.botUniques : 0);
+
+    document.getElementById('kpiViews').textContent = fmtNum(totalViews);
+    document.getElementById('kpiUniques').textContent = fmtNum(totalUniques);
     document.getElementById('kpiBounce').textContent = k.bounceRate + '%';
-    document.getElementById('kpiDepth').textContent = k.avgDepth || '—';
-    document.getElementById('kpiTime').textContent = fmtTime(k.avgTimeMs);
+
+    // Bot KPI
+    var botsEl = document.getElementById('kpiBots');
+    if (botsEl) {
+      botsEl.textContent = cachedBotData.hasBotData ? fmtNum(cachedBotData.botViews) : '—';
+    }
+
+    // Engaged KPI — populated async after engagement fetch
+    var engagedEl = document.getElementById('kpiEngaged');
+    if (engagedEl) engagedEl.textContent = '—';
 
     // Period-over-period deltas
     if (d.prevKpis) {
-      var p = d.prevKpis;
-      setDelta('kpiViewsDelta', k.totalViews, p.totalViews);
-      setDelta('kpiUniquesDelta', k.totalUniques, p.totalUniques);
-      setDelta('kpiBounceDelta', k.bounceRate, p.bounceRate, true); // inverted: lower bounce = better
-      setDelta('kpiDepthDelta', k.avgDepth, p.avgDepth);
-      setDelta('kpiTimeDelta', k.avgTimeMs, p.avgTimeMs);
+      var prevViews = d.prevKpis.totalViews + (showBots ? cachedBotData.prevBotViews : 0);
+      var prevUniques = d.prevKpis.totalUniques + (showBots ? cachedBotData.prevBotUniques : 0);
+      setDelta('kpiViewsDelta', totalViews, prevViews);
+      setDelta('kpiUniquesDelta', totalUniques, prevUniques);
+      setDelta('kpiBounceDelta', k.bounceRate, d.prevKpis.bounceRate, true);
+      if (cachedBotData.hasBotData) {
+        setDelta('kpiBotsDelta', cachedBotData.botViews, cachedBotData.prevBotViews);
+      }
     }
 
+    // Daily trend — stacked human + bot when toggle is on
     var dates = Object.keys(d.dailyViews).sort();
-    var viewValues = dates.map(function (dt) { return d.dailyViews[dt] || 0; });
-    var uniqueValues = dates.map(function (dt) { return d.dailyUniques[dt] || 0; });
     var labels = dates.map(function (dt) { return dt.slice(5); });
+    var humanValues = dates.map(function (dt) { return d.dailyViews[dt] || 0; });
+    var uniqueValues = dates.map(function (dt) { return d.dailyUniques[dt] || 0; });
+
+    var datasets = [
+      {
+        label: 'Human Views',
+        data: humanValues,
+        borderColor: COLORS[0],
+        backgroundColor: COLORS_LIGHT[0],
+        fill: true,
+        tension: 0.3,
+        pointRadius: 2,
+        order: 2
+      },
+      {
+        label: 'Uniques',
+        data: uniqueValues,
+        borderColor: COLORS[1],
+        backgroundColor: 'transparent',
+        fill: false,
+        tension: 0.3,
+        pointRadius: 2,
+        borderDash: [4, 2],
+        order: 1
+      }
+    ];
+
+    // Add bot overlay when visible
+    if (showBots) {
+      var botValues = dates.map(function (dt) { return cachedBotData.dailyBotViews[dt] || 0; });
+      datasets.splice(1, 0, {
+        label: 'Bot Views',
+        data: botValues,
+        borderColor: '#9B9B9B',
+        backgroundColor: 'rgba(155,155,155,0.2)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 2,
+        order: 3
+      });
+    }
 
     makeChart('chartOverviewTrend', {
       type: 'line',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: 'Views',
-            data: viewValues,
-            borderColor: COLORS[0],
-            backgroundColor: COLORS_LIGHT[0],
-            fill: true,
-            tension: 0.3,
-            pointRadius: 2
-          },
-          {
-            label: 'Uniques',
-            data: uniqueValues,
-            borderColor: COLORS[1],
-            backgroundColor: COLORS_LIGHT[1],
-            fill: true,
-            tension: 0.3,
-            pointRadius: 2
-          }
-        ]
-      },
+      data: { labels: labels, datasets: datasets },
       options: {
         responsive: true,
         interaction: { mode: 'index', intersect: false },
         scales: {
-          y: { beginAtZero: true, ticks: { precision: 0 } }
+          y: { stacked: showBots, beginAtZero: true, ticks: { precision: 0 } }
         },
         plugins: { legend: { position: 'bottom' } }
       }
@@ -393,16 +594,13 @@
       var tb = eng.timeBuckets || {};
       var sd = eng.scrollDepth || {};
       var totalPV = eng.totalPageViews || 1;
-      var totalTimed = 0, engagedTimed = 0;
-      ['0-10s', '10-30s', '30s-1m', '1-3m', '3m+'].forEach(function (b) {
-        var v = tb[b] || 0; totalTimed += v;
-        if (b !== '0-10s') engagedTimed += v;
-      });
-      var timeQ = totalTimed > 0 ? engagedTimed / totalTimed : 0;
-      var scrollQ = totalPV > 0 ? (sd.scroll_25 || 0) / totalPV : 0;
-      var depthQ = 1 - k.bounceRate / 100;
-      var score = Math.round((timeQ * 0.4 + scrollQ * 0.3 + depthQ * 0.3) * 100);
-      var estEngaged = Math.round(k.totalUniques * score / 100);
+      var est = computeBehavioralEstimate(tb, sd, totalPV, k.bounceRate, k.totalUniques);
+      var score = est.humanPct;
+      var estEngaged = est.humanUniques;
+
+      // Update Engaged KPI
+      var engKpi = document.getElementById('kpiEngaged');
+      if (engKpi) engKpi.textContent = '~' + fmtNum(estEngaged);
 
       var bar = document.getElementById('overviewQuality');
       var text = document.getElementById('overviewQualityText');
@@ -750,10 +948,11 @@
 
     // Update KPI labels based on mode
     var kpiLabels = document.querySelectorAll('#view-quality .admin-kpi__label');
-    if (kpiLabels.length >= 3) {
+    if (kpiLabels.length >= 4) {
       kpiLabels[0].textContent = q.isEstimate ? 'Engaged Visitors' : 'Human Visitors';
       kpiLabels[1].textContent = q.isEstimate ? 'Unengaged' : 'Detected Bots';
       kpiLabels[2].textContent = q.isEstimate ? 'Engagement Rate' : 'Human %';
+      kpiLabels[3].textContent = q.isEstimate ? 'Engaged Avg Time' : 'Human Avg Time';
     }
 
     // Daily trend (stacked area)
@@ -889,8 +1088,6 @@
         'from behavioral estimates to actual detected bot counts.</p>';
     }
 
-    // Store quality for overview
-    window._lastQuality = q;
   }
 
   function renderQuality() {
@@ -945,8 +1142,14 @@
       .catch(function () {
         // Fallback: quality endpoint not deployed yet, use overview + engagement
         Promise.all([
-          fetch(base + '&view=overview', { headers: headers }).then(function (r) { return r.json(); }),
-          fetch(base + '&view=engagement', { headers: headers }).then(function (r) { return r.json(); })
+          fetch(base + '&view=overview', { headers: headers }).then(function (r) {
+            if (r.status === 401) { gate.style.display = ''; dashboard.style.display = 'none'; return null; }
+            return r.json();
+          }),
+          fetch(base + '&view=engagement', { headers: headers }).then(function (r) {
+            if (r.status === 401) return null;
+            return r.json();
+          })
         ]).then(function (results) {
           setLoading('quality', false);
           var overview = results[0];
@@ -1078,5 +1281,13 @@
 
   // ── CSV export ──
   exportBtn.addEventListener('click', exportCsv);
+
+  // ── Export All ──
+  var exportAllBtn = document.getElementById('exportAll');
+  if (exportAllBtn) exportAllBtn.addEventListener('click', exportAllCsv);
+
+  // ── Bot toggle ──
+  var botToggleBtn = document.getElementById('botToggle');
+  if (botToggleBtn) botToggleBtn.addEventListener('click', toggleBots);
 
 })();
