@@ -11,6 +11,36 @@
 
   var API_URL = 'https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/admin-analytics';
 
+  // ISO 3166-1 alpha-2 → country name
+  var COUNTRY_NAMES = {
+    AD:'Andorra',AE:'UAE',AF:'Afghanistan',AG:'Antigua & Barbuda',AL:'Albania',AM:'Armenia',AO:'Angola',
+    AR:'Argentina',AT:'Austria',AU:'Australia',AZ:'Azerbaijan',BA:'Bosnia & Herzegovina',BB:'Barbados',
+    BD:'Bangladesh',BE:'Belgium',BF:'Burkina Faso',BG:'Bulgaria',BH:'Bahrain',BI:'Burundi',BJ:'Benin',
+    BN:'Brunei',BO:'Bolivia',BR:'Brazil',BS:'Bahamas',BT:'Bhutan',BW:'Botswana',BY:'Belarus',BZ:'Belize',
+    CA:'Canada',CD:'DR Congo',CF:'Central African Rep.',CG:'Congo',CH:'Switzerland',CI:'Ivory Coast',
+    CL:'Chile',CM:'Cameroon',CN:'China',CO:'Colombia',CR:'Costa Rica',CU:'Cuba',CV:'Cape Verde',CY:'Cyprus',
+    CZ:'Czechia',DE:'Germany',DJ:'Djibouti',DK:'Denmark',DO:'Dominican Rep.',DZ:'Algeria',EC:'Ecuador',
+    EE:'Estonia',EG:'Egypt',ER:'Eritrea',ES:'Spain',ET:'Ethiopia',FI:'Finland',FJ:'Fiji',FR:'France',
+    GA:'Gabon',GB:'United Kingdom',GE:'Georgia',GH:'Ghana',GI:'Gibraltar',GM:'Gambia',GN:'Guinea',
+    GQ:'Equatorial Guinea',GR:'Greece',GT:'Guatemala',GU:'Guam',GW:'Guinea-Bissau',GY:'Guyana',
+    HK:'Hong Kong',HN:'Honduras',HR:'Croatia',HT:'Haiti',HU:'Hungary',ID:'Indonesia',IE:'Ireland',
+    IL:'Israel',IN:'India',IQ:'Iraq',IR:'Iran',IS:'Iceland',IT:'Italy',JM:'Jamaica',JO:'Jordan',
+    JP:'Japan',KE:'Kenya',KG:'Kyrgyzstan',KH:'Cambodia',KR:'South Korea',KW:'Kuwait',KZ:'Kazakhstan',
+    LA:'Laos',LB:'Lebanon',LI:'Liechtenstein',LK:'Sri Lanka',LR:'Liberia',LS:'Lesotho',LT:'Lithuania',
+    LU:'Luxembourg',LV:'Latvia',LY:'Libya',MA:'Morocco',MC:'Monaco',MD:'Moldova',ME:'Montenegro',
+    MG:'Madagascar',MK:'North Macedonia',ML:'Mali',MM:'Myanmar',MN:'Mongolia',MO:'Macao',MT:'Malta',
+    MU:'Mauritius',MV:'Maldives',MW:'Malawi',MX:'Mexico',MY:'Malaysia',MZ:'Mozambique',NA:'Namibia',
+    NC:'New Caledonia',NE:'Niger',NG:'Nigeria',NI:'Nicaragua',NL:'Netherlands',NO:'Norway',NP:'Nepal',
+    NZ:'New Zealand',OM:'Oman',PA:'Panama',PE:'Peru',PG:'Papua New Guinea',PH:'Philippines',PK:'Pakistan',
+    PL:'Poland',PR:'Puerto Rico',PS:'Palestine',PT:'Portugal',PY:'Paraguay',QA:'Qatar',RO:'Romania',
+    RS:'Serbia',RU:'Russia',RW:'Rwanda',SA:'Saudi Arabia',SD:'Sudan',SE:'Sweden',SG:'Singapore',
+    SI:'Slovenia',SK:'Slovakia',SN:'Senegal',SO:'Somalia',SR:'Suriname',SS:'South Sudan',SV:'El Salvador',
+    SY:'Syria',TH:'Thailand',TJ:'Tajikistan',TN:'Tunisia',TR:'Turkey',TW:'Taiwan',TZ:'Tanzania',
+    UA:'Ukraine',UG:'Uganda',US:'United States',UY:'Uruguay',UZ:'Uzbekistan',VA:'Vatican City',
+    VE:'Venezuela',VN:'Vietnam',XX:'Unknown',YE:'Yemen',ZA:'South Africa',ZM:'Zambia',ZW:'Zimbabwe'
+  };
+  function countryName(code) { return COUNTRY_NAMES[code] || code; }
+
   // Chart palette
   var COLORS = ['#008545', '#009BBB', '#6366F1', '#FFA92D', '#93093F'];
   var COLORS_LIGHT = ['rgba(0,145,75,0.15)', 'rgba(0,155,187,0.15)', 'rgba(99,102,241,0.15)', 'rgba(255,169,45,0.15)', 'rgba(147,9,63,0.15)'];
@@ -247,7 +277,7 @@
       rows.push([]);
       rows.push(['Country', 'Unique Visitors']);
       Object.keys(d.countries || {}).sort(function (a, b) { return d.countries[b] - d.countries[a]; }).forEach(function (k) {
-        rows.push([k, d.countries[k]]);
+        rows.push([countryName(k), d.countries[k]]);
       });
       if (d.referrerQuality) {
         rows.push([]);
@@ -265,7 +295,7 @@
     } else if (v === 'realtime') {
       rows.push(['Time', 'Event', 'Page', 'Country', 'Device', 'Referrer']);
       (d.events || []).forEach(function (e) {
-        rows.push([e.created_at, e.event_type, e.pathname, e.country, e.device_type, e.referrer]);
+        rows.push([e.created_at, e.event_type, e.pathname, countryName(e.country || 'XX'), e.device_type, e.referrer]);
       });
     } else if (v === 'funnel') {
       rows.push(['Step', 'Name', 'Visitors']);
@@ -491,10 +521,11 @@
       });
 
       // Countries bar (unique visitors)
-      var countryLabels = Object.keys(d.countries || {}).sort(function (a, b) {
+      var countryCodes = Object.keys(d.countries || {}).sort(function (a, b) {
         return (d.countries[b] || 0) - (d.countries[a] || 0);
       }).slice(0, 10);
-      var countryValues = countryLabels.map(function (k) { return d.countries[k]; });
+      var countryLabels = countryCodes.map(countryName);
+      var countryValues = countryCodes.map(function (k) { return d.countries[k]; });
 
       makeChart('chartCountries', {
         type: 'bar',
@@ -600,7 +631,7 @@
     fetchView('realtime', function (d) {
       var rows = (d.events || []).map(function (e) {
         var time = e.created_at ? e.created_at.replace('T', ' ').slice(0, 19) : '—';
-        return [time, e.event_type, e.pathname, e.country || 'XX', e.device_type || '—', e.referrer || 'direct'];
+        return [time, e.event_type, e.pathname, countryName(e.country || 'XX'), e.device_type || '—', e.referrer || 'direct'];
       });
       fillTable('tableRealtime', rows);
     });
