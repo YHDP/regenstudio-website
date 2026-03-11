@@ -200,18 +200,28 @@ function resolveImageSrc(slug: string, featuredImage: string, prefix: string): s
 
 /**
  * Adjust content paths for the page depth.
- * Blog content.html files use root-relative paths like "Blogs/slug/image.webp",
- * "Images/file.svg", and "assets/css/embed-consent.css" (no leading slash).
+ * Blog content.html files use paths relative to the site root (no leading slash):
+ *   "Blogs/slug/image.webp", "Images/file.svg", "assets/css/embed-consent.css",
+ *   "privacy.html", "index.html".
  * These need a prefix to resolve correctly from the generated page at
  * /blog/<slug>/index.html (depth ../../) or /<lang>/blog/<slug>/index.html
  * (depth ../../../).
+ *
+ * Skips: absolute URLs (https://, http://, //), root-relative paths (/...),
+ * anchors (#), data: URIs, mailto:, javascript:, and already-prefixed paths (../).
  */
 function adjustContentPaths(content: string, prefix: string): string {
+  // Match src="..." and href="..." (double quotes) where the value is a relative path.
+  // Negative lookahead excludes absolute URLs, root-relative, anchors, data/mailto/javascript URIs,
+  // and already-prefixed relative paths (../).
+  const relativePathRe = /((?:src|href)=")(?!https?:\/\/|\/\/|\/|#|data:|mailto:|javascript:|\.\.\/)([^"]+)(")/g;
+
+  // Same pattern for single-quoted attributes
+  const relativePathReSingle = /((?:src|href)=')(?!https?:\/\/|\/\/|\/|#|data:|mailto:|javascript:|\.\.\/)([^']+)(')/g;
+
   return content
-    .replace(/src="(Blogs\/[^"]+)"/g, `src="${prefix}$1"`)
-    .replace(/src="(Images\/[^"]+)"/g, `src="${prefix}$1"`)
-    .replace(/href="(Blogs\/[^"]+)"/g, `href="${prefix}$1"`)
-    .replace(/href="(assets\/[^"]+)"/g, `href="${prefix}$1"`);
+    .replace(relativePathRe, `$1${prefix}$2$3`)
+    .replace(relativePathReSingle, `$1${prefix}$2$3`);
 }
 
 // --- Load all blog posts ---
