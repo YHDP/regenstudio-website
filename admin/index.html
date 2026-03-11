@@ -115,6 +115,10 @@
           <div class="admin-kpi"><span class="admin-kpi__value" id="kpiDepth">—</span><span class="admin-kpi__delta" id="kpiDepthDelta"></span><span class="admin-kpi__label">Avg Depth</span></div>
           <div class="admin-kpi"><span class="admin-kpi__value" id="kpiTime">—</span><span class="admin-kpi__delta" id="kpiTimeDelta"></span><span class="admin-kpi__label">Avg Time</span></div>
         </div>
+        <div class="admin-quality-bar" id="overviewQuality" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span id="overviewQualityText"></span>
+        </div>
         <div class="admin-chart-panel">
           <h3>Daily Trend</h3>
           <canvas id="chartOverviewTrend"></canvas>
@@ -123,14 +127,15 @@
 
       <!-- View: Traffic Quality -->
       <section class="admin-view" id="view-quality">
+        <div class="admin-quality-mode" id="qualityModeBar"></div>
         <div class="admin-kpi-grid admin-kpi-grid--4">
-          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiHumanVisitors">—</span><span class="admin-kpi__label">Human Visitors</span></div>
-          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiBotVisitors">—</span><span class="admin-kpi__label">Bot Visitors</span></div>
-          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiHumanPct">—</span><span class="admin-kpi__label">Human %</span></div>
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiHumanVisitors">—</span><span class="admin-kpi__label">Engaged Visitors</span></div>
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiBotVisitors">—</span><span class="admin-kpi__label">Unengaged</span></div>
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiHumanPct">—</span><span class="admin-kpi__label">Engagement Rate</span></div>
           <div class="admin-kpi"><span class="admin-kpi__value" id="kpiEngagedTime">—</span><span class="admin-kpi__label">Engaged Avg Time</span></div>
         </div>
         <div class="admin-chart-panel">
-          <h3>Daily Human vs Bot Traffic</h3>
+          <h3 id="qualityTrendTitle">Daily Engaged vs Unengaged Traffic</h3>
           <canvas id="chartQualityTrend"></canvas>
         </div>
         <div class="admin-grid-2">

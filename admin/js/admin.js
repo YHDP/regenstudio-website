@@ -387,6 +387,32 @@
         plugins: { legend: { position: 'bottom' } }
       }
     });
+
+    // Fetch engagement data for quality summary
+    fetchView('engagement', function (eng) {
+      var tb = eng.timeBuckets || {};
+      var sd = eng.scrollDepth || {};
+      var totalPV = eng.totalPageViews || 1;
+      var totalTimed = 0, engagedTimed = 0;
+      ['0-10s', '10-30s', '30s-1m', '1-3m', '3m+'].forEach(function (b) {
+        var v = tb[b] || 0; totalTimed += v;
+        if (b !== '0-10s') engagedTimed += v;
+      });
+      var timeQ = totalTimed > 0 ? engagedTimed / totalTimed : 0;
+      var scrollQ = totalPV > 0 ? (sd.scroll_25 || 0) / totalPV : 0;
+      var depthQ = 1 - k.bounceRate / 100;
+      var score = Math.round((timeQ * 0.4 + scrollQ * 0.3 + depthQ * 0.3) * 100);
+      var estEngaged = Math.round(k.totalUniques * score / 100);
+
+      var bar = document.getElementById('overviewQuality');
+      var text = document.getElementById('overviewQualityText');
+      if (bar && text) {
+        text.innerHTML = '<strong>' + score + '% engagement rate</strong> — ~' +
+          fmtNum(estEngaged) + ' of ' + fmtNum(k.totalUniques) +
+          ' visitors showed meaningful engagement (>10s, scrolled, or multi-page)';
+        bar.style.display = '';
+      }
+    });
   }
 
   function renderOverview() {
@@ -695,21 +721,60 @@
 
   // ── Quality: render everything from computed values ──
   function renderQualityCharts(d, q, dates) {
-    // KPIs
+    // In estimate mode: "Engaged" / "Unengaged" (we can't tell bots from quick human visits)
+    // In detection mode: "Human" / "Detected Bot" (UA matching is certain)
+    var engLabel = q.isEstimate ? 'Engaged' : 'Human';
+    var botLabel = q.isEstimate ? 'Unengaged' : 'Detected Bot';
     var prefix = q.isEstimate ? '~' : '';
+
+    // Mode indicator bar
+    var modeBar = document.getElementById('qualityModeBar');
+    if (modeBar) {
+      modeBar.className = 'admin-quality-mode ' + (q.isEstimate ? 'admin-quality-mode--estimate' : 'admin-quality-mode--detected');
+      modeBar.innerHTML = q.isEstimate
+        ? '<strong>ESTIMATE</strong> — Based on behavioral signals (time, scroll, depth). Cannot distinguish bots from quick human visits. Run the SQL migration and wait for daily aggregation to enable exact bot detection.'
+        : '<strong>DETECTED</strong> — Bots identified by User-Agent (Googlebot, GPTBot, SEMrush, etc.). These numbers are certain.';
+    }
+
+    // Chart title
+    var trendTitle = document.getElementById('qualityTrendTitle');
+    if (trendTitle) {
+      trendTitle.textContent = q.isEstimate ? 'Daily Engaged vs Unengaged Traffic (estimate)' : 'Daily Human vs Detected Bot Traffic';
+    }
+
+    // KPIs
     document.getElementById('kpiHumanVisitors').textContent = prefix + fmtNum(q.humanUniques);
     document.getElementById('kpiBotVisitors').textContent = prefix + fmtNum(q.botUniques);
     document.getElementById('kpiHumanPct').textContent = q.humanPct + '%';
     document.getElementById('kpiEngagedTime').textContent = fmtTime(q.engagedAvgTime);
 
-    // Daily trend (stacked area: human + bot)
+    // Update KPI labels based on mode
+    var kpiLabels = document.querySelectorAll('#view-quality .admin-kpi__label');
+    if (kpiLabels.length >= 3) {
+      kpiLabels[0].textContent = q.isEstimate ? 'Engaged Visitors' : 'Human Visitors';
+      kpiLabels[1].textContent = q.isEstimate ? 'Unengaged' : 'Detected Bots';
+      kpiLabels[2].textContent = q.isEstimate ? 'Engagement Rate' : 'Human %';
+    }
+
+    // Daily trend (stacked area)
     if (dates && dates.length > 0) {
       var labels = dates.map(function (dt) { return dt.slice(5); });
+      var ratio = q.humanPct / 100;
+
       var humanDaily = dates.map(function (dt) {
-        return Math.max(0, (d.dailyViews[dt] || 0) - (d.dailyBotViews ? (d.dailyBotViews[dt] || 0) : 0));
+        var total = d.dailyViews[dt] || 0;
+        // Use real bot data when available, otherwise apply behavioral ratio
+        if (!q.isEstimate && d.dailyBotViews) {
+          return Math.max(0, total - (d.dailyBotViews[dt] || 0));
+        }
+        return Math.round(total * ratio);
       });
       var botDaily = dates.map(function (dt) {
-        return d.dailyBotViews ? (d.dailyBotViews[dt] || 0) : 0;
+        var total = d.dailyViews[dt] || 0;
+        if (!q.isEstimate && d.dailyBotViews) {
+          return d.dailyBotViews[dt] || 0;
+        }
+        return total - Math.round(total * ratio);
       });
 
       makeChart('chartQualityTrend', {
@@ -718,7 +783,7 @@
           labels: labels,
           datasets: [
             {
-              label: 'Human',
+              label: engLabel,
               data: humanDaily,
               borderColor: COLORS[0],
               backgroundColor: COLORS_LIGHT[0],
@@ -727,7 +792,7 @@
               pointRadius: 2
             },
             {
-              label: 'Bot',
+              label: botLabel,
               data: botDaily,
               borderColor: '#9B9B9B',
               backgroundColor: 'rgba(155,155,155,0.15)',
@@ -748,13 +813,11 @@
       });
     }
 
-    // Doughnut: Human vs Bot
-    var humanLabel = q.isEstimate ? 'Est. Human' : 'Human';
-    var botLabel = q.isEstimate ? 'Est. Bot' : 'Bot';
+    // Doughnut
     makeChart('chartQualitySplit', {
       type: 'doughnut',
       data: {
-        labels: [humanLabel, botLabel],
+        labels: [engLabel, botLabel],
         datasets: [{
           data: [q.humanUniques, q.botUniques],
           backgroundColor: [COLORS[0], '#E4E2E2']
@@ -804,21 +867,30 @@
     // Methodology note
     var methodEl = document.getElementById('qualityMethodology');
     if (methodEl) {
-      var source = q.isEstimate
-        ? '<p><strong>Data source:</strong> Behavioral estimate — bot tagging is not yet active for this period. ' +
-          'Numbers are approximate. Once the Edge Function is deployed and data accumulates, this view will show exact counts.</p>'
-        : '<p><strong>Data source:</strong> Real bot detection — bots are tagged by User-Agent pattern matching (client + server). ' +
-          'The daily trend shows actual detected bot vs human traffic.</p>';
+      var modeNote = q.isEstimate
+        ? '<p><strong>Important:</strong> These numbers measure <em>engagement</em>, not bot detection. ' +
+          'A visitor who lands, glances for 3 seconds, and leaves looks identical to a bot in the data. ' +
+          'We cannot distinguish quick human visits from automated crawlers using behavioral signals alone.</p>' +
+          '<p>The "unengaged" category includes both bots and real visitors who didn\'t interact meaningfully. ' +
+          'Treat this as a quality signal, not a bot count.</p>'
+        : '<p><strong>Data source:</strong> Bot detection via User-Agent pattern matching (client + server). ' +
+          '"Detected Bot" means the visitor identified as Googlebot, GPTBot, SEMrush, etc. ' +
+          'This is certain — but bots with custom UAs will be missed.</p>';
       methodEl.innerHTML =
         '<h3>How this works</h3>' +
-        source +
-        '<p>Behavioral signals provide additional quality validation:</p>' +
+        modeNote +
+        '<p>Behavioral signals show what fraction of traffic showed real engagement:</p>' +
         '<ul>' +
-        '<li><strong>Time engagement (' + q.timeQ + '%)</strong> — Visitors who spent more than 10 seconds.</li>' +
-        '<li><strong>Scroll engagement (' + q.scrollQ + '%)</strong> — Visitors who scrolled at least 25%.</li>' +
-        '<li><strong>Session depth (' + q.depthQ + '%)</strong> — Visitors who viewed more than one page.</li>' +
-        '</ul>';
+        '<li><strong>Time >10s (' + q.timeQ + '%)</strong> — Spent more than 10 seconds on a page.</li>' +
+        '<li><strong>Scrolled 25%+ (' + q.scrollQ + '%)</strong> — Scrolled at least a quarter of the page.</li>' +
+        '<li><strong>Multi-page (' + q.depthQ + '%)</strong> — Visited more than one page in a session.</li>' +
+        '</ul>' +
+        '<p>Once UA-based bot tagging accumulates data (runs daily via aggregation), this view will switch ' +
+        'from behavioral estimates to actual detected bot counts.</p>';
     }
+
+    // Store quality for overview
+    window._lastQuality = q;
   }
 
   function renderQuality() {
