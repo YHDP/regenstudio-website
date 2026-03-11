@@ -10,3 +10,6 @@ https?://uemspezaqxmkhenimwuf\.supabase\.co
 
 # about:blank (used for lazy-loaded iframes)
 about:blank
+
+# mailto links (not checkable)
+mailto:
