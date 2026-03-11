@@ -3,8 +3,6 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
-Disallow: /trial.html
-Disallow: /trial2.html
 Disallow: /blog-post.html
 
 # AI crawlers — explicitly allowed
