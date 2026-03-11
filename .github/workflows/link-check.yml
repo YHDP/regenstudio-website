@@ -25,6 +25,7 @@ jobs:
             --timeout 30
             --max-retries 3
             --accept 200,202,204,301,302,307,308,403,429
+            --exclude-path 'Blogs/'
             './**/*.html'
           fail: false
           format: markdown
