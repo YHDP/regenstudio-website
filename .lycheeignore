@@ -13,3 +13,24 @@ about:blank
 
 # mailto links (not checkable)
 mailto:
+
+# reuters.com — paywall, always returns 401
+https?://.*reuters\.com
+
+# euric.org — returns 202 (valid but unusual status)
+https?://.*euric\.org
+
+# fides.community — returns 202 (valid but unusual status)
+https?://.*fides\.community
+
+# telosconecta.com — returns 402
+https?://.*telosconecta\.com
+
+# dutchblockchaincoalition.org — connection errors
+https?://.*dutchblockchaincoalition\.org
+
+# nlfnorm.cz — returns 404, likely geoblocked
+https?://.*nlfnorm\.cz
+
+# commission.europa.eu — EU CDN returns 404 for some valid pages
+https?://commission\.europa\.eu
