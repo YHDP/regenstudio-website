@@ -1,0 +1,41 @@
+name: Link Check
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Weekly on Mondays at 08:00 UTC — catches external link rot
+    - cron: "0 8 * * 1"
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check links
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --root-dir .
+            --no-progress
+            --exclude-mail
+            --timeout 30
+            --max-retries 3
+            --accept 200,204,301,302,307,308,403,429
+            './**/*.html'
+          fail: false
+          format: markdown
+          jobSummary: true
+
+      - name: Create issue on failure
+        if: steps.lychee.outputs.exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "Broken links detected"
+          content-filepath: ./lychee/out.md
+          labels: broken-links
+          assignees: YHDP
