@@ -1,0 +1,34 @@
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Submit sitemap URLs to IndexNow
+        run: |
+          KEY="ea565f890637f138a2eab25b7c80caa4"
+          HOST="www.regenstudio.world"
+
+          # Extract all URLs from sitemap.xml
+          URLS=$(grep -oP '<loc>\K[^<]+' sitemap.xml)
+          URL_JSON=$(echo "$URLS" | jq -R -s 'split("\n") | map(select(length > 0))')
+
+          echo "Submitting $(echo "$URLS" | wc -l) URLs to IndexNow..."
+
+          curl -s -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "{
+              \"host\": \"$HOST\",
+              \"key\": \"$KEY\",
+              \"keyLocation\": \"https://$HOST/$KEY.txt\",
+              \"urlList\": $URL_JSON
+            }"
+
+          echo ""
+          echo "IndexNow submission complete."
