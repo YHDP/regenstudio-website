@@ -1,0 +1,12 @@
+# LinkedIn — aggressively blocks automated requests (always returns 999)
+https?://.*linkedin\.com
+
+# localhost / local dev
+https?://localhost
+https?://127\.0\.0\.1
+
+# Supabase project URLs (auth required)
+https?://uemspezaqxmkhenimwuf\.supabase\.co
+
+# about:blank (used for lazy-loaded iframes)
+about:blank
