@@ -2680,6 +2680,8 @@ em:only-of-type {
 
 /* --- Footer --- */
 .footer {
+  position: relative;
+  z-index: 10;
   background: var(--color-navy);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 60px 0 40px;
@@ -3078,7 +3080,12 @@ em:only-of-type {
   }
 
   .hero__actions {
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero__actions .btn {
+    text-align: center;
   }
 
   .hero__title {
