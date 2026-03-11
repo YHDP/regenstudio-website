@@ -906,32 +906,65 @@ ${urls}
 
 // --- Generate feed.xml (RSS 2.0) ---
 
-function generateRssFeed(posts: BlogPost[]): string {
+/** Resolve image path to a local file path for stat() */
+function resolveImageLocalPath(baseDir: string, slug: string, featuredImage: string): string {
+  if (!featuredImage) return `${baseDir}/Images/og-image.png`;
+  if (featuredImage.startsWith("../../")) {
+    return `${baseDir}/${featuredImage.replace("../../", "")}`;
+  }
+  return `${baseDir}/Blogs/${slug}/${featuredImage}`;
+}
+
+/** URL-encode path segments while preserving slashes */
+function encodeUrlPath(url: string): string {
+  // Split on protocol+host, encode only the path part
+  const match = url.match(/^(https?:\/\/[^/]+)(\/.*)?$/);
+  if (!match) return url;
+  const [, origin, path] = match;
+  if (!path) return origin;
+  return origin + path.split("/").map(s => encodeURIComponent(s)).join("/");
+}
+
+async function generateRssFeed(baseDir: string, posts: BlogPost[]): Promise<string> {
   const newest = posts.slice(0, 20);
   const pubDate = newest.length > 0 ? new Date(newest[0].date + "T00:00:00Z").toUTCString() : new Date().toUTCString();
 
-  const items = newest
-    .map((p) => {
-      const url = `${SITE_URL}/blog/${p.slug}/`;
-      const imageUrl = resolveImageUrl(p.slug, p.featuredImage);
-      const desc = stripHtml(p.excerpt || p.subtitle || "");
-      const itemDate = new Date(p.date + "T00:00:00Z").toUTCString();
-      const categories = p.categories
-        .map((c) => `      <category>${escapeXml(c)}</category>`)
-        .join("\n");
+  const items: string[] = [];
+  for (const p of newest) {
+    const url = `${SITE_URL}/blog/${p.slug}/`;
+    const rawImageUrl = resolveImageUrl(p.slug, p.featuredImage);
+    const imageUrl = encodeUrlPath(rawImageUrl);
+    const desc = stripHtml(p.excerpt || p.subtitle || "");
+    const itemDate = new Date(p.date + "T00:00:00Z").toUTCString();
+    const categories = p.categories
+      .map((c) => `      <category>${escapeXml(c)}</category>`)
+      .join("\n");
 
-      return `    <item>
+    // Get file size for enclosure length attribute
+    let fileSize = 0;
+    try {
+      const localPath = resolveImageLocalPath(baseDir, p.slug, p.featuredImage);
+      const stat = await Deno.stat(localPath);
+      fileSize = stat.size;
+    } catch {
+      // File not found — use 0
+    }
+
+    // RSS 2.0 <author> requires "email (Name)" format
+    const authorName = p.author.name;
+    const authorEmail = `noreply@regenstudio.world (${authorName})`;
+
+    items.push(`    <item>
       <title>${escapeXml(p.title)}</title>
       <link>${url}</link>
       <guid isPermaLink="true">${url}</guid>
       <pubDate>${itemDate}</pubDate>
       <description>${escapeXml(desc)}</description>
-      <author>${escapeXml(p.author.name)}</author>
+      <author>${escapeXml(authorEmail)}</author>
 ${categories}
-      <enclosure url="${escapeXml(imageUrl)}" type="${imageMimeType(imageUrl)}" />
-    </item>`;
-    })
-    .join("\n");
+      <enclosure url="${escapeXml(imageUrl)}" type="${imageMimeType(rawImageUrl)}" length="${fileSize}" />
+    </item>`);
+  }
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -942,7 +975,7 @@ ${categories}
     <language>en</language>
     <pubDate>${pubDate}</pubDate>
     <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml" />
-${items}
+${items.join("\n")}
   </channel>
 </rss>
 `;
@@ -1030,7 +1063,7 @@ async function main() {
   console.log("  sitemap.xml");
 
   // Generate feed.xml (English only)
-  const feed = generateRssFeed(posts);
+  const feed = await generateRssFeed(baseDir, posts);
   await Deno.writeTextFile(`${baseDir}/feed.xml`, feed);
   console.log("  feed.xml");
 
