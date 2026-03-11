@@ -539,7 +539,7 @@
 
     var datasets = [
       {
-        label: 'Human Views',
+        label: 'Views',
         data: humanValues,
         borderColor: COLORS[0],
         backgroundColor: COLORS_LIGHT[0],
@@ -589,28 +589,34 @@
       }
     });
 
-    // Fetch engagement data for quality summary
-    fetchView('engagement', function (eng) {
-      var tb = eng.timeBuckets || {};
-      var sd = eng.scrollDepth || {};
-      var totalPV = eng.totalPageViews || 1;
-      var est = computeBehavioralEstimate(tb, sd, totalPV, k.bounceRate, k.totalUniques);
-      var score = est.humanPct;
-      var estEngaged = est.humanUniques;
+    // Fetch engagement data for quality summary (direct fetch, not via fetchView to avoid overwriting lastViewData)
+    var engRange = getDateRange();
+    var engUrl = API_URL + '?view=engagement&from=' + engRange.from + '&to=' + engRange.to + '&site=' + getSite();
+    fetch(engUrl, { headers: { 'Authorization': 'Bearer ' + token } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (eng) {
+        if (!eng) return;
+        var tb = eng.timeBuckets || {};
+        var sd = eng.scrollDepth || {};
+        var totalPV = eng.totalPageViews || 1;
+        var est = computeBehavioralEstimate(tb, sd, totalPV, k.bounceRate, k.totalUniques);
+        var score = est.humanPct;
+        var estEngaged = est.humanUniques;
 
-      // Update Engaged KPI
-      var engKpi = document.getElementById('kpiEngaged');
-      if (engKpi) engKpi.textContent = '~' + fmtNum(estEngaged);
+        // Update Engaged KPI
+        var engKpi = document.getElementById('kpiEngaged');
+        if (engKpi) engKpi.textContent = '~' + fmtNum(estEngaged);
 
-      var bar = document.getElementById('overviewQuality');
-      var text = document.getElementById('overviewQualityText');
-      if (bar && text) {
-        text.innerHTML = '<strong>' + score + '% engagement rate</strong> — ~' +
-          fmtNum(estEngaged) + ' of ' + fmtNum(k.totalUniques) +
-          ' visitors showed meaningful engagement (>10s, scrolled, or multi-page)';
-        bar.style.display = '';
-      }
-    });
+        var bar = document.getElementById('overviewQuality');
+        var text = document.getElementById('overviewQualityText');
+        if (bar && text) {
+          text.innerHTML = '<strong>' + score + '% engagement rate</strong> — ~' +
+            fmtNum(estEngaged) + ' of ' + fmtNum(k.totalUniques) +
+            ' visitors showed meaningful engagement (>10s, scrolled, or multi-page)';
+          bar.style.display = '';
+        }
+      })
+      .catch(function () { /* engagement data unavailable — KPI stays at — */ });
   }
 
   function renderOverview() {
