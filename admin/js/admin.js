@@ -203,7 +203,21 @@
     var d = lastViewData.data;
     var v = lastViewData.view;
 
-    if (v === 'overview') {
+    if (v === 'quality') {
+      var q = d.q || {};
+      rows.push(['Metric', 'Value']);
+      rows.push(['Human Visitors', q.humanUniques || 0]);
+      rows.push(['Bot Visitors', q.botUniques || 0]);
+      rows.push(['Human %', (q.humanPct || 0) + '%']);
+      rows.push(['Engaged Avg Time (ms)', q.engagedAvgTime || 0]);
+      rows.push(['Total Unique Visitors', d.totalUniques || 0]);
+      rows.push(['Data Source', q.isEstimate ? 'Behavioral estimate' : 'Bot detection']);
+      rows.push([]);
+      rows.push(['Signal', 'Percentage']);
+      rows.push(['Time >10s', (q.timeQ || 0) + '%']);
+      rows.push(['Scrolled 25%+', (q.scrollQ || 0) + '%']);
+      rows.push(['Multi-page', (q.depthQ || 0) + '%']);
+    } else if (v === 'overview') {
       rows.push(['Date', 'Views', 'Uniques']);
       var dates = Object.keys(d.dailyViews || {}).sort();
       dates.forEach(function (dt) {
@@ -621,8 +635,245 @@
     });
   }
 
+  // ── Quality: compute behavioral estimate from engagement data ──
+  function computeBehavioralEstimate(tb, sd, totalPV, bounceRate, totalUniques) {
+    var totalTimed = 0;
+    var engagedTimed = 0;
+    ['0-10s', '10-30s', '30s-1m', '1-3m', '3m+'].forEach(function (b) {
+      var v = tb[b] || 0;
+      totalTimed += v;
+      if (b !== '0-10s') engagedTimed += v;
+    });
+    var timeQ = totalTimed > 0 ? engagedTimed / totalTimed : 0;
+    var scrollQ = totalPV > 0 ? (sd.scroll_25 || 0) / totalPV : 0;
+    var depthQ = 1 - bounceRate / 100;
+    var score = timeQ * 0.4 + scrollQ * 0.3 + depthQ * 0.3;
+
+    var engagedBucketMs = { '10-30s': 20000, '30s-1m': 45000, '1-3m': 120000, '3m+': 300000 };
+    var wt = 0;
+    Object.keys(engagedBucketMs).forEach(function (b) { wt += (tb[b] || 0) * engagedBucketMs[b]; });
+    var engagedAvgTime = engagedTimed > 0 ? Math.round(wt / engagedTimed) : 0;
+
+    return {
+      humanUniques: Math.round(totalUniques * score), botUniques: totalUniques - Math.round(totalUniques * score),
+      humanPct: Math.round(score * 100), engagedAvgTime: engagedAvgTime,
+      timeQ: Math.round(timeQ * 100), scrollQ: Math.round(scrollQ * 100), depthQ: Math.round(depthQ * 100),
+      isEstimate: true
+    };
+  }
+
+  // ── Quality: render everything from computed values ──
+  function renderQualityCharts(d, q, dates) {
+    // KPIs
+    var prefix = q.isEstimate ? '~' : '';
+    document.getElementById('kpiHumanVisitors').textContent = prefix + fmtNum(q.humanUniques);
+    document.getElementById('kpiBotVisitors').textContent = prefix + fmtNum(q.botUniques);
+    document.getElementById('kpiHumanPct').textContent = q.humanPct + '%';
+    document.getElementById('kpiEngagedTime').textContent = fmtTime(q.engagedAvgTime);
+
+    // Daily trend (stacked area: human + bot)
+    if (dates && dates.length > 0) {
+      var labels = dates.map(function (dt) { return dt.slice(5); });
+      var humanDaily = dates.map(function (dt) {
+        return Math.max(0, (d.dailyViews[dt] || 0) - (d.dailyBotViews ? (d.dailyBotViews[dt] || 0) : 0));
+      });
+      var botDaily = dates.map(function (dt) {
+        return d.dailyBotViews ? (d.dailyBotViews[dt] || 0) : 0;
+      });
+
+      makeChart('chartQualityTrend', {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Human',
+              data: humanDaily,
+              borderColor: COLORS[0],
+              backgroundColor: COLORS_LIGHT[0],
+              fill: true,
+              tension: 0.3,
+              pointRadius: 2
+            },
+            {
+              label: 'Bot',
+              data: botDaily,
+              borderColor: '#9B9B9B',
+              backgroundColor: 'rgba(155,155,155,0.15)',
+              fill: true,
+              tension: 0.3,
+              pointRadius: 2
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          interaction: { mode: 'index', intersect: false },
+          scales: {
+            y: { stacked: true, beginAtZero: true, ticks: { precision: 0 } }
+          },
+          plugins: { legend: { position: 'bottom' } }
+        }
+      });
+    }
+
+    // Doughnut: Human vs Bot
+    var humanLabel = q.isEstimate ? 'Est. Human' : 'Human';
+    var botLabel = q.isEstimate ? 'Est. Bot' : 'Bot';
+    makeChart('chartQualitySplit', {
+      type: 'doughnut',
+      data: {
+        labels: [humanLabel, botLabel],
+        datasets: [{
+          data: [q.humanUniques, q.botUniques],
+          backgroundColor: [COLORS[0], '#E4E2E2']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' },
+          tooltip: {
+            callbacks: {
+              label: function (ctx) {
+                var total = q.humanUniques + q.botUniques;
+                var pct = total > 0 ? Math.round(ctx.raw / total * 100) : 0;
+                return ctx.label + ': ' + ctx.raw + ' (' + pct + '%)';
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // Behavioral signals bar
+    makeChart('chartQualitySignals', {
+      type: 'bar',
+      data: {
+        labels: ['Time >10s', 'Scrolled 25%+', 'Multi-page'],
+        datasets: [
+          { label: 'Engaged', data: [q.timeQ, q.scrollQ, q.depthQ], backgroundColor: COLORS[0] },
+          { label: 'Not engaged', data: [100 - q.timeQ, 100 - q.scrollQ, 100 - q.depthQ], backgroundColor: '#E4E2E2' }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: { stacked: true, max: 100, ticks: { callback: function (v) { return v + '%'; } } },
+          y: { stacked: true }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: function (ctx) { return ctx.dataset.label + ': ' + ctx.raw + '%'; } } }
+        }
+      }
+    });
+
+    // Methodology note
+    var methodEl = document.getElementById('qualityMethodology');
+    if (methodEl) {
+      var source = q.isEstimate
+        ? '<p><strong>Data source:</strong> Behavioral estimate — bot tagging is not yet active for this period. ' +
+          'Numbers are approximate. Once the Edge Function is deployed and data accumulates, this view will show exact counts.</p>'
+        : '<p><strong>Data source:</strong> Real bot detection — bots are tagged by User-Agent pattern matching (client + server). ' +
+          'The daily trend shows actual detected bot vs human traffic.</p>';
+      methodEl.innerHTML =
+        '<h3>How this works</h3>' +
+        source +
+        '<p>Behavioral signals provide additional quality validation:</p>' +
+        '<ul>' +
+        '<li><strong>Time engagement (' + q.timeQ + '%)</strong> — Visitors who spent more than 10 seconds.</li>' +
+        '<li><strong>Scroll engagement (' + q.scrollQ + '%)</strong> — Visitors who scrolled at least 25%.</li>' +
+        '<li><strong>Session depth (' + q.depthQ + '%)</strong> — Visitors who viewed more than one page.</li>' +
+        '</ul>';
+    }
+  }
+
+  function renderQuality() {
+    var range = getDateRange();
+    var site = getSite();
+    showError('');
+    setLoading('quality', true);
+
+    var headers = { 'Authorization': 'Bearer ' + token };
+    var base = API_URL + '?from=' + range.from + '&to=' + range.to + '&site=' + site;
+
+    // Try the quality endpoint (requires updated Edge Function)
+    fetch(base + '&view=quality', { headers: headers })
+      .then(function (r) {
+        if (r.status === 401) { gate.style.display = ''; dashboard.style.display = 'none'; return null; }
+        if (!r.ok) throw new Error('quality endpoint unavailable');
+        return r.json();
+      })
+      .then(function (d) {
+        setLoading('quality', false);
+        if (!d) return;
+
+        var dates = Object.keys(d.dailyViews || {}).sort();
+        var totalUniques = d.totalUniques || 0;
+        var tb = d.timeBuckets || {};
+        var sd = d.scrollDepth || {};
+        var totalPV = d.totalPageViews || 1;
+        var bounceRate = d.bounceRate || 0;
+
+        // Behavioral signals (always computed for the signals chart)
+        var behavioral = computeBehavioralEstimate(tb, sd, totalPV, bounceRate, totalUniques);
+
+        var q;
+        if (d.hasBotData) {
+          // Use real bot detection data
+          var humanPct = totalUniques > 0 ? Math.round((d.humanUniques || 0) / totalUniques * 100) : 0;
+          q = {
+            humanUniques: d.humanUniques || 0,
+            botUniques: d.botUniques || 0,
+            humanPct: humanPct,
+            engagedAvgTime: behavioral.engagedAvgTime,
+            timeQ: behavioral.timeQ, scrollQ: behavioral.scrollQ, depthQ: behavioral.depthQ,
+            isEstimate: false
+          };
+        } else {
+          q = behavioral;
+        }
+
+        lastViewData = { view: 'quality', data: { q: q, totalUniques: totalUniques } };
+        renderQualityCharts(d, q, dates);
+      })
+      .catch(function () {
+        // Fallback: quality endpoint not deployed yet, use overview + engagement
+        Promise.all([
+          fetch(base + '&view=overview', { headers: headers }).then(function (r) { return r.json(); }),
+          fetch(base + '&view=engagement', { headers: headers }).then(function (r) { return r.json(); })
+        ]).then(function (results) {
+          setLoading('quality', false);
+          var overview = results[0];
+          var engagement = results[1];
+          if (!overview || !engagement) return;
+
+          var k = overview.kpis || {};
+          var totalUniques = k.totalUniques || 0;
+          var tb = engagement.timeBuckets || {};
+          var sd = engagement.scrollDepth || {};
+          var totalPV = engagement.totalPageViews || 1;
+          var bounceRate = k.bounceRate || 0;
+          var dates = Object.keys(overview.dailyViews || {}).sort();
+
+          var q = computeBehavioralEstimate(tb, sd, totalPV, bounceRate, totalUniques);
+          var d = { dailyViews: overview.dailyViews || {}, dailyBotViews: null };
+
+          lastViewData = { view: 'quality', data: { q: q, totalUniques: totalUniques } };
+          renderQualityCharts(d, q, dates);
+        }).catch(function (err) {
+          setLoading('quality', false);
+          showError('Failed to load quality data.');
+          console.error('Quality fetch error:', err);
+        });
+      });
+  }
+
   var viewRenderers = {
     overview: renderOverview,
+    quality: renderQuality,
     pages: renderPages,
     navigation: renderNavigation,
     engagement: renderEngagement,
@@ -634,6 +885,7 @@
 
   var viewTitles = {
     overview: 'Overview',
+    quality: 'Traffic Quality',
     pages: 'Pages',
     navigation: 'Navigation',
     engagement: 'Engagement',

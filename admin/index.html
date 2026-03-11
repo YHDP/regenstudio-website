@@ -43,6 +43,10 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           Overview
         </button>
+        <button class="admin-nav-btn" data-view="quality">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Traffic Quality
+        </button>
         <button class="admin-nav-btn" data-view="pages">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
           Pages
@@ -115,6 +119,31 @@
           <h3>Daily Trend</h3>
           <canvas id="chartOverviewTrend"></canvas>
         </div>
+      </section>
+
+      <!-- View: Traffic Quality -->
+      <section class="admin-view" id="view-quality">
+        <div class="admin-kpi-grid admin-kpi-grid--4">
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiHumanVisitors">—</span><span class="admin-kpi__label">Human Visitors</span></div>
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiBotVisitors">—</span><span class="admin-kpi__label">Bot Visitors</span></div>
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiHumanPct">—</span><span class="admin-kpi__label">Human %</span></div>
+          <div class="admin-kpi"><span class="admin-kpi__value" id="kpiEngagedTime">—</span><span class="admin-kpi__label">Engaged Avg Time</span></div>
+        </div>
+        <div class="admin-chart-panel">
+          <h3>Daily Human vs Bot Traffic</h3>
+          <canvas id="chartQualityTrend"></canvas>
+        </div>
+        <div class="admin-grid-2">
+          <div class="admin-chart-panel">
+            <h3>Traffic Split</h3>
+            <canvas id="chartQualitySplit"></canvas>
+          </div>
+          <div class="admin-chart-panel">
+            <h3>Behavioral Signals</h3>
+            <canvas id="chartQualitySignals"></canvas>
+          </div>
+        </div>
+        <div class="admin-info-box" id="qualityMethodology"></div>
       </section>
 
       <!-- View: Pages -->
