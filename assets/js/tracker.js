@@ -18,6 +18,10 @@
   var SITE = 'www';
   var pageLoadTime = Date.now();
 
+  // ── Bot detection — flag known crawlers (still tracked, tagged as bot) ──
+  var _ua = navigator.userAgent || '';
+  var _isBot = /bot|crawl|spider|slurp|bingpreview|mediapartners|facebookexternalhit|linkedinbot|twitterbot|whatsapp|telegrambot|googlebot|yandex|baidu|duckduckbot|semrush|ahrefs|mj12bot|dotbot|petalbot|bytespider|gptbot|chatgpt|claudebot|anthropic|perplexity|applebot|archive\.org|ia_archiver|wget|curl|python-requests|httpx|node-fetch|axios|postman|lighthouse|pagespeed|gtmetrix|headlesschrome/i.test(_ua);
+
   // ── Timezone (used server-side for country mapping) ──
   var tz = '';
   try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
@@ -26,6 +30,7 @@
   function send(payload) {
     try {
       payload.site = SITE;
+      if (_isBot) payload.is_bot = true;
       if (tz) payload.timezone = tz;
       fetch(ENDPOINT, {
         method: 'POST',

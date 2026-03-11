@@ -485,6 +485,46 @@ body {
 .admin-heatmap .hm-4 { background: rgba(0,145,75,0.6); color: white; }
 .admin-heatmap .hm-5 { background: rgba(0,145,75,0.8); color: white; }
 
+.admin-kpi-grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ── Info Box ── */
+.admin-info-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.admin-info-box h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.admin-info-box ul {
+  margin: var(--space-sm) 0;
+  padding-left: var(--space-lg);
+}
+
+.admin-info-box li {
+  margin-bottom: var(--space-xs);
+}
+
+.admin-info-box p {
+  margin-bottom: var(--space-sm);
+}
+
+.admin-info-box p:last-child {
+  margin-bottom: 0;
+}
+
 /* ── Funnel Note ── */
 .admin-funnel-note {
   background: rgba(255, 169, 45, 0.1);
@@ -537,6 +577,7 @@ body {
   }
 
   .admin-kpi-grid,
+  .admin-kpi-grid--4,
   .admin-kpi-grid--5 {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -548,6 +589,7 @@ body {
 
 @media (max-width: 480px) {
   .admin-kpi-grid,
+  .admin-kpi-grid--4,
   .admin-kpi-grid--5 {
     grid-template-columns: 1fr;
   }
