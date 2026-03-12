@@ -376,7 +376,7 @@ function buildHead(post: BlogPost, lang: Lang = "en", availableLangs: Lang[] = [
   const ap = assetPrefix(lang);
   const canonicalUrl = `${SITE_URL}${prefix}/blog/${post.slug}/`;
   const imageUrl = resolveImageUrl(post.slug, post.featuredImage);
-  const title = `${post.title} | ${SITE_NAME} Blog`;
+  const title = `${post.title} | ${SITE_NAME}`;
   const description = post.excerpt || post.subtitle || SITE_DESCRIPTION;
   // Strip HTML entities and tags from description for meta tags
   const cleanDesc = stripHtml(description)
