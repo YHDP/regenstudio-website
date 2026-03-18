@@ -255,7 +255,7 @@
 
   <!-- Hero: Interactive Triangle Canvas -->
   <main id="main-content">
-  <header class="hero" id="hero">
+  <header class="hero" id="hero" data-section="hero">
     <!-- Ambient gradient orbs (behind canvas) -->
     <div class="hero-ambient">
       <div class="hero-ambient__orb hero-ambient__orb--1"></div>
@@ -286,7 +286,7 @@
           Wij ontwikkelen systemische innovaties op het snijvlak van technologie, samenleving en natuur &mdash; en helpen organisaties positieve impact te creëren met nieuwe oplossingen.
         </p>
         <div class="hero__actions animate-in">
-          <a href="#focus" class="btn btn--primary">Ontdek Ons Werk</a>
+          <a href="#focus" class="btn btn--primary" data-track="hero-cta">Ontdek Ons Werk</a>
         </div>
 
         <!-- Section nav: subtle inline pills -->
@@ -338,7 +338,7 @@
     </div>
 
     <!-- Focus Areas -->
-    <section class="section focus" id="focus">
+    <section class="section focus" id="focus" data-section="focus">
       <div class="container">
         <p class="section__label section__label--center">Ons Werk</p>
         <h2 class="section__title section__title--center">Ontwerp voor de meest urgente uitdagingen van deze tijd</h2>
@@ -362,7 +362,7 @@
               <h3 class="focus__card-title">Energietransitie</h3>
               <p class="focus__card-text">Decentrale, lokaal beheerde energienetten die verder gaan dan hernieuwbare energie, richting een rechtvaardige energietoekomst.</p>
             </div>
-            <a class="focus__case" href="/nl/blog/slim-strandnet/">
+            <a class="focus__case" href="/nl/blog/slim-strandnet/" data-track="case-energy">
               <div class="focus__case-accent"></div>
               <div class="focus__case-body">
                 <span class="focus__case-label">Uitgelichte Case</span>
@@ -393,7 +393,7 @@
               <h3 class="focus__card-title"><dfn>Circulaire Economie</dfn></h3>
               <p class="focus__card-text">Grondstofkringlopen sluiten zodat producten en materialen langer in gebruik blijven, en afval door ontwerp wordt ge&euml;limineerd.</p>
             </div>
-            <a class="focus__case" href="../digital-product-passports/">
+            <a class="focus__case" href="../digital-product-passports/" data-track="case-circular">
               <div class="focus__case-accent"></div>
               <div class="focus__case-body">
                 <span class="focus__case-label">Uitgelichte Case</span>
@@ -427,7 +427,7 @@
               <h3 class="focus__card-title">Leefbare Steden</h3>
               <p class="focus__card-text">Leefomgevingen waar mens en natuur samen floreren door verantwoorde, mensgerichte technologie.</p>
             </div>
-            <a class="focus__case" href="/nl/blog/Blog%202/">
+            <a class="focus__case" href="/nl/blog/Blog%202/" data-track="case-cities">
               <div class="focus__case-accent"></div>
               <div class="focus__case-body">
                 <span class="focus__case-label">Uitgelichte Case</span>
@@ -452,7 +452,7 @@
               <h3 class="focus__card-title">Veerkrachtige Natuur</h3>
               <p class="focus__card-text">Ecologische vernietiging omkeren met technologie die ecosystemen herstelt en biodiversiteit beschermt.</p>
             </div>
-            <a class="focus__case" href="/nl/blog/bioacoustics-iracambi/">
+            <a class="focus__case" href="/nl/blog/bioacoustics-iracambi/" data-track="case-nature">
               <div class="focus__case-accent"></div>
               <div class="focus__case-body">
                 <span class="focus__case-label">Uitgelichte Case</span>
@@ -497,7 +497,7 @@
               <h3 class="focus__card-title">Digitale Samenleving</h3>
               <p class="focus__card-text">Privacy-first systemen waar data mensen dient en individuen beschermt in een steeds digitalere wereld.</p>
             </div>
-            <a class="focus__case" href="../digital-identities/">
+            <a class="focus__case" href="../digital-identities/" data-track="case-digital">
               <div class="focus__case-accent"></div>
               <div class="focus__case-body">
                 <span class="focus__case-label">Uitgelichte Case</span>
@@ -512,12 +512,12 @@
           <span class="section__soft-cta-email">
             <span class="copyable-email copyable-email--inline">
               <span class="copyable-email__address">info@regenstudio.world</span>
-              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Kopieer e-mail">
+              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Kopieer e-mail" data-track="email-copy">
                 <span data-i18n="nav.copy">Kopieer</span>
                 <svg class="copyable-email__icon copyable-email__icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
               </button>
-              <a class="soft-cta__form-link" href="#contact" aria-label="Stuur een bericht">
+              <a class="soft-cta__form-link" href="#contact" aria-label="Stuur een bericht" data-track="message-link">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </a>
             </span>
@@ -536,7 +536,7 @@
     </div>
 
     <!-- Clients -->
-    <section class="section clients" id="clients">
+    <section class="section clients" id="clients" data-section="clients">
       <div class="container">
         <p class="section__label section__label--center">Voor Wie</p>
         <h2 class="section__title section__title--center">Partners in regeneratie</h2>
@@ -690,7 +690,7 @@
         </div>
 
         <div style="text-align: center; margin: 40px 0 8px;">
-          <a href="client-projects.html" class="btn btn--outline">Bekijk al onze projecten voor opdrachtgevers</a>
+          <a href="client-projects.html" class="btn btn--outline" data-track="clients-view-all">Bekijk al onze projecten voor opdrachtgevers</a>
         </div>
 
         <div class="section__soft-cta">
@@ -698,12 +698,12 @@
           <span class="section__soft-cta-email">
             <span class="copyable-email copyable-email--inline">
               <span class="copyable-email__address">info@regenstudio.world</span>
-              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Kopieer e-mail">
+              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Kopieer e-mail" data-track="email-copy">
                 <span data-i18n="nav.copy">Kopieer</span>
                 <svg class="copyable-email__icon copyable-email__icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
               </button>
-              <a class="soft-cta__form-link" href="#contact" aria-label="Stuur een bericht">
+              <a class="soft-cta__form-link" href="#contact" aria-label="Stuur een bericht" data-track="message-link">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </a>
             </span>
@@ -723,7 +723,7 @@
     </div>
 
     <!-- Latest from the Blog -->
-    <section class="section blog-preview" id="blog-preview">
+    <section class="section blog-preview" id="blog-preview" data-section="blog-preview">
       <div class="container">
         <div class="blog-preview__header">
           <div>
@@ -749,13 +749,13 @@
     </div>
 
     <!-- Services -->
-    <section class="section services" id="services">
+    <section class="section services" id="services" data-section="services">
       <div class="container">
         <p class="section__label section__label--center">Wat We Doen</p>
         <h2 class="section__title section__title--center">Diensten ontworpen voor systemische impact</h2>
         <div class="services__grid">
           <article class="service service--linked">
-            <a href="innovation-services.html" class="service__overlay" aria-label="Innovatiediensten — Meer informatie"></a>
+            <a href="innovation-services.html" class="service__overlay" aria-label="Innovatiediensten — Meer informatie" data-track="service-innovation"></a>
             <div class="service__image">
               <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-label="Illustratie innovatiediensten">
                 <circle cx="60" cy="60" r="60" fill="#008545" opacity="0.05"/>
@@ -779,7 +779,7 @@
             <span class="service__link">Meer informatie &rarr;</span>
           </article>
           <article class="service service--linked">
-            <a href="blog.html#cat=Vision%20%26%20Strategy" class="service__overlay" aria-label="Visie &amp; Strategie — Bekijk verhalen"></a>
+            <a href="blog.html#cat=Vision%20%26%20Strategy" class="service__overlay" aria-label="Visie &amp; Strategie — Bekijk verhalen" data-track="service-vision"></a>
             <div class="service__image">
               <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-label="Illustratie visie &amp; strategie">
                 <circle cx="60" cy="60" r="60" fill="#009BBB" opacity="0.05"/>
@@ -802,7 +802,7 @@
             <span class="service__link">Bekijk verhalen &rarr;</span>
           </article>
           <article class="service service--linked">
-            <a href="blog.html#cat=Visual%20Storytelling" class="service__overlay" aria-label="Visuele Storytelling — Bekijk verhalen"></a>
+            <a href="blog.html#cat=Visual%20Storytelling" class="service__overlay" aria-label="Visuele Storytelling — Bekijk verhalen" data-track="service-storytelling"></a>
             <div class="service__image">
               <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-label="Illustratie visuele storytelling">
                 <circle cx="60" cy="60" r="60" fill="#93093F" opacity="0.04"/>
@@ -823,7 +823,7 @@
             <span class="service__link">Bekijk verhalen &rarr;</span>
           </article>
           <article class="service service--linked">
-            <a href="blog.html#cat=Out-of-the-Box%20Ideas" class="service__overlay" aria-label="Out-of-the-Box Idee&euml;n — Bekijk verhalen"></a>
+            <a href="blog.html#cat=Out-of-the-Box%20Ideas" class="service__overlay" aria-label="Out-of-the-Box Idee&euml;n — Bekijk verhalen" data-track="service-ideas"></a>
             <div class="service__image">
               <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-label="Illustratie out-of-the-box ideeën">
                 <circle cx="60" cy="60" r="60" fill="#E71846" opacity="0.04"/>
@@ -852,12 +852,12 @@
           <span class="section__soft-cta-email">
             <span class="copyable-email copyable-email--inline">
               <span class="copyable-email__address">info@regenstudio.world</span>
-              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Kopieer e-mail">
+              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Kopieer e-mail" data-track="email-copy">
                 <span data-i18n="nav.copy">Kopieer</span>
                 <svg class="copyable-email__icon copyable-email__icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
               </button>
-              <a class="soft-cta__form-link" href="#contact" aria-label="Stuur een bericht">
+              <a class="soft-cta__form-link" href="#contact" aria-label="Stuur een bericht" data-track="message-link">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </a>
             </span>
@@ -876,7 +876,7 @@
     </div>
 
     <!-- About / Vision -->
-    <section class="section about section-decoration" id="about">
+    <section class="section about section-decoration" id="about" data-section="vision">
       <div class="container">
         <div class="section__grid section__grid--2col">
           <div class="about__text">
@@ -885,7 +885,7 @@
             <p class="about__lead">
               Wij geloven dat de meest impactvolle innovaties niet alleen problemen oplossen &mdash; ze regenereren de systemen die ze raken. Door inspiratie, schoonheid en jarenlange expertise transformeren wij systemen zodat ze werken voor een tijdperk waarin mensen in balans leven met zichzelf, hun gemeenschappen, hun steden en hun planeet.
             </p>
-            <a href="/nl/vision.html" class="btn btn--outline">Lees onze volledige visie &rarr;</a>
+            <a href="/nl/vision.html" class="btn btn--outline" data-track="vision-read-more">Lees onze volledige visie &rarr;</a>
           </div>
           <div class="about__visual">
             <div class="about__circle-group">
@@ -917,17 +917,17 @@
     </div>
 
     <!-- Interactive Demos -->
-    <section class="section demos-preview" id="demos">
+    <section class="section demos-preview" id="demos" data-section="demos">
       <div class="container">
         <div class="demos-preview__header">
           <div>
             <p class="section__label">Probeer Het Zelf</p>
             <h2 class="section__title">Interactieve Demo's</h2>
           </div>
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="btn btn--outline btn--small">Bekijk alle demo's &rarr;</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="btn btn--outline btn--small" data-track="demos-view-all">Bekijk alle demo's &rarr;</a>
         </div>
         <div class="demos-preview__grid demos-preview__grid--3">
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="demos-preview__card">
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="demos-preview__card" data-track="demo-edi-wallet">
             <div class="demos-preview__card-visual">
               <img src="../Images/demo-edi-wallet.svg" alt="EDI Wallet voorbeeld" class="demos-preview__card-img" loading="lazy" width="800" height="500">
               <span class="demos-preview__card-badge">Demo</span>
@@ -941,7 +941,7 @@
               <span class="demos-preview__card-link">Bekijk demo's &rarr;</span>
             </div>
           </a>
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="demos-preview__card">
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="demos-preview__card" data-track="demo-dpp">
             <div class="demos-preview__card-visual">
               <img src="../Images/demo-dpp-system.svg" alt="DPP Systeem voorbeeld" class="demos-preview__card-img" loading="lazy" width="800" height="500">
               <span class="demos-preview__card-badge">Demo</span>
@@ -955,7 +955,7 @@
               <span class="demos-preview__card-link">Bekijk demo's &rarr;</span>
             </div>
           </a>
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="demos-preview__card">
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="demos-preview__card" data-track="demo-battery">
             <div class="demos-preview__card-visual">
               <img src="../Images/demo-battery-passport.svg" alt="Batterijpaspoort Checker voorbeeld" class="demos-preview__card-img" loading="lazy" width="800" height="500">
               <span class="demos-preview__card-badge">Demo</span>
@@ -983,7 +983,7 @@
     </div>
 
     <!-- Contact / CTA -->
-    <section class="section cta" id="contact">
+    <section class="section cta" id="contact" data-section="contact">
       <div class="container">
         <div class="cta__inner">
           <p class="section__label">Laten We Samen Cre&euml;ren</p>
@@ -999,7 +999,7 @@
               <input type="checkbox" name="newsletter_opt_in" value="1">
               <span>Schrijf me ook in voor de Regen Studio nieuwsbrief</span>
             </label>
-            <button type="submit" class="btn btn--primary btn--large regen-form__submit">Verstuur Bericht</button>
+            <button type="submit" class="btn btn--primary btn--large regen-form__submit" data-track="contact-submit">Verstuur Bericht</button>
             <p class="regen-form__disclaimer">Je gegevens worden opgeslagen in de EU en niet gedeeld met derden. <a href="privacy.html">Privacybeleid</a></p>
           </form>
           <div id="contact-success" class="regen-form__success" role="status" style="display:none">
@@ -1011,7 +1011,7 @@
           <div class="cta__actions">
             <div class="copyable-email">
               <span class="copyable-email__address" id="ctaEmail">info@regenstudio.world</span>
-              <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Kopieer e-mailadres">
+              <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Kopieer e-mailadres" data-track="email-copy">
                 <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
                 <span class="copyable-email__label">Kopieer</span>

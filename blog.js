@@ -658,19 +658,19 @@
           <div class="post-share__card">
             <p class="post-share__label">${t("blog.share_label", "Share this article")}</p>
             <div class="post-share__buttons post-share__buttons--primary">
-              <button class="share-btn share-btn--native share-btn--lg" id="shareNative" title="${t("blog.share_native", "Share")}">${icons.share} ${t("blog.share_native", "Share")}</button>
-              <button class="share-btn share-btn--copy share-btn--lg" id="shareCopy" title="${t("blog.share_copy", "Copy link")}">${icons.link} ${t("blog.share_copy", "Copy link")}</button>
-              <button class="share-btn share-btn--email share-btn--lg" id="shareEmail" title="${t("blog.share_email", "Email")}">${icons.email} ${t("blog.share_email", "Email")}</button>
+              <button class="share-btn share-btn--native share-btn--lg" id="shareNative" title="${t("blog.share_native", "Share")}" data-track="share-native">${icons.share} ${t("blog.share_native", "Share")}</button>
+              <button class="share-btn share-btn--copy share-btn--lg" id="shareCopy" title="${t("blog.share_copy", "Copy link")}" data-track="share-copy">${icons.link} ${t("blog.share_copy", "Copy link")}</button>
+              <button class="share-btn share-btn--email share-btn--lg" id="shareEmail" title="${t("blog.share_email", "Email")}" data-track="share-email">${icons.email} ${t("blog.share_email", "Email")}</button>
             </div>
             <div class="post-share__divider">
               <span>${t("blog.share_or", "or share on")}</span>
             </div>
             <div class="post-share__buttons post-share__buttons--social">
-              <button class="share-btn share-btn--bluesky" id="shareBluesky" title="Share on Bluesky">${icons.bluesky} Bluesky</button>
-              <button class="share-btn share-btn--linkedin" id="shareLinkedIn" title="Share on LinkedIn">${icons.linkedin} LinkedIn</button>
-              <button class="share-btn share-btn--mastodon" id="shareMastodon" title="Share on Mastodon">${icons.mastodon} Mastodon</button>
-              <button class="share-btn share-btn--reddit" id="shareReddit" title="Share on Reddit">${icons.reddit} Reddit</button>
-              <button class="share-btn share-btn--whatsapp" id="shareWhatsApp" title="Share on WhatsApp">${icons.whatsapp} WhatsApp</button>
+              <button class="share-btn share-btn--bluesky" id="shareBluesky" title="Share on Bluesky" data-track="share-bluesky">${icons.bluesky} Bluesky</button>
+              <button class="share-btn share-btn--linkedin" id="shareLinkedIn" title="Share on LinkedIn" data-track="share-linkedin">${icons.linkedin} LinkedIn</button>
+              <button class="share-btn share-btn--mastodon" id="shareMastodon" title="Share on Mastodon" data-track="share-mastodon">${icons.mastodon} Mastodon</button>
+              <button class="share-btn share-btn--reddit" id="shareReddit" title="Share on Reddit" data-track="share-reddit">${icons.reddit} Reddit</button>
+              <button class="share-btn share-btn--whatsapp" id="shareWhatsApp" title="Share on WhatsApp" data-track="share-whatsapp">${icons.whatsapp} WhatsApp</button>
             </div>
           </div>
         </div>
@@ -765,7 +765,7 @@
           <input type="checkbox" name="newsletter_opt_in" value="1">
           <span>${t("form.newsletter", "Also subscribe me to the Regen Studio newsletter")}</span>
         </label>
-        <button type="submit" class="btn btn--primary regen-form__submit">${t("form.submit", "Send Message")}</button>
+        <button type="submit" class="btn btn--primary regen-form__submit" data-track="post-cta-submit">${t("form.submit", "Send Message")}</button>
         <p class="regen-form__disclaimer">${t("form.disclaimer", "Your data is stored in the EU and not shared with third parties.")} <a href="${basePath}privacy.html">${t("form.privacy_link", "Privacy Policy")}</a></p>
       </form>
       <div id="post-contact-success" class="regen-form__success" role="status" style="display:none">
@@ -776,7 +776,7 @@
       <div class="regen-form__divider"><span>${t("blog.cta_or_email", "or email us directly")}</span></div>
       <div class="copyable-email copyable-email--compact">
         <span class="copyable-email__address">${COMPANY.email}</span>
-        <button class="copyable-email__btn" data-email="${COMPANY.email}" aria-label="Copy email address">
+        <button class="copyable-email__btn" data-email="${COMPANY.email}" aria-label="Copy email address" data-track="post-email-copy">
           <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
           <span class="copyable-email__label">${t("nav.copy", "Copy")}</span>
@@ -826,10 +826,13 @@
             ${related.map(renderCard).join('')}
           </div>
           <div class="related-posts__cta">
-            <a href="${pageUrl('blog.html')}${primaryCategory}" class="related-posts__cta-btn">${t("blog.view_related", "View all related blogs")}</a>
+            <a href="${pageUrl('blog.html')}${primaryCategory}" class="related-posts__cta-btn" data-track="related-view-all">${t("blog.view_related", "View all related blogs")}</a>
           </div>
         </div>
       `;
+      relatedSection.querySelectorAll('.blog-card a[href]').forEach(function(a) {
+        if (!a.getAttribute('data-track')) a.setAttribute('data-track', 'related-article');
+      });
     } else {
       relatedSection.style.display = 'none';
     }
@@ -859,7 +862,7 @@
           <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
         </button>
       </div>
-      <a href="#post-cta-banner" class="scroll-cta__form-link">${t("blog.cta_floating_link", "or send us a message")} &darr;</a>
+      <a href="#post-cta-banner" class="scroll-cta__form-link" data-track="scroll-cta">${t("blog.cta_floating_link", "or send us a message")} &darr;</a>
     `;
     document.body.appendChild(floatingCTA);
 

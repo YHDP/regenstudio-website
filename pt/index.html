@@ -255,7 +255,7 @@
 
   <!-- Hero: Interactive Triangle Canvas -->
   <main id="main-content">
-  <header class="hero" id="hero">
+  <header class="hero" id="hero" data-section="hero">
     <!-- Ambient gradient orbs (behind canvas) -->
     <div class="hero-ambient">
       <div class="hero-ambient__orb hero-ambient__orb--1"></div>
@@ -286,7 +286,7 @@
           Desenvolvemos inova&ccedil;&otilde;es sist&ecirc;micas na interse&ccedil;&atilde;o de tecnologia, sociedade e natureza &mdash; ajudando organiza&ccedil;&otilde;es a criar impacto positivo atrav&eacute;s de novas solu&ccedil;&otilde;es.
         </p>
         <div class="hero__actions animate-in">
-          <a href="#focus" class="btn btn--primary">Explore Nosso Trabalho</a>
+          <a href="#focus" class="btn btn--primary" data-track="hero-cta">Explore Nosso Trabalho</a>
         </div>
 
         <!-- Section nav: subtle inline pills -->
@@ -338,7 +338,7 @@
     </div>
 
     <!-- Focus Areas -->
-    <section class="section focus" id="focus">
+    <section class="section focus" id="focus" data-section="focus">
       <div class="container">
         <p class="section__label section__label--center">Nosso Foco</p>
         <h2 class="section__title section__title--center">Projetando para os desafios mais urgentes do mundo atual</h2>
@@ -362,7 +362,7 @@
               <h3 class="focus__card-title">Transi&ccedil;&atilde;o Energ&eacute;tica</h3>
               <p class="focus__card-text">Redes descentralizadas e gerenciadas localmente que v&atilde;o al&eacute;m das renov&aacute;veis rumo a um futuro energ&eacute;tico justo.</p>
             </div>
-            <a class="focus__case" href="/pt/blog/slim-strandnet/">
+            <a class="focus__case" href="/pt/blog/slim-strandnet/" data-track="case-energy">
               <div class="focus__case-accent"></div>
               <div class="focus__case-body">
                 <span class="focus__case-label">Caso em Destaque</span>
@@ -393,7 +393,7 @@
               <h3 class="focus__card-title"><dfn>Economia Circular</dfn></h3>
               <p class="focus__card-text">Fechar ciclos de recursos para que produtos e materiais permane&ccedil;am em uso por mais tempo, eliminando res&iacute;duos por design.</p>
             </div>
-            <a class="focus__case" href="../digital-product-passports/">
+            <a class="focus__case" href="../digital-product-passports/" data-track="case-circular">
               <div class="focus__case-accent"></div>
               <div class="focus__case-body">
                 <span class="focus__case-label">Caso em Destaque</span>
@@ -427,7 +427,7 @@
               <h3 class="focus__card-title">Cidades Habit&aacute;veis</h3>
               <p class="focus__card-text">Habitats onde pessoas e natureza prosperam juntas por meio de tecnologia respons&aacute;vel e centrada no ser humano.</p>
             </div>
-            <a class="focus__case" href="/pt/blog/Blog%202/">
+            <a class="focus__case" href="/pt/blog/Blog%202/" data-track="case-cities">
               <div class="focus__case-accent"></div>
               <div class="focus__case-body">
                 <span class="focus__case-label">Caso em Destaque</span>
@@ -452,7 +452,7 @@
               <h3 class="focus__card-title">Natureza Resiliente</h3>
               <p class="focus__card-text">Reverter a destrui&ccedil;&atilde;o ecol&oacute;gica com tecnologia que restaura ecossistemas e protege a biodiversidade.</p>
             </div>
-            <a class="focus__case" href="/pt/blog/bioacoustics-iracambi/">
+            <a class="focus__case" href="/pt/blog/bioacoustics-iracambi/" data-track="case-nature">
               <div class="focus__case-accent"></div>
               <div class="focus__case-body">
                 <span class="focus__case-label">Caso em Destaque</span>
@@ -497,7 +497,7 @@
               <h3 class="focus__card-title">Sociedade Digital</h3>
               <p class="focus__card-text">Sistemas com privacidade em primeiro lugar, onde os dados servem &agrave;s pessoas, protegendo indiv&iacute;duos em um mundo cada vez mais digital.</p>
             </div>
-            <a class="focus__case" href="../digital-identities/">
+            <a class="focus__case" href="../digital-identities/" data-track="case-digital">
               <div class="focus__case-accent"></div>
               <div class="focus__case-body">
                 <span class="focus__case-label">Caso em Destaque</span>
@@ -512,12 +512,12 @@
           <span class="section__soft-cta-email">
             <span class="copyable-email copyable-email--inline">
               <span class="copyable-email__address">info@regenstudio.world</span>
-              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Copiar e-mail">
+              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Copiar e-mail" data-track="email-copy">
                 <span data-i18n="nav.copy">Copiar</span>
                 <svg class="copyable-email__icon copyable-email__icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
               </button>
-              <a class="soft-cta__form-link" href="#contact" aria-label="Enviar uma mensagem">
+              <a class="soft-cta__form-link" href="#contact" aria-label="Enviar uma mensagem" data-track="message-link">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </a>
             </span>
@@ -536,7 +536,7 @@
     </div>
 
     <!-- Clients -->
-    <section class="section clients" id="clients">
+    <section class="section clients" id="clients" data-section="clients">
       <div class="container">
         <p class="section__label section__label--center">Para Quem</p>
         <h2 class="section__title section__title--center">Parceiros na regenera&ccedil;&atilde;o</h2>
@@ -690,7 +690,7 @@
         </div>
 
         <div style="text-align: center; margin: 40px 0 8px;">
-          <a href="client-projects.html" class="btn btn--outline">Veja todos os nossos projetos para clientes</a>
+          <a href="client-projects.html" class="btn btn--outline" data-track="clients-view-all">Veja todos os nossos projetos para clientes</a>
         </div>
 
         <div class="section__soft-cta">
@@ -698,12 +698,12 @@
           <span class="section__soft-cta-email">
             <span class="copyable-email copyable-email--inline">
               <span class="copyable-email__address">info@regenstudio.world</span>
-              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Copiar e-mail">
+              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Copiar e-mail" data-track="email-copy">
                 <span data-i18n="nav.copy">Copiar</span>
                 <svg class="copyable-email__icon copyable-email__icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
               </button>
-              <a class="soft-cta__form-link" href="#contact" aria-label="Enviar uma mensagem">
+              <a class="soft-cta__form-link" href="#contact" aria-label="Enviar uma mensagem" data-track="message-link">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </a>
             </span>
@@ -723,7 +723,7 @@
     </div>
 
     <!-- Latest from the Blog -->
-    <section class="section blog-preview" id="blog-preview">
+    <section class="section blog-preview" id="blog-preview" data-section="blog-preview">
       <div class="container">
         <div class="blog-preview__header">
           <div>
@@ -749,13 +749,13 @@
     </div>
 
     <!-- Services -->
-    <section class="section services" id="services">
+    <section class="section services" id="services" data-section="services">
       <div class="container">
         <p class="section__label section__label--center">O Que Fazemos</p>
         <h2 class="section__title section__title--center">Servi&ccedil;os projetados para impacto sist&ecirc;mico</h2>
         <div class="services__grid">
           <article class="service service--linked">
-            <a href="innovation-services.html" class="service__overlay" aria-label="Servi&ccedil;os de Inova&ccedil;&atilde;o — Saiba mais"></a>
+            <a href="innovation-services.html" class="service__overlay" aria-label="Servi&ccedil;os de Inova&ccedil;&atilde;o — Saiba mais" data-track="service-innovation"></a>
             <div class="service__image">
               <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-label="Ilustração serviços de inovação">
                 <circle cx="60" cy="60" r="60" fill="#008545" opacity="0.05"/>
@@ -779,7 +779,7 @@
             <span class="service__link">Saiba mais &rarr;</span>
           </article>
           <article class="service service--linked">
-            <a href="blog.html#cat=Vision%20%26%20Strategy" class="service__overlay" aria-label="Vis&atilde;o &amp; Estrat&eacute;gia — Ver hist&oacute;rias"></a>
+            <a href="blog.html#cat=Vision%20%26%20Strategy" class="service__overlay" aria-label="Vis&atilde;o &amp; Estrat&eacute;gia — Ver hist&oacute;rias" data-track="service-vision"></a>
             <div class="service__image">
               <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-label="Ilustração visão e estratégia">
                 <circle cx="60" cy="60" r="60" fill="#009BBB" opacity="0.05"/>
@@ -802,7 +802,7 @@
             <span class="service__link">Ver hist&oacute;rias &rarr;</span>
           </article>
           <article class="service service--linked">
-            <a href="blog.html#cat=Visual%20Storytelling" class="service__overlay" aria-label="Storytelling Visual — Ver hist&oacute;rias"></a>
+            <a href="blog.html#cat=Visual%20Storytelling" class="service__overlay" aria-label="Storytelling Visual — Ver hist&oacute;rias" data-track="service-storytelling"></a>
             <div class="service__image">
               <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-label="Ilustração storytelling visual">
                 <circle cx="60" cy="60" r="60" fill="#93093F" opacity="0.04"/>
@@ -823,7 +823,7 @@
             <span class="service__link">Ver hist&oacute;rias &rarr;</span>
           </article>
           <article class="service service--linked">
-            <a href="blog.html#cat=Out-of-the-Box%20Ideas" class="service__overlay" aria-label="Ideias Fora da Caixa — Ver hist&oacute;rias"></a>
+            <a href="blog.html#cat=Out-of-the-Box%20Ideas" class="service__overlay" aria-label="Ideias Fora da Caixa — Ver hist&oacute;rias" data-track="service-ideas"></a>
             <div class="service__image">
               <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-label="Ilustração ideias fora da caixa">
                 <circle cx="60" cy="60" r="60" fill="#E71846" opacity="0.04"/>
@@ -852,12 +852,12 @@
           <span class="section__soft-cta-email">
             <span class="copyable-email copyable-email--inline">
               <span class="copyable-email__address">info@regenstudio.world</span>
-              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Copiar e-mail">
+              <button class="copyable-email__btn copyable-email__btn--small" data-email="info@regenstudio.world" aria-label="Copiar e-mail" data-track="email-copy">
                 <span data-i18n="nav.copy">Copiar</span>
                 <svg class="copyable-email__icon copyable-email__icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
               </button>
-              <a class="soft-cta__form-link" href="#contact" aria-label="Enviar uma mensagem">
+              <a class="soft-cta__form-link" href="#contact" aria-label="Enviar uma mensagem" data-track="message-link">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </a>
             </span>
@@ -876,7 +876,7 @@
     </div>
 
     <!-- About / Vision -->
-    <section class="section about section-decoration" id="about">
+    <section class="section about section-decoration" id="about" data-section="vision">
       <div class="container">
         <div class="section__grid section__grid--2col">
           <div class="about__text">
@@ -885,7 +885,7 @@
             <p class="about__lead">
               Acreditamos que as inova&ccedil;&otilde;es mais impactantes n&atilde;o apenas resolvem problemas &mdash; elas regeneram os sistemas que tocam. Por meio de inspira&ccedil;&atilde;o, beleza e anos de expertise, transformamos sistemas para que funcionem em uma era de seres humanos vivendo em equil&iacute;brio consigo mesmos, suas comunidades, suas cidades e seu planeta.
             </p>
-            <a href="/pt/vision.html" class="btn btn--outline">Leia toda a nossa vis&atilde;o &rarr;</a>
+            <a href="/pt/vision.html" class="btn btn--outline" data-track="vision-read-more">Leia toda a nossa vis&atilde;o &rarr;</a>
           </div>
           <div class="about__visual">
             <div class="about__circle-group">
@@ -917,17 +917,17 @@
     </div>
 
     <!-- Interactive Demos -->
-    <section class="section demos-preview" id="demos">
+    <section class="section demos-preview" id="demos" data-section="demos">
       <div class="container">
         <div class="demos-preview__header">
           <div>
             <p class="section__label">Experimente Voc&ecirc; Mesmo</p>
             <h2 class="section__title">Demos Interativas</h2>
           </div>
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="btn btn--outline btn--small">Ver todas as demos &rarr;</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="btn btn--outline btn--small" data-track="demos-view-all">Ver todas as demos &rarr;</a>
         </div>
         <div class="demos-preview__grid demos-preview__grid--3">
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="demos-preview__card">
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="demos-preview__card" data-track="demo-edi-wallet">
             <div class="demos-preview__card-visual">
               <img src="../Images/demo-edi-wallet.svg" alt="Pr&eacute;via EDI Wallet" class="demos-preview__card-img" loading="lazy" width="800" height="500">
               <span class="demos-preview__card-badge">Demo</span>
@@ -941,7 +941,7 @@
               <span class="demos-preview__card-link">Ver demos &rarr;</span>
             </div>
           </a>
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="demos-preview__card">
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="demos-preview__card" data-track="demo-dpp">
             <div class="demos-preview__card-visual">
               <img src="../Images/demo-dpp-system.svg" alt="Pr&eacute;via Sistema DPP" class="demos-preview__card-img" loading="lazy" width="800" height="500">
               <span class="demos-preview__card-badge">Demo</span>
@@ -955,7 +955,7 @@
               <span class="demos-preview__card-link">Ver demos &rarr;</span>
             </div>
           </a>
-          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="demos-preview__card">
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" class="demos-preview__card" data-track="demo-battery">
             <div class="demos-preview__card-visual">
               <img src="../Images/demo-battery-passport.svg" alt="Pr&eacute;via Verificador de Passaporte de Bateria" class="demos-preview__card-img" loading="lazy" width="800" height="500">
               <span class="demos-preview__card-badge">Demo</span>
@@ -983,7 +983,7 @@
     </div>
 
     <!-- Contact / CTA -->
-    <section class="section cta" id="contact">
+    <section class="section cta" id="contact" data-section="contact">
       <div class="container">
         <div class="cta__inner">
           <p class="section__label">Vamos Criar Juntos</p>
@@ -999,7 +999,7 @@
               <input type="checkbox" name="newsletter_opt_in" value="1">
               <span>Inscreva-me tamb&eacute;m na newsletter da Regen Studio</span>
             </label>
-            <button type="submit" class="btn btn--primary btn--large regen-form__submit">Enviar Mensagem</button>
+            <button type="submit" class="btn btn--primary btn--large regen-form__submit" data-track="contact-submit">Enviar Mensagem</button>
             <p class="regen-form__disclaimer">Seus dados s&atilde;o armazenados na UE e n&atilde;o s&atilde;o compartilhados com terceiros. <a href="privacy.html">Pol&iacute;tica de Privacidade</a></p>
           </form>
           <div id="contact-success" class="regen-form__success" role="status" style="display:none">
@@ -1011,7 +1011,7 @@
           <div class="cta__actions">
             <div class="copyable-email">
               <span class="copyable-email__address" id="ctaEmail">info@regenstudio.world</span>
-              <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copiar endere&ccedil;o de e-mail">
+              <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copiar endere&ccedil;o de e-mail" data-track="email-copy">
                 <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
                 <span class="copyable-email__label">Copiar</span>

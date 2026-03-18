@@ -14,6 +14,10 @@
 (function () {
   'use strict';
 
+  // ── Skip tracking on dev environments ──
+  var h = window.location.hostname;
+  if (h === 'localhost' || h === '127.0.0.1' || h === '0.0.0.0' || h === '') return;
+
   var ENDPOINT = 'https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/private-track-report-event';
   var SITE = 'www';
   var pageLoadTime = Date.now();
@@ -21,6 +25,8 @@
   // ── Bot detection — flag known crawlers (still tracked, tagged as bot) ──
   var _ua = navigator.userAgent || '';
   var _isBot = /bot|crawl|spider|slurp|bingpreview|mediapartners|facebookexternalhit|linkedinbot|twitterbot|whatsapp|telegrambot|googlebot|yandex|baidu|duckduckbot|semrush|ahrefs|mj12bot|dotbot|petalbot|bytespider|gptbot|chatgpt|claudebot|anthropic|perplexity|applebot|archive\.org|ia_archiver|wget|curl|python-requests|httpx|node-fetch|axios|postman|lighthouse|pagespeed|gtmetrix|headlesschrome/i.test(_ua);
+  // Headless browser detection (catches puppeteer, playwright, selenium)
+  if (!_isBot && (navigator.webdriver || !navigator.languages || navigator.languages.length === 0)) _isBot = true;
 
   // ── Timezone (used server-side for country mapping) ──
   var tz = '';
@@ -48,7 +54,7 @@
   try {
     if (document.referrer) {
       var rh = new URL(document.referrer).hostname;
-      if (rh !== 'www.regenstudio.world' && rh !== 'regenstudio.world' && rh !== 'demos.regenstudio.world') {
+      if (rh !== 'www.regenstudio.world' && rh !== 'regenstudio.world' && rh !== 'demos.regenstudio.world' && rh !== 'www.regenstudio.space' && rh !== 'regenstudio.space' && rh !== 'demos.regenstudio.space') {
         referrerDomain = rh;
       }
     }
