@@ -35,6 +35,9 @@ Push to `main` — GitHub Pages auto-deploys.
 
 ## License
 
-Licensed under the [EUPL v1.2](LICENSE).
+- **Code:** [PolyForm Noncommercial 1.0.0](LICENSE) — use, study, modify, and share for any noncommercial purpose.
+- **Blog content:** [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) — share and adapt with attribution, noncommercial, share-alike.
+- **Code snippets in blog posts:** [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) — public domain, no restrictions.
+- **Brand assets** (name, logo, visual identity): All rights reserved.
 
 Copyright 2024-2026 Regen Studio B.V.
