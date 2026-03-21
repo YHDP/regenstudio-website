@@ -1,3 +1,5 @@
+// Copyright 2024-2026 Regen Studio B.V.
+// Licensed under PolyForm Noncommercial 1.0.0 — see LICENSE
 // ========================================
 // Regen Studio — Blog Logic
 // ========================================
@@ -652,7 +654,7 @@
           ${post.tags.map(t => `<a href="${pageUrl('blog.html')}#${encodeURIComponent('tag=' + t)}" class="post-tag">#${t}</a>`).join('')}
         </div>
         <div class="post-license">
-          <p>${t("blog.license", "This article is licensed under")} <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0 <span class="sr-only">${t("blog.opens_new_tab", "(opens in new tab)")}</span></a>. ${t("blog.license_detail", "You may share and adapt for non-commercial purposes with attribution.")}</p>
+          <p>${t("blog.license", "This article is licensed under")} <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0 <span class="sr-only">${t("blog.opens_new_tab", "(opens in new tab)")}</span></a>. ${t("blog.license_detail", "You may share and adapt for non-commercial purposes with attribution. Adaptations must be shared under the same terms.")}</p>
         </div>
         <div class="post-share">
           <div class="post-share__card">
