@@ -5,8 +5,8 @@ Allow: /
 Disallow: /admin/
 Disallow: /blog-post.html
 
-# AI crawlers — explicitly allowed
-User-agent: GPTBot
+# AI search & citation bots — explicitly allowed
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ChatGPT-User
@@ -15,27 +15,43 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: Claude-SearchBot
+Allow: /
+
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Google-Extended
+User-agent: Perplexity-User
 Allow: /
 
 User-agent: Applebot-Extended
 Allow: /
 
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: Claude-SearchBot
-Allow: /
-
 User-agent: Meta-ExternalAgent
 Allow: /
 
-# Block ByteDance crawler (aggressive, not relevant for B2B)
+# AI training-only crawlers — blocked (high crawl, no citation benefit)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: claude-web
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
 User-agent: Bytespider
 Disallow: /
 
+# AI-readable content: see /llms.txt and /llms-full.txt
 Sitemap: https://www.regenstudio.world/sitemap.xml
 Sitemap: https://www.regenstudio.world/feed.xml
