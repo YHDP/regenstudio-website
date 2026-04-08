@@ -302,12 +302,20 @@ function buildJsonLd(post: BlogPost, lang: Lang = "en"): string {
     image: imageUrl,
     datePublished: post.date,
     inLanguage: lang === "pt" ? "pt-BR" : lang,
-    author: {
-      "@type": post.author.name === "Regen Studio" ? "Organization" : "Person",
-      name: post.author.name,
-    },
+    author: post.author.name === "Regen Studio"
+      ? {
+          "@type": "Organization",
+          "@id": `${SITE_URL}/#organization`,
+          name: post.author.name,
+        }
+      : {
+          "@type": "Person",
+          "@id": `${SITE_URL}/#founder`,
+          name: post.author.name,
+        },
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: SITE_NAME,
       url: SITE_URL,
       logo: {
@@ -315,6 +323,7 @@ function buildJsonLd(post: BlogPost, lang: Lang = "en"): string {
         url: `${SITE_URL}/Images/Logo-Text-on-the-sideAtivo 2.svg`,
       },
     },
+    keywords: post.categories.join(", "),
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${SITE_URL}${prefix}/blog/${post.slug}/`,

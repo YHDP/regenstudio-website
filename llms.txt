@@ -114,6 +114,14 @@ The FAQ page covers 47 questions across 8 topic areas:
 - [Privacy Policy](https://www.regenstudio.world/privacy.html): Zero cookies, self-hosted assets, GDPR/LGPD compliant
 - [Interactive Demos](https://demos.regenstudio.world): Five demo tools for DPP, digital identity, and policy simulation
 
+## Optional
+
+- [Full site content index](https://www.regenstudio.world/llms-full.txt): Comprehensive text version of all site content for deep context
+- [Privacy Policy](https://www.regenstudio.world/privacy.html): Zero cookies, self-hosted assets, GDPR/LGPD compliant
+- [Terms of Use](https://www.regenstudio.world/terms.html): Website terms
+- [Accessibility Statement](https://www.regenstudio.world/accessibility.html): WCAG accessibility commitment
+- [Interactive Demos (separate site)](https://demos.regenstudio.world/llms.txt): AI-readable index of all demo tools
+
 ## Contact
 - Email: info@regenstudio.world
 - [LinkedIn](https://www.linkedin.com/company/regen-studio-world/)
