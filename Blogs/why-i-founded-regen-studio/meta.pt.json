@@ -3,14 +3,14 @@
   "slug": "my-story",
   "subtitle": "Como um engenheiro mecânico acabou projetando inovações que regeneram pessoas, cidades e natureza",
   "author": {
-    "name": "Yvo Hunink",
+    "name": "Yvo Hunink de Paiva",
     "role": "Fundador, Regen Studio"
   },
   "date": "2026-03-06",
   "categories": ["Vision & Strategy", "Innovation Services"],
   "tags": ["founder", "personal", "regeneration", "innovation", "tu-delft", "energy", "digital-product-passports", "brazil", "the-hague"],
-  "featuredImage": "",
-  "featuredImageAlt": "",
+  "featuredImage": "header-founder.png",
+  "featuredImageAlt": "Ilustração geométrica de triângulos representando a jornada global do fundador da engenharia à inovação regenerativa",
   "excerpt": "Nascido em Nijmegen, moldado pela Gâmbia, Índia e Brasil. Da engenharia mecânica a smart grids, identidade digital e Passaportes Digitais de Produto — a história de por que fundei a Regen Studio e por que apenas sustentabilidade não é mais suficiente.",
   "published": true
 }
