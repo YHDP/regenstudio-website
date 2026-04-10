@@ -182,8 +182,9 @@ All at `~/Library/CloudStorage/ProtonDrive-yvhu@proton.me-folder/CLAUDE CODE SYN
 
 | File | Purpose | When to check |
 |------|---------|---------------|
-| `backlog.md` | Persistent task backlog | Before starting work (pick up items); after finishing work (add deferred items) |
-| `Website sessions Episodic memory/session-handoff.md` | Session context for continuity | Start of session (read); end of session (update) |
+| `6-projects/regenstudio-website/backlog.md` | Project backlog | Before starting work (pick up items); after finishing work (add deferred items) |
+| `AI-Operations/session-handoff.md` | Session context for continuity | Start of session (read); end of session (update) |
+| `AI-Operations/priorities.md` | Cross-project priority view | Check at session start |
 
 In-repo docs at `docs/collaboration/`:
 
