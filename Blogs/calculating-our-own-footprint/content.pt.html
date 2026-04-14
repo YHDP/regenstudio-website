@@ -1,0 +1,96 @@
+<p>Assessoramos organizações em Passaportes Digitais do Produto (DPP), relato ESG e a infraestrutura regulatória que vai empurrar dados de carbono para dentro de cada produto vendido na Europa. Em algum momento, a pergunta óbvia chegou à nossa própria mesa: qual é a pegada de carbono da <em>Regen Studio</em>?</p>
+
+<p>Este é o primeiro de três posts sobre esse exercício. Aqui compartilhamos os números, as escolhas que fizemos e as coisas que nos surpreenderam. Um <a href="/blog/the-footprint-manager-demo/">post seguinte</a> passa pela ferramenta que construímos para produzi-los, e um <a href="/blog/vsme-methodology-explained/">terceiro</a> explica a metodologia VSME da EFRAG que dá forma ao relatório.</p>
+
+<h2>O destaque</h2>
+
+<p>No ano-calendário 2025, a Regen Studio BV emitiu aproximadamente <strong>8,6 toneladas CO₂e</strong> — com uma faixa de incerteza divulgada de <strong>7,7 a 9,7 toneladas</strong> (percentil 5–95). Esse valor central é aproximadamente o que um adulto holandês médio emite em um único ano em toda a sua vida, não só nas horas de trabalho. Para uma consultoria de uma pessoa, isso não é nem pequeno nem grande isoladamente; o que importa é de onde vem.</p>
+
+<p>A distribuição é a história real:</p>
+
+<ul>
+  <li><strong>Scope 3.6 — Viagens corporativas: 89,9%</strong> (~7,74 t). Dois voos de longa distância entre São Paulo e Amsterdam respondem por praticamente tudo isso. Todo o resto — trens intercity na Holanda, um trajeto de carro Nijmegen–Köln, Ubers em São Paulo — é arredondamento.</li>
+  <li><strong>Scope 3.2 — Bens de capital: 7,5%</strong> (~650 kg). Um iPad e um monitor de 32" adquiridos em 2025, lançados a emissões incorporadas integrais no ano da compra.</li>
+  <li><strong>Scope 3.1 — Bens e serviços adquiridos: 2,5%</strong> (~212 kg). Sete assinaturas SaaS (160 kg), quinze refeições de negócios registradas (37 kg), três livros de bolso e um fotolivro (9,5 kg), e um ano de inferência paga do ChatGPT (5 kg).</li>
+  <li><strong>Scope 2 — Eletricidade: 0,1%</strong> (~12 kg baseado em localização, 12 kg baseado em mercado). Um home office de 3 m² em São Paulo rodando numa rede elétrica ~85% renovável entre hidrelétrica e eólica.</li>
+  <li><strong>Scope 1 — Emissões diretas: 0</strong>. Sem veículos da empresa, sem combustão no local.</li>
+</ul>
+
+<p>Dois voos. Essa é a pegada. O resto é erro de arredondamento em comparação.</p>
+
+<h2>Por que essa concentração é um presente, não um problema</h2>
+
+<p>A maioria dos inventários de carbono revela uma pegada confusa e distribuída, sem alavanca óbvia: um pouco de aquecimento aqui, um pouco de deslocamento ali, alguns bens adquiridos, algum resíduo, cada um com 10–20% e todos emaranhados. Você acaba com um plano de redução que precisa tratar quinze coisas ao mesmo tempo.</p>
+
+<p>O nosso é o oposto. Quando 90% da sua pegada são duas passagens aéreas, sua estratégia de redução se escreve sozinha. Nos comprometemos com uma <strong>meta de redução de −40% até 2027</strong> contra a linha de base de 2025, e o caminho para chegar lá é simples: consolidar viagens (uma ida-e-volta por ano em vez de duas), e concluir a <a href="/blog/planting-regen-roots-in-brazil/">emigração planejada para 2026</a> da Holanda para o Brasil — o que inverte o sentido da viagem e reduz a frequência anual estruturalmente, não pela força de vontade.</p>
+
+<p>É o que "tópico material" significa na terminologia VSME: mudança climática é material para nós porque uma única categoria domina; água, biodiversidade, resíduos e temas de força de trabalho são <em>não material</em> com bases escritas apropriadas a uma operação de home office com 1 FTE. Escrever "não material" por dez páginas de tópicos pareceu estranho no início — depois pareceu honesto. Não somos uma fábrica.</p>
+
+<h2>O que escolhemos contar, e o que escolhemos não contar</h2>
+
+<p>Todo inventário de carbono é uma série de escolhas. Aqui estão as nossas:</p>
+
+<h3>Relato duplo de Scope 2</h3>
+<p>Para eletricidade, relatamos tanto <strong>baseado em localização</strong> (o que a rede elétrica local emite em média) quanto <strong>baseado em mercado</strong> (o que nosso contrato específico de fornecedor emite). O Brasil não tem um sistema formal de mix residual no sentido da AIB, então conforme a Scope 2 Guidance do GHG Protocol usamos a média da rede baseada em localização também como o valor baseado em mercado. Sem greenwashing alegando 100% renovável por meio de um instrumento contratual que de fato não temos.</p>
+
+<h3>Voos com forçamento radiativo</h3>
+<p>Emissões de aviação são relatadas com <strong>RFI (índice de forçamento radiativo)</strong> incluído — um multiplicador de ~1,9× sobre o CO₂ da combustão do combustível para contabilizar efeitos de rastros de condensação e NOx em altitude. Pular o RFI teria cortado ~3,7 toneladas do destaque. Achamos que seria desonesto; a ciência está consolidada o suficiente para incluí-lo.</p>
+
+<h3>Bens de capital a emissões incorporadas integrais, no ano da compra</h3>
+<p>O iPad e o monitor são lançados com o carbono incorporado integral em 2025, ano em que os compramos. Alguns padrões os amortizariam ao longo de uma vida útil de 4–7 anos. Escolhemos não fazer isso, porque infla anos futuros e subestima a decisão de compra. Quando você compra novo hardware, você compra novas emissões.</p>
+
+<h3>Incerteza como faixas, não pontos</h3>
+<p>Cada linha no nosso registro carrega uma faixa de percentil 5–95. O total soma por propagação de incerteza em espaço-log (método IPCC Tier-1), razão pela qual a faixa é assimétrica em torno da estimativa central. Nos recusamos a imprimir "8,61 toneladas" como se tivéssemos medido numa balança. A faixa <em>é</em> o número.</p>
+
+<h3>O que excluímos</h3>
+<p>Viagens e despesas pessoais (não-negócios) — essas não são emissões da empresa, são do diretor. Compensações e Certificados de Energia Renovável — não aposentamos nenhum em 2025, e se algum dia fizermos, serão divulgados <em>ao lado</em> dos totais Scope 1/2/3, não abatidos deles. Coerente com a convenção do GHG Protocol.</p>
+
+<h2>Procedência do fator: a parte de que ninguém fala</h2>
+
+<p>Um fator de emissão é onde a ideologia se infiltra em relatórios "neutros". Uma pegada de carbono é o produto de dados de atividade (quantos kWh, quantos quilômetros, quantas refeições) por um fator de emissão (kg CO₂e por unidade). Dados de atividade em geral são defensáveis — você tem um recibo ou uma leitura de medidor. Os fatores são onde as pessoas, em silêncio, escolhem o número que as favorece.</p>
+
+<p>Então fizemos duas coisas:</p>
+
+<ol>
+  <li><strong>Todo fator tem fonte e data</strong>, com uma classificação de qualidade e um link de volta ao documento original. Se o número é da DEFRA 2024, diz DEFRA 2024. Se é de um fator de emissão de rede da IEA, diz isso. Se um fator não tem boa fonte, ou não o usamos ou sinalizamos a entrada como incerta.</li>
+  <li><strong>Toda execução de cálculo é hasheada.</strong> O SHA-256 do conjunto completo de fatores no momento do cálculo é armazenado junto com a execução. Se um fator for atualizado no ano que vem, relatórios passados permanecem reproduzíveis — re-executar o cálculo de 2025 com o hash do fator de 2025 dá a mesma resposta. É infraestrutura chata, mas é o que transforma "achamos que emitimos ~X" em "calculamos X, e aqui está o recibo de auditoria".</li>
+</ol>
+
+<h2>O que nos surpreendeu</h2>
+
+<p><strong>Assinaturas SaaS foram maiores do que esperávamos.</strong> 160 kg de sete serviços recorrentes — Adobe, Microsoft 365, Odido ISP, Proton, Whereby, Monday.com, Wix — é ~2% do total. Não é grande em termos absolutos, mas é grande em relação ao quão invisíveis são. Ninguém pensa na assinatura da Adobe como um custo de carbono. O servidor pensa.</p>
+
+<p><strong>Inferência de IA foi menor do que esperávamos.</strong> Um ano inteiro de ChatGPT Plus a ~10 prompts/dia: 5 kg. Como referência, isso é aproximadamente um hambúrguer de carne bovina. O enquadramento de "IA está fervendo os oceanos" é principalmente sobre energia de treinamento de modelos, não inferência por usuário. Como regra geral, um dia de uso intenso de chatbot emite menos que uma única ida de carro ao supermercado. Isso não livra a indústria de IA da responsabilidade — a expansão de data centers é real — mas deveria recalibrar onde pertence o sinal de culpa do usuário individual.</p>
+
+<p><strong>Refeições são arredondamento.</strong> Quinze refeições de negócios registradas ao longo do ano: 37 kg. A noite de 2× hambúrguer em Leiden (10 kg) foi a maior linha de refeição única e ainda assim menos que 0,15% do total anual. Você não come para sair de uma pegada dominada por voos.</p>
+
+<p><strong>O home office de 3 m² é praticamente livre de carbono.</strong> 150 kWh na rede brasileira = 12 kg. Uma lâmpada da pegada total. Isso terá outra cara quando tivermos um funcionário na Holanda rodando um laptop com eletricidade de rede com backup a gás no inverno.</p>
+
+<h2>O que esse número é, e o que não é</h2>
+
+<p>Isso é <strong>divulgação voluntária</strong>. A Regen Studio BV está muito abaixo dos limites da CSRD pós-Omnibus (1.000+ empregados <em>e</em> €450M+ de faturamento). Não somos legalmente obrigados a reportar nada. Fizemos porque:</p>
+
+<ul>
+  <li>Assessoramos clientes em infraestrutura de DPP e ESG. Seria estranho não saber nosso próprio número.</li>
+  <li>Questionários ESG de contraparte de clientes maiores pedem cada vez mais dados Scope 1/2/3 por fornecedor. Ter uma resposta alinhada ao VSME pronta é melhor do que correr atrás depois.</li>
+  <li>O <a href="https://www.efrag.org/" rel="noopener" target="_blank">Padrão Voluntário para PMEs da EFRAG</a> é a forma certa de divulgação para pequenas empresas — é proporcional, é respeitado e é para onde o mercado está convergindo.</li>
+</ul>
+
+<p>Isso <strong>não</strong> é uma alegação de liderança climática, neutralidade de carbono, net zero ou compensação. É uma medição. Medir é o primeiro passo; tudo mais (metas de redução, pressão sobre fornecedores, redesenho de produto) depende de ter uma linha de base honesta para comparar.</p>
+
+<div style="background: linear-gradient(135deg, #006d38 0%, #009BBB 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Navegue pelo inventário completo</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Veja cada linha, cada fator, cada hash</p>
+  <p style="color: #D1FAE5; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">O registro de atividade subjacente de 34 linhas pode ser explorado na demo do Footprint Manager — incluindo as divulgações marcadas em inline-XBRL, o gráfico de trajetória e a metodologia completa.</p>
+  <a href="https://demos.regenstudio.world/footprint-manager/gate.html" style="display: inline-block; background: #FFFFFF; color: #006d38; font-weight: 700; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none;">Abrir a demo do Footprint Manager &rarr;</a>
+</div>
+
+<h2>O que vem a seguir</h2>
+
+<p>2026 será um ano diferente. A emigração, um provável início do projeto TruPASS, trabalho de voucher de consultoria DPP, possivelmente um segundo FTE. As emissões vão mudar de forma — menos voos, mais computação distribuída, talvez um escritório brasileiro com uma linha de ar-condicionado que hoje não temos. O ponto de construir a ferramenta (que é sobre o que trata o <a href="/blog/the-footprint-manager-demo/">próximo post</a>) era precisamente para que 2026 em diante leve horas para relatar, não semanas.</p>
+
+<p>E a metodologia VSME que organiza tudo isso — Módulo Básico, Módulo Abrangente, tópicos materiais, Scope 2 duplo, mix de energia, razões de intensidade, planos de transição — merece explicação própria. Esse é <a href="/blog/vsme-methodology-explained/">o terceiro post</a>.</p>
+
+<p style="margin-top: 32px; color: #64748b; font-size: 0.92rem; border-top: 1px solid #e2e8f0; padding-top: 16px;">Agradecimentos: este trabalho se apoia no ensaio original de pegada de carbono 2023–2024 de <strong>Pietro Lanza</strong> para a Regen Studio, que enquadrou a pergunta e forneceu o primeiro arcabouço metodológico. Quaisquer erros no inventário atual são nossos.</p>
+
+<p style="text-align: center; margin-top: 24px;">Dúvidas sobre a metodologia, ou como você abordaria a pegada da sua própria organização? <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>

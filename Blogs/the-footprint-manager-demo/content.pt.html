@@ -1,0 +1,91 @@
+<p>Uma PME que quer medir sua própria pegada de carbono tem uma escolha difícil. Planilha no Excel — e passar uma semana reconciliando versões de fator. Comprar uma plataforma ESG empresarial — e gastar €15–50k por ano com uma ferramenta desenhada para empresas de 500 pessoas. Ou terceirizar para uma consultoria de sustentabilidade — e receber um PDF bonito que você não pode reproduzir, auditar ou ajustar sem pagar de novo.</p>
+
+<p>Construímos o <strong>Footprint Manager</strong> porque nenhuma dessas opções servia para nós. Este post é um passeio pelo que ele faz, com uma demo ao vivo populada pelo inventário real de 2025 da Regen Studio. O <a href="/blog/calculating-our-own-footprint/">post companheiro</a> passa pelos próprios números; este é sobre a ferramenta.</p>
+
+<div style="background: linear-gradient(135deg, #006d38 0%, #009BBB 100%); border-radius: 16px; padding: 32px; text-align: center; margin: 28px 0;">
+  <p style="color: #FFFFFF; font-size: 1.2rem; font-weight: 700; margin-bottom: 8px;">Experimente com dados reais</p>
+  <p style="color: #D1FAE5; font-size: 0.95rem; margin-bottom: 20px;">A demo está populada com nosso inventário real de 2025 — 34 linhas, Scope 2 duplo, divulgações marcadas em inline-XBRL. Navegue, não edite.</p>
+  <a href="https://demos.regenstudio.world/footprint-manager/gate.html" style="display: inline-block; background: #FFFFFF; color: #006d38; font-weight: 700; padding: 12px 28px; border-radius: 8px; text-decoration: none;">Abrir a demo &rarr;</a>
+</div>
+
+<h2>O que é</h2>
+
+<p>O Footprint Manager é uma ferramenta de contabilidade de carbono local-first, alinhada ao VSME, para PMEs. Roda em um laptop (Python + SQLite, zero dependências externas), produz relatórios legíveis por máquina em inline-XBRL conforme a taxonomia VSME da EFRAG, e mantém uma trilha de auditoria completa de quais fatores de emissão foram usados no momento do cálculo.</p>
+
+<p>Ele <em>não</em> tenta ser uma plataforma empresarial. Não tem SSO, nem back-end SaaS multi-inquilino, nem "insights de sustentabilidade com IA", nem mercado de créditos de carbono acoplado. Ele mede. Essa é a funcionalidade.</p>
+
+<h2>As oito telas</h2>
+
+<p>A demo percorre oito páginas em sequência — cada uma corresponde a uma pergunta que quem relata numa PME precisa responder.</p>
+
+<h3>1 · Home — o painel ao vivo</h3>
+<p>Emissões totais com uma faixa de incerteza (não uma estimativa pontual), uma rosca por família de scope, um campo de resumo gerencial, e uma "principal alavanca de redução" que traz à tona o maior contribuinte individual. Para a Regen Studio em 2025 grita <strong>VIAGENS CORPORATIVAS, 7,74 t, 89,9% do total</strong>. Sem ambiguidade.</p>
+
+<h3>2 · Registro — o livro de atividades de 34 linhas</h3>
+<p>Cada fonte de emissão, cada quantidade, cada fator, cada faixa. Uma linha por atividade. Sem células ocultas, sem planilhas vinculadas. O registro é filtrável por scope, subcategoria e data. Na demo, o envio de formulários está desativado — as linhas existentes podem ser navegadas, mas você não pode adicionar novas.</p>
+
+<h3>3 · Divulgações — o painel VSME</h3>
+<p>Seis tabelas de divulgação do Módulo Básico mais uma tabela do Módulo Abrangente, cobrindo: base de preparação, metodologias e fonte de GWP, consumo de energia e mix, parcela renovável, água (sinalizada como não material no nosso caso), biodiversidade, poluição, resíduos, composição da força de trabalho, governança e planos de transição. Se um tópico é não material, a ferramenta pede uma base escrita — campos "não material" em branco não são aceitáveis sob o VSME.</p>
+
+<h3>4 · Fatores — o catálogo com fonte e data</h3>
+<p>Cada fator de emissão que usamos, com sua fonte, ano de publicação, tipo de incerteza (faixa, lognormal, etc.), classificação de qualidade e escopo geográfico. Fatores são versionados: apenas <code>INSERT</code>, nunca <code>UPDATE</code>. Um fator da DEFRA 2024 fica rotulado DEFRA 2024 para sempre; se a DEFRA 2026 mudar o número, ele entra como nova linha, e relatórios passados que citaram DEFRA 2024 permanecem reproduzíveis.</p>
+
+<h3>5 · Relatório — a saída pronta para blog</h3>
+<p>O inventário completo renderizado como um relatório alinhado ao VSME em rolagem única. Resumo gerencial, método, totais por scope, quebra por subcategoria, registro completo, razões de intensidade, mix de energia, tabelas de divulgação, gráfico de trajetória de redução contra a trajetória 1,5°C da SBTi, e (se habilitado) divulgações marcadas em inline-XBRL. Este é o documento que você envia a uma contraparte ou publica em seu próprio site. Uma flag <code>--finalize</code> trava o período para que edições posteriores exijam uma reabertura versionada.</p>
+
+<h3>6 · Metodologia — a referência viva</h3>
+<p>Cada escolha metodológica documentada em prosa: como selecionamos fatores, por que incluímos RFI em voos, o que "material" significa no VSME, como faixas de incerteza são propagadas, o que excluímos. É o que um auditor lê antes de abrir o registro.</p>
+
+<h3>7 · Guia — o passo-a-passo de onboarding</h3>
+<p>Um fluxo de seis passos para um usuário de primeira vez: defina seu contorno organizacional, escolha um período de relato, insira suas atividades, verifique a cobertura de fatores, rode a estimativa, revise as tabelas de divulgação. A demo tem isso populado para você ver como "pronto" se parece.</p>
+
+<h3>8 · Glossário — o decodificador de terminologia</h3>
+<p>Dezoito termos, de códigos de scope do GHG Protocol a nomes de módulos VSME a valores GWP do IPCC. A contabilidade de carbono tem muito jargão; o glossário é onde você decodifica sem sair da ferramenta.</p>
+
+<h2>Coisas que vale notar</h2>
+
+<h3>Faixas, não pontos</h3>
+<p>Cada linha carrega uma faixa de percentil 5–95. O total soma via propagação de incerteza em espaço-log, então a faixa de saída é assimétrica em torno da estimativa central. Você verá <strong>8,61 t (7,73 – 9,72)</strong>, não "8,61 toneladas". A ferramenta também se recusa a aceitar uma linha em que a razão superior/inferior ultrapasse 100× — se isso acontece, algum fator está errado por 200× e precisa de investigação.</p>
+
+<h3>Scope 2 duplo</h3>
+<p>Eletricidade baseada em localização e baseada em mercado são relatadas como duas linhas separadas, ambas visíveis no registro. O total usa o valor baseado em mercado por convenção do GHG Protocol; o valor baseado em localização fica ao lado para transparência. Para países sem sistema formal de mix residual (Brasil), baseado em mercado é igual a baseado em localização por orientação.</p>
+
+<h3>Hash do fator como recibo de auditoria</h3>
+<p>Cada execução de cálculo escreve uma linha em <code>calculation_runs</code> com um hash SHA-256 do conjunto inteiro de fatores usado. O hash é a trilha de auditoria. Re-executar com o mesmo hash dá a mesma resposta; um hash diferente sinaliza uma mudança de versão de fator e torna a divergência investigável.</p>
+
+<h3>Inline XBRL para VSME</h3>
+<p>O relatório HTML é também um documento iXBRL válido, com cada ponto de divulgação marcado contra a taxonomia VSME da EFRAG. Um regulador, contraparte ou ferramenta de compras pode ler os números por máquina sem scraping. A ferramenta traz um catálogo compacto de conceitos e prefere os XSDs oficiais da EFRAG quando presentes.</p>
+
+<h3>Privacidade e infraestrutura</h3>
+<p>O Footprint Manager roda localmente. Arquivo SQLite na sua máquina. Sem inquilino em nuvem, sem fornecedor, sem dados saindo do seu dispositivo a menos que você explicitamente exporte um relatório. Para uma PME lidando com dados sensíveis de fornecedores, essa é a diferença entre "podemos sequer usar isso" e "onde a gente assina".</p>
+
+<h2>Para quem é isso</h2>
+
+<p><strong>PMEs respondendo a questionários ESG de contraparte.</strong> Se Philips, Unilever ou um escritório público de compras pede seus números Scope 1/2/3, você precisa de uma resposta que se sustente. O Footprint Manager produz um relatório alinhado ao VSME que tem a forma certa para essa conversa, sem fingir que você tem o tamanho da Philips.</p>
+
+<p><strong>Fundadores e operadores curiosos sobre sustentabilidade.</strong> Você quer um número, não confia em faturas de consultoria, está confortável em rodar um script Python, e quer entender <em>por que</em> cada linha é o que é. A ferramenta é desenhada para ser legível — abra o código, rastreie o cálculo, audite o fator.</p>
+
+<p><strong>Implementadores de DPP e ESPR.</strong> Dados de carbono por produto estão prestes a se tornar um campo regulado em cada produto vendido na Europa. Entender contabilidade em nível corporativo — e a infraestrutura de procedência de fator que ela exige — é fundamental para fazer contabilidade por produto com credibilidade.</p>
+
+<p><strong>Consultores ESG e contadores para clientes PME.</strong> Se você atende 10–50 clientes PME e precisa de um fluxo reproduzível que possa entregar ao cliente no fim, esta é uma ferramenta que cabe nesse modelo. Tudo é versionado, hasheado e baseado em arquivo.</p>
+
+<h2>O que ele (ainda) não é</h2>
+
+<p>O roadmap é público e a ferramenta é um produto em estágio inicial. Ainda não tem: colaboração multiusuário, fluxo de assinatura por firma de auditoria, polimento na exportação de PDF além do HTML em rolagem única, rastreamento de aposentadoria de créditos de carbono, um simulador Monte Carlo para estressar o modelo de incerteza, ou integração com pacotes contábeis para puxar dados de atividade automaticamente. Alguns estão no <a href="/blog/vsme-methodology-explained/">trabalho da Fase 2</a>; outros (validadores cruzados com EcoLogits, manifestos carbon.txt autogerados) são Fase 3.</p>
+
+<p>Também não é substituto para revisão profissional se você é uma empresa grande. O que ele faz bem é: produzir uma linha de base defensável, auditável e legível por máquina para uma PME operando em território de divulgação voluntária.</p>
+
+<h2>Implantando para o seu negócio</h2>
+
+<p>A demo é somente leitura por desenho — queremos que você navegue livremente sem se preocupar em quebrar nada. Se você quer que a ferramenta trabalhe com <em>seus</em> dados (seu conjunto de fatores, seu contorno organizacional, seu ano de relato), nos procure. Implantamos como instalação local auto-hospedada que você possui integralmente, ou como serviço gerenciado em que cuidamos das operações de contabilidade e você revisa a saída. De qualquer forma, o código e os dados continuam sendo seus.</p>
+
+<div style="background: linear-gradient(135deg, #006d38 0%, #009BBB 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Experimente a demo</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Navegue por um inventário completo alinhado ao VSME</p>
+  <p style="color: #D1FAE5; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">Números reais de 2025, 34 linhas, Scope 2 duplo, marcado em inline-XBRL, hashes de fator. Acesso por link de e-mail ou pela senha das demos.</p>
+  <a href="https://demos.regenstudio.world/footprint-manager/gate.html" style="display: inline-block; background: #FFFFFF; color: #006d38; font-weight: 700; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none;">Abrir a demo &rarr;</a>
+</div>
+
+<p>Curioso sobre como isso se encaixa no quadro regulatório mais amplo? O <a href="/blog/vsme-methodology-explained/">terceiro post da série</a> explica o Padrão Voluntário para PMEs da EFRAG — o que os módulos Básico e Abrangente cobrem, como materialidade funciona no VSME, e por que essa é a forma certa de divulgação para PMEs mesmo quando a CSRD não se aplica.</p>
+
+<p style="text-align: center; margin-top: 24px;">Interessado em implantar o Footprint Manager na sua organização? <a href="mailto:info@regenstudio.world?subject=Footprint%20Manager%20deployment%20interest">info@regenstudio.world</a>.</p>

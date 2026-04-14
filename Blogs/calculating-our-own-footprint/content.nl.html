@@ -1,0 +1,96 @@
+<p>We adviseren organisaties over Digitale Productpaspoorten (Digital Product Passport, DPP), ESG-rapportage en de regelgevende infrastructuur die CO₂-data in elk in Europa verkocht product gaat duwen. Op enig moment landde de voor de hand liggende vraag op ons eigen bureau: wat is de CO₂-voetafdruk van <em>Regen Studio</em>?</p>
+
+<p>Dit is de eerste van drie berichten over die oefening. Hier delen we de cijfers, de keuzes die we maakten en de dingen die ons verrasten. Een <a href="/blog/the-footprint-manager-demo/">vervolgbericht</a> loopt door de tool die we bouwden om ze te produceren, en een <a href="/blog/vsme-methodology-explained/">derde</a> legt de EFRAG VSME-methodologie uit die het rapport zijn vorm geeft.</p>
+
+<h2>De kop</h2>
+
+<p>In kalenderjaar 2025 stootte Regen Studio BV ongeveer <strong>8,6 ton CO₂e</strong> uit — met een gerapporteerd onzekerheidsbereik van <strong>7,7 tot 9,7 ton</strong> (5e–95e percentiel). Dat centrale cijfer is ongeveer wat een gemiddelde Nederlandse volwassene in één jaar uitstoot, over hun gehele leven, niet alleen werkuren. Voor een eenmansadviesbureau is het op zichzelf niet klein en niet groot; wat telt, is waar het vandaan komt.</p>
+
+<p>De verdeling is het echte verhaal:</p>
+
+<ul>
+  <li><strong>Scope 3.6 — Zakelijk reizen: 89,9%</strong> (~7,74 t). Twee intercontinentale vluchten tussen São Paulo en Amsterdam zijn verantwoordelijk voor praktisch het geheel. Al het overige — NL-intercitytreinen, een autorit Nijmegen–Keulen, São Paulo-Ubers — is afronding.</li>
+  <li><strong>Scope 3.2 — Investeringsgoederen: 7,5%</strong> (~650 kg). Een iPad en een 32"-monitor gekocht in 2025, geboekt op volledige ingebouwde emissies in het jaar van aankoop.</li>
+  <li><strong>Scope 3.1 — Ingekochte goederen en diensten: 2,5%</strong> (~212 kg). Zeven SaaS-abonnementen (160 kg), vijftien geregistreerde zakelijke maaltijden (37 kg), drie paperbacks en een fotoboek (9,5 kg), en een jaar betaalde ChatGPT-inferentie (5 kg).</li>
+  <li><strong>Scope 2 — Elektriciteit: 0,1%</strong> (~12 kg locatiegebaseerd, 12 kg marktgebaseerd). Een thuiskantoor van 3 m² in São Paulo, draaiend op een net dat ~85% hernieuwbaar is (hydro en wind).</li>
+  <li><strong>Scope 1 — Directe emissies: 0</strong>. Geen bedrijfsvoertuigen, geen verbranding op locatie.</li>
+</ul>
+
+<p>Twee vluchten. Dat is de voetafdruk. De rest is in vergelijking een afrondingsfout.</p>
+
+<h2>Waarom die concentratie een cadeau is, geen probleem</h2>
+
+<p>De meeste CO₂-inventarisaties onthullen een rommelige, verspreide voetafdruk zonder duidelijke hefboom: een beetje verwarming hier, een beetje woon-werkverkeer daar, wat ingekochte goederen, wat afval, elk 10–20% en allemaal verweven. Je eindigt met een reductieplan dat vijftien dingen tegelijk moet aanpakken.</p>
+
+<p>De onze is het tegenovergestelde. Wanneer 90% van je voetafdruk uit twee vliegtickets bestaat, schrijft je reductiestrategie zichzelf. We hebben ons gecommitteerd aan een <strong>reductie van −40% tegen 2027</strong> ten opzichte van de baseline 2025, en het pad erheen is eenvoudig: reizen consolideren (één retourvlucht per jaar in plaats van twee) en de <a href="/blog/planting-regen-roots-in-brazil/">geplande emigratie in 2026</a> van Nederland naar Brazilië afronden — wat de richting van de reis omdraait en de jaarlijkse frequentie structureel verlaagt, niet via wilskracht.</p>
+
+<p>Dit is wat "materieel onderwerp" in VSME-terminologie betekent: klimaatverandering is materieel voor ons omdat één enkele categorie domineert; water, biodiversiteit, afval en personeelsonderwerpen zijn <em>niet materieel</em> met schriftelijke onderbouwingen die passen bij een thuiskantoor met één FTE. Tien pagina's onderwerpen "niet materieel" opschrijven voelde eerst raar — daarna voelde het eerlijk. We zijn geen fabriek.</p>
+
+<h2>Wat we kozen om te tellen, en wat we kozen om niet te tellen</h2>
+
+<p>Elke CO₂-inventarisatie is een reeks keuzes. Dit zijn de onze:</p>
+
+<h3>Dubbele Scope 2-rapportage</h3>
+<p>Voor elektriciteit rapporteerden we zowel <strong>locatiegebaseerd</strong> (wat het lokale net gemiddeld uitstoot) als <strong>marktgebaseerd</strong> (wat ons specifieke leverancierscontract uitstoot). Brazilië kent geen formeel residual-mix-systeem in de AIB-betekenis, dus gebruiken we per GHG Protocol Scope 2 Guidance het locatiegebaseerde netgemiddelde ook als marktgebaseerd cijfer. Geen greenwashing door 100% hernieuwbaar te claimen via een contractueel instrument dat we feitelijk niet bezitten.</p>
+
+<h3>Vluchten met stralingsforcering</h3>
+<p>Luchtvaartemissies zijn gerapporteerd inclusief <strong>RFI (stralingsforcering-index)</strong> — een vermenigvuldiger van ~1,9× op CO₂ uit brandstofverbranding om contrail- en hoogtehoogte-NOx-effecten mee te nemen. RFI overslaan had ~3,7 ton van de kop afgehaald. Dat zou oneerlijk zijn; de wetenschap is voldoende vastgesteld om het mee te nemen.</p>
+
+<h3>Investeringsgoederen op volledige ingebouwde emissies, in jaar van aankoop</h3>
+<p>De iPad en de monitor zijn geboekt op hun volledige ingebouwde koolstof in 2025, het jaar van aankoop. Sommige standaarden zouden ze afschrijven over een gebruiksduur van 4–7 jaar. Wij kozen ervoor dat niet te doen, omdat het toekomstige jaren opblaast en de aankoopbeslissing onderwaardeert. Als je nieuwe hardware koopt, koop je nieuwe emissies.</p>
+
+<h3>Onzekerheid als bereik, niet als punt</h3>
+<p>Elke rij in ons register draagt een 5e–95e percentielbereik. Het totaal wordt opgeteld via een log-ruimte-onzekerheidspropagatie (IPCC Tier-1-methode), wat verklaart waarom het bereik asymmetrisch is rond de centrale schatting. We weigeren "8,61 ton" te drukken alsof we het op een weegschaal hebben gemeten. Het bereik <em>is</em> het getal.</p>
+
+<h3>Wat we hebben uitgesloten</h3>
+<p>Persoonlijke (niet-zakelijke) reizen en uitgaven — dat zijn niet de emissies van het bedrijf, dat zijn die van de directeur. Compensaties en hernieuwbare-energiecertificaten — we hebben in 2025 niets ingetrokken, en als we dat ooit doen, worden ze <em>naast</em> Scope 1/2/3-totalen vermeld, niet ervan afgetrokken. Consistent met GHG Protocol-conventie.</p>
+
+<h2>Factorherkomst: het deel waar niemand over praat</h2>
+
+<p>Een emissiefactor is waar ideologie binnensluipt in "neutrale" rapporten. Een CO₂-voetafdruk is het product van activiteitendata (hoeveel kWh, hoeveel kilometers, hoeveel maaltijden) en een emissiefactor (kg CO₂e per eenheid). Activiteitendata is meestal verdedigbaar — je hebt een bon of meterstand. Factoren zijn waar mensen stilletjes het getal kiezen dat hen flatteert.</p>
+
+<p>Dus deden we twee dingen:</p>
+
+<ol>
+  <li><strong>Elke factor is van bron voorzien en gedateerd</strong>, met een kwaliteitsbeoordeling en een link terug naar het herkomstdocument. Als het cijfer van DEFRA 2024 is, staat er DEFRA 2024. Als het van een IEA-netemissiefactor komt, staat dat er. Als een factor geen goede bron heeft, gebruiken we hem niet of markeren we de regel als onzeker.</li>
+  <li><strong>Elke berekeningsrun is gehasht.</strong> De SHA-256 van de volledige factorenset op het moment van berekening wordt bij de run opgeslagen. Als een factor volgend jaar wordt bijgewerkt, blijven eerdere rapporten reproduceerbaar — de berekening van 2025 opnieuw draaien met de factorhash van 2025 geeft hetzelfde antwoord. Dit is saaie infrastructuur, maar het is wat "we denken dat we ~X hebben uitgestoten" verandert in "we hebben X berekend, en hier is het audit-spoor".</li>
+</ol>
+
+<h2>Wat ons verraste</h2>
+
+<p><strong>SaaS-abonnementen waren groter dan verwacht.</strong> 160 kg uit zeven terugkerende diensten — Adobe, Microsoft 365, Odido ISP, Proton, Whereby, Monday.com, Wix — is ~2% van het totaal. In absolute zin niet groot, maar groot ten opzichte van hoe onzichtbaar ze zijn. Niemand ziet zijn Adobe-abonnement als een CO₂-kost. De server wel.</p>
+
+<p><strong>AI-inferentie was kleiner dan verwacht.</strong> Een volledig jaar ChatGPT Plus bij ~10 prompts/dag: 5 kg. Ter referentie: dat is ongeveer één runderhamburger. Het frame "AI kookt de oceanen" gaat vooral over energie voor modeltraining, niet inferentie per gebruiker. Als vuistregel: een dag intensief chatbotgebruik stoot minder uit dan één autorit naar de supermarkt. Dit laat de AI-industrie niet van de haak — uitbreiding van datacenters is reëel — maar het moet herijken waar het individuele-gebruikers-schuldgevoel thuishoort.</p>
+
+<p><strong>Maaltijden zijn afronding.</strong> Vijftien geregistreerde zakelijke maaltijden over het jaar: 37 kg. De 2× burgeravond in Leiden (10 kg) was de grootste enkele maaltijdsregel en toch minder dan 0,15% van het jaartotaal. Je kunt je niet uit een door vluchten gedomineerde voetafdruk eten.</p>
+
+<p><strong>Het thuiskantoor van 3 m² is praktisch CO₂-vrij.</strong> 150 kWh op het Braziliaanse net = 12 kg. Een gloeilamp van de totale voetafdruk. Dit zal er anders uitzien wanneer we een werknemer in Nederland hebben die in de winter een laptop op gasgeback-upt netstroom draait.</p>
+
+<h2>Wat dit getal is, en wat het niet is</h2>
+
+<p>Dit is <strong>vrijwillige disclosure</strong>. Regen Studio BV ligt ruim onder de post-Omnibus CSRD-drempels (1.000+ werknemers <em>én</em> €450M+ omzet). We zijn wettelijk niet verplicht om iets te rapporteren. We deden het omdat:</p>
+
+<ul>
+  <li>We klanten adviseren over DPP- en ESG-infrastructuur. Het zou raar zijn ons eigen getal niet te kennen.</li>
+  <li>ESG-vragenlijsten van tegenpartijen van grotere klanten vragen steeds vaker om Scope 1/2/3-data op leveranciersniveau. Een VSME-uitgelijnd antwoord klaar hebben liggen wint het van improviseren.</li>
+  <li>De <a href="https://www.efrag.org/" rel="noopener" target="_blank">EFRAG Vrijwillige SME Standaard</a> is de juiste vorm van disclosure voor kleine bedrijven — ze is proportioneel, wordt gerespecteerd, en is waar de markt naar convergeert.</li>
+</ul>
+
+<p>Dit is <strong>geen</strong> claim van klimaatleiderschap, koolstofneutraliteit, net-zero of compensatie. Het is een meting. Meten is de eerste stap; al het andere (reductiedoelstellingen, leveranciersdruk, productherontwerp) hangt af van een eerlijke baseline om mee te vergelijken.</p>
+
+<div style="background: linear-gradient(135deg, #006d38 0%, #009BBB 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Blader door de volledige inventarisatie</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Zie elke rij, elke factor, elke hash</p>
+  <p style="color: #D1FAE5; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">Het onderliggende activiteitenregister van 34 rijen is doorbladerbaar in de Footprint Manager-demo — inclusief de inline-XBRL-getagde disclosures, de reductiepad-grafiek en de volledige methodologie.</p>
+  <a href="https://demos.regenstudio.world/footprint-manager/gate.html" style="display: inline-block; background: #FFFFFF; color: #006d38; font-weight: 700; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none;">Open de Footprint Manager-demo &rarr;</a>
+</div>
+
+<h2>Wat er nu komt</h2>
+
+<p>2026 wordt een ander jaar. De emigratie, een waarschijnlijke start van het TruPASS-project, DPP-consulting-vouchertraject, mogelijk een tweede FTE. De emissies zullen van vorm veranderen — minder vliegen, meer gedistribueerde rekenkracht, misschien een Braziliaans kantoor met een airconditioningrij die we momenteel niet hebben. Het doel van het bouwen van de tool (waar het <a href="/blog/the-footprint-manager-demo/">volgende bericht</a> over gaat) was juist dat 2026 en verder uren kosten om te rapporteren, geen weken.</p>
+
+<p>En de VSME-methodologie die dit alles ordent — Basismodule, Uitgebreide Module, materiële onderwerpen, dubbele Scope 2, energiemix, intensiteitsratio's, transitieplannen — verdient een eigen uitleg. Dat is <a href="/blog/vsme-methodology-explained/">het derde bericht</a>.</p>
+
+<p style="margin-top: 32px; color: #64748b; font-size: 0.92rem; border-top: 1px solid #e2e8f0; padding-top: 16px;">Dankwoord: dit werk bouwt voort op <strong>Pietro Lanza's</strong> oorspronkelijke CO₂-voetafdruk-essay 2023–2024 voor Regen Studio, dat de vraag formuleerde en de eerste methodologische steiger bood. Fouten in de huidige inventarisatie zijn van ons.</p>
+
+<p style="text-align: center; margin-top: 24px;">Vragen over de methodologie, of hoe jij de voetafdruk van je eigen organisatie zou aanpakken? <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>

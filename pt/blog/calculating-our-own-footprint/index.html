@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; frame-src 'self' https://player.vimeo.com https://w.soundcloud.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <title>Calculando Nossa Própria Pegada: O Inventário de Carbono 2025 da Regen Studio | Regen Studio</title>
+  <meta name="description" content="Medimos nossa pegada de carbono de 2025: 8,6 toneladas CO₂e, com ~95% vindos de dois voos de longa distância entre São Paulo e Amsterdam. Aqui está o que aprendemos ao fazer isso de forma honesta — como empresa de uma pessoa, sem fatura de consultoria, usando uma ferramenta que construímos nós mesmos.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.regenstudio.world/pt/blog/calculating-our-own-footprint/">
+
+  <!-- Hreflang alternates -->
+  <link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/calculating-our-own-footprint/">
+  <link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/calculating-our-own-footprint/">
+  <link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/calculating-our-own-footprint/">
+  <link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/calculating-our-own-footprint/">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.regenstudio.world/pt/blog/calculating-our-own-footprint/">
+  <meta property="og:title" content="Calculando Nossa Própria Pegada: O Inventário de Carbono 2025 da Regen Studio | Regen Studio">
+  <meta property="og:description" content="Medimos nossa pegada de carbono de 2025: 8,6 toneladas CO₂e, com ~95% vindos de dois voos de longa distância entre São Paulo e Amsterdam. Aqui está o que aprendemos ao fazer isso de forma honesta — como empresa de uma pessoa, sem fatura de consultoria, usando uma ferramenta que construímos nós mesmos.">
+  <meta property="og:image" content="https://www.regenstudio.world/Images/footprint-manager-preview.svg">
+  <meta property="og:image:alt" content="Inventário de carbono 2025 da Regen Studio — Scope 3 dominado por voos de longa distância">
+  <meta property="og:site_name" content="Regen Studio">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="article:published_time" content="2026-04-14">
+  <meta property="article:modified_time" content="2026-04-14">
+  <meta property="article:author" content="Yvo Hunink de Paiva">
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calculando Nossa Própria Pegada: O Inventário de Carbono 2025 da Regen Studio | Regen Studio">
+  <meta name="twitter:description" content="Medimos nossa pegada de carbono de 2025: 8,6 toneladas CO₂e, com ~95% vindos de dois voos de longa distância entre São Paulo e Amsterdam. Aqui está o que aprendemos ao fazer isso de forma honesta — como empresa de uma pessoa, sem fatura de consultoria, usando uma ferramenta que construímos nós mesmos.">
+  <meta name="twitter:image" content="https://www.regenstudio.world/Images/footprint-manager-preview.svg">
+
+  <!-- JSON-LD Article Schema -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Calculando Nossa Própria Pegada: O Inventário de Carbono 2025 da Regen Studio","description":"Medimos nossa pegada de carbono de 2025: 8,6 toneladas CO₂e, com ~95% vindos de dois voos de longa distância entre São Paulo e Amsterdam. Aqui está o que aprendemos ao fazer isso de forma honesta — como empresa de uma pessoa, sem fatura de consultoria, usando uma ferramenta que construímos nós mesmos.","image":"https://www.regenstudio.world/Images/footprint-manager-preview.svg","datePublished":"2026-04-14","inLanguage":"pt-BR","author":{"@type":"Person","@id":"https://www.regenstudio.world/#founder","name":"Yvo Hunink de Paiva"},"publisher":{"@type":"Organization","@id":"https://www.regenstudio.world/#organization","name":"Regen Studio","url":"https://www.regenstudio.world","logo":{"@type":"ImageObject","url":"https://www.regenstudio.world/Images/Logo-Text-on-the-sideAtivo 2.svg"}},"keywords":"Sustainability, Circular Economy","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.regenstudio.world/pt/blog/calculating-our-own-footprint/"}}</script>
+
+  <!-- JSON-LD Breadcrumb Schema -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://www.regenstudio.world/pt/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.regenstudio.world/pt/blog.html"},{"@type":"ListItem","position":3,"name":"Calculando Nossa Própria Pegada: O Inventário de Carbono 2025 da Regen Studio","item":"https://www.regenstudio.world/pt/blog/calculating-our-own-footprint/"}]}</script>
+
+  <!-- RSS Discovery -->
+  <link rel="alternate" type="application/rss+xml" title="Regen Studio Blog" href="https://www.regenstudio.world/feed.xml">
+
+  <!-- Slug marker for blog.js hydration -->
+  <meta name="blog-post-slug" content="calculating-our-own-footprint">
+
+  <link rel="icon" type="image/png" href="../../../Images/favicon.png">
+  <link rel="stylesheet" href="../../../assets/fonts/fonts.css">
+  <link rel="stylesheet" href="../../../style.css">
+  <link rel="stylesheet" href="../../../blog.css">
+  <link rel="stylesheet" href="../../../assets/css/antibot.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="../../../pt/index.html" class="nav__logo">
+        <img src="../../../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img" width="180" height="48" fetchpriority="high">
+      </a>
+      <!-- Mobile slide-in menu -->
+      <ul class="nav__links" id="navLinks">
+        <li><a href="../../../pt/about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="../../../pt/vision.html" data-i18n="nav.vision">Vision</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="../../../pt/innovation-services.html" data-i18n="nav.services">Services</a></li>
+        <li><a href="../../../digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
+        <li><a href="../../../digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
+        <li><a href="../../../pt/client-projects.html" data-i18n="nav.client_projects">Client Projects</a></li>
+        <li><a href="../../../pt/blog.html" data-i18n="nav.blog">Blog</a></li>
+          <li class="nav__contact-wrap">
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtn">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <a href="../../../pt/#contact-form" class="nav__contact-popover-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="nav__actions">
+        <!-- Desktop dropdown menu -->
+        <button class="nav__menu-btn" aria-expanded="false" aria-controls="navDropdown">
+          Menu <span class="nav__menu-btn__arrow">&#9662;</span>
+        </button>
+        <div class="nav__dropdown" id="navDropdown">
+          <a href="../../../pt/vision.html" data-i18n="nav.vision">Vision</a>
+          <a href="../../../pt/innovation-services.html" data-i18n="nav.services">Services</a>
+          <a href="../../../problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
+          <a href="../../../pt/client-projects.html" data-i18n="nav.client_projects">Client Projects</a>
+          <a href="../../../pt/blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos <span class="sr-only">(abre em nova aba)</span></a>
+          <a href="../../../pt/about.html" data-i18n="nav.about">About</a>
+          <a href="../../../pt/faq.html" data-i18n="nav.faq">FAQ</a>
+        </div>
+        <div class="nav__contact-wrap nav__contact-wrap--desktop">
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false">Get in Touch</button>
+          <div class="nav__contact-popover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <a href="../../../pt/#contact-form" class="nav__contact-popover-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <!-- Post Header (pre-rendered, JS hydrates) -->
+    <section class="post-header" id="postHeader">
+      <div class="container">
+        <a href="../../../pt/blog.html" class="post-header__back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Voltar ao Blog</a>
+        <div class="post-header__categories"><span class="post-header__category post-header__category--gray">Sustainability</span><span class="post-header__category post-header__category--emerald">Circular Economy</span></div>
+        <h1 class="post-header__title">Calculando Nossa Própria Pegada: O Inventário de Carbono 2025 da Regen Studio</h1>
+        <p class="post-header__subtitle">8,6 toneladas, duas viagens de longa distância e uma alavanca de redução de −40% que conseguimos enxergar</p>
+        <div class="post-header__meta">
+          <div class="post-header__author">
+            <span class="post-header__author-name">Yvo Hunink de Paiva</span>
+            <span class="post-header__author-role">Design de Inovação Regenerativa</span>
+          </div>
+          <div class="post-header__meta-divider"></div>
+          <div class="post-header__meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> <time datetime="2026-04-14">14 de abril de 2026</time></div>
+          <div class="post-header__meta-divider"></div>
+          <div class="post-header__meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 8 min de leitura</div>
+        </div>
+      </div></section>
+
+    <!-- Featured Image (pre-rendered) -->
+    <section class="post-featured-image" id="postFeaturedImage">
+      <div class="container">
+        <img src="../../../Images/footprint-manager-preview.svg" alt="Inventário de carbono 2025 da Regen Studio — Scope 3 dominado por voos de longa distância">
+      </div></section>
+
+    <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
+    <section class="post-content" id="postContent">
+      <div class="post-content__inner">
+        <p class="post-answer-capsule"><strong>Medimos nossa pegada de carbono de 2025: 8,6 toneladas CO₂e, com ~95% vindos de dois voos de longa distância entre São Paulo e Amsterdam. Aqui está o que aprendemos ao fazer isso de forma honesta — como empresa de uma pessoa, sem fatura de consultoria, usando uma ferramenta que construímos nós mesmos.</strong></p>
+        <div class="post-content__body" id="post-content"><p>Assessoramos organizações em Passaportes Digitais do Produto (DPP), relato ESG e a infraestrutura regulatória que vai empurrar dados de carbono para dentro de cada produto vendido na Europa. Em algum momento, a pergunta óbvia chegou à nossa própria mesa: qual é a pegada de carbono da <em>Regen Studio</em>?</p>
+
+<p>Este é o primeiro de três posts sobre esse exercício. Aqui compartilhamos os números, as escolhas que fizemos e as coisas que nos surpreenderam. Um <a href="/blog/the-footprint-manager-demo/">post seguinte</a> passa pela ferramenta que construímos para produzi-los, e um <a href="/blog/vsme-methodology-explained/">terceiro</a> explica a metodologia VSME da EFRAG que dá forma ao relatório.</p>
+
+<h2>O destaque</h2>
+
+<p>No ano-calendário 2025, a Regen Studio BV emitiu aproximadamente <strong>8,6 toneladas CO₂e</strong> — com uma faixa de incerteza divulgada de <strong>7,7 a 9,7 toneladas</strong> (percentil 5–95). Esse valor central é aproximadamente o que um adulto holandês médio emite em um único ano em toda a sua vida, não só nas horas de trabalho. Para uma consultoria de uma pessoa, isso não é nem pequeno nem grande isoladamente; o que importa é de onde vem.</p>
+
+<p>A distribuição é a história real:</p>
+
+<ul>
+  <li><strong>Scope 3.6 — Viagens corporativas: 89,9%</strong> (~7,74 t). Dois voos de longa distância entre São Paulo e Amsterdam respondem por praticamente tudo isso. Todo o resto — trens intercity na Holanda, um trajeto de carro Nijmegen–Köln, Ubers em São Paulo — é arredondamento.</li>
+  <li><strong>Scope 3.2 — Bens de capital: 7,5%</strong> (~650 kg). Um iPad e um monitor de 32" adquiridos em 2025, lançados a emissões incorporadas integrais no ano da compra.</li>
+  <li><strong>Scope 3.1 — Bens e serviços adquiridos: 2,5%</strong> (~212 kg). Sete assinaturas SaaS (160 kg), quinze refeições de negócios registradas (37 kg), três livros de bolso e um fotolivro (9,5 kg), e um ano de inferência paga do ChatGPT (5 kg).</li>
+  <li><strong>Scope 2 — Eletricidade: 0,1%</strong> (~12 kg baseado em localização, 12 kg baseado em mercado). Um home office de 3 m² em São Paulo rodando numa rede elétrica ~85% renovável entre hidrelétrica e eólica.</li>
+  <li><strong>Scope 1 — Emissões diretas: 0</strong>. Sem veículos da empresa, sem combustão no local.</li>
+</ul>
+
+<p>Dois voos. Essa é a pegada. O resto é erro de arredondamento em comparação.</p>
+
+<h2>Por que essa concentração é um presente, não um problema</h2>
+
+<p>A maioria dos inventários de carbono revela uma pegada confusa e distribuída, sem alavanca óbvia: um pouco de aquecimento aqui, um pouco de deslocamento ali, alguns bens adquiridos, algum resíduo, cada um com 10–20% e todos emaranhados. Você acaba com um plano de redução que precisa tratar quinze coisas ao mesmo tempo.</p>
+
+<p>O nosso é o oposto. Quando 90% da sua pegada são duas passagens aéreas, sua estratégia de redução se escreve sozinha. Nos comprometemos com uma <strong>meta de redução de −40% até 2027</strong> contra a linha de base de 2025, e o caminho para chegar lá é simples: consolidar viagens (uma ida-e-volta por ano em vez de duas), e concluir a <a href="/blog/planting-regen-roots-in-brazil/">emigração planejada para 2026</a> da Holanda para o Brasil — o que inverte o sentido da viagem e reduz a frequência anual estruturalmente, não pela força de vontade.</p>
+
+<p>É o que "tópico material" significa na terminologia VSME: mudança climática é material para nós porque uma única categoria domina; água, biodiversidade, resíduos e temas de força de trabalho são <em>não material</em> com bases escritas apropriadas a uma operação de home office com 1 FTE. Escrever "não material" por dez páginas de tópicos pareceu estranho no início — depois pareceu honesto. Não somos uma fábrica.</p>
+
+<h2>O que escolhemos contar, e o que escolhemos não contar</h2>
+
+<p>Todo inventário de carbono é uma série de escolhas. Aqui estão as nossas:</p>
+
+<h3>Relato duplo de Scope 2</h3>
+<p>Para eletricidade, relatamos tanto <strong>baseado em localização</strong> (o que a rede elétrica local emite em média) quanto <strong>baseado em mercado</strong> (o que nosso contrato específico de fornecedor emite). O Brasil não tem um sistema formal de mix residual no sentido da AIB, então conforme a Scope 2 Guidance do GHG Protocol usamos a média da rede baseada em localização também como o valor baseado em mercado. Sem greenwashing alegando 100% renovável por meio de um instrumento contratual que de fato não temos.</p>
+
+<h3>Voos com forçamento radiativo</h3>
+<p>Emissões de aviação são relatadas com <strong>RFI (índice de forçamento radiativo)</strong> incluído — um multiplicador de ~1,9× sobre o CO₂ da combustão do combustível para contabilizar efeitos de rastros de condensação e NOx em altitude. Pular o RFI teria cortado ~3,7 toneladas do destaque. Achamos que seria desonesto; a ciência está consolidada o suficiente para incluí-lo.</p>
+
+<h3>Bens de capital a emissões incorporadas integrais, no ano da compra</h3>
+<p>O iPad e o monitor são lançados com o carbono incorporado integral em 2025, ano em que os compramos. Alguns padrões os amortizariam ao longo de uma vida útil de 4–7 anos. Escolhemos não fazer isso, porque infla anos futuros e subestima a decisão de compra. Quando você compra novo hardware, você compra novas emissões.</p>
+
+<h3>Incerteza como faixas, não pontos</h3>
+<p>Cada linha no nosso registro carrega uma faixa de percentil 5–95. O total soma por propagação de incerteza em espaço-log (método IPCC Tier-1), razão pela qual a faixa é assimétrica em torno da estimativa central. Nos recusamos a imprimir "8,61 toneladas" como se tivéssemos medido numa balança. A faixa <em>é</em> o número.</p>
+
+<h3>O que excluímos</h3>
+<p>Viagens e despesas pessoais (não-negócios) — essas não são emissões da empresa, são do diretor. Compensações e Certificados de Energia Renovável — não aposentamos nenhum em 2025, e se algum dia fizermos, serão divulgados <em>ao lado</em> dos totais Scope 1/2/3, não abatidos deles. Coerente com a convenção do GHG Protocol.</p>
+
+<h2>Procedência do fator: a parte de que ninguém fala</h2>
+
+<p>Um fator de emissão é onde a ideologia se infiltra em relatórios "neutros". Uma pegada de carbono é o produto de dados de atividade (quantos kWh, quantos quilômetros, quantas refeições) por um fator de emissão (kg CO₂e por unidade). Dados de atividade em geral são defensáveis — você tem um recibo ou uma leitura de medidor. Os fatores são onde as pessoas, em silêncio, escolhem o número que as favorece.</p>
+
+<p>Então fizemos duas coisas:</p>
+
+<ol>
+  <li><strong>Todo fator tem fonte e data</strong>, com uma classificação de qualidade e um link de volta ao documento original. Se o número é da DEFRA 2024, diz DEFRA 2024. Se é de um fator de emissão de rede da IEA, diz isso. Se um fator não tem boa fonte, ou não o usamos ou sinalizamos a entrada como incerta.</li>
+  <li><strong>Toda execução de cálculo é hasheada.</strong> O SHA-256 do conjunto completo de fatores no momento do cálculo é armazenado junto com a execução. Se um fator for atualizado no ano que vem, relatórios passados permanecem reproduzíveis — re-executar o cálculo de 2025 com o hash do fator de 2025 dá a mesma resposta. É infraestrutura chata, mas é o que transforma "achamos que emitimos ~X" em "calculamos X, e aqui está o recibo de auditoria".</li>
+</ol>
+
+<h2>O que nos surpreendeu</h2>
+
+<p><strong>Assinaturas SaaS foram maiores do que esperávamos.</strong> 160 kg de sete serviços recorrentes — Adobe, Microsoft 365, Odido ISP, Proton, Whereby, Monday.com, Wix — é ~2% do total. Não é grande em termos absolutos, mas é grande em relação ao quão invisíveis são. Ninguém pensa na assinatura da Adobe como um custo de carbono. O servidor pensa.</p>
+
+<p><strong>Inferência de IA foi menor do que esperávamos.</strong> Um ano inteiro de ChatGPT Plus a ~10 prompts/dia: 5 kg. Como referência, isso é aproximadamente um hambúrguer de carne bovina. O enquadramento de "IA está fervendo os oceanos" é principalmente sobre energia de treinamento de modelos, não inferência por usuário. Como regra geral, um dia de uso intenso de chatbot emite menos que uma única ida de carro ao supermercado. Isso não livra a indústria de IA da responsabilidade — a expansão de data centers é real — mas deveria recalibrar onde pertence o sinal de culpa do usuário individual.</p>
+
+<p><strong>Refeições são arredondamento.</strong> Quinze refeições de negócios registradas ao longo do ano: 37 kg. A noite de 2× hambúrguer em Leiden (10 kg) foi a maior linha de refeição única e ainda assim menos que 0,15% do total anual. Você não come para sair de uma pegada dominada por voos.</p>
+
+<p><strong>O home office de 3 m² é praticamente livre de carbono.</strong> 150 kWh na rede brasileira = 12 kg. Uma lâmpada da pegada total. Isso terá outra cara quando tivermos um funcionário na Holanda rodando um laptop com eletricidade de rede com backup a gás no inverno.</p>
+
+<h2>O que esse número é, e o que não é</h2>
+
+<p>Isso é <strong>divulgação voluntária</strong>. A Regen Studio BV está muito abaixo dos limites da CSRD pós-Omnibus (1.000+ empregados <em>e</em> €450M+ de faturamento). Não somos legalmente obrigados a reportar nada. Fizemos porque:</p>
+
+<ul>
+  <li>Assessoramos clientes em infraestrutura de DPP e ESG. Seria estranho não saber nosso próprio número.</li>
+  <li>Questionários ESG de contraparte de clientes maiores pedem cada vez mais dados Scope 1/2/3 por fornecedor. Ter uma resposta alinhada ao VSME pronta é melhor do que correr atrás depois.</li>
+  <li>O <a href="https://www.efrag.org/" rel="noopener" target="_blank">Padrão Voluntário para PMEs da EFRAG</a> é a forma certa de divulgação para pequenas empresas — é proporcional, é respeitado e é para onde o mercado está convergindo.</li>
+</ul>
+
+<p>Isso <strong>não</strong> é uma alegação de liderança climática, neutralidade de carbono, net zero ou compensação. É uma medição. Medir é o primeiro passo; tudo mais (metas de redução, pressão sobre fornecedores, redesenho de produto) depende de ter uma linha de base honesta para comparar.</p>
+
+<div style="background: linear-gradient(135deg, #006d38 0%, #009BBB 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Navegue pelo inventário completo</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Veja cada linha, cada fator, cada hash</p>
+  <p style="color: #D1FAE5; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">O registro de atividade subjacente de 34 linhas pode ser explorado na demo do Footprint Manager — incluindo as divulgações marcadas em inline-XBRL, o gráfico de trajetória e a metodologia completa.</p>
+  <a href="https://demos.regenstudio.world/footprint-manager/gate.html" style="display: inline-block; background: #FFFFFF; color: #006d38; font-weight: 700; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none;">Abrir a demo do Footprint Manager &rarr;</a>
+</div>
+
+<h2>O que vem a seguir</h2>
+
+<p>2026 será um ano diferente. A emigração, um provável início do projeto TruPASS, trabalho de voucher de consultoria DPP, possivelmente um segundo FTE. As emissões vão mudar de forma — menos voos, mais computação distribuída, talvez um escritório brasileiro com uma linha de ar-condicionado que hoje não temos. O ponto de construir a ferramenta (que é sobre o que trata o <a href="/blog/the-footprint-manager-demo/">próximo post</a>) era precisamente para que 2026 em diante leve horas para relatar, não semanas.</p>
+
+<p>E a metodologia VSME que organiza tudo isso — Módulo Básico, Módulo Abrangente, tópicos materiais, Scope 2 duplo, mix de energia, razões de intensidade, planos de transição — merece explicação própria. Esse é <a href="/blog/vsme-methodology-explained/">o terceiro post</a>.</p>
+
+<p style="margin-top: 32px; color: #64748b; font-size: 0.92rem; border-top: 1px solid #e2e8f0; padding-top: 16px;">Agradecimentos: este trabalho se apoia no ensaio original de pegada de carbono 2023–2024 de <strong>Pietro Lanza</strong> para a Regen Studio, que enquadrou a pergunta e forneceu o primeiro arcabouço metodológico. Quaisquer erros no inventário atual são nossos.</p>
+
+<p style="text-align: center; margin-top: 24px;">Dúvidas sobre a metodologia, ou como você abordaria a pegada da sua própria organização? <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>
+</div>
+      </div></section>
+
+    <!-- Related Posts (rendered by JS) -->
+    <section class="related-posts" id="relatedPosts"></section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="Regen Studio">
+    <meta itemprop="url" content="https://www.regenstudio.world">
+    <meta itemprop="email" content="info@regenstudio.world">
+    <meta itemprop="description" content="Regenerative innovation design studio pioneering systemic innovations at the intersection of technology, society, and nature.">
+    <link itemprop="logo" href="https://www.regenstudio.world/Images/Logo-Text-on-the-sideAtivo 2.svg">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../../../pt/index.html" class="footer__logo">
+          <img src="../../../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img" width="1046" height="492">
+        </a>
+        <p>Inovações pioneiras para a regeneração dos nossos ecossistemas naturais, urbanos e humanos.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h2>Navegação</h2>
+          <ul>
+            <li><a href="../../../pt/about.html" data-i18n="footer.about">Sobre</a></li>
+            <li><a href="../../../pt/vision.html" data-i18n="footer.vision">Vision</a></li>
+            <li><a href="../../../pt/innovation-services.html" data-i18n="footer.services">Services</a></li>
+            <li><a href="../../../digital-product-passports/" data-i18n="footer.product_passports">Product Passports</a></li>
+            <li><a href="../../../digital-identities/" data-i18n="footer.digital_identity">Digital Identity</a></li>
+            <li><a href="../../../pt/client-projects.html" data-i18n="footer.client_projects">Client Projects</a></li>
+            <li><a href="../../../pt/blog.html" data-i18n="footer.blog">Blog</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+            <li><a href="../../../pt/faq.html" data-i18n="footer.faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h2>Contato</h2>
+          <ul>
+            <li>
+              <span class="footer__email-row">
+                <span class="footer__email-address">info@regenstudio.world</span>
+                <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+              </span>
+            </li>
+            <li><a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" itemprop="sameAs">LinkedIn</a></li>
+            <li><a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" itemprop="sameAs">Bluesky</a></li>
+            <li><a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" itemprop="sameAs">Mastodon</a></li>
+          </ul>
+        </div>
+        <div class="footer__col footer__col--locations">
+          <h2>Localizações</h2>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">Holanda</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio B.V.</p>
+              <p class="footer__address"><span itemprop="streetAddress">Stollenbergweg 43</span>, <span itemprop="postalCode">6571 AB</span>, <span itemprop="addressLocality">Berg en Dal</span></p>
+              <meta itemprop="addressCountry" content="NL">
+            </div>
+            <p class="footer__reg">KVK 90337948 · BTW NL865282377B01</p>
+          </div>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">Brasil</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio Consultoria LTDA</p>
+              <p class="footer__address"><span itemprop="streetAddress">Av. Washington Lu&iacute;s 1527, 174B</span><br><span itemprop="postalCode">04662-002</span>, <span itemprop="addressLocality">S&atilde;o Paulo</span></p>
+              <meta itemprop="addressCountry" content="BR">
+            </div>
+            <p class="footer__reg">CNPJ 57.579.114/0001-55</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2024–2026 Regen Studio B.V. &middot; <a href="../../../pt/privacy.html">Política de Privacidade</a> &middot; <a href="../../../terms.html">Termos de Uso</a> &middot; <a href="../../../accessibility.html">Accessibility</a> &middot; <a href="../../../pt/about.html">Sobre</a> &middot; <a href="../../../admin/">Admin</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/nav.js" defer></script>
+  <script src="../../../assets/js/i18n.js" defer></script>
+  <script src="../../../assets/js/antibot.js" defer></script>
+  <script src="../../../blog.js" defer></script>
+  <script src="../../../assets/js/tracker.js" defer></script>
+</body>
+</html>

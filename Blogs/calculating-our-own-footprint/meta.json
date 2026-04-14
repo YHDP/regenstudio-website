@@ -1,0 +1,16 @@
+{
+  "title": "Calculating Our Own Footprint: Regen Studio's 2025 Carbon Inventory",
+  "slug": "calculating-our-own-footprint",
+  "subtitle": "8.6 tonnes, two long-haul flights, and a −40% reduction lever we can actually see",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regenerative Innovation Design"
+  },
+  "date": "2026-04-14",
+  "categories": ["Sustainability", "Circular Economy"],
+  "tags": ["carbon-footprint", "vsme", "ghg-protocol", "regen-studio", "esg-reporting", "scope-3"],
+  "featuredImage": "../../Images/footprint-manager-preview.svg",
+  "featuredImageAlt": "Regen Studio 2025 carbon inventory — Scope 3 dominated by long-haul flights",
+  "excerpt": "We measured our own 2025 footprint: 8.6 tonnes CO₂e, with ~95% coming from two long-haul flights between São Paulo and Amsterdam. Here is what we learned about doing this honestly — as a one-person company, without a consultancy invoice, using a tool we built ourselves.",
+  "published": true
+}

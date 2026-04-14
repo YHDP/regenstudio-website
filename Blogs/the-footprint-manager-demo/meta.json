@@ -1,0 +1,16 @@
+{
+  "title": "The Footprint Manager Demo: VSME-Aligned Carbon Accounting for SMEs",
+  "slug": "the-footprint-manager-demo",
+  "subtitle": "A factor-audited, inline-XBRL-tagged carbon accounting tool that fits on a laptop",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regenerative Innovation Design"
+  },
+  "date": "2026-04-14",
+  "categories": ["Sustainability", "Innovation Services"],
+  "tags": ["demo", "carbon-footprint", "vsme", "ghg-protocol", "esg-reporting", "ixbrl"],
+  "featuredImage": "../../Images/footprint-manager-preview.svg",
+  "featuredImageAlt": "Footprint Manager demo — VSME-aligned carbon accounting",
+  "excerpt": "Browse a complete VSME-aligned carbon inventory — dual Scope 2, IPCC AR6 GWPs, factor provenance with quality ratings, inline-XBRL tagged output, and log-space uncertainty propagation. Built for SMEs who want an honest number without a six-figure consultancy invoice.",
+  "published": true
+}

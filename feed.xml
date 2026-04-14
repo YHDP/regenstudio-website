@@ -5,8 +5,41 @@
     <link>https://www.regenstudio.world/blog.html</link>
     <description>Innovations that regenerate Humans, Cities and Nature.</description>
     <language>en</language>
-    <pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate>
+    <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
     <atom:link href="https://www.regenstudio.world/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Calculating Our Own Footprint: Regen Studio&apos;s 2025 Carbon Inventory</title>
+      <link>https://www.regenstudio.world/blog/calculating-our-own-footprint/</link>
+      <guid isPermaLink="true">https://www.regenstudio.world/blog/calculating-our-own-footprint/</guid>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
+      <description>We measured our own 2025 footprint: 8.6 tonnes CO₂e, with ~95% coming from two long-haul flights between São Paulo and Amsterdam. Here is what we learned about doing this honestly — as a one-person company, without a consultancy invoice, using a tool we built ourselves.</description>
+      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
+      <category>Sustainability</category>
+      <category>Circular Economy</category>
+      <enclosure url="https://www.regenstudio.world/Images/footprint-manager-preview.svg" type="image/svg+xml" length="0" />
+    </item>
+    <item>
+      <title>The Footprint Manager Demo: VSME-Aligned Carbon Accounting for SMEs</title>
+      <link>https://www.regenstudio.world/blog/the-footprint-manager-demo/</link>
+      <guid isPermaLink="true">https://www.regenstudio.world/blog/the-footprint-manager-demo/</guid>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Browse a complete VSME-aligned carbon inventory — dual Scope 2, IPCC AR6 GWPs, factor provenance with quality ratings, inline-XBRL tagged output, and log-space uncertainty propagation. Built for SMEs who want an honest number without a six-figure consultancy invoice.</description>
+      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
+      <category>Sustainability</category>
+      <category>Innovation Services</category>
+      <enclosure url="https://www.regenstudio.world/Images/footprint-manager-preview.svg" type="image/svg+xml" length="0" />
+    </item>
+    <item>
+      <title>VSME Explained: The Voluntary SME Standard for Carbon and ESG Disclosure</title>
+      <link>https://www.regenstudio.world/blog/vsme-methodology-explained/</link>
+      <guid isPermaLink="true">https://www.regenstudio.world/blog/vsme-methodology-explained/</guid>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
+      <description>The EFRAG Voluntary SME Standard (VSME) is a proportionate ESG disclosure framework for non-listed SMEs. Two modules — Basic and Comprehensive — cover climate, energy, biodiversity, workforce, and governance. Here is what each module requires, how materiality works under VSME, and why post-Omnibus it is the right disclosure shape for SMEs that CSRD no longer captures.</description>
+      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
+      <category>Sustainability</category>
+      <category>Circular Economy</category>
+      <enclosure url="https://www.regenstudio.world/Images/footprint-manager-preview.svg" type="image/svg+xml" length="0" />
+    </item>
     <item>
       <title>Why I Founded Regen Studio — My Global Journey to Positive Impact</title>
       <link>https://www.regenstudio.world/blog/why-i-founded-regen-studio/</link>
@@ -16,7 +49,7 @@
       <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
       <category>Vision &amp; Strategy</category>
       <category>Innovation Services</category>
-      <enclosure url="https://www.regenstudio.world/Blogs/why-i-founded-regen-studio/header-founder.webp" type="image/webp" length="525094" />
+      <enclosure url="https://www.regenstudio.world/Blogs/why-i-founded-regen-studio/header-founder.png" type="image/png" length="1256885" />
     </item>
     <item>
       <title>Mapping Regional ESPR Impact: How Zuid-Holland Used Data to Prepare Its Businesses for Digital Product Passports</title>
@@ -203,41 +236,6 @@
       <category>Vision &amp; Strategy</category>
       <category>Client Projects</category>
       <enclosure url="https://www.regenstudio.world/Blogs/trusted-dpps/Header%20trusted%20DPPsAtivo%2048.webp" type="image/webp" length="305214" />
-    </item>
-    <item>
-      <title>10 Design Principles for Antifragile Regenerative Innovation Systems</title>
-      <link>https://www.regenstudio.world/blog/antifragile/</link>
-      <guid isPermaLink="true">https://www.regenstudio.world/blog/antifragile/</guid>
-      <pubDate>Thu, 17 Apr 2025 00:00:00 GMT</pubDate>
-      <description>Inspired by Nassim Nicholas Taleb’s Antifragile, we distilled 10 design principles that shape our approach to regenerative innovation systems — systems that don’t just withstand shocks, but grow stronger from them.</description>
-      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
-      <category>Out-of-the-Box Ideas</category>
-      <category>Innovation Services</category>
-      <enclosure url="https://www.regenstudio.world/Blogs/antifragile/HeaderAtivo%2012.webp" type="image/webp" length="361244" />
-    </item>
-    <item>
-      <title>A Custom Digital Innovation Process for The Hague&apos;s Living Lab Scheveningen</title>
-      <link>https://www.regenstudio.world/blog/a-custom-digital-innovation-process-for-the-hague/</link>
-      <guid isPermaLink="true">https://www.regenstudio.world/blog/a-custom-digital-innovation-process-for-the-hague/</guid>
-      <pubDate>Wed, 19 Feb 2025 00:00:00 GMT</pubDate>
-      <description>Municipal digital innovation requires a process built for government — one that accounts for procurement rules, GDPR obligations, political cycles, and the need to transfer ownership to a team that will maintain and scale what was built. Regen Studio designed exactly that for The Hague&apos;s EC-DISC. The CIO of the Information &amp; Automation department formally adopted it as departmental policy. Here is how it works — and how to engage it.</description>
-      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
-      <category>Client Projects</category>
-      <category>Innovation Services</category>
-      <category>Living Labs</category>
-      <enclosure url="https://www.regenstudio.world/Blogs/a-custom-digital-innovation-process-for-the-hague/City%20Innovation%20Process%20HeaderAtivo%2056.webp" type="image/webp" length="174308" />
-    </item>
-    <item>
-      <title>Weaving Nature into Urban Design</title>
-      <link>https://www.regenstudio.world/blog/Blog 3/</link>
-      <guid isPermaLink="true">https://www.regenstudio.world/blog/Blog 3/</guid>
-      <pubDate>Sat, 18 Jan 2025 00:00:00 GMT</pubDate>
-      <description>By learning from and working with natural ecosystems, cities can build resilience, restore biodiversity, and create spaces that regenerate rather than deplete.</description>
-      <author>noreply@regenstudio.world (Regen Studio)</author>
-      <category>Urban Greening</category>
-      <category>Biodiversity</category>
-      <category>Vision &amp; Strategy</category>
-      <enclosure url="https://www.regenstudio.world/Blogs/Blog%203/hero-urban-nature.svg" type="image/svg+xml" length="8199" />
     </item>
   </channel>
 </rss>
