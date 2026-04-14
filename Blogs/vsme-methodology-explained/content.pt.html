@@ -1,0 +1,158 @@
+<p>Quando uma grande empresa europeia pede dados ESG ao seu fornecedor pequeno, algo desconfortável acontece. A grande empresa está obrigada pela <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022L2464" rel="noopener" target="_blank">CSRD</a> e reporta sob o ESRS completo — várias centenas de pontos de divulgação, avaliações de dupla materialidade, emissões de cadeia de valor. A empresa pequena talvez tenha cinco pessoas, um contador e nenhuma ideia do que significa "dupla materialidade". Pedir a elas uma resposta no formato ESRS é absurdo.</p>
+
+<p>O <strong>Padrão Voluntário para PMEs não-listadas (VSME)</strong> da EFRAG é a resposta. É um arcabouço de divulgação proporcional, do tamanho certo, desenhado especificamente para pequenas empresas — seja porque querem divulgar voluntariamente, seja porque uma contraparte maior está pedindo. Este post explica o que o VSME exige, como difere do ESRS e por que a revisão CSRD Omnibus de 2025 tornou o VSME <em>mais</em> relevante para mais empresas, não menos.</p>
+
+<p>Este é o terceiro post de uma série. O <a href="/blog/calculating-our-own-footprint/">post um</a> relatou nossa própria pegada de carbono de 2025 (8,6 toneladas, majoritariamente voos). O <a href="/blog/the-footprint-manager-demo/">post dois</a> apresentou a ferramenta Footprint Manager que construímos para produzi-la. Este dá o zoom-out para a metodologia que dá forma ao exercício todo.</p>
+
+<h2>Onde o VSME se encaixa</h2>
+
+<p>A divulgação ESG na Europa é um sistema em camadas:</p>
+
+<ul>
+  <li><strong>CSRD / ESRS</strong> — obrigatório para empresas acima dos limites pós-Omnibus (1.000+ empregados <em>e</em> €450M+ de faturamento, conforme a revisão de 2025). Centenas de pontos de divulgação, dupla materialidade, asseguração por terceiros exigida.</li>
+  <li><strong>VSME</strong> — voluntário para PMEs não-listadas abaixo dos limites da CSRD. Dois módulos (Básico + Abrangente) cobrindo ~30 pontos de divulgação no total.</li>
+  <li><strong>Regimes setoriais</strong> — Regulamento de Baterias (Passaporte Digital da Bateria), ESPR (Ecodesign para Produtos Sustentáveis, com Passaporte Digital do Produto), CBAM (Mecanismo de Ajuste de Carbono na Fronteira). Esses ficam ao lado da CSRD/VSME, não sob eles.</li>
+</ul>
+
+<p>O VSME foi adotado pela EFRAG no fim de 2024 como padrão finalizado, não-rascunho. Explicitamente <em>não</em> é um ESRS simplificado — é um documento diferente que toma emprestados conceitos estruturais (materialidade, Scope 1/2/3, tabelas de divulgação) mas corta o detalhe para caber na realidade operacional das PMEs.</p>
+
+<h2>O Módulo Básico</h2>
+
+<p>O Módulo Básico é o piso. Se uma empresa divulga sob o VSME, ela divulga pelo menos o Módulo Básico. Seis seções:</p>
+
+<h3>B1 · Base de preparação</h3>
+<p>Quem está reportando, para qual período, qual é o contorno organizacional (controle, participação acionária, operacional), qual padrão está sendo seguido, o que está explicitamente excluído. É onde você escreve "Regen Studio BV, ano-calendário 2025, contorno de controle, divulgação voluntária alinhada ao EFRAG VSME".</p>
+
+<h3>B2 · Práticas para transição rumo a uma economia mais sustentável</h3>
+<p>Descrição narrativa de práticas climáticas, de natureza, economia circular e sociais. Sem exigência numérica — apenas um relato legível do que a empresa de fato faz. Para uma consultoria de 1 FTE é um parágrafo; para um fabricante de 200 pessoas são várias páginas.</p>
+
+<h3>B3 · Energia e emissões de GEE</h3>
+<p>A seção de pegada de carbono. Scope 1 + Scope 2 totais (com relato duplo: baseado em localização e baseado em mercado), e — se a empresa tem Scope 3 material — as categorias de Scope 3 materiais. Consumo de energia em MWh por fonte, com parcela renovável. GWPs do IPCC AR6 são o default esperado.</p>
+
+<h3>B4 · Poluição</h3>
+<p>Emissões de poluentes para ar, água e solo se a empresa está sujeita a autorização relevante ou registro de liberações. A maioria dos pequenos negócios de serviço responde "não material" com base. Fabricantes preenchem.</p>
+
+<h3>B5 · Biodiversidade</h3>
+<p>Se a empresa opera em sítios em ou perto de áreas biodiversamente sensíveis. Para um home office, "não material". Para uma PME florestal ou agrícola, é uma divulgação central.</p>
+
+<h3>B6 · Água</h3>
+<p>Captação de água e (para sítios em áreas de estresse hídrico) consumo. A maioria das PMEs de serviço responde "não material" com base.</p>
+
+<h3>B7 · Uso de recursos, economia circular, resíduos</h3>
+<p>Resíduos gerados por peso, taxa de reciclagem, quaisquer práticas de circularidade em desenho de produto ou compras. Para uma consultoria DPP é interessante responder <em>sobre as próprias operações</em>, não só sobre clientes.</p>
+
+<h3>B8 · Força de trabalho — geral</h3>
+<p>Headcount, quebra por gênero, rotatividade, incidentes de saúde e segurança. Proporcional ao tamanho da empresa.</p>
+
+<h3>B9 · Força de trabalho — saúde e segurança</h3>
+<p>Fatalidades, incidentes registráveis, taxas de incidente. Para trabalho de escritório é uma seção curta; para construção ou manufatura importa.</p>
+
+<h3>B10 · Força de trabalho — remuneração e treinamento</h3>
+<p>Gap salarial, horas médias de treinamento, cobertura de negociação coletiva. De novo, proporcional ao tamanho da força de trabalho.</p>
+
+<h3>B11 · Conduta de negócios</h3>
+<p>Anticorrupção, canal de denúncias, estrutura de governança. Para uma BV de diretor único é um parágrafo descrevendo o arranjo de governança.</p>
+
+<h2>O Módulo Abrangente</h2>
+
+<p>O Módulo Abrangente é opcional e aditivo. Se uma empresa escolhe divulgá-lo, ela adiciona por cima do Básico. É aqui que investidores, credores e contrapartes maiores começam a olhar quando a PME quer se diferenciar em ESG.</p>
+
+<h3>C1 · Estratégia — modelo de negócios e iniciativas relacionadas à sustentabilidade</h3>
+<p>Estratégia narrativa: como a sustentabilidade está embutida em como a empresa ganha dinheiro. Há um plano de transição? Há produtos ou serviços relacionados ao clima?</p>
+
+<h3>C2 · Práticas de gestão de questões materiais de sustentabilidade</h3>
+<p>Práticas reais de gestão ESG da empresa — políticas, responsabilidades, mensuração, metas. É aqui que entra "temos uma meta de redução de −40% até 2027 contra uma linha de base de 2025".</p>
+
+<h3>C3 · Riscos e oportunidades financeiros futuros</h3>
+<p>Riscos financeiros relacionados ao clima (riscos físicos, riscos de transição) e oportunidades. Análise de cenário é encorajada mas não exigida na profundidade que o ESRS E1 impõe.</p>
+
+<h3>C4 · Metas</h3>
+<p>Metas quantitativas de redução com ano-base, ano-alvo, scope e alinhamento com cenário (trajetória 1,5°C, SBTi, NDC nacional).</p>
+
+<h3>C5 · Força de trabalho — direitos humanos e cobertura de negociação coletiva</h3>
+<p>Política de direitos humanos, due diligence, estatísticas de negociação coletiva. Proporcional ao tamanho da empresa.</p>
+
+<h3>C6 · Incidentes graves de direitos humanos</h3>
+<p>Divulgação binária com narrativa se algum ocorreu.</p>
+
+<h3>C7 · Receita de atividades controversas</h3>
+<p>Se a receita vem de armas controversas, tabaco, combustíveis fósseis ou outros setores excluídos. Para a maioria das PMEs é uma linha dizendo "nenhuma".</p>
+
+<h3>C8 · Razão de diversidade de gênero no órgão de governança</h3>
+<p>Composição do conselho ou órgão de governança equivalente.</p>
+
+<h3>C9 · Alinhamento à Taxonomia da UE (opcional)</h3>
+<p>Faturamento, capex, opex alinhados à Taxonomia como parcela do total. Só PMEs com exposição a mercado de capitais costumam se incomodar.</p>
+
+<h2>Como materialidade funciona no VSME</h2>
+
+<p>Uma das simplificações mais importantes do VSME frente ao ESRS: não há exercício de dupla materialidade. O VSME usa <strong>materialidade simples</strong> — um tópico é material se é relevante ao negócio da empresa, seja financeiramente, seja por impacto significativo. Sem análise de quadrante impacto-vs-financeiro, sem matriz de consulta a stakeholders.</p>
+
+<p>Mas — e essa é a parte que muitos iniciantes perdem — "<strong>não material</strong>" é uma divulgação de peso pleno que exige base escrita. Você não pode deixar B5 Biodiversidade em branco porque "não temos biodiversidade". Você escreve: <em>"A Regen Studio BV é uma consultoria baseada em serviços operando de um home office em São Paulo. Não tem sítios em ou adjacentes a áreas biodiversamente sensíveis conforme o registro de sítios protegidos da UE. Biodiversidade não é material para as operações."</em> Esse parágrafo é a divulgação.</p>
+
+<p>É isso que torna o VSME crível apesar de ser mais curto. Uma PME que escreve "não material" dez vezes sem bases tem um relatório visivelmente oco. Uma PME que escreve bases de "não material" concisas e defensáveis para os dez tópicos que genuinamente não se aplicam está fazendo exatamente o que o padrão pede.</p>
+
+<h2>Relato duplo de Scope 2 — a regra que ninguém lê</h2>
+
+<p>Um ponto técnico que vale se deter, porque derruba a maioria dos iniciantes: o VSME (alinhado à Scope 2 Guidance do GHG Protocol) exige <strong>relato duplo</strong> das emissões de eletricidade.</p>
+
+<ul>
+  <li><strong>Baseado em localização</strong> — o que a rede elétrica local emite em média, conforme o fator de emissão de rede nacional/regional.</li>
+  <li><strong>Baseado em mercado</strong> — o que o seu contrato específico de fornecedor emite, considerando qualquer produto específico do fornecedor (tarifa verde, PPA, REC/GoO/RECS desagregados).</li>
+</ul>
+
+<p>Se você comprou um contrato de tarifa verde, seu valor baseado em mercado pode ser zero (ou próximo de zero) para aquela fatia de eletricidade. Mas o valor baseado em localização ainda reflete a rede elétrica física de onde você puxa energia. Ambos os números são reportados. O total usa o valor baseado em mercado por convenção do GHG Protocol — mas o número baseado em localização fica ao lado para honestidade.</p>
+
+<p>Para países sem sistema formal de mix residual (ex.: Brasil, que não opera um regime de rastreamento estilo AIB), a Scope 2 Guidance do GHG Protocol especifica que a média da rede baseada em localização é usada também como o valor baseado em mercado. Sem greenwashing alegando "100% renovável" por meio de um instrumento contratual que não existe.</p>
+
+<h2>Inline XBRL — a camada legível por máquina</h2>
+
+<p>A taxonomia VSME da EFRAG define tags XBRL para cada ponto de divulgação nos módulos Básico e Abrangente. Quando o relatório HTML é produzido como <strong>inline XBRL (iXBRL)</strong>, cada número no documento é envolvido em uma tag legível por máquina que um regulador, contraparte ou ferramenta de compras pode extrair sem scraping.</p>
+
+<p>Isso importa porque muda a economia dos dados ESG de fornecedores. Uma empresa reportando sob a CSRD que coleta dados de 500 PMEs fornecedoras não consegue ler manualmente 500 PDFs. Se esses 500 PDFs forem marcados em iXBRL, um script extrai os números de Scope 1/2/3 em segundos. A alternativa — PDFs opacos ou formatos de planilha incompatíveis — cria exatamente a carga que o VSME foi desenhado para evitar.</p>
+
+<h2>Por que o Omnibus tornou o VSME mais importante</h2>
+
+<p>O CSRD Omnibus de fevereiro de 2025 elevou o limite de empregados de 250 para 1.000 e adicionou uma exigência de €450M de faturamento. Muitas empresas que vinham se preparando para conformidade com a CSRD agora caem abaixo do limite. Isso não é passe livre — elas ainda enfrentam:</p>
+
+<ul>
+  <li><strong>Pressão de cadeia de fornecedores.</strong> Seus clientes que reportam sob CSRD ainda precisam de dados Scope 3 por fornecedor.</li>
+  <li><strong>Exigências de compras.</strong> Compras públicas e compras corporativas grandes especificam cada vez mais divulgação ESG como requisito de entrada.</li>
+  <li><strong>Expectativas de investidores e credores.</strong> Empréstimos vinculados à sustentabilidade, green bonds e investidores orientados por ESG ainda querem divulgação, independentemente do escopo da CSRD.</li>
+  <li><strong>Pressão regulatória a montante.</strong> Regulamento de Baterias, ESPR, CBAM cada um traz exigências de dados em nível de produto e fornecedor que mordem independentemente do tamanho da empresa.</li>
+</ul>
+
+<p>Para essas empresas agora fora do escopo, o VSME é a forma natural de divulgação. É respeitada por contrapartes, alinhada a padrões do GHG Protocol e do IPCC, e proporcional à capacidade operacional de PMEs. Escalar para ESRS completo é desnecessário; ficar em silêncio é cada vez mais caro.</p>
+
+<h2>Como é uma divulgação "boa"</h2>
+
+<p>Uma boa divulgação VSME, na nossa visão:</p>
+
+<ul>
+  <li><strong>Usa faixas, não pontos</strong>, para cada valor de emissão. Um número único de Scope 3 é ficção.</li>
+  <li><strong>Tem fonte e data em cada fator de emissão</strong>, com classificação de qualidade. "0,45 kg CO₂e/kWh" não é resposta; "0,45 kg CO₂e/kWh conforme fator de rede Brasil IEA 2023, classificação de qualidade B" é.</li>
+  <li><strong>Relata Scope 2 das duas formas</strong>, baseado em localização e baseado em mercado, com as duas linhas visíveis.</li>
+  <li><strong>Escreve bases de "não material" explicitamente</strong>, em vez de deixar seções em branco.</li>
+  <li><strong>Inclui uma meta de redução</strong> com ano-base, ano-alvo e trajetória de referência (1,5°C, SBTi, NDC nacional).</li>
+  <li><strong>É legível por máquina como iXBRL</strong>, não só um PDF.</li>
+  <li><strong>Mantém um hash de fator / recibo de auditoria</strong> para que o cálculo seja reproduzível daqui a um ano.</li>
+</ul>
+
+<p>É isso que <a href="/blog/the-footprint-manager-demo/">o Footprint Manager</a> produz, e o que nossa própria <a href="/blog/calculating-our-own-footprint/">divulgação de 2025</a> demonstra de ponta a ponta.</p>
+
+<div style="background: linear-gradient(135deg, #006d38 0%, #009BBB 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Veja o VSME em ação</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Navegue por um inventário completo alinhado ao VSME</p>
+  <p style="color: #D1FAE5; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">Dados reais de 2025, módulos Básico + Abrangente, Scope 2 duplo, marcado em inline-XBRL, registro completo de cada linha.</p>
+  <a href="https://demos.regenstudio.world/footprint-manager/gate.html" style="display: inline-block; background: #FFFFFF; color: #006d38; font-weight: 700; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none;">Abrir a demo do Footprint Manager &rarr;</a>
+</div>
+
+<h2>Para onde ir daqui</h2>
+
+<p>Se você é uma PME se perguntando se deve começar a divulgar: a resposta curta é sim, mais cedo do que mais tarde. Não porque é obrigada, mas porque o ambiente de compras, crédito e investimento se move rápido e uma resposta VSME pronta é vantagem competitiva.</p>
+
+<p>Se você é uma empresa no escopo da CSRD tentando coletar dados de fornecedores: apontar fornecedores para o VSME — em vez de um questionário customizado — é o movimento mais colaborativo possível. Dá a eles um alvo estável, respeitado pelo mercado, e a saída iXBRL se integra aos seus sistemas.</p>
+
+<p>Se você é consultor ou contador construindo uma prática ESG para PMEs: o VSME é a oferta de serviço natural. É definido, tratável e recorrente. O Footprint Manager que construímos é desenhado para apoiar exatamente esse fluxo.</p>
+
+<p style="text-align: center; margin-top: 32px;">Dúvidas sobre aplicar o VSME na sua organização ou no trabalho com clientes? <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>

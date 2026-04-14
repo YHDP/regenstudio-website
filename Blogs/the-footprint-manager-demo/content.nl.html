@@ -1,0 +1,91 @@
+<p>Een MKB dat zijn eigen CO₂-voetafdruk wil meten, heeft een lastige keuze. Een Excel-spreadsheet — en een week kwijt zijn aan het afstemmen van factorversies. Een enterprise ESG-platform kopen — en €15–50k per jaar uitgeven aan tooling ontworpen voor bedrijven met 500 zetels. Of uitbesteden aan een duurzaamheidsadviesbureau — en een mooie PDF krijgen die je niet kunt reproduceren, auditen of aanpassen zonder opnieuw te betalen.</p>
+
+<p>We hebben de <strong>Footprint Manager</strong> gebouwd omdat geen van die opties bij ons paste. Dit bericht is een rondleiding van wat het doet, met een live demo gevuld met de echte inventarisatie van Regen Studio over 2025. Het <a href="/blog/calculating-our-own-footprint/">begeleidende bericht</a> loopt door de getallen zelf; dit gaat over de tool.</p>
+
+<div style="background: linear-gradient(135deg, #006d38 0%, #009BBB 100%); border-radius: 16px; padding: 32px; text-align: center; margin: 28px 0;">
+  <p style="color: #FFFFFF; font-size: 1.2rem; font-weight: 700; margin-bottom: 8px;">Probeer het met echte data</p>
+  <p style="color: #D1FAE5; font-size: 0.95rem; margin-bottom: 20px;">De demo is gevuld met onze werkelijke inventarisatie over 2025 — 34 rijen, dubbele Scope 2, inline-XBRL-getagde disclosures. Bladeren, niet bewerken.</p>
+  <a href="https://demos.regenstudio.world/footprint-manager/gate.html" style="display: inline-block; background: #FFFFFF; color: #006d38; font-weight: 700; padding: 12px 28px; border-radius: 8px; text-decoration: none;">Open de demo &rarr;</a>
+</div>
+
+<h2>Wat het is</h2>
+
+<p>De Footprint Manager is een local-first, VSME-uitgelijnd CO₂-boekhoudinstrument voor MKB's. Het draait op een laptop (Python + SQLite, nul externe afhankelijkheden), produceert machineleesbare inline-XBRL-rapporten volgens de EFRAG VSME-taxonomie, en houdt een volledig audit-spoor bij van welke emissiefactoren op het moment van berekening zijn gebruikt.</p>
+
+<p>Het probeert nadrukkelijk <em>geen</em> enterprise platform te zijn. Er is geen SSO, geen multi-tenant SaaS-backend, geen "AI-powered sustainability insights", geen vastgeboute CO₂-kredietmarktplaats. Het meet. Dat is de feature.</p>
+
+<h2>De acht weergaven</h2>
+
+<p>De demo loopt door acht pagina's in volgorde — elke pagina komt overeen met een vraag die een MKB-rapporteur moet beantwoorden.</p>
+
+<h3>1 · Home — het live dashboard</h3>
+<p>Totale emissies met een onzekerheidsbereik (geen puntschatting), een donutgrafiek per scope-familie, een veld voor managementsamenvatting, en een "primaire reductiehefboom" die de grootste bijdrager laat zien. Voor Regen Studio in 2025 schreeuwt het <strong>ZAKELIJK REIZEN, 7,74 t, 89,9% van het totaal</strong>. Geen twijfel.</p>
+
+<h3>2 · Register — het activiteitengrootboek van 34 rijen</h3>
+<p>Elke emissiebron, elke hoeveelheid, elke factor, elk bereik. Één rij per activiteit. Geen verborgen cellen, geen gekoppelde spreadsheets. Het register is filterbaar op scope, subcategorie en datum. In de demo is formulierindiening gedeactiveerd — de bestaande rijen zijn doorbladerbaar, maar je kunt er geen nieuwe toevoegen.</p>
+
+<h3>3 · Disclosures — het VSME-paneel</h3>
+<p>Zes disclosuretabellen van de Basismodule plus één tabel van de Uitgebreide Module, die dekken: grondslag van voorbereiding, methodologieën en GWP-bron, energieverbruik en -mix, aandeel hernieuwbaar, water (als niet materieel gemarkeerd voor ons geval), biodiversiteit, vervuiling, afval, personeelssamenstelling, governance en transitieplannen. Als een onderwerp niet materieel is, vraagt de tool om een schriftelijke onderbouwing — lege "niet materieel"-velden zijn onder VSME niet acceptabel.</p>
+
+<h3>4 · Factoren — de van bron voorziene en gedateerde catalogus</h3>
+<p>Elke emissiefactor die we gebruiken, met zijn bron, publicatiejaar, onzekerheidstype (bereik, lognormaal, enz.), kwaliteitsbeoordeling en geografische scope. Factoren zijn geversioneerd: <code>INSERT-only</code>, nooit UPDATE. Een factor van DEFRA 2024 blijft voor altijd gelabeld als DEFRA 2024; als DEFRA 2026 het getal wijzigt, komt dat binnen als nieuwe rij, en eerdere rapporten die DEFRA 2024 citeerden blijven reproduceerbaar.</p>
+
+<h3>5 · Rapport — de blog-klare output</h3>
+<p>De volledige inventarisatie gerenderd als een single-scroll VSME-uitgelijnd rapport. Managementsamenvatting, methode, totalen per scope, subcategorie-opsplitsing, volledig register, intensiteitsratio's, energiemix, disclosuretabellen, reductiepad-grafiek ten opzichte van het SBTi 1,5°C-traject, en (indien ingeschakeld) inline-XBRL-getagde disclosures. Dit is het document dat je naar een tegenpartij stuurt of op je eigen site publiceert. Een <code>--finalize</code>-vlag sluit de periode zodat latere bewerkingen een geversioneerde heropening vereisen.</p>
+
+<h3>6 · Methodologie — de levende referentie</h3>
+<p>Elke methodologische keuze in proza gedocumenteerd: hoe we factoren kozen, waarom we RFI op vluchten meenemen, wat "materieel" in VSME betekent, hoe onzekerheidsbereiken worden gepropageerd, wat we uitsluiten. Dit is wat een auditor leest voordat hij het register opent.</p>
+
+<h3>7 · Gids — de onboarding-doorloop</h3>
+<p>Een stroom in zes stappen voor een eerste-keer-gebruiker: stel je organisatiegrens in, kies een rapportageperiode, voer je activiteiten in, controleer de factor-dekking, run de schatting, beoordeel de disclosuretabellen. De demo heeft dit ingevuld zodat je kunt zien hoe "klaar" eruitziet.</p>
+
+<h3>8 · Woordenlijst — de terminologie-decoder</h3>
+<p>Achttien termen, van GHG Protocol-scopecodes tot VSME-modulenamen tot IPCC GWP-waarden. CO₂-boekhouding kent veel jargon; de woordenlijst is waar je het decodeert zonder de tool te verlaten.</p>
+
+<h2>Dingen om op te merken</h2>
+
+<h3>Bereiken, geen punten</h3>
+<p>Elke rij draagt een 5e–95e percentielbereik. Het totaal wordt opgeteld via log-ruimte-onzekerheidspropagatie, waardoor het outputbereik asymmetrisch is rond de centrale schatting. Je ziet <strong>8,61 t (7,73 – 9,72)</strong>, niet "8,61 ton". De tool weigert ook een rij te accepteren waarbij de boven/onder-ratio 100× overschrijdt — als dat afgaat, is een factor 200× fout en moet er onderzoek naar worden gedaan.</p>
+
+<h3>Dubbele Scope 2</h3>
+<p>Locatiegebaseerde en marktgebaseerde elektriciteit worden gerapporteerd als twee afzonderlijke rijen, beide zichtbaar in het register. Het totaal gebruikt het marktgebaseerde cijfer per GHG Protocol-conventie; de locatiegebaseerde waarde staat ernaast voor transparantie. Voor landen zonder formeel residual-mix-systeem (Brazilië) is marktgebaseerd per richtlijn gelijk aan locatiegebaseerd.</p>
+
+<h3>Factorhash als audit-bon</h3>
+<p>Elke berekeningsrun schrijft een <code>calculation_runs</code>-rij met een SHA-256-hash van de volledige gebruikte factorenset. De hash is het audit-spoor. Opnieuw runnen met dezelfde hash geeft hetzelfde antwoord; een andere hash signaleert een factorversiewijziging en maakt de afwijking onderzoekbaar.</p>
+
+<h3>Inline XBRL voor VSME</h3>
+<p>Het HTML-rapport is tevens een geldig iXBRL-document, met elk disclosurepunt getagd tegen de EFRAG VSME-taxonomie. Een toezichthouder, tegenpartij of inkooptool kan de getallen machineleesbaar uitlezen zonder te scrapen. De tool levert een compacte catalogus van concepten en geeft de voorkeur aan officiële EFRAG-XSD's wanneer aanwezig.</p>
+
+<h3>Privacy en infrastructuur</h3>
+<p>De Footprint Manager draait lokaal. SQLite-bestand op jouw machine. Geen cloud-tenant, geen leverancier, geen data die je apparaat verlaat tenzij je expliciet een rapport exporteert. Voor een MKB dat met gevoelige leveranciersdata werkt, is dit het verschil tussen "kunnen we dit überhaupt gebruiken" en "waar tekenen we".</p>
+
+<h2>Voor wie dit is</h2>
+
+<p><strong>MKB's die reageren op ESG-vragenlijsten van tegenpartijen.</strong> Als Philips, Unilever of een overheidsinkoopkantoor om je Scope 1/2/3-cijfers vraagt, heb je een antwoord nodig dat standhoudt. De Footprint Manager produceert een VSME-uitgelijnd rapport dat de juiste vorm heeft voor dat gesprek, zonder te doen alsof je zo groot bent als Philips.</p>
+
+<p><strong>Duurzaamheids-nieuwsgierige oprichters en operators.</strong> Je wilt een getal, je vertrouwt geen consultancyfacturen, je voelt je comfortabel met een Python-script, en je wilt begrijpen <em>waarom</em> elke rij is wat hij is. De tool is ontworpen om leesbaar te zijn — open de code, traceer de berekening, audit de factor.</p>
+
+<p><strong>DPP- en ESPR-uitvoerders.</strong> CO₂-data op productniveau staat op het punt een gereguleerd veld te worden op elk in Europa verkocht product. Het begrijpen van boekhouding op bedrijfsniveau — en de factorherkomst-infrastructuur die dat vereist — is fundamenteel voor geloofwaardige boekhouding op productniveau.</p>
+
+<p><strong>ESG-adviseurs en accountants voor MKB-klanten.</strong> Als je 10–50 MKB-klanten bedient en een reproduceerbare workflow nodig hebt die je aan het einde aan de klant kunt overdragen, past dit model bij deze tool. Alles is geversioneerd, gehasht en bestand-gebaseerd.</p>
+
+<h2>Wat het (nog) niet is</h2>
+
+<p>De roadmap is openbaar en de tool is een vroeg product. Het heeft nog niet: multi-user samenwerking, tekenworkflow voor auditfirma's, gepolijste PDF-export voorbij het single-scroll HTML, tracking van CO₂-kredietintrekking, een Monte Carlo-simulator voor stresstesten van het onzekerheidsmodel, of integratie met boekhoudpakketten om activiteitendata automatisch op te halen. Sommige hiervan zijn <a href="/blog/vsme-methodology-explained/">fase 2-werk</a>; andere (cross-validators met EcoLogits, automatisch gegenereerde carbon.txt-manifesten) zijn fase 3.</p>
+
+<p>Het is ook geen vervanging voor professionele beoordeling als je een groot bedrijf bent. Wat het goed doet, is: een verdedigbare, auditbare, machineleesbare baseline produceren voor een MKB in vrijwillig-disclosure-terrein.</p>
+
+<h2>Inzetten voor jouw bedrijf</h2>
+
+<p>De demo is ontwerpmatig alleen-lezen — we willen dat je vrij kunt bladeren zonder je zorgen te maken dat je iets breekt. Als je de tool wilt laten werken met <em>jouw</em> data (jouw factorenset, jouw organisatiegrens, jouw rapportagejaar), neem contact op. We zetten hem in als een self-hosted lokale installatie die volledig van jou is, of als een managed service waar wij de boekhoudkundige operaties doen en jij de output beoordeelt. Hoe dan ook, de code en de data blijven van jou.</p>
+
+<div style="background: linear-gradient(135deg, #006d38 0%, #009BBB 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Probeer de demo</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Blader door een volledige VSME-uitgelijnde inventarisatie</p>
+  <p style="color: #D1FAE5; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">Echte cijfers uit 2025, 34 rijen, dubbele Scope 2, inline-XBRL-getagd, factorhashes. Toegang via e-maillink of het demos-wachtwoord.</p>
+  <a href="https://demos.regenstudio.world/footprint-manager/gate.html" style="display: inline-block; background: #FFFFFF; color: #006d38; font-weight: 700; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none;">Open de demo &rarr;</a>
+</div>
+
+<p>Benieuwd hoe dit past in het bredere regelgevingsbeeld? Het <a href="/blog/vsme-methodology-explained/">derde bericht in deze serie</a> legt de EFRAG Vrijwillige SME Standaard uit — wat de Basis- en Uitgebreide Module dekken, hoe materialiteit werkt onder VSME, en waarom dit de juiste disclosurevorm is voor MKB's, zelfs wanneer CSRD niet van toepassing is.</p>
+
+<p style="text-align: center; margin-top: 24px;">Geïnteresseerd in het inzetten van de Footprint Manager voor jouw organisatie? <a href="mailto:info@regenstudio.world?subject=Footprint%20Manager%20deployment%20interest">info@regenstudio.world</a>.</p>

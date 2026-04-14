@@ -1,0 +1,96 @@
+<p>We advise organisations on Digital Product Passports, ESG reporting, and the regulatory infrastructure that will push carbon data into every product sold in Europe. At some point the obvious question landed on our own desk: what is the carbon footprint of <em>Regen Studio</em>?</p>
+
+<p>This is the first of three posts about that exercise. Here we share the numbers, the choices we made, and the things that surprised us. A <a href="/blog/the-footprint-manager-demo/">follow-up post</a> walks through the tool we built to produce them, and a <a href="/blog/vsme-methodology-explained/">third</a> explains the EFRAG VSME methodology that gives the report its shape.</p>
+
+<h2>The headline</h2>
+
+<p>In calendar year 2025, Regen Studio BV emitted approximately <strong>8.6 tonnes CO₂e</strong> — with a disclosed uncertainty range of <strong>7.7 to 9.7 tonnes</strong> (5th–95th percentile). That central figure is roughly what an average Dutch adult emits in a single year across their entire life, not just their working hours. For a one-person consulting business it is neither small nor large in isolation; what matters is where it comes from.</p>
+
+<p>The distribution is the real story:</p>
+
+<ul>
+  <li><strong>Scope 3.6 — Business travel: 89.9%</strong> (~7.74 t). Two long-haul flights between São Paulo and Amsterdam account for virtually all of this. Everything else — NL intercity trains, a Nijmegen–Köln car trip, São Paulo Ubers — is rounding.</li>
+  <li><strong>Scope 3.2 — Capital goods: 7.5%</strong> (~650 kg). An iPad and a 32" monitor purchased in 2025, booked at full embodied emissions in the year of purchase.</li>
+  <li><strong>Scope 3.1 — Purchased goods and services: 2.5%</strong> (~212 kg). Seven SaaS subscriptions (160 kg), fifteen logged business meals (37 kg), three paperback books and a photobook (9.5 kg), and one year of paid ChatGPT inference (5 kg).</li>
+  <li><strong>Scope 2 — Electricity: 0.1%</strong> (~12 kg location-based, 12 kg market-based). A 3 m² home office in São Paulo running off a grid that is ~85% renewable hydro and wind.</li>
+  <li><strong>Scope 1 — Direct emissions: 0</strong>. No company vehicles, no on-site combustion.</li>
+</ul>
+
+<p>Two flights. That is the footprint. The rest is a rounding error in comparison.</p>
+
+<h2>Why that concentration is a gift, not a problem</h2>
+
+<p>Most carbon inventories reveal a messy, distributed footprint with no obvious lever: a little bit of heating here, a little bit of commuting there, some purchased goods, some waste, each at 10–20% and all entangled. You end up with a reduction plan that has to address fifteen things at once.</p>
+
+<p>Ours is the opposite. When 90% of your footprint is two plane tickets, your reduction strategy writes itself. We committed to a <strong>−40% reduction by 2027</strong> against the 2025 baseline, and the path to get there is simply: consolidate trips (one round-trip per year instead of two), and complete the <a href="/blog/planting-regen-roots-in-brazil/">planned 2026 emigration</a> from the Netherlands to Brazil — which flips the direction of travel and reduces the annual frequency structurally, not through willpower.</p>
+
+<p>This is what "material topic" means in VSME terminology: climate change is material for us because a single category dominates; water, biodiversity, waste, and workforce topics are <em>not material</em> with written bases appropriate to a one-FTE home-office operation. Writing "not material" for ten pages of topics felt strange at first — then it felt honest. We are not a factory.</p>
+
+<h2>What we chose to count, and what we chose not to</h2>
+
+<p>Every carbon inventory is a series of choices. Here are ours:</p>
+
+<h3>Dual Scope 2 reporting</h3>
+<p>For electricity we reported both <strong>location-based</strong> (what the local grid emits on average) and <strong>market-based</strong> (what our specific supplier contract emits). Brazil has no formal residual-mix system in the AIB sense, so per GHG Protocol Scope 2 Guidance we use the location-based grid average as the market-based figure as well. No greenwashing by claiming 100% renewable through a contractual instrument we do not actually hold.</p>
+
+<h3>Flights with radiative forcing</h3>
+<p>Aviation emissions are reported with <strong>RFI (radiative forcing index)</strong> included — a ~1.9× multiplier on fuel-combustion CO₂ to account for contrail and high-altitude NOx effects. Skipping RFI would have shaved ~3.7 tonnes off the headline. We think that would be dishonest; the science is settled enough to include it.</p>
+
+<h3>Capital goods at full embodied emissions, in year of purchase</h3>
+<p>The iPad and the monitor are booked at their full embodied carbon in 2025, the year we bought them. Some standards would amortise them across a useful life of 4–7 years. We chose not to, because it inflates future years and understates the purchase decision. When you buy new hardware, you buy new emissions.</p>
+
+<h3>Uncertainty as ranges, not points</h3>
+<p>Every row in our register carries a 5th–95th percentile range. The total rolls up as a log-space uncertainty propagation (IPCC Tier-1 method), which is why the range is asymmetric around the central estimate. We refuse to print "8.61 tonnes" as if we measured it on a scale. The range <em>is</em> the number.</p>
+
+<h3>What we excluded</h3>
+<p>Personal (non-business) travel and expenses — those are not the company's emissions, they are the director's. Offsets and Renewable Energy Certificates — we did not retire any in 2025, and if we ever do, they will be disclosed <em>alongside</em> Scope 1/2/3 totals, not netted out of them. Consistent with GHG Protocol convention.</p>
+
+<h2>Factor provenance: the part nobody talks about</h2>
+
+<p>An emission factor is where ideology sneaks into "neutral" reports. A carbon footprint is the product of activity data (how many kWh, how many kilometres, how many meals) and an emission factor (kg CO₂e per unit). Activity data is usually defensible — you have a receipt or a meter reading. Factors are where people quietly pick the number that flatters them.</p>
+
+<p>So we did two things:</p>
+
+<ol>
+  <li><strong>Every factor is sourced and dated</strong>, with a quality rating and a link back to its origin document. If the figure is from DEFRA 2024, it says DEFRA 2024. If it is from an IEA grid emission factor, it says so. If a factor has no good source, we either do not use it or we flag the entry as uncertain.</li>
+  <li><strong>Every calculation run is hashed.</strong> The SHA-256 of the full factor set at the moment of calculation is stored with the run. If a factor gets updated next year, past reports remain reproducible — re-running the 2025 calculation with the 2025 factor hash gives the same answer. This is boring infrastructure, but it is the thing that turns "we think we emitted ~X" into "we calculated X, and here is the audit receipt".</li>
+</ol>
+
+<h2>What surprised us</h2>
+
+<p><strong>SaaS subscriptions were bigger than expected.</strong> 160 kg from seven recurring services — Adobe, Microsoft 365, Odido ISP, Proton, Whereby, Monday.com, Wix — is ~2% of the total. Not large in absolute terms, but large relative to how invisible they are. Nobody thinks of their Adobe subscription as a carbon cost. The server does.</p>
+
+<p><strong>AI inference was smaller than expected.</strong> A full year of ChatGPT Plus at ~10 prompts/day: 5 kg. For reference, that is roughly one beef hamburger. The "AI is boiling the oceans" framing is mostly model-training energy, not inference-per-user. As a rule of thumb, a day of heavy chatbot use emits less than a single drive to the supermarket. This does not let the AI industry off the hook — data-centre buildout is real — but it should recalibrate where the individual-user guilt signal belongs.</p>
+
+<p><strong>Meals are rounding.</strong> Fifteen logged business meals across the year: 37 kg. The 2× burger night in Leiden (10 kg) was the largest single meal row and still less than 0.15% of the annual total. You cannot eat your way out of a flight-dominated footprint.</p>
+
+<p><strong>The 3 m² home office is practically carbon-free.</strong> 150 kWh on the Brazilian grid = 12 kg. A light bulb of the total footprint. This will look different when we have an employee in the Netherlands running a laptop on gas-backed grid electricity in winter.</p>
+
+<h2>What this number is, and is not</h2>
+
+<p>This is <strong>voluntary disclosure</strong>. Regen Studio BV is far below the post-Omnibus CSRD thresholds (1,000+ employees <em>and</em> €450M+ turnover). We are not legally obligated to report anything. We did it because:</p>
+
+<ul>
+  <li>We advise clients on DPP and ESG infrastructure. It would be strange not to know our own number.</li>
+  <li>Counterparty ESG questionnaires from larger clients increasingly ask for supplier-level Scope 1/2/3 data. Having a VSME-aligned answer ready beats scrambling.</li>
+  <li>The <a href="https://www.efrag.org/" rel="noopener" target="_blank">EFRAG Voluntary SME Standard</a> is the right shape of disclosure for small companies — it is proportionate, it is respected, and it is what the market is converging on.</li>
+</ul>
+
+<p>This is <strong>not</strong> a claim of climate leadership, carbon neutrality, net zero, or offsetting. It is a measurement. Measurement is the first step; everything else (reduction targets, supplier pressure, product redesign) depends on having an honest baseline to compare against.</p>
+
+<div style="background: linear-gradient(135deg, #006d38 0%, #009BBB 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Browse the full inventory</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">See every row, every factor, every hash</p>
+  <p style="color: #D1FAE5; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">The underlying 34-row activity register is browsable in the Footprint Manager demo — including the inline-XBRL tagged disclosures, the pathway chart, and the full methodology.</p>
+  <a href="https://demos.regenstudio.world/footprint-manager/gate.html" style="display: inline-block; background: #FFFFFF; color: #006d38; font-weight: 700; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none;">Open the Footprint Manager Demo &rarr;</a>
+</div>
+
+<h2>What comes next</h2>
+
+<p>2026 will be a different year. The emigration, a probable TruPASS project start, DPP consulting voucher work, possibly a second FTE. The emissions will change shape — less flying, more distributed compute, maybe a Brazilian office with an air-conditioning row that we currently do not have. The point of building the tool (which is what the <a href="/blog/the-footprint-manager-demo/">next post</a> is about) was precisely so that 2026 and beyond take hours to report, not weeks.</p>
+
+<p>And the VSME methodology that organises all of this — Basic module, Comprehensive module, material topics, dual Scope 2, energy mix, intensity ratios, transition plans — is worth explaining in its own right. That is <a href="/blog/vsme-methodology-explained/">the third post</a>.</p>
+
+<p style="margin-top: 32px; color: #64748b; font-size: 0.92rem; border-top: 1px solid #e2e8f0; padding-top: 16px;">Acknowledgements: this work builds on <strong>Pietro Lanza's</strong> original 2023–2024 carbon footprint essay for Regen Studio, which framed the question and provided the first methodological scaffolding. Any errors in the current inventory are ours.</p>
+
+<p style="text-align: center; margin-top: 24px;">Questions about the methodology, or how you would approach your own organisation's footprint? <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>

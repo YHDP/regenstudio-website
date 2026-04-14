@@ -1,0 +1,16 @@
+{
+  "title": "A Demo do Footprint Manager: Contabilidade de Carbono Alinhada ao VSME para PMEs",
+  "slug": "the-footprint-manager-demo",
+  "subtitle": "Uma ferramenta de contabilidade de carbono com fatores auditados e marcação inline-XBRL que cabe em um laptop",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Design de Inovação Regenerativa"
+  },
+  "date": "2026-04-14",
+  "categories": ["Sustainability", "Innovation Services"],
+  "tags": ["demo", "carbon-footprint", "vsme", "ghg-protocol", "esg-reporting", "ixbrl"],
+  "featuredImage": "../../Images/footprint-manager-preview.svg",
+  "featuredImageAlt": "Demo do Footprint Manager — contabilidade de carbono alinhada ao VSME",
+  "excerpt": "Navegue por um inventário de carbono completo alinhado ao VSME — Scope 2 duplo, GWPs do IPCC AR6, procedência do fator com classificações de qualidade, saída marcada em inline-XBRL e propagação de incerteza em espaço-log. Feito para PMEs que querem um número honesto sem uma fatura de consultoria de seis dígitos.",
+  "published": true
+}
