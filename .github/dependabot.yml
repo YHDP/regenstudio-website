@@ -1,0 +1,15 @@
+# Dependabot config — monitors GitHub Actions workflow dependencies for CVEs and updates.
+# No npm / pip ecosystems enabled because this repo is vanilla JS + self-hosted
+# assets with no build-time dependency manifests. Re-enable ecosystems here if
+# that changes (e.g. if a package.json or requirements.txt is added).
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "deps"
