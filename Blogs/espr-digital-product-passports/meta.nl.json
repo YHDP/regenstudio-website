@@ -7,10 +7,27 @@
     "role": "Oprichter, Regen Studio"
   },
   "date": "2026-04-08",
-  "categories": ["Digital Product Passport", "Vision & Strategy", "Circular Business Models"],
-  "tags": ["espr", "ecodesign", "dpp", "eu-regulation", "circular-economy", "delegated-acts", "working-plan", "compliance"],
+  "categories": [
+    "Digital Product Passport",
+    "Vision & Strategy",
+    "Circular Business Models"
+  ],
+  "tags": [
+    "espr",
+    "ecodesign",
+    "dpp",
+    "eu-regulation",
+    "circular-economy",
+    "delegated-acts",
+    "working-plan",
+    "compliance"
+  ],
   "featuredImage": "",
   "featuredImageAlt": "",
   "excerpt": "De ESPR (Verordening 2024/1781) is het meest ambitieuze EU-kader voor productduurzaamheid — met verplichte Digitale Productpaspoorten, ecologische ontwerpeisen en verklaringen over zorgwekkende stoffen voor vrijwel alle fysieke producten. Deze gids legt uit hoe de ESPR werkt, welke productgroepen eerst komen en wat bedrijven nu moeten doen.",
-  "published": false
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
 }

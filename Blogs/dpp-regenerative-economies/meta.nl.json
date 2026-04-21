@@ -7,10 +7,24 @@
     "role": "Regeneratief innovatieontwerp"
   },
   "date": "2024-08-09",
-  "categories": ["Digital Product Passport", "Innovation Services"],
-  "tags": ["digital-product-passport", "circular-economy", "sustainability", "transport", "digital-identity", "regeneration"],
+  "categories": [
+    "Digital Product Passport",
+    "Innovation Services"
+  ],
+  "tags": [
+    "digital-product-passport",
+    "circular-economy",
+    "sustainability",
+    "transport",
+    "digital-identity",
+    "regeneration"
+  ],
   "featuredImage": "header.png",
   "featuredImageAlt": "Digitale productpaspoorten voor regeneratieve economieën",
   "excerpt": "Stel je een wereld voor waarin elk product een digitaal verhaal draagt, van creatie tot consumptie en verder. Digitale productpaspoorten kunnen een blauwdruk zijn voor regeneratie en de basis voor een circulaire economie.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

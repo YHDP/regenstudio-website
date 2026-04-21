@@ -7,10 +7,29 @@
     "role": "Regenerative Innovation Design"
   },
   "date": "2026-02-22",
-  "categories": ["Digital Product Passport", "Vision & Strategy"],
-  "tags": ["CPR", "construction", "digital product passports", "EAD", "ETA", "EOTA", "DPPs", "harmonised-standards", "DoPC", "CE mark", "EU-regulation"],
+  "categories": [
+    "Digital Product Passport",
+    "Vision & Strategy"
+  ],
+  "tags": [
+    "CPR",
+    "construction",
+    "digital product passports",
+    "EAD",
+    "ETA",
+    "EOTA",
+    "DPPs",
+    "harmonised-standards",
+    "DoPC",
+    "CE mark",
+    "EU-regulation"
+  ],
   "featuredImage": "featured.webp",
   "featuredImageAlt": "Two routes to CE marking under the Construction Products Regulation — harmonised standards and European Assessment Documents — both leading to Digital Product Passport obligations",
   "excerpt": "Everyone assumes DPP obligations will roll out family by family. But the CPR's two-route CE marking system means innovative products using the EAD/ETA route could face Digital Product Passport requirements years before mainstream products covered by harmonised standards — and there is no way out.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

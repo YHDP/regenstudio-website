@@ -7,10 +7,24 @@
     "role": "Stedelijke innovatie"
   },
   "date": "2024-10-05",
-  "categories": ["Living Labs", "Digital Participation", "Innovation Services"],
-  "tags": ["living-lab", "smart-city", "urban-design", "participatory-innovation", "public-space"],
+  "categories": [
+    "Living Labs",
+    "Digital Participation",
+    "Innovation Services"
+  ],
+  "tags": [
+    "living-lab",
+    "smart-city",
+    "urban-design",
+    "participatory-innovation",
+    "public-space"
+  ],
   "featuredImage": "Living LabsAtivo 62.webp",
   "featuredImageAlt": "Levendige living labs-illustratie die stedelijke regeneratie door participatieve gemeenschapsinnovatie verbeeldt",
   "excerpt": "Living labs transformeren de manier waarop steden stedelijke regeneratie benaderen. Door smart city-technologie te combineren met participatief ontwerp, co-creëren gemeenschappen oplossingen die echt aan hun behoeften voldoen.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

@@ -7,10 +7,30 @@
     "role": "Regenerative Innovation Design"
   },
   "date": "2025-09-23",
-  "categories": ["Digital Product Passport", "Vision & Strategy"],
-  "tags": ["digital-product-passport", "circulartech", "circular-economy", "espr", "dpp-readiness", "supply-chain", "sme", "battery-passport", "standardization", "cen-cenelec", "data-sovereignty", "regenerative-innovation"],
+  "categories": [
+    "Digital Product Passport",
+    "Vision & Strategy"
+  ],
+  "tags": [
+    "digital-product-passport",
+    "circulartech",
+    "circular-economy",
+    "espr",
+    "dpp-readiness",
+    "supply-chain",
+    "sme",
+    "battery-passport",
+    "standardization",
+    "cen-cenelec",
+    "data-sovereignty",
+    "regenerative-innovation"
+  ],
   "featuredImage": "Header.jpg",
   "featuredImageAlt": "CircularTech Forum Cologne — the global community on Digital Product Passports",
-  "excerpt": "On September 22nd I joined the CircularTech Forum in Cologne \u2014 the event for the global DPP community. Here are 5 insights I walked away with, from 90% of EU products requiring DPPs to why being early is a superpower.",
-  "published": true
+  "excerpt": "On September 22nd I joined the CircularTech Forum in Cologne — the event for the global DPP community. Here are 5 insights I walked away with, from 90% of EU products requiring DPPs to why being early is a superpower.",
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

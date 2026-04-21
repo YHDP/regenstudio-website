@@ -7,10 +7,25 @@
     "role": "Design de Inovação Regenerativa"
   },
   "date": "2026-02-11",
-  "categories": ["Vision & Strategy", "Innovation Services"],
-  "tags": ["UBI", "AI-tax", "automation", "universal-basic-income", "policy", "demo", "future-of-work"],
+  "categories": [
+    "Vision & Strategy",
+    "Innovation Services"
+  ],
+  "tags": [
+    "UBI",
+    "AI-tax",
+    "automation",
+    "universal-basic-income",
+    "policy",
+    "demo",
+    "future-of-work"
+  ],
   "featuredImage": "../../Images/demo-ai-tax-ubi.svg",
   "featuredImageAlt": "Simulador Imposto sobre IA → RBU — Modelagem de tributação de automação e renda básica universal",
   "excerpt": "E se tributar a automação impulsionada por IA pudesse financiar uma renda básica universal? Nosso simulador interativo permite que você defina os parâmetros de política e veja os números se desenrolarem — receita arrecadada, pagamentos mensais por cidadão e como isso evolui ano após ano.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

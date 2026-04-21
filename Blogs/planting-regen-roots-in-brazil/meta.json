@@ -7,10 +7,26 @@
     "role": "Regenerative Innovation Design"
   },
   "date": "2024-08-13",
-  "categories": ["Reforestation", "Biodiversity", "Urban Greening", "Vision & Strategy"],
-  "tags": ["brazil", "amazon", "atlantic-rainforest", "urban-regeneration", "biodiversity", "regeneration"],
+  "categories": [
+    "Reforestation",
+    "Biodiversity",
+    "Urban Greening",
+    "Vision & Strategy"
+  ],
+  "tags": [
+    "brazil",
+    "amazon",
+    "atlantic-rainforest",
+    "urban-regeneration",
+    "biodiversity",
+    "regeneration"
+  ],
   "featuredImage": "Header.png",
   "featuredImageAlt": "Planting Regen Roots in Brazil",
   "excerpt": "Brazil holds the key to the future of regeneration. With its immense biodiversity, unparalleled ecosystems, thriving cities and unique culture, this country is the beating heart of our planet's regenerative potential.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

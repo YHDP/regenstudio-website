@@ -7,10 +7,25 @@
     "role": "Design de Inovação Regenerativa"
   },
   "date": "2024-09-16",
-  "categories": ["Digital Product Passport", "Circular Business Models", "Innovation Services"],
-  "tags": ["brazil", "digital-product-passports", "textiles", "sustainability", "circular-economy", "dpp"],
+  "categories": [
+    "Digital Product Passport",
+    "Circular Business Models",
+    "Innovation Services"
+  ],
+  "tags": [
+    "brazil",
+    "digital-product-passports",
+    "textiles",
+    "sustainability",
+    "circular-economy",
+    "dpp"
+  ],
   "featuredImage": "header-future-textiles-brazilAtivo 1@2x.webp",
   "featuredImageAlt": "Ecossistema têxtil brasileiro pronto para o futuro",
   "excerpt": "Com o regulamento de Passaporte Digital de Produto da UE no horizonte, o Brasil está posicionado de forma única para liderar em têxteis sustentáveis. Exploramos como seria um ecossistema têxtil brasileiro preparado para o DPP.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

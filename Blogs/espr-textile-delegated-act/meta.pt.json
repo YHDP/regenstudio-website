@@ -7,10 +7,26 @@
     "role": "Design de Inovação Regenerativa"
   },
   "date": "2026-02-12",
-  "categories": ["Digital Product Passport", "Circular Business Models", "Vision & Strategy"],
-  "tags": ["ESPR", "textiles", "digital-product-passports", "ecodesign", "circular-economy", "sustainability", "EU-regulation"],
+  "categories": [
+    "Digital Product Passport",
+    "Circular Business Models",
+    "Vision & Strategy"
+  ],
+  "tags": [
+    "ESPR",
+    "textiles",
+    "digital-product-passports",
+    "ecodesign",
+    "circular-economy",
+    "sustainability",
+    "EU-regulation"
+  ],
   "featuredImage": "header-textiles-ESPRAtivo 3@2x.webp",
   "featuredImageAlt": "Regulamento de Ecodesign para Produtos Sustentáveis da UE — Ato delegado para têxteis",
   "excerpt": "O Regulamento de Ecodesign para Produtos Sustentáveis da UE está preparando seu ato delegado para têxteis. Com adoção esperada para o final de 2026 ou início de 2027, quais requisitos de ecodesign e dados de DPP a indústria deve preparar?",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

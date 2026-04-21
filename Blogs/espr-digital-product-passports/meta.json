@@ -7,10 +7,27 @@
     "role": "Founder, Regen Studio"
   },
   "date": "2026-04-08",
-  "categories": ["Digital Product Passport", "Vision & Strategy", "Circular Business Models"],
-  "tags": ["espr", "ecodesign", "dpp", "eu-regulation", "circular-economy", "delegated-acts", "working-plan", "compliance"],
+  "categories": [
+    "Digital Product Passport",
+    "Vision & Strategy",
+    "Circular Business Models"
+  ],
+  "tags": [
+    "espr",
+    "ecodesign",
+    "dpp",
+    "eu-regulation",
+    "circular-economy",
+    "delegated-acts",
+    "working-plan",
+    "compliance"
+  ],
   "featuredImage": "",
   "featuredImageAlt": "",
   "excerpt": "The ESPR (Regulation 2024/1781) is the EU's most ambitious product sustainability framework — requiring Digital Product Passports, ecodesign requirements, and substance of concern declarations for nearly all physical products. This guide explains how the ESPR works, which product groups come first, and what businesses should do now.",
-  "published": false
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
 }

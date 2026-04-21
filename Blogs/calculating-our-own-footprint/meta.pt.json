@@ -7,10 +7,24 @@
     "role": "Design de Inovação Regenerativa"
   },
   "date": "2026-04-14",
-  "categories": ["Sustainability", "Circular Economy"],
-  "tags": ["carbon-footprint", "vsme", "ghg-protocol", "regen-studio", "esg-reporting", "scope-3"],
+  "categories": [
+    "Sustainability",
+    "Circular Economy"
+  ],
+  "tags": [
+    "carbon-footprint",
+    "vsme",
+    "ghg-protocol",
+    "regen-studio",
+    "esg-reporting",
+    "scope-3"
+  ],
   "featuredImage": "../../Images/footprint-manager-preview.svg",
   "featuredImageAlt": "Inventário de carbono 2025 da Regen Studio — Scope 3 dominado por voos de longa distância",
   "excerpt": "Medimos nossa pegada de carbono de 2025: 8,6 toneladas CO₂e, com ~95% vindos de dois voos de longa distância entre São Paulo e Amsterdam. Aqui está o que aprendemos ao fazer isso de forma honesta — como empresa de uma pessoa, sem fatura de consultoria, usando uma ferramenta que construímos nós mesmos.",
-  "published": true
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
 }

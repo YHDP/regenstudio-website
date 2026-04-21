@@ -7,10 +7,28 @@
     "role": "Founder, Regen Studio"
   },
   "date": "2026-04-08",
-  "categories": ["Digital Product Passport", "Vision & Strategy", "Circular Business Models"],
-  "tags": ["ppwr", "packaging", "dpp", "eu-regulation", "circular-economy", "espr", "waste", "recycling", "compliance"],
+  "categories": [
+    "Digital Product Passport",
+    "Vision & Strategy",
+    "Circular Business Models"
+  ],
+  "tags": [
+    "ppwr",
+    "packaging",
+    "dpp",
+    "eu-regulation",
+    "circular-economy",
+    "espr",
+    "waste",
+    "recycling",
+    "compliance"
+  ],
   "featuredImage": "",
   "featuredImageAlt": "",
   "excerpt": "The Packaging and Packaging Waste Regulation (PPWR) 2025/40 is among the first EU regulations to mandate Digital Product Passports for packaging materials. This guide covers which packaging types are affected, what data the DPP must contain, how PPWR connects to ESPR, and the compliance timeline businesses need to plan for.",
-  "published": false
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
 }

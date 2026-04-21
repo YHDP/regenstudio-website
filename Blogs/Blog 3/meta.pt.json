@@ -7,10 +7,24 @@
     "role": "Inovação de Ecossistemas"
   },
   "date": "2025-01-18",
-  "categories": ["Urban Greening", "Biodiversity", "Vision & Strategy"],
-  "tags": ["urban-nature", "urban-design", "biodiversity", "climate-adaptation", "regenerative-design"],
+  "categories": [
+    "Urban Greening",
+    "Biodiversity",
+    "Vision & Strategy"
+  ],
+  "tags": [
+    "urban-nature",
+    "urban-design",
+    "biodiversity",
+    "climate-adaptation",
+    "regenerative-design"
+  ],
   "featuredImage": "hero-urban-nature.svg",
   "featuredImageAlt": "Triângulos coloridos formando um edifício que se transforma em árvore, representando a fusão de sistemas urbanos e naturais",
   "excerpt": "Ao aprender com e trabalhar junto com ecossistemas naturais, as cidades podem construir resiliência, restaurar a biodiversidade e criar espaços que regeneram em vez de esgotar.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

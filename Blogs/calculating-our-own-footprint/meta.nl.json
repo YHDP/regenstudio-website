@@ -7,10 +7,24 @@
     "role": "Regenerative Innovation Design"
   },
   "date": "2026-04-14",
-  "categories": ["Sustainability", "Circular Economy"],
-  "tags": ["carbon-footprint", "vsme", "ghg-protocol", "regen-studio", "esg-reporting", "scope-3"],
+  "categories": [
+    "Sustainability",
+    "Circular Economy"
+  ],
+  "tags": [
+    "carbon-footprint",
+    "vsme",
+    "ghg-protocol",
+    "regen-studio",
+    "esg-reporting",
+    "scope-3"
+  ],
   "featuredImage": "../../Images/footprint-manager-preview.svg",
   "featuredImageAlt": "CO₂-inventarisatie Regen Studio 2025 — Scope 3 gedomineerd door intercontinentale vluchten",
   "excerpt": "We hebben onze eigen voetafdruk over 2025 gemeten: 8,6 ton CO₂e, waarvan ~95% afkomstig is van twee intercontinentale vluchten tussen São Paulo en Amsterdam. Dit is wat we leerden over het eerlijk doen — als eenmansbedrijf, zonder consultancyfactuur, met een tool die we zelf hebben gebouwd.",
-  "published": true
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
 }

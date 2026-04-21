@@ -7,10 +7,27 @@
     "role": "Fundador, Regen Studio"
   },
   "date": "2026-03-06",
-  "categories": ["Vision & Strategy", "Innovation Services"],
-  "tags": ["founder", "personal", "regeneration", "innovation", "tu-delft", "energy", "digital-product-passports", "brazil", "the-hague"],
+  "categories": [
+    "Vision & Strategy",
+    "Innovation Services"
+  ],
+  "tags": [
+    "founder",
+    "personal",
+    "regeneration",
+    "innovation",
+    "tu-delft",
+    "energy",
+    "digital-product-passports",
+    "brazil",
+    "the-hague"
+  ],
   "featuredImage": "header-founder.png",
   "featuredImageAlt": "Ilustração geométrica de triângulos representando a jornada global do fundador da engenharia à inovação regenerativa",
   "excerpt": "Nascido em Nijmegen, moldado pela Gâmbia, Índia e Brasil. Da engenharia mecânica a smart grids, identidade digital e Passaportes Digitais de Produto — a história de por que fundei a Regen Studio e por que apenas sustentabilidade não é mais suficiente.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

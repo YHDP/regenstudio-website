@@ -7,10 +7,41 @@
     "role": "Regeneratief innovatieontwerp"
   },
   "date": "2026-02-27",
-  "categories": ["Digital Product Passport", "Vision & Strategy"],
-  "tags": ["ESPR", "ecodesign", "digital-product-passport", "DPP", "regional-government", "provincial-government", "circular-economy", "SME", "Zuid-Holland", "EU-regulation", "business-registry", "KVK", "economic-operators", "DPP-voucher", "EFRO", "product-compliance", "sustainability-regulation", "regional-economic-development", "delegated-acts", "data-analysis", "policy-innovation", "SME-support", "regulatory-readiness"],
+  "categories": [
+    "Digital Product Passport",
+    "Vision & Strategy"
+  ],
+  "tags": [
+    "ESPR",
+    "ecodesign",
+    "digital-product-passport",
+    "DPP",
+    "regional-government",
+    "provincial-government",
+    "circular-economy",
+    "SME",
+    "Zuid-Holland",
+    "EU-regulation",
+    "business-registry",
+    "KVK",
+    "economic-operators",
+    "DPP-voucher",
+    "EFRO",
+    "product-compliance",
+    "sustainability-regulation",
+    "regional-economic-development",
+    "delegated-acts",
+    "data-analysis",
+    "policy-innovation",
+    "SME-support",
+    "regulatory-readiness"
+  ],
   "featuredImage": "headercorrectZHblogAtivo 12webp.webp",
   "featuredImageAlt": "Headerillustratie voor de blogpost over het in kaart brengen van ESPR-impact in Zuid-Holland",
   "excerpt": "De Europese Ecodesign for Sustainable Products Regulation vereist Digitale Productpaspoorten voor een groeiend aantal productcategorieën. De meeste regionale overheden hebben geen idee welke bedrijven in hun grondgebied geraakt worden. Zuid-Holland besloot het uit te zoeken — en zette de inzichten om in een gefinancierd ondersteuningsprogramma.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

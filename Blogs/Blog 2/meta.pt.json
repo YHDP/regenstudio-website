@@ -7,10 +7,24 @@
     "role": "Inovação Urbana"
   },
   "date": "2024-10-05",
-  "categories": ["Living Labs", "Digital Participation", "Innovation Services"],
-  "tags": ["living-lab", "smart-city", "urban-design", "participatory-innovation", "public-space"],
+  "categories": [
+    "Living Labs",
+    "Digital Participation",
+    "Innovation Services"
+  ],
+  "tags": [
+    "living-lab",
+    "smart-city",
+    "urban-design",
+    "participatory-innovation",
+    "public-space"
+  ],
   "featuredImage": "Living LabsAtivo 62.webp",
   "featuredImageAlt": "Ilustração vibrante de laboratórios vivos retratando a regeneração urbana por meio de inovação comunitária participativa",
   "excerpt": "Laboratórios vivos estão transformando a forma como as cidades abordam a regeneração urbana. Combinando tecnologia de cidades inteligentes com design participativo, comunidades estão cocriando soluções que realmente atendem às suas necessidades.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

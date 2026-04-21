@@ -7,10 +7,26 @@
     "role": "Regeneratief innovatieontwerp"
   },
   "date": "2024-08-13",
-  "categories": ["Reforestation", "Biodiversity", "Urban Greening", "Vision & Strategy"],
-  "tags": ["brazil", "amazon", "atlantic-rainforest", "urban-regeneration", "biodiversity", "regeneration"],
+  "categories": [
+    "Reforestation",
+    "Biodiversity",
+    "Urban Greening",
+    "Vision & Strategy"
+  ],
+  "tags": [
+    "brazil",
+    "amazon",
+    "atlantic-rainforest",
+    "urban-regeneration",
+    "biodiversity",
+    "regeneration"
+  ],
   "featuredImage": "Header.png",
   "featuredImageAlt": "Regeneratieve wortels planten in Brazilië",
   "excerpt": "Brazilië is de sleutel tot de toekomst van regeneratie. Met zijn immense biodiversiteit, ongeëvenaarde ecosystemen, bruisende steden en unieke cultuur is dit land het kloppend hart van het regeneratieve potentieel van onze planeet.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

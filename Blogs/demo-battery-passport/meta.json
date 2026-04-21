@@ -7,10 +7,24 @@
     "role": "Regenerative Innovation Design"
   },
   "date": "2026-02-09",
-  "categories": ["Digital Product Passport", "Vision & Strategy"],
-  "tags": ["battery-passport", "demo", "EU-regulation", "compliance", "Battery-Regulation", "digital-product-passport"],
+  "categories": [
+    "Digital Product Passport",
+    "Vision & Strategy"
+  ],
+  "tags": [
+    "battery-passport",
+    "demo",
+    "EU-regulation",
+    "compliance",
+    "Battery-Regulation",
+    "digital-product-passport"
+  ],
   "featuredImage": "../../Images/demo-battery-passport.svg",
   "featuredImageAlt": "Battery Passport Checker — EU Regulation 2023/1542 Compliance Tool",
   "excerpt": "Not sure if your company needs a Battery Passport under EU Regulation 2023/1542? Our interactive checker walks you through the key questions and generates a downloadable PDF report with your obligation status.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

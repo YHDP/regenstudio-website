@@ -7,10 +7,24 @@
     "role": "Regenerative Innovation Design"
   },
   "date": "2026-04-14",
-  "categories": ["Sustainability", "Circular Economy"],
-  "tags": ["vsme", "esrs", "csrd", "efrag", "esg-reporting", "carbon-footprint"],
+  "categories": [
+    "Sustainability",
+    "Circular Economy"
+  ],
+  "tags": [
+    "vsme",
+    "esrs",
+    "csrd",
+    "efrag",
+    "esg-reporting",
+    "carbon-footprint"
+  ],
   "featuredImage": "../../Images/footprint-manager-preview.svg",
   "featuredImageAlt": "VSME methodology — Basic and Comprehensive modules for SME disclosure",
   "excerpt": "The EFRAG Voluntary SME Standard (VSME) is a proportionate ESG disclosure framework for non-listed SMEs. Two modules — Basic and Comprehensive — cover climate, energy, biodiversity, workforce, and governance. Here is what each module requires, how materiality works under VSME, and why post-Omnibus it is the right disclosure shape for SMEs that CSRD no longer captures.",
-  "published": true
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
 }

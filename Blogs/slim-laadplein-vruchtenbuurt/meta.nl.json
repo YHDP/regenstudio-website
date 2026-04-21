@@ -7,10 +7,36 @@
     "role": "Regeneratief innovatieontwerp"
   },
   "date": "2026-02-19",
-  "categories": ["Client Projects", "Energy Communities", "Smart Grids", "Innovation Services"],
-  "tags": ["smart-charging", "vruchtenbuurt", "den-haag", "the-hague", "innovation-process", "ec-disc", "sterk-op-stroom", "energy-community", "shared-mobility", "grid-congestion", "living-lab", "systems-thinking", "kumu", "energy-sharing", "neighbourhood-battery", "car-sharing"],
+  "categories": [
+    "Client Projects",
+    "Energy Communities",
+    "Smart Grids",
+    "Innovation Services"
+  ],
+  "tags": [
+    "smart-charging",
+    "vruchtenbuurt",
+    "den-haag",
+    "the-hague",
+    "innovation-process",
+    "ec-disc",
+    "sterk-op-stroom",
+    "energy-community",
+    "shared-mobility",
+    "grid-congestion",
+    "living-lab",
+    "systems-thinking",
+    "kumu",
+    "energy-sharing",
+    "neighbourhood-battery",
+    "car-sharing"
+  ],
   "featuredImage": "Smart Charging. HeaderAtivo 63.webp",
   "featuredImageAlt": "Slim laadplein-concept Vruchtenbuurt — bewonersinitiatief voor slim energie delen en gedeelde mobiliteit in Den Haag",
   "excerpt": "In de Vruchtenbuurt in Den Haag gebruikten twee energiecoöperaties en de gemeente een gestructureerd innovatieproces om een complexe uitdaging te ontwarren: hoe benut je het elektriciteitsnet en de openbare ruimte optimaal wanneer bewoners hun eigen energie opwekken, auto's delen en een buurtbatterij willen? Dit is het verhaal van hoe Probleemanalyse en Ideevorming een bewonersdroom omzetten in een concreet plan.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

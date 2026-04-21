@@ -7,10 +7,25 @@
     "role": "Regeneratief innovatieontwerp"
   },
   "date": "2024-09-09",
-  "categories": ["Circular Business Models", "Innovation Services", "Out-of-the-Box Ideas"],
-  "tags": ["brazil", "mentorship", "startups", "entrepreneurship", "innovation", "regeneration"],
+  "categories": [
+    "Circular Business Models",
+    "Innovation Services",
+    "Out-of-the-Box Ideas"
+  ],
+  "tags": [
+    "brazil",
+    "mentorship",
+    "startups",
+    "entrepreneurship",
+    "innovation",
+    "regeneration"
+  ],
   "featuredImage": "header-shell-startup-engineAtivo 47@2x.webp",
   "featuredImageAlt": "Shell Startup Engine Brazil mentorschap",
   "excerpt": "Oprichter Yvo Hunink van Regen Studio begeleidt regeneratieve startups via Shell Startup Engine Brazil — van branddetectiesoftware tot mangrovebescherming en leren op de werkplek voor kansarme gemeenschappen.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

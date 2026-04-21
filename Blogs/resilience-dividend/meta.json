@@ -7,10 +7,24 @@
     "role": "Regenerative Innovation Design"
   },
   "date": "2024-05-20",
-  "categories": ["Resilient Nature", "Vision & Strategy", "Out-of-the-Box Ideas"],
-  "tags": ["resilience", "intentional-disruption", "innovation", "systems-thinking", "regeneration"],
+  "categories": [
+    "Resilient Nature",
+    "Vision & Strategy",
+    "Out-of-the-Box Ideas"
+  ],
+  "tags": [
+    "resilience",
+    "intentional-disruption",
+    "innovation",
+    "systems-thinking",
+    "regeneration"
+  ],
   "featuredImage": "Innovation CultureAtivo 2@4x.png",
   "featuredImageAlt": "Intentional Disruption as a tool for Regenerative Innovation",
   "excerpt": "Judith Rodin's The Resilience Dividend explores how communities and organizations can transform disruptions into opportunities for growth. What can intentional disruption teach us about building regenerative innovation ecosystems?",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

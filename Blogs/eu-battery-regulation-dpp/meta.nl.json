@@ -7,10 +7,26 @@
     "role": "Oprichter, Regen Studio"
   },
   "date": "2026-04-08",
-  "categories": ["Digital Product Passport", "Vision & Strategy"],
-  "tags": ["battery-regulation", "dpp", "eu-regulation", "battery-passport", "compliance", "espr", "circular-economy", "due-diligence"],
+  "categories": [
+    "Digital Product Passport",
+    "Vision & Strategy"
+  ],
+  "tags": [
+    "battery-regulation",
+    "dpp",
+    "eu-regulation",
+    "battery-passport",
+    "compliance",
+    "espr",
+    "circular-economy",
+    "due-diligence"
+  ],
   "featuredImage": "",
   "featuredImageAlt": "",
   "excerpt": "De EU-Batterijenverordening 2023/1542 introduceert verplichte Digitale Productpaspoorten voor industriële, EV- en LMT-batterijen vanaf februari 2027. Deze gids behandelt wie een batterijpaspoort nodig heeft, welke gegevens vereist zijn, de tijdlijn voor de koolstofvoetafdrukverklaring en hoe je je nu kunt voorbereiden.",
-  "published": false
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
 }

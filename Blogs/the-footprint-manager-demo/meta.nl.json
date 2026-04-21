@@ -7,10 +7,24 @@
     "role": "Regenerative Innovation Design"
   },
   "date": "2026-04-14",
-  "categories": ["Sustainability", "Innovation Services"],
-  "tags": ["demo", "carbon-footprint", "vsme", "ghg-protocol", "esg-reporting", "ixbrl"],
+  "categories": [
+    "Sustainability",
+    "Innovation Services"
+  ],
+  "tags": [
+    "demo",
+    "carbon-footprint",
+    "vsme",
+    "ghg-protocol",
+    "esg-reporting",
+    "ixbrl"
+  ],
   "featuredImage": "../../Images/footprint-manager-preview.svg",
   "featuredImageAlt": "Footprint Manager-demo — VSME-uitgelijnde CO₂-boekhouding",
   "excerpt": "Blader door een volledige VSME-uitgelijnde CO₂-inventarisatie — dubbele Scope 2, IPCC AR6 GWP's, factorherkomst met kwaliteitsbeoordelingen, inline-XBRL-getagde output, en log-ruimte-onzekerheidspropagatie. Gebouwd voor MKB's die een eerlijk getal willen zonder zescijferige consultancyfactuur.",
-  "published": true
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
 }

@@ -7,10 +7,26 @@
     "role": "Regenerative Innovation Design"
   },
   "date": "2025-04-17",
-  "categories": ["Out-of-the-Box Ideas", "Innovation Services"],
-  "tags": ["antifragile", "nassim-taleb", "regenerative-innovation", "design-principles", "systems-thinking", "resilience", "uncertainty", "book-review"],
+  "categories": [
+    "Out-of-the-Box Ideas",
+    "Innovation Services"
+  ],
+  "tags": [
+    "antifragile",
+    "nassim-taleb",
+    "regenerative-innovation",
+    "design-principles",
+    "systems-thinking",
+    "resilience",
+    "uncertainty",
+    "book-review"
+  ],
   "featuredImage": "HeaderAtivo 12.webp",
   "featuredImageAlt": "10 Design Principles for Antifragile Regenerative Innovation Systems — inspired by Nassim Nicholas Taleb",
-  "excerpt": "Inspired by Nassim Nicholas Taleb\u2019s Antifragile, we distilled 10 design principles that shape our approach to regenerative innovation systems \u2014 systems that don\u2019t just withstand shocks, but grow stronger from them.",
-  "published": true
+  "excerpt": "Inspired by Nassim Nicholas Taleb’s Antifragile, we distilled 10 design principles that shape our approach to regenerative innovation systems — systems that don’t just withstand shocks, but grow stronger from them.",
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

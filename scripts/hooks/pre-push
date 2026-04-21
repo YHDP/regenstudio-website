@@ -1,0 +1,164 @@
+#!/bin/bash
+# Pre-push security hook for Regen Studio Website
+# Scans staged commits for suspicious patterns before pushing to remote.
+# To bypass (emergency only): git push --no-verify
+
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+echo ""
+echo "Running pre-push security scan..."
+echo ""
+
+ISSUES=0
+
+# Get the range of commits being pushed
+remote="$1"
+url="$2"
+
+while read local_ref local_sha remote_ref remote_sha; do
+  if [ "$remote_sha" = "0000000000000000000000000000000000000000" ]; then
+    # New branch — scan all commits
+    range="$local_sha"
+  else
+    range="$remote_sha..$local_sha"
+  fi
+
+  # Get the diff of all commits being pushed
+  DIFF=$(git diff "$range" -- '*.html' '*.js' '*.ts' '*.json' '*.css' '*.md' '*.txt' '*.sh' '*.toml' '*.yml' '*.yaml' '*.env*' ':!node_modules/*' 2>/dev/null)
+
+  if [ -z "$DIFF" ]; then
+    continue
+  fi
+
+  # 1. Check for external script/link tags (CDN, Google Fonts, etc.)
+  EXTERNAL_TAGS=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(src|href)="https?://' | grep -viE '(supabase\.co|regenstudio\.(world|space)|player\.vimeo\.com|w\.soundcloud\.com|linkedin\.com|bsky\.app|mastodon\.social|schema\.org|ogp\.me)' || true)
+  if [ -n "$EXTERNAL_TAGS" ]; then
+    echo -e "${RED}BLOCKED: External URL(s) found in added lines:${NC}"
+    echo "$EXTERNAL_TAGS" | head -10
+    echo ""
+    ISSUES=$((ISSUES + 1))
+  fi
+
+  # 2. Check for fetch/XMLHttpRequest to non-Supabase domains
+  EXFIL=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(fetch\(|XMLHttpRequest|navigator\.sendBeacon|new Image\(\)\.src)' | grep -viE 'supabase\.co' || true)
+  if [ -n "$EXFIL" ]; then
+    echo -e "${YELLOW}WARNING: Potential data exfiltration pattern:${NC}"
+    echo "$EXFIL" | head -10
+    echo ""
+    ISSUES=$((ISSUES + 1))
+  fi
+
+  # 3. Check for secrets patterns
+  #    - Stripe (sk_/pk_live/test)
+  #    - Mollie (live_/test_ with 25+ char alphanumeric body)
+  #    - PEM private keys
+  #    - JWT-shaped tokens (Supabase service role / anon)
+  #    - Assignments of *_KEY / *_SECRET / *_TOKEN / *_HASH to a long value
+  #    - Inline quoted passwords
+  SECRETS=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(sk_(live|test)_[A-Za-z0-9]{20,}|pk_(live|test)_[A-Za-z0-9]{20,}|[^A-Za-z0-9_](live|test)_[A-Za-z0-9]{25,}|-----BEGIN|PRIVATE KEY|eyJ[A-Za-z0-9_-]{10,}\.eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}|(SERVICE_ROLE_KEY|API_KEY|API_TOKEN|_SECRET|AUTH_TOKEN|PASSWORD_HASH|WEBHOOK_SECRET)\s*[:=]\s*["\x27]?[A-Za-z0-9_+/=.-]{20,}|password\s*=\s*["\x27][^\x27"]+["\x27])' || true)
+  if [ -n "$SECRETS" ]; then
+    echo -e "${RED}BLOCKED: Potential secret/key found:${NC}"
+    echo "$SECRETS" | head -10
+    echo ""
+    ISSUES=$((ISSUES + 1))
+  fi
+
+  # 4. Check for CSP modifications (someone weakening security headers)
+  CSP_CHANGES=$(echo "$DIFF" | grep -n '^\+' | grep -i 'Content-Security-Policy' || true)
+  if [ -n "$CSP_CHANGES" ]; then
+    echo -e "${YELLOW}NOTE: CSP header modified — please verify:${NC}"
+    echo "$CSP_CHANGES" | head -5
+    echo ""
+  fi
+
+  # 5. Check for .env files being committed
+  ENV_FILES=$(git diff --name-only "$range" 2>/dev/null | grep -E '\.env' || true)
+  if [ -n "$ENV_FILES" ]; then
+    echo -e "${RED}BLOCKED: .env file(s) in commit:${NC}"
+    echo "$ENV_FILES"
+    echo ""
+    ISSUES=$((ISSUES + 1))
+  fi
+
+  # 6. Block publishing unreviewed blog content.
+  #    Any added/modified blog/<slug>/index.html (or nl/blog, pt/blog) requires
+  #    Blogs/<slug>/meta[.lang].json to have published:true AND review.text/assets:approved
+  #    at the pushed sha. Same check for slugs newly added to Blogs/blogs.json.
+  PAGE_CHECKS=$(git diff --name-only --diff-filter=AM "$range" 2>/dev/null | grep -E '^(blog|nl/blog|pt/blog)/[^/]+/index\.html$' || true)
+  CHECK_PAIRS=""
+  if [ -n "$PAGE_CHECKS" ]; then
+    while IFS= read -r file; do
+      prefix=$(echo "$file" | cut -d/ -f1)
+      if [ "$prefix" = "blog" ]; then
+        lang="en"; slug=$(echo "$file" | cut -d/ -f2)
+      else
+        lang="$prefix"; slug=$(echo "$file" | cut -d/ -f3)
+      fi
+      CHECK_PAIRS=$(printf '%s\n%s\t%s' "$CHECK_PAIRS" "$slug" "$lang")
+    done <<< "$PAGE_CHECKS"
+  fi
+  if git diff --name-only "$range" 2>/dev/null | grep -q '^Blogs/blogs\.json$'; then
+    NEW_SLUGS=$(python3 - "$local_sha" "$remote_sha" <<'PYEOF' 2>/dev/null || true
+import json, subprocess, sys
+def get(sha):
+    if sha == '0000000000000000000000000000000000000000': return set()
+    try:
+        return set(json.loads(subprocess.check_output(['git', 'show', f'{sha}:Blogs/blogs.json'], stderr=subprocess.DEVNULL)))
+    except Exception:
+        return set()
+for s in get(sys.argv[1]) - get(sys.argv[2]):
+    print(s)
+PYEOF
+)
+    if [ -n "$NEW_SLUGS" ]; then
+      while IFS= read -r slug; do
+        [ -z "$slug" ] && continue
+        CHECK_PAIRS=$(printf '%s\n%s\ten' "$CHECK_PAIRS" "$slug")
+      done <<< "$NEW_SLUGS"
+    fi
+  fi
+  if [ -n "$CHECK_PAIRS" ]; then
+    while IFS=$'\t' read -r slug lang; do
+      [ -z "$slug" ] && continue
+      if [ "$lang" = "en" ]; then
+        meta_path="Blogs/$slug/meta.json"
+      else
+        meta_path="Blogs/$slug/meta.$lang.json"
+      fi
+      meta=$(git show "$local_sha:$meta_path" 2>/dev/null || true)
+      if [ -z "$meta" ]; then
+        echo -e "${RED}BLOCKED: $slug ($lang) — $meta_path missing at push sha${NC}"
+        ISSUES=$((ISSUES + 1))
+        continue
+      fi
+      result=$(echo "$meta" | python3 -c "
+import json, sys
+try: d = json.load(sys.stdin)
+except Exception as e: print(f'PARSE_ERROR: {e}'); sys.exit(0)
+pub = d.get('published', False)
+r = d.get('review', {}) or {}
+if pub and r.get('text') == 'approved' and r.get('assets') == 'approved': print('OK')
+else: print(f'published={pub} review.text={r.get(\"text\")} review.assets={r.get(\"assets\")}')
+" 2>/dev/null)
+      if [ "$result" != "OK" ]; then
+        echo -e "${RED}BLOCKED: $slug ($lang) not cleared for publish: $result${NC}"
+        ISSUES=$((ISSUES + 1))
+      fi
+    done < <(echo "$CHECK_PAIRS" | sort -u | grep -v '^$')
+  fi
+
+done
+
+if [ "$ISSUES" -gt 0 ]; then
+  echo -e "${RED}Push blocked: $ISSUES issue(s) found. Review the warnings above.${NC}"
+  echo -e "To push anyway (if these are false positives): ${YELLOW}git push --no-verify${NC}"
+  echo ""
+  exit 1
+fi
+
+echo -e "${GREEN}Security scan passed. Pushing...${NC}"
+echo ""
+exit 0

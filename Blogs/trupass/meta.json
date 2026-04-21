@@ -8,7 +8,26 @@
   "readTime": "4 min read",
   "image": "Blogs/trupass/header-trupass.webp",
   "imageAlt": "TruPASS — building trust ecosystems for Digital Product Passports across European supply chains",
-  "categories": ["Digital Product Passport", "Digital Identity", "Vision & Strategy", "Client Projects"],
-  "tags": ["TruPASS", "NWO", "digital trust", "DPP", "ESPR", "FIDES", "supply chain", "verifiable credentials"],
-  "description": "Regen Studio joins the TruPASS consortium as partner and project manager — a four-year, EUR 2.5 million NWO-funded research programme building trust into Digital Product Passports, starting from hydrogen passports and extending to container logistics and ESG reporting."
+  "categories": [
+    "Digital Product Passport",
+    "Digital Identity",
+    "Vision & Strategy",
+    "Client Projects"
+  ],
+  "tags": [
+    "TruPASS",
+    "NWO",
+    "digital trust",
+    "DPP",
+    "ESPR",
+    "FIDES",
+    "supply chain",
+    "verifiable credentials"
+  ],
+  "description": "Regen Studio joins the TruPASS consortium as partner and project manager — a four-year, EUR 2.5 million NWO-funded research programme building trust into Digital Product Passports, starting from hydrogen passports and extending to container logistics and ESG reporting.",
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  },
+  "published": false
 }

@@ -7,10 +7,26 @@
     "role": "Design de Inovação Regenerativa"
   },
   "date": "2026-02-10",
-  "categories": ["Digital Identity", "Privacy-by-Design"],
-  "tags": ["digital-identity", "demo", "eIDAS", "SSI", "self-sovereign-identity", "wallet", "verifiable-credentials", "selective-disclosure"],
+  "categories": [
+    "Digital Identity",
+    "Privacy-by-Design"
+  ],
+  "tags": [
+    "digital-identity",
+    "demo",
+    "eIDAS",
+    "SSI",
+    "self-sovereign-identity",
+    "wallet",
+    "verifiable-credentials",
+    "selective-disclosure"
+  ],
   "featuredImage": "../../Images/demo-edi-wallet.svg",
   "featuredImageAlt": "Demo da Carteira EDI — Carteira de identidade digital com privacidade em primeiro lugar sob o eIDAS 2.0",
   "excerpt": "Veja uma carteira de Identidade Autossoberana na prática. A demo da Carteira EDI permite que você receba Credenciais Verificáveis, armazene-as e apresente-as com divulgação seletiva — seguindo o framework eIDAS 2.0.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

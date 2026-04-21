@@ -7,10 +7,38 @@
     "role": "Regeneratief innovatieontwerp"
   },
   "date": "2026-02-18",
-  "categories": ["Client Projects", "Energy Communities", "Energy Justice", "Innovation Services"],
-  "tags": ["energy-justice", "den-haag", "the-hague", "scheveningen", "energy-community", "energy-transition", "social-innovation", "cooperative", "living-lab", "slim-strandnet", "social-cooperative", "innovation-process", "experiment-design", "urban-innovation", "energy-poverty", "innovation-validation", "giftenbeleid", "welfare-policy"],
+  "categories": [
+    "Client Projects",
+    "Energy Communities",
+    "Energy Justice",
+    "Innovation Services"
+  ],
+  "tags": [
+    "energy-justice",
+    "den-haag",
+    "the-hague",
+    "scheveningen",
+    "energy-community",
+    "energy-transition",
+    "social-innovation",
+    "cooperative",
+    "living-lab",
+    "slim-strandnet",
+    "social-cooperative",
+    "innovation-process",
+    "experiment-design",
+    "urban-innovation",
+    "energy-poverty",
+    "innovation-validation",
+    "giftenbeleid",
+    "welfare-policy"
+  ],
   "featuredImage": "ENergy Justice headerAtivo 54.webp",
   "featuredImageAlt": "Experimentontwerp voor energierechtvaardigheid in Den Haag — het leiden van inkomsten uit de zonnecoöperatie naar kwetsbare huishoudens in Scheveningen en het aanzetten tot een beleidswijziging in het welzijnsbeleid",
   "excerpt": "Den Haag testte of de inkomsten van de zonnecoöperatie Slim Strandnet rechtstreeks naar mensen in nood konden worden geleid — om hun energierekening te verlagen zonder dat zij lid hoeven te worden van een coöperatie. Achter het experiment schuilt een grotere visie: een stadsbrede sociale coöperatie die energiezekerheid en onafhankelijkheid waarborgt voor iedereen, ongeacht of men zich een zonnepaneel kan veroorloven. Binnenin het ontwerp, het experiment, en wat er nodig is om de energietransitie structureel rechtvaardig te maken.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

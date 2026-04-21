@@ -7,10 +7,33 @@
     "role": "Regeneratief innovatieontwerp"
   },
   "date": "2025-08-26",
-  "categories": ["Digital Product Passport", "Vision & Strategy"],
-  "tags": ["espr", "digital-product-passport", "ecodesign", "working-plan", "delegated-act", "circular-economy", "batteries", "textiles", "iron-and-steel", "aluminium", "furniture", "mobile-phones", "tyres", "displays", "eu-regulation"],
+  "categories": [
+    "Digital Product Passport",
+    "Vision & Strategy"
+  ],
+  "tags": [
+    "espr",
+    "digital-product-passport",
+    "ecodesign",
+    "working-plan",
+    "delegated-act",
+    "circular-economy",
+    "batteries",
+    "textiles",
+    "iron-and-steel",
+    "aluminium",
+    "furniture",
+    "mobile-phones",
+    "tyres",
+    "displays",
+    "eu-regulation"
+  ],
   "featuredImage": "ESPRWorkingPlanBlogAtivo 1.webp",
   "featuredImageAlt": "ESPR-werkplan 2025–2030 — productgroepen en tijdlijn Digitaal productpaspoort",
   "excerpt": "Het ESPR-werkplan 2025–2030 bepaalt de volgorde en het tempo van ecologische ontwerpeisen voor 22 productgroepen, die elk een Digitaal productpaspoort (DPP) vereisen. Dit is wat je kunt verwachten en wanneer.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }

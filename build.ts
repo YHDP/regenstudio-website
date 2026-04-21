@@ -30,6 +30,7 @@ interface BlogMeta {
   featuredImageAlt: string;
   excerpt: string;
   published: boolean;
+  review?: { text: "draft" | "approved"; assets: "draft" | "approved" };
 }
 
 interface BlogPost extends BlogMeta {
@@ -238,6 +239,10 @@ async function loadPosts(baseDir: string): Promise<BlogPost[]> {
       );
       const meta: BlogMeta = JSON.parse(metaJson);
       if (!meta.published) continue;
+      if (meta.review?.text !== "approved" || meta.review?.assets !== "approved") {
+        console.warn(`[skip] ${slug}: review incomplete (text=${meta.review?.text}, assets=${meta.review?.assets})`);
+        continue;
+      }
 
       const content = await Deno.readTextFile(
         `${baseDir}/Blogs/${slug}/content.html`
@@ -266,6 +271,10 @@ async function loadTranslatedPosts(baseDir: string, lang: Lang, enPosts: BlogPos
       );
       const meta: BlogMeta = JSON.parse(metaJson);
       if (!meta.published) continue;
+      if (meta.review?.text !== "approved" || meta.review?.assets !== "approved") {
+        console.warn(`[skip] ${enPost.slug} (${lang}): review incomplete (text=${meta.review?.text}, assets=${meta.review?.assets})`);
+        continue;
+      }
 
       const content = await Deno.readTextFile(
         `${baseDir}/Blogs/${enPost.slug}/content.${lang}.html`

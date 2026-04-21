@@ -7,10 +7,25 @@
     "role": "Design de Inovação Regenerativa"
   },
   "date": "2024-09-09",
-  "categories": ["Circular Business Models", "Innovation Services", "Out-of-the-Box Ideas"],
-  "tags": ["brazil", "mentorship", "startups", "entrepreneurship", "innovation", "regeneration"],
+  "categories": [
+    "Circular Business Models",
+    "Innovation Services",
+    "Out-of-the-Box Ideas"
+  ],
+  "tags": [
+    "brazil",
+    "mentorship",
+    "startups",
+    "entrepreneurship",
+    "innovation",
+    "regeneration"
+  ],
   "featuredImage": "header-shell-startup-engineAtivo 47@2x.webp",
   "featuredImageAlt": "Mentoria Shell Startup Engine Brazil",
   "excerpt": "O fundador do Regen Studio, Yvo Hunink, tem orientado startups regenerativas através do Shell Startup Engine Brazil — de software de detecção de incêndios à proteção de manguezais e aprendizado no trabalho para comunidades carentes.",
-  "published": true
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
 }
