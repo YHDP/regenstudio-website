@@ -363,36 +363,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-espr/" />
   </url>
   <url>
-    <loc>https://www.regenstudio.world/blog/calculating-our-own-footprint/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/calculating-our-own-footprint/" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/calculating-our-own-footprint/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/calculating-our-own-footprint/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/calculating-our-own-footprint/" />
-  </url>
-  <url>
-    <loc>https://www.regenstudio.world/blog/the-footprint-manager-demo/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/the-footprint-manager-demo/" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/the-footprint-manager-demo/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/the-footprint-manager-demo/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/the-footprint-manager-demo/" />
-  </url>
-  <url>
-    <loc>https://www.regenstudio.world/blog/vsme-methodology-explained/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/vsme-methodology-explained/" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/vsme-methodology-explained/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/vsme-methodology-explained/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/vsme-methodology-explained/" />
-  </url>
-  <url>
     <loc>https://www.regenstudio.world/blog/why-i-founded-regen-studio/</loc>
     <lastmod>2026-03-06</lastmod>
     <changefreq>monthly</changefreq>
@@ -721,66 +691,6 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/Blog%201/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/Blog%201/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/Blog%201/" />
-  </url>
-  <url>
-    <loc>https://www.regenstudio.world/nl/blog/calculating-our-own-footprint/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/calculating-our-own-footprint/" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/calculating-our-own-footprint/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/calculating-our-own-footprint/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/calculating-our-own-footprint/" />
-  </url>
-  <url>
-    <loc>https://www.regenstudio.world/pt/blog/calculating-our-own-footprint/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/calculating-our-own-footprint/" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/calculating-our-own-footprint/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/calculating-our-own-footprint/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/calculating-our-own-footprint/" />
-  </url>
-  <url>
-    <loc>https://www.regenstudio.world/nl/blog/the-footprint-manager-demo/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/the-footprint-manager-demo/" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/the-footprint-manager-demo/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/the-footprint-manager-demo/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/the-footprint-manager-demo/" />
-  </url>
-  <url>
-    <loc>https://www.regenstudio.world/pt/blog/the-footprint-manager-demo/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/the-footprint-manager-demo/" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/the-footprint-manager-demo/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/the-footprint-manager-demo/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/the-footprint-manager-demo/" />
-  </url>
-  <url>
-    <loc>https://www.regenstudio.world/nl/blog/vsme-methodology-explained/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/vsme-methodology-explained/" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/vsme-methodology-explained/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/vsme-methodology-explained/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/vsme-methodology-explained/" />
-  </url>
-  <url>
-    <loc>https://www.regenstudio.world/pt/blog/vsme-methodology-explained/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/vsme-methodology-explained/" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/vsme-methodology-explained/" />
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/vsme-methodology-explained/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/vsme-methodology-explained/" />
   </url>
   <url>
     <loc>https://www.regenstudio.world/nl/blog/why-i-founded-regen-studio/</loc>
