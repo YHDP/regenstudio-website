@@ -34,3 +34,9 @@ https?://.*nlfnorm\.cz
 
 # commission.europa.eu — EU CDN returns 404 for some valid pages
 https?://commission\.europa\.eu
+
+# regenstudio.world self-references (hreflang tags etc.) — always race the GH Pages deploy
+https?://(www\.)?regenstudio\.world
+
+# cencenelec.eu — recurring SSL trust failure in lychee runner; site is fine in browsers
+https?://(www\.)?cencenelec\.eu
