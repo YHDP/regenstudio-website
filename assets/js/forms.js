@@ -31,16 +31,31 @@
 
       var submitBtn = form.querySelector('.regen-form__submit');
       var originalText = submitBtn.textContent;
-      submitBtn.disabled = true;
-      submitBtn.textContent = t('form.sending', 'Sending...');
 
       var existingError = form.querySelector('.regen-form__error');
       if (existingError) existingError.remove();
+
+      // Mandatory privacy-policy acceptance gate (defence-in-depth; HTML5
+      // `required` should also block, but we surface a clearer message here).
+      var ppCheckbox = form.querySelector('input[name="privacy_policy_accepted"]');
+      if (ppCheckbox && !ppCheckbox.checked) {
+        var errorEl = document.createElement('p');
+        errorEl.className = 'regen-form__error';
+        errorEl.textContent = t('form.privacy_policy_required',
+          'Please confirm you have read the Privacy Policy before sending.');
+        submitBtn.parentNode.insertBefore(errorEl, submitBtn.nextSibling);
+        ppCheckbox.focus();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = t('form.sending', 'Sending...');
 
       function doSubmit(antibotPayload) {
         var formData = new FormData(form);
         var nlCheckbox = form.querySelector('input[name="newsletter_opt_in"]');
         var aiCheckbox = form.querySelector('input[name="ai_processing_opt_in"]');
+        var ppCheckbox = form.querySelector('input[name="privacy_policy_accepted"]');
         var payload = {
           name: formData.get('name') || '',
           email: formData.get('email') || '',
@@ -49,6 +64,7 @@
           page_url: window.location.href,
           newsletter_opt_in: nlCheckbox ? nlCheckbox.checked : false,
           ai_processing_opt_in: aiCheckbox ? aiCheckbox.checked : false,
+          privacy_policy_accepted: ppCheckbox ? ppCheckbox.checked : false,
           consent_version: '2026-04-24'
         };
 
