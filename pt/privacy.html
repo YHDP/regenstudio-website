@@ -415,7 +415,7 @@
     </div>
     <h1>Pol&iacute;tica de Privacidade</h1>
     <p class="privacy-hero__sub">Como tratamos seus dados &mdash; com transpar&ecirc;ncia, minimiza&ccedil;&atilde;o e respeito.</p>
-    <p class="privacy-hero__updated">&Uacute;ltima atualiza&ccedil;&atilde;o: <time datetime="2026-03-07">7 de mar&ccedil;o de 2026</time></p>
+    <p class="privacy-hero__updated">&Uacute;ltima atualiza&ccedil;&atilde;o: <time datetime="2026-04-25">25 de abril de 2026</time></p>
   </section>
 
   <!-- TL;DR -->
@@ -431,8 +431,23 @@
       <li>Seus dados s&atilde;o armazenados na UE (Frankfurt, Alemanha)</li>
       <li>Nunca vendemos, alugamos ou compartilhamos seus dados</li>
       <li>Em conformidade com LGPD, GDPR e Diretiva ePrivacy</li>
+      <li>Ferramentas de IA (Anthropic Claude) s&oacute; processam seus dados se voc&ecirc; marcar a caixa expl&iacute;cita de consentimento de processamento de IA num formul&aacute;rio. Por padr&atilde;o n&atilde;o.</li>
     </ul>
   </div>
+  <div class="tldr-card" id="three-scenarios" style="margin-top:1.5rem">
+    <h2>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Tr&ecirc;s cen&aacute;rios &agrave; primeira vista
+    </h2>
+    <p>Explica&ccedil;&otilde;es independentes &mdash; escolha o que se aplica a voc&ecirc;.</p>
+    <ol>
+      <li><strong>Se voc&ecirc; apenas visita nosso site</strong> &mdash; coletamos <strong>nada</strong> de identifica&ccedil;&atilde;o pessoal. Sem cookies, sem pixels de rastreamento, sem identificadores cross-site. An&aacute;lises preservadoras de privacidade agregam contagens de visitas usando hashes de IP salgados e rotacionados diariamente (cru deletado em 48 horas, agregados indefinidos). N&atilde;o h&aacute; registro individual de voc&ecirc; para solicitar, corrigir ou apagar &mdash; nada existe. Subprocessador: apenas Supabase EU.</li>
+      <li><strong>Se voc&ecirc; nos contacta</strong> (envio de formul&aacute;rio <em>sem</em> marcar a caixa de processamento de IA) &mdash; coletamos apenas os campos que voc&ecirc; envia (nome, e-mail, mensagem, organiza&ccedil;&atilde;o opcional). Respondemos manualmente. <strong>Claude e outras ferramentas de IA em nosso fluxo de trabalho n&atilde;o leem sua submiss&atilde;o.</strong> Reten&ccedil;&atilde;o: 90 dias para envios de contato (auto-deletados), 30 dias ap&oacute;s descadastramento para newsletter, 7 anos para faturas (lei tribut&aacute;ria holandesa). Direitos completos do titular se aplicam &mdash; veja <a href="#exercise-rights">Como exercer seus direitos</a>. Subprocessadores: Supabase EU, Lettermint, Proton Mail, Mollie (apenas em pagamento).</li>
+      <li><strong>Se voc&ecirc; marcar a caixa de consentimento de processamento de IA</strong> &mdash; sua submiss&atilde;o se torna eleg&iacute;vel para processamento por Claude (Anthropic, subprocessador americano) e outras ferramentas de IA que usamos, sob os prop&oacute;sitos consentidos. Concretamente: Claude pode ler sua mensagem ao redigir uma resposta; seus dados de contato podem ser armazenados em registros operacionais leg&iacute;veis por IA; detalhes de seu projeto podem informar pesquisa ou consultoria assistida por IA. A reten&ccedil;&atilde;o &eacute; a mesma do cen&aacute;rio 2, mais uma cascata de revoga&ccedil;&atilde;o de consentimento: ao retirar o consentimento, seus dados s&atilde;o crypto-shredded (chave de criptografia por titular deletada, todas as c&oacute;pias armazenadas tornadas ileg&iacute;veis) em 72 horas. <strong>Sem essa caixa marcada, Claude nunca v&ecirc; seus dados &mdash; marc&aacute;-la &eacute; o &uacute;nico port&atilde;o.</strong> Subprocessadores: conjunto do cen&aacute;rio 2 <em>mais</em> Anthropic.</li>
+    </ol>
+    <p style="font-size:0.85rem;color:var(--color-text-muted);margin-top:12px">Para os detalhes t&eacute;cnicos por tr&aacute;s de cada cen&aacute;rio &mdash; subprocessadores, prazos de reten&ccedil;&atilde;o, criptografia, seus direitos &mdash; continue lendo.</p>
+  </div>
+
 
   <main class="privacy-page" id="main-content">
 
@@ -531,7 +546,7 @@
         <h3>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           Como funciona
-        </h2>
+        </h3>
         <div class="analytics-flow">
           <div class="analytics-flow__step">Seu navegador envia<br><code>caminho da p&aacute;gina + tipo de evento</code></div>
           <span class="analytics-flow__arrow">&rarr;</span>
@@ -569,7 +584,7 @@
     <div class="priv-divider"><span></span><span></span><span></span><span></span><span></span></div>
 
     <!-- Suboperadores e armazenamento de dados -->
-    <section class="priv-section">
+    <section class="priv-section" id="sub-processors">
       <div class="priv-section__header">
         <div class="priv-section__icon priv-section__icon--teal">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
@@ -609,7 +624,13 @@
           <p class="processor-card__role">Hospedagem de site est&aacute;tico via GitHub Pages. Serve arquivos HTML, CSS, JS e fontes. Nenhum dado pessoal &eacute; armazenado pelo GitHub em nosso nome.</p>
           <span class="processor-card__tag processor-card__tag--us">Hospedado nos EUA</span>
         </div>
+        <div class="processor-card">
+          <p class="processor-card__name">Anthropic PBC <span style="font-size:0.7em;font-weight:normal">&mdash; subprocessador de IA (apenas com opt-in)</span></p>
+          <p class="processor-card__role">Fornecedor do assistente de IA Claude que usamos para apoiar reda&ccedil;&atilde;o, an&aacute;lise e pesquisa. <strong>Anthropic s&oacute; v&ecirc; seus dados se voc&ecirc; tiver marcado a caixa de consentimento de processamento de IA no formul&aacute;rio enviado.</strong> Sem esse opt-in, sua submiss&atilde;o nunca entra no pipeline da Anthropic. Quando invocada: Anthropic processa o prompt para gerar uma resposta; reten&ccedil;&atilde;o padr&atilde;o de hist&oacute;rico de conversa do lado da Anthropic &eacute; aproximadamente 30 dias; voc&ecirc; pode solicitar exclus&atilde;o anterior via os controles de privacidade da Anthropic. Certificada ISO 27001, ISO 42001, SOC 2 Type II. Subprocessadores da Anthropic: AWS, GCP. Transfer&ecirc;ncia coberta pelo EU-US Data Privacy Framework + Cl&aacute;usulas Contratuais Padr&atilde;o (M&oacute;dulo 2, vers&atilde;o revisada de 2024) conforme os Termos Comerciais da Anthropic.</p>
+          <span class="processor-card__tag processor-card__tag--us">EUA (SCCs + DPF)</span>
+        </div>
       </div>
+      <p style="font-size:0.85rem;color:var(--color-text-muted);margin-top:12px">O papel de cada subprocessador mapeia para um ou mais dos tr&ecirc;s cen&aacute;rios acima. Supabase EU e o stack est&aacute;tico se aplicam aos cen&aacute;rios 1, 2 e 3. Lettermint, Proton Mail e (quando relevante) Mollie + Exact Online se aplicam aos cen&aacute;rios 2 e 3. <strong>Anthropic se aplica apenas ao cen&aacute;rio 3</strong> &mdash; consentimento expl&iacute;cito de processamento de IA.</p>
     </section>
 
     <!-- Transferências internacionais de dados -->
@@ -623,7 +644,9 @@
       <p>Seus dados pessoais (envios de formul&aacute;rios, pedidos) s&atilde;o armazenados na UE (Frankfurt, Alemanha) via Supabase. Pagamentos s&atilde;o processados pela Mollie nos Pa&iacute;ses Baixos. Faturas s&atilde;o gerenciadas pelo Exact Online (Pa&iacute;ses Baixos). E-mails s&atilde;o gerenciados pelo Proton Mail (Su&iacute;&ccedil;a, que possui uma decis&atilde;o de adequa&ccedil;&atilde;o da UE).</p>
       <p>Os sites est&aacute;ticos s&atilde;o hospedados no GitHub Pages (Estados Unidos). O GitHub serve apenas arquivos est&aacute;ticos e n&atilde;o processa dados pessoais em nosso nome; no entanto, logs padr&atilde;o do servidor HTTP (incluindo endere&ccedil;os IP) podem ser temporariamente retidos pelo GitHub de acordo com sua <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">declara&ccedil;&atilde;o de privacidade</a>.</p>
       <p>A Supabase Inc. &eacute; incorporada nos Estados Unidos; no entanto, todos os dados de projetos do Regen Studio s&atilde;o hospedados na UE (Frankfurt, Alemanha). A Supabase &eacute; coberta pelo EU&ndash;US Data Privacy Framework.</p>
-      <p>Para transfer&ecirc;ncias para os Estados Unidos, nos baseamos no EU&ndash;US Data Privacy Framework quando aplic&aacute;vel, complementado por Cl&aacute;usulas Contratuais Padr&atilde;o (SCCs). Para transfer&ecirc;ncias a partir do Brasil, estas s&atilde;o cobertas pela LGPD Art. 33 com salvaguardas adequadas.</p>
+      <p><strong>Transfer&ecirc;ncias para os Estados Unidos (Anthropic, GitHub, Supabase Inc.):</strong> cobertas pelo EU&ndash;US Data Privacy Framework onde a entidade &eacute; certificada, complementada por Cl&aacute;usulas Contratuais Padr&atilde;o (vers&atilde;o revisada de 2024, M&oacute;dulo 2 controlador&ndash;processador) para rela&ccedil;&otilde;es de processador. Para a Anthropic especificamente, as SCCs est&atilde;o incorporadas nos Termos Comerciais da Anthropic aceitos pela Regen Studio; uma Avalia&ccedil;&atilde;o de Impacto de Transfer&ecirc;ncia est&aacute; em arquivo em nosso registro interno de runbooks.</p>
+      <p><strong>Transfer&ecirc;ncias entre Uni&atilde;o Europeia e Brasil:</strong> cobertas por adequa&ccedil;&atilde;o m&uacute;tua a partir de 26 de janeiro de 2026 &mdash; a ANPD reconheceu a UE como adequada (Resolu&ccedil;&atilde;o CD/ANPD 32/2026), e a Comiss&atilde;o Europeia publicou uma decis&atilde;o de adequa&ccedil;&atilde;o rec&iacute;proca para o Brasil em 27 de janeiro de 2026. Fluxos de dados UE&nbsp;&harr;&nbsp;BR n&atilde;o requerem mais Cl&aacute;usulas Contratuais Padr&atilde;o ou salvaguardas adicionais.</p>
+      <p><strong>Transfer&ecirc;ncias do Brasil em geral:</strong> tratadas conforme LGPD Art.&nbsp;33 (e Resolu&ccedil;&atilde;o ANPD 19/2024 para destinos n&atilde;o adequados) com salvaguardas documentadas.</p>
     </section>
 
     <!-- Como usamos seus dados -->
@@ -734,7 +757,7 @@
     </section>
 
     <!-- Como exercer seus direitos -->
-    <section class="priv-section">
+    <section class="priv-section" id="exercise-rights">
       <div class="priv-section__header">
         <div class="priv-section__icon priv-section__icon--emerald">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>

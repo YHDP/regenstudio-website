@@ -415,7 +415,7 @@
     </div>
     <h1>Privacybeleid</h1>
     <p class="privacy-hero__sub">Hoe wij met je gegevens omgaan &mdash; transparant, minimaal en met respect.</p>
-    <p class="privacy-hero__updated">Laatst bijgewerkt: <time datetime="2026-03-07">7 maart 2026</time></p>
+    <p class="privacy-hero__updated">Laatst bijgewerkt: <time datetime="2026-04-25">25 april 2026</time></p>
   </section>
 
   <!-- TL;DR -->
@@ -431,8 +431,23 @@
       <li>Je gegevens worden opgeslagen in de EU (Frankfurt, Duitsland)</li>
       <li>Wij verkopen, verhuren of delen je gegevens nooit</li>
       <li>Conform AVG, LGPD en ePrivacy-richtlijn</li>
+      <li>AI-tools (Anthropic Claude) verwerken jouw gegevens alleen als je het AI-verwerkingsvinkje op een formulier aankruist. Standaard niet.</li>
     </ul>
   </div>
+  <div class="tldr-card" id="three-scenarios" style="margin-top:1.5rem">
+    <h2>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Drie scenari&euml;s in een oogopslag
+    </h2>
+    <p>Zelfstandige uitleg per situatie &mdash; pak degene die op jou van toepassing is.</p>
+    <ol>
+      <li><strong>Als je alleen onze site bezoekt</strong> &mdash; we verzamelen <strong>niets</strong> persoonlijk identificeerbaars. Geen cookies, geen tracking pixels, geen cross-site identifiers. Privacyvriendelijke analyse aggregeert bezoekersaantallen via een dagelijks roterende salt-IP-hash (rauw verwijderd binnen 48 uur, aggregaten onbepaald). Er bestaat geen individueel record van jou om op te vragen, te corrigeren of te wissen &mdash; er is gewoon niets. Subverwerker: alleen Supabase EU.</li>
+      <li><strong>Als je contact met ons opneemt</strong> (formulier zonder AI-verwerkingsvinkje) &mdash; we verzamelen alleen de velden die je invult (naam, e-mail, bericht, optioneel organisatie). We reageren handmatig. <strong>Claude en andere AI-tools in onze workflow lezen jouw inzending niet.</strong> Bewaartermijnen: 90 dagen voor contactinzendingen (auto-verwijderd), 30 dagen na uitschrijven voor nieuwsbrief, 7 jaar voor facturen (Nederlandse fiscale wetgeving). Volledige rechten als betrokkene gelden &mdash; zie <a href="#exercise-rights">Hoe je je rechten uitoefent</a>. Subverwerkers: Supabase EU, Lettermint, Proton Mail, Mollie (alleen bij betaling).</li>
+      <li><strong>Als je het AI-verwerkingsvinkje aankruist</strong> &mdash; jouw inzending wordt verwerkbaar door Claude (Anthropic, US-subverwerker) en andere AI-tools die we gebruiken, onder de doeleinden waarvoor je toestemming hebt gegeven. Concreet: Claude kan je bericht lezen bij het opstellen van een antwoord; je contactgegevens kunnen in AI-leesbare operationele registers worden opgeslagen; je projectinformatie kan AI-ondersteund onderzoek of advies informeren. Bewaartermijnen zijn dezelfde als scenario 2, plus een toestemmingsintrekkings-cascade: bij intrekking worden je gegevens binnen 72 uur crypto-shred (per-betrokkene encryptiesleutel verwijderd, alle opgeslagen kopie&euml;n onleesbaar). <strong>Zonder dit vinkje ziet Claude jouw gegevens nooit &mdash; dit aankruisen is de enige poort.</strong> Subverwerkers: scenario 2 set <em>plus</em> Anthropic.</li>
+    </ol>
+    <p style="font-size:0.85rem;color:var(--color-text-muted);margin-top:12px">Voor de technische details achter elk scenario &mdash; subverwerkers, bewaartermijnen, encryptie, jouw rechten &mdash; lees verder.</p>
+  </div>
+
 
   <main class="privacy-page" id="main-content">
 
@@ -531,7 +546,7 @@
         <h3>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           Hoe het werkt
-        </h2>
+        </h3>
         <div class="analytics-flow">
           <div class="analytics-flow__step">Je browser verstuurt<br><code>paginapad + eventtype</code></div>
           <span class="analytics-flow__arrow">&rarr;</span>
@@ -569,7 +584,7 @@
     <div class="priv-divider"><span></span><span></span><span></span><span></span><span></span></div>
 
     <!-- Verwerkers en gegevensopslag -->
-    <section class="priv-section">
+    <section class="priv-section" id="sub-processors">
       <div class="priv-section__header">
         <div class="priv-section__icon priv-section__icon--teal">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
@@ -609,7 +624,13 @@
           <p class="processor-card__role">Statische websitehosting via GitHub Pages. Serveert HTML-, CSS-, JS- en lettertypebestanden. Er worden geen persoonsgegevens door GitHub namens ons opgeslagen.</p>
           <span class="processor-card__tag processor-card__tag--us">VS gehost</span>
         </div>
+        <div class="processor-card">
+          <p class="processor-card__name">Anthropic PBC <span style="font-size:0.7em;font-weight:normal">&mdash; AI-subverwerker (alleen bij opt-in)</span></p>
+          <p class="processor-card__role">Aanbieder van de Claude AI-assistent die we gebruiken bij het opstellen, analyseren en onderzoeken. <strong>Anthropic ziet jouw gegevens alleen als je het AI-verwerkingsvinkje hebt aangekruist op het formulier dat je hebt ingediend.</strong> Zonder die opt-in komt jouw inzending nooit in Anthropic's pipeline. Bij gebruik: Anthropic verwerkt de prompt om een respons te genereren; standaard gespreksgeschiedenis-bewaartermijn aan Anthropic-zijde is ongeveer 30 dagen; je kunt eerdere verwijdering via Anthropic's privacycontroles opvragen. ISO 27001, ISO 42001, SOC 2 Type II gecertificeerd. Subverwerkers van Anthropic: AWS, GCP. Doorgifte gedekt door EU-VS Data Privacy Framework + Standard Contractual Clauses (Module 2, 2024 herziene versie) volgens Anthropic's Commercial Terms.</p>
+          <span class="processor-card__tag processor-card__tag--us">VS (SCCs + DPF)</span>
+        </div>
       </div>
+      <p style="font-size:0.85rem;color:var(--color-text-muted);margin-top:12px">De rol van elke subverwerker mapt naar &eacute;&eacute;n of meer van de drie scenario's hierboven. Supabase EU en de statische stack gelden voor scenario's 1, 2 en 3. Lettermint, Proton Mail en (waar relevant) Mollie + Exact Online gelden voor scenario's 2 en 3. <strong>Anthropic geldt alleen voor scenario 3</strong> &mdash; expliciete AI-verwerkingstoestemming.</p>
     </section>
 
     <!-- Internationale gegevensoverdrachten -->
@@ -623,7 +644,9 @@
       <p>Je persoonsgegevens (formulierinzendingen, bestellingen) worden opgeslagen in de EU (Frankfurt, Duitsland) via Supabase. Betalingen worden verwerkt door Mollie in Nederland. Facturen worden beheerd via Exact Online (Nederland). E-mail wordt verwerkt door Proton Mail (Zwitserland, dat een adequaatheidsbesluit van de EU heeft).</p>
       <p>De statische websites worden gehost op GitHub Pages (Verenigde Staten). GitHub levert alleen statische bestanden en verwerkt geen persoonsgegevens namens ons; standaard HTTP-serverlogboeken (inclusief IP-adressen) kunnen echter tijdelijk door GitHub worden bewaard in overeenstemming met hun <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">privacyverklaring</a>.</p>
       <p>Supabase Inc. is gevestigd in de Verenigde Staten; echter, alle projectgegevens van Regen Studio worden gehost in de EU (Frankfurt, Duitsland). Supabase valt onder het EU&ndash;VS Data Privacy Framework.</p>
-      <p>Voor overdrachten naar de Verenigde Staten baseren wij ons op het EU&ndash;VS Data Privacy Framework waar van toepassing, aangevuld met Standard Contractual Clauses (SCC&rsquo;s). Voor overdrachten vanuit Brazili&euml; worden deze gedekt door LGPD art. 33 met passende waarborgen.</p>
+      <p><strong>Doorgifte naar de Verenigde Staten (Anthropic, GitHub, Supabase Inc.):</strong> gedekt door het EU&ndash;VS Data Privacy Framework waar de entiteit gecertificeerd is, aangevuld met Standard Contractual Clauses (2024 herziene versie, Module 2 controller&ndash;processor) voor verwerkersrelaties. Voor Anthropic specifiek zijn de SCCs ge&iuml;ncorporeerd in de Anthropic Commercial Terms aanvaard door Regen Studio; een Transfer Impact Assessment is op file in ons interne runbook-register.</p>
+      <p><strong>Doorgifte tussen de Europese Unie en Brazili&euml;:</strong> gedekt door wederzijdse adequaatheid sinds 26 januari 2026 &mdash; de Braziliaanse ANPD heeft de EU als adequaat erkend (Resolu&ccedil;&atilde;o CD/ANPD 32/2026), en de Europese Commissie heeft op 27 januari 2026 een wederkerig adequaatheidsbesluit voor Brazili&euml; gepubliceerd. Gegevensstromen EU&nbsp;&harr;&nbsp;BR vereisen geen Standard Contractual Clauses of additionele waarborgen meer.</p>
+      <p><strong>Doorgifte vanuit Brazili&euml; meer algemeen:</strong> behandeld volgens LGPD Art.&nbsp;33 (en ANPD Resolu&ccedil;&atilde;o 19/2024 voor niet-adequate bestemmingen) met gedocumenteerde waarborgen.</p>
     </section>
 
     <!-- Hoe wij je gegevens gebruiken -->
@@ -734,7 +757,7 @@
     </section>
 
     <!-- Hoe je jouw rechten kunt uitoefenen -->
-    <section class="priv-section">
+    <section class="priv-section" id="exercise-rights">
       <div class="priv-section__header">
         <div class="priv-section__icon priv-section__icon--emerald">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
@@ -753,7 +776,12 @@
         </div>
         <h2>Kinderen</h2>
       </div>
-      <p>Onze diensten zijn gericht op bedrijven en professionals. Wij verzamelen niet bewust persoonsgegevens van kinderen jonger dan 16 jaar. Als je van mening bent dat wij onbedoeld gegevens van een kind hebben verzameld, neem dan contact met ons op en wij verwijderen deze onmiddellijk.</p>
+      <p>Onze diensten zijn gericht op bedrijven en professionals.</p>
+      <ul>
+        <li><strong>Onder AVG (EU/EER-bezoekers):</strong> we verzamelen niet bewust persoonsgegevens van kinderen onder de 16. De Nederlandse UAVG stelt de leeftijd voor digitale toestemming op 16.</li>
+        <li><strong>Onder LGPD (Braziliaanse bezoekers):</strong> gegevens van kinderen onder de 12 vereisen specifieke, prominente toestemming van een ouder of voogd (LGPD Art.&nbsp;14). We verzamelen niet bewust gegevens van kinderen.</li>
+      </ul>
+      <p>Als je vermoedt dat we per ongeluk gegevens van een kind hebben verzameld, neem dan contact op via <a href="mailto:info@regenstudio.world">info@regenstudio.world</a> en we verwijderen deze direct.</p>
     </section>
 
     <!-- Gebruik van AI-hulpmiddelen -->

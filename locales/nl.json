@@ -22,7 +22,6 @@
   "nav.copied": "Gekopieerd!",
   "nav.skip": "Ga naar inhoud",
   "nav.toggle": "Menu openen",
-
   "footer.navigate": "Navigatie",
   "footer.about": "Over Ons",
   "footer.vision": "Visie",
@@ -39,14 +38,15 @@
   "footer.locations": "Locaties",
   "footer.nl": "Nederland",
   "footer.br": "Brazilië",
-  "footer.copyright": "2024\u20132026 Regen Studio B.V.",
+  "footer.copyright": "2024–2026 Regen Studio B.V.",
   "footer.privacy": "Privacybeleid",
   "footer.tagline": "Baanbrekende innovaties voor het herstel van onze natuur, steden en menselijke ecosystemen.",
-
   "form.name": "Je naam",
   "form.email": "E-mailadres",
   "form.message": "Vertel ons over je project...",
   "form.newsletter": "Schrijf me ook in voor de Regen Studio nieuwsbrief",
+  "form.ai_consent": "Ik geef toestemming voor het gebruik van mijn gegevens in AI-ondersteunde informatiesystemen van Regen Studio.",
+  "form.ai_consent_helper": "Zonder vinkje reageren we nog steeds — maar geen AI-tools lezen je bericht.",
   "form.submit": "Verstuur Bericht",
   "form.sending": "Versturen...",
   "form.disclaimer": "Je gegevens worden opgeslagen in de EU en niet gedeeld met derden.",
@@ -55,7 +55,6 @@
   "form.success_text": "We nemen snel contact met je op.",
   "form.error_default": "Versturen mislukt. Probeer het opnieuw.",
   "form.error_generic": "Er is iets misgegaan",
-
   "blog.read_more": "Lees meer",
   "blog.read": "Lees",
   "blog.min_read": "min leestijd",
@@ -91,17 +90,14 @@
   "blog.cta_floating_text": "Bevalt wat je leest?",
   "blog.cta_floating_link": "of stuur ons een bericht",
   "blog.no_client_projects": "Geen klantprojecten gevonden",
-
   "toast.email_copied": "E-mailadres gekopieerd!",
   "toast.link_copied": "Link gekopieerd naar klembord!",
   "toast.linkedin_tag": "Typ @Regen Studio in het bericht om ons te taggen!",
-
   "cta.explore_services": "Bekijk Onze Diensten",
   "cta.get_in_touch": "Neem Contact Op",
   "cta.learn_more": "Lees meer",
   "cta.back_services": "← Terug naar Diensten",
   "cta.back_home": "← Terug",
-
   "categories.circular_economy": "Circulaire Economie",
   "categories.dpp": "Digitaal Productpaspoort",
   "categories.circular_models": "Circulaire Bedrijfsmodellen",
@@ -127,30 +123,24 @@
   "categories.regenerative_agriculture": "Regeneratieve Landbouw",
   "categories.resilient_nature": "Veerkrachtige Natuur",
   "categories.services": "Diensten",
-
   "breadcrumb.home": "Home",
-
   "hero.freeze": "Bevries je creatie",
   "hero.unfreeze": "Ontdooien",
-
   "privacy_banner.title": "Je bezoek is privé.",
   "privacy_banner.text": "Geen cookies, geen trackers. Alleen privacyvriendelijke analytics.",
   "privacy_banner.link": "Hoe we je privacy beschermen",
   "privacy_banner.dismiss": "Sluiten",
-
   "follow.heading": "Volg ons",
-
   "vision.read_full": "Lees onze volledige visie",
   "vision.scroll": "Scroll om te ontdekken",
   "vision.back": "Terug naar Home",
   "vision.cta_title": "Klaar om regeneratieve innovatie te verkennen?",
   "vision.cta_text": "Vertel ons over je uitdaging en we vinden samen het pad naar regeneratie.",
-
   "antibot.captcha_label": "Snelle verificatie",
   "antibot.captcha_hint": "Draai de driehoek zodat hij omhoog wijst",
   "antibot.captcha_verified": "Geverifieerd",
   "antibot.error_too_fast": "Neem even de tijd om het formulier in te vullen.",
   "antibot.error_captcha": "Voltooi de driehoekverificatie.",
-  "antibot.pow_solving": "Verifi\u00ebren...",
+  "antibot.pow_solving": "Verifiëren...",
   "antibot.error_generic": "Verificatie mislukt. Probeer het opnieuw."
 }

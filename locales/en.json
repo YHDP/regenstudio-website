@@ -22,7 +22,6 @@
   "nav.copied": "Copied!",
   "nav.skip": "Skip to content",
   "nav.toggle": "Toggle menu",
-
   "footer.navigate": "Navigate",
   "footer.about": "About",
   "footer.vision": "Vision",
@@ -39,14 +38,15 @@
   "footer.locations": "Locations",
   "footer.nl": "The Netherlands",
   "footer.br": "Brazil",
-  "footer.copyright": "2024\u20132026 Regen Studio B.V.",
+  "footer.copyright": "2024–2026 Regen Studio B.V.",
   "footer.privacy": "Privacy Policy",
   "footer.tagline": "Pioneering innovations in the regeneration of our natural, human, and urban ecosystems.",
-
   "form.name": "Your name",
   "form.email": "Email address",
   "form.message": "Tell us about your project...",
   "form.newsletter": "Also subscribe me to the Regen Studio newsletter",
+  "form.ai_consent": "I approve of my data being used in AI-supported information systems at Regen Studio.",
+  "form.ai_consent_helper": "Without this, we still respond — but no AI tools read your message.",
   "form.submit": "Send Message",
   "form.sending": "Sending...",
   "form.disclaimer": "Your data is stored in the EU and not shared with third parties.",
@@ -55,7 +55,6 @@
   "form.success_text": "We'll be in touch shortly.",
   "form.error_default": "Failed to send. Please try again.",
   "form.error_generic": "Something went wrong",
-
   "blog.read_more": "Read more",
   "blog.read": "Read",
   "blog.min_read": "min read",
@@ -91,17 +90,14 @@
   "blog.cta_floating_text": "Like what you're reading?",
   "blog.cta_floating_link": "or send us a message",
   "blog.no_client_projects": "No client projects found",
-
   "toast.email_copied": "Email copied to clipboard!",
   "toast.link_copied": "Link copied to clipboard!",
   "toast.linkedin_tag": "Type @Regen Studio in the post to tag us!",
-
   "cta.explore_services": "Explore Our Services",
   "cta.get_in_touch": "Get in Touch",
   "cta.learn_more": "Learn more",
   "cta.back_services": "← Back to Services",
   "cta.back_home": "← Back",
-
   "categories.circular_economy": "Circular Economy",
   "categories.dpp": "Digital Product Passport",
   "categories.circular_models": "Circular Business Models",
@@ -127,25 +123,19 @@
   "categories.regenerative_agriculture": "Regenerative Agriculture",
   "categories.resilient_nature": "Resilient Nature",
   "categories.services": "Services",
-
   "breadcrumb.home": "Home",
-
   "hero.freeze": "Freeze your creation",
   "hero.unfreeze": "Unfreeze",
-
   "privacy_banner.title": "Your visit is private.",
   "privacy_banner.text": "No cookies, no trackers. Privacy-preserving analytics only.",
   "privacy_banner.link": "How we protect your privacy",
   "privacy_banner.dismiss": "Dismiss",
-
   "follow.heading": "Follow us",
-
   "vision.read_full": "Read our entire vision",
   "vision.scroll": "Scroll to explore",
   "vision.back": "Back to Home",
   "vision.cta_title": "Ready to explore regenerative innovation?",
   "vision.cta_text": "Tell us about your challenge and we'll find the path to regeneration together.",
-
   "antibot.captcha_label": "Quick verification",
   "antibot.captcha_hint": "Rotate the triangle to point upward",
   "antibot.captcha_verified": "Verified",

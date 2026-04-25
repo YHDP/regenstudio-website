@@ -415,7 +415,7 @@
     </div>
     <h1>Privacy Policy</h1>
     <p class="privacy-hero__sub">How we handle your data — transparently, minimally, and with respect.</p>
-    <p class="privacy-hero__updated">Last updated: <time datetime="2026-03-07">7 March 2026</time></p>
+    <p class="privacy-hero__updated">Last updated: <time datetime="2026-04-24">24 April 2026</time></p>
   </section>
 
   <!-- TL;DR -->
@@ -429,9 +429,31 @@
       <li>All fonts, scripts, and stylesheets are self-hosted on both sites</li>
       <li>Analytics are privacy-preserving: no cookies, no raw IPs, visitor identity resets daily</li>
       <li>Your data is stored in the EU (Frankfurt, Germany)</li>
+      <li>AI tools (Anthropic Claude) only process your data if you tick the explicit AI-processing consent box on a form. By default they don't.</li>
       <li>We never sell, rent, or share your data</li>
       <li>Compliant with GDPR, LGPD, and ePrivacy Directive</li>
     </ul>
+  </div>
+
+  <!-- Three scenarios — what happens depending on whether you reach out + how -->
+  <div class="tldr-card" id="three-scenarios" style="margin-top:1.5rem">
+    <h2>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Three scenarios at a glance
+    </h2>
+    <p>Self-contained explanations — pick the one that applies to you.</p>
+    <ol>
+      <li>
+        <strong>If you only visit our site</strong> &mdash; we collect <strong>nothing</strong> personally identifying. No cookies, no tracking pixels, no cross-site identifiers. Privacy-preserving analytics aggregate visit counts using daily-rotated salted IP hashes (raw deleted within 48 hours, aggregates indefinite). There is no individual-level record of you to request, correct, or delete &mdash; nothing exists. Sub-processor: Supabase EU only.
+      </li>
+      <li>
+        <strong>If you reach out to us</strong> (form submission <em>without</em> ticking the AI-processing box) &mdash; we collect only the fields you submit (name, email, message, optional organisation). We respond manually. <strong>Claude and other AI tools in our workflow do not read your submission.</strong> Retention: 90 days for contact submissions (auto-deleted), 30 days post-unsubscribe for newsletter, 7 years for invoices (Dutch tax law). Full data-subject rights apply &mdash; see <a href="#exercise-rights">How to exercise your rights</a>. Sub-processors: Supabase EU, Lettermint, Proton Mail, Mollie (only on payment).
+      </li>
+      <li>
+        <strong>If you tick the AI-processing consent box</strong> &mdash; your submission becomes eligible for processing by Claude (Anthropic, US sub-processor) and other AI tools we use, under the purposes you've consented to. Concretely: Claude may read your message while drafting a response; your contact details may be stored in AI-readable operational registries; your project details may inform AI-assisted research or consultancy output. Retention is the same as scenario 2, plus a consent-revocation cascade: if you withdraw AI consent, your data is crypto-shredded (per-subject encryption key deleted, all stored copies become unreadable) within 72 hours. <strong>Without this box ticked, Claude never sees your data &mdash; ticking it is the one and only gate.</strong> Sub-processors: scenario 2 set <em>plus</em> Anthropic.
+      </li>
+    </ol>
+    <p style="font-size:0.85rem;color:var(--color-text-muted);margin-top:12px">For the technical details behind each scenario &mdash; sub-processors, retention timing, encryption, your rights &mdash; read on.</p>
   </div>
 
   <main class="privacy-page" id="main-content">
@@ -531,7 +553,7 @@
         <h3>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           How it works
-        </h2>
+        </h3>
         <div class="analytics-flow">
           <div class="analytics-flow__step">Your browser sends<br><code>page path + event type</code></div>
           <span class="analytics-flow__arrow">&rarr;</span>
@@ -569,7 +591,7 @@
     <div class="priv-divider"><span></span><span></span><span></span><span></span><span></span></div>
 
     <!-- Sub-processors -->
-    <section class="priv-section">
+    <section class="priv-section" id="sub-processors">
       <div class="priv-section__header">
         <div class="priv-section__icon priv-section__icon--teal">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
@@ -609,7 +631,13 @@
           <p class="processor-card__role">Static website hosting via GitHub Pages. Serves HTML, CSS, JS, and font files. No personal data is stored by GitHub on our behalf.</p>
           <span class="processor-card__tag processor-card__tag--us">US hosted</span>
         </div>
+        <div class="processor-card">
+          <p class="processor-card__name">Anthropic PBC <span style="font-size:0.7em;font-weight:normal">— AI sub-processor (only when you opt in)</span></p>
+          <p class="processor-card__role">Provider of the Claude AI assistant we use to support drafting, analysis, and research. <strong>Anthropic only sees your data if you ticked the AI-processing consent box on the form you submitted.</strong> Without that opt-in, your submission never enters Anthropic's pipeline. When invoked: Anthropic processes the prompt to generate a response; default conversation-history retention on Anthropic's side is approximately 30 days; you may request earlier deletion via Anthropic's privacy controls. ISO 27001, ISO 42001, SOC 2 Type II certified. Sub-processors of Anthropic: AWS, GCP. Transfer covered by EU&ndash;US Data Privacy Framework + Standard Contractual Clauses (Module 2, 2024 revised) per Anthropic's Commercial Terms.</p>
+          <span class="processor-card__tag processor-card__tag--us">US (SCCs + DPF)</span>
+        </div>
       </div>
+      <p style="font-size:0.85rem;color:var(--color-text-muted);margin-top:12px">Each sub-processor's role maps to one or more of the three scenarios above. Supabase EU and the static stack apply to scenarios 1, 2, and 3. Lettermint, Proton Mail, and (when relevant) Mollie + Exact Online apply to scenarios 2 and 3. <strong>Anthropic applies only to scenario 3</strong> &mdash; explicit AI-processing consent.</p>
     </section>
 
     <!-- International transfers -->
@@ -623,7 +651,9 @@
       <p>Your personal data (form submissions, orders) is stored in the EU (Frankfurt, Germany) via Supabase. Payments are processed by Mollie in The Netherlands. Invoices are managed through Exact Online (The Netherlands). Email is handled by Proton Mail (Switzerland, which has an EU adequacy decision).</p>
       <p>The static websites are hosted on GitHub Pages (United States). GitHub serves only static files and does not process personal data on our behalf; however, standard HTTP server logs (including IP addresses) may be temporarily retained by GitHub in accordance with their <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">privacy statement</a>.</p>
       <p>Supabase Inc. is incorporated in the United States; however, all Regen Studio project data is hosted in the EU (Frankfurt, Germany). Supabase is covered by the EU&ndash;US Data Privacy Framework.</p>
-      <p>For transfers to the United States, we rely on the EU&ndash;US Data Privacy Framework where applicable, supplemented by Standard Contractual Clauses (SCCs). For transfers from Brazil, these are covered by LGPD Art. 33 with adequate safeguards.</p>
+      <p><strong>Transfers to the United States (Anthropic, GitHub, Supabase Inc.):</strong> covered by the EU&ndash;US Data Privacy Framework where the entity is certified, supplemented by Standard Contractual Clauses (2024 revised version, Module 2 controller&ndash;processor) for processor relationships. For Anthropic specifically, the SCCs are incorporated in the Anthropic Commercial Terms accepted by Regen Studio; a Transfer Impact Assessment is on file at our internal runbooks register.</p>
+      <p><strong>Transfers between the European Union and Brazil:</strong> covered by mutual adequacy as of 26 January 2026 &mdash; the Brazilian ANPD recognised the EU as adequate (Resolu&ccedil;&atilde;o CD/ANPD 32/2026), and the European Commission published a reciprocal adequacy decision for Brazil on 27 January 2026. Data flows EU&nbsp;&harr;&nbsp;BR no longer require Standard Contractual Clauses or additional safeguards.</p>
+      <p><strong>Transfers from Brazil more generally:</strong> handled per LGPD Art.&nbsp;33 (and ANPD Resolu&ccedil;&atilde;o 19/2024 for non-adequate destinations) with documented safeguards.</p>
     </section>
 
     <!-- How we use your data -->
@@ -734,7 +764,7 @@
     </section>
 
     <!-- How to exercise rights -->
-    <section class="priv-section">
+    <section class="priv-section" id="exercise-rights">
       <div class="priv-section__header">
         <div class="priv-section__icon priv-section__icon--emerald">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
@@ -753,7 +783,12 @@
         </div>
         <h2>Children</h2>
       </div>
-      <p>Our services are directed at businesses and professionals. We do not knowingly collect personal data from children under 16. If you believe we have inadvertently collected data from a child, please contact us and we will delete it promptly.</p>
+      <p>Our services are directed at businesses and professionals.</p>
+      <ul>
+        <li><strong>Under GDPR (EU/EEA visitors):</strong> we do not knowingly collect personal data from children under 16. The Dutch UAVG sets the digital-consent age at 16.</li>
+        <li><strong>Under LGPD (Brazilian visitors):</strong> data of children under 12 requires specific, prominent parental or guardian consent (LGPD Art.&nbsp;14). We do not knowingly collect children's data.</li>
+      </ul>
+      <p>If you believe we have inadvertently collected data from a child, please contact us at <a href="mailto:info@regenstudio.world">info@regenstudio.world</a> and we will delete it promptly.</p>
     </section>
 
     <!-- AI tools transparency -->
@@ -762,10 +797,18 @@
         <div class="priv-section__icon priv-section__icon--indigo">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         </div>
-        <h2>Use of AI tools</h2>
+        <h2>Use of AI tools (and your explicit consent)</h2>
       </div>
-      <p>In the spirit of transparency, we disclose that AI-assisted tools (including Claude by Anthropic) are used in the development of this website and in the creation and editing of content. All AI-generated or AI-assisted content is reviewed by our team for accuracy before publication.</p>
-      <p>No personal data you provide through our forms or services is shared with AI tools. AI assistance is limited to website development, content writing, and internal research. Your data never enters AI training pipelines.</p>
+      <p>We use AI-assisted tools &mdash; primarily <strong>Claude by Anthropic</strong> &mdash; in the development of this website, content creation, internal research, and (where you've explicitly opted in) in responding to your inquiries.</p>
+      <p><strong>Your data only enters an AI pipeline if you tick the AI-processing consent box on the form you submit.</strong> This is the architectural gate described in <a href="#three-scenarios">Three scenarios at a glance</a>:</p>
+      <ul>
+        <li>Default state on every form is <strong>unticked</strong>. We respond manually if you leave it unticked.</li>
+        <li>Ticking the box authorises us to process your submission via Anthropic Claude as our AI sub-processor (see <a href="#sub-processors">Sub-processors</a> for the full disclosure).</li>
+        <li>You can withdraw this AI-processing consent at any time via a self-service magic link tied to the email you submitted. Upon withdrawal, all of your stored data is <strong>crypto-shredded</strong> within 72 hours: a per-subject encryption key is deleted, rendering all stored copies of your data permanently unreadable. Audit records reference your subject identifier (UUID) only and survive deletion without compromising erasure.</li>
+        <li>Anthropic itself retains conversation history for approximately 30 days on its side. We disclose this so that "deleted on our side" does not mislead about Anthropic-side retention. You may request earlier deletion from Anthropic via their privacy controls.</li>
+      </ul>
+      <p>AI-generated or AI-assisted content published on this website is reviewed by our team for accuracy before publication. <strong>Your data never enters AI training pipelines.</strong> Anthropic's API does not train on customer data by default and we do not opt in.</p>
+      <p>For special-category data (health, religion, political opinion, ethnic origin, sexual orientation, trade-union membership, biometric or genetic data, criminal records &mdash; GDPR Art.&nbsp;9 / LGPD Art.&nbsp;11), explicit additional consent is required and must be ticked separately. Without it, special-category data is excluded from AI processing regardless of the general AI-processing consent.</p>
       <p>For the most current regulatory information published on our blog, we always recommend consulting official EU sources such as the <a href="https://eur-lex.europa.eu" target="_blank" rel="noopener">Official Journal of the European Union</a>.</p>
     </section>
 

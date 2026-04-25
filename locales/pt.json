@@ -22,7 +22,6 @@
   "nav.copied": "Copiado!",
   "nav.skip": "Pular para o conteúdo",
   "nav.toggle": "Abrir menu",
-
   "footer.navigate": "Navegação",
   "footer.about": "Sobre Nós",
   "footer.vision": "Visão",
@@ -39,14 +38,15 @@
   "footer.locations": "Localizações",
   "footer.nl": "Países Baixos",
   "footer.br": "Brasil",
-  "footer.copyright": "2024\u20132026 Regen Studio B.V.",
+  "footer.copyright": "2024–2026 Regen Studio B.V.",
   "footer.privacy": "Política de Privacidade",
   "footer.tagline": "Inovações pioneiras para a regeneração dos nossos ecossistemas naturais, urbanos e humanos.",
-
   "form.name": "Seu nome",
   "form.email": "Endereço de e-mail",
   "form.message": "Conte-nos sobre o seu projeto...",
   "form.newsletter": "Inscreva-me também na newsletter da Regen Studio",
+  "form.ai_consent": "Autorizo o uso dos meus dados em sistemas de informação assistidos por IA da Regen Studio.",
+  "form.ai_consent_helper": "Sem marcar, ainda respondemos — mas nenhuma ferramenta de IA lê sua mensagem.",
   "form.submit": "Enviar Mensagem",
   "form.sending": "Enviando...",
   "form.disclaimer": "Seus dados são armazenados na UE e não são compartilhados com terceiros.",
@@ -55,7 +55,6 @@
   "form.success_text": "Entraremos em contato em breve.",
   "form.error_default": "Falha ao enviar. Tente novamente.",
   "form.error_generic": "Algo deu errado",
-
   "blog.read_more": "Leia mais",
   "blog.read": "Leia",
   "blog.min_read": "min de leitura",
@@ -91,17 +90,14 @@
   "blog.cta_floating_text": "Gostando do que lê?",
   "blog.cta_floating_link": "ou envie-nos uma mensagem",
   "blog.no_client_projects": "Nenhum projeto de cliente encontrado",
-
   "toast.email_copied": "E-mail copiado!",
   "toast.link_copied": "Link copiado!",
   "toast.linkedin_tag": "Digite @Regen Studio na publicação para nos marcar!",
-
   "cta.explore_services": "Conheça Nossos Serviços",
   "cta.get_in_touch": "Fale Conosco",
   "cta.learn_more": "Saiba mais",
   "cta.back_services": "← Voltar aos Serviços",
   "cta.back_home": "← Voltar",
-
   "categories.circular_economy": "Economia Circular",
   "categories.dpp": "Passaporte Digital do Produto",
   "categories.circular_models": "Modelos de Negócio Circulares",
@@ -127,30 +123,24 @@
   "categories.regenerative_agriculture": "Agricultura Regenerativa",
   "categories.resilient_nature": "Natureza Resiliente",
   "categories.services": "Serviços",
-
   "breadcrumb.home": "Início",
-
   "hero.freeze": "Congele sua criação",
   "hero.unfreeze": "Descongele",
-
   "privacy_banner.title": "Sua visita é privada.",
   "privacy_banner.text": "Sem cookies, sem rastreadores. Apenas analytics que preservam a privacidade.",
   "privacy_banner.link": "Como protegemos sua privacidade",
   "privacy_banner.dismiss": "Fechar",
-
   "follow.heading": "Siga-nos",
-
-  "vision.read_full": "Leia toda a nossa vis\u00e3o",
+  "vision.read_full": "Leia toda a nossa visão",
   "vision.scroll": "Role para explorar",
-  "vision.back": "Voltar ao In\u00edcio",
-  "vision.cta_title": "Pronto para explorar inova\u00e7\u00e3o regenerativa?",
-  "vision.cta_text": "Conte-nos sobre o seu desafio e encontraremos juntos o caminho para a regenera\u00e7\u00e3o.",
-
-  "antibot.captcha_label": "Verifica\u00e7\u00e3o r\u00e1pida",
-  "antibot.captcha_hint": "Gire o tri\u00e2ngulo para apontar para cima",
+  "vision.back": "Voltar ao Início",
+  "vision.cta_title": "Pronto para explorar inovação regenerativa?",
+  "vision.cta_text": "Conte-nos sobre o seu desafio e encontraremos juntos o caminho para a regeneração.",
+  "antibot.captcha_label": "Verificação rápida",
+  "antibot.captcha_hint": "Gire o triângulo para apontar para cima",
   "antibot.captcha_verified": "Verificado",
-  "antibot.error_too_fast": "Reserve um momento para preencher o formul\u00e1rio.",
-  "antibot.error_captcha": "Complete a verifica\u00e7\u00e3o do tri\u00e2ngulo.",
+  "antibot.error_too_fast": "Reserve um momento para preencher o formulário.",
+  "antibot.error_captcha": "Complete a verificação do triângulo.",
   "antibot.pow_solving": "Verificando...",
-  "antibot.error_generic": "Falha na verifica\u00e7\u00e3o. Tente novamente."
+  "antibot.error_generic": "Falha na verificação. Tente novamente."
 }
