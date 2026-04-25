@@ -20,8 +20,19 @@ url="$2"
 
 while read local_ref local_sha remote_ref remote_sha; do
   if [ "$remote_sha" = "0000000000000000000000000000000000000000" ]; then
-    # New branch — scan all commits
-    range="$local_sha"
+    # New branch — compare against origin/main (or local main) so we see every
+    # commit that's new on this branch. The previous default of just "$local_sha"
+    # gave an empty diff (git diff <sha> compares sha to working tree, which equals
+    # sha after commit), so the gate silently passed everything.
+    if git rev-parse --verify --quiet origin/main >/dev/null; then
+      range="origin/main..$local_sha"
+    elif git rev-parse --verify --quiet main >/dev/null; then
+      range="main..$local_sha"
+    else
+      # No reference point at all (brand-new repo). Scan everything reachable.
+      range="$(git rev-list --max-parents=0 "$local_sha" 2>/dev/null | head -1)..$local_sha"
+      [ "$range" = "..$local_sha" ] && range="$local_sha"
+    fi
   else
     range="$remote_sha..$local_sha"
   fi
