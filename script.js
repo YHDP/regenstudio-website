@@ -1514,6 +1514,7 @@
       function doSubmit(antibotPayload) {
         var formData = new FormData(form);
         var nlCheckbox = form.querySelector('input[name="newsletter_opt_in"]');
+        var aiCheckbox = form.querySelector('input[name="ai_processing_opt_in"]');
         var payload = {
           name: formData.get('name') || '',
           email: formData.get('email') || '',
@@ -1521,6 +1522,8 @@
           source: 'website_contact',
           page_url: window.location.href,
           newsletter_opt_in: nlCheckbox ? nlCheckbox.checked : false,
+          ai_processing_opt_in: aiCheckbox ? aiCheckbox.checked : false,
+          consent_version: '2026-04-24',
         };
 
         // Merge antibot fields

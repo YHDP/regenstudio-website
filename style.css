@@ -6125,17 +6125,18 @@ a.dpp-product--linked {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 11px 22px;
+  padding: 10px 18px;
   border: 2px solid #006d38;
   border-radius: 999px;
   color: #006d38;
   background: var(--color-bg, #FFFFFF);
   text-decoration: none;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 600;
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Secondary buttons (Bluesky / Mastodon) on hover get the inverted fill */
 .follow-card__link:hover,
 .follow-card__link:focus-visible {
   background: #006d38;
@@ -6149,6 +6150,50 @@ a.dpp-product--linked {
   flex-shrink: 0;
 }
 
+/* PRIMARY follow link (LinkedIn) — filled-green, slightly larger,
+   trailing arrow, and a subtle attention pulse so the eye lands here first. */
+.follow-card__link--primary {
+  background: #006d38;
+  color: #FFFFFF;
+  padding: 12px 22px;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 18px -6px rgba(0, 145, 75, 0.5);
+  animation: follow-pulse 2.6s ease-in-out infinite;
+  position: relative;
+}
+
+.follow-card__link--primary::after {
+  content: "\2192"; /* → */
+  display: inline-block;
+  margin-left: 4px;
+  transition: transform 0.2s ease;
+}
+
+.follow-card__link--primary:hover,
+.follow-card__link--primary:focus-visible {
+  background: #008545;          /* slightly brighter on hover */
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px -8px rgba(0, 145, 75, 0.6);
+  animation: none;               /* pause pulse on interaction */
+}
+
+.follow-card__link--primary:hover::after,
+.follow-card__link--primary:focus-visible::after {
+  transform: translateX(3px);
+}
+
+@keyframes follow-pulse {
+  0%, 100% {
+    box-shadow: 0 6px 18px -6px rgba(0, 145, 75, 0.5),
+                0 0 0 0 rgba(0, 145, 75, 0.35);
+  }
+  50% {
+    box-shadow: 0 6px 18px -6px rgba(0, 145, 75, 0.5),
+                0 0 0 10px rgba(0, 145, 75, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .follow-card__link {
     transition: background 0.2s ease, color 0.2s ease;
@@ -6156,6 +6201,12 @@ a.dpp-product--linked {
   .follow-card__link:hover,
   .follow-card__link:focus-visible {
     transform: none;
+  }
+  .follow-card__link--primary {
+    animation: none;
+  }
+  .follow-card__link--primary::after {
+    transition: none;
   }
 }
 
@@ -6172,6 +6223,47 @@ a.dpp-product--linked {
 
 .thankyou-page__icon {
   margin-bottom: 24px;
+}
+
+/* Triangle cascade — modelled after the proton-send "classic" signature mark
+   (4 right-pointing triangles, brand palette: magenta · orange · emerald · teal) */
+.thankyou-page__icon--triangles {
+  font-size: 56px;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  font-feature-settings: "liga" 0;
+  user-select: none;
+}
+
+.thankyou-page__icon--triangles .tri {
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-24px) scale(0.7);
+  animation: tri-arrive 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.thankyou-page__icon--triangles .tri--1 { color: #93093F; animation-delay: 0.10s; }
+.thankyou-page__icon--triangles .tri--2 { color: #FFA92D; animation-delay: 0.25s; }
+.thankyou-page__icon--triangles .tri--3 { color: #008545; animation-delay: 0.40s; }
+.thankyou-page__icon--triangles .tri--4 { color: #009BBB; animation-delay: 0.55s; }
+
+@keyframes tri-arrive {
+  60% {
+    opacity: 1;
+    transform: translateX(2px) scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thankyou-page__icon--triangles .tri {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
 }
 
 .thankyou-page__title {
