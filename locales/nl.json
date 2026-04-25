@@ -146,5 +146,6 @@
   "antibot.error_too_fast": "Neem even de tijd om het formulier in te vullen.",
   "antibot.error_captcha": "Voltooi de driehoekverificatie.",
   "antibot.pow_solving": "Verifiëren...",
-  "antibot.error_generic": "Verificatie mislukt. Probeer het opnieuw."
+  "antibot.error_generic": "Verificatie mislukt. Probeer het opnieuw.",
+  "form.newsletter_helper": "Geldt als toestemming voor marketinggebruik van je e-mailadres — op elk moment in te trekken via de link in onze e-mails."
 }

@@ -146,5 +146,6 @@
   "antibot.error_too_fast": "Please take a moment to fill out the form.",
   "antibot.error_captcha": "Please complete the triangle verification.",
   "antibot.pow_solving": "Verifying...",
-  "antibot.error_generic": "Verification failed. Please try again."
+  "antibot.error_generic": "Verification failed. Please try again.",
+  "form.newsletter_helper": "Counts as your consent to marketing use of your email — withdraw any time via the link in our emails."
 }

@@ -44,7 +44,7 @@
   "form.name": "Seu nome",
   "form.email": "Endereço de e-mail",
   "form.message": "Conte-nos sobre o seu projeto...",
-  "form.newsletter": "Inscreva-me também na newsletter da Regen Studio",
+  "form.newsletter": "Inscreva-me tamb&eacute;m na newsletter da Regen Studio",
   "form.ai_consent": "Autorizo o uso dos meus dados em sistemas de informação assistidos por IA da Regen Studio.",
   "form.ai_consent_helper": "Sem marcar, ainda respondemos — mas nenhuma ferramenta de IA lê sua mensagem.",
   "form.privacy_policy_accept_intro": "Li e concordo com a",
@@ -146,5 +146,6 @@
   "antibot.error_too_fast": "Reserve um momento para preencher o formulário.",
   "antibot.error_captcha": "Complete a verificação do triângulo.",
   "antibot.pow_solving": "Verificando...",
-  "antibot.error_generic": "Falha na verificação. Tente novamente."
+  "antibot.error_generic": "Falha na verificação. Tente novamente.",
+  "form.newsletter_helper": "Conta como seu consentimento para uso de marketing do seu e-mail — retire a qualquer momento pelo link em nossos e-mails."
 }
