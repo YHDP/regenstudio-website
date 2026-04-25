@@ -150,6 +150,43 @@ else: print(f'published={pub} review.text={r.get(\"text\")} review.assets={r.get
     done < <(echo "$CHECK_PAIRS" | sort -u | grep -v '^$')
   fi
 
+  # 7. SKILL.md integrity scan — supply-chain protection.
+  #    Block hidden Unicode, inline downloaders/executors, and secret-shaped strings
+  #    in any added/modified SKILL.md or evals.md (sibling to SKILL.md).
+  #    Rationale: ~/.claude/rules/common/skills.md (codified 2026-04-25 after ClawHavoc).
+  SKILL_FILES=$(git diff --name-only --diff-filter=AM "$range" 2>/dev/null | grep -E '(^|/)(SKILL|evals)\.md$' || true)
+  if [ -n "$SKILL_FILES" ]; then
+    while IFS= read -r skill_file; do
+      [ -z "$skill_file" ] && continue
+      content=$(git show "$local_sha:$skill_file" 2>/dev/null || true)
+      [ -z "$content" ] && continue
+
+      # 7a. Hidden Unicode (zero-width, RTL override, bidi controls)
+      HIDDEN_UNICODE=$(echo "$content" | LC_ALL=C grep -nP '[\xE2\x80\x8B-\xE2\x80\x8F\xE2\x80\xAA-\xE2\x80\xAE\xEF\xBB\xBF]' || true)
+      if [ -n "$HIDDEN_UNICODE" ]; then
+        echo -e "${RED}BLOCKED: $skill_file contains hidden Unicode (zero-width / RTL / bidi):${NC}"
+        echo "$HIDDEN_UNICODE" | head -5
+        ISSUES=$((ISSUES + 1))
+      fi
+
+      # 7b. Inline downloaders / executors in fenced code blocks
+      DOWNLOADER=$(echo "$content" | grep -nE '(curl[[:space:]]+(-[a-zA-Z]+[[:space:]]+)*https?://|wget[[:space:]]+https?://|bash[[:space:]]+-c[[:space:]]+|eval[[:space:]]+\$\(|sh[[:space:]]+-c[[:space:]]+|python[[:space:]]+-c[[:space:]]+["\x27]?import[[:space:]]+(urllib|requests|socket|subprocess))' || true)
+      if [ -n "$DOWNLOADER" ]; then
+        echo -e "${RED}BLOCKED: $skill_file contains inline downloader/executor pattern:${NC}"
+        echo "$DOWNLOADER" | head -5
+        ISSUES=$((ISSUES + 1))
+      fi
+
+      # 7c. Secret-shaped strings (covered partly by check #3 but verify SKILL.md scope)
+      SECRET_SHAPE=$(echo "$content" | grep -nE '([A-Z_]+_(KEY|SECRET|TOKEN|HASH|PASSWORD)|api[_-]?key|access[_-]?token)[[:space:]]*[:=][[:space:]]*["\x27][A-Za-z0-9+/=_-]{20,}["\x27]' || true)
+      if [ -n "$SECRET_SHAPE" ]; then
+        echo -e "${RED}BLOCKED: $skill_file contains secret-shaped string:${NC}"
+        echo "$SECRET_SHAPE" | head -5
+        ISSUES=$((ISSUES + 1))
+      fi
+    done <<< "$SKILL_FILES"
+  fi
+
 done
 
 if [ "$ISSUES" -gt 0 ]; then
