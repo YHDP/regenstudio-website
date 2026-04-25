@@ -25,9 +25,9 @@
   "featuredImage": "header-founder.png",
   "featuredImageAlt": "Geometrische driehoeksillustratie die de wereldwijde reis van de oprichter van werktuigbouwkunde naar regeneratieve innovatie verbeeldt",
   "excerpt": "Geboren in Nijmegen, gevormd door Gambia, India en Brazilië. Van werktuigbouwkunde naar smart grids, digitale identiteit en Digitale Productpaspoorten — het verhaal van waarom ik Regen Studio oprichtte en waarom alleen duurzaamheid niet meer genoeg is.",
-  "published": true,
+  "published": false,
   "review": {
-    "text": "approved",
-    "assets": "approved"
+    "text": "draft",
+    "assets": "draft"
   }
 }
