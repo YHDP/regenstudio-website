@@ -6068,18 +6068,50 @@ a.dpp-product--linked {
    ======================================== */
 
 .follow-card {
+  position: relative;
   margin: 48px auto 0;
-  max-width: 480px;
+  max-width: 520px;
+  padding: 36px 28px 28px;
+  border: 2px solid #006d38;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(0, 145, 75, 0.05) 0%, rgba(0, 155, 187, 0.03) 100%);
   text-align: center;
+  box-shadow: 0 6px 28px -10px rgba(0, 145, 75, 0.22);
+}
+
+/* Floating triangle badge anchored to the top border */
+.follow-card::before {
+  content: "\25B2";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg, #FFFFFF);
+  color: #006d38;
+  font-size: 14px;
+  line-height: 1;
 }
 
 .follow-card__heading {
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #006d38;
+  margin: 0 0 6px;
+}
+
+.follow-card__sub {
   font-size: 0.9rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-text-muted);
-  margin-bottom: 16px;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  margin: 0 auto 22px;
+  max-width: 380px;
 }
 
 .follow-card__links {
@@ -6093,23 +6125,38 @@ a.dpp-product--linked {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 20px;
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  color: var(--color-text);
+  padding: 11px 22px;
+  border: 2px solid #006d38;
+  border-radius: 999px;
+  color: #006d38;
+  background: var(--color-bg, #FFFFFF);
   text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: border-color var(--transition), background var(--transition);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.follow-card__link:hover {
-  border-color: var(--color-primary);
-  background: rgba(var(--color-primary-rgb, 45, 106, 79), 0.06);
+.follow-card__link:hover,
+.follow-card__link:focus-visible {
+  background: #006d38;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -6px rgba(0, 145, 75, 0.45);
+  outline: none;
 }
 
 .follow-card__link svg {
   flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .follow-card__link {
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .follow-card__link:hover,
+  .follow-card__link:focus-visible {
+    transform: none;
+  }
 }
 
 /* ========================================
