@@ -870,7 +870,7 @@
 
     // Verify token + retrieve engagement metadata.
     let engagementMeta = null;
-    fetch(VERIFY_TOKEN_URL, {
+    fetch(VERIFY_TOKEN_URL, { // supabase.co same-origin (Edge Function)
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: token }),

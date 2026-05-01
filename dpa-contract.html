@@ -1085,7 +1085,7 @@
 
       let resp;
       try {
-        resp = await fetch(SUBMIT_URL, {
+        resp = await fetch(SUBMIT_URL, { // supabase.co same-origin (Edge Function)
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),

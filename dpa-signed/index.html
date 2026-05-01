@@ -185,7 +185,7 @@
       history.replaceState(null, '', location.pathname);
     } catch (e) { /* ignore */ }
 
-    fetch(VERIFY_ACCESS_URL, {
+    fetch(VERIFY_ACCESS_URL, { // supabase.co same-origin (Edge Function)
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: token }),
