@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>TEST — Verwerkersovereenkomst Seepje × Regen Studio</title>
+  <link rel="stylesheet" href="assets/fonts/inter.css">
+  <style>
+    :root {
+      --emerald: #006d38;
+      --teal: #00728b;
+      --gold: #7a5814;
+      --magenta: #93093F;
+      --ink: #1a1a2e;
+      --muted: #5b6470;
+      --border: #d8dbe0;
+      --bg: #f7f8f9;
+      --white: #ffffff;
+      --warn-bg: #fff8e1;
+      --warn-border: #f0c14b;
+      --ok-bg: #DCFCE7;
+      --ok-border: #86EFAC;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+      font-size: 16px;
+    }
+    .test-banner {
+      background: var(--warn-bg);
+      border-bottom: 2px solid var(--warn-border);
+      padding: 10px 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #7a5814;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav {
+      background: var(--white);
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner {
+      max-width: 880px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .nav__logo { width: 44px; height: 44px; }
+    .nav__brand {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--ink);
+    }
+    main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 36px 24px 80px;
+    }
+    h1 {
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 700;
+      margin: 0 0 12px;
+      letter-spacing: -0.01em;
+    }
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 32px 0 12px;
+      color: var(--ink);
+    }
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 20px 0 8px;
+      color: var(--ink);
+    }
+    p { margin: 0 0 12px; }
+    .lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .card h2:first-child, .card h3:first-child { margin-top: 0; }
+    .card--callout {
+      border-color: var(--emerald);
+      border-width: 2px;
+      background: #f1faf4;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 8px 18px;
+      font-size: 0.94rem;
+    }
+    .summary-grid__key {
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .summary-grid__val { color: var(--ink); }
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .form-row__label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .form-row__hint {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .form-row__input {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.96rem;
+      font-family: inherit;
+      background: var(--white);
+      transition: border-color 0.15s ease;
+    }
+    .form-row__input:focus {
+      outline: none;
+      border-color: var(--emerald);
+      box-shadow: 0 0 0 3px rgba(0,109,56,0.12);
+    }
+    .form-row__input--prefilled {
+      background: #f0f4f0;
+      color: var(--muted);
+    }
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 600px) {
+      .form-grid-2 { grid-template-columns: 1fr; }
+    }
+    details {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      background: var(--white);
+      overflow: hidden;
+    }
+    details summary {
+      cursor: pointer;
+      padding: 14px 18px;
+      font-weight: 600;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after {
+      content: "▸";
+      color: var(--muted);
+      transition: transform 0.15s ease;
+      font-size: 0.85rem;
+    }
+    details[open] summary::after { transform: rotate(90deg); }
+    details > *:not(summary) {
+      padding: 0 18px 18px;
+      font-size: 0.92rem;
+    }
+    details ul { padding-left: 20px; margin-left: 18px; }
+    details ol { padding-left: 20px; margin-left: 18px; }
+    details table {
+      width: calc(100% - 36px);
+      margin: 0 18px 14px;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+    details th, details td {
+      text-align: left;
+      padding: 6px 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    details th { background: #f5f7f9; font-weight: 600; }
+    details code {
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 0.86em;
+      background: #f0f3f5;
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+    .ai-consent {
+      border: 2px solid var(--teal);
+      background: #f0f8fb;
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin: 28px 0;
+    }
+    .ai-consent__title {
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--teal);
+    }
+    .ai-consent label {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      cursor: pointer;
+      padding: 12px 0 4px;
+    }
+    .ai-consent input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: var(--teal);
+      cursor: pointer;
+    }
+    .ai-consent__copy {
+      font-size: 0.93rem;
+      line-height: 1.5;
+    }
+    .ai-consent__hint {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 10px;
+      padding-left: 36px;
+    }
+    .sign-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 32px;
+      text-align: center;
+    }
+    .sign-btn {
+      background: var(--emerald);
+      color: var(--white);
+      border: none;
+      padding: 14px 36px;
+      border-radius: 10px;
+      font-size: 1.02rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .sign-btn:hover {
+      background: #008545;
+      transform: translateY(-1px);
+    }
+    .sign-btn:disabled {
+      background: #9ba2aa;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .sign-hint {
+      margin-top: 14px;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(26,26,46,0.6);
+      z-index: 1000;
+      padding: 24px;
+      overflow: auto;
+    }
+    .modal--open { display: flex; align-items: flex-start; justify-content: center; }
+    .modal__inner {
+      background: var(--white);
+      border-radius: 14px;
+      max-width: 720px;
+      width: 100%;
+      padding: 32px;
+      margin: auto;
+    }
+    .modal__title { margin-top: 0; }
+    .modal__intro { color: var(--muted); margin-bottom: 16px; }
+    .modal__close {
+      background: var(--ink);
+      color: var(--white);
+      border: none;
+      padding: 10px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.94rem;
+      margin-top: 16px;
+    }
+    pre.payload {
+      background: #f5f7f9;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      font-size: 0.84rem;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      line-height: 1.4;
+    }
+    .footer {
+      max-width: 880px;
+      margin: 60px auto 40px;
+      padding: 0 24px;
+      font-size: 0.84rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.6;
+    }
+    .pill {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .pill--ok { background: var(--ok-bg); color: #166534; }
+    .pill--warn { background: var(--warn-bg); color: #7a5814; }
+    .pill--info { background: #e1eef9; color: #1c4f80; }
+    .plain {
+      background: #fffaeb;
+      border-left: 3px solid #f0c14b;
+      border-radius: 6px;
+      padding: 12px 14px 12px 16px;
+      margin: 10px 0 14px;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    .plain__label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #7a5814;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .plain p:last-child { margin-bottom: 0; }
+    .toggle-bar {
+      background: #f0f4f7;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 3px;
+      display: inline-flex;
+      gap: 0;
+      margin-bottom: 18px;
+    }
+    .toggle-bar button {
+      border: none;
+      background: transparent;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.84rem;
+      color: var(--muted);
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+    .toggle-bar button.is-active {
+      background: var(--ink);
+      color: var(--white);
+    }
+    body.plain-only details > p:not(.plain),
+    body.plain-only details > ul:not(.plain),
+    body.plain-only details > ol:not(.plain),
+    body.plain-only details > h3,
+    body.plain-only details > h4,
+    body.plain-only details > table,
+    body.plain-only .ai-consent > p.ai-consent__copy,
+    body.plain-only .ai-consent > p.ai-consent__hint {
+      display: none;
+    }
+    body.legal-only .plain { display: none; }
+    .full-text-btn {
+      background: var(--ink);
+      color: var(--white);
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin: 6px 18px 14px;
+      display: inline-block;
+    }
+    .full-text-btn:hover { background: #2a2d3a; }
+    .full-text-render {
+      margin: 0 18px 18px;
+      padding: 18px 20px;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      background: #fafbfc;
+      font-size: 0.88rem;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+    .full-text-render h1 { font-size: 1.2rem; margin: 14px 0 8px; }
+    .full-text-render h2 { font-size: 1.05rem; margin: 14px 0 8px; color: var(--emerald); }
+    .full-text-render h3 { font-size: 0.96rem; margin: 12px 0 6px; }
+    .full-text-render h4 { font-size: 0.92rem; margin: 10px 0 5px; color: var(--muted); }
+    .full-text-render p { margin: 6px 0; }
+    .full-text-render ul, .full-text-render ol { padding-left: 22px; margin: 6px 0; }
+    .full-text-render table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+      margin: 8px 0;
+    }
+    .full-text-render th, .full-text-render td {
+      text-align: left;
+      padding: 5px 8px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .full-text-render th { background: #f0f3f5; }
+    .full-text-render code {
+      background: #f0f3f5;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 0.86em;
+    }
+    .full-text-render hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+    .full-text-render blockquote {
+      border-left: 3px solid var(--border);
+      padding-left: 12px;
+      color: var(--muted);
+      margin: 8px 0;
+    }
+    body.legal-only .full-text-render { /* full-text always shown when toggled */ }
+    .doc-toggle-group {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-top: 6px;
+    }
+    .doc-toggle {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      cursor: pointer;
+      font-size: 0.93rem;
+      padding: 4px 6px;
+      border-radius: 4px;
+      transition: background 0.1s;
+    }
+    .doc-toggle:hover { background: rgba(0,114,139,0.06); }
+    .doc-toggle input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      accent-color: var(--teal);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="prod-banner" role="status" aria-live="polite" style="background:#E8F5E9;border-bottom:4px solid #00914B;color:#1B5E20;padding:10px 16px;text-align:center;font-size:0.95rem">
+  <strong>✅ Stap 1 van 2 — Verwerkersovereenkomst (productie)</strong> &nbsp;·&nbsp; Uw handtekening op de volgende pagina is <strong>juridisch bindend</strong> onder eIDAS Art 25(1).
+</div>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <svg class="nav__logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Regen Studio">
+      <polygon points="32,8 56,52 8,52" fill="#006d38"/>
+      <polygon points="32,20 46,46 18,46" fill="#65DD35" opacity="0.6"/>
+    </svg>
+    <span class="nav__brand">Regen Studio</span>
+    <span class="pill pill--info" style="margin-left:auto">test render · Seepje</span>
+  </div>
+</nav>
+
+<main>
+
+  <h1>Sneller, dieper, creatiever — én juridisch geregeld</h1>
+  <p class="lead">
+    Regen Studio heeft administratie geautomatiseerd. Resultaat: meer ruimte voor creatieve oplossingen,
+    snellere prototypes, dieper inzicht. Voor Seepje meer waarde in dezelfde tijd dan een traditionele consultancy biedt.
+  </p>
+
+  <div class="plain">
+    <div class="plain__label">💡 In klare taal</div>
+    <p>
+      Voordat we starten, regelen we hier de juridische kant in drie stappen: (1) controleer uw bedrijfs- en
+      contactgegevens, (2) lees onze data-governance samenvatting, (3) kies per type document of Regen het
+      wel of niet via Claude mag analyseren. Daarna tekent u de verwerkersovereenkomst op de volgende pagina.
+    </p>
+  </div>
+
+  <!-- Why this matters: business model card -->
+  <div class="card card--callout">
+    <h2 style="margin-top:0">Waarom deze opzet werkt voor Seepje</h2>
+    <ul style="font-size:0.96rem;line-height:1.75;margin:0;padding-left:22px">
+      <li><strong>Geautomatiseerde administratie</strong> — voortgangs-rapportage, prestatie­verklaringen, Bijlage-1-conforme dossiers en
+        audit-trails worden grotendeels door AI voorbereid en daarna door Yvo gereviewd. Minder handwerk, meer kwaliteit.</li>
+      <li><strong>Sneller prototypen dan ooit</strong> — concept-DPP-records, conformiteits­schema's, datacollectie-templates en
+        roadmap-iteraties komen in dagen tot stand, niet in weken.</li>
+      <li><strong>Diepere analyse</strong> — Claude doorzoekt parallel JRC preparatory studies, EDPB-richtsnoeren, sector-rapporten
+        en juridische bronnen tegelijk en signaleert verbanden die handmatig zoek-werk mist.</li>
+      <li><strong>Mens-in-de-lus</strong> — alle door AI gegenereerde teksten en documenten ondergaan een menselijke review-stap door Yvo
+        voordat ze bij u landen. Geen output uit Claude direct naar Seepje.</li>
+      <li><strong>Volledige controle bij u</strong> — u beslist hieronder per documenttype of Regen er Claude op mag inzetten.
+        Wat u uitvinkt, blijft uitgesloten — Regen werkt dan handmatig op die categorie of laat 'm uit het werk.</li>
+    </ul>
+  </div>
+
+  <!-- Engagement summary -->
+  <div class="card">
+    <h2 style="margin-top:0">Engagement-overzicht</h2>
+    <div class="summary-grid">
+      <div class="summary-grid__key">Engagement</div>
+      <div class="summary-grid__val">Seepje — KvW3-DPP-voucher KVW3-00568</div>
+      <div class="summary-grid__key">Type</div>
+      <div class="summary-grid__val">Voucher (KvW III)</div>
+      <div class="summary-grid__key">Regulatoir kader</div>
+      <div class="summary-grid__val">DSR Verordening (EU) 2026/405 — DPP-verplichting per 23 sept 2029 (voorbereidings-werk)</div>
+      <div class="summary-grid__key">Subsidiebedrag</div>
+      <div class="summary-grid__val">€26.000 excl. BTW · 200 expert-uur</div>
+      <div class="summary-grid__key">Werkpakketten</div>
+      <div class="summary-grid__val">WP1 DPP Roadmap (80 u) · WP2 Datagovernance (80 u) · WP3 Waarde door vrijwillige info in DPP (40 u)</div>
+      <div class="summary-grid__key">Project-einddatum</div>
+      <div class="summary-grid__val">1 december 2026</div>
+      <div class="summary-grid__key">Bewaarplicht</div>
+      <div class="summary-grid__val">31 december 2035 (Vo (EU) 2021/1060 Art 82)</div>
+    </div>
+  </div>
+
+  <!-- Counterparty form -->
+  <div class="card">
+    <h2 style="margin-top:0">1 · Uw gegevens als Verantwoordelijke</h2>
+    <p style="font-size:0.92rem;color:var(--muted);margin-bottom:8px">
+      De grijze velden zijn vooraf ingevuld vanuit het Handelsregister; pas aan indien noodzakelijk.
+      Vul uw eigen contactgegevens in als degene die namens Seepje tekent.
+    </p>
+
+    <h3>Rechtspersoon</h3>
+    <div class="form-grid-2">
+      <div class="form-row">
+        <label class="form-row__label" for="cp_legal_name">Naam rechtspersoon</label>
+        <input class="form-row__input form-row__input--prefilled" type="text" id="cp_legal_name" value="Seepje B.V.">
+      </div>
+      <div class="form-row">
+        <label class="form-row__label" for="cp_legal_form">Rechtsvorm</label>
+        <input class="form-row__input form-row__input--prefilled" type="text" id="cp_legal_form" value="Besloten Vennootschap (B.V.)">
+      </div>
+    </div>
+    <div class="form-grid-2">
+      <div class="form-row">
+        <label class="form-row__label" for="cp_address">Adres</label>
+        <input class="form-row__input form-row__input--prefilled" type="text" id="cp_address" value="Mauritskade 1, 2514 HC Den Haag">
+      </div>
+      <div class="form-row">
+        <label class="form-row__label" for="cp_country">Land van oprichting</label>
+        <input class="form-row__input form-row__input--prefilled" type="text" id="cp_country" value="Nederland">
+      </div>
+    </div>
+    <div class="form-row">
+      <label class="form-row__label" for="cp_registration_number">KvK-nummer</label>
+      <input class="form-row__input form-row__input--prefilled" type="text" id="cp_registration_number" value="65930452">
+    </div>
+
+    <div class="plain" style="margin-top:18px">
+      <div class="plain__label">💡 In klare taal</div>
+      <p>
+        <strong>Wat gebeurt er met de gegevens die u hier invult?</strong> Ze worden versleuteld opgeslagen in onze
+        EU-database (Supabase, Frankfurt) — uw naam en e-mailadres als ciphertext, gekoppeld aan een sleutel
+        die uitsluitend bij u hoort. Ze worden alleen gebruikt voor deze opdracht. Op verzoek wissen we ze via
+        crypto-shredding (we vernietigen uw sleutel; niemand kan de ciphertext nog ontcijferen): 72-uur uitvoerings-SLA
+        na DGA-goedkeuring; eind-tot-eind worst-case 144 uur omdat de DGA eerst tot 72 uur evalueert (legal-hold,
+        retentie-claims). Geen marketing, geen doorverkoop, geen tracking-cookies.
+      </p>
+    </div>
+
+    <h3 style="margin-top:24px">Bevoegd vertegenwoordiger</h3>
+    <div class="form-grid-2">
+      <div class="form-row">
+        <label class="form-row__label" for="cp_rep_name">Volledige naam *</label>
+        <input class="form-row__input" type="text" id="cp_rep_name" placeholder="bv. Voornaam Achternaam" required>
+      </div>
+      <div class="form-row">
+        <label class="form-row__label" for="cp_rep_role">Functie *</label>
+        <input class="form-row__input" type="text" id="cp_rep_role" placeholder="bv. Directeur, CEO, Mede-oprichter" required>
+      </div>
+    </div>
+    <div class="form-grid-2">
+      <div class="form-row">
+        <label class="form-row__label" for="cp_rep_email">E-mailadres *</label>
+        <input class="form-row__input" type="email" id="cp_rep_email" placeholder="naam@seepje.nl" required>
+      </div>
+      <div class="form-row">
+        <label class="form-row__label" for="cp_rep_phone">Telefoonnummer (optioneel)</label>
+        <input class="form-row__input" type="tel" id="cp_rep_phone" placeholder="+31 6 ...">
+      </div>
+    </div>
+  </div>
+
+  <!-- Data governance preview -->
+  <div class="card">
+    <h2 style="margin-top:0">2 · Data governance — wat we doen om uw data te beschermen</h2>
+    <p style="font-size:0.92rem;color:var(--muted);margin-bottom:14px">
+      Korte samenvatting. Volledige juridische uitwerking in de Verwerkersovereenkomst (§ 7 Verplichtingen + § 14 Technische en organisatorische maatregelen) op de volgende pagina.
+    </p>
+    <ul style="font-size:0.94rem;line-height:1.7;margin:0;padding-left:22px">
+      <li><strong>Data-minimalisatie</strong> — alleen verwerking van wat strikt noodzakelijk is voor de Engagement-deliverables.</li>
+      <li><strong>Menselijke review-stap</strong> — alle door AI gegenereerde client-deliverables (rapporten, briefings, slides, e-mails) gaan door een menselijke review door Yvo voordat ze bij u landen, afgedwongen door de <code>document-pipeline</code>-skill (Stages 0-3 + release-gate). Uitzondering: deze Verwerkersovereenkomst en de bijbehorende DPIAs zelf volgen een eigen review-pad (regulatoire-citatie-sweep + DGA-zelfattestatie); zie <code>menselijke-review-stap-enforcement.md</code> § Uitzonderingen.</li>
+      <li><strong>Versleuteling</strong> — per-betrokkene ChaCha20-Poly1305-IETF AEAD (RFC 7539, libsodium, 256-bit sleutel) at-rest; TLS 1.2+ in transit.
+        <div style="font-size:0.88rem;color:#5781A1;margin-top:6px;background:#fffaeb;border-left:3px solid #f0c14b;padding:8px 12px;border-radius:0 6px 6px 0">
+          💡 <strong>In gewone taal</strong>: uw data wordt versleuteld met een moderne, breed-gebruikte standaard — vergelijkbaar met wat WhatsApp, Signal en de meeste webservers gebruiken. De technische naam ChaCha20-Poly1305-IETF verwijst naar het algoritme; RFC 7539 is de internationale standaard. U hoeft de techniek niet te begrijpen — wat telt is dat elke persoon een eigen sleutel heeft, zodat we één persoon kunnen wissen zonder iedereen te raken.
+        </div>
+      </li>
+      <li><strong>Pseudonimisering vóór AI</strong> — identifiers worden vervangen door aliassen vóór elke prompt naar Claude.</li>
+      <li><strong>Hard refuse</strong> — een Claude Code hook scant elke prompt automatisch op BSN, paspoort, CPF, NL IBAN, BIG-nummer en medische context-keywords; bij detectie wordt de prompt geblokkeerd tenzij Yvo expliciet een lawful-basis-override toepast (per-actie). Aanvullend: paste-alias-shield-discipline (zie <code>consent-gate.md</code>) vraagt Claude om bredere privé- en bedrijfsgevoelige patronen vóór elke Anthropic-prompt te aliasen — uitgevoerd door Claude onder Yvo's review. Uitvinken van een document-categorie hieronder zorgt dat die categorie ook hard-refuse krijgt.</li>
+      <li><strong>Append-only audit-trail</strong> — elke toestemmings-actie gelogd in een hash-chain, niet bewerkbaar.</li>
+      <li><strong>Crypto-shred bij verwijdering</strong> — 72-uur uitvoerings-SLA na DGA-goedkeuring van uw verzoek (DGA evalueert legal-hold/retentie-claims binnen max 72 uur vóór goedkeuring; worst-case eind-tot-eind dus 144 uur). Data ook uit back-ups verwijderd (binnen 7 dagen voor PITR-back-ups, 30 dagen voor dagelijkse snapshots).</li>
+      <li><strong>Datalek-melding</strong> — 48 uur naar u, 72 uur naar de Autoriteit Persoonsgegevens bij hoog risico.</li>
+      <li><strong>Subverwerker-transparantie</strong> — vijf partijen (Supabase EU · Anthropic VS · Lettermint NL · Proton CH · GitHub VS); wijzigingen 30 dagen vooraf met objectierecht (45 dagen voor materiële wijzigingen).</li>
+      <li><strong>Ja, fouten kunnen nog steeds gebeuren</strong> — geen systeem is onfeilbaar. Wat we doen wanneer een fout zich voordoet staat hieronder beschreven.</li>
+    </ul>
+
+    <div class="plain" style="margin-top:18px;border-left-color:#93093F">
+      <div class="plain__label" style="color:#93093F">⚠️ Belangrijke voorwaarden — lees deze vóór ondertekening</div>
+      <p>
+        Naast deze Verwerkersovereenkomst tekent u een korte <strong>side-letter</strong> die expliciete kennisneming
+        van vier zakelijke voorwaarden vastlegt:
+      </p>
+      <ul style="margin:6px 0 8px 22px">
+        <li><strong>Aansprakelijkheids-cap</strong> — totale aansprakelijkheid van elke Partij is beperkt tot het
+          grootste van (i) 12 maanden fees, of (ii) <strong>€25.000</strong>-vloer (zie §11 op de volgende pagina).
+          Voor uw Engagement (€26.000) komt dit uit op een effectieve cap van ongeveer €26.000.</li>
+        <li><strong>Geen beroepsaansprakelijkheids-verzekering</strong> — Regen Studio draagt op signing-datum
+          géén PI-polis. U neemt hier expliciet kennis van; geen toezegging tot afsluiten binnen vaste termijn.</li>
+        <li><strong>48-uur breach-meldings-venster</strong> — incident-melding van Regen aan u binnen 48 uur na
+          bekendheid (zie §7 op de volgende pagina); u heeft dan ~24 uur voor uw eigen Art-33-melding aan AP
+          binnen het 72-uurs-venster.</li>
+        <li><strong>Crypto-shred eind-tot-eind worst-case 144 uur</strong> (zie hierboven) — niet de 72 uur die
+          isolated zou kunnen worden gelezen.</li>
+      </ul>
+      <p style="margin-bottom:0">
+        Deze vier punten staan in de side-letter (`side-letter-seepje-NL`) die u samen met de DPA tekent. Doel: dat
+        u deze zakelijke voorwaarden expliciet heeft gezien vóór u tekent — geen verborgen-clausule-risico.
+      </p>
+    </div>
+
+    <div class="plain" style="margin-top:18px">
+      <div class="plain__label">💡 In klare taal</div>
+      <p>
+        <strong>Wat doen we als er tóch iets misgaat?</strong> Geen systeem is onfeilbaar. Onze procédé:
+      </p>
+      <ol style="margin:6px 0 10px 22px">
+        <li><strong>Direct stoppen</strong> — de betreffende sessie of verwerking wordt onmiddellijk gestaakt zodra we het incident detecteren.</li>
+        <li><strong>Binnen 48 uur schriftelijk gemeld aan u</strong> — wat er is gebeurd, welke data, wat we doen om de schade te beperken.</li>
+        <li><strong>Mitigatie</strong> — getroffen data uit Anthropic-context verwijderd (binnen het 7-dagen-retentie-window), paste-alias-shield-regels aangescherpt, incident-log bijgewerkt.</li>
+        <li><strong>Indien materieel</strong> — wij ondersteunen u bij melding aan de Autoriteit Persoonsgegevens binnen 72 uur (AVG art. 33).</li>
+        <li><strong>Open over wat we leren</strong> — incident-response-playbook bijgewerkt, volgende kwartaals-rapportage bevat geanonimiseerde lessons-learned. Een fout houden we niet stil.</li>
+      </ol>
+      <p style="margin-top:14px">
+        <strong>En als we voor u een DPP-demo gaan bouwen die we op onze website hosten?</strong> Dan komen er twee verschillende
+        data-stromen om de hoek: (1) <em>de data die u aan ons verstrekt voor het project</em> — namen, e-mails, leveranciers,
+        productdata, audit-resultaten — die valt onder déze Verwerkersovereenkomst. (2) <em>De bezoekers van uw demo</em> die op
+        <code>regenstudio.world</code> of <code>demos.regenstudio.world</code> landen — die vallen onder onze
+        <a href="privacy.html" target="_blank" rel="noopener">standaard privacy policy</a> (zelfde principes: zero
+        third-party trackers, alle assets self-hosted, IPs gehasht met dagelijks roterend zout). Bij het bouwen
+        van een demo bevestigen we expliciet welk regime op welke data van toepassing is.
+      </p>
+    </div>
+  </div>
+
+  <!-- AI preferences -->
+  <div class="ai-consent">
+    <div class="ai-consent__title">3 · AI-ondersteunde verwerking — uw voorkeuren per documenttype</div>
+    <p class="ai-consent__copy">
+      Hieronder ziet u alle documenttypen die Regen Studio in deze Engagement zou kunnen verwerken. <strong>Alle vinkjes staan
+      standaard aan</strong> — dat is de configuratie waarop Regen Studio's bedrijfsmodel rust en waar u de volle versnelling
+      en analyse-diepte uit haalt. Per categorie kunt u uitvinken — gevolg: Claude doet hard-refuse op die categorie en Regen
+      werkt er handmatig op (of laat het buiten de werkstroom). Niet-gevoelige Claude-ondersteuning (algemene research, openbare
+      bronnen, drafting van publieke teksten) blijft sowieso beschikbaar.
+    </p>
+
+    <h3 style="margin:22px 0 4px 0;font-size:1rem;color:var(--teal)">3a · Werkmateriaal & DPP-data</h3>
+    <div class="doc-toggle-group">
+      <label class="doc-toggle"><input type="checkbox" id="doc_bom" checked> Bills-of-Materials (BoM) en productsamenstelling</label>
+      <label class="doc-toggle"><input type="checkbox" id="doc_suppliers" checked> Leveranciers-overzichten + leveranciers-metadata</label>
+      <label class="doc-toggle"><input type="checkbox" id="doc_conformity" checked> Conformiteitsbeoordeling-stukken (DSR / CLP / biodegradeerbaarheid)</label>
+      <label class="doc-toggle"><input type="checkbox" id="doc_indicators" checked> Milieu-indicator-rapporten (LCA, PEFCR detergenten)</label>
+      <label class="doc-toggle"><input type="checkbox" id="doc_supplychain" checked> Supply-chain audit-resultaten</label>
+      <label class="doc-toggle"><input type="checkbox" id="doc_ufi" checked> UFI-koppeling-data (CLP-/PCN-route)</label>
+      <label class="doc-toggle"><input type="checkbox" id="doc_dpprecord" checked> Concept-DPP-records (JSON / JSON-LD / XML)</label>
+      <label class="doc-toggle"><input type="checkbox" id="doc_formulation_cat" checked> Formulering-data op categorie-niveau (geen volledige recepten)</label>
+    </div>
+
+    <h3 style="margin:22px 0 4px 0;font-size:1rem;color:var(--teal)">3b · Communicatie & projectadministratie</h3>
+    <div class="doc-toggle-group">
+      <label class="doc-toggle"><input type="checkbox" id="doc_email" checked> E-mail-correspondentie binnen het project</label>
+      <label class="doc-toggle"><input type="checkbox" id="doc_meetings" checked> Vergader-notities en agenda's</label>
+      <label class="doc-toggle"><input type="checkbox" id="doc_audio" checked> Audio-opnames + transcripten van bilaterale gesprekken (mits opname-toestemming)</label>
+      <label class="doc-toggle"><input type="checkbox" id="doc_progress" checked> Voortgangs-rapportages voor de voucher</label>
+      <label class="doc-toggle"><input type="checkbox" id="doc_final" checked> Eindrapportage en prestatieverklaringen</label>
+      <label class="doc-toggle"><input type="checkbox" id="doc_comms" checked> Communicatie-uitingen voor het project (brieven, persberichten, social posts)</label>
+    </div>
+
+    <h3 style="margin:22px 0 4px 0;font-size:1rem;color:var(--teal)">3c · Onderzoek & branche-context</h3>
+    <div class="doc-toggle-group">
+      <label class="doc-toggle"><input type="checkbox" id="doc_legal" checked> Wetgevings-documenten (ESPR, DSR, CLP, PCN)</label>
+      <label class="doc-toggle"><input type="checkbox" id="doc_branche" checked> Branche-publicaties (NVZ, Ecolabel, GS1, sector-rapporten)</label>
+      <label class="doc-toggle"><input type="checkbox" id="doc_research" checked> Onderzoeksbronnen en literatuur</label>
+      <label class="doc-toggle"><input type="checkbox" id="doc_competitors" checked> Concurrent- en marktvergelijkingen</label>
+    </div>
+
+    <h3 style="margin:26px 0 4px 0;font-size:1rem;color:var(--teal)">3d · Uw eigen persoonsgegevens als bevoegd vertegenwoordiger</h3>
+    <label>
+      <input type="checkbox" id="ai_processing_consent">
+      <span class="ai-consent__copy">
+        <strong>Ik geef expliciet toestemming</strong> voor AI-verwerking van mijn eigen persoonsgegevens (naam, e-mail,
+        correspondentie waarin ik herkenbaar ben). <em>Standaard NIET aangevinkt.</em>
+      </span>
+    </label>
+    <p class="ai-consent__hint" style="padding-left:36px">
+      Niet-aanvinken bindt de Overeenkomst gewoon — uw eigen persoonsgegevens worden dan vóór elke Claude-prompt gepseudonimiseerd
+      via de alias-shield. U kunt later van gedachten veranderen via <code>regenstudio.world/manage-consent</code>.
+    </p>
+
+    <h3 style="margin:22px 0 4px 0;font-size:1rem;color:var(--teal)">3e · Optionele alias-naam (voor extra bescherming)</h3>
+    <div class="form-row" style="background:rgba(255,255,255,0.55);padding:14px 16px;border-radius:8px;margin-top:6px">
+      <input class="form-row__input" type="text" id="ai_alias_name" placeholder="bv. een door u gekozen alias">
+      <p class="form-row__hint" style="margin-top:8px">
+        Eigen alias-naam in plaats van uw echte naam in Claude-prompts. <strong>Een alias-mailadres is niet beschikbaar</strong> —
+        uw echte e-mail blijft de unieke identifier zodat Regen de afkomst van informatie kan terugvinden.
+      </p>
+    </div>
+
+    <div class="plain" style="margin-top:22px">
+      <div class="plain__label">💡 In klare taal</div>
+      <p>
+        <strong>Wat een uitgevinkte categorie betekent</strong>: Claude doet hard-refuse op die documenten via Regen's data
+        governance. Niets uit die categorie komt in een Claude-prompt — niet gepseudonimiseerd, niet samengevat, niet geanalyseerd.
+        Regen werkt op die categorie handmatig (langzamer, minder grondig). Niet-gevoelige Claude-ondersteuning blijft sowieso
+        actief — algemene research, drafting van publieke teksten, structuur-suggesties.
+      </p>
+      <p>
+        <strong>Wat altijd geldt</strong>, ongeacht uw keuzes: data-minimalisatie, menselijke review-stap door Yvo op alle
+        AI-output vóór levering, hard-refuse op patronen die op BSN/paspoort/medische data lijken, automatische censurering vóór
+        elke prompt op privé- en bedrijfsgevoelige data, en volledige formulering-recepten van Seepje (CLP-bedrijfs-IP) blijven
+        áltijd uitgesloten ongeacht de toggle hierboven.
+      </p>
+      <p>
+        <strong>Werknemers van Seepje.</strong> Bij ondertekening geeft u namens Seepje (als werkgever) opdracht aan Regen
+        om persoonsgegevens van werknemers die met Regen samenwerken voor dit project te verwerken. U bent én blijft de
+        <strong>verwerkings­verantwoordelijke</strong> voor uw werknemers — Regen is uw verwerker.
+      </p>
+      <p>
+        Wettelijke grondslag: <strong>AVG art 6(1)(f)</strong> — uw gerechtvaardigd belang als werkgever om reguliere
+        bedrijfsdiensten (DPP-advisory) uit te besteden, met inachtneming van de drie-staps-toets uit HvJEU C-13/16
+        <em>Rīgas satiksme</em> + EDPB Guidelines 1/2024 (legitimate interest, vastgesteld 8 oktober 2024). <em>Niet</em> art 6(1)(b): die ziet op de noodzaak van verwerking
+        voor de uitvoering van de individuele arbeidsovereenkomst, en uitbesteding aan een DPP-adviseur valt daar niet onder
+        (WP29 Opinion 2/2017 §§ over werknemer-data; AP-richtsnoeren werknemers­gegevens 2023).
+      </p>
+      <p>
+        U informeert uw werknemers volgens AVG art 13/14. Een werknemer die bezwaar wil maken onder
+        <strong>AVG art 21</strong> dient dat <strong>bij u</strong> in (verwerkings­verantwoordelijke), niet bij Regen
+        (verwerker).
+      </p>
+      <p>
+        <strong>Wat wij aanvullend bieden</strong> — als operationele ondersteuning van uw art 13/14 + art 21-naleving, niet
+        als zelfstandig Art 21-recht jegens ons:
+      </p>
+      <ul style="margin:4px 0 8px 22px">
+        <li><strong>Opt-out</strong> per e-mail aan <code>yvo.hunink@regenstudio.world</code>: vanaf bevestiging worden de
+          eigen persoonsgegevens van die werknemer niet meer aan Anthropic voorgelegd.</li>
+        <li><strong>Alias-naam</strong>: Claude ziet alleen een alias; Regen volgt via het echte e-mailadres wie wie is
+          (een alias-mailadres is bewust niet beschikbaar — het e-mailadres is de unieke identifier voor traceerbaarheid).</li>
+      </ul>
+      <p style="margin-bottom:0">
+        Effectuering binnen 5 werkdagen na ontvangst van het verzoek.
+      </p>
+    </div>
+  </div>
+
+  <!-- CTA — proceed to contract -->
+  <div class="sign-section">
+    <button class="sign-btn" id="next-btn" disabled>Verder naar de overeenkomst →</button>
+    <p class="sign-hint">
+      Vul minstens uw naam, functie en e-mailadres in om door te kunnen.<br>
+      Op de volgende pagina ziet u de volledige verwerkersovereenkomst — één doorlopend juridisch document — en tekent u onderaan.
+    </p>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>
+    Regen Studio B.V. · KvK 90337948 · BTW NL865282377B01 · Stollenbergweg 43, 6571 AB Berg en Dal<br>
+    Test-render gegenereerd 2026-04-29 · niet voor publieke distributie · <code>http://localhost/dpa-test-seepje.html</code>
+  </p>
+</footer>
+
+<script>
+  // PRODUCTION wire — Phase 3.
+  // Behaviour:
+  //   1. Read ?token=<hex> from URL.
+  //   2. POST to dpa-verify-token Edge Function. Validate magic-link state
+  //      + retrieve engagement metadata (engagement_label, regulatory_regime,
+  //      project_einddatum, etc.).
+  //   3. On success, render the form (already inline in HTML); on failure,
+  //      show a generic verification_failed message with next-step copy.
+  //   4. On "Verder naar de overeenkomst" click, persist form data +
+  //      token to localStorage, navigate to dpa-contract.html.
+  (function() {
+    const SUPABASE_URL = "https://uemspezaqxmkhenimwuf.supabase.co";
+    const SUPABASE_ANON_KEY = ""; // not needed: dpa-verify-token uses CORS, not auth
+    const VERIFY_TOKEN_URL = SUPABASE_URL + "/functions/v1/dpa-verify-token";
+
+    const params = new URLSearchParams(location.search);
+    const token = (params.get("token") || "").trim().toLowerCase();
+    const TOKEN_RE = /^[0-9a-f]{64}$/;
+
+    const fields = ['cp_rep_name', 'cp_rep_role', 'cp_rep_email'];
+    const nextBtn = document.getElementById('next-btn');
+
+    // Token-state UI — render an alert banner when no/bad token, blocking
+    // form interaction. The form stays rendered for layout but submit is
+    // disabled until verify succeeds.
+    function showTokenError(message) {
+      const banner = document.createElement('div');
+      banner.setAttribute('role', 'alert');
+      banner.style.cssText = 'background:#FFE5E5;border:2px solid #C92A2A;color:#7A0E0E;padding:18px 24px;border-radius:8px;margin:24px auto;max-width:720px;font-size:1rem;line-height:1.6';
+      banner.innerHTML = '<strong>Uitnodiging niet geldig.</strong><br>' + message + '<br><br><strong>Volgende stap:</strong> mail <a href="mailto:yvo.hunink@regenstudio.world?subject=DPA-uitnodiging%20opnieuw" style="color:#C92A2A;text-decoration:underline">yvo.hunink@regenstudio.world</a> voor een nieuwe uitnodiging.';
+      document.body.insertBefore(banner, document.body.firstChild);
+      // Disable submit
+      if (nextBtn) {
+        nextBtn.disabled = true;
+        nextBtn.style.cursor = 'not-allowed';
+        nextBtn.title = 'Eerst een geldige uitnodiging openen';
+      }
+      // Disable all form inputs
+      document.querySelectorAll('input, select, textarea').forEach(el => { el.disabled = true; });
+    }
+
+    if (!TOKEN_RE.test(token)) {
+      showTokenError('De link in uw uitnodigings-mail is incompleet of beschadigd. Open de link rechtstreeks vanuit de e-mail of kopieer de volledige URL.');
+      return;
+    }
+
+    // Verify token + retrieve engagement metadata.
+    let engagementMeta = null;
+    fetch(VERIFY_TOKEN_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: token }),
+    })
+      .then(r => r.json().then(j => ({ ok: r.ok, status: r.status, body: j })))
+      .then(({ ok, status, body }) => {
+        if (!ok || !body || body.success !== true) {
+          showTokenError('Uw uitnodiging kon niet worden geverifieerd. Mogelijke oorzaken: link is verlopen (24 uur geldig), link is al gebruikt, of de URL is incompleet.');
+          return;
+        }
+        engagementMeta = body;
+        // Pre-fill engagement-derived UI hooks (label, type, etc.)
+        const labelEls = document.querySelectorAll('[data-engagement-label]');
+        labelEls.forEach(el => { el.textContent = body.engagement_label || el.textContent; });
+      })
+      .catch(err => {
+        console.error('verify-token failed:', err);
+        showTokenError('Er is een verbindingsstoring. Probeer opnieuw of mail Yvo.');
+      });
+
+    function checkRequired() {
+      const allFilled = fields.every(id => document.getElementById(id).value.trim().length > 0);
+      const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('cp_rep_email').value);
+      nextBtn.disabled = !(allFilled && emailValid && engagementMeta !== null);
+    }
+
+    document.querySelectorAll('input').forEach(el => {
+      el.addEventListener('input', checkRequired);
+    });
+
+    const docToggleIds = [
+      'doc_bom','doc_suppliers','doc_conformity','doc_indicators','doc_supplychain',
+      'doc_ufi','doc_dpprecord','doc_formulation_cat',
+      'doc_email','doc_meetings','doc_audio','doc_progress','doc_final','doc_comms',
+      'doc_legal','doc_branche','doc_research','doc_competitors',
+    ];
+
+    nextBtn.addEventListener('click', () => {
+      if (!engagementMeta) return;
+      const docToggles = {};
+      docToggleIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) docToggles[id] = el.checked;
+      });
+      const formData = {
+        cp_legal_name:           document.getElementById('cp_legal_name').value,
+        cp_legal_form:           document.getElementById('cp_legal_form').value,
+        cp_address:              document.getElementById('cp_address').value,
+        cp_country:              document.getElementById('cp_country').value,
+        cp_registration_number:  document.getElementById('cp_registration_number').value,
+        cp_rep_name:             document.getElementById('cp_rep_name').value,
+        cp_rep_role:             document.getElementById('cp_rep_role').value,
+        cp_rep_email:            document.getElementById('cp_rep_email').value.trim().toLowerCase(),
+        cp_rep_phone:            document.getElementById('cp_rep_phone').value || '',
+        ai_alias_name:           document.getElementById('ai_alias_name').value || '',
+        ai_processing_consent:   document.getElementById('ai_processing_consent').checked,
+        doc_toggles:             docToggles,
+        _saved_at:               new Date().toISOString(),
+      };
+      // Persist form data + token + engagement meta for the contract page.
+      try {
+        sessionStorage.setItem('dpa_intake_formdata', JSON.stringify(formData));
+        sessionStorage.setItem('dpa_intake_token', token);
+        sessionStorage.setItem('dpa_intake_engagement', JSON.stringify(engagementMeta));
+      } catch (e) {
+        console.error('sessionStorage write failed:', e);
+        alert('Uw browser blokkeert opslag. Schakel cookies/storage tijdelijk in voor regenstudio.world.');
+        return;
+      }
+      // Forward token in URL query (defensive — also in sessionStorage).
+      window.location.href = 'dpa-contract.html?token=' + encodeURIComponent(token);
+    });
+
+    // Restore saved form data if the user navigates back from contract page.
+    try {
+      const saved = JSON.parse(sessionStorage.getItem('dpa_intake_formdata') || '{}');
+      Object.entries(saved).forEach(([k, v]) => {
+        const el = document.getElementById(k);
+        if (!el) return;
+        if (el.type === 'checkbox') el.checked = !!v;
+        else if (typeof v === 'string') el.value = v;
+      });
+      if (saved.doc_toggles) {
+        Object.entries(saved.doc_toggles).forEach(([id, checked]) => {
+          const el = document.getElementById(id);
+          if (el) el.checked = !!checked;
+        });
+      }
+    } catch (e) { /* ignore */ }
+
+    checkRequired();
+  })();
+</script>
+</body>
+</html>

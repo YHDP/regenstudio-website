@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>TEST — Verwerkersovereenkomst Seepje × Regen Studio</title>
+  <link rel="stylesheet" href="assets/fonts/inter.css">
+  <style>
+    :root {
+      --emerald: #006d38;
+      --teal: #00728b;
+      --gold: #7a5814;
+      --ink: #1a1a2e;
+      --muted: #5b6470;
+      --border: #d8dbe0;
+      --bg: #f7f8f9;
+      --white: #ffffff;
+      --warn-bg: #fff8e1;
+      --warn-border: #f0c14b;
+      --plain-bg: #fffaeb;
+      --plain-border: #f0c14b;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    .test-banner {
+      background: var(--warn-bg);
+      border-bottom: 2px solid var(--warn-border);
+      padding: 10px 20px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #7a5814;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav {
+      background: var(--white);
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner {
+      max-width: 880px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .nav__logo { width: 44px; height: 44px; }
+    .nav__brand { font-weight: 700; font-size: 1.05rem; color: var(--ink); }
+    .nav__back {
+      margin-left: auto;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+    }
+    .nav__back:hover { color: var(--emerald); }
+    main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 36px 24px 80px;
+    }
+    h1 {
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 700;
+      margin: 0 0 6px;
+      letter-spacing: -0.01em;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.02rem;
+      margin: 0 0 24px;
+    }
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 36px 0 12px;
+      color: var(--emerald);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+    h3 {
+      font-size: 1.02rem;
+      font-weight: 600;
+      margin: 22px 0 8px;
+    }
+    p { margin: 0 0 12px; }
+    ul, ol { padding-left: 22px; }
+    li { margin-bottom: 4px; }
+    code {
+      background: #f0f3f5;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 0.86em;
+    }
+    .toggle-bar {
+      background: #f0f4f7;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 3px;
+      display: inline-flex;
+      gap: 0;
+      margin-bottom: 18px;
+    }
+    .toggle-bar button {
+      border: none;
+      background: transparent;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.84rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .toggle-bar button.is-active {
+      background: var(--ink);
+      color: var(--white);
+    }
+    .plain {
+      background: var(--plain-bg);
+      border-left: 3px solid var(--plain-border);
+      border-radius: 6px;
+      padding: 11px 14px 11px 16px;
+      margin: 8px 0 16px;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    .plain__label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .plain p:last-child { margin-bottom: 0; }
+    body.plain-only .legal,
+    body.legal-only .plain {
+      display: none;
+    }
+    /* Audit F2 — side-letter §17a is acknowledged at sign time and MUST remain
+       visible in every toggle mode (plain-only, legal-only, both). Otherwise
+       a controller signing in 'Alleen klare taal' mode confirms reading a
+       section that was hidden. .always-visible escapes the toggle filters. */
+    body.plain-only .always-visible,
+    body.legal-only .always-visible {
+      display: block !important;
+    }
+    .summary-card {
+      background: #f1faf4;
+      border: 2px solid var(--emerald);
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 28px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 6px 16px;
+      font-size: 0.92rem;
+    }
+    .summary-grid > div:nth-child(odd) { color: var(--muted); font-weight: 500; }
+    table.party-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 12px;
+      font-size: 0.94rem;
+    }
+    table.party-table td {
+      padding: 6px 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    table.party-table td:first-child {
+      color: var(--muted);
+      font-weight: 500;
+      width: 40%;
+    }
+    .pre-fill { color: var(--emerald); font-weight: 600; }
+    .pre-fill--missing { color: #b91c1c; font-style: italic; font-weight: 600; }
+    .sign-section {
+      background: var(--white);
+      border: 2px solid var(--emerald);
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 36px;
+    }
+    .sign-section h2 { margin-top: 0; border: none; padding: 0; }
+    .sign-confirm {
+      background: #f1faf4;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 18px 0;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 0.92rem;
+    }
+    .sign-confirm input {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      accent-color: var(--emerald);
+    }
+    .sign-btn {
+      background: var(--emerald);
+      color: var(--white);
+      border: none;
+      padding: 14px 36px;
+      border-radius: 10px;
+      font-size: 1.02rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      width: 100%;
+    }
+    .sign-btn:hover:not(:disabled) { background: #008545; }
+    .sign-btn:disabled { background: #9ba2aa; cursor: not-allowed; }
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(26,26,46,0.6);
+      z-index: 1000;
+      padding: 24px;
+      overflow: auto;
+    }
+    .modal--open { display: flex; align-items: flex-start; justify-content: center; }
+    .modal__inner {
+      background: var(--white);
+      border-radius: 14px;
+      max-width: 720px;
+      width: 100%;
+      padding: 32px;
+      margin: auto;
+    }
+    pre.payload {
+      background: #f5f7f9;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      font-size: 0.82rem;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      line-height: 1.4;
+    }
+    .modal__close {
+      background: var(--ink);
+      color: var(--white);
+      border: none;
+      padding: 10px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.94rem;
+      margin-top: 16px;
+    }
+    .alert {
+      background: #fee2e2;
+      border: 1px solid #fca5a5;
+      color: #991b1b;
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin: 24px 0;
+    }
+    .download-cta {
+      background: #fff8e1;
+      border: 1px dashed var(--gold);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 18px 0 24px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .download-cta__copy {
+      flex: 1 1 240px;
+      min-width: 240px;
+    }
+    .download-cta__copy strong {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 0.96rem;
+    }
+    .download-cta__copy span {
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+    .download-btn {
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.94rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .download-btn:hover { background: #5d4310; }
+    @media print {
+      .test-banner, .nav, .toggle-bar, .sign-section, .modal, .download-cta, .footer, .nav__back {
+        display: none !important;
+      }
+      body.concept-print .legal,
+      body.concept-print .plain {
+        display: block !important;
+      }
+      body.concept-print::before {
+        content: "CONCEPT — NIET ONDERTEKEND";
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-30deg);
+        font-size: 5rem;
+        color: rgba(122, 88, 20, 0.10);
+        font-weight: 700;
+        z-index: 0;
+        pointer-events: none;
+        white-space: nowrap;
+        letter-spacing: 0.04em;
+      }
+      main { padding: 0; max-width: none; }
+      h1 { font-size: 1.7rem; }
+      h2 { font-size: 1.15rem; page-break-after: avoid; }
+      h3 { font-size: 1rem; page-break-after: avoid; }
+      .summary-card { page-break-inside: avoid; }
+      ul, ol, table { page-break-inside: avoid; }
+      a { color: inherit; text-decoration: none; }
+      body { background: white; font-size: 11pt; }
+      @page { size: A4; margin: 18mm 16mm; }
+    }
+    .footer {
+      max-width: 880px;
+      margin: 60px auto 40px;
+      padding: 0 24px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="prod-banner" role="status" aria-live="polite" style="background:#E8F5E9;border-bottom:4px solid #00914B;color:#1B5E20;padding:10px 16px;text-align:center;font-size:0.95rem">
+  <strong>✅ Stap 2 van 2 — Onderteken (productie)</strong> &nbsp;·&nbsp; Uw klik op "Onderteken" hieronder is <strong>juridisch bindend</strong> onder eIDAS Art 25(1) — gelijkwaardig aan een handgeschreven handtekening.
+</div>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <svg class="nav__logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Regen Studio">
+      <polygon points="32,8 56,52 8,52" fill="#006d38"/>
+      <polygon points="32,20 46,46 18,46" fill="#65DD35" opacity="0.6"/>
+    </svg>
+    <span class="nav__brand">Regen Studio</span>
+    <a href="dpa-test-seepje.html" class="nav__back">← Gegevens aanpassen</a>
+  </div>
+</nav>
+
+<main>
+
+  <h1>Verwerkersovereenkomst</h1>
+  <p class="subtitle">tussen <strong>Seepje B.V.</strong> en <strong>Regen Studio B.V.</strong> · KvW3-DPP-voucher KVW3-00568</p>
+
+  <div class="download-cta">
+    <div class="download-cta__copy">
+      <strong>📄 Download concept-PDF</strong>
+      <span>Voor offline lezen of intern delen — niet ondertekend, geen e-mail verstuurd. Watermerk "CONCEPT" wordt automatisch toegevoegd.</span>
+    </div>
+    <button type="button" class="download-btn" id="download-concept-btn">Download concept</button>
+  </div>
+
+  <div id="missing-data-alert" class="alert" style="display:none">
+    <strong>Geen gegevens gevonden.</strong> Het lijkt erop dat u rechtstreeks op deze pagina bent geland zonder eerst stap 1 te doorlopen.
+    Ga eerst naar <a href="dpa-test-seepje.html">de invul-pagina</a> om uw gegevens en voorkeuren in te vullen.
+  </div>
+
+  <div class="toggle-bar">
+    <button id="toggle-both" class="is-active" type="button">⚖️📖 Beide</button>
+    <button id="toggle-plain" type="button">📖 Alleen klare taal</button>
+    <button id="toggle-legal" type="button">⚖️ Alleen juridisch</button>
+  </div>
+
+  <!-- Engagement compact summary -->
+  <div class="summary-card">
+    <div class="summary-grid">
+      <div>Project</div><div>Seepje DPP-voucher KVW3-00568 (€26.000 excl. BTW · 200 expert-uur)</div>
+      <div>Werkpakketten</div><div>WP1 DPP Roadmap (80 u) · WP2 Datagovernance (80 u) · WP3 Waarde door vrijwillige info in DPP (40 u)</div>
+      <div>Looptijd</div><div>januari 2026 – 1 december 2026 (project-einddatum)</div>
+      <div>Bewaarplicht</div><div>tot 31 december 2035 (Vo (EU) 2021/1060 Art 82)</div>
+      <div>Regulatoir kader</div><div>DSR Verordening (EU) 2026/405 — DPP-verplichting per 23 sept 2029 (voorbereidings-werk)</div>
+    </div>
+  </div>
+
+  <!-- §1 Partijen -->
+  <h2>§ 1 · Partijen</h2>
+  <div class="legal">
+    <p>Deze Verwerkersovereenkomst (hierna: "Overeenkomst") is gesloten tussen:</p>
+
+    <p><strong>De Verwerker</strong></p>
+    <table class="party-table">
+      <tr><td>Naam rechtspersoon</td><td>Regen Studio B.V.</td></tr>
+      <tr><td>Vestigingsadres</td><td>Stollenbergweg 43, 6571 AB, Berg en Dal</td></tr>
+      <tr><td>KvK-nummer</td><td>90337948</td></tr>
+      <tr><td>BTW-nummer</td><td>NL865282377B01</td></tr>
+      <tr><td>Bevoegd vertegenwoordiger</td><td>Yvo Hunink (DGA / Bestuurder)</td></tr>
+      <tr><td>Contactadres voor deze Overeenkomst</td><td>yvo.hunink@regenstudio.world</td></tr>
+    </table>
+
+    <p><strong>De Verantwoordelijke</strong></p>
+    <table class="party-table">
+      <tr><td>Naam rechtspersoon</td><td><span class="pre-fill" data-field="cp_legal_name">—</span></td></tr>
+      <tr><td>Rechtsvorm</td><td><span class="pre-fill" data-field="cp_legal_form">—</span></td></tr>
+      <tr><td>Adres</td><td><span class="pre-fill" data-field="cp_address">—</span></td></tr>
+      <tr><td>Land van oprichting</td><td><span class="pre-fill" data-field="cp_country">—</span></td></tr>
+      <tr><td>KvK-nummer</td><td><span class="pre-fill" data-field="cp_registration_number">—</span></td></tr>
+      <tr><td>Bevoegd vertegenwoordiger</td><td><span class="pre-fill" data-field="cp_rep_name">—</span></td></tr>
+      <tr><td>Functie</td><td><span class="pre-fill" data-field="cp_rep_role">—</span></td></tr>
+      <tr><td>Contact-e-mailadres</td><td><span class="pre-fill" data-field="cp_rep_email">—</span></td></tr>
+      <tr><td>Telefoonnummer (optioneel)</td><td><span class="pre-fill" data-field="cp_rep_phone">—</span></td></tr>
+    </table>
+
+    <p>De vertegenwoordiger van de Verantwoordelijke verklaart dat hij/zij bevoegd is om de Verantwoordelijke aan deze Overeenkomst te binden.</p>
+  </div>
+  <div class="plain">
+    <div class="plain__label">💡 In klare taal</div>
+    <p>U leest hier wie deze overeenkomst sluit. Bovenaan: Regen Studio. Daaronder: u — de gegevens zijn vooraf ingevuld op basis van wat u op de vorige pagina heeft opgegeven.</p>
+  </div>
+
+  <!-- §2 Definities -->
+  <h2>§ 2 · Definities</h2>
+  <div class="legal">
+    <p>De termen <strong>persoonsgegevens</strong>, <strong>verwerking</strong>, <strong>verantwoordelijke</strong>, <strong>verwerker</strong>, <strong>subverwerker</strong>, <strong>betrokkene</strong>, <strong>inbreuk in verband met persoonsgegevens</strong>, en <strong>toezichthoudende autoriteit</strong> hebben de betekenis die hieraan is gegeven in Artikel 4 van de Algemene Verordening Gegevensbescherming (Verordening (EU) 2016/679, "AVG"). Verwijzingen naar AVG-artikelen zijn naar die Verordening.</p>
+  </div>
+  <div class="plain">
+    <div class="plain__label">💡 In klare taal</div>
+    <p>De woorden uit de AVG (zoals "persoonsgegevens" en "verwerking") betekenen hier hetzelfde als wat de wet zegt. Geen aparte interpretaties.</p>
+  </div>
+
+  <!-- §3 Onderwerp van de overeenkomst -->
+  <h2>§ 3 · Onderwerp van de overeenkomst</h2>
+  <div class="legal">
+    <p>De Verwerker levert in opdracht van de Verantwoordelijke de Diensten zoals beschreven in de <strong>Offerte Voucher Regeling — Seepje — Regen Studio</strong> in het kader van het KvW3-DPP-voucher-project KVW3-00568 (verleningsbeschikking d.d. 19 april 2026). De werkzaamheden bestaan uit drie werkpakketten:</p>
+    <ul>
+      <li><strong>WP1 — DPP Roadmap</strong> (80 uur): juridische kaders ESPR + DSR · technische eisen · informatiecategorieën · no-regret-voorbereidingen incl. NVZ-interview en workshop · planning met milestones.</li>
+      <li><strong>WP2 — Datagovernance</strong> (80 uur): informatieketens inzichtelijk maken · datagaps · processen en methoden voor databeschikbaarheid · verifieerbaar aantoonbaar maken van informatie en certificering.</li>
+      <li><strong>WP3 — Waarde door vrijwillige informatie in het DPP</strong> (40 uur): klantwaarde · leveranciersketen-optimalisatie · circulaire business-modellen · stimuleren verdere verduurzaming.</li>
+    </ul>
+    <p>Het doel is de Verantwoordelijke voorbereiden op het DSR-DPP-regime per 23 september 2029, het op niveau brengen van datagovernance, en het identificeren van waarde door het DPP bovenop wettelijke compliance, in lijn met de KvW3-DPP-voucher-vereisten (Bijlage 1 Handboek EFRO 2021-2027 v2 + Voucherregeling DPP §5.3).</p>
+    <p>Een nevendoel is uitwisseling met branchevereniging NVZ.</p>
+  </div>
+  <div class="plain">
+    <div class="plain__label">💡 In klare taal</div>
+    <p>Drie blokken werk: routekaart richting DPP-compliance, datagovernance op orde brengen, en verkennen wat extra waarde een DPP u kan opleveren. NVZ wordt erbij betrokken.</p>
+  </div>
+
+  <!-- §4 Categorieën persoonsgegevens en betrokkenen -->
+  <h2>§ 4 · Categorieën persoonsgegevens en betrokkenen</h2>
+  <div class="legal">
+    <p>De Verwerker verwerkt namens de Verantwoordelijke onder deze Overeenkomst de volgende categorieën persoonsgegevens:</p>
+    <ul>
+      <li>direct contactgegevens van de bevoegd vertegenwoordiger en personeelsleden van de Verantwoordelijke;</li>
+      <li>direct contactgegevens van surfactant- en grondstof-leveranciers en hun vertegenwoordigers;</li>
+      <li>economic-operator-identifiers bestemd voor publieke openbaarmaking onder DSR-DPP per 23 september 2029;</li>
+      <li>correspondentie-inhoud (e-mails, chat), vergader-metadata, audio-opnames en transcripten van bilaterale gesprekken (mits opname-toestemming onder het transcript-toestemmings-protocol);</li>
+      <li>operator-authored notities, minutes en samenvattingen.</li>
+    </ul>
+    <p>Geen bijzondere categorieën persoonsgegevens in de zin van Art 9 AVG vallen onder de scope van deze Overeenkomst.</p>
+    <p>De betrokkenen zijn: de bevoegd vertegenwoordiger en personeelsleden van de Verantwoordelijke, leveranciers-vertegenwoordigers, supply-chain-individuen voor zover identificeerbaar, en conferentie-/evenement-contacten via deze Engagement.</p>
+  </div>
+  <div class="plain">
+    <div class="plain__label">💡 In klare taal</div>
+    <p>Welke gegevens komen er bij Regen langs? Vooral: namen + e-mails van u, uw personeel, en uw leveranciers. E-mails, vergader-notities, en (met opname-toestemming) audio-opnames. Géén medische, religieuze of politieke gegevens.</p>
+  </div>
+
+  <!-- §5 Looptijd en bewaartermijn -->
+  <h2>§ 5 · Looptijd en bewaartermijn</h2>
+  <div class="legal">
+    <p>Deze Overeenkomst treedt in werking op de datum van de laatste handtekening en blijft van kracht voor de duur van de Engagement (project-einddatum 1 december 2026 + aansluitende vaststellings- en bezwaartermijnen), plus de wettelijke bewaartermijnen.</p>
+    <p>Bewaarplicht voor de projectadministratie: tot en met <strong>31 december 2035</strong>, gebaseerd op het langste van: (i) Vo (EU) 2021/1060 Art 82(1) — 5 jaar vanaf 31 december van het jaar van laatste betaling door de Beheerautoriteit; (ii) Vo (EU) 2023/2831 (de-minimis) — 10 jaar vanaf de datum van toekenning van de subsidie (19 april 2026); (iii) Handboek EFRO 2021-2027 v2 administratieve marge. Voor fiscale stukken geldt de zevenjarige termijn van Artikel 52(4) Algemene Wet inzake Rijksbelastingen.</p>
+  </div>
+  <div class="plain">
+    <div class="plain__label">💡 In klare taal</div>
+    <p>Project loopt tot 1 december 2026. Daarna moet de boekhouding 10 jaar bewaard blijven (EU-subsidieregel) — niet de gewone correspondentie.</p>
+  </div>
+
+  <!-- §6 Instructies + flex clause -->
+  <h2>§ 6 · Instructies van de Verantwoordelijke</h2>
+  <div class="legal">
+    <p>De Verwerker verwerkt persoonsgegevens uitsluitend op grond van schriftelijke instructies van de Verantwoordelijke, ook ten aanzien van doorgiften aan een derde land of internationale organisatie, tenzij Unie- of lidstatelijk recht hem daartoe verplicht (in welk geval de Verwerker de Verantwoordelijke vooraf informeert, tenzij die wetgeving dat verbiedt op gewichtige gronden van algemeen belang). <em>(AVG Art 28(3)(a))</em></p>
+    <p>Deze Overeenkomst, in samenhang met latere schriftelijke communicatie tussen Partijen, vormt de schriftelijke instructies van de Verantwoordelijke.</p>
+    <p>De Verantwoordelijke verklaart (i) een geldige grondslag onder Art 6 AVG (en, waar van toepassing, Art 9 AVG) te hebben voor de Verwerking; (ii) betrokkenen de transparantie-informatie onder Art 13–14 AVG te hebben verstrekt; en (iii) waar AI-ondersteunde verwerking aan de orde is, hetzij `ai_processing`-toestemming te hebben verkregen, hetzij een alternatieve grondslag te hebben gedocumenteerd.</p>
+
+    <h3>§ 6.1 · Flexibiliteits-clausule (DPP novel-field)</h3>
+    <p>Gegeven de onzekerheid en snelheid van ontwikkeling in het DPP- en DSR-veld kan de Verantwoordelijke gedurende de Engagement op ad-hoc basis aanvullende documenten, data of informatie aan de Verwerkings-scope toevoegen door per e-mail aan de Verwerker de betreffende stukken aan te leveren of een verwijzing/link daarnaar te delen. Een dergelijke e-mail van de bevoegd vertegenwoordiger geldt als schriftelijke verlenging van de instructies onder deze § 6. De Verwerker bevestigt de ontvangst <strong>schriftelijk binnen vijf (5) werkdagen</strong> per retour-e-mail (zie side-letter § 5) en neemt — voor zover van toepassing — de toevoeging op in een <code>scope-amendment-log.md</code> in het projectdossier. Hetzelfde mechanisme kan worden gebruikt om de scope te beperken. Materiële wijzigingen die de categorieën persoonsgegevens (Annex B § B.3) of het regulatoire regime raken, leiden tot een formele Schedule-revisie.</p>
+  </div>
+  <div class="plain">
+    <div class="plain__label">💡 In klare taal</div>
+    <p>Regen werkt alleen op uw schriftelijke instructies. Deze Overeenkomst plus latere e-mails van u zijn die instructies. Het DPP-veld verandert snel — u hoeft niet steeds een addendum te ondertekenen om iets toe te voegen of te beperken; een gewone e-mail van u aan Regen volstaat ("hier is dat extra rapport, neem mee" of "haal dit uit scope"). Regen bevestigt en bewaart die.</p>
+  </div>
+
+  <!-- §7 Verplichtingen Verwerker -->
+  <h2>§ 7 · Verplichtingen van de Verwerker (Art 28(3) AVG)</h2>
+  <div class="legal">
+    <h3>§ 7.1 · Vertrouwelijkheid</h3>
+    <p>Personen die bevoegd zijn de persoonsgegevens te verwerken hebben zich tot vertrouwelijkheid verbonden of zijn door een passende wettelijke geheimhoudingsplicht gebonden. <em>(Art 28(3)(b))</em></p>
+
+    <h3>§ 7.2 · Beveiliging</h3>
+    <p>De Verwerker treft passende technische en organisatorische maatregelen om een op het risico afgestemd beveiligingsniveau te waarborgen, conform Art 32 AVG. De TOMs zijn opgenomen in § 14 van deze Overeenkomst.</p>
+
+    <h3>§ 7.3 · Bijstand bij betrokkenenrechten</h3>
+    <p>De Verwerker ondersteunt de Verantwoordelijke met passende technische en organisatorische maatregelen, voor zover mogelijk, bij de nakoming van verzoeken van betrokkenen onder Art 12–22 AVG. <em>(Art 28(3)(e))</em>. De Verwerker bevestigt door de Verantwoordelijke doorgestuurde verzoeken binnen vijf (5) werkdagen en levert binnen vijftien (15) kalenderdagen de informatie nodig voor een inhoudelijk antwoord.</p>
+
+    <h3>§ 7.4 · Bijstand bij beveiliging, inbreuk-melding en DPIA</h3>
+    <p>De Verwerker ondersteunt de Verantwoordelijke bij naleving van Art 32–36 AVG. <em>(Art 28(3)(f))</em>. Bij een inbreuk in verband met persoonsgegevens binnen de Engagement-scope meldt de Verwerker dit aan de Verantwoordelijke <strong>zonder onnodige vertraging en in elk geval binnen achtenveertig (48) uur na bekend worden</strong>, met de informatie vereist onder Art 33(3) voor zover op dat moment beschikbaar. Voor de toepassing van deze clausule wordt de Verwerker geacht <strong>"bekend te zijn"</strong> wanneer hij een redelijke mate van zekerheid heeft dat een veiligheidsincident heeft plaatsgevonden en heeft geleid tot het in gevaar komen van persoonsgegevens (EDPB Guidelines 9/2022 § 14). Niet-bevestigde signalen (bv. nieuws-bericht, sociale-media-gerucht, niet-geverifieerd derde-partij-rapport zonder onderbouwing) starten de 48-uurs-klok niet — die starten een onderzoek-window van maximaal 24 uur waarbinnen de Verwerker aantoonbaar inspanning levert om het signaal te bevestigen of weerleggen; bij bevestigde indicatoren begint de 48-uurs-klok te lopen vanaf het moment van bevestiging.</p>
+
+    <h3>§ 7.5 · Teruggave of verwijdering bij einde-Diensten</h3>
+    <p>Bij beëindiging van de Engagement verwijdert of retourneert de Verwerker, naar keuze van de Verantwoordelijke, alle persoonsgegevens en verwijdert bestaande kopieën, tenzij Unie- of lidstatelijk recht opslag vereist (zie § 5 over de bewaarplicht). De keuze kan schriftelijk worden uitgedrukt tot uiterlijk dertig (30) dagen na beëindiging; bij gebrek aan keuze gaat de Verwerker standaard over tot verwijdering.</p>
+    <p>Het verwijderingsmechanisme is <strong>crypto-shredding</strong>: de per-betrokkene Data Encryption Key (DEK) wordt vernietigd, waardoor alle opgeslagen ciphertext onherstelbaar wordt. Audit-trail-entries (UUID + actie + timestamp + hash-chain) worden bewaard voor verantwoording onder Art 5(2) AVG; deze bevatten geen plain-text persoonsgegevens. Streefwaarde: voltooid binnen tweeënzeventig (72) uur na <strong>DGA-goedkeuring van het verwijderings-verzoek</strong> (zie crypto-shred runbook stage 4). Aan de DGA-goedkeuring gaat een evaluatie-venster van maximaal 72 uur vooraf (runbook stage 1) waarin de DGA legal-hold, retentie-claims en uitsluitingen beoordeelt; worst-case looptijd van trigger tot voltooide shred is daarmee 144 uur (6 dagen). Plaintext-data (bv. e-mail-correspondentie) wordt binnen hetzelfde 72-uurs-uitvoerings-venster hard-verwijderd en gepropageerd naar back-ups conform het rotatiebeleid in § 14.7.</p>
+
+    <h3>§ 7.6 · Carve-out voor publiek DPP-register</h3>
+    <p>Waar persoonsgegevens een economic operator identificeren in de zin van DSR Verordening (EU) 2026/405 Art 21–22 + Annex VI (of analoog onder ESPR (EU) 2024/1781 Art 7 + Art 8, CPR 2024/3110, EUDR 2023/1115, Batterijenverordening 2023/1542) en zijn opgenomen in een publiek DPP-register dat onder die regelgeving wordt ingesteld, strekt de verwijderingsplicht onder § 7.5 zich niet uit tot (a) het gepubliceerde DPP-record zelf en (b) audit-trail-entries die noodzakelijk zijn ter onderbouwing van conformiteits­beoordelings-lineage. § 7.3 (betrokkenenrechten-bijstand) wordt consistent uitgelegd: bij verzoeken die persoonsgegevens betreffen die de Verantwoordelijke heeft laten publiceren, verwijst de Verwerker naar het regulatoire kader dat register-rectificatie beheerst.</p>
+
+    <h3>§ 7.7 · Audit en inspectie</h3>
+    <p>De Verwerker stelt aan de Verantwoordelijke alle informatie ter beschikking nodig om naleving van § 7 en Art 28 AVG aan te tonen, en faciliteert audits door de Verantwoordelijke of een door haar gemandateerde auditor. <em>(Art 28(3)(h))</em>. Audit-modaliteiten: on-site of remote document-gebaseerd, met redelijke voorafgaande kennisgeving (gebruikelijk <strong>30 dagen</strong> voor reguliere audits; <strong>5 werkdagen</strong> voor incident-driven, toezichthouder-driven of EFRO-controle-driven audits — zie side-letter § 6). Een door de Verantwoordelijke gemandateerde derde-auditor ondertekent vóór de audit een schriftelijke vertrouwelijkheidsverklaring jegens de Verwerker en is geen concurrent van de Verwerker. De Verwerker informeert de Verantwoordelijke onmiddellijk indien een instructie naar zijn mening inbreuk maakt op de AVG.</p>
+  </div>
+  <div class="plain">
+    <div class="plain__label">💡 In klare taal</div>
+    <p>Wat Regen u belooft, in praktische termen: vertrouwelijkheid, technische beveiliging (zie § 14), hulp wanneer iemand zijn AVG-rechten uitoefent, en een snelle melding als er een datalek is (binnen 48 uur). Aan het einde van het project: alles weg binnen 72 uur, behalve wat de wet vereist te bewaren of wat in een publiek DPP-register staat.</p>
+    <p>U mag ook auditen — Regen geeft u toegang tot wat nodig is. Een externe auditor moet wel een geheimhoudingsverklaring tekenen.</p>
+  </div>
+
+  <!-- §8 AI -->
+  <h2>§ 8 · AI-ondersteunde verwerking</h2>
+  <div class="legal">
+    <p>De Verwerker zet <strong>Anthropic PBC</strong> (Claude API) in als subverwerker voor AI-ondersteunde drafting, analyse, structurering en samenvatting binnen de Engagement. Dit gebeurt onder de volgende voorwaarden:</p>
+    <ul>
+      <li>AI-ondersteunde verwerking van persoonsgegevens vindt alleen plaats waar de betreffende betrokkene expliciete <code>ai_processing</code>-toestemming heeft verleend, óf waar de Verantwoordelijke een alternatieve grondslag onder Art 6 AVG heeft gedocumenteerd en die Verwerking schriftelijk heeft geïnstrueerd;</li>
+      <li>de paste-alias-shield van de Verwerker (zie § 14.4) vervangt directe identifiers door interne aliassen vóór elke prompt waar mogelijk;</li>
+      <li>volledige formulering-recepten van Seepje (CLP-bedrijfs-IP) worden uitgesloten van AI-verwerking;</li>
+      <li>data wordt na 7 dagen automatisch door Anthropic gewist (Anthropic's standaard sinds 2025-09-14); niet gebruikt voor het trainen van modellen.</li>
+    </ul>
+
+    <h3>§ 8.1 · Werknemers van de Verantwoordelijke</h3>
+    <p>Door ondertekening van deze Overeenkomst geeft de Verantwoordelijke (als werkgever) schriftelijke instructie aan de Verwerker om de namen, e-mailadressen, correspondentie-inhoud en — waar opgenomen onder het transcript-toestemmings-protocol — audio-opnames van haar werknemers die in het kader van deze Engagement met de Verwerker in contact treden, te verwerken voor de in §§ 3, 4 en 8 beschreven doelen. <strong>De Verantwoordelijke is en blijft Verwerkings­verantwoordelijke</strong> voor deze verwerking; de Verwerker handelt uitsluitend als Verwerker in de zin van Art 4(8) AVG.</p>
+    <p>De grondslag voor deze verwerking is <strong>Art 6(1)(f) AVG</strong> — het gerechtvaardigd belang van de Verantwoordelijke als werkgever om reguliere bedrijfsdiensten (DPP-advisory) uit te besteden, met inachtneming van de drie-staps-toets uit HvJEU C-13/16 <em>Rīgas satiksme</em> en EDPB Guidelines 1/2024 (legitimate interest onder Art 6(1)(f) AVG, vastgesteld 8 oktober 2024) — purpose · necessity · balancing. Niet <strong>Art 6(1)(b) AVG</strong>: die grondslag vereist dat de verwerking noodzakelijk is voor de uitvoering van de individuele arbeidsovereenkomst tussen werknemer en werkgever, en uitbesteding aan een externe DPP-adviseur valt daar buiten (cf. WP29 Opinion 2/2017 over data processing at work + AP-richtsnoeren werknemersgegevens 2023). Werknemer-toestemming als grondslag wordt in een werkgever-werknemer-relatie conform EDPB Guidelines 5/2020 §§ 21–22 in beginsel niet als "vrij gegeven" beschouwd en wordt om die reden niet als grondslag ingeroepen.</p>
+    <p>Werknemers behouden hun AVG-rechten — waaronder het <strong>Art 21-bezwaarrecht</strong>, dat correspondeert met de op Art 6(1)(f) gebaseerde verwerking — en oefenen deze rechtstreeks uit bij de <strong>Verantwoordelijke</strong> (Verwerkings­verantwoordelijke), niet bij de Verwerker. De Verantwoordelijke draagt zorg voor passende interne transparantie aan haar werknemers over deze regeling, conform Art 13 AVG informatieverplichting werkgever.</p>
+    <p>Als <strong>operationele ondersteuning</strong> — een Technische en Organisatorische Maatregel (TOM) die de Art 13/14 + Art 21-naleving van de Verantwoordelijke ondersteunt, geen zelfstandig Art-21-recht jegens de Verwerker — biedt de Verwerker de volgende opt-out-paden voor werknemers, te effectueren binnen vijf (5) werkdagen na ontvangst van het verzoek per e-mail aan <code>yvo.hunink@regenstudio.world</code>:</p>
+    <ul>
+      <li><strong>Opt-out van AI-verwerking</strong>: vanaf bevestiging worden de eigen persoonsgegevens van die werknemer niet meer aan Anthropic voorgelegd.</li>
+      <li><strong>Alias-toepassing</strong>: een eigen alias-naam (zelf gekozen of door de Verwerker toegewezen) wordt in plaats van de echte naam gebruikt in alle Anthropic-prompts. Het e-mailadres blijft echt — dat is de unieke identifier waarop de Verwerker de werknemer in zijn systeem volgt. Een alias-mailadres is bewust niet beschikbaar.</li>
+    </ul>
+    <p>Deze opt-out-paden verschuiven de controller-rol niet naar de Verwerker; zij vergemakkelijken slechts de uitoefening door werknemers.</p>
+
+    <h3>§ 8.2 · Per-categorie toestemming voor AI-ondersteunde verwerking van bedrijfsgegevens</h3>
+    <p>Door ondertekening bevestigt de Verantwoordelijke per documenttype welke categorieën AI-ondersteund mogen worden verwerkt
+      ("aan") en welke niet ("uit"). Een categorie op "uit" leidt tot hard-refuse op die categorie via de paste-alias-shield
+      en data-governance-laag van de Verwerker; er komen geen prompts naar Anthropic met inhoud uit die categorie. Niet-gevoelige
+      Claude-ondersteuning (algemene research, openbare bronnen, drafting van publieke teksten) blijft sowieso beschikbaar.
+      Volledige formulering-recepten van de Verantwoordelijke (CLP-bedrijfs-IP) zijn altijd uitgesloten, ongeacht de toggle.</p>
+    <div id="doc-toggle-summary" style="margin:10px 0;font-size:0.92rem"></div>
+
+    <h3>§ 8.3 · Toestemming en alias-keuze van de Verantwoordelijke's vertegenwoordiger</h3>
+    <div class="cp-ai-block">
+      <p>Toestemming voor AI-ondersteunde verwerking van de eigen persoonsgegevens van de bevoegd vertegenwoordiger van de Verantwoordelijke:
+        <strong><span class="pre-fill" data-field="ai_processing_consent">—</span></strong>.</p>
+      <p>Eventueel zelfgekozen alias-naam: <strong><span class="pre-fill" data-field="ai_alias_name">geen — standaard alias-shield wordt toegepast</span></strong>.</p>
+    </div>
+
+    <h3>§ 8.4 · Borgen van kwaliteit en compliance — geldt áltijd</h3>
+    <ul>
+      <li><strong>Data-minimalisatie</strong> — Verwerker werkt alleen met data die strikt noodzakelijk is voor de Engagement-deliverables;</li>
+      <li><strong>Menselijke review-stap</strong> — alle door AI gegenereerde teksten en documenten ondergaan een menselijke review door de Bestuurder van de Verwerker voordat ze aan de Verantwoordelijke worden geleverd;</li>
+      <li><strong>Hard refuse via Claude Code hook</strong> — een UserPromptSubmit-hook scant elke prompt op BSN, paspoort, CPF, NL IBAN, BIG-nummer en medische context-keywords; bij detectie wordt de prompt geblokkeerd tenzij Yvo expliciet een lawful-basis-override toepast (per-actie). De hook bevat geen consent-aware exemption-laag in v1; v2 is gepland;</li>
+      <li><strong>Aanvullende paste-alias-shield-discipline</strong> (<code>consent-gate.md</code>) — voor bredere privé- en bedrijfsgevoelige patronen aliassen vóór elke Anthropic-prompt; uitgevoerd door Claude onder Yvo's review-stap;</li>
+      <li><strong>Audit-trail</strong> — append-only hash-chain in <code>consent_audit_log</code> van elke toestemmings-actie en scope-wijziging.</li>
+    </ul>
+  </div>
+  <div class="plain">
+    <div class="plain__label">💡 In klare taal</div>
+    <p>Regen werkt met Claude (Anthropic's AI) als hulp bij het opstellen, samenvatten en analyseren. Twee gevolgen voor uw werknemers door uw handtekening:</p>
+    <ul>
+      <li>Hun namen, e-mails en gesprekken mogen door Claude gezien worden — als deel van uw projectopdracht;</li>
+      <li>Werknemers die dit niet willen, kunnen via een e-mail aan Regen kiezen voor opt-out (geen AI) of alias (Claude ziet een verzonnen naam, Regen weet via het echte e-mailadres wie het is). U informeert uw werknemers hierover.</li>
+    </ul>
+    <p>Wat Regen extra inbouwt om uw data te beschermen: hard refuse op patronen die op BSN, paspoortnummer of medische gegevens lijken; automatische anonimisering of censurering vóór elke prompt voor privé- en bedrijfsgevoelige data; en uw exacte recept-formuleringen komen nooit bij Claude (CLP-bedrijfs-IP).</p>
+    <p>U kunt uw eigen toestemming/alias later aanpassen via <code>regenstudio.world/manage-consent</code>.</p>
+  </div>
+
+  <!-- §9 Subverwerkers -->
+  <h2>§ 9 · Subverwerkers</h2>
+  <div class="legal">
+    <p>De Verantwoordelijke verleent algemene schriftelijke toestemming voor de inschakeling door de Verwerker van de subverwerkers in onderstaande lijst (Art 28(2)). De Verwerker informeert de Verantwoordelijke ten minste <strong>30 kalenderdagen</strong> vooraf over wijzigingen (toevoeging of vervanging van subverwerkers); voor <strong>materiële wijzigingen</strong> — een nieuwe US-subverwerker, een nieuwe AI-subverwerker, of wijziging in categorieën persoonsgegevens — is de termijn <strong>45 kalenderdagen</strong>. De Verwerker schakelt de voorgestelde subverwerker niet in totdat de termijn ongebruikt is verstreken of een schriftelijke oplossing is bereikt. Indien de Verantwoordelijke op redelijke gronden bezwaar maakt, zoeken de Partijen te goeder trouw naar een oplossing binnen <strong>15 kalenderdagen</strong>; bij gebrek aan oplossing kan de Verantwoordelijke de Engagement zonder boete beëindigen, waarbij de Verwerker eventueel vooruitbetaalde fees voor niet-geleverde Diensten terugbetaalt.</p>
+    <table class="party-table">
+      <thead>
+        <tr>
+          <td><strong>Subverwerker</strong></td>
+          <td><strong>Rol</strong></td>
+          <td><strong>Land · Doorgifte</strong></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Supabase Inc.</td>
+          <td>Database, opslag, Edge Functions, Auth</td>
+          <td>EU (Frankfurt – AWS) · DPA v250314</td>
+        </tr>
+        <tr>
+          <td>Anthropic PBC</td>
+          <td>Claude API — uitsluitend op `ai_processing`-grondslag</td>
+          <td>VS · SCCs Modules 2 + 3 (Verantwoordelijke→Verwerker; Verwerker→Subverwerker) in Anthropic Commercial Terms · 7-dagen retentie</td>
+        </tr>
+        <tr>
+          <td>Lettermint B.V.</td>
+          <td>E-mailbezorging</td>
+          <td>NL · Click-wrap DPA op lettermint.co/dpa (2026-04-09)</td>
+        </tr>
+        <tr>
+          <td>Proton AG</td>
+          <td>Proton Mail / Drive / Meet / Calendar</td>
+          <td>CH · EU-CH-adequacy · E2EE</td>
+        </tr>
+        <tr>
+          <td>GitHub, Inc. (Microsoft)</td>
+          <td>Statische hosting van regenstudio.world + (waar van toepassing) project-specifieke DPP-demo's gehost op <code>demos.regenstudio.world</code></td>
+          <td>VS · MS Customer Agreement SCCs Module 2 · geen formulierdata. Bezoekers van een eventuele demo vallen onder de standaard privacy policy van regenstudio.world.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>De Verwerker legt aan elke subverwerker dezelfde gegevensbeschermings­verplichtingen op als opgenomen in deze Overeenkomst, en blijft volledig aansprakelijk voor de nakoming door subverwerkers (Art 28(4)).</p>
+  </div>
+  <div class="plain">
+    <div class="plain__label">💡 In klare taal</div>
+    <p>Dit zijn de externe partijen die Regen inschakelt om u te bedienen. Komt er een nieuwe bij of vervangt Regen er één, dan krijgt u 30 dagen vooraf bericht (45 dagen voor "zware" wijzigingen zoals een nieuwe US-leverancier). U kunt bezwaar maken; Regen schakelt de nieuwe partij niet in tot dat is opgelost.</p>
+  </div>
+
+  <!-- §10 Internationale doorgiften -->
+  <h2>§ 10 · Internationale doorgiften</h2>
+  <div class="legal">
+    <p>Voor doorgiften naar derde landen baseert de Verwerker zich primair op de <strong>Standard Contractual Clauses (SCCs)</strong> uit Uitvoeringsbesluit (EU) 2021/914. Voor de doorgifte naar Anthropic in de VS — gegeven de rolstapeling Verantwoordelijke (u) → Verwerker (Regen Studio) → Subverwerker (Anthropic) — gelden <strong>zowel Module 2 (Verantwoordelijke→Verwerker) als Module 3 (Verwerker→Subverwerker)</strong>, beide geïncorporeerd in Anthropic's Commercial Terms. Het EU–VS Data Privacy Framework (DPF) wordt erkend als ondersteunende factor maar is niet het werkmechanisme onder deze Overeenkomst, gegeven het hangende HvJEU-appèl (NOYB, ingediend 2025-10-31).</p>
+    <p>Een Transfer Impact Assessment (TIA) conform Schrems II + EDPB Recommendations 01/2020 is gedocumenteerd door de Verwerker in een intern runbook en op verzoek van de Verantwoordelijke beschikbaar.</p>
+    <p>Voor doorgiften EU↔Brazilië steunen Partijen op de wederzijdse adequacy-besluiten van 2026-01-27. Voor Zwitserland (Proton AG) op de EU-CH-adequacy.</p>
+  </div>
+  <div class="plain">
+    <div class="plain__label">💡 In klare taal</div>
+    <p>Wanneer uw data over de grens gaat (Anthropic = VS): SCCs zijn de juridische grondslag, niet DPF. Regen heeft een Transfer Impact Assessment uitgevoerd; u kunt die opvragen.</p>
+  </div>
+
+  <!-- §11 Aansprakelijkheid -->
+  <h2>§ 11 · Aansprakelijkheid</h2>
+  <div class="legal">
+    <p>Aansprakelijkheid voor AVG-schendingen wordt toegedeeld overeenkomstig Art 82 AVG. De totale aansprakelijkheid van elke Partij onder of in verband met deze Overeenkomst is beperkt tot het <strong>grootste van</strong> (i) de vergoedingen onder de Engagement gedurende de twaalf (12) maanden voorafgaand aan het schadeveroorzakende voorval, en (ii) <strong>€25.000</strong>, behoudens aansprakelijkheid die niet rechtmatig kan worden beperkt (bv. Art 82 AVG-schadevergoedingen aan betrokkenen, opzet, grove schuld). Het regres-recht onder Art 82(5) AVG blijft onbeperkt voor schade die een Partij heeft betaald boven haar aandeel van verantwoordelijkheid voor dezelfde verwerking.</p>
+    <p>Niets in deze § 11 beperkt de blootstelling van een Partij aan administratieve boetes onder Art 83 AVG of de rechten van betrokkenen onder Art 82(1).</p>
+  </div>
+  <div class="plain">
+    <div class="plain__label">💡 In klare taal</div>
+    <p>Als er iets mis gaat met persoonsgegevens en er moet schade worden vergoed: de cap is minstens €25.000 of 12 maanden honorarium (welke hoger is). Boetes van de toezichthouder en betrokkenen­schadevergoedingen vallen daarbuiten — die volgen de wet.</p>
+  </div>
+
+  <!-- §12 Beëindiging -->
+  <h2>§ 12 · Beëindiging</h2>
+  <div class="legal">
+    <p>Elke Partij kan deze Overeenkomst beëindigen op dezelfde gronden en met dezelfde opzeg-termijn als het onderliggende Engagement-contract toelaat. § 7.5 (verwijdering) en § 7.7 (audit), en bepalingen die naar hun aard moeten voortduren, blijven van kracht na beëindiging. Indien enige bepaling ongeldig of niet-uitvoerbaar wordt verklaard, blijft de rest onverminderd van kracht.</p>
+    <p>Bij conflict tussen deze Overeenkomst en het onderliggende Engagement-contract prevaleert deze Overeenkomst voor zover het persoonsgegevens-bescherming betreft.</p>
+  </div>
+
+  <!-- §13 Voucher-projectadministratie (was Annex X) -->
+  <h2>§ 13 · Voucher-projectadministratie (KvW3-context)</h2>
+  <div class="legal">
+    <p>De Verwerker voert de projectadministratie uit ten behoeve van de EFRO-subsidie KvW3-DPP-voucher KVW3-00568 (verleningsbeschikking 19 april 2026). De volgende data-categorieën zijn <strong>uitgesloten</strong> van AI-ondersteunde verwerking en worden uitsluitend in de afgeschermde subfolder <code>_sensitive/</code> bewaard, met metadata-sidecars voor operationele referentie:</p>
+    <ol>
+      <li>MKB-verklaringen met omzet/balans-cijfers;</li>
+      <li>De-minimis-verklaringen met historisch steun-overzicht;</li>
+      <li>Bankafschriften en rekeningafschriften (behoudens IBAN als publiek in de verleningsbeschikking);</li>
+      <li>Werknemers-PII anders dan reguliere project-contactgegevens (BSN, salaris-details, paspoort-kopieën);</li>
+      <li>Trade secrets en commercieel-vertrouwelijke leveranciers-overeenkomsten met monetaire bedragen;</li>
+      <li>Niet-voucher-relevante interne beleids-deliberaties.</li>
+    </ol>
+    <p>Daarnaast verwerkt de Verwerker — <strong>expliciet in scope</strong> — de productdata die noodzakelijk zijn voor het DPP-advisory-werk: stuklijst (BoM), leveranciers-identiteit en metadata, productieproces-metadata, conformiteits­beoordelings-documentatie, unieke product-identifiers, milieu-indicatoren, supply-chain audit-resultaten, en concept-DPP-records. Deze categorieën vallen onder de paste-alias-shield-discipline bij Anthropic-prompts.</p>
+  </div>
+  <div class="plain">
+    <div class="plain__label">💡 In klare taal</div>
+    <p>Twee dingen blijven afgeschermd voor AI: financiële stukken (bank, salaris, MKB-verklaring), en commerciële contracten met bedragen. Wat <em>wel</em> in scope is en bij Claude mag komen: de stuklijst, leveranciers-namen, milieucijfers, audit-resultaten — dat is het normale DPP-werkmateriaal en kan niet zonder.</p>
+  </div>
+
+  <!-- §14 TOMs (was Annex C) -->
+  <h2>§ 14 · Technische en organisatorische maatregelen</h2>
+  <div class="legal">
+    <p>De Verwerker handhaaft de volgende maatregelen ter waarborging van Art 32 AVG:</p>
+    <ul>
+      <li><strong>14.1 Versleuteling at-rest</strong>: per-betrokkene ChaCha20-Poly1305-IETF Data Encryption Key (DEK) — RFC 7539, libsodium-AEAD, 256-bit sleutelmateriaal, NIST-gelijkwaardige sterkte — gewikkeld door een master Key Encryption Key (KEK) gehouden in Supabase Vault (pgsodium).</li>
+      <li><strong>14.2 Versleuteling in transit</strong>: TLS 1.2+ op elke endpoint.</li>
+      <li><strong>14.3 Pseudonimisering</strong>: alias-eerst-identiteits-model; identifiers opgeslagen als ciphertext gekoppeld aan de per-betrokkene-DEK; HMAC-SHA-256 fingerprints voor lookup zonder ontsleuteling.</li>
+      <li><strong>14.4 Paste-alias-shield (AI-subverwerker)</strong>: identifiers in operator-workflows worden gealiased vóór elke Anthropic-prompt; publieke identifiers uitgesloten van aliasing per gedocumenteerde public-availability-check; sensitivity-marker-detectie op patronen die op beschermde data lijken (BSN, paspoort, medisch).</li>
+      <li><strong>14.5 Row-Level Security</strong>: elke tabel met persoonsgegevens heeft RLS ingeschakeld; Edge Functions opereren via uitsluitend de service-role-key.</li>
+      <li><strong>14.6 Append-only audit-keten</strong>: SHA-256 hash-chain in <code>consent_audit_log</code>; UPDATE/DELETE/TRUNCATE ingetrokken op GRANT-niveau.</li>
+      <li><strong>14.7 KEK-rotatie en herstel</strong>: master KEK wordt per kwartaal geroteerd; herstel-runbook gedocumenteerd; per kwartaal restore-drills.</li>
+      <li><strong>14.8 Back-up-policy</strong>: Supabase point-in-time recovery (PITR) binnen de EU-regio; crypto-shred-verwijdering propageert naar PITR-back-ups binnen 7 dagen (Pro-tier) en naar dagelijkse snapshots binnen 30 dagen.</li>
+      <li><strong>14.9 Rate-limiting + anti-bot</strong>: honeypot, minimum-tijd-drempel, visuele uitdaging, computationele proof-of-work, per-IP rate-limit op elk publiek inzendings-endpoint.</li>
+      <li><strong>14.10 Inbreuk-detectie en incident-response</strong>: log-gebaseerd anomaly-review op Edge-Function-uitvoering; per kwartaal externe surface-attack-review; incident-response-playbook intern; SLA 48u naar Verantwoordelijke / 72u naar AP.</li>
+    </ul>
+  </div>
+  <!-- Audit Round-3 ux-empath B1: marked .always-visible so the klare-taal
+       summary of §14 survives BOTH toggle modes (the previous build only
+       showed it in plain-only mode, leaving "Alleen juridisch" readers
+       without it AND klare-taal-only readers without the in-legal-only
+       inline ChaCha20 clarifier — net effect was the layperson explanation
+       being shown only to lawyers). -->
+  <div class="plain always-visible">
+    <div class="plain__label">💡 In klare taal — §14 versleutelings- en privacymaatregelen</div>
+    <p><strong>Versleuteling (§14.1)</strong>: uw data wordt versleuteld met een moderne, breed-gebruikte standaard (ChaCha20-Poly1305-IETF) — vergelijkbaar met wat WhatsApp en Signal gebruiken. Elke persoon heeft een eigen sleutel, zodat we één persoon kunnen wissen zonder iedereen te raken (dat heet crypto-shred — zie §14.7-14.8).</p>
+    <p><strong>Pseudonimisering (§14.3)</strong>: we slaan uw naam/e-mail nooit als platte tekst op; zoeken gebeurt via een eenrichtings-vingerafdruk.</p>
+    <p><strong>Paste-alias-shield voor AI (§14.4)</strong>: voordat we iets aan Anthropic Claude voorleggen, vervangen we identifiers door aliassen. Patronen die op gevoelige data lijken (BSN, paspoort, medisch) worden automatisch geblokkeerd.</p>
+    <p><strong>Audit-keten (§14.6)</strong>: elke toestemmings-actie wordt vastgelegd in een hash-keten — achteraf bewerken of wissen is technisch geblokkeerd.</p>
+    <p><strong>Bij verwijdering (§14.7-14.8)</strong>: 72-uur uitvoering ná DGA-goedkeuring (worst-case 144 uur incl. evaluatie-venster), ook uit back-ups.</p>
+    <p><strong>Bij datalek (§14.10)</strong>: melding binnen 48 uur aan u, en bij hoog risico binnen 72 uur aan de Autoriteit Persoonsgegevens.</p>
+  </div>
+
+  <!-- §15 Toegang controlerende instanties (was Annex Y) -->
+  <h2>§ 15 · Toegang voor controlerende instanties (KvW3)</h2>
+  <div class="legal">
+    <p>De technische afscherming van de <code>_sensitive/</code>-subfolder onder § 13 vormt <strong>geen</strong> toegangsbarrière voor menselijke auditoren namens de bij Handboek EFRO 2021–2027 v2 §3.7 aangewezen controlerende instanties: Beheerautoriteit (College van B&W gemeente Rotterdam namens KvW III), Auditautoriteit EFRO (namens de Minister van Economische Zaken), Europese Commissie (incl. DG REGIO), Europese Rekenkamer, Algemene Rekenkamer, Programmamanager Kansen voor West III, en overige bij wet of verordening aangewezen instanties.</p>
+    <p>Toegangsmodi: on-site inspectie (read-only Proton Drive of fysiek dossier), remote (versleutelde share-link of door auditor aangewezen kanaal, levering binnen 5 werkdagen), of ad-hoc informatieverzoeken per e-mail. De Verwerker logt elk audit-toegangsverzoek + de verleende toegang in <code>administratie/00-grant/correspondentie/audit-log.md</code>.</p>
+    <p>Niets in §§ 13–15 beperkt de rechten van de Verantwoordelijke als subsidieontvanger onder Handboek EFRO of de onderzoeksbevoegdheid van controlerende instanties; de bewaarplicht (zie § 5) geldt voor de volledige dossier-structuur inclusief <code>_sensitive/</code>.</p>
+  </div>
+  <div class="plain">
+    <div class="plain__label">💡 In klare taal</div>
+    <p>De afscherming voor AI is geen excuus voor Regen om EU-subsidie-controleurs te weigeren. Komt de gemeente, EFRO-audit of Europese Rekenkamer langs? Volledige toegang tot uw dossier, ook tot afgeschermde stukken. Dat is een EFRO-subsidievereiste; uw handtekening hier voegt geen extra last toe bovenop wat al uit de subsidie-regeling volgt.</p>
+  </div>
+
+  <!-- §16 Toepasselijk recht -->
+  <h2>§ 16 · Toepasselijk recht en bevoegde rechter</h2>
+  <div class="legal">
+    <p>Op deze Overeenkomst is Nederlands recht van toepassing. Bevoegd is de <strong>Rechtbank Den Haag</strong>, onverminderd de bevoegdheids-regels onder de AVG en het toepasselijke Unie-recht ten aanzien van betrokkenen­vorderingen.</p>
+  </div>
+
+  <!-- §17a Side-letter — embedded verbatim per audit B21 + F2 (must stay
+       visible in every toggle mode because the sign-confirm checkbox below
+       attests that the signer has read it). -->
+  <h2 class="always-visible">§ 17a · Side-letter (zakelijke voorwaarden — verbatim)</h2>
+  <div class="legal always-visible" style="background:#FFFAEB;border:1px solid #F0C14B;border-radius:8px;padding:18px 22px">
+    <p style="margin-top:0"><strong>Deze side-letter wordt mede-ondertekend met deze Overeenkomst en legt zes zakelijke kennisnemingen vast.</strong> Door uw klik op "Onderteken" hieronder bevestigt u expliciet kennisname van elk van de volgende zes punten.</p>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:#243644">§1 — Aansprakelijkheids-cap (R1)</h3>
+    <p>De totale aansprakelijkheid van elke Partij onder deze Overeenkomst is beperkt tot het grootste van (i) twaalf (12) maanden Engagement-fees, of (ii) vijfentwintigduizend euro (<strong>€25.000</strong>). Voor uw Engagement (€26.000) komt dit uit op een effectieve cap van ongeveer €26.000. Schade door opzet of grove schuld is uitgesloten van deze cap.</p>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:#243644">§2 — Datalek-melding-vensters (R2)</h3>
+    <p>De Verwerker meldt een datalek aan de Verantwoordelijke binnen <strong>48 uur</strong> na ontdekking, en — indien de verwerking onder de meldplicht van Art 33 AVG valt — bij de Autoriteit Persoonsgegevens binnen <strong>72 uur</strong>. Het 48-uurs-venster is een verkorting ten opzichte van de Art-33-72-uurs-norm, in lijn met de scherpere SLA's die contractor-side controllers in DPP-engagements gewoonlijk vereisen.</p>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:#243644">§3 — Beroepsaansprakelijkheids-verzekering (R3)</h3>
+    <p>De Verwerker bevestigt expliciet dat hij <strong>geen beroepsaansprakelijkheids-verzekering</strong> (PI-insurance) heeft op het moment van ondertekening. Dit is een bewuste keuze gegeven de schaal van de Verwerker (één-persoons-organisatie) en de cap-structuur in §1 hierboven. De Verwerker neemt geen verplichting op zich om een dergelijke verzekering binnen de Engagement-looptijd af te sluiten. De Verantwoordelijke neemt hier expliciet kennis van bij ondertekening.</p>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:#243644">§4 — DSR-register-status (R4)</h3>
+    <p>Het DSR-register (Digital Service Register) als bedoeld in Verordening (EU) 2026/405 is op het moment van ondertekening van deze Overeenkomst <strong>nog niet operationeel</strong>. Verplichtingen die afhangen van een operationeel DSR-register treden in werking zodra het register live is en de Verwerker daartoe redelijkerwijs in staat is.</p>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:#243644">§5 — Scope-amendment-via-e-mail bevestigings-mechanisme (R5)</h3>
+    <p>Per § 6 van de hoofdovereenkomst kan de Verwerkings-scope door de Verantwoordelijke per e-mail worden uitgebreid of beperkt. De Verwerker bevestigt elke dergelijke wijziging binnen <strong>vijf (5) werkdagen</strong> per retour-e-mail en logt de wijziging in een <code>scope-amendment-log.md</code> in het projectdossier. Beide Partijen erkennen dit als een schriftelijke verlengstuk van de instructies onder § 6.</p>
+
+    <h3 style="font-size:1.05rem;margin:18px 0 8px;color:#243644">§6 — Audit-notice voor incident-driven audits (R8)</h3>
+    <p>De gewone audit-notice-termijn van 30 dagen onder § 8 van de hoofdovereenkomst wordt verkort tot <strong>vijf (5) werkdagen</strong> indien de audit voortvloeit uit (i) een gemeld of vermoed datalek, (ii) een instructie van de Autoriteit Persoonsgegevens of een andere bevoegde toezichthouder, of (iii) een EFRO-controle-procedure. De Verantwoordelijke kan in dergelijke gevallen de audit-uitvoering bespoedigen.</p>
+
+    <p style="margin:20px 0 0;font-size:0.95em;color:#5781A1"><em>De vorm van deze side-letter is een geïntegreerde Annex bij de hoofdovereenkomst; ze deelt dezelfde SHA-256-pin (in <code>side_letter_sha</code> op <code>dpa_signing_requests</code>) en wordt via dezelfde click-to-sign gebonden.</em></p>
+  </div>
+
+  <!-- Audit Round-3 ux-empath B2 fix: klare-taal companion to §17a side-
+       letter, marked .always-visible so a klare-taal-only signer also sees
+       what the four kennisnemingen mean in plain language before clicking
+       sign. -->
+  <div class="plain always-visible" style="background:#FFFAEB;border:1px solid #F0C14B;border-radius:8px;padding:18px 22px">
+    <div class="plain__label">💡 In klare taal — wat u in §17a precies bevestigt</div>
+    <p><strong>§1 — Aansprakelijkheids-cap</strong>: als er iets fout gaat en u kunt schade verhalen, is het maximum dat elke partij hoeft te betalen ongeveer €26.000 (12 maanden van uw fees, met €25.000 als ondergrens). Schade door opzet of grove schuld valt buiten deze cap — dat is ongelimiteerd verhaalbaar.</p>
+    <p><strong>§2 — Datalek-melding</strong>: als wij een lek ontdekken, hoort u dat binnen 48 uur — sneller dan de 72-uur-norm in de AVG. Bij ernstige incidenten meldt Regen Studio ook binnen 72 uur aan de Autoriteit Persoonsgegevens.</p>
+    <p><strong>§3 — Geen beroepsaansprakelijkheids-verzekering</strong>: Regen Studio heeft op het moment van ondertekening geen PI-insurance afgesloten en zegt niet toe dit binnen de Engagement af te sluiten. U neemt hier expliciet kennis van. (De cap in §1 begrenst uw mogelijke verhaal; daarboven zou de verzekering hebben gedekt — die is er niet.)</p>
+    <p><strong>§4 — DSR-register-status</strong>: het Europese DSR-register bestaat juridisch maar is operationeel nog niet live. Verplichtingen die afhangen van dat register treden in werking zodra het werkelijk in gebruik is.</p>
+    <p><strong>§5 — Scope-uitbreiding per e-mail</strong>: u kunt mid-engagement aanvullende documenten of data toevoegen door simpelweg per e-mail. Regen Studio bevestigt binnen 5 werkdagen + logt de wijziging in een projectdossier-log.</p>
+    <p><strong>§6 — Audit-termijn bij incidenten</strong>: normaal 30 dagen voor een audit. Bij datalek, AP-instructie of EFRO-controle is dit verkort tot 5 werkdagen — u kunt dan de audit veel sneller uitvoeren.</p>
+  </div>
+
+  <!-- §17 Handtekening -->
+  <h2>§ 17 · Handtekening</h2>
+  <div class="legal">
+    <p>Deze Overeenkomst wordt ondertekend met een <strong>Simple Electronic Signature (SES)</strong> in de zin van Art 3(10) van Verordening (EU) 910/2014 (eIDAS), via een eenmalige magic-link-click-to-sign-flow geëxploiteerd door de Verwerker. De integriteit van de getekende akte wordt vastgesteld door:</p>
+    <ul>
+      <li>de SHA-256-hash van de getekende DPA-snapshot (HTML-snapshot van de gerenderde Overeenkomst; PDF wordt op verzoek door beide Partijen client-side gegenereerd vanuit dezelfde snapshot), geregistreerd in de <code>dpa_signatures</code>-tabel;</li>
+      <li>de magic-link-token-referentie (eenmalig gebruik, vierentwintig (24)-uur-geldigheid, hash-opgeslagen);</li>
+      <li>een dagelijks-gesalt-hash van het IP-adres en User-Agent op het moment van ondertekening;</li>
+      <li>de timestamp van de ondertekenings-gebeurtenis in UTC.</li>
+    </ul>
+    <p>Onder Art 25(1) eIDAS kan een elektronische handtekening niet enkel op grond van haar elektronische vorm of niet-QES-status rechtsgevolg en bewijswaarde worden ontzegd; Partijen komen overeen dat een SES uitgevoerd onder deze § 17 voldoende is voor de toepassing van deze Overeenkomst.</p>
+  </div>
+
+  <div class="sign-section">
+    <h2 style="color:var(--ink)">Ondertekening</h2>
+    <p>U ondertekent als <strong><span class="pre-fill" data-field="cp_rep_name">—</span></strong> (<span class="pre-fill" data-field="cp_rep_role">—</span>) namens <strong><span class="pre-fill" data-field="cp_legal_name">—</span></strong>.</p>
+
+    <label class="sign-confirm">
+      <input type="checkbox" id="confirm-binding">
+      <span>
+        Ik bevestig dat ik <strong>(a)</strong> de bovenstaande Overeenkomst <strong>inclusief de side-letter §17a</strong> (met de zes zakelijke kennisnemingen: aansprakelijkheids-cap met €25.000-vloer, geen PI-verzekering, 48-uur datalek-venster aan u, DSR-register-status, scope-uitbreiding per e-mail, 5-werkdagen audit-termijn bij incidenten) heb gelezen; <strong>(b)</strong> bevoegd ben de Verantwoordelijke aan deze Overeenkomst en de side-letter te binden; en <strong>(c)</strong> begrijp dat mijn klik op Onderteken juridisch dezelfde waarde heeft als een handgeschreven handtekening (onder Art 25(1) eIDAS — Verordening (EU) 910/2014).
+      </span>
+    </label>
+
+    <button class="sign-btn" id="sign-btn" disabled>✍️ Onderteken (test)</button>
+
+    <div class="plain" style="margin-top:18px">
+      <div class="plain__label">💡 Wat gebeurt er na ondertekening?</div>
+      <ol style="margin:8px 0 8px 22px">
+        <li>SES-handtekening gegenereerd onder Art 25(1) eIDAS;</li>
+        <li>Volledige Overeenkomst vastgelegd als HTML-snapshot (de juridische integriteits-anker — een PDF kan op verzoek door beide Partijen client-side worden gegenereerd vanuit dezelfde snapshot);</li>
+        <li>SHA-256 over de snapshot vastgelegd in <code>dpa_signatures</code> samen met token-hash, IP-hash, UA-hash, timestamp;</li>
+        <li><strong>Tokenised download-link naar de getekende snapshot wordt direct per e-mail naar uw e-mailadres verstuurd</strong>, met receipt-link;</li>
+        <li>Relevante <code>consent_records</code>-rijen aangemaakt; uw eventuele alias-naam geregistreerd.</li>
+      </ol>
+      <p style="margin-bottom:0">Beheer uw toestemming via <code>regenstudio.world/manage-consent</code>.</p>
+    </div>
+  </div>
+
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal__inner">
+    <h2 style="margin-top:0;color:var(--emerald)">✅ Test-handtekening geregistreerd</h2>
+    <p>In productie zou onderstaande JSON-payload door de Edge Function <code>submit-dpa-signature</code> worden ontvangen na verificatie van de magic-link-token, en zou direct daarna een tokenised download-link naar de getekende HTML-snapshot per e-mail naar het ingevulde e-mailadres worden verstuurd, met receipt-link. In deze test wordt geen e-mail verstuurd, geen database-rij aangemaakt, geen snapshot opgeslagen.</p>
+    <pre class="payload" id="payload"></pre>
+    <button class="modal__close" id="modal-close">Sluit</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>
+    Regen Studio B.V. · KvK 90337948 · BTW NL865282377B01 · Stollenbergweg 43, 6571 AB Berg en Dal<br>
+    Test-render gegenereerd 2026-04-29 · stap 2 van 2 · niet voor publieke distributie
+  </p>
+</footer>
+
+<script>
+  (function() {
+    // PRODUCTION wire — Phase 3.
+    // Read form data from sessionStorage (intake-page handoff) + token + engagement.
+    const SUPABASE_URL = "https://uemspezaqxmkhenimwuf.supabase.co";
+    const SUBMIT_URL = SUPABASE_URL + "/functions/v1/dpa-submit-signature";
+
+    const params = new URLSearchParams(location.search);
+    const tokenFromUrl = (params.get("token") || "").trim().toLowerCase();
+    const tokenFromStorage = (sessionStorage.getItem('dpa_intake_token') || "").trim().toLowerCase();
+    const token = tokenFromUrl || tokenFromStorage;
+    const TOKEN_RE = /^[0-9a-f]{64}$/;
+
+    let data = {};
+    let engagementMeta = null;
+    try {
+      data = JSON.parse(sessionStorage.getItem('dpa_intake_formdata') || '{}');
+      engagementMeta = JSON.parse(sessionStorage.getItem('dpa_intake_engagement') || 'null');
+    } catch (e) { data = {}; engagementMeta = null; }
+
+    if (!data.cp_rep_name || !data.cp_rep_email || !TOKEN_RE.test(token) || !engagementMeta) {
+      document.getElementById('missing-data-alert').style.display = 'block';
+      const alertEl = document.getElementById('missing-data-alert');
+      if (alertEl) {
+        alertEl.innerHTML = '<strong>Sessie-gegevens ontbreken.</strong> Mogelijke oorzaken: u heeft de browser-tab gesloten en opnieuw geopend; u gebruikt een privé-venster waarin sessionStorage wordt gewist; of de uitnodigings-link is direct geopend zonder eerst stap 1 te doorlopen.<br><br>Ga terug naar de uitnodigings-mail en open de link opnieuw — start vanaf de intake-pagina.';
+      }
+      // Hide the sign section so user cannot reach the sign button.
+      const signSec = document.querySelector('.sign-section');
+      if (signSec) signSec.style.display = 'none';
+    }
+
+    // Render doc-toggle summary
+    const docLabels = {
+      doc_bom: 'BoM en productsamenstelling',
+      doc_suppliers: 'Leveranciers-overzichten + metadata',
+      doc_conformity: 'Conformiteitsbeoordeling-stukken',
+      doc_indicators: 'Milieu-indicator-rapporten (LCA / PEFCR)',
+      doc_supplychain: 'Supply-chain audit-resultaten',
+      doc_ufi: 'UFI-koppeling-data',
+      doc_dpprecord: 'Concept-DPP-records (JSON / JSON-LD)',
+      doc_formulation_cat: 'Formulering-data op categorie-niveau',
+      doc_email: 'E-mail-correspondentie binnen project',
+      doc_meetings: 'Vergader-notities en agenda’s',
+      doc_audio: 'Audio-opnames + transcripten (mits opname-toestemming)',
+      doc_progress: 'Voortgangs-rapportages',
+      doc_final: 'Eindrapportage en prestatieverklaringen',
+      doc_comms: 'Communicatie-uitingen voor het project',
+      doc_legal: 'Wetgevings-documenten (ESPR / DSR / CLP / PCN)',
+      doc_branche: 'Branche-publicaties (NVZ / Ecolabel / GS1)',
+      doc_research: 'Onderzoeksbronnen en literatuur',
+      doc_competitors: 'Concurrent- en marktvergelijkingen',
+    };
+    const toggles = (data && data.doc_toggles) || {};
+    const onItems = [];
+    const offItems = [];
+    Object.entries(docLabels).forEach(([id, label]) => {
+      const checked = toggles[id] !== false;
+      (checked ? onItems : offItems).push(label);
+    });
+    const sumEl = document.getElementById('doc-toggle-summary');
+    if (sumEl) {
+      sumEl.innerHTML =
+        '<div style="margin-bottom:6px"><strong>✅ Aan (AI-ondersteund):</strong> ' +
+        (onItems.length ? onItems.join(' · ') : '<em>geen</em>') + '</div>' +
+        (offItems.length ? '<div><strong>⛔ Uit (hard-refuse):</strong> ' + offItems.join(' · ') + '</div>' : '');
+    }
+
+    // Fill in pre-fill spans
+    document.querySelectorAll('.pre-fill').forEach(span => {
+      const field = span.getAttribute('data-field');
+      let value = data[field];
+      if (field === 'ai_processing_consent') {
+        value = value ? '✅ Ja, ik geef toestemming voor AI-verwerking van mijn eigen persoonsgegevens' : '❌ Nee — Anthropic ziet mijn eigen persoonsgegevens niet (alias-shield + opt-in-employees)';
+      }
+      if (field === 'ai_alias_name' && value) {
+        value = `"${value}"`;
+      }
+      if (value === '' || value === null || value === undefined) {
+        span.classList.add('pre-fill--missing');
+        span.textContent = '⚠️ niet ingevuld op vorige pagina';
+      } else {
+        span.textContent = value;
+      }
+    });
+
+    // Toggle bar
+    const toggleBoth = document.getElementById('toggle-both');
+    const togglePlain = document.getElementById('toggle-plain');
+    const toggleLegal = document.getElementById('toggle-legal');
+    function setMode(mode) {
+      document.body.classList.remove('plain-only', 'legal-only');
+      [toggleBoth, togglePlain, toggleLegal].forEach(b => b.classList.remove('is-active'));
+      if (mode === 'plain') {
+        document.body.classList.add('plain-only');
+        togglePlain.classList.add('is-active');
+      } else if (mode === 'legal') {
+        document.body.classList.add('legal-only');
+        toggleLegal.classList.add('is-active');
+      } else {
+        toggleBoth.classList.add('is-active');
+      }
+    }
+    toggleBoth.addEventListener('click', () => setMode('both'));
+    togglePlain.addEventListener('click', () => setMode('plain'));
+    toggleLegal.addEventListener('click', () => setMode('legal'));
+
+    // Reason-code → Dutch-message map. Closes audit B19 — Edge Functions
+    // return raw English `reason` strings; the user must see actionable Dutch.
+    // Used by the production submit handler (when wired in Phase 3); the
+    // test-mode handler below shows a JSON modal and bypasses this.
+    window.__dpaReasonMap = {
+      'invalid_legal_name':                 'Vul een juridische naam in (max 200 tekens).',
+      'invalid_rep_name':                   'Vul de naam van de tekenbevoegde in (max 200 tekens).',
+      'invalid_rep_email':                  'Vul een geldig e-mailadres in van de tekenbevoegde.',
+      'invalid_snapshot':                   'De pagina-snapshot is leeg of te groot. Herlaad de pagina en probeer opnieuw.',
+      'invalid_snapshot_active_content':    'De pagina-snapshot bevat onverwachte actieve elementen. Dit zou niet mogen gebeuren — herlaad de pagina en probeer opnieuw. Mail yvo.hunink@regenstudio.world als de fout aanhoudt.',
+      'missing_sha_pins':                   'Documenten konden niet worden ingelezen. Herlaad de pagina.',
+      // Audit E2 — generic verification_failed replaces specific token states
+      // (token_invalid / token_used / token_expired / form_email_mismatch) to
+      // prevent email-enumeration. UI copy lists possible causes without
+      // confirming which one applies.
+      'verification_failed':                'Uw uitnodiging kon niet worden geverifieerd. Mogelijke oorzaken: link is verlopen, link is al gebruikt, of het ingevulde e-mailadres komt niet overeen met het adres waarnaar de uitnodiging is gestuurd. Vul het oorspronkelijke adres in en probeer opnieuw, of vraag Yvo om een nieuwe uitnodiging.',
+      // Legacy specific reasons retained for any older Edge Function deploy
+      // that hasn't migrated to verification_failed yet.
+      'token_invalid':                      'Uw uitnodiging kon niet worden geverifieerd. Vraag Yvo om een nieuwe link.',
+      'token_used':                         'Uw uitnodiging kon niet worden geverifieerd. Vraag Yvo om een nieuwe link.',
+      'token_expired':                      'Uw uitnodiging kon niet worden geverifieerd. Vraag Yvo om een nieuwe link.',
+      'subject_check_failed':               'Er ging iets mis bij het verifiëren van uw uitnodiging. Probeer opnieuw of mail yvo.hunink@regenstudio.world.',
+      'form_email_does_not_match_invited_email': 'Uw uitnodiging kon niet worden geverifieerd. Vul het oorspronkelijke adres in of vraag Yvo om een nieuwe uitnodiging.',
+      'subject_create_failed':              'Er is een technische storing. Uw handtekening is NIET geregistreerd. Mail yvo.hunink@regenstudio.world.',
+      'subject_id_parity_failed':           'Er is een interne consistency-fout. Uw handtekening is NIET geregistreerd. Mail yvo.hunink@regenstudio.world.',
+      'encryption_failed':                  'Er is een technische storing bij het versleutelen van uw gegevens. Uw handtekening is NIET geregistreerd. Mail yvo.hunink@regenstudio.world.',
+      'storage_upload_failed':              'Er is een technische storing bij het opslaan. Uw handtekening is NIET geregistreerd. Probeer opnieuw, of mail yvo.hunink@regenstudio.world.',
+      'record_signature_failed':            'Er is een technische storing bij het vastleggen. Uw handtekening is NIET geregistreerd. Mail yvo.hunink@regenstudio.world.',
+      'record_signature_malformed':         'Er is een interne fout opgetreden. Uw handtekening is NIET geregistreerd. Mail yvo.hunink@regenstudio.world.',
+      'server_error':                       'Tijdelijke server-storing. Probeer opnieuw over een paar minuten, of mail yvo.hunink@regenstudio.world.',
+      'server_misconfig':                   'Server-configuratie-fout. Mail yvo.hunink@regenstudio.world; vermeld dit foutbericht.',
+      'malformed':                          'Het ingediende formulier kon niet worden verwerkt. Herlaad de pagina en probeer opnieuw.',
+      'malformed_token':                    'De ondertekenings-link lijkt beschadigd. Vraag Yvo om een nieuwe link.',
+      'method_not_allowed':                 'Verkeerde aanroep-methode. Herlaad de pagina.',
+      // Download flow (verify-dpa-access)
+      'expired_after_first_use':            'Deze download-link is dertig (30) minuten na de eerste opening verlopen. Vraag Yvo om een nieuwe download-link via reply op de getekende-DPA e-mail.',
+      'snapshot_missing':                   'Het bestand kon niet worden gevonden in de opslag. Mail yvo.hunink@regenstudio.world; vermeld de download-link.',
+      'snapshot_path_missing':              'De interne verwijzing naar het bestand klopt niet. Mail yvo.hunink@regenstudio.world.',
+      'not_found':                          'Deze download-link is onbekend. Vraag Yvo om een nieuwe link.',
+      'expired':                            'Deze download-link is verlopen. Vraag Yvo om een nieuwe download-link.',
+      'used':                               'Deze download-link is niet meer geldig. Vraag Yvo om een nieuwe download-link.',
+    };
+    window.__dpaTranslateReason = function(reason) {
+      return window.__dpaReasonMap[reason] || ('Onbekende fout: ' + String(reason || '').slice(0, 80) + '. Mail yvo.hunink@regenstudio.world.');
+    };
+
+    // Sign button — enabled only when confirm checkbox ticked
+    const confirmCb = document.getElementById('confirm-binding');
+    const signBtn = document.getElementById('sign-btn');
+    confirmCb.addEventListener('change', () => {
+      signBtn.disabled = !confirmCb.checked;
+    });
+
+    // Cache the canonical/schedule/annex SHAs from engagement metadata
+    // (these were pinned at link-creation time + returned by dpa-verify-token).
+    // For now we use the values the verify-token endpoint returns; if those
+    // fields aren't surfaced yet, fall back to placeholders the Edge Function
+    // will reject as missing_sha_pins.
+    function pickSha(metaField) {
+      if (!engagementMeta) return "";
+      return String(engagementMeta[metaField] || "").trim();
+    }
+
+    async function sha256HexBrowser(str) {
+      const enc = new TextEncoder();
+      const buf = await crypto.subtle.digest('SHA-256', enc.encode(str));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    signBtn.addEventListener('click', async () => {
+      // Disable button immediately to prevent double-submit.
+      signBtn.disabled = true;
+      signBtn.textContent = '⏳ Bezig met ondertekenen…';
+      const restoreBtn = (label) => {
+        signBtn.disabled = false;
+        signBtn.textContent = label || '✍️ Onderteken';
+      };
+
+      // Build the HTML snapshot from the legally-binding subtree only (the
+      // <main> element). The Edge Function's strict snapshot validator
+      // rejects <script>, <style>, <iframe>, <base>, on*= handlers, etc. —
+      // so the inline <head> styles + bottom <script> tags must NOT be in
+      // the snapshot. The <main> contains the contract body + side-letter +
+      // sign-section but no scripts/styles, so its outerHTML is clean.
+      // Wrap in a minimal HTML document so the snapshot is self-contained
+      // and viewable when downloaded (no styles — readable as plain HTML).
+      const mainEl = document.querySelector('main');
+      if (!mainEl) {
+        showSubmitError('Interne fout: <main> element niet gevonden in de pagina. Mail Yvo.');
+        restoreBtn();
+        return;
+      }
+      // Strip any data-handlers from the snapshot (defensive — main shouldn't
+      // contain any but pre-fill spans may carry data-* which are safe).
+      const cleanMainHtml = mainEl.outerHTML;
+      const htmlSnapshot =
+        '<!DOCTYPE html>\n<html lang="nl"><head><meta charset="UTF-8">' +
+        '<title>Verwerkersovereenkomst — getekende snapshot</title>' +
+        '</head><body>' + cleanMainHtml + '</body></html>';
+
+      // SHA pins — engagement metadata returned by verify-token.
+      const scheduleSha   = pickSha('schedule_sha');
+      const canonicalSha  = pickSha('canonical_sha');
+      const annexXSha     = pickSha('annex_x_sha') || null;
+      const annexYSha     = pickSha('annex_y_sha') || null;
+      const sideLetterSha = pickSha('side_letter_sha') || null;
+
+      // doc_toggles — pass through the intake selections.
+      const docToggles = data.doc_toggles || {};
+
+      const payload = {
+        token: token,
+        cp_legal_name:   data.cp_legal_name,
+        cp_rep_name:     data.cp_rep_name,
+        cp_rep_role:     data.cp_rep_role,
+        cp_rep_email:    String(data.cp_rep_email || '').trim().toLowerCase(),
+        ai_processing_consent: !!data.ai_processing_consent,
+        doc_toggles:     docToggles,
+        html_snapshot:   htmlSnapshot,
+        schedule_sha:    scheduleSha,
+        canonical_sha:   canonicalSha,
+        annex_x_sha:     annexXSha,
+        annex_y_sha:     annexYSha,
+        side_letter_sha: sideLetterSha,
+      };
+
+      let resp;
+      try {
+        resp = await fetch(SUBMIT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+      } catch (err) {
+        console.error('submit-signature network error:', err);
+        showSubmitError('Er is een verbindingsstoring. Probeer opnieuw, of mail yvo.hunink@regenstudio.world.');
+        restoreBtn();
+        return;
+      }
+
+      let body = null;
+      try { body = await resp.json(); } catch (e) { body = null; }
+
+      if (!resp.ok || !body || body.success !== true) {
+        const reason = body && body.reason ? body.reason : 'server_error';
+        const msg = window.__dpaTranslateReason(reason);
+        console.error('submit-signature failed:', reason, body);
+        showSubmitError(msg);
+        // Re-enable for retryable failures (most reason codes are not).
+        // Token-state failures return verification_failed → user needs new link.
+        if (reason === 'invalid_legal_name' || reason === 'invalid_rep_name' ||
+            reason === 'invalid_rep_email' || reason === 'invalid_snapshot' ||
+            reason === 'storage_upload_failed' || reason === 'server_error') {
+          restoreBtn('✍️ Probeer opnieuw');
+        }
+        return;
+      }
+
+      // Success — body contains { success, request_id, signed_at, snapshot_sha }.
+      // Clear sessionStorage (no longer needed; user moves to download).
+      try {
+        sessionStorage.removeItem('dpa_intake_formdata');
+        sessionStorage.removeItem('dpa_intake_token');
+        sessionStorage.removeItem('dpa_intake_engagement');
+      } catch (e) { /* ignore */ }
+
+      // Show success modal with key facts.
+      showSuccessModal({
+        request_id:   body.request_id,
+        signed_at:    body.signed_at,
+        snapshot_sha: body.snapshot_sha,
+        rep_email:    payload.cp_rep_email,
+      });
+    });
+
+    function showSubmitError(message) {
+      let banner = document.getElementById('submit-error-banner');
+      if (!banner) {
+        banner = document.createElement('div');
+        banner.id = 'submit-error-banner';
+        banner.setAttribute('role', 'alert');
+        banner.style.cssText = 'background:#FFE5E5;border:2px solid #C92A2A;color:#7A0E0E;padding:18px 24px;border-radius:8px;margin:18px 0;font-size:1rem;line-height:1.6';
+        const signSec = document.querySelector('.sign-section');
+        if (signSec) signSec.insertBefore(banner, signSec.firstChild);
+      }
+      banner.innerHTML = '<strong>Ondertekening mislukt.</strong><br>' + message;
+      banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function showSuccessModal({ request_id, signed_at, snapshot_sha, rep_email }) {
+      const modal = document.getElementById('modal');
+      modal.classList.add('modal--open');
+      const inner = modal.querySelector('.modal__inner') || modal;
+      inner.innerHTML =
+        '<h2 style="margin-top:0;color:#00914B">✅ Verwerkersovereenkomst getekend</h2>' +
+        '<p>Uw handtekening is geregistreerd. We hebben een download-link voor de getekende DPA naar <strong>' + escapeHtml(rep_email) + '</strong> gestuurd.</p>' +
+        '<p><strong>Belangrijk:</strong> de download-link is 30 dagen geldig vanaf nu, maar verloopt 30 minuten na de eerste keer dat u hem opent — sla het bestand direct op nadat u het downloadt.</p>' +
+        '<dl style="font-size:0.9em;color:#5781A1;border-top:1px solid #E4E2E2;padding-top:12px;margin-top:18px">' +
+          '<dt style="font-weight:600">Tijdstip ondertekening</dt><dd style="margin:2px 0 8px">' + escapeHtml(signed_at || '') + '</dd>' +
+          '<dt style="font-weight:600">SHA-256 van de getekende snapshot</dt><dd style="margin:2px 0 8px;font-family:monospace;font-size:0.85em;word-break:break-all">' + escapeHtml(snapshot_sha || '') + '</dd>' +
+          '<dt style="font-weight:600">Request-ID</dt><dd style="margin:2px 0 8px;font-family:monospace;font-size:0.85em">' + escapeHtml(request_id || '') + '</dd>' +
+        '</dl>' +
+        '<p style="font-size:0.9em;color:#5781A1;margin-top:18px">Niet ontvangen binnen 5 minuten? Controleer uw spam-map, of mail <a href="mailto:yvo.hunink@regenstudio.world?subject=Getekende%20DPA%20niet%20ontvangen" style="color:#5781A1;text-decoration:underline">yvo.hunink@regenstudio.world</a>.</p>' +
+        '<button class="modal__close" id="modal-close-success" style="margin-top:18px">Sluiten</button>';
+      document.getElementById('modal-close-success').addEventListener('click', () => {
+        modal.classList.remove('modal--open');
+      });
+    }
+
+    function escapeHtml(s) {
+      return String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({
+        '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+      }[c]));
+    }
+
+    document.getElementById('modal-close').addEventListener('click', () => {
+      document.getElementById('modal').classList.remove('modal--open');
+    });
+    document.getElementById('modal').addEventListener('click', (e) => {
+      if (e.target.id === 'modal') {
+        document.getElementById('modal').classList.remove('modal--open');
+      }
+    });
+
+    // Download concept-PDF — client-side print (Save as PDF) with watermark
+    const downloadBtn = document.getElementById('download-concept-btn');
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', () => {
+        // Force "show both modes" so the concept-PDF includes legal + plain.
+        const wasMode = document.body.className;
+        document.body.classList.remove('plain-only', 'legal-only');
+        document.body.classList.add('concept-print');
+        // Briefly delay so the layout settles before print dialog.
+        setTimeout(() => {
+          window.print();
+          // Restore previous toggle state after print dialog closes.
+          setTimeout(() => {
+            document.body.className = wasMode;
+            document.body.classList.remove('concept-print');
+          }, 300);
+        }, 60);
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

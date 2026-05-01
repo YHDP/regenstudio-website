@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Getekende DPA · Regen Studio</title>
+  <style>
+    :root {
+      --emerald: #00914B;
+      --ink: #243644;
+      --muted: #5781A1;
+      --paper: #FAFBFC;
+      --line: #E4E2E2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 720px;
+      margin: 60px auto;
+      padding: 0 22px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 36px 40px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.6rem;
+      color: var(--ink);
+    }
+    h1 .check {
+      color: var(--emerald);
+      margin-right: 6px;
+    }
+    p { margin: 0 0 14px; }
+    .muted { color: var(--muted); font-size: 0.92rem; }
+    .meta {
+      background: #F5F7F9;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 22px 0;
+      font-size: 0.93rem;
+    }
+    .meta dt { font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+    .meta dd {
+      margin: 0 0 12px;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 0.85rem;
+      word-break: break-all;
+      color: var(--muted);
+    }
+    .btn {
+      display: inline-block;
+      background: var(--emerald);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 99px;
+      text-decoration: none;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .btn:hover { background: #008545; }
+    .btn:disabled { background: #9ba2aa; cursor: not-allowed; }
+    .alert {
+      background: #FFE5E5;
+      border: 2px solid #C92A2A;
+      color: #7A0E0E;
+      padding: 18px 22px;
+      border-radius: 8px;
+      margin: 18px 0;
+    }
+    .loading {
+      color: var(--muted);
+      text-align: center;
+      padding: 40px 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="card" id="card">
+    <div id="loading" class="loading">
+      <p>⏳ Bezig met verifiëren van uw download-link…</p>
+    </div>
+
+    <div id="success" style="display:none">
+      <h1><span class="check">✅</span> Getekende verwerkersovereenkomst</h1>
+      <p>Uw download-link is geverifieerd. Klik hieronder om de getekende DPA te downloaden.</p>
+
+      <p style="margin:24px 0">
+        <a id="download-link" class="btn" download>Download getekende DPA →</a>
+      </p>
+
+      <p class="muted">⚠️ <strong>Belangrijk:</strong> deze link verloopt 30 minuten na deze eerste opening. Sla het bestand direct op uw systeem op nadat u het downloadt — u kunt het altijd opnieuw openen vanaf uw eigen schijf.</p>
+
+      <dl class="meta">
+        <dt>Tijdstip ondertekening</dt>
+        <dd id="meta-signed-at">—</dd>
+        <dt>Engagement</dt>
+        <dd id="meta-engagement">—</dd>
+        <dt>Partij</dt>
+        <dd id="meta-party">—</dd>
+      </dl>
+
+      <p class="muted" style="margin-top:24px">Vragen? Mail <a href="mailto:yvo.hunink@regenstudio.world" style="color:var(--muted)">yvo.hunink@regenstudio.world</a>.</p>
+    </div>
+
+    <div id="error" style="display:none">
+      <h1>⚠️ Download-link niet geldig</h1>
+      <div class="alert" id="error-message"></div>
+      <p class="muted">
+        Mail <a href="mailto:yvo.hunink@regenstudio.world?subject=Nieuwe%20download-link%20DPA" style="color:var(--muted)">yvo.hunink@regenstudio.world</a> voor een nieuwe download-link.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const SUPABASE_URL = "https://uemspezaqxmkhenimwuf.supabase.co";
+    const VERIFY_ACCESS_URL = SUPABASE_URL + "/functions/v1/verify-dpa-access";
+
+    const TOKEN_RE = /^[0-9a-f]{64}$/;
+
+    // Reason-code → Dutch
+    const REASON_MAP = {
+      'malformed':              'De download-link is incompleet of beschadigd. Open de link rechtstreeks vanuit de e-mail.',
+      'not_found':              'Deze download-link is onbekend.',
+      'expired':                'Deze download-link is verlopen (30 dagen na ondertekening).',
+      'expired_after_first_use':'Deze download-link is dertig (30) minuten na de eerste opening verlopen.',
+      'snapshot_missing':       'Het bestand kon niet worden gevonden in de opslag. Mail Yvo voor herstel.',
+      'snapshot_path_missing':  'De interne verwijzing naar het bestand klopt niet. Mail Yvo voor herstel.',
+      'server_error':           'Tijdelijke server-storing. Probeer opnieuw over een paar minuten.',
+      'method_not_allowed':     'Verkeerde aanroep-methode. Herlaad de pagina.',
+    };
+    function translate(reason) {
+      return REASON_MAP[reason] || ('Onbekende fout: ' + String(reason || '').slice(0, 80));
+    }
+
+    function showError(message) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('success').style.display = 'none';
+      document.getElementById('error').style.display = 'block';
+      document.getElementById('error-message').textContent = message;
+    }
+
+    function showSuccess({ signed_url, party, engagement_label, signed_at }) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+      const link = document.getElementById('download-link');
+      link.href = signed_url;
+      document.getElementById('meta-signed-at').textContent = signed_at || '—';
+      document.getElementById('meta-engagement').textContent = engagement_label || '—';
+      document.getElementById('meta-party').textContent =
+        party === 'controller' ? 'Verantwoordelijke (controller)' :
+        party === 'processor'  ? 'Verwerker (processor)' :
+        (party || '—');
+    }
+
+    // Read ?t=<token>
+    const params = new URLSearchParams(location.search);
+    const token = (params.get("t") || "").trim().toLowerCase();
+
+    if (!TOKEN_RE.test(token)) {
+      showError(translate('malformed'));
+      return;
+    }
+
+    // Scrub the token from the URL bar (Referer-leak harm reduction).
+    try {
+      history.replaceState(null, '', location.pathname);
+    } catch (e) { /* ignore */ }
+
+    fetch(VERIFY_ACCESS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: token }),
+    })
+      .then(r => r.json().then(j => ({ ok: r.ok, status: r.status, body: j })))
+      .then(({ ok, body }) => {
+        if (!ok || !body || body.success !== true) {
+          showError(translate((body && body.reason) || 'server_error'));
+          return;
+        }
+        showSuccess(body);
+      })
+      .catch(err => {
+        console.error('verify-dpa-access failed:', err);
+        showError('Er is een verbindingsstoring. Probeer opnieuw, of mail yvo.hunink@regenstudio.world.');
+      });
+  })();
+</script>
+
+</body>
+</html>
