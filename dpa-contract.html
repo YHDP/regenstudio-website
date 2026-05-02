@@ -838,7 +838,19 @@
       </span>
     </label>
 
-    <button class="sign-btn" id="sign-btn" disabled>✍️ Onderteken (test)</button>
+    <div class="sig-pad-wrap" style="margin:22px 0 8px">
+      <p style="margin:0 0 8px;font-size:0.92rem;color:var(--ink);font-weight:600">Schrijf hier uw handtekening</p>
+      <p style="margin:0 0 12px;font-size:0.82rem;color:var(--muted)">Optioneel — uw handtekening wordt als afbeelding meegeleverd in de PDF naast de cryptografische bewijsbestanddelen.</p>
+      <div style="background:#FAFBFC;border:1px solid var(--border);border-radius:8px;padding:6px;display:inline-block">
+        <canvas id="sig-pad" width="500" height="160" style="display:block;background:#fff;border-radius:4px;cursor:crosshair;touch-action:none"></canvas>
+      </div>
+      <div style="margin-top:8px;display:flex;gap:10px;align-items:center">
+        <button type="button" id="sig-pad-clear" style="background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:6px;font-size:0.82rem;cursor:pointer;font-family:inherit">Wis</button>
+        <span id="sig-pad-status" style="font-size:0.82rem;color:var(--muted)"></span>
+      </div>
+    </div>
+
+    <button class="sign-btn" id="sign-btn" disabled>✍️ Onderteken</button>
 
     <div class="plain" style="margin-top:18px">
       <div class="plain__label">💡 Wat gebeurt er na ondertekening?</div>
@@ -872,6 +884,7 @@
 </footer>
 
 <script src="assets/js/vendor/jspdf.umd.min.js"></script>
+<script src="assets/js/vendor/signature_pad.umd.min.js"></script>
 <script src="assets/js/dpa-pdf-builder.js"></script>
 <script src="assets/js/vendor/html2pdf.bundle.min.js"></script>
 <script>
@@ -1033,6 +1046,41 @@
       signBtn.disabled = !confirmCb.checked;
     });
 
+    // Signature pad — drawn handtekening, optional, output PNG base64.
+    // Library: signature_pad.umd.min.js (vendor); MIT-licensed by Szymon Nowak.
+    const sigCanvas = document.getElementById('sig-pad');
+    const sigClearBtn = document.getElementById('sig-pad-clear');
+    const sigStatus = document.getElementById('sig-pad-status');
+    let sigPad = null;
+    if (sigCanvas && window.SignaturePad) {
+      // Resize canvas to match its display size for sharp rendering.
+      const ratio = Math.max(window.devicePixelRatio || 1, 1);
+      sigCanvas.width = sigCanvas.offsetWidth * ratio;
+      sigCanvas.height = sigCanvas.offsetHeight * ratio;
+      const ctx = sigCanvas.getContext('2d');
+      if (ctx && ratio !== 1) ctx.scale(ratio, ratio);
+      sigPad = new window.SignaturePad(sigCanvas, {
+        backgroundColor: '#ffffff',
+        penColor: '#1a1a2e',
+        minWidth: 0.6,
+        maxWidth: 2.4,
+      });
+      sigPad.addEventListener('endStroke', () => {
+        if (sigStatus) sigStatus.textContent = 'Handtekening vastgelegd. Klik "Wis" om opnieuw te tekenen.';
+      });
+      sigClearBtn && sigClearBtn.addEventListener('click', () => {
+        sigPad.clear();
+        if (sigStatus) sigStatus.textContent = '';
+      });
+    }
+    function getSignaturePngB64() {
+      if (!sigPad || sigPad.isEmpty()) return null;
+      // toDataURL returns "data:image/png;base64,..." — strip prefix
+      const dataUrl = sigPad.toDataURL('image/png');
+      const idx = dataUrl.indexOf(',');
+      return idx >= 0 ? dataUrl.slice(idx + 1) : null;
+    }
+
     // Cache the canonical/schedule/annex SHAs from engagement metadata
     // (these were pinned at link-creation time + returned by dpa-verify-token).
     // For now we use the values the verify-token endpoint returns; if those
@@ -1110,6 +1158,7 @@
           aiProcessingConsent: !!data.ai_processing_consent,
           signature: {
             signedAt: draftSignedAt,
+            handDrawnPng: getSignaturePngB64(),
             // SHA / requestId / ipHash / uaHash deliberately omitted — they
             // are server-stamped on dpa_signatures, not embedded in the PDF
             // body. See dpa-pdf-builder.js drawSignatureEvidence for the

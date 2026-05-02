@@ -43,7 +43,49 @@
     plainBd: [240, 193, 75],     // #f0c14b — klare-taal box border
   };
 
-  const FONT = 'helvetica'; // jsPDF built-in (Helvetica), guaranteed available
+  // Lora (OFL, Google Fonts) — embedded TTF, replaces jsPDF built-in
+  // Helvetica/Times whose AFM-metric rendering felt "wanky" per Yvo's
+  // 2026-05-02 review. Georgia license (Microsoft proprietary) forbids
+  // embedding; Lora is the closest open-source serif.
+  // Fetched lazily via loadLoraFonts() before first PDF render; cached on
+  // window.__loraFontCache. Falls back to 'times' on network failure.
+  let FONT = 'times'; // changed to 'Lora' after loadLoraFonts() succeeds
+
+  function arrayBufferToB64(buf) {
+    const bytes = new Uint8Array(buf);
+    const chunkSize = 32768;
+    let bin = '';
+    for (let i = 0; i < bytes.byteLength; i += chunkSize) {
+      bin += String.fromCharCode.apply(null, bytes.subarray(i, i + chunkSize));
+    }
+    return btoa(bin);
+  }
+
+  async function loadLoraFonts(doc) {
+    try {
+      if (!root.__loraFontCache) {
+        const [regResp, boldResp] = await Promise.all([
+          fetch('assets/fonts/lora/Lora-Regular.ttf'), // same-origin static asset
+          fetch('assets/fonts/lora/Lora-Bold.ttf'), // same-origin static asset
+        ]);
+        if (!regResp.ok || !boldResp.ok) throw new Error('Lora fetch failed');
+        const [regBuf, boldBuf] = await Promise.all([regResp.arrayBuffer(), boldResp.arrayBuffer()]);
+        root.__loraFontCache = {
+          regular: arrayBufferToB64(regBuf),
+          bold:    arrayBufferToB64(boldBuf),
+        };
+      }
+      doc.addFileToVFS('Lora-Regular.ttf', root.__loraFontCache.regular);
+      doc.addFont('Lora-Regular.ttf', 'Lora', 'normal');
+      doc.addFileToVFS('Lora-Bold.ttf', root.__loraFontCache.bold);
+      doc.addFont('Lora-Bold.ttf', 'Lora', 'bold');
+      FONT = 'Lora';
+      return true;
+    } catch (err) {
+      console.warn('Lora font load failed; falling back to', FONT, err);
+      return false;
+    }
+  }
   const PAGE = {
     width:  595.28, // A4 portrait pt
     height: 841.89,
@@ -345,13 +387,22 @@
     doc.text('Engagement', PAGE.marginLeft, state.y);
     state.y += 16;
 
+    // Audit Round-4 follow-up (Yvo direction 2026-05-02): cover meta block
+    // strips contract economics (subsidie + expert-uren) — those are
+    // commercial details, not Art 28(3) GDPR-required elements. Reframes
+    // the "regulatoir kader" line to make explicit:
+    //   · OUR grondslag voor verwerken = AVG Art 28 (verwerker-rol op
+    //     instructie van Verantwoordelijke); we hebben geen zelfstandige
+    //     Art 6-grondslag.
+    //   · The project-domain regulation (DSR / ESPR / etc) is ABOUT what
+    //     the Verantwoordelijke prepares for, not what governs our data
+    //     processing of personal data in this DPA.
     const metaRows = [];
-    if (engagement.label)               metaRows.push(['Project',          engagement.label]);
-    if (engagement.regulatoryLabel)     metaRows.push(['Regulatoir kader', engagement.regulatoryLabel]);
-    if (engagement.subsidieBedragEur)   metaRows.push(['Subsidie',         `€${engagement.subsidieBedragEur.toLocaleString('nl-NL')} excl. BTW · ${engagement.expertUren || '?'} expert-uur`]);
-    if (engagement.projectEinddatum)    metaRows.push(['Project-einddatum',engagement.projectEinddatum]);
-    if (engagement.bewaarplichtEinddatum) metaRows.push(['Bewaarplicht t/m', engagement.bewaarplichtEinddatum]);
-    if (engagement.regulatoryDppDeadline) metaRows.push(['Regulatoir van kracht', `${engagement.regulatoryDppDeadline} (voorbereidings-traject; geen actie vereist vóór deze datum)`]);
+    if (engagement.label)               metaRows.push(['Project',                 engagement.label]);
+    metaRows.push(['Toepasselijk recht',     'Nederlands recht; AVG (Verordening (EU) 2016/679) — Verwerker-rol onder Artikel 28']);
+    if (engagement.regulatoryLabel)     metaRows.push(['Aard van verwerking',     `DPP-advisory ter voorbereiding op ${engagement.regulatoryLabel}`]);
+    if (engagement.projectEinddatum)    metaRows.push(['Project-einddatum',       engagement.projectEinddatum]);
+    if (engagement.bewaarplichtEinddatum) metaRows.push(['Bewaarplicht t/m',      engagement.bewaarplichtEinddatum]);
     writeKVTable(state, metaRows);
 
     // Bottom block: signature attestation strip
@@ -946,6 +997,35 @@
 
     state.y += 8;
 
+    // Hand-drawn signature image (optional). Drawn into a bordered box
+    // alongside the text-based evidence. eIDAS Art 25(1) — graphic SES
+    // alongside the cryptographic evidence (snapshot SHA + token-hash +
+    // server-recorded signed_at + IP/UA hashes). The PNG bytes are part of
+    // the SHA-pinned PDF; the cryptographic anchors are server-side.
+    if (signature.handDrawnPng) {
+      writeSubheading(state, 'Handgeschreven handtekening');
+      ensureSpace(state, 130);
+      const sigBoxW = 280, sigBoxH = 100;
+      const sigX = PAGE.marginLeft;
+      const sigY = state.y;
+      setDraw(state.doc, BRAND.border);
+      setFill(state.doc, [255, 255, 255]);
+      state.doc.setLineWidth(0.5);
+      state.doc.rect(sigX, sigY, sigBoxW, sigBoxH, 'FD');
+      try {
+        const pngData = 'data:image/png;base64,' + signature.handDrawnPng;
+        state.doc.addImage(pngData, 'PNG', sigX + 6, sigY + 6, sigBoxW - 12, sigBoxH - 12, undefined, 'FAST');
+      } catch (e) {
+        console.warn('Signature PNG render failed:', e);
+      }
+      // Caption
+      setColor(state.doc, BRAND.muted);
+      setFont(state.doc, 'normal');
+      state.doc.setFontSize(8);
+      state.doc.text(`Handtekening van ${controller.repName || '—'}`, sigX, sigY + sigBoxH + 12);
+      state.y += sigBoxH + 28;
+    }
+
     writeSubheading(state, 'Bewijsbestanddelen');
     // Audit B5 fix: do NOT print snapshotSha into the visible body. The SHA
     // is computed server-side over the SIGNED PDF bytes and stored in
@@ -992,6 +1072,9 @@
     }
     const { jsPDF } = root.jspdf;
     const doc = new jsPDF({ unit: 'pt', format: 'a4', orientation: 'portrait', compress: true });
+    // Load + register Lora into this document. Falls back to 'times' on
+    // network failure (rare; same-origin static asset).
+    await loadLoraFonts(doc);
     doc.setFont(FONT, 'normal');
 
     // Audit Round-2 fix: fail-loud on missing engagement key/label rather
