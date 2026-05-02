@@ -895,7 +895,7 @@
     state.y += 12;
     writeSubheading(state, 'Contact');
     writeParagraph(state,
-      'Voor vragen over deze Overeenkomst, betrokkenenrechten of incident-meldingen: yvo.hunink@regenstudio.world. Voor klachten kunt u zich richten tot de Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl).',
+      'Voor vragen over deze Overeenkomst, betrokkenenrechten of incident-meldingen: info@regenstudio.world. Voor klachten kunt u zich richten tot de Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl).',
       { fontSize: 9.5 });
   }
 
@@ -905,7 +905,7 @@
   function drawClosingNote(state) {
     state.y += 12;
     writePlainBox(state, 'Wat nu?',
-      'U hoeft nu niets te doen. Bewaar dit PDF in uw eigen administratie — wij hebben u hiervan ook een kopie per e-mail gestuurd. Heeft u later vragen over deze Overeenkomst, of wilt u uw toestemming aanpassen of intrekken? Mail dan yvo.hunink@regenstudio.world; Yvo antwoordt binnen 2 werkdagen. Voor klachten over gegevensverwerking kunt u zich (zonder voorafgaand overleg met ons) richten tot de Autoriteit Persoonsgegevens — autoriteitpersoonsgegevens.nl.');
+      'U hoeft nu niets te doen. Bewaar dit PDF in uw eigen administratie — wij hebben u hiervan ook een kopie per e-mail gestuurd. Heeft u later vragen over deze Overeenkomst, of wilt u uw toestemming aanpassen of intrekken? Mail dan info@regenstudio.world; Regen Studio antwoordt binnen 2 werkdagen. Voor klachten over gegevensverwerking kunt u zich (zonder voorafgaand overleg met ons) richten tot de Autoriteit Persoonsgegevens — autoriteitpersoonsgegevens.nl.');
   }
 
   // -------------------------------------------------------------------------
@@ -952,8 +952,8 @@
         address: 'Stollenbergweg 43, 6571 AB, Berg en Dal',
         kvk: '90337948',
         btw: 'NL865282377B01',
-        repName: 'Yvo Hunink (DGA / Bestuurder)',
-        repEmail: 'yvo.hunink@regenstudio.world',
+        repName: 'Bestuurder Regen Studio B.V.',
+        repEmail: 'info@regenstudio.world',
       }, args.processor || {}),
       toggles: args.toggles || {},
       aiProcessingConsent: !!args.aiProcessingConsent,
