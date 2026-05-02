@@ -1017,7 +1017,16 @@
     // will reject as missing_sha_pins.
     function pickSha(metaField) {
       if (!engagementMeta) return "";
-      return String(engagementMeta[metaField] || "").trim();
+      const fromMeta = String(engagementMeta[metaField] || "").trim();
+      if (fromMeta) return fromMeta;
+      // Phase-3.1 follow-up: bake real per-engagement SHAs at build time.
+      // Until then, emit a placeholder for required fields (canonical_sha,
+      // schedule_sha) so the snapshot itself remains the authoritative
+      // pin. Optional fields stay null when absent.
+      if (metaField === 'canonical_sha' || metaField === 'schedule_sha') {
+        return 'PENDING_BUILDTIME_PIN_' + metaField.toUpperCase();
+      }
+      return "";
     }
 
     async function sha256HexBrowser(str) {
