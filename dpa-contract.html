@@ -871,6 +871,8 @@
   </p>
 </footer>
 
+<script src="assets/js/vendor/jspdf.umd.min.js"></script>
+<script src="assets/js/dpa-pdf-builder.js"></script>
 <script src="assets/js/vendor/html2pdf.bundle.min.js"></script>
 <script>
   (function() {
@@ -1072,43 +1074,55 @@
         return;
       }
 
-      // Build a styled PDF from the live <main> element. We toggle the
-      // `signing-pdf-render` class on body to hide controls + force both
-      // tracks visible BEFORE html2canvas measures the page; this avoids
-      // the empty-first-pages issue we saw with the onclone-based approach
-      // (html2canvas locks the canvas size from the visible body height).
-      // Class is removed in finally{} regardless of success/failure.
+      // Build a branded vector PDF via dpa-pdf-builder.js (jsPDF-direct).
+      // No html2canvas; no scroll-offset bug; selectable text; sharp typography.
+      // The signature evidence (signedAt, snapshotSha, requestId, ipHash, uaHash)
+      // is filled server-side post-submit — for the at-sign-time PDF, we pass
+      // a placeholder signedAt and let the Edge Function regenerate the final
+      // PDF if it needs the canonical SHA over server-stamped fields.
       let pdfBlob;
-      const prevToggleMode = document.body.className;
-      document.body.classList.add('signing-pdf-render');
-      document.body.classList.remove('plain-only', 'legal-only');
-      // Allow one frame for layout reflow.
-      await new Promise(r => requestAnimationFrame(r));
+      const draftSignedAt = new Date().toISOString();
       try {
-        pdfBlob = await html2pdf()
-          .from(mainEl)
-          .set({
-            margin: 10,
-            filename: 'verwerkersovereenkomst.pdf',
-            image: { type: 'jpeg', quality: 0.85 },
-            html2canvas: {
-              scale: 1.5,
-              useCORS: true,
-              logging: false,
-              backgroundColor: '#ffffff',
-            },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true },
-            pagebreak: { mode: 'css' },
-          })
-          .outputPdf('blob');
+        pdfBlob = await window.buildSignedDpaPdf({
+          engagement: {
+            key: engagementMeta.engagement_key || 'ad-hoc/test',
+            label: engagementMeta.engagement_label || 'TEST Engagement',
+            legalName: data.cp_legal_name || '—',
+            regulatoryRegime: engagementMeta.regulatory_regime || 'dsr',
+            regulatoryLabel: engagementMeta.regulatory_label || 'DSR Verordening (EU) 2026/405',
+            regulatoryDppDeadline: engagementMeta.regulatory_dpp_deadline || '23 september 2029',
+            subsidieBedragEur: engagementMeta.subsidie_bedrag_eur || null,
+            expertUren: engagementMeta.expert_uren || null,
+            projectEinddatum: engagementMeta.project_einddatum || '1 december 2026',
+            bewaarplichtEinddatum: engagementMeta.bewaarplicht_einddatum || '31 december 2035',
+          },
+          controller: {
+            legalName: data.cp_legal_name,
+            legalForm: data.cp_legal_form || '',
+            address: data.cp_address || '',
+            country: data.cp_country || 'Nederland',
+            kvk: data.cp_registration_number || '',
+            repName: data.cp_rep_name,
+            repRole: data.cp_rep_role,
+            repEmail: String(data.cp_rep_email || '').trim().toLowerCase(),
+            repPhone: data.cp_rep_phone || '',
+          },
+          toggles: data.doc_toggles || {},
+          aiProcessingConsent: !!data.ai_processing_consent,
+          signature: {
+            signedAt: draftSignedAt,
+            // SHA / requestId / ipHash / uaHash deliberately omitted — they
+            // are server-stamped on dpa_signatures, not embedded in the PDF
+            // body. See dpa-pdf-builder.js drawSignatureEvidence for the
+            // chicken-and-egg rationale (audit B5).
+          },
+        });
       } catch (err) {
         console.error('PDF generation error:', err);
-        document.body.className = prevToggleMode;
         showSubmitError('PDF kon niet worden gegenereerd. Probeer opnieuw of mail yvo.hunink@regenstudio.world.');
         restoreBtn();
         return;
       }
-      document.body.className = prevToggleMode;
 
       signBtn.textContent = '⏳ Versturen…';
 
