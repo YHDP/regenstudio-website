@@ -318,23 +318,8 @@
     /* PDF-render mode: collapse controls on live DOM so html2canvas
        measures the document without their layout space. Both juridisch
        and klare-taal blocks remain visible (no toggle-mode filtering).
-       Force A4-portrait body width (794px @ 96dpi) so main renders at
-       (0,0) without centering offset — otherwise html2canvas captures
-       a body-wide canvas with content shifted right by the auto margin. */
-    body.signing-pdf-render {
-      width: 794px !important;
-      max-width: 794px !important;
-      min-width: 794px !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      background: #ffffff !important;
-    }
-    body.signing-pdf-render main {
-      margin: 0 !important;
-      max-width: none !important;
-      width: 794px !important;
-      padding: 16px 20px !important;
-    }
+       Don't force body width — html2pdf measures from the source element
+       directly, and forcing body width caused offset-canvas bugs. */
     body.signing-pdf-render .test-banner,
     body.signing-pdf-render .prod-banner,
     body.signing-pdf-render .nav,
@@ -1103,17 +1088,17 @@
         pdfBlob = await html2pdf()
           .from(mainEl)
           .set({
-            margin: [12, 12, 12, 12],
+            margin: 10,
             filename: 'verwerkersovereenkomst.pdf',
-            image: { type: 'jpeg', quality: 0.97 },
+            image: { type: 'png' },
             html2canvas: {
-              scale: 1.5,
+              scale: 1,
               useCORS: true,
               logging: false,
               backgroundColor: '#ffffff',
             },
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
+            pagebreak: { mode: 'css' },
           })
           .outputPdf('blob');
       } catch (err) {
