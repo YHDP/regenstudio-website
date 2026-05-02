@@ -1007,10 +1007,11 @@
       doc,
       pageNumber: 1,
       y: PAGE.marginTop,
-      engagement: Object.assign({
-        regulatoryRegime: 'espr',
-        regulatoryLabel: 'ESPR Verordening (EU) 2024/1781',
-      }, args.engagement),
+      // Audit Round-4 follow-up: do NOT pre-seed engagement defaults here —
+      // they leak through resolveEngagement's caller-merge and overwrite the
+      // ENGAGEMENT_PROFILES authoritative values (e.g. cover shows ESPR for
+      // a Seepje DSR engagement). Profile is the source of truth.
+      engagement: Object.assign({}, args.engagement),
       controller: Object.assign({
         legalName: '—',
         legalForm: '—',
