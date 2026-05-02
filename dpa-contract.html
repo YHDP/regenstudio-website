@@ -851,6 +851,7 @@
   </p>
 </footer>
 
+<script src="assets/js/vendor/html2pdf.bundle.min.js"></script>
 <script>
   (function() {
     // PRODUCTION wire — Phase 3.
@@ -1038,28 +1039,71 @@
     signBtn.addEventListener('click', async () => {
       // Disable button immediately to prevent double-submit.
       signBtn.disabled = true;
-      signBtn.textContent = '⏳ Bezig met ondertekenen…';
+      signBtn.textContent = '⏳ PDF genereren…';
       const restoreBtn = (label) => {
         signBtn.disabled = false;
         signBtn.textContent = label || '✍️ Onderteken';
       };
 
-      // Build the HTML snapshot from the legally-binding subtree only (the
-      // <main> element). The Edge Function's strict snapshot validator
-      // rejects <script>, <style>, <iframe>, <base>, on*= handlers, etc. —
-      // so the inline <head> styles + bottom <script> tags must NOT be in
-      // the snapshot. The <main> contains the contract body + side-letter +
-      // sign-section but no scripts/styles, so its outerHTML is clean.
-      // Wrap in a minimal HTML document so the snapshot is self-contained
-      // and viewable when downloaded (no styles — readable as plain HTML).
       const mainEl = document.querySelector('main');
       if (!mainEl) {
         showSubmitError('Interne fout: <main> element niet gevonden in de pagina. Mail Yvo.');
         restoreBtn();
         return;
       }
+
+      // Build a styled PDF from a clone of <main> with controls (sign
+      // section, download-CTA, toggle-bar, modal) removed. Both klare-taal
+      // + juridisch tracks rendered (no toggle-mode filtering). The cloned
+      // node is placed off-screen so the inline <head> styles apply.
+      let pdfBlob;
+      try {
+        const cloned = mainEl.cloneNode(true);
+        cloned.querySelectorAll('.download-cta, .sign-section, .toggle-bar, .modal, #missing-data-alert').forEach(el => el.remove());
+        cloned.classList.remove('plain-only', 'legal-only');
+        const tempContainer = document.createElement('div');
+        tempContainer.style.cssText = 'position:absolute;left:-9999px;top:0;width:794px;background:white;padding:0;';
+        tempContainer.appendChild(cloned);
+        document.body.appendChild(tempContainer);
+
+        pdfBlob = await html2pdf()
+          .from(tempContainer)
+          .set({
+            margin: [12, 12, 12, 12],
+            filename: 'verwerkersovereenkomst.pdf',
+            image: { type: 'jpeg', quality: 0.97 },
+            html2canvas: { scale: 2, useCORS: true, logging: false, backgroundColor: '#ffffff' },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
+          })
+          .outputPdf('blob');
+        document.body.removeChild(tempContainer);
+      } catch (err) {
+        console.error('PDF generation error:', err);
+        showSubmitError('PDF kon niet worden gegenereerd. Probeer opnieuw of mail yvo.hunink@regenstudio.world.');
+        restoreBtn();
+        return;
+      }
+
+      signBtn.textContent = '⏳ Versturen…';
+
+      // Convert PDF blob to base64 for transport (Lettermint attachment +
+      // Storage upload both want base64-encoded bytes).
+      const pdfB64 = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const dataUrl = reader.result;
+          const idx = String(dataUrl).indexOf(',');
+          resolve(idx >= 0 ? String(dataUrl).slice(idx + 1) : '');
+        };
+        reader.onerror = () => reject(reader.error);
+        reader.readAsDataURL(pdfBlob);
+      });
+
       // Strip any data-handlers from the snapshot (defensive — main shouldn't
       // contain any but pre-fill spans may carry data-* which are safe).
+      // Kept for backward-compat with the Edge Function's snapshot validator
+      // until the html-snapshot path is fully removed in a follow-up.
       const cleanMainHtml = mainEl.outerHTML;
       const htmlSnapshot =
         '<!DOCTYPE html>\n<html lang="nl"><head><meta charset="UTF-8">' +
@@ -1085,6 +1129,7 @@
         ai_processing_consent: !!data.ai_processing_consent,
         doc_toggles:     docToggles,
         html_snapshot:   htmlSnapshot,
+        pdf_b64:         pdfB64,
         schedule_sha:    scheduleSha,
         canonical_sha:   canonicalSha,
         annex_x_sha:     annexXSha,
