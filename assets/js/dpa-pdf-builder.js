@@ -49,7 +49,11 @@
   // embedding; Lora is the closest open-source serif.
   // Fetched lazily via loadLoraFonts() before first PDF render; cached on
   // window.__loraFontCache. Falls back to 'times' on network failure.
-  let FONT = 'times'; // changed to 'Lora' after loadLoraFonts() succeeds
+  // FONT_DEFAULT: jsPDF built-in fallback when Lora load fails. Per-doc
+  // resolved name lives on state.font (set inside loadLoraFonts) — do NOT
+  // read this constant outside loadLoraFonts; setFont() must read state.font
+  // to avoid a race when concurrent buildSignedDpaPdf() calls flip it.
+  const FONT_DEFAULT = 'times';
 
   function arrayBufferToB64(buf) {
     const bytes = new Uint8Array(buf);
@@ -61,28 +65,38 @@
     return btoa(bin);
   }
 
-  async function loadLoraFonts(doc) {
+  async function loadLoraFonts(state) {
+    const doc = state.doc;
+    // Default fallback per-doc; flipped to 'Lora' on success.
+    state.font = FONT_DEFAULT;
     try {
       if (!root.__loraFontCache) {
-        const [regResp, boldResp] = await Promise.all([
-          fetch('assets/fonts/lora/Lora-Regular.ttf'), // same-origin static asset
-          fetch('assets/fonts/lora/Lora-Bold.ttf'), // same-origin static asset
-        ]);
-        if (!regResp.ok || !boldResp.ok) throw new Error('Lora fetch failed');
-        const [regBuf, boldBuf] = await Promise.all([regResp.arrayBuffer(), boldResp.arrayBuffer()]);
-        root.__loraFontCache = {
-          regular: arrayBufferToB64(regBuf),
-          bold:    arrayBufferToB64(boldBuf),
-        };
+        const ctl = (typeof AbortController === 'function') ? new AbortController() : null;
+        const timer = ctl ? setTimeout(() => ctl.abort(), 5000) : null;
+        const fetchOpts = ctl ? { signal: ctl.signal } : {};
+        try {
+          const [regResp, boldResp] = await Promise.all([
+            fetch('assets/fonts/lora/Lora-Regular.ttf', fetchOpts), // same-origin static asset
+            fetch('assets/fonts/lora/Lora-Bold.ttf', fetchOpts), // same-origin static asset
+          ]);
+          if (!regResp.ok || !boldResp.ok) throw new Error('Lora fetch failed');
+          const [regBuf, boldBuf] = await Promise.all([regResp.arrayBuffer(), boldResp.arrayBuffer()]);
+          root.__loraFontCache = {
+            regular: arrayBufferToB64(regBuf),
+            bold:    arrayBufferToB64(boldBuf),
+          };
+        } finally {
+          if (timer) clearTimeout(timer);
+        }
       }
       doc.addFileToVFS('Lora-Regular.ttf', root.__loraFontCache.regular);
       doc.addFont('Lora-Regular.ttf', 'Lora', 'normal');
       doc.addFileToVFS('Lora-Bold.ttf', root.__loraFontCache.bold);
       doc.addFont('Lora-Bold.ttf', 'Lora', 'bold');
-      FONT = 'Lora';
+      state.font = 'Lora';
       return true;
     } catch (err) {
-      console.warn('Lora font load failed; falling back to', FONT, err);
+      console.warn('Lora font load failed; falling back to', state.font, err);
       return false;
     }
   }
@@ -103,7 +117,7 @@
   function setColor(doc, rgb)     { doc.setTextColor(rgb[0], rgb[1], rgb[2]); }
   function setDraw(doc, rgb)      { doc.setDrawColor(rgb[0], rgb[1], rgb[2]); }
   function setFill(doc, rgb)      { doc.setFillColor(rgb[0], rgb[1], rgb[2]); }
-  function setFont(doc, style)    { doc.setFont(FONT, style || 'normal'); }
+  function setFont(doc, style)    { doc.setFont((doc.__regenFont) || FONT_DEFAULT, style || 'normal'); }
 
   /** Reserve vertical space; if remaining < requested, addPage() and reset y. */
   function ensureSpace(state, needed) {
@@ -1018,12 +1032,18 @@
       } catch (e) {
         console.warn('Signature PNG render failed:', e);
       }
-      // Caption
+      // Caption + evidentiary disclaimer (audit adversary REVIEW: drawn
+      // image alone has no independent bewijswaarde — the binding anchors
+      // are the SHA-256 + token-hash + server-recorded signed_at + IP/UA
+      // hashes on the dpa_signatures row).
       setColor(state.doc, BRAND.muted);
       setFont(state.doc, 'normal');
       state.doc.setFontSize(8);
       state.doc.text(`Handtekening van ${controller.repName || '—'}`, sigX, sigY + sigBoxH + 12);
-      state.y += sigBoxH + 28;
+      state.doc.setFontSize(7);
+      state.doc.text('Visuele bevestiging — het juridische anker is de SHA-256-hash + token-hash + server-side signed_at.',
+                     sigX, sigY + sigBoxH + 22, { maxWidth: sigBoxW + 80 });
+      state.y += sigBoxH + 36;
     }
 
     writeSubheading(state, 'Bewijsbestanddelen');
@@ -1072,10 +1092,6 @@
     }
     const { jsPDF } = root.jspdf;
     const doc = new jsPDF({ unit: 'pt', format: 'a4', orientation: 'portrait', compress: true });
-    // Load + register Lora into this document. Falls back to 'times' on
-    // network failure (rare; same-origin static asset).
-    await loadLoraFonts(doc);
-    doc.setFont(FONT, 'normal');
 
     // Audit Round-2 fix: fail-loud on missing engagement key/label rather
     // than silently shipping a TEST-stamped PDF as a real signed artefact.
@@ -1128,6 +1144,12 @@
     // Resolve engagement profile (lookup hardcoded registry by key, merge
     // with caller-provided overrides). Audit B1 fix.
     state.engagement = resolveEngagement(state.engagement);
+
+    // Load + register Lora into this document. Per-doc state.font is set
+    // (Lora on success, 'times' on network failure / abort).
+    await loadLoraFonts(state);
+    doc.__regenFont = state.font;
+    doc.setFont(state.font, 'normal');
 
     // Cover page
     drawCover(state);
