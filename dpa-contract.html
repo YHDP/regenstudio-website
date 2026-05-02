@@ -1052,32 +1052,38 @@
         return;
       }
 
-      // Build a styled PDF from a clone of <main> with controls (sign
-      // section, download-CTA, toggle-bar, modal) removed. Both klare-taal
-      // + juridisch tracks rendered (no toggle-mode filtering). The cloned
-      // node is placed off-screen so the inline <head> styles apply.
+      // Build a styled PDF directly from the live <main> element. html2canvas
+      // creates its own internal clone of the document for rendering — the
+      // `onclone` callback lets us strip the controls (sign section, toggle
+      // bar, download CTA, modal) from THAT clone without touching the user's
+      // visible page. Both klare-taal + juridisch tracks rendered (toggle-
+      // mode forced off in the cloned doc).
       let pdfBlob;
       try {
-        const cloned = mainEl.cloneNode(true);
-        cloned.querySelectorAll('.download-cta, .sign-section, .toggle-bar, .modal, #missing-data-alert').forEach(el => el.remove());
-        cloned.classList.remove('plain-only', 'legal-only');
-        const tempContainer = document.createElement('div');
-        tempContainer.style.cssText = 'position:absolute;left:-9999px;top:0;width:794px;background:white;padding:0;';
-        tempContainer.appendChild(cloned);
-        document.body.appendChild(tempContainer);
-
         pdfBlob = await html2pdf()
-          .from(tempContainer)
+          .from(mainEl)
           .set({
             margin: [12, 12, 12, 12],
             filename: 'verwerkersovereenkomst.pdf',
             image: { type: 'jpeg', quality: 0.97 },
-            html2canvas: { scale: 2, useCORS: true, logging: false, backgroundColor: '#ffffff' },
+            html2canvas: {
+              scale: 2,
+              useCORS: true,
+              logging: false,
+              backgroundColor: '#ffffff',
+              onclone: (clonedDoc) => {
+                // Remove controls from the render-clone only.
+                clonedDoc.querySelectorAll('.download-cta, .sign-section, .toggle-bar, .modal, #missing-data-alert, .prod-banner, .test-banner, .nav, .footer').forEach(el => el.remove());
+                // Force both-views in the clone (no toggle filtering).
+                if (clonedDoc.body) {
+                  clonedDoc.body.classList.remove('plain-only', 'legal-only');
+                }
+              },
+            },
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
             pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
           })
           .outputPdf('blob');
-        document.body.removeChild(tempContainer);
       } catch (err) {
         console.error('PDF generation error:', err);
         showSubmitError('PDF kon niet worden gegenereerd. Probeer opnieuw of mail yvo.hunink@regenstudio.world.');
