@@ -351,7 +351,7 @@
     if (engagement.subsidieBedragEur)   metaRows.push(['Subsidie',         `€${engagement.subsidieBedragEur.toLocaleString('nl-NL')} excl. BTW · ${engagement.expertUren || '?'} expert-uur`]);
     if (engagement.projectEinddatum)    metaRows.push(['Project-einddatum',engagement.projectEinddatum]);
     if (engagement.bewaarplichtEinddatum) metaRows.push(['Bewaarplicht t/m', engagement.bewaarplichtEinddatum]);
-    if (engagement.regulatoryDppDeadline) metaRows.push(['DPP-verplichting per', engagement.regulatoryDppDeadline]);
+    if (engagement.regulatoryDppDeadline) metaRows.push(['Regulatoir van kracht', `${engagement.regulatoryDppDeadline} (voorbereidings-traject; geen actie vereist vóór deze datum)`]);
     writeKVTable(state, metaRows);
 
     // Bottom block: signature attestation strip
@@ -565,6 +565,17 @@
     return merged;
   }
 
+  function drawDefinitions(state) {
+    addPage(state);
+    writeSectionHeading(state, '§ 2 · Definities');
+    writeParagraph(state,
+      'De termen persoonsgegevens, verwerking, verantwoordelijke, verwerker, subverwerker, betrokkene, inbreuk in verband met persoonsgegevens, en toezichthoudende autoriteit hebben de betekenis die hieraan is gegeven in Artikel 4 AVG.');
+    writeParagraph(state,
+      '"AVG" verwijst naar Verordening (EU) 2016/679 (General Data Protection Regulation). Verwijzingen naar AVG-Artikelen zijn naar die Verordening. "Engagement" duidt het in §3 beschreven samenwerkingsverband tussen Partijen aan. "Engagement-Scope" duidt de in §3 + §4 (Categorieën persoonsgegevens) afgebakende verzameling persoonsgegevens en verwerkingsdoelen aan.');
+    writePlainBox(state, 'In klare taal',
+      'De woorden uit de AVG (zoals "persoonsgegevens" en "verwerking") betekenen hier hetzelfde als wat de wet zegt — geen aparte interpretaties. "Engagement" is dit specifieke project en "Engagement-Scope" is wat dit project precies omvat.');
+  }
+
   function drawSubjectAndScope(state) {
     const { engagement } = state;
     addPage(state);
@@ -720,6 +731,9 @@
     writeSectionHeading(state, '§ 9 · Subverwerkers');
     writeParagraph(state,
       'De Verantwoordelijke verleent algemene schriftelijke toestemming voor inschakeling van onderstaande subverwerkers (Art 28(2)). De Verwerker informeert de Verantwoordelijke ten minste 30 kalenderdagen vooraf over wijzigingen (45 dagen voor materiële wijzigingen). Bezwaar-procedure binnen 15 kalenderdagen. De Verwerker blijft volledig aansprakelijk voor nakoming door subverwerkers (Art 28(4)).');
+    writeParagraph(state,
+      'Per-Engagement scope. Onderstaande tabel toont de subverwerkers die voor deze Engagement in scope zijn. Regen Studio\'s volledige Annex A (Regen-Studio-wide) telt tevens Exact Online (Exact Group B.V., NL — boekhoudsoftware) en Mollie B.V. (NL — payment-processor, zelfstandig-verantwoordelijke voor publieke CPR-tracker-koop-flow); deze zijn niet in scope voor deze Engagement.',
+      { fontSize: 9, color: BRAND.muted, style: 'italic' });
 
     state.y += 4;
     writeDataTable(state,
@@ -845,7 +859,7 @@
       ['§2 — Datalek-melding-vensters',
         'De Verwerker meldt een datalek aan de Verantwoordelijke binnen 48 uur na bekend worden in de zin van EDPB Guidelines 9/2022 § 14. De Verantwoordelijke beschikt vanaf ontvangst van de melding in het slechtste geval nog over ongeveer 24 uur om de eigen Art 33 AVG-melding aan de Autoriteit Persoonsgegevens binnen de 72-uurs-termijn te voltooien (Art 33 is een controller-verplichting; de Verwerker assisteert). Beide Partijen werken te goeder trouw samen om incident-informatie zo vroeg mogelijk te delen, ook mondeling/per telefoon vooruitlopend op de formele schriftelijke melding.'],
       ['§3 — Beroepsaansprakelijkheids-verzekering',
-        'De Verwerker bevestigt expliciet dat hij geen beroepsaansprakelijkheids-verzekering (PI-insurance) heeft op het moment van ondertekening en geen verplichting opneemt deze binnen de Engagement-looptijd af te sluiten. De Verantwoordelijke neemt hier expliciet kennis van.'],
+        'De Verwerker bevestigt expliciet dat hij op de datum van ondertekening geen beroepsaansprakelijkheids-verzekering (PI-polis) draagt en geen toezegging doet tot het afsluiten van een dergelijke polis binnen een vastgelegde termijn. Indien de Verwerker in de toekomst een polis afsluit, informeert hij de Verantwoordelijke daarover. De Verantwoordelijke neemt hier expliciet kennis van.'],
       ['§4 — DSR-register-status',
         'Het DSR-register als bedoeld in Verordening (EU) 2026/405 is op het moment van ondertekening nog niet operationeel. Verplichtingen die afhangen van een operationeel DSR-register treden in werking zodra het register live is.'],
       ['§5 — Scope-amendment-via-e-mail',
@@ -891,8 +905,12 @@
 
     const onItems = [];
     const offItems = [];
+    // Audit Round-4 logic-ver fix: opt-IN by default (was opt-out). AI consent
+    // requires explicit positive choice per AVG Art 6/7 — absent keys default
+    // to OFF (hard-refuse), not ON. The intake form must emit `true` only for
+    // categories the controller explicitly ticked.
     Object.entries(DOC_TOGGLE_LABELS).forEach(([id, label]) => {
-      const checked = toggles && (toggles[id] !== false);
+      const checked = !!(toggles && toggles[id] === true);
       (checked ? onItems : offItems).push(label);
     });
 
@@ -1036,6 +1054,7 @@
     //  · drawSignatureEvidence rendered BEFORE drawSideLetter so §17 precedes
     //    §17a (no more 17 → 17a → 17 visual anomaly)
     drawPartiesPage(state);
+    drawDefinitions(state);
     drawSubjectAndScope(state);
     drawDurationAndRetention(state);
     drawInstructionsAndFlexibility(state);
@@ -1050,8 +1069,11 @@
     drawTOMs(state);
     drawAuditAccess(state);
     drawJurisdiction(state);
-    drawSignatureEvidence(state);
+    // Audit Round-4 ux-empath fix: side-letter BEFORE signature evidence so
+    // material commercial terms (€25k cap, 48h breach window, no-PI) are
+    // surfaced pre-signature, not appended post-hoc.
     drawSideLetter(state);
+    drawSignatureEvidence(state);
     drawClosingNote(state);
 
     return doc.output('blob');
