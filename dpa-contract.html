@@ -1090,14 +1090,14 @@
           .set({
             margin: 10,
             filename: 'verwerkersovereenkomst.pdf',
-            image: { type: 'png' },
+            image: { type: 'jpeg', quality: 0.85 },
             html2canvas: {
-              scale: 1,
+              scale: 1.5,
               useCORS: true,
               logging: false,
               backgroundColor: '#ffffff',
             },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true },
             pagebreak: { mode: 'css' },
           })
           .outputPdf('blob');
