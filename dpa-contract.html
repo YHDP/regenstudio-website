@@ -315,6 +315,24 @@
       white-space: nowrap;
     }
     .download-btn:hover { background: #5d4310; }
+    /* PDF-render mode: collapse controls on live DOM so html2canvas
+       measures the document without their layout space. Both juridisch
+       and klare-taal blocks remain visible (no toggle-mode filtering). */
+    body.signing-pdf-render .test-banner,
+    body.signing-pdf-render .prod-banner,
+    body.signing-pdf-render .nav,
+    body.signing-pdf-render .toggle-bar,
+    body.signing-pdf-render .download-cta,
+    body.signing-pdf-render .sign-section,
+    body.signing-pdf-render .modal,
+    body.signing-pdf-render .footer,
+    body.signing-pdf-render #missing-data-alert {
+      display: none !important;
+    }
+    body.signing-pdf-render .legal,
+    body.signing-pdf-render .plain {
+      display: block !important;
+    }
     @media print {
       .test-banner, .nav, .toggle-bar, .sign-section, .modal, .download-cta, .footer, .nav__back {
         display: none !important;
@@ -1052,13 +1070,18 @@
         return;
       }
 
-      // Build a styled PDF directly from the live <main> element. html2canvas
-      // creates its own internal clone of the document for rendering — the
-      // `onclone` callback lets us strip the controls (sign section, toggle
-      // bar, download CTA, modal) from THAT clone without touching the user's
-      // visible page. Both klare-taal + juridisch tracks rendered (toggle-
-      // mode forced off in the cloned doc).
+      // Build a styled PDF from the live <main> element. We toggle the
+      // `signing-pdf-render` class on body to hide controls + force both
+      // tracks visible BEFORE html2canvas measures the page; this avoids
+      // the empty-first-pages issue we saw with the onclone-based approach
+      // (html2canvas locks the canvas size from the visible body height).
+      // Class is removed in finally{} regardless of success/failure.
       let pdfBlob;
+      const prevToggleMode = document.body.className;
+      document.body.classList.add('signing-pdf-render');
+      document.body.classList.remove('plain-only', 'legal-only');
+      // Allow one frame for layout reflow.
+      await new Promise(r => requestAnimationFrame(r));
       try {
         pdfBlob = await html2pdf()
           .from(mainEl)
@@ -1071,14 +1094,7 @@
               useCORS: true,
               logging: false,
               backgroundColor: '#ffffff',
-              onclone: (clonedDoc) => {
-                // Remove controls from the render-clone only.
-                clonedDoc.querySelectorAll('.download-cta, .sign-section, .toggle-bar, .modal, #missing-data-alert, .prod-banner, .test-banner, .nav, .footer').forEach(el => el.remove());
-                // Force both-views in the clone (no toggle filtering).
-                if (clonedDoc.body) {
-                  clonedDoc.body.classList.remove('plain-only', 'legal-only');
-                }
-              },
+              windowWidth: 880,
             },
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
             pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
@@ -1086,10 +1102,12 @@
           .outputPdf('blob');
       } catch (err) {
         console.error('PDF generation error:', err);
+        document.body.className = prevToggleMode;
         showSubmitError('PDF kon niet worden gegenereerd. Probeer opnieuw of mail yvo.hunink@regenstudio.world.');
         restoreBtn();
         return;
       }
+      document.body.className = prevToggleMode;
 
       signBtn.textContent = '⏳ Versturen…';
 
