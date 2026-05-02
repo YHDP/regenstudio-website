@@ -372,7 +372,15 @@
     doc.setFontSize(9);
     doc.text(`door ${controller.repName || '—'} (${controller.repRole || '—'})`,
              PAGE.marginLeft + 14, footerY + 32);
-    doc.text(`namens ${controller.legalName} · ${signature.signedAt}`,
+    // Audit Round-3 ux: format ISO timestamp in human Dutch locale on the cover
+    let coverSignedAt = signature.signedAt;
+    try {
+      const d = new Date(signature.signedAt);
+      if (!Number.isNaN(d.getTime())) {
+        coverSignedAt = d.toLocaleString('nl-NL', { dateStyle: 'long', timeStyle: 'short' });
+      }
+    } catch (e) { /* keep ISO fallback */ }
+    doc.text(`namens ${controller.legalName} · ${coverSignedAt}`,
              PAGE.marginLeft + 14, footerY + 45);
 
     setColor(doc, BRAND.muted);
@@ -465,8 +473,26 @@
         { title: 'WP2 — Datagovernance (80 uur)', body: 'informatieketens · datagaps · processen voor databeschikbaarheid in textielketen · verifieerbaar aantoonbaar maken via supply-chain audits.' },
         { title: 'WP3 — Waarde door vrijwillige informatie in het DPP (40 uur)', body: 'klantwaarde · ketenoptimalisatie · circulaire-textiel business-modellen.' },
       ],
+      cpr: [
+        { title: 'WP1 — DPP Roadmap (80 uur)', body: 'juridische kaders CPR Verordening (EU) 2024/3110 (Art 5(8) + Art 75(1) DA) · hEN/EAD-pipeline · informatiecategorieën Annex II.' },
+        { title: 'WP2 — Datagovernance (80 uur)', body: 'informatieketens · datagaps · processen voor databeschikbaarheid · verifieerbaar aantoonbaar maken.' },
+        { title: 'WP3 — Waarde door vrijwillige informatie in het DPP (40 uur)', body: 'klantwaarde · ketenoptimalisatie · circulaire bouwproducten-modellen.' },
+      ],
+      batteries: [
+        { title: 'WP1 — DPP Roadmap (80 uur)', body: 'Batterijenverordening (EU) 2023/1542 (Art 77 battery passport) · CFP + recycled-content + due-diligence-eisen.' },
+        { title: 'WP2 — Datagovernance (80 uur)', body: 'informatieketens cobalt/lithium/nikkel · datagaps · processen voor databeschikbaarheid · verifieerbaar aantoonbaar maken via supply-chain due diligence.' },
+        { title: 'WP3 — Waarde door vrijwillige informatie in het DPP (40 uur)', body: 'klantwaarde · ketenoptimalisatie · circulaire batterij business-modellen.' },
+      ],
+      eudr: [
+        { title: 'WP1 — DPP Roadmap (80 uur)', body: 'EUDR Verordening (EU) 2023/1115 — Annex I commodities · Due Diligence Statement (DDS) via TRACES NT · geolocatie-vereisten.' },
+        { title: 'WP2 — Datagovernance (80 uur)', body: 'informatieketens · datagaps · processen voor geolocatie + ketenherleiding · verifieerbaar aantoonbaar maken.' },
+        { title: 'WP3 — Waarde door vrijwillige informatie in het DPP (40 uur)', body: 'klantwaarde · ketenoptimalisatie · ontbossingsvrije-business-modellen.' },
+      ],
     };
-    return REG[regime] || REG.espr;
+    if (!REG[regime]) {
+      throw new Error(`regimeWorkPackages: missing WP definitions for regime '${regime}'. Add to REG before signing this engagement.`);
+    }
+    return REG[regime];
   }
 
   /** Engagement profile registry. Hardcoded for the 5 voucher clients +
@@ -487,7 +513,7 @@
     'voucher/houtgoed': {
       regulatoryRegime: 'espr',
       regulatoryLabel: 'ESPR Verordening (EU) 2024/1781 (sectoraal: meubilair + hout)',
-      regulatoryDppDeadline: '2030 (sectoraal Delegated Act)',
+      regulatoryDppDeadline: 'verwacht 2027–2030 onder sectoraal ESPR Delegated Act (datum nog niet vastgesteld)',
       subsidieBedragEur: 28400,
       expertUren: 200,
       projectEinddatum: '31 oktober 2026',
@@ -498,7 +524,7 @@
     'voucher/engelvaart': {
       regulatoryRegime: 'espr_textiles',
       regulatoryLabel: 'ESPR Verordening (EU) 2024/1781 — Annex VII textiel + kleding',
-      regulatoryDppDeadline: '2027–2028 (sectoraal Delegated Act textiel)',
+      regulatoryDppDeadline: 'verwacht 2027–2028 onder sectoraal ESPR Delegated Act textiel (datum nog niet vastgesteld)',
       projectEinddatum: '31 oktober 2026',
       bewaarplichtEinddatum: '31 december 2035',
       hasSideLetter: true,
@@ -507,7 +533,7 @@
     'voucher/evsmart': {
       regulatoryRegime: 'espr',
       regulatoryLabel: 'ESPR Verordening (EU) 2024/1781',
-      regulatoryDppDeadline: '2027–2030 (sectoraal Delegated Act)',
+      regulatoryDppDeadline: 'verwacht 2027–2030 onder sectoraal ESPR Delegated Act (datum nog niet vastgesteld)',
       projectEinddatum: '31 oktober 2026',
       bewaarplichtEinddatum: '31 december 2035',
       hasSideLetter: true,
@@ -516,7 +542,7 @@
     'voucher/hollands-wol-collectief': {
       regulatoryRegime: 'espr_textiles',
       regulatoryLabel: 'ESPR Verordening (EU) 2024/1781 — Annex VII textiel + kleding',
-      regulatoryDppDeadline: '2027–2028 (sectoraal Delegated Act textiel)',
+      regulatoryDppDeadline: 'verwacht 2027–2028 onder sectoraal ESPR Delegated Act textiel (datum nog niet vastgesteld)',
       projectEinddatum: '31 oktober 2026',
       bewaarplichtEinddatum: '31 december 2035',
       hasSideLetter: true,
@@ -525,8 +551,16 @@
   };
 
   function resolveEngagement(callerEngagement) {
-    const profile = ENGAGEMENT_PROFILES[callerEngagement.key] || {};
-    const merged = Object.assign({}, profile, callerEngagement);
+    const profile = ENGAGEMENT_PROFILES[callerEngagement.key];
+    if (!profile) {
+      throw new Error(`resolveEngagement: no profile for engagement key '${callerEngagement.key}'. Add to ENGAGEMENT_PROFILES before signing this engagement.`);
+    }
+    // Audit Round-3 logic-ver fix: nullish-aware merge so caller-side
+    // `undefined` doesn't silently overwrite authoritative profile fields.
+    const merged = Object.assign({}, profile);
+    for (const k of Object.keys(callerEngagement)) {
+      if (callerEngagement[k] != null) merged[k] = callerEngagement[k];
+    }
     merged.regulatoryRegime = normaliseRegime(merged.regulatoryRegime);
     return merged;
   }
@@ -543,9 +577,12 @@
     state.y += 4;
     for (let i = 0; i < wps.length; i++) {
       // Hanging-indent bullet: bold title + body on same line, wrapping
-      // continues at the indent. Audit Round-2 fix: split body text into
-      // first-line-fit-after-title + remainder-fit-from-indent so the first
-      // line doesn't overflow the right margin (was wrapped to wrong width).
+      // continues at the indent. Audit Round-3 logic-ver fix: instead of
+      // slicing the original bodyText by firstLine.length (which doesn't
+      // match jsPDF's whitespace-trimming wrap), wrap the FULL body at
+      // hanging-indent width and re-wrap only the first line at the
+      // narrower title-row width. Reconstruct remainder from index in the
+      // already-wrapped lines array, not from raw character offsets.
       ensureSpace(state, 30);
       const { doc } = state;
       doc.setFontSize(9.5);
@@ -556,21 +593,39 @@
       doc.text(wps[i].title, PAGE.marginLeft + 14, state.y);
       const titleW = doc.getTextWidth(wps[i].title + ' ');
       setFont(doc, 'normal');
-      const bodyText = ' ' + wps[i].body; // leading space after title
       const lineGap = 13.5;
-      // Wrap the FIRST line at the available remaining width on the title row,
-      // then wrap the rest at the full hanging-indent width.
+      const bodyText = wps[i].body;
       const firstLineMaxW = PAGE.contentWidth - 14 - titleW;
-      const firstLineSplit = doc.splitTextToSize(bodyText, firstLineMaxW);
-      const firstLine = firstLineSplit[0] || '';
-      const remainder = bodyText.slice(firstLine.length).replace(/^\s+/, '');
-      const restLines = remainder ? doc.splitTextToSize(remainder, PAGE.contentWidth - 14) : [];
-      doc.text(firstLine, PAGE.marginLeft + 14 + titleW, state.y);
-      state.y += lineGap;
-      for (let j = 0; j < restLines.length; j++) {
-        ensureSpace(state, lineGap);
-        doc.text(restLines[j], PAGE.marginLeft + 14, state.y);
+      // Edge case: very long titles leave too little room on the title row;
+      // fall back to title-on-its-own-line then full-width body wrap.
+      if (firstLineMaxW < 60) {
         state.y += lineGap;
+        const allLines = doc.splitTextToSize(bodyText, PAGE.contentWidth - 14);
+        for (let j = 0; j < allLines.length; j++) {
+          ensureSpace(state, lineGap);
+          doc.text(allLines[j], PAGE.marginLeft + 14, state.y);
+          state.y += lineGap;
+        }
+      } else {
+        // Wrap full body at hanging-indent width once.
+        const allLines = doc.splitTextToSize(bodyText, PAGE.contentWidth - 14);
+        // Determine how much of the FIRST wrapped line fits on the title row.
+        const firstWrapped = allLines[0] || '';
+        const firstFit = doc.splitTextToSize(firstWrapped, firstLineMaxW);
+        const firstFitLine = firstFit[0] || '';
+        // Remainder = whatever didn't fit on the title row + the rest of
+        // the original wrapped lines, joined back and re-wrapped at full width.
+        const overflow = firstWrapped.slice(firstFitLine.length).replace(/^\s+/, '');
+        const tail = allLines.slice(1).join(' ');
+        const remainderText = overflow + (overflow && tail ? ' ' : '') + tail;
+        const remainderLines = remainderText ? doc.splitTextToSize(remainderText, PAGE.contentWidth - 14) : [];
+        doc.text(firstFitLine, PAGE.marginLeft + 14 + titleW, state.y);
+        state.y += lineGap;
+        for (let j = 0; j < remainderLines.length; j++) {
+          ensureSpace(state, lineGap);
+          doc.text(remainderLines[j], PAGE.marginLeft + 14, state.y);
+          state.y += lineGap;
+        }
       }
       state.y += 4;
     }
@@ -579,7 +634,7 @@
       `Doel: de Verantwoordelijke voorbereiden op het ${engagement.regulatoryLabel || 'DPP'}-regime${engagement.regulatoryDppDeadline ? ' per ' + engagement.regulatoryDppDeadline : ''}, het op niveau brengen van datagovernance, en het identificeren van waarde door het DPP bovenop wettelijke compliance.`,
       { spaceAfter: 8 });
 
-    writePlainBox(state, '[i] In klare taal',
+    writePlainBox(state, 'In klare taal',
       'Drie blokken werk: routekaart richting DPP-compliance, datagovernance op orde brengen, en verkennen wat extra waarde een DPP u kan opleveren.');
 
     writeSectionHeading(state, '§ 4 · Categorieën persoonsgegevens en betrokkenen');
@@ -587,9 +642,11 @@
       'De Verwerker verwerkt namens de Verantwoordelijke onder deze Overeenkomst de volgende categorieën persoonsgegevens:');
     [
       'direct contactgegevens van de bevoegd vertegenwoordiger en personeelsleden van de Verantwoordelijke;',
-      'direct contactgegevens van leveranciers en hun vertegenwoordigers;',
+      'direct contactgegevens van leveranciers en hun vertegenwoordigers, en supply-chain-individuen voor zover identificeerbaar;',
       'economic-operator-identifiers bestemd voor publieke openbaarmaking onder DPP-regelgeving;',
-      'correspondentie-inhoud (e-mails, chat), vergader-metadata, audio-opnames en transcripten van gesprekken (mits opname-toestemming);',
+      'correspondentie-inhoud (e-mails, chat) en vergader-metadata;',
+      'audio-opnames en transcripten van bilaterale gesprekken (alleen mits opname-toestemming onder het transcript-toestemmings-protocol);',
+      'product-, materiaal- en supply-chain-data voor DPP-advisory-werk (BoM, leveranciers-identifiers, conformiteits­beoordelings-documentatie, milieu-indicatoren) — voor zover gekoppeld aan natuurlijke-persoon-economic-operators of supply-chain-individuen;',
       'operator-authored notities, minutes en samenvattingen.',
     ].forEach(b => writeParagraph(state, '• ' + b, { fontSize: 9.5, indent: 8, spaceAfter: 4 }));
 
@@ -597,7 +654,7 @@
       'Geen bijzondere categorieën persoonsgegevens in de zin van Art 9 AVG vallen onder de scope van deze Overeenkomst.',
       { fontSize: 9.5, style: 'italic', color: BRAND.muted });
 
-    writePlainBox(state, '[i] In klare taal',
+    writePlainBox(state, 'In klare taal',
       'Vooral namen + e-mails van u, uw personeel en uw leveranciers. E-mails, vergader-notities en (met opname-toestemming) audio-opnames. Géén medische, religieuze of politieke gegevens.');
   }
 
@@ -612,7 +669,7 @@
     writeParagraph(state,
       'Waar persoonsgegevens een economic operator identificeren in de zin van DSR Verordening (EU) 2026/405 Art 21–22 + Annex VI (of analoog onder ESPR (EU) 2024/1781 Art 7 + Art 8, CPR 2024/3110, EUDR 2023/1115, Batterijenverordening 2023/1542) en zijn opgenomen in een publiek DPP-register, strekt de verwijderingsplicht onder § 7 zich niet uit tot (a) het gepubliceerde DPP-record zelf en (b) audit-trail-entries die noodzakelijk zijn ter onderbouwing van conformiteits­beoordelings-lineage. Bij verzoeken die persoonsgegevens betreffen die de Verantwoordelijke heeft laten publiceren, verwijst de Verwerker naar het regulatoire kader dat register-rectificatie beheerst.',
       { fontSize: 9.5 });
-    writePlainBox(state, '[i] In klare taal',
+    writePlainBox(state, 'In klare taal',
       `Project loopt tot ${engagement.projectEinddatum || '—'}. Daarna moet de boekhouding 10 jaar bewaard blijven (EU-subsidieregel) — niet de gewone correspondentie.`);
   }
 
@@ -630,7 +687,7 @@
     writeSubheading(state, 'Teruggave of verwijdering');
     writeParagraph(state,
       'Bij beëindiging van de Engagement: crypto-shred van de per-betrokkene Data Encryption Key (DEK) maakt alle opgeslagen ciphertext mathematisch onherstelbaar. Streefwaarde: 72 uur na DGA-goedkeuring (worst-case 144 uur incl. 72-uurs evaluatie-venster).');
-    writePlainBox(state, '[i] In klare taal',
+    writePlainBox(state, 'In klare taal',
       'Vertrouwelijkheid, technische beveiliging, hulp bij AVG-rechten van betrokkenen, snelle melding bij datalek (binnen 48 uur), en alles weg binnen 72 uur aan einde Engagement (behalve wat de wet vereist te bewaren).');
   }
 
@@ -642,7 +699,7 @@
       'AI-ondersteunde verwerking van persoonsgegevens vindt alleen plaats waar de betreffende betrokkene expliciete `ai_processing`-toestemming heeft verleend, of waar de Verantwoordelijke een alternatieve grondslag onder Art 6 AVG heeft gedocumenteerd;',
       'paste-alias-shield vervangt directe identifiers door interne aliassen vóór elke prompt waar mogelijk;',
       'volledige formulering-recepten van de Verantwoordelijke (commercieel-vertrouwelijke IP) zijn altijd uitgesloten van AI-verwerking;',
-      'data wordt na 7 dagen automatisch door Anthropic gewist (Anthropic-standaard sinds 2025-09-14); niet gebruikt voor het trainen van modellen.',
+      'data wordt door Anthropic gewist conform het op het moment van ondertekening geldende Anthropic Commercial-Terms-retentiebeleid (op deze datum: 7 dagen standaard); niet gebruikt voor het trainen van modellen. Het actuele beleid is opvraagbaar bij Regen Studio en wordt bij wijziging gepubliceerd in de privacy-policy van regenstudio.world.',
     ].forEach(b => writeParagraph(state, '• ' + b, { fontSize: 9.5, indent: 8, spaceAfter: 4 }));
 
     writeSubheading(state, 'Werknemers van de Verantwoordelijke');
@@ -655,7 +712,7 @@
     writeSubheading(state, 'Per-categorie toestemming');
     writeParagraph(state,
       'Per documenttype heeft de Verantwoordelijke aangegeven welke categorieën AI-ondersteund mogen worden verwerkt — zie de toestemmings-matrix op de volgende pagina.');
-    writePlainBox(state, '[i] In klare taal',
+    writePlainBox(state, 'In klare taal',
       'Regen werkt met Claude (Anthropic AI). Werknemers kunnen via e-mail kiezen voor opt-out (geen AI) of alias (Claude ziet een verzonnen naam). Patronen die op BSN, paspoort of medische gegevens lijken worden hard geweigerd. Uw exacte recept-formuleringen komen nooit bij Claude.');
   }
 
