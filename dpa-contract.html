@@ -1085,16 +1085,15 @@
       try {
         pdfBlob = await window.buildSignedDpaPdf({
           engagement: {
-            key: engagementMeta.engagement_key || 'ad-hoc/test',
-            label: engagementMeta.engagement_label || 'TEST Engagement',
-            legalName: data.cp_legal_name || '—',
-            regulatoryRegime: engagementMeta.regulatory_regime || 'dsr',
-            regulatoryLabel: engagementMeta.regulatory_label || 'DSR Verordening (EU) 2026/405',
-            regulatoryDppDeadline: engagementMeta.regulatory_dpp_deadline || '23 september 2029',
-            subsidieBedragEur: engagementMeta.subsidie_bedrag_eur || null,
-            expertUren: engagementMeta.expert_uren || null,
-            projectEinddatum: engagementMeta.project_einddatum || '1 december 2026',
-            bewaarplichtEinddatum: engagementMeta.bewaarplicht_einddatum || '31 december 2035',
+            // Audit Round-2 fix: ONLY pass through fields actually returned
+            // by verify-token. Hardcoded fallbacks ('dsr', '2029', etc.) here
+            // would override the ENGAGEMENT_PROFILES registry merge inside
+            // resolveEngagement() — which is the source-of-truth for per-
+            // engagement metadata. Caller passes only what verify-token gave;
+            // resolveEngagement() merges with the profile keyed on engagement_key.
+            key: engagementMeta.engagement_key,
+            label: engagementMeta.engagement_label,
+            legalName: data.cp_legal_name,
           },
           controller: {
             legalName: data.cp_legal_name,

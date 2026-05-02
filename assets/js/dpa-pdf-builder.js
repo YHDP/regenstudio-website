@@ -365,7 +365,7 @@
     setColor(doc, BRAND.emerald);
     setFont(doc, 'bold');
     doc.setFontSize(10);
-    doc.text('✓ Ondertekend', PAGE.marginLeft + 14, footerY + 18);
+    doc.text('Ondertekend', PAGE.marginLeft + 14, footerY + 18);
 
     setColor(doc, BRAND.ink);
     setFont(doc, 'normal');
@@ -543,32 +543,33 @@
     state.y += 4;
     for (let i = 0; i < wps.length; i++) {
       // Hanging-indent bullet: bold title + body on same line, wrapping
-      // continues at the indent. We render the title in bold then continue
-      // with normal-weight body text.
+      // continues at the indent. Audit Round-2 fix: split body text into
+      // first-line-fit-after-title + remainder-fit-from-indent so the first
+      // line doesn't overflow the right margin (was wrapped to wrong width).
       ensureSpace(state, 30);
       const { doc } = state;
       doc.setFontSize(9.5);
       setColor(doc, BRAND.ink);
-      // Bullet glyph
       setFont(doc, 'normal');
       doc.text('•', PAGE.marginLeft + 4, state.y);
-      // Title (bold)
       setFont(doc, 'bold');
       doc.text(wps[i].title, PAGE.marginLeft + 14, state.y);
       const titleW = doc.getTextWidth(wps[i].title + ' ');
-      // Body (normal) — wraps with hanging indent at marginLeft+14
       setFont(doc, 'normal');
-      const bodyText = wps[i].body;
-      const bodyMaxFirstLine = PAGE.contentWidth - 14 - titleW;
+      const bodyText = ' ' + wps[i].body; // leading space after title
       const lineGap = 13.5;
-      const bodyLines = doc.splitTextToSize(bodyText, PAGE.contentWidth - 14);
-      // First line shares row with title
-      doc.text(bodyLines.slice(0, 1).join(''), PAGE.marginLeft + 14 + titleW, state.y);
+      // Wrap the FIRST line at the available remaining width on the title row,
+      // then wrap the rest at the full hanging-indent width.
+      const firstLineMaxW = PAGE.contentWidth - 14 - titleW;
+      const firstLineSplit = doc.splitTextToSize(bodyText, firstLineMaxW);
+      const firstLine = firstLineSplit[0] || '';
+      const remainder = bodyText.slice(firstLine.length).replace(/^\s+/, '');
+      const restLines = remainder ? doc.splitTextToSize(remainder, PAGE.contentWidth - 14) : [];
+      doc.text(firstLine, PAGE.marginLeft + 14 + titleW, state.y);
       state.y += lineGap;
-      // Wrap remainder under the title
-      for (let j = 1; j < bodyLines.length; j++) {
+      for (let j = 0; j < restLines.length; j++) {
         ensureSpace(state, lineGap);
-        doc.text(bodyLines[j], PAGE.marginLeft + 14, state.y);
+        doc.text(restLines[j], PAGE.marginLeft + 14, state.y);
         state.y += lineGap;
       }
       state.y += 4;
@@ -578,7 +579,7 @@
       `Doel: de Verantwoordelijke voorbereiden op het ${engagement.regulatoryLabel || 'DPP'}-regime${engagement.regulatoryDppDeadline ? ' per ' + engagement.regulatoryDppDeadline : ''}, het op niveau brengen van datagovernance, en het identificeren van waarde door het DPP bovenop wettelijke compliance.`,
       { spaceAfter: 8 });
 
-    writePlainBox(state, '💡 In klare taal',
+    writePlainBox(state, '[i] In klare taal',
       'Drie blokken werk: routekaart richting DPP-compliance, datagovernance op orde brengen, en verkennen wat extra waarde een DPP u kan opleveren.');
 
     writeSectionHeading(state, '§ 4 · Categorieën persoonsgegevens en betrokkenen');
@@ -596,7 +597,7 @@
       'Geen bijzondere categorieën persoonsgegevens in de zin van Art 9 AVG vallen onder de scope van deze Overeenkomst.',
       { fontSize: 9.5, style: 'italic', color: BRAND.muted });
 
-    writePlainBox(state, '💡 In klare taal',
+    writePlainBox(state, '[i] In klare taal',
       'Vooral namen + e-mails van u, uw personeel en uw leveranciers. E-mails, vergader-notities en (met opname-toestemming) audio-opnames. Géén medische, religieuze of politieke gegevens.');
   }
 
@@ -606,8 +607,12 @@
     writeParagraph(state,
       `Deze Overeenkomst treedt in werking op de datum van de laatste handtekening en blijft van kracht voor de duur van de Engagement (project-einddatum ${engagement.projectEinddatum || '—'} + aansluitende vaststellings- en bezwaartermijnen), plus de wettelijke bewaartermijnen.`);
     writeParagraph(state,
-      `Bewaarplicht voor de projectadministratie: tot en met ${engagement.bewaarplichtEinddatum || '31 december 2035'}, gebaseerd op het langste van Vo (EU) 2021/1060 Art 82(1), Vo (EU) 2023/2831 (de-minimis) en Handboek EFRO 2021–2027 v2.`);
-    writePlainBox(state, '💡 In klare taal',
+      `Bewaarplicht voor de projectadministratie: tot en met ${engagement.bewaarplichtEinddatum || '31 december 2035'}, gebaseerd op het langste van: (i) 5 jaar Vo (EU) 2021/1060 Art 82(1) cohesion-fund-bewaarplicht, (ii) 10 jaar Vo (EU) 2023/2831 de-minimis-bewaarplicht, (iii) 7 jaar Art 52(4) Algemene Wet inzake Rijksbelastingen (factuur-bewaarplicht), en (iv) Handboek EFRO 2021–2027 v2 administratieve marge.`);
+    writeSubheading(state, 'Carve-out — publiek DPP-register');
+    writeParagraph(state,
+      'Waar persoonsgegevens een economic operator identificeren in de zin van DSR Verordening (EU) 2026/405 Art 21–22 + Annex VI (of analoog onder ESPR (EU) 2024/1781 Art 7 + Art 8, CPR 2024/3110, EUDR 2023/1115, Batterijenverordening 2023/1542) en zijn opgenomen in een publiek DPP-register, strekt de verwijderingsplicht onder § 7 zich niet uit tot (a) het gepubliceerde DPP-record zelf en (b) audit-trail-entries die noodzakelijk zijn ter onderbouwing van conformiteits­beoordelings-lineage. Bij verzoeken die persoonsgegevens betreffen die de Verantwoordelijke heeft laten publiceren, verwijst de Verwerker naar het regulatoire kader dat register-rectificatie beheerst.',
+      { fontSize: 9.5 });
+    writePlainBox(state, '[i] In klare taal',
       `Project loopt tot ${engagement.projectEinddatum || '—'}. Daarna moet de boekhouding 10 jaar bewaard blijven (EU-subsidieregel) — niet de gewone correspondentie.`);
   }
 
@@ -625,7 +630,7 @@
     writeSubheading(state, 'Teruggave of verwijdering');
     writeParagraph(state,
       'Bij beëindiging van de Engagement: crypto-shred van de per-betrokkene Data Encryption Key (DEK) maakt alle opgeslagen ciphertext mathematisch onherstelbaar. Streefwaarde: 72 uur na DGA-goedkeuring (worst-case 144 uur incl. 72-uurs evaluatie-venster).');
-    writePlainBox(state, '💡 In klare taal',
+    writePlainBox(state, '[i] In klare taal',
       'Vertrouwelijkheid, technische beveiliging, hulp bij AVG-rechten van betrokkenen, snelle melding bij datalek (binnen 48 uur), en alles weg binnen 72 uur aan einde Engagement (behalve wat de wet vereist te bewaren).');
   }
 
@@ -642,7 +647,7 @@
 
     writeSubheading(state, 'Werknemers van de Verantwoordelijke');
     writeParagraph(state,
-      'Door ondertekening geeft de Verantwoordelijke (als werkgever) schriftelijke instructie aan de Verwerker om persoonsgegevens van werknemers te verwerken voor de in deze Overeenkomst beschreven doelen. Grondslag: Art 6(1)(f) AVG (gerechtvaardigd belang van de werkgever, drie-staps-toets per HvJEU C-13/16 Rīgas satiksme + EDPB Guidelines 1/2024).');
+      'Door ondertekening geeft de Verantwoordelijke (als werkgever) schriftelijke instructie aan de Verwerker om persoonsgegevens van werknemers te verwerken voor de in deze Overeenkomst beschreven doelen. De Verantwoordelijke verklaart hiervoor een geldige grondslag onder Art 6 AVG te hebben (typisch Art 6(1)(b), (c) of (f) afhankelijk van de aard van de instructie en de organisatie van de Verantwoordelijke), en dat hij de transparantie-informatie onder Art 13 AVG aan zijn werknemers heeft verstrekt.');
     writeParagraph(state,
       'Werknemers behouden hun AVG-rechten — waaronder het Art 21-bezwaarrecht — en oefenen deze rechtstreeks uit bij de Verantwoordelijke. Als operationele ondersteuning biedt de Verwerker opt-out (geen AI) of alias-toepassing (gefingeerde naam in alle Anthropic-prompts) binnen vijf (5) werkdagen na verzoek per e-mail.',
       { fontSize: 9.5 });
@@ -650,7 +655,7 @@
     writeSubheading(state, 'Per-categorie toestemming');
     writeParagraph(state,
       'Per documenttype heeft de Verantwoordelijke aangegeven welke categorieën AI-ondersteund mogen worden verwerkt — zie de toestemmings-matrix op de volgende pagina.');
-    writePlainBox(state, '💡 In klare taal',
+    writePlainBox(state, '[i] In klare taal',
       'Regen werkt met Claude (Anthropic AI). Werknemers kunnen via e-mail kiezen voor opt-out (geen AI) of alias (Claude ziet een verzonnen naam). Patronen die op BSN, paspoort of medische gegevens lijken worden hard geweigerd. Uw exacte recept-formuleringen komen nooit bij Claude.');
   }
 
@@ -687,13 +692,17 @@
     writeSectionHeading(state, '§ 14 · Technische en organisatorische maatregelen');
     writeParagraph(state, 'De Verwerker handhaaft de volgende maatregelen ter waarborging van Art 32 AVG:');
     [
-      ['Versleuteling at-rest', 'Per-betrokkene Data Encryption Key (DEK), gewikkeld door een master Key Encryption Key (KEK) gehouden in Supabase Vault. AEAD-encryptie via pgcrypto.pgp_sym_encrypt over de DEK, met integriteits-check.'],
+      ['Versleuteling at-rest', 'Per-betrokkene Data Encryption Key (DEK) — random 256-bit sleutelmateriaal — gewikkeld door een master Key Encryption Key (KEK) gehouden in Supabase Vault (pgsodium-backed). PII-velden versleuteld via pgcrypto.pgp_sym_encrypt_bytea (OpenPGP symmetric, AES-onderlaag) met ingebouwde integriteits-check; veld-tag prefix beschermt tegen cross-field swap (audit A1).'],
       ['Versleuteling in transit', 'TLS 1.2+ op elke endpoint.'],
       ['Pseudonimisering', 'Alias-eerst-identiteits-model; identifiers opgeslagen als ciphertext gekoppeld aan de per-betrokkene-DEK; HMAC-SHA-256 fingerprints voor lookup zonder ontsleuteling.'],
       ['Paste-alias-shield (AI-subverwerker)', 'Identifiers in operator-workflows worden gealiased vóór elke Anthropic-prompt; sensitivity-marker-detectie op patronen die op beschermde data lijken (BSN, paspoort, medisch).'],
+      ['Row-Level Security', 'Elke tabel met persoonsgegevens heeft RLS aan; Edge Functions opereren uitsluitend via de service-role-key; anonieme en authenticated-rollen hebben geen toegang.'],
       ['Append-only audit-keten', 'SHA-256 hash-chain in consent_audit_log; UPDATE/DELETE/TRUNCATE ingetrokken op GRANT-niveau.'],
       ['KEK-rotatie + herstel', 'Master KEK wordt per kwartaal geroteerd; herstel-runbook gedocumenteerd; per kwartaal restore-drills.'],
-      ['Inbreuk-detectie', 'Log-gebaseerd anomaly-review op Edge-Function-uitvoering; per kwartaal externe surface-attack-review; SLA 48u naar Verantwoordelijke / 72u naar AP.'],
+      ['Back-up + PITR-propagatie', 'Supabase point-in-time recovery binnen EU-regio; crypto-shred-verwijdering propageert naar back-ups binnen het rotatie-venster (7d PITR / 30d snapshots).'],
+      ['Anti-bot + rate-limiting', 'Honeypot-veld, minimum-tijd-drempel, visuele uitdaging, computationele proof-of-work, en per-IP rate-limit op elk publiek inzendings-endpoint.'],
+      ['Inbreuk-detectie + incident-response', 'Log-gebaseerd anomaly-review op Edge-Function-uitvoering; per kwartaal externe surface-attack-review. SLA: melding aan Verantwoordelijke binnen 48 uur (canonical § 5.6); de daaropvolgende Art 33 AVG-melding aan de Autoriteit Persoonsgegevens binnen 72 uur is een verplichting van de Verantwoordelijke waarbij de Verwerker desgevraagd ondersteuning levert.'],
+      ['Personeel', 'Eenpersoons-firma; toekomstig personeel ondertekent vertrouwelijkheidsverklaring vóór toegang; least-privilege-principe op alle systemen.'],
     ].forEach(([head, body]) => {
       writeSubheading(state, head);
       writeParagraph(state, body, { fontSize: 9.5 });
@@ -737,6 +746,18 @@
       { fontSize: 9.5 });
   }
 
+  function drawAudit(state) {
+    writeSectionHeading(state, '§ 7.bis · Audit en inspectie (Art 28(3)(h) AVG)');
+    writeParagraph(state,
+      'De Verwerker stelt aan de Verantwoordelijke alle informatie ter beschikking nodig om naleving van § 7 en Art 28 AVG aan te tonen, en faciliteert audits door de Verantwoordelijke of een door haar gemandateerde auditor.');
+    writeParagraph(state,
+      'Audit-modaliteiten: on-site of remote document-gebaseerd, met redelijke voorafgaande kennisgeving (gebruikelijk 30 dagen voor reguliere audits; 5 werkdagen voor incident-driven, toezichthouder-driven of EFRO-controle-driven audits — zie side-letter §6). Een door de Verantwoordelijke gemandateerde derde-auditor ondertekent vóór de audit een schriftelijke vertrouwelijkheidsverklaring jegens de Verwerker en is geen concurrent van de Verwerker.',
+      { fontSize: 9.5 });
+    writeParagraph(state,
+      'De Verwerker informeert de Verantwoordelijke onmiddellijk indien een instructie naar zijn mening inbreuk maakt op de AVG of andere relevante gegevensbeschermings-bepalingen.',
+      { fontSize: 9.5 });
+  }
+
   function drawAuditAccess(state) {
     if (!state.engagement.hasVoucherAnnexes) return;
     writeSectionHeading(state, '§ 15 · Toegang voor controlerende instanties (KvW3)');
@@ -763,9 +784,9 @@
 
     [
       ['§1 — Aansprakelijkheids-cap',
-        'De totale aansprakelijkheid is beperkt tot het grootste van (i) twaalf (12) maanden Engagement-fees, of (ii) €25.000. Schade door opzet of grove schuld is uitgesloten van deze cap.'],
+        'De totale aansprakelijkheid van elke Partij is beperkt tot het grootste van (i) de fees onder de Engagement gedurende de twaalf (12) maanden voorafgaand aan het schadeveroorzakende voorval, en (ii) €25.000, behoudens aansprakelijkheid die niet rechtmatig kan worden beperkt: Art 82 AVG-schadevergoedingen aan betrokkenen, opzet en grove schuld; het regres-recht onder Art 82(5) AVG blijft onbeperkt; administratieve boetes onder Art 83 AVG blijven onbeperkt.'],
       ['§2 — Datalek-melding-vensters',
-        'De Verwerker meldt een datalek aan de Verantwoordelijke binnen 48 uur na ontdekking, en — indien de verwerking onder de meldplicht van Art 33 AVG valt — bij de Autoriteit Persoonsgegevens binnen 72 uur.'],
+        'De Verwerker meldt een datalek aan de Verantwoordelijke binnen 48 uur na bekend worden in de zin van EDPB Guidelines 9/2022 § 14. De Verantwoordelijke beschikt vanaf ontvangst van de melding in het slechtste geval nog over ongeveer 24 uur om de eigen Art 33 AVG-melding aan de Autoriteit Persoonsgegevens binnen de 72-uurs-termijn te voltooien (Art 33 is een controller-verplichting; de Verwerker assisteert). Beide Partijen werken te goeder trouw samen om incident-informatie zo vroeg mogelijk te delen, ook mondeling/per telefoon vooruitlopend op de formele schriftelijke melding.'],
       ['§3 — Beroepsaansprakelijkheids-verzekering',
         'De Verwerker bevestigt expliciet dat hij geen beroepsaansprakelijkheids-verzekering (PI-insurance) heeft op het moment van ondertekening en geen verplichting opneemt deze binnen de Engagement-looptijd af te sluiten. De Verantwoordelijke neemt hier expliciet kennis van.'],
       ['§4 — DSR-register-status',
@@ -819,18 +840,18 @@
     });
 
     if (onItems.length) {
-      writeSubheading(state, '✓ Aan (AI-ondersteund met alias)');
+      writeSubheading(state, 'Aan (AI-ondersteund met alias)');
       writeParagraph(state, onItems.join(' · '), { fontSize: 9, color: BRAND.ink });
     }
     if (offItems.length) {
-      writeSubheading(state, '⛔ Uit (hard-refuse)');
+      writeSubheading(state, 'Uit (hard-refuse)');
       writeParagraph(state, offItems.join(' · '), { fontSize: 9, color: [201, 42, 42] });
     }
 
     writeSubheading(state, 'AI-toestemming voor de eigen persoonsgegevens van de tekenbevoegde');
     writeParagraph(state, aiProcessingConsent
-      ? `✓ ${controller.repName || '—'} geeft toestemming voor AI-verwerking van zijn/haar eigen persoonsgegevens.`
-      : `✗ ${controller.repName || '—'} geeft GEEN toestemming voor AI-verwerking van zijn/haar eigen persoonsgegevens. Anthropic ziet deze persoonsgegevens niet (alias-shield + opt-in voor werknemers blijft van kracht).`,
+      ? `Toestemming verleend: ${controller.repName || '—'} stemt in met AI-verwerking van zijn/haar eigen persoonsgegevens. AI-verwerking van Engagement-documenten verloopt zoals aangegeven in de toestemmings-matrix hierboven.`
+      : `Toestemming geweigerd: ${controller.repName || '—'} stemt NIET in met AI-verwerking van zijn/haar eigen persoonsgegevens. AI-verwerking van Engagement-documenten verloopt zoals aangegeven in de toestemmings-matrix hierboven; alleen de eigen persoonsgegevens van de tekenende blijven uitgesloten via alias-shield + opt-in voor werknemers.`,
       { fontSize: 9.5 });
   }
 
@@ -879,6 +900,15 @@
   }
 
   // -------------------------------------------------------------------------
+  // Closing note — emotional-trust anchor (audit ux-empath B2 fix)
+  // -------------------------------------------------------------------------
+  function drawClosingNote(state) {
+    state.y += 12;
+    writePlainBox(state, 'Wat nu?',
+      'U hoeft nu niets te doen. Bewaar dit PDF in uw eigen administratie — wij hebben u hiervan ook een kopie per e-mail gestuurd. Heeft u later vragen over deze Overeenkomst, of wilt u uw toestemming aanpassen of intrekken? Mail dan yvo.hunink@regenstudio.world; Yvo antwoordt binnen 2 werkdagen. Voor klachten over gegevensverwerking kunt u zich (zonder voorafgaand overleg met ons) richten tot de Autoriteit Persoonsgegevens — autoriteitpersoonsgegevens.nl.');
+  }
+
+  // -------------------------------------------------------------------------
   // Public entry point
   // -------------------------------------------------------------------------
   async function buildSignedDpaPdf(args) {
@@ -889,18 +919,23 @@
     const doc = new jsPDF({ unit: 'pt', format: 'a4', orientation: 'portrait', compress: true });
     doc.setFont(FONT, 'normal');
 
-    // Default fields fall through to "—" when caller omits.
+    // Audit Round-2 fix: fail-loud on missing engagement key/label rather
+    // than silently shipping a TEST-stamped PDF as a real signed artefact.
+    if (!args.engagement || !args.engagement.key || !args.engagement.label) {
+      throw new Error('buildSignedDpaPdf: engagement.key and engagement.label are required (no test-defaults in production path).');
+    }
+    if (!args.controller || !args.controller.legalName || !args.controller.repName) {
+      throw new Error('buildSignedDpaPdf: controller.legalName and controller.repName are required.');
+    }
+
     const state = {
       doc,
       pageNumber: 1,
       y: PAGE.marginTop,
       engagement: Object.assign({
-        key: 'ad-hoc/test',
-        label: 'TEST Engagement',
-        legalName: 'Tegenpartij',
         regulatoryRegime: 'espr',
         regulatoryLabel: 'ESPR Verordening (EU) 2024/1781',
-      }, args.engagement || {}),
+      }, args.engagement),
       controller: Object.assign({
         legalName: '—',
         legalForm: '—',
@@ -938,13 +973,17 @@
     // Cover page
     drawCover(state);
 
-    // Body — full canonical-body summary order (audit B2 fix: §6, §12, §13,
-    // §15, §16 added back; conditional voucher annexes; conditional side-letter)
+    // Body — Audit Round-2 fixes:
+    //  · drawAudit() unconditional (Art 28(3)(h) applies to ALL engagements,
+    //    not only voucher; drawAuditAccess remains as voucher-additive layer)
+    //  · drawSignatureEvidence rendered BEFORE drawSideLetter so §17 precedes
+    //    §17a (no more 17 → 17a → 17 visual anomaly)
     drawPartiesPage(state);
     drawSubjectAndScope(state);
     drawDurationAndRetention(state);
     drawInstructionsAndFlexibility(state);
     drawProcessorObligations(state);
+    drawAudit(state);
     drawAiSection(state);
     drawTogglesAndConsent(state);
     drawSubprocessors(state);
@@ -954,10 +993,9 @@
     drawTOMs(state);
     drawAuditAccess(state);
     drawJurisdiction(state);
-    drawSideLetter(state);
-
-    // Last
     drawSignatureEvidence(state);
+    drawSideLetter(state);
+    drawClosingNote(state);
 
     return doc.output('blob');
   }
