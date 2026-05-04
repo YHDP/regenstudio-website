@@ -20,6 +20,13 @@ node_modules/
 .supabase/
 supabase/
 
+# Video build sources (Motion Canvas project — source of truth is Proton Drive
+# at AI-Operations/tools/privacy-explainer-video/; only the rendered MP4 + VTT
+# files in assets/video/ are committed). Pattern covers both directory and
+# symlink (the working tree carries `video` as a symlink → Proton Drive).
+video
+video/
+
 # Blog source files (drafts, not served to visitors)
 *.rtf
 *.xlsx
@@ -37,3 +44,20 @@ trial.css
 trial2.css
 trial.js
 trial2.js
+
+# Local DPA test content (copied from Proton Drive — do not commit).
+# Glob patterns rather than per-client filenames so the .gitignore itself
+# carries no client identifiers (a leak vector flagged 2026-05-04).
+dpa-test-content/
+dpa-test-*.html
+dpa-test-*-contract.html
+
+# Internal QA / audit-log artifacts (multi-round fixed-point-audit reports
+# per phase). Process notes, not visitor-facing content. Source of truth for
+# long-term retention is Proton Drive AI-Operations/audit-archives/.
+audit-log/
+
+# DPA encryption pipeline test scripts — infrastructure tooling that exercises
+# Edge Functions / Postgres directly. Lives in repo for dev convenience but
+# never served. Promote to Proton Drive scripts/ if it stabilises.
+scripts/test-dpa-encryption-pipeline.*
