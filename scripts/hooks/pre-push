@@ -100,6 +100,52 @@ while read local_ref local_sha remote_ref remote_sha; do
     ISSUES=$((ISSUES + 1))
   fi
 
+  # 7. Block client identifiers from PUBLIC paths.
+  #    The 2026-05-04 Seepje leak was caused by hardcoded client content in
+  #    dpa-intake.html / dpa-contract.html / assets/js/dpa-pdf-builder.js
+  #    reaching origin/main and being publicly indexed. This check ensures
+  #    NO file destined for public hosting contains real client identifiers.
+  #
+  #    Exempted directories:
+  #      - dpa/ops/*    — operator admin tool (own stricter checks at 6.4-6.5
+  #                        + noindex robots meta + admin-secret gate)
+  #      - audit-log/*  — internal QA artifacts (gitignored anyway, defense
+  #                        in depth in case .gitignore is bypassed)
+  #      - design-lab/* — internal dev tooling (gitignored anyway)
+  #      - node_modules, assets/js/vendor/* — third-party
+  #      - .gitignore   — pattern names may legitimately mention client slugs
+  #                        (the gitignore is itself the protection — patterns
+  #                        prevent the named files from being committed)
+  #
+  #    Closed identifier vocabulary. UPDATE THIS REGEX when a new voucher
+  #    client onboards (mirror against dpa/ops/clients.json). Tests run via:
+  #      echo 'voucher/seepje' | grep -iE "$CLIENT_IDENTIFIERS_RE"
+  CLIENT_IDENTIFIERS_RE='seepje|houtgoed|evsmart|engelvaart|hollands.?wol[^a-z]|kvw3-[a-z0-9-]+|kvw3-dpp-voucher'
+  PUBLIC_DIFF=$(git diff "$range" -- \
+    '*.html' '*.js' '*.ts' '*.json' '*.css' '*.md' '*.txt' '*.svg' \
+    ':!dpa/ops/*' ':!audit-log/*' ':!design-lab/*' \
+    ':!node_modules/*' ':!assets/js/vendor/*' ':!.gitignore' 2>/dev/null)
+  # Only scan ADDED lines (lines starting '+', excluding diff headers '+++').
+  # Removals are takedown wins, not violations.
+  LEAK_HITS=$(echo "$PUBLIC_DIFF" | grep -E '^\+' | grep -vE '^\+\+\+' | \
+    grep -niE "$CLIENT_IDENTIFIERS_RE" || true)
+  if [ -n "$LEAK_HITS" ]; then
+    echo -e "${RED}BLOCKED: Client identifier(s) in public-facing file(s):${NC}"
+    echo "$LEAK_HITS" | head -20
+    echo ""
+    echo -e "${YELLOW}  Public DPA / contract / asset paths must be GENERIC TEMPLATES${NC}"
+    echo -e "${YELLOW}  that load client data at runtime from authenticated Edge${NC}"
+    echo -e "${YELLOW}  Functions (e.g. dpa-verify-token returns the engagement profile).${NC}"
+    echo -e "${YELLOW}  Client-specific content stays in dpa/ops/clients.json (covered${NC}"
+    echo -e "${YELLOW}  by check 6.5) or in Edge Function source (gitignored).${NC}"
+    echo ""
+    echo -e "${YELLOW}  This guard was added 2026-05-04 after a hardcoded-Seepje leak${NC}"
+    echo -e "${YELLOW}  reached origin/main. Do NOT bypass with --no-verify unless you${NC}"
+    echo -e "${YELLOW}  have confirmed the match is in a case-study / blog-post context${NC}"
+    echo -e "${YELLOW}  with documented naming_allowed consent for that subject.${NC}"
+    ISSUES=$((ISSUES + 1))
+  fi
+
   # 6. Block publishing unreviewed blog content.
   #    Any added/modified blog/<slug>/index.html (or nl/blog, pt/blog) requires
   #    Blogs/<slug>/meta[.lang].json to have published:true AND review.text/assets:approved
