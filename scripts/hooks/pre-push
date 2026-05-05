@@ -120,11 +120,70 @@ while read local_ref local_sha remote_ref remote_sha; do
   #    Closed identifier vocabulary. UPDATE THIS REGEX when a new voucher
   #    client onboards (mirror against dpa/ops/clients.json). Tests run via:
   #      echo 'voucher/seepje' | grep -iE "$CLIENT_IDENTIFIERS_RE"
-  CLIENT_IDENTIFIERS_RE='seepje|houtgoed|evsmart|engelvaart|hollands.?wol[^a-z]|kvw3-[a-z0-9-]+|kvw3-dpp-voucher'
+  CLIENT_IDENTIFIERS_RE='seepje|houtgoed|evsmart|engelvaart|hollands.?wol[^a-z]|kvw3-[0-9]{5}'
+  # Note: 'kvw3-[0-9]{5}' matches voucher numbers like KVW3-00568 / KVW3-00614
+  # but NOT the public framework name "KvW3-DPP-voucher" or "KvW3-context".
+  # The KvW3 (Kansen voor West 3) ERDF programme is publicly named; only the
+  # per-client voucher number is the leak vector. (Tightened 2026-05-04 after
+  # Path A v0.2 contract template referenced the public KvW3 framework name.)
+
+  # B-PT2 fix (2026-05-05 new-lens audit): PUBLIC_DIFF MUST be defined BEFORE
+  # any check that consumes it. Earlier ordering had the R2 extension blocks
+  # (TERMINOLOGY_LEAK_RE / DATE_LEAK_RE / PLACEHOLDER_RE) reading $PUBLIC_DIFF
+  # while it was still undefined — bash undefined-var expanded to empty,
+  # `echo "" | grep ...` returned empty, all three extensions silently disabled.
+  # Defining here, BEFORE any use, makes every leak-class scan actually run.
   PUBLIC_DIFF=$(git diff "$range" -- \
     '*.html' '*.js' '*.ts' '*.json' '*.css' '*.md' '*.txt' '*.svg' \
     ':!dpa/ops/*' ':!audit-log/*' ':!design-lab/*' \
     ':!node_modules/*' ':!assets/js/vendor/*' ':!.gitignore' 2>/dev/null)
+
+  # Audit Round-3 R2 extension (2026-05-04 audit-final): broader pattern
+  # catches client-specific Dutch terminology + dates + regime-specific
+  # keywords that the slug regex above missed in Round 1. These are leak
+  # classes the publishing-sensitive-info persona surfaced.
+  TERMINOLOGY_LEAK_RE='formulering-recept|CLP-bedrijfs|surfactant.{0,40}leverancier|NVZ\b|PEFCR\b|DSR-register-status'
+  TERMINOLOGY_LEAKS=$(echo "$PUBLIC_DIFF" | grep -E '^\+' | grep -vE '^\+\+\+' | \
+    grep -niE "$TERMINOLOGY_LEAK_RE" || true)
+  if [ -n "$TERMINOLOGY_LEAKS" ]; then
+    echo -e "${RED}BLOCKED: Client-terminology leak in public-facing file(s):${NC}"
+    echo "$TERMINOLOGY_LEAKS" | head -20
+    echo ""
+    echo -e "${YELLOW}  These Dutch terms are tightly linked to specific voucher clients${NC}"
+    echo -e "${YELLOW}  (detergents/surfactants, building products, etc.). Use the${NC}"
+    echo -e "${YELLOW}  regime-derived sensitiveDataExclusionNarrativeNl from the${NC}"
+    echo -e "${YELLOW}  engagement profile instead of inlining client-domain language.${NC}"
+    ISSUES=$((ISSUES + 1))
+  fi
+
+  # Audit Round-3 R2 extension: hardcoded contract-engagement dates leak
+  # the underlying engagement (e.g. specific project-end / bewaarplicht /
+  # beschikking dates). These come from the engagement profile at runtime;
+  # should never be in static markup.
+  DATE_LEAK_RE='\b(1|2|3|31)\s+(jan|feb|mrt|apr|mei|jun|jul|aug|sep|okt|nov|dec)(uari|ruari|aart|il|i|ni|li|ustus|tember|tober|ember)?\s+(202[6-9]|203[0-9])'
+  DATE_LEAKS=$(echo "$PUBLIC_DIFF" | grep -E '^\+' | grep -vE '^\+\+\+' | \
+    grep -nE "$DATE_LEAK_RE" || true)
+  if [ -n "$DATE_LEAKS" ]; then
+    echo -e "${RED}BLOCKED: Hardcoded contract-engagement date in public-facing file(s):${NC}"
+    echo "$DATE_LEAKS" | head -20
+    echo ""
+    echo -e "${YELLOW}  Engagement-specific dates (project end, bewaarplicht, beschikking)${NC}"
+    echo -e "${YELLOW}  belong in the engagement profile, not in static markup.${NC}"
+    echo -e "${YELLOW}  Use [data-tpl="project_einddatum_label"] etc. with profile injection.${NC}"
+    ISSUES=$((ISSUES + 1))
+  fi
+
+  # Placeholder hygiene: the prior 'PENDING_BUILDTIME_PIN_*' string class
+  # would silently store as the per-document SHA in dpa_signatures, partly
+  # undermining the §17 integrity claim. Block at hook level.
+  PLACEHOLDER_RE='PENDING_BUILDTIME_PIN|TODO_REPLACE_BEFORE|FIXME_BEFORE_PUBLISH'
+  PLACEHOLDER_LEAKS=$(echo "$PUBLIC_DIFF" | grep -E '^\+' | grep -vE '^\+\+\+' | \
+    grep -nE "$PLACEHOLDER_RE" || true)
+  if [ -n "$PLACEHOLDER_LEAKS" ]; then
+    echo -e "${RED}BLOCKED: Deploy-time placeholder string in public-facing file(s):${NC}"
+    echo "$PLACEHOLDER_LEAKS" | head -10
+    ISSUES=$((ISSUES + 1))
+  fi
   # Only scan ADDED lines (lines starting '+', excluding diff headers '+++').
   # Removals are takedown wins, not violations.
   LEAK_HITS=$(echo "$PUBLIC_DIFF" | grep -E '^\+' | grep -vE '^\+\+\+' | \

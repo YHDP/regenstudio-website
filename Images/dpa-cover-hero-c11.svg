@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DPA cover hero — c11 watercolor-sails (locked from design-lab Round 3)
+  Composition: 3 atmospheric layered waves + 4 watercolor triangle sails on
+  wave peaks + bottom-fade mask. Loaded by dpa-pdf-builder.js loadHeroC11Png()
+  via fetch → <img> → canvas → PNG dataURL → addImage() in jsPDF.
+  Same canvas-rasterise pattern as loadLogoPng (logo-icon.svg).
+  Coordinates mirror lab spec exactly (heroC11 in design-lab/dpa-cover-hero-r1.html).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595 250" width="595" height="250">
+  <defs>
+    <!-- 4 canonical watercolor radial gradients (saturated apex → transparent base) -->
+    <radialGradient id="grad-magenta" cx="85%" cy="50%" r="85%">
+      <stop offset="0%"   stop-color="#93093F" stop-opacity="0.92"/>
+      <stop offset="50%"  stop-color="#93093F" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#93093F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="grad-orange" cx="85%" cy="50%" r="85%">
+      <stop offset="0%"   stop-color="#FFA92D" stop-opacity="0.92"/>
+      <stop offset="50%"  stop-color="#FFA92D" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#FFA92D" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="grad-emerald" cx="85%" cy="50%" r="85%">
+      <stop offset="0%"   stop-color="#008545" stop-opacity="0.92"/>
+      <stop offset="50%"  stop-color="#008545" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#008545" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="grad-teal" cx="85%" cy="50%" r="85%">
+      <stop offset="0%"   stop-color="#009BBB" stop-opacity="0.92"/>
+      <stop offset="50%"  stop-color="#009BBB" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#009BBB" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Bottom-fade gradient: opaque at top (y=50), transparent at y=240 -->
+    <linearGradient id="bot-fade-grad" x1="0" y1="50" x2="0" y2="240" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#fff" stop-opacity="1"/>
+      <stop offset="60%"  stop-color="#fff" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="bot-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="595" height="250">
+      <rect x="0" y="0" width="595" height="250" fill="url(#bot-fade-grad)"/>
+    </mask>
+  </defs>
+
+  <!-- All hero content sits inside the bottom-fade mask -->
+  <g mask="url(#bot-mask)">
+
+    <!-- 3 atmospheric waves (back to front, alpha rising for depth) -->
+    <!-- Back: magenta n=2 amp=22 baseY=90, fill-alpha 0.10 -->
+    <path d="M 0,90 C 89.25,68 208.25,68 297.5,90 C 386.75,112 505.75,112 595,90 L 595,250 L 0,250 Z"
+          fill="#93093F" fill-opacity="0.10"/>
+    <!-- Mid: orange n=2 amp=26 baseY=112, fill-alpha 0.16 -->
+    <path d="M 0,112 C 89.25,86 208.25,86 297.5,112 C 386.75,138 505.75,138 595,112 L 595,250 L 0,250 Z"
+          fill="#FFA92D" fill-opacity="0.16"/>
+    <!-- Front: emerald n=3 amp=18 baseY=140, fill-alpha 0.26 -->
+    <path d="M 0,140 C 59.5,122 138.83,122 198.33,140 C 257.83,158 337.17,158 396.67,140 C 456.17,122 535.5,122 595,140 L 595,250 L 0,250 Z"
+          fill="#008545" fill-opacity="0.26"/>
+
+    <!-- 4 watercolor triangle "sails" half-emerging from wave peaks -->
+    <!-- Magenta sail at (148, 68), size 32 → vertices (132,52)(132,84)(164,68) -->
+    <polygon points="132,52 132,84 164,68" fill="url(#grad-magenta)"/>
+    <!-- Orange sail at (297, 122), size 36 → vertices (279,104)(279,140)(315,122) -->
+    <polygon points="279,104 279,140 315,122" fill="url(#grad-orange)"/>
+    <!-- Emerald sail at (445, 68), size 32 → vertices (429,52)(429,84)(461,68) -->
+    <polygon points="429,52 429,84 461,68" fill="url(#grad-emerald)"/>
+    <!-- Teal sail at (496, 122), size 30 → vertices (481,107)(481,137)(511,122) -->
+    <polygon points="481,107 481,137 511,122" fill="url(#grad-teal)"/>
+
+  </g>
+</svg>

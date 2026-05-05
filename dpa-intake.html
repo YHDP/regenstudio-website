@@ -7,27 +7,452 @@
   <meta name="referrer" content="no-referrer">
   <title>DPA Portal · Regen Studio</title>
   <link rel="icon" href="Images/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
   <style>
-    :root { --emerald:#008545; --ink:#243644; --muted:#5781A1; --paper:#FAFBFC; --line:#E4E2E2; }
-    *{box-sizing:border-box;}
-    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;}
-    .container{max-width:680px;margin:80px auto;padding:0 22px;}
-    .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:36px 32px;}
-    h1{margin:0 0 14px;color:var(--emerald);font-size:1.6rem;font-weight:600;}
-    p{margin:0 0 14px;color:var(--ink);}
-    .muted{color:var(--muted);font-size:0.92rem;margin-top:22px;}
-    a{color:var(--emerald);text-decoration:none;border-bottom:1px solid currentColor;}
-    a:hover{color:var(--ink);}
+    :root {
+      --emerald:#008545; --emerald-dark:#006d38;
+      --teal:#009BBB; --teal-dark:#00728b;
+      --magenta:#93093F; --orange:#FFA92D; --gold:#7a5814;
+      --ink:#243644; --ink-soft:#3a4d5e;
+      --muted:#5781A1; --paper:#FAFBFC; --paper-soft:#F4F6F9;
+      --line:#E4E2E2; --line-strong:#C9CDD2;
+      --ok-bg:#E7F5EC; --ok-border:#9FCDB1; --ok-text:#1F6A3D;
+      --warn-bg:#FFF4E5; --warn-border:#FFA92D; --warn-text:#7A4A0E;
+      --err-bg:#FFE5E5; --err-border:#C92A2A; --err-text:#7A0E0E;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    .container { max-width: 880px; margin: 0 auto; padding: 32px 24px 80px; }
+    .topbar {
+      background: var(--paper-soft);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.88rem; color: var(--muted);
+    }
+    .topbar__brand { color: var(--emerald-dark); font-weight: 600; }
+    .topbar__brand a { color: inherit; text-decoration: none; }
+    h1 { color: var(--emerald-dark); font-size: 1.85rem; font-weight: 700; margin: 28px 0 8px; line-height: 1.25; }
+    h2 { color: var(--ink); font-size: 1.3rem; font-weight: 700; margin: 36px 0 14px; }
+    h3 { color: var(--teal-dark); font-size: 1.05rem; font-weight: 700; margin: 24px 0 10px; }
+    p { margin: 0 0 14px; color: var(--ink-soft); }
+    a { color: var(--emerald-dark); }
+    .lead { font-size: 1.05rem; color: var(--ink); margin-bottom: 22px; }
+    .card {
+      background: #fff; border: 1px solid var(--line); border-radius: 12px;
+      padding: 24px 28px; margin: 18px 0;
+    }
+    .summary-grid { display: grid; grid-template-columns: 200px 1fr; gap: 10px 18px; font-size: 0.95rem; }
+    .summary-grid__lbl { color: var(--muted); }
+    .summary-grid__val { color: var(--ink); font-weight: 500; }
+    .form-row { margin: 10px 0 16px; }
+    .form-row__label { display: block; font-size: 0.88rem; color: var(--muted); margin-bottom: 4px; font-weight: 500; }
+    .form-row__input {
+      width: 100%; padding: 10px 12px; font-size: 0.98rem; font-family: inherit;
+      border: 1px solid var(--line-strong); border-radius: 6px;
+      background: #fff; color: var(--ink);
+    }
+    .form-row__input:focus { outline: 2px solid var(--teal); outline-offset: -1px; border-color: var(--teal); }
+    .form-row__input--prefilled { background: var(--paper-soft); color: var(--ink-soft); }
+    .form-row__hint { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+    .toggle-group { margin-bottom: 22px; }
+    .toggle-group__title { font-size: 0.92rem; font-weight: 700; color: var(--teal-dark); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .doc-toggle {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 8px 12px; margin: 4px 0;
+      background: var(--paper-soft); border: 1px solid var(--line); border-radius: 6px;
+      cursor: pointer; font-size: 0.93rem; color: var(--ink-soft);
+    }
+    .doc-toggle:hover { border-color: var(--line-strong); }
+    .doc-toggle input { margin-top: 4px; flex-shrink: 0; }
+    .ai-consent {
+      background: var(--ok-bg); border: 1px solid var(--ok-border); border-radius: 8px;
+      padding: 16px 20px; margin: 24px 0;
+    }
+    .ai-consent label { display: flex; gap: 12px; cursor: pointer; align-items: flex-start; font-size: 0.95rem; }
+    .ai-consent input { margin-top: 4px; flex-shrink: 0; }
+    .actions { display: flex; gap: 12px; margin: 32px 0 0; align-items: center; }
+    .btn {
+      padding: 12px 24px; font-size: 1rem; font-weight: 600; font-family: inherit;
+      border: none; border-radius: 6px; cursor: pointer;
+      background: var(--emerald); color: #fff;
+      transition: background 0.15s;
+    }
+    .btn:hover:not(:disabled) { background: var(--emerald-dark); }
+    .btn:disabled { background: var(--line-strong); cursor: not-allowed; }
+    .btn--ghost { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+    .btn--ghost:hover:not(:disabled) { background: var(--paper-soft); color: var(--ink); }
+    .alert {
+      padding: 16px 22px; border-radius: 8px; margin: 16px 0;
+      border: 1.5px solid; font-size: 0.96rem; line-height: 1.55;
+    }
+    .alert--err { background: var(--err-bg); border-color: var(--err-border); color: var(--err-text); }
+    .alert--warn { background: var(--warn-bg); border-color: var(--warn-border); color: var(--warn-text); }
+    .alert--ok { background: var(--ok-bg); border-color: var(--ok-border); color: var(--ok-text); }
+    .loading { color: var(--muted); font-style: italic; padding: 12px 0; }
+    [data-tpl] { transition: opacity 0.2s; }
+    [data-tpl]:empty::after { content: "—"; color: var(--line-strong); }
+    .footer-note { font-size: 0.85rem; color: var(--muted); margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--line); }
+    .hidden { display: none !important; }
   </style>
 </head>
 <body>
+  <div class="topbar">
+    <div class="topbar__brand"><a href="/">Regen Studio</a></div>
+    <div>DPA Portal · Verwerkersovereenkomst-intake</div>
+  </div>
+
   <div class="container">
-    <div class="card">
-      <h1>DPA Portal</h1>
-      <p>Toegang tot het ondertekenportaal verloopt uitsluitend via een persoonlijke, tijdsgebonden uitnodigingslink in uw e-mail.</p>
-      <p>De directe pagina is momenteel tijdelijk offline tijdens een infrastructuur-update. Voor het afronden van uw verwerkersovereenkomst, neem contact op via <a href="mailto:info@regenstudio.world">info@regenstudio.world</a> &mdash; wij reageren binnen één werkdag.</p>
-      <p class="muted">Regen Studio B.V. &middot; <a href="/">regenstudio.world</a></p>
+
+    <div id="loading-state" class="loading">Uitnodiging verifiëren&hellip;</div>
+    <div id="error-state" class="hidden"></div>
+
+    <div id="intake-form" class="hidden">
+
+      <h1>Verwerkersovereenkomst <span data-tpl="legal_name"></span> &times; Regen Studio</h1>
+      <p class="lead">U bent uitgenodigd om de Verwerkersovereenkomst (DPA) onder Artikel 28 AVG te ondertekenen voor de samenwerking tussen <strong data-tpl="legal_name"></strong> en Regen Studio B.V. Vul hieronder uw gegevens in en bevestig de samenwerkings-scope; op de volgende pagina ondertekent u het document.</p>
+
+      <h2>1. Engagement-overzicht</h2>
+      <div class="card">
+        <div class="summary-grid">
+          <div class="summary-grid__lbl">Engagement</div>
+          <div class="summary-grid__val" data-tpl="label"></div>
+          <div class="summary-grid__lbl">Voucher / referentie</div>
+          <div class="summary-grid__val" data-tpl="voucher_number"></div>
+          <div class="summary-grid__lbl">Subsidiebedrag</div>
+          <div class="summary-grid__val" data-tpl="subsidie_bedrag_label"></div>
+          <div class="summary-grid__lbl">Project-einddatum</div>
+          <div class="summary-grid__val" data-tpl="project_einddatum"></div>
+          <div class="summary-grid__lbl">Toepasselijk regelgevings-kader</div>
+          <div class="summary-grid__val" data-tpl="regulatory_label"></div>
+          <div class="summary-grid__lbl">Bewaarplicht tot</div>
+          <div class="summary-grid__val" data-tpl="bewaarplicht_einddatum"></div>
+        </div>
+      </div>
+
+      <h2>2. Gegevens van de Verantwoordelijke</h2>
+      <div class="card">
+        <div class="form-row">
+          <label class="form-row__label" for="cp_legal_name">Naam rechtspersoon</label>
+          <input class="form-row__input form-row__input--prefilled" type="text" id="cp_legal_name">
+        </div>
+        <div class="form-row">
+          <label class="form-row__label" for="cp_legal_form">Rechtsvorm</label>
+          <input class="form-row__input form-row__input--prefilled" type="text" id="cp_legal_form" placeholder="bv. Besloten Vennootschap (B.V.)">
+        </div>
+        <div class="form-row">
+          <label class="form-row__label" for="cp_address">Adres</label>
+          <input class="form-row__input form-row__input--prefilled" type="text" id="cp_address" placeholder="Straat huisnummer, postcode plaats">
+        </div>
+        <div class="form-row">
+          <label class="form-row__label" for="cp_country">Land van oprichting</label>
+          <input class="form-row__input form-row__input--prefilled" type="text" id="cp_country">
+        </div>
+        <div class="form-row">
+          <label class="form-row__label" for="cp_registration_number">KvK-nummer (of equivalent)</label>
+          <input class="form-row__input form-row__input--prefilled" type="text" id="cp_registration_number">
+        </div>
+        <p class="form-row__hint">Velden in licht-grijs zijn op basis van openbare registers vooraf ingevuld; controleer en pas aan waar nodig.</p>
+      </div>
+
+      <h2>3. Bevoegd vertegenwoordiger (ondertekenaar)</h2>
+      <div class="card">
+        <p>Vul uw eigen contactgegevens in als degene die namens <strong data-tpl="legal_name"></strong> tekent.</p>
+        <div class="form-row">
+          <label class="form-row__label" for="cp_rep_name">Volledige naam *</label>
+          <input class="form-row__input" type="text" id="cp_rep_name" placeholder="Voornaam Achternaam" required>
+        </div>
+        <div class="form-row">
+          <label class="form-row__label" for="cp_rep_role">Functie *</label>
+          <input class="form-row__input" type="text" id="cp_rep_role" placeholder="bv. Directeur, CEO, Mede-oprichter" required>
+        </div>
+        <div class="form-row">
+          <label class="form-row__label" for="cp_rep_email">E-mailadres *</label>
+          <input class="form-row__input" type="email" id="cp_rep_email" placeholder="naam@bedrijf.nl" required>
+        </div>
+        <div class="form-row">
+          <label class="form-row__label" for="cp_rep_phone">Telefoonnummer (optioneel)</label>
+          <input class="form-row__input" type="tel" id="cp_rep_phone" placeholder="+31 6 ...">
+        </div>
+      </div>
+
+      <h2>4. Document-categorieën in de samenwerkings-scope</h2>
+      <div class="card">
+        <p>De onderstaande document-categorieën vallen binnen de scope van de verwerking voor dit Engagement (zie ook canonical &sect; 5.4 + Schedule &sect; B.6). Vink uit wat u voor dit specifieke project wilt uitsluiten.</p>
+
+        <div class="toggle-group" id="toggle-group-product">
+          <div class="toggle-group__title">Product-, materiaal- en supply-chain-data</div>
+          <div id="toggles-product"></div>
+        </div>
+        <div class="toggle-group" id="toggle-group-operational">
+          <div class="toggle-group__title">Operationele documenten</div>
+          <div id="toggles-operational"></div>
+        </div>
+        <div class="toggle-group" id="toggle-group-external">
+          <div class="toggle-group__title">Externe bronnen</div>
+          <div id="toggles-external"></div>
+        </div>
+
+        <p class="form-row__hint">
+          <strong>Categorisch uitgesloten van AI-verwerking</strong> (zie canonical Schedule &sect; B.7): <span data-tpl="sensitive_data_exclusion_narrative_nl"></span>.
+        </p>
+      </div>
+
+      <h2>5. Toestemming voor AI-verwerking van uw eigen gegevens</h2>
+      <div class="ai-consent">
+        <label>
+          <input type="checkbox" id="ai_processing_consent">
+          <span>
+            <strong>Ik geef Regen Studio toestemming om mijn persoonsgegevens (naam, e-mail, functie, telefoonnummer) ook door Anthropic Claude te laten verwerken</strong> als onderdeel van de AI-ondersteunde dienstverlening voor dit Engagement, conform canonical &sect; 5.4. Deze toestemming is <em>vrijwillig</em>; de DPA is geldig ook zonder deze toestemming. U kunt deze toestemming op elk moment intrekken via <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.
+            <br><br>
+            Optioneel kunt u een alias-naam opgeven die Regen in werkdocumenten gebruikt in plaats van uw werkelijke naam:
+            <input class="form-row__input" type="text" id="ai_alias_name" placeholder="bv. een door u gekozen alias" style="margin-top:8px;">
+          </span>
+        </label>
+      </div>
+
+      <h2>6. Akkoord en verder</h2>
+      <p>Door op <strong>Verder naar de overeenkomst</strong> te klikken bevestigt u dat (i) u bevoegd bent om <span data-tpl="legal_name"></span> te binden, (ii) de bovenstaande gegevens correct zijn, en (iii) u akkoord gaat met de inhoud van de Verwerkersovereenkomst zoals u die op de volgende pagina ziet, vóór ondertekening.</p>
+
+      <div class="actions">
+        <button id="next-btn" class="btn" disabled>Verder naar de overeenkomst &rarr;</button>
+        <span id="form-status" class="loading hidden"></span>
+      </div>
+
+      <p class="footer-note">
+        Vragen of een nieuwe uitnodigingslink nodig? <a href="mailto:info@regenstudio.world">info@regenstudio.world</a> &middot; <a href="/privacy.html">Privacy-statement</a> &middot; <a href="/">regenstudio.world</a>
+      </p>
     </div>
   </div>
+
+  <script>
+  // ===========================================================================
+  // dpa-intake.html — generic engagement-driven intake (Path A v0.2, 2026-05-04)
+  // ---------------------------------------------------------------------------
+  // No client identifiers are hardcoded. All engagement-specific values arrive
+  // at runtime from the dpa-verify-token Edge Function:
+  //   1. Read ?token=<hex> from URL.
+  //   2. POST to dpa-verify-token. On success, receive engagement_profile.
+  //   3. DOM-inject [data-tpl="..."] placeholders + render doc-categories
+  //      grouped by (product / operational / external).
+  //   4. Pre-fill controller-info defaults from profile.
+  //   5. On "Verder", persist form data + token + engagement context to
+  //      sessionStorage; navigate to dpa-contract.html?token=...
+  // ===========================================================================
+  (function () {
+    "use strict";
+    const SUPABASE_URL = "https://uemspezaqxmkhenimwuf.supabase.co";
+    const VERIFY_TOKEN_URL = SUPABASE_URL + "/functions/v1/dpa-verify-token";
+    const TOKEN_RE = /^[0-9a-f]{64}$/;
+
+    const $ = (sel) => document.querySelector(sel);
+    const els = {
+      loading: $("#loading-state"),
+      error: $("#error-state"),
+      form: $("#intake-form"),
+      next: $("#next-btn"),
+      status: $("#form-status"),
+      togglesProduct: $("#toggles-product"),
+      togglesOperational: $("#toggles-operational"),
+      togglesExternal: $("#toggles-external"),
+    };
+
+    function showError(html) {
+      els.loading.classList.add("hidden");
+      els.error.classList.remove("hidden");
+      els.error.innerHTML =
+        '<div class="alert alert--err">' + html +
+        '<br><br><strong>Volgende stap:</strong> mail <a href="mailto:info@regenstudio.world?subject=DPA-uitnodiging%20opnieuw" style="color:var(--err-text);text-decoration:underline">info@regenstudio.world</a> voor een nieuwe uitnodiging.</div>';
+    }
+
+    function fillTpl(profile, label) {
+      const formatEur = (n) => n == null ? "—" : "€" + Number(n).toLocaleString("nl-NL", { maximumFractionDigits: 0 });
+      const formatDate = (iso) => {
+        if (!iso) return "—";
+        const d = new Date(iso);
+        if (isNaN(d.getTime())) return iso;
+        return d.toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
+      };
+      // Audit Round-1 B8 fix: join non-null pieces independently — was
+      // rendering "—" when subsidie=null but expert_uren=200 was known.
+      const subsidieParts = [];
+      if (profile.subsidie_bedrag_eur != null) subsidieParts.push(formatEur(profile.subsidie_bedrag_eur) + " excl. BTW");
+      if (profile.expert_uren != null) subsidieParts.push(profile.expert_uren + " expert-uur");
+      const subsidie = subsidieParts.length ? subsidieParts.join(" · ") : "—";
+
+      const map = {
+        legal_name: profile.legal_name || "",
+        label: label || profile.label || "",
+        voucher_number: profile.voucher_number || "—",
+        subsidie_bedrag_label: subsidie,
+        project_einddatum: formatDate(profile.project_einddatum),
+        regulatory_label: profile.regulatory_label || "",
+        bewaarplicht_einddatum: formatDate(profile.bewaarplicht_einddatum),
+        sensitive_data_exclusion_narrative_nl: profile.sensitive_data_exclusion_narrative_nl || "",
+      };
+      document.querySelectorAll("[data-tpl]").forEach(el => {
+        const key = el.getAttribute("data-tpl");
+        if (key in map) el.textContent = map[key];
+      });
+      // Update <title>
+      document.title = profile.label + " · DPA Portal · Regen Studio";
+    }
+
+    function prefillEntity(profile) {
+      const setIfDefault = (id, val) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (val != null && val !== "") el.value = val;
+      };
+      setIfDefault("cp_legal_name", profile.legal_name);
+      setIfDefault("cp_legal_form", profile.legal_form_default);
+      setIfDefault("cp_address", profile.address_default);
+      setIfDefault("cp_country", profile.country_default);
+      setIfDefault("cp_registration_number", profile.registration_number_default);
+    }
+
+    function renderDocToggles(docCategories) {
+      const groups = { product: [], operational: [], external: [] };
+      docCategories.forEach(c => {
+        if (groups[c.group]) groups[c.group].push(c);
+      });
+      const renderInto = (container, items) => {
+        container.innerHTML = items.map(c =>
+          `<label class="doc-toggle">
+            <input type="checkbox" id="${c.id}" ${c.default_checked ? "checked" : ""} data-doc-category="1">
+            <span>${escapeHtml(c.label_nl)}</span>
+          </label>`
+        ).join("");
+      };
+      renderInto(els.togglesProduct, groups.product);
+      renderInto(els.togglesOperational, groups.operational);
+      renderInto(els.togglesExternal, groups.external);
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, c => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[c]));
+    }
+
+    function checkRequired() {
+      const requiredIds = ["cp_rep_name", "cp_rep_role", "cp_rep_email"];
+      const allFilled = requiredIds.every(id => {
+        const el = document.getElementById(id);
+        return el && el.value.trim().length > 0;
+      });
+      const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById("cp_rep_email").value);
+      els.next.disabled = !(allFilled && emailValid);
+    }
+
+    function harvestFormData() {
+      const docToggles = {};
+      document.querySelectorAll('input[data-doc-category="1"]').forEach(el => {
+        docToggles[el.id] = el.checked;
+      });
+      return {
+        cp_legal_name: document.getElementById("cp_legal_name").value,
+        cp_legal_form: document.getElementById("cp_legal_form").value,
+        cp_address: document.getElementById("cp_address").value,
+        cp_country: document.getElementById("cp_country").value,
+        cp_registration_number: document.getElementById("cp_registration_number").value,
+        cp_rep_name: document.getElementById("cp_rep_name").value,
+        cp_rep_role: document.getElementById("cp_rep_role").value,
+        cp_rep_email: document.getElementById("cp_rep_email").value.trim().toLowerCase(),
+        cp_rep_phone: document.getElementById("cp_rep_phone").value || "",
+        ai_alias_name: document.getElementById("ai_alias_name").value || "",
+        ai_processing_consent: document.getElementById("ai_processing_consent").checked,
+        doc_toggles: docToggles,
+        _saved_at: new Date().toISOString(),
+      };
+    }
+
+    function restoreSavedFormData() {
+      try {
+        const saved = JSON.parse(sessionStorage.getItem("dpa_intake_formdata") || "{}");
+        Object.entries(saved).forEach(([k, v]) => {
+          const el = document.getElementById(k);
+          if (!el) return;
+          if (el.type === "checkbox") el.checked = !!v;
+          else if (typeof v === "string") el.value = v;
+        });
+        if (saved.doc_toggles) {
+          Object.entries(saved.doc_toggles).forEach(([id, checked]) => {
+            const el = document.getElementById(id);
+            if (el) el.checked = !!checked;
+          });
+        }
+      } catch (e) { /* ignore */ }
+    }
+
+    // ---- bootstrap ----
+    const params = new URLSearchParams(location.search);
+    const token = (params.get("token") || "").trim().toLowerCase();
+
+    if (!TOKEN_RE.test(token)) {
+      showError("<strong>Uitnodiging niet geldig.</strong><br>De link in uw uitnodigings-mail is incompleet of beschadigd. Open de link rechtstreeks vanuit de e-mail of kopieer de volledige URL.");
+      return;
+    }
+
+    fetch(VERIFY_TOKEN_URL, { // supabase.co same-origin (Edge Function)
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token: token }),
+    })
+      .then(r => r.json().then(j => ({ ok: r.ok, status: r.status, body: j })))
+      .then(({ ok, body }) => {
+        if (!ok || !body || body.success !== true) {
+          showError("<strong>Uitnodiging niet verifieerbaar.</strong><br>Mogelijke oorzaken: link is verlopen (7 dagen geldig), link is al gebruikt, of de URL is incompleet.");
+          return;
+        }
+        if (!body.engagement_profile) {
+          showError("<strong>Engagement-profiel niet gevonden.</strong><br>Neem contact op met Regen Studio voor support.");
+          return;
+        }
+        const profile = body.engagement_profile;
+        fillTpl(profile, body.engagement_label);
+        prefillEntity(profile);
+        renderDocToggles(profile.doc_categories || []);
+        restoreSavedFormData();
+        document.querySelectorAll("input").forEach(el => el.addEventListener("input", checkRequired));
+        checkRequired();
+
+        els.loading.classList.add("hidden");
+        els.form.classList.remove("hidden");
+
+        els.next.addEventListener("click", () => {
+          const formData = harvestFormData();
+          const engagementMeta = {
+            engagement_key: body.engagement_key,
+            engagement_label: body.engagement_label,
+            link_id: body.link_id,
+            expires_at: body.expires_at,
+          };
+          try {
+            sessionStorage.setItem("dpa_intake_formdata", JSON.stringify(formData));
+            sessionStorage.setItem("dpa_intake_token", token);
+            sessionStorage.setItem("dpa_intake_engagement", JSON.stringify(engagementMeta));
+            sessionStorage.setItem("dpa_intake_profile", JSON.stringify(profile));
+          } catch (e) {
+            console.error("sessionStorage write failed:", e);
+            alert("Uw browser blokkeert opslag. Schakel cookies/storage tijdelijk in voor regenstudio.world en probeer opnieuw.");
+            return;
+          }
+          window.location.href = "dpa-contract.html?token=" + encodeURIComponent(token);
+        });
+      })
+      .catch(err => {
+        console.error("verify-token failed:", err);
+        showError("<strong>Verbindingsstoring.</strong><br>Probeer opnieuw of mail Regen Studio.");
+      });
+  })();
+  </script>
 </body>
 </html>
