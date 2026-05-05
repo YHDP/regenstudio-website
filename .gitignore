@@ -61,3 +61,6 @@ audit-log/
 # Edge Functions / Postgres directly. Lives in repo for dev convenience but
 # never served. Promote to Proton Drive scripts/ if it stabilises.
 scripts/test-dpa-encryption-pipeline.*
+design-lab/
+dpa/
+dpa-test-content

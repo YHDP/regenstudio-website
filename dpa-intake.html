@@ -434,12 +434,33 @@
             engagement_label: body.engagement_label,
             link_id: body.link_id,
             expires_at: body.expires_at,
+            // EF-arch 2026-05-05 — processor signature flows through engagementMeta
+            // (already in pre-existing pipeline). Markdown is stored separately
+            // below to avoid sending huge JSON blobs through engagementMeta.
+            processor_signature_b64: body.processor_signature_b64 || null,
           };
           try {
             sessionStorage.setItem("dpa_intake_formdata", JSON.stringify(formData));
             sessionStorage.setItem("dpa_intake_token", token);
             sessionStorage.setItem("dpa_intake_engagement", JSON.stringify(engagementMeta));
             sessionStorage.setItem("dpa_intake_profile", JSON.stringify(profile));
+            // EF-arch 2026-05-05 — store binding markdown text from verify-token
+            // response so dpa-contract.html can parse + render without same-
+            // origin fetches. canonical_md is required (block signing if missing);
+            // schedule_md / side_letter_md are engagement-specific and may be null.
+            if (body.canonical_md) {
+              sessionStorage.setItem("dpa_intake_canonical_md", body.canonical_md);
+            }
+            if (body.schedule_md) {
+              sessionStorage.setItem("dpa_intake_schedule_md", body.schedule_md);
+            } else {
+              sessionStorage.removeItem("dpa_intake_schedule_md");
+            }
+            if (body.side_letter_md) {
+              sessionStorage.setItem("dpa_intake_side_letter_md", body.side_letter_md);
+            } else {
+              sessionStorage.removeItem("dpa_intake_side_letter_md");
+            }
           } catch (e) {
             console.error("sessionStorage write failed:", e);
             alert("Uw browser blokkeert opslag. Schakel cookies/storage tijdelijk in voor regenstudio.world en probeer opnieuw.");

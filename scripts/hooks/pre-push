@@ -184,6 +184,41 @@ while read local_ref local_sha remote_ref remote_sha; do
     echo "$PLACEHOLDER_LEAKS" | head -10
     ISSUES=$((ISSUES + 1))
   fi
+
+  # Phase 5 drift guard (2026-05-05): the DPA legal text MUST come from
+  # dpa-test-content/*.md via the parser → AST → renderer pipeline, NEVER
+  # hardcoded in the renderer code. Earlier today the previous pdf-builder.js
+  # held 1.6k lines of hardcoded Dutch that drifted from canonical-NL.md as
+  # comment-fixes landed; the resulting signed PDFs didn't reflect reviewed
+  # text. This guard blocks any commit that adds Dutch legal-clause patterns
+  # (AVG/eIDAS/Vo (EU) citations, multi-word legal phrases) to the two
+  # renderer files. UI-label strings ("Verwerkersovereenkomst", "REGEN
+  # STUDIO", "Handtekeningen") are short + structural — they don't match
+  # these patterns.
+  RENDERER_DIFF=$(git diff "$range" -- \
+    'assets/js/dpa-pdf-renderer.js' \
+    'assets/js/dpa-md-render.js' \
+    'assets/js/dpa-pdf-builder.js' 2>/dev/null)
+  # Catch true clause language only: defined-term subject + obligation verb,
+  # or explicit "Partijen komen overeen". Standalone citations like
+  # "Artikel 28 AVG" are allowed because they appear in legitimate UI
+  # labels (cover subtitle, signature attestation) — those are structural
+  # metadata, not binding clauses.
+  LEGAL_TEXT_RE='(De\s+Verwerker|De\s+Verantwoordelijke)\s+(verklaart|instrueert|garandeert|verleent|verbindt|verplicht|stelt|treft|meldt|ondersteunt|bevestigt)|Partijen\s+komen\s+overeen|Bij\s+conflict\s+tussen|Deze\s+Overeenkomst\s+(treedt|wordt|regelt|legt)'
+  RENDERER_LEGAL=$(echo "$RENDERER_DIFF" | grep -E '^\+' | grep -vE '^\+\+\+' | \
+    grep -nE "$LEGAL_TEXT_RE" || true)
+  if [ -n "$RENDERER_LEGAL" ]; then
+    echo -e "${RED}BLOCKED: Dutch legal-clause text added to renderer code:${NC}"
+    echo "$RENDERER_LEGAL" | head -10
+    echo ""
+    echo -e "${YELLOW}  Renderer files (dpa-pdf-renderer.js, dpa-md-render.js,${NC}"
+    echo -e "${YELLOW}  dpa-pdf-builder.js) MUST NOT contain DPA legal text. Binding${NC}"
+    echo -e "${YELLOW}  text lives in dpa-test-content/*.md and flows through the${NC}"
+    echo -e "${YELLOW}  parser → AST → renderer pipeline. UI labels are fine, but${NC}"
+    echo -e "${YELLOW}  AVG/eIDAS/Vo (EU) citations + clause language belong in canonical.${NC}"
+    ISSUES=$((ISSUES + 1))
+  fi
+
   # Only scan ADDED lines (lines starting '+', excluding diff headers '+++').
   # Removals are takedown wins, not violations.
   LEAK_HITS=$(echo "$PUBLIC_DIFF" | grep -E '^\+' | grep -vE '^\+\+\+' | \
