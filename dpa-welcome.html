@@ -1193,7 +1193,7 @@
       showError('<strong>Uitnodiging niet geldig.</strong><br>De link in uw uitnodigings-mail is incompleet of beschadigd.');
       return;
     }
-    fetch(VERIFY_TOKEN_URL, {
+    fetch(VERIFY_TOKEN_URL, { // supabase.co same-origin (Edge Function)
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token: state.token }),
