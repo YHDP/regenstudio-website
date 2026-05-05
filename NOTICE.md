@@ -39,4 +39,19 @@ This project includes the following third-party components:
 - **License:** SIL Open Font License 1.1
 - **Copyright:** (c) Cadson Demak
 - **Source:** https://fonts.google.com/specimen/KoHo
-- **Location:** `assets/fonts/koho*`
+- **Location:** `assets/fonts/koho*`, `assets/fonts/KoHo-{Bold,Regular,Light}.ttf`, `assets/fonts/jspdf/koho-*.js`
+- **Wordmark convention:** "REGEN" rendered in KoHo Bold, "STUDIO" in KoHo Light — codified 2026-05-05 (see `~/Claude/.claude/skills/pdf-rendering/references/typography-system.md`).
+
+## Lora (typeface)
+
+- **License:** SIL Open Font License 1.1
+- **Copyright:** (c) Cyreal
+- **Source:** https://fonts.google.com/specimen/Lora
+- **Location:** `assets/fonts/lora/Lora-{Regular,Bold}.ttf`, `assets/fonts/jspdf/lora-*.js`
+
+## JetBrains Mono (typeface)
+
+- **License:** SIL Open Font License 1.1
+- **Copyright:** (c) JetBrains s.r.o.
+- **Source:** https://www.jetbrains.com/lp/mono/
+- **Location:** `assets/fonts/JetBrainsMono-Regular.ttf`, `assets/fonts/jspdf/jetbrains-mono-regular.js`

@@ -64,3 +64,6 @@ scripts/test-dpa-encryption-pipeline.*
 design-lab/
 dpa/
 dpa-test-content
+dpa-rendering-lab/
+node_modules/
+package*.json
