@@ -40,7 +40,7 @@
   'use strict';
 
   // Loaded-version banner so we can verify cache freshness in DevTools console.
-  console.log('[pdf-rendering] renderer v2026-05-05g loaded — river-cap on justify + SemiBold body emphasis + 10pt code');
+  console.log('[pdf-rendering] renderer v2026-05-05h loaded — full-width justify (no cap) + 14pt paragraph spacing');
 
   // -------------------------------------------------------------------------
   // Layout constants — A4 portrait, points (1pt = 1/72 inch).
@@ -70,7 +70,7 @@
     code: 10,                  // Closer to body 11pt to minimize baseline-jump on inline code tokens
     caption: 8,
     coverTitle: 32,
-    paragraphSpacing: 7,
+    paragraphSpacing: 14,      // 2x earlier value — Yvo flagged 7pt too tight
     listIndent: 16,
     listItemSpacing: 3,
     blockquoteIndent: 18,
@@ -541,13 +541,12 @@
       // Number of inter-word spaces eligible for distribution
       const wsCount = line.tokens.filter(t => t.isWhitespace).length;
 
-      // Cap extra per space at ~1.2pt — beyond that, rivers become visible
-      // and the line reads worse than a ragged-right one would. If the slack
-      // per space exceeds the cap, we leave the line partially-ragged (extra
-      // slack stays at end of line). Empirical sweet-spot for 11pt sans-serif.
-      const MAX_EXTRA_PT = 1.2;
-      const doJustify = justify && !line.isLastLine && wsCount > 0 && slack > 0 && slack < maxWidth * 0.30;
-      const extraPerSpace = doJustify ? Math.min(slack / wsCount, MAX_EXTRA_PT) : 0;
+      // Full-width justify (per Yvo's design preference): distribute all slack
+      // equally across word-spaces. No cap, no threshold — even loose lines
+      // stay full-width. Last-line of paragraph stays ragged (justifying a
+      // 2-word last line would spread the words to absurd distance).
+      const doJustify = justify && !line.isLastLine && wsCount > 0 && slack > 0;
+      const extraPerSpace = doJustify ? slack / wsCount : 0;
 
       let cursorX = lineLeft;
       for (let ti = 0; ti < line.tokens.length; ti++) {
