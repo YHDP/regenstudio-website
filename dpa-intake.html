@@ -456,6 +456,11 @@
             } else {
               sessionStorage.removeItem("dpa_intake_schedule_md");
             }
+            if (body.annex_c_md) {
+              sessionStorage.setItem("dpa_intake_annex_c_md", body.annex_c_md);
+            } else {
+              sessionStorage.removeItem("dpa_intake_annex_c_md");
+            }
             if (body.side_letter_md) {
               sessionStorage.setItem("dpa_intake_side_letter_md", body.side_letter_md);
             } else {

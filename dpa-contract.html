@@ -1132,6 +1132,7 @@
         // free of any DPA legal-text static assets.
         const canonicalMd = storage.getItem(isPreview ? 'dpa_preview_canonical_md' : 'dpa_intake_canonical_md');
         const scheduleMd  = storage.getItem(isPreview ? 'dpa_preview_schedule_md'  : 'dpa_intake_schedule_md');
+        const annexCMd    = storage.getItem(isPreview ? 'dpa_preview_annex_c_md'   : 'dpa_intake_annex_c_md');
         const sideLetterMd = storage.getItem(isPreview ? 'dpa_preview_side_letter_md' : 'dpa_intake_side_letter_md');
 
         if (!canonicalMd) {
@@ -1148,9 +1149,14 @@
         // body / engagement schedule / side-letter).
         const fullAst = [];
         const htmlParts = [];
+        // 2026-05-05: render order is canonical (body + Annex A) → schedule (Annex B)
+        // → annex-c (Annex C TOMs) → side-letter (Annex D). The schedule slots
+        // in WHERE Annex B should be, between Annex A and Annex C, instead of
+        // appending after Annex C.
         const sources = [
           { label: 'canonical-NL', md: canonicalMd },
           { label: 'schedule-NL', md: scheduleMd },
+          { label: 'annex-c-NL', md: annexCMd },
           { label: 'side-letter-NL', md: sideLetterMd },
         ];
         for (const src of sources) {
