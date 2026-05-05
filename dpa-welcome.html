@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Welkom — Verwerkersovereenkomst — Regen Studio</title>
+<link rel="icon" href="Images/logo-icon.svg" type="image/svg+xml">
+
+<!-- Self-hosted fonts (Inter body, KoHo cover, Lora accent already loaded by other pages — re-include here) -->
+<link rel="stylesheet" href="assets/fonts/inter.css">
+<link rel="stylesheet" href="assets/fonts/koho.css">
+
+<style>
+  :root {
+    --emerald: #008545;
+    --emerald-dark: #006d38;
+    --teal: #009BBB;
+    --magenta: #93093F;
+    --orange: #FFA92D;
+    --gold: #7a5814;
+    --paper: #FAFAF7;
+    --paper-deep: #f5f4ee;
+    --ink: #1a1a2e;
+    --ink-soft: #3a3a52;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --paste-alias: #93093F;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+  }
+
+  /* ===== Loading / Error full-screen ===== */
+  .full-screen {
+    position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: var(--paper); z-index: 100;
+    flex-direction: column; gap: 18px; padding: 40px;
+    text-align: center;
+  }
+  .spinner {
+    width: 36px; height: 36px;
+    border: 3px solid var(--border); border-top-color: var(--emerald);
+    border-radius: 50%; animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .full-screen p { color: var(--muted); margin: 0; font-size: 14px; }
+  .full-screen.error .icon { width: 56px; height: 56px; color: var(--magenta); }
+  .full-screen.error h1 { font-family: 'KoHo', serif; font-size: 24px; margin: 0 0 8px; color: var(--ink); }
+  .full-screen.error p { color: var(--ink-soft); max-width: 480px; line-height: 1.6; }
+  .full-screen.error a { color: var(--emerald-dark); text-decoration: underline; }
+
+  /* ===== Slides container ===== */
+  .slides {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+    scroll-behavior: smooth;
+  }
+  .slide {
+    min-height: 100vh; width: 100%;
+    scroll-snap-align: start;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 48px clamp(24px, 8vw, 96px);
+    position: relative;
+    overflow: hidden;
+  }
+  .slide__inner { width: 100%; max-width: 980px; margin: 0 auto; position: relative; z-index: 2; }
+  .slide__kicker {
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--gold); margin: 0 0 16px;
+  }
+  .slide__title {
+    font-family: 'KoHo', 'Playfair Display', Georgia, serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700; line-height: 1.15;
+    color: var(--ink); margin: 0 0 18px;
+    letter-spacing: -0.5px;
+  }
+  .slide__subtitle {
+    font-size: clamp(16px, 2vw, 19px); color: var(--ink-soft);
+    line-height: 1.6; margin: 0 0 28px;
+    max-width: 680px;
+  }
+  .slide__hint {
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+    font-size: 12px; color: var(--muted); letter-spacing: 0.5px;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    pointer-events: none;
+    animation: bob 3s ease-in-out infinite;
+  }
+  @keyframes bob { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -6px); } }
+  .slide__hint svg { width: 16px; height: 16px; opacity: 0.6; }
+
+  /* ===== Watercolor backgrounds (specific per slide) ===== */
+  .slide--welcome { background: radial-gradient(ellipse at top, rgba(255,169,45,0.08), transparent 60%), var(--paper); }
+  .slide--who { background: radial-gradient(circle at 70% 30%, rgba(0,155,187,0.08), transparent 65%), var(--paper); }
+  .slide--engagement { background: var(--paper-deep); }
+  .slide--architecture { background: linear-gradient(180deg, var(--paper) 0%, rgba(0,133,69,0.04) 100%); }
+  .slide--analytics { background: linear-gradient(180deg, rgba(99,102,241,0.04) 0%, var(--paper) 100%); }
+  .slide--paste-alias { background: var(--paper); }
+  .slide--choices { background: linear-gradient(180deg, var(--paper) 0%, rgba(255,169,45,0.05) 100%); }
+  .slide--subprocessors { background: var(--paper-deep); }
+  .slide--transparency { background: linear-gradient(180deg, rgba(0,155,187,0.05) 0%, var(--paper) 100%); }
+  .slide--ready { background: radial-gradient(ellipse at center, rgba(0,133,69,0.07), transparent 70%), var(--paper); }
+
+  /* ===== Slide 1 — Welkom hero ===== */
+  .welcome-hero {
+    display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px;
+  }
+  .welcome-hero__chameleon {
+    width: clamp(88px, 12vw, 128px); height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0,133,69,0.15));
+  }
+  .welcome-hero__greeting {
+    font-family: 'KoHo', serif; font-size: clamp(36px, 6vw, 64px); font-weight: 700;
+    color: var(--ink); margin: 0; letter-spacing: -0.5px; line-height: 1.1;
+  }
+  .welcome-hero__name { color: var(--emerald); }
+  .welcome-hero__intro {
+    max-width: 560px; font-size: clamp(15px, 1.8vw, 18px);
+    color: var(--ink-soft); line-height: 1.7;
+  }
+
+  /* ===== Slide 2 — Wie zijn we ===== */
+  .who-card {
+    display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px;
+  }
+  .who-card__chameleon { width: 96px; height: auto; }
+  .who-card__wordmark {
+    font-family: 'KoHo', serif;
+    font-size: clamp(28px, 3.5vw, 38px);
+    color: var(--ink);
+    letter-spacing: 1px;
+    margin: 8px 0 0;
+  }
+  .who-card__regen { font-weight: 700; }
+  .who-card__studio { font-weight: 200; margin-left: 4px; }
+  .who-card__tagline {
+    font-style: italic; color: var(--gold);
+    font-size: clamp(14px, 1.6vw, 16px); margin: 0;
+  }
+  .who-card__details {
+    margin-top: 24px; padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 24px; justify-content: center;
+    font-size: 13px; color: var(--muted);
+  }
+  .who-card__detail strong { color: var(--ink); font-weight: 500; }
+
+  /* ===== Slide 3 — Engagement ===== */
+  .engagement-card {
+    background: white; border-radius: 12px; padding: clamp(24px, 4vw, 40px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,133,69,0.04);
+    border: 1px solid var(--border);
+  }
+  .engagement-card__row {
+    display: grid; grid-template-columns: 180px 1fr; gap: 16px;
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+    align-items: baseline;
+  }
+  .engagement-card__row:last-child { border-bottom: none; }
+  .engagement-card__label { color: var(--muted); font-size: 13px; font-weight: 500; }
+  .engagement-card__value { color: var(--ink); font-size: 15px; }
+  @media (max-width: 640px) {
+    .engagement-card__row { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
+  }
+
+  /* ===== Slide 4 — Architectuur (watercolor flow) ===== */
+  .arch-flow {
+    margin-top: 20px;
+    display: flex; justify-content: center;
+  }
+  .arch-flow svg { width: 100%; max-width: 720px; height: auto; }
+  .arch-legend {
+    margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+    font-size: 13px; color: var(--ink-soft);
+  }
+  .arch-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .arch-legend .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+  .arch-legend .dot--main { background: var(--emerald); }
+  .arch-legend .dot--analytics { background: rgba(99,102,241,0.5); border: 1.5px dashed rgba(99,102,241,0.9); }
+
+  /* ===== Slide 5 — Analytics ===== */
+  .analytics-flow {
+    display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 16px; align-items: center; margin-top: 20px;
+  }
+  .analytics-step {
+    background: white; padding: 18px 16px; border-radius: 10px;
+    border: 1px solid var(--border); text-align: center; font-size: 13px;
+    color: var(--ink-soft); line-height: 1.5;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+  .analytics-step__num {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: rgba(99,102,241,0.1); color: rgba(70,75,200,1);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 12px; margin-bottom: 8px;
+  }
+  .analytics-step strong { color: var(--ink); display: block; margin-top: 4px; }
+  .analytics-arrow { color: var(--muted); font-size: 18px; }
+  .analytics-formula {
+    margin-top: 24px; padding: 16px 20px; background: white;
+    border-radius: 8px; border: 1px solid var(--border);
+    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    font-size: 14px; color: var(--ink-soft); text-align: center;
+    overflow-x: auto;
+  }
+  .analytics-note {
+    margin-top: 18px; font-size: 13px; color: var(--muted); line-height: 1.6;
+    max-width: 680px;
+  }
+  .analytics-note a { color: var(--emerald-dark); }
+  @media (max-width: 760px) {
+    .analytics-flow { grid-template-columns: 1fr; }
+    .analytics-arrow { transform: rotate(90deg); justify-self: center; }
+  }
+
+  /* ===== Slide 6 — Paste-alias-shield split ===== */
+  .paste-alias-grid {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px;
+    align-items: stretch; margin-top: 20px;
+  }
+  .paste-col {
+    background: white; padding: 24px; border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .paste-col h4 {
+    margin: 0 0 16px; font-size: 12px; text-transform: uppercase;
+    letter-spacing: 1.2px; color: var(--muted); font-weight: 600;
+  }
+  .paste-col--in h4::before { content: "📥 "; }
+  .paste-col--out h4::before { content: "🛡️ "; }
+  .paste-col--out { background: linear-gradient(180deg, white 0%, rgba(0,133,69,0.03) 100%); }
+  .paste-row {
+    display: flex; gap: 8px; padding: 8px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 14px;
+  }
+  .paste-row:last-child { border-bottom: none; }
+  .paste-row span:first-child { color: var(--muted); width: 80px; flex-shrink: 0; font-size: 12px; }
+  .paste-row code {
+    font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
+    color: var(--ink); flex: 1; word-break: break-all;
+  }
+  .paste-col--out .paste-row code { color: var(--emerald-dark); font-weight: 500; }
+  .paste-arrow {
+    align-self: center; display: flex; flex-direction: column; align-items: center; gap: 4px;
+    color: var(--paste-alias); font-size: 11px;
+    text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+  }
+  .paste-arrow svg { width: 32px; height: 32px; animation: pulse 2.5s ease-in-out infinite; }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.08); }
+  }
+  .paste-caption {
+    margin-top: 18px; font-size: 13px; color: var(--muted);
+    line-height: 1.6; max-width: 760px;
+  }
+  @media (max-width: 760px) {
+    .paste-alias-grid { grid-template-columns: 1fr; }
+    .paste-arrow { transform: rotate(90deg); justify-self: center; }
+  }
+
+  /* ===== Slide 7 — Jouw keuzes (form) ===== */
+  .choices-form { background: white; padding: clamp(24px, 4vw, 36px); border-radius: 12px;
+    border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .form-row { margin-bottom: 18px; }
+  .form-row label {
+    display: block; font-size: 13px; font-weight: 600; color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .form-row label .req { color: var(--magenta); }
+  .form-row label .help { color: var(--muted); font-weight: 400; font-size: 12px; }
+  .form-row input[type="text"], .form-row input[type="email"], .form-row input[type="tel"] {
+    width: 100%; padding: 10px 14px; border: 1px solid var(--border);
+    border-radius: 6px; font-family: inherit; font-size: 14px; color: var(--ink);
+    transition: border-color 0.15s;
+    background: var(--paper);
+  }
+  .form-row input:focus { outline: none; border-color: var(--emerald); background: white; }
+  .form-row input:invalid:not(:placeholder-shown) { border-color: var(--magenta); }
+
+  /* Alias picker */
+  .alias-picker {
+    display: flex; gap: 10px; align-items: stretch;
+  }
+  .alias-picker__display {
+    flex: 1; padding: 10px 14px; border: 1px solid var(--border);
+    border-radius: 6px; background: linear-gradient(135deg, var(--paper) 0%, rgba(0,133,69,0.04) 100%);
+    font-family: 'KoHo', serif; font-size: 18px; color: var(--ink);
+    display: flex; align-items: center; gap: 12px;
+    transition: opacity 0.2s;
+  }
+  .alias-picker__display.is-rolling { opacity: 0.5; }
+  .alias-picker__icon { font-size: 18px; }
+  .alias-picker__reroll {
+    padding: 0 16px; background: white; border: 1px solid var(--border);
+    border-radius: 6px; cursor: pointer; font-size: 13px; color: var(--ink-soft);
+    display: flex; align-items: center; gap: 6px; font-family: inherit;
+    transition: all 0.15s;
+  }
+  .alias-picker__reroll:hover { background: var(--emerald); color: white; border-color: var(--emerald); }
+  .alias-picker__reroll svg { width: 14px; height: 14px; }
+  .alias-picker__custom {
+    margin-top: 8px; font-size: 12px; color: var(--muted);
+  }
+  .alias-picker__custom a { color: var(--emerald-dark); cursor: pointer; text-decoration: underline; }
+
+  /* AI permission radio */
+  .ai-permission {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px;
+  }
+  .ai-permission__option {
+    display: block; padding: 14px 16px; border: 2px solid var(--border);
+    border-radius: 8px; cursor: pointer; transition: all 0.15s;
+    text-align: left;
+  }
+  .ai-permission__option:hover { border-color: var(--emerald); }
+  .ai-permission__option input { display: none; }
+  .ai-permission__option--checked { border-color: var(--emerald); background: rgba(0,133,69,0.04); }
+  .ai-permission__option strong { display: block; font-size: 14px; color: var(--ink); margin-bottom: 4px; }
+  .ai-permission__option span { font-size: 12px; color: var(--muted); line-height: 1.45; }
+  @media (max-width: 640px) { .ai-permission { grid-template-columns: 1fr; } }
+  .form-footnote { margin-top: 16px; font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ===== Slide 8 — Sub-processors ===== */
+  .subprocs-list {
+    background: white; border-radius: 12px; border: 1px solid var(--border); overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .subproc-row {
+    display: grid; grid-template-columns: 32px 1fr auto;
+    padding: 14px 20px; gap: 16px; align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .subproc-row:last-child { border-bottom: none; }
+  .subproc-row__status {
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+  .subproc-row--in .subproc-row__status { background: rgba(0,133,69,0.12); color: var(--emerald); }
+  .subproc-row--out .subproc-row__status { background: rgba(0,0,0,0.04); color: var(--muted); }
+  .subproc-row__name { font-weight: 600; color: var(--ink); font-size: 14px; }
+  .subproc-row__purpose { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .subproc-row__country { font-size: 11px; color: var(--muted); white-space: nowrap; font-family: 'JetBrains Mono', monospace; }
+
+  /* ===== Slide 9 — Transparantie ===== */
+  .transparency-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px;
+  }
+  .transparency-card {
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 22px 24px; background: white; border-radius: 10px;
+    border: 1px solid var(--border); text-decoration: none; color: inherit;
+    transition: all 0.15s;
+  }
+  .transparency-card:hover {
+    border-color: var(--emerald); transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+  }
+  .transparency-card__icon { font-size: 22px; line-height: 1; margin-bottom: 4px; }
+  .transparency-card__title {
+    font-size: 14px; font-weight: 600; color: var(--ink); display: flex; gap: 6px; align-items: center;
+  }
+  .transparency-card__title svg { width: 14px; height: 14px; opacity: 0.4; }
+  .transparency-card__desc {
+    font-size: 12.5px; color: var(--muted); line-height: 1.5;
+  }
+  .transparency-card__path {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--emerald-dark);
+    margin-top: auto; padding-top: 8px; word-break: break-all;
+  }
+  @media (max-width: 760px) { .transparency-grid { grid-template-columns: 1fr; } }
+
+  /* ===== Slide 10 — Klaar om te tekenen ===== */
+  .ready-recap {
+    background: white; border-radius: 12px; padding: clamp(24px, 4vw, 36px);
+    border: 1px solid var(--border); margin-bottom: 24px;
+  }
+  .ready-recap__list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  .ready-recap__list li {
+    display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: baseline;
+    font-size: 14px; color: var(--ink-soft);
+  }
+  .ready-recap__list li::before {
+    content: "✓"; color: var(--emerald); font-weight: 700; font-size: 16px;
+  }
+  .ready-recap__list strong { color: var(--ink); }
+  .ready-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 28px; background: var(--emerald); color: white;
+    border: none; border-radius: 8px; cursor: pointer;
+    font-family: inherit; font-size: 16px; font-weight: 600;
+    text-decoration: none;
+    transition: all 0.15s;
+    box-shadow: 0 2px 8px rgba(0,133,69,0.2);
+  }
+  .ready-cta:hover { background: var(--emerald-dark); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,133,69,0.28); }
+  .ready-cta:disabled { background: var(--muted); cursor: not-allowed; opacity: 0.6; box-shadow: none; transform: none; }
+  .ready-cta svg { width: 18px; height: 18px; }
+  .ready-validation {
+    margin-top: 12px; font-size: 13px; color: var(--magenta);
+    display: none;
+  }
+  .ready-validation.is-shown { display: block; }
+
+  /* ===== Slide nav indicators ===== */
+  .nav-dots {
+    position: fixed; right: 24px; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 8px; z-index: 50;
+  }
+  .nav-dots button {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--border); border: none; cursor: pointer;
+    transition: all 0.2s; padding: 0;
+  }
+  .nav-dots button:hover { background: var(--muted); transform: scale(1.3); }
+  .nav-dots button.is-current { background: var(--emerald); transform: scale(1.4); }
+  .nav-dots button[title]:hover::after {
+    content: attr(title); position: absolute; right: 24px;
+    background: var(--ink); color: white; padding: 4px 10px;
+    font-size: 11px; border-radius: 4px; white-space: nowrap;
+    transform: translateY(-2px);
+  }
+  @media (max-width: 760px) { .nav-dots { right: 12px; } }
+
+  /* ===== Reduced motion ===== */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .slide__hint, .paste-arrow svg, .alias-picker__display { animation: none; }
+    .ready-cta:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Loading state -->
+<div id="loading-state" class="full-screen">
+  <div class="spinner"></div>
+  <p>Even uw uitnodiging valideren…</p>
+</div>
+
+<!-- Error state -->
+<div id="error-state" class="full-screen error" style="display:none;">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+  </svg>
+  <h1>Uitnodiging niet verifieerbaar</h1>
+  <p id="error-message"></p>
+  <p>Mail <a href="mailto:info@regenstudio.world?subject=DPA-uitnodiging%20opnieuw">info@regenstudio.world</a> voor een nieuwe link.</p>
+</div>
+
+<!-- Slides -->
+<main class="slides" id="slides" hidden>
+
+  <!-- ===== Slide 1: Welkom ===== -->
+  <section class="slide slide--welcome" data-nav-title="Welkom" id="slide-welcome">
+    <div class="slide__inner">
+      <div class="welcome-hero">
+        <img src="Images/logo-icon.svg" alt="" class="welcome-hero__chameleon">
+        <h1 class="welcome-hero__greeting">Welkom <span class="welcome-hero__name" id="welcome-name">terug</span></h1>
+        <p class="welcome-hero__intro">
+          Voor we de afspraken juridisch vastleggen, willen we ze rustig met je doorlopen — open, transparant en zonder verrassingen.
+        </p>
+      </div>
+    </div>
+    <div class="slide__hint">
+      <span>scroll om te beginnen</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </section>
+
+  <!-- ===== Slide 2: Wie zijn we ===== -->
+  <section class="slide slide--who" data-nav-title="Wie zijn we" id="slide-who">
+    <div class="slide__inner">
+      <p class="slide__kicker">Wie staat er tegenover je</p>
+      <h2 class="slide__title">Eén persoon. Eén firma.</h2>
+      <p class="slide__subtitle">
+        Regen Studio is een eenpersoons-advisory voor Digitaal Productpaspoort. Je werkt rechtstreeks met de oprichter — geen lagen tussen je en de uitvoering.
+      </p>
+      <div class="who-card">
+        <img src="Images/logo-icon.svg" alt="" class="who-card__chameleon">
+        <p class="who-card__wordmark">
+          <span class="who-card__regen">REGEN</span><span class="who-card__studio">STUDIO</span>
+        </p>
+        <p class="who-card__tagline">advisory voor Digitaal Productpaspoort</p>
+        <div class="who-card__details">
+          <span class="who-card__detail">Yvo Hunink — <strong>Bestuurder (DGA)</strong></span>
+          <span class="who-card__detail">Berg en Dal — <strong>Nederland</strong></span>
+          <span class="who-card__detail">KvK <strong>90337948</strong></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Slide 3: Engagement ===== -->
+  <section class="slide slide--engagement" data-nav-title="Wat doen we" id="slide-engagement">
+    <div class="slide__inner">
+      <p class="slide__kicker">Onze afspraak</p>
+      <h2 class="slide__title">Wat we samen gaan doen</h2>
+      <p class="slide__subtitle">
+        De Verwerkersovereenkomst die we straks tekenen ondersteunt deze concrete Engagement.
+      </p>
+      <div class="engagement-card" id="engagement-card">
+        <div class="engagement-card__row">
+          <div class="engagement-card__label">Project</div>
+          <div class="engagement-card__value" id="eng-label">—</div>
+        </div>
+        <div class="engagement-card__row">
+          <div class="engagement-card__label">Tussen</div>
+          <div class="engagement-card__value" id="eng-parties">—</div>
+        </div>
+        <div class="engagement-card__row">
+          <div class="engagement-card__label">Aard van het werk</div>
+          <div class="engagement-card__value" id="eng-aard">—</div>
+        </div>
+        <div class="engagement-card__row">
+          <div class="engagement-card__label">Regulatoir kader</div>
+          <div class="engagement-card__value" id="eng-regulatory">—</div>
+        </div>
+        <div class="engagement-card__row">
+          <div class="engagement-card__label">Project-einddatum</div>
+          <div class="engagement-card__value" id="eng-einddatum">—</div>
+        </div>
+        <div class="engagement-card__row">
+          <div class="engagement-card__label">Bewaarplicht t/m</div>
+          <div class="engagement-card__value" id="eng-bewaar">—</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Slide 4: Architectuur ===== -->
+  <section class="slide slide--architecture" data-nav-title="Architectuur" id="slide-architecture">
+    <div class="slide__inner">
+      <p class="slide__kicker">Onder de motorkap</p>
+      <h2 class="slide__title">Hoe je data door onze systemen vloeit</h2>
+      <p class="slide__subtitle">
+        De hoofd-flow loopt over jouw browser → Supabase Edge in Frankfurt → encrypted in EU. Voor AI-werk zit de paste-alias-shield ertussen. Daarnaast loopt een aparte, geanonimiseerde analytics-stroom (volgende slide).
+      </p>
+      <div class="arch-flow">
+        <svg viewBox="0 0 720 460" xmlns="http://www.w3.org/2000/svg" aria-label="Data-architectuur diagram">
+          <!-- Watercolor blob backgrounds (subtle) -->
+          <defs>
+            <radialGradient id="grad-emerald" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#008545" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#008545" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="grad-teal" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#009BBB" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#009BBB" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="grad-orange" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FFA92D" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#FFA92D" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="grad-magenta" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#93093F" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#93093F" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Main flow column -->
+          <!-- Node 1: Klant browser -->
+          <ellipse cx="360" cy="50" rx="68" ry="32" fill="url(#grad-orange)"/>
+          <text x="360" y="48" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1a1a2e">Jij — je browser</text>
+          <text x="360" y="64" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#6b7280">magic-link, geen cookies</text>
+
+          <!-- Arrow 1 -->
+          <line x1="360" y1="86" x2="360" y2="118" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <polygon points="356,118 360,128 364,118" fill="#6b7280"/>
+          <text x="378" y="106" font-family="Inter, sans-serif" font-size="10" fill="#6b7280">HTTPS</text>
+
+          <!-- Node 2: GitHub Pages CDN -->
+          <ellipse cx="360" cy="148" rx="74" ry="28" fill="url(#grad-teal)"/>
+          <text x="360" y="146" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#1a1a2e">GitHub Pages CDN</text>
+          <text x="360" y="161" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#6b7280">statisch, geen PII</text>
+
+          <!-- Arrow 2 -->
+          <line x1="360" y1="178" x2="360" y2="208" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <polygon points="356,208 360,218 364,208" fill="#6b7280"/>
+
+          <!-- Node 3: Edge Function -->
+          <ellipse cx="360" cy="238" rx="80" ry="30" fill="url(#grad-emerald)"/>
+          <text x="360" y="236" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#1a1a2e">Supabase Edge Function</text>
+          <text x="360" y="251" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#6b7280">Frankfurt, EU</text>
+
+          <!-- Arrow 3 -->
+          <line x1="360" y1="268" x2="360" y2="298" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <polygon points="356,298 360,308 364,298" fill="#6b7280"/>
+
+          <!-- Node 4: Postgres -->
+          <ellipse cx="360" cy="328" rx="78" ry="28" fill="url(#grad-emerald)"/>
+          <text x="360" y="326" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#1a1a2e">Supabase Postgres</text>
+          <text x="360" y="341" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#6b7280">encrypted at rest, eigen sleutel</text>
+
+          <!-- Branch right: paste-alias + AI -->
+          <line x1="438" y1="328" x2="488" y2="328" stroke="#93093F" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <text x="498" y="318" font-family="Inter, sans-serif" font-size="10" fill="#93093F">alleen met</text>
+          <text x="498" y="332" font-family="Inter, sans-serif" font-size="10" fill="#93093F">toestemming</text>
+
+          <!-- Node 5: Paste-alias-shield -->
+          <ellipse cx="600" cy="328" rx="68" ry="28" fill="url(#grad-magenta)"/>
+          <text x="600" y="326" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#1a1a2e">paste-alias-shield</text>
+          <text x="600" y="341" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#6b7280">strip identifiers</text>
+
+          <!-- Arrow to AI -->
+          <line x1="600" y1="358" x2="600" y2="394" stroke="#93093F" stroke-width="1.2" stroke-dasharray="3,3"/>
+          <polygon points="596,394 600,404 604,394" fill="#93093F"/>
+
+          <!-- Node 6: AI -->
+          <ellipse cx="600" cy="424" rx="62" ry="26" fill="url(#grad-magenta)"/>
+          <text x="600" y="422" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#1a1a2e">AI-verwerker (US)</text>
+          <text x="600" y="437" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#6b7280">SCC's Module 2 + 3</text>
+
+          <!-- Side branch left: Analytics (de aparte stroom, dunne lijn) -->
+          <line x1="280" y1="50" x2="180" y2="50" stroke="rgba(99,102,241,0.6)" stroke-width="1" stroke-dasharray="2,2"/>
+          <text x="148" y="42" font-family="Inter, sans-serif" font-size="10" fill="rgba(70,75,200,0.8)" text-anchor="end">page-paths</text>
+          <text x="148" y="55" font-family="Inter, sans-serif" font-size="10" fill="rgba(70,75,200,0.8)" text-anchor="end">+ event-types</text>
+
+          <ellipse cx="100" cy="50" rx="44" ry="24" fill="rgba(99,102,241,0.08)" stroke="rgba(99,102,241,0.4)" stroke-width="1" stroke-dasharray="2,2"/>
+          <text x="100" y="48" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="rgba(70,75,200,1)">analytics</text>
+          <text x="100" y="61" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#6b7280">anoniem (zie volg.)</text>
+        </svg>
+      </div>
+      <div class="arch-legend">
+        <span><i class="dot dot--main"></i> Hoofd-flow met jouw data</span>
+        <span><i class="dot dot--analytics"></i> Aparte anonieme analytics-stroom</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Slide 5: Analytics ===== -->
+  <section class="slide slide--analytics" data-nav-title="Analytics" id="slide-analytics">
+    <div class="slide__inner">
+      <p class="slide__kicker">Inzoomen — anonieme analytics</p>
+      <h2 class="slide__title">Hoe we website-analytics doen</h2>
+      <p class="slide__subtitle">
+        Geen cookies. Geen tracking pixels. Geen cross-site identifiers. We tellen page visits via een dagelijks-roterende salt — onmogelijk om bezoekers over dagen heen te volgen.
+      </p>
+      <div class="analytics-flow">
+        <div class="analytics-step">
+          <div class="analytics-step__num">1</div>
+          Je browser stuurt<strong>page-path + event-type</strong>
+        </div>
+        <div class="analytics-arrow">→</div>
+        <div class="analytics-step">
+          <div class="analytics-step__num">2</div>
+          Server hashed je IP met een<strong>dagelijks-roterende salt</strong>
+        </div>
+        <div class="analytics-arrow">→</div>
+        <div class="analytics-step">
+          <div class="analytics-step__num">3</div>
+          Raw events na 48 uur weg<strong>alleen aggregaten blijven</strong>
+        </div>
+      </div>
+      <div class="analytics-formula">
+        SHA-256( daily_salt&nbsp;:&nbsp;IP&nbsp;:&nbsp;User-Agent )
+      </div>
+      <p class="analytics-note">
+        De salt rotereert elke 24 uur via een geautomatiseerde database-functie — daardoor is het onmogelijk om dezelfde bezoeker te identificeren over verschillende dagen heen. Deze architectuur valt buiten de cookie-toestemming-vereisten van ePrivacy Art 5(3) en is door CNIL erkend als consent-vrij.
+        Lees mee in onze <a href="https://www.regenstudio.world/privacy.html#analytics" target="_blank" rel="noopener">privacy-architectuur op GitHub →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Slide 6: Paste-alias-shield ===== -->
+  <section class="slide slide--paste-alias" data-nav-title="paste-alias-shield" id="slide-paste-alias">
+    <div class="slide__inner">
+      <p class="slide__kicker">Inzoomen — wat AI ziet</p>
+      <h2 class="slide__title">Wat AI van jou ziet — en wat niet</h2>
+      <p class="slide__subtitle">
+        Voordat we iets aan AI voorleggen, vervangt onze paste-alias-shield directe identifiers (namen, mails, telefoons) door interne aliassen. Niet om wettelijke aansprakelijkheid te omzeilen — die blijft staan — maar om je gegevens veilig te stellen.
+      </p>
+      <div class="paste-alias-grid">
+        <div class="paste-col paste-col--in">
+          <h4>Wat je ons stuurt</h4>
+          <div class="paste-row"><span>Naam</span><code id="alias-demo-name-in">Jan Jansen</code></div>
+          <div class="paste-row"><span>E-mail</span><code id="alias-demo-email-in">jan@bedrijf.nl</code></div>
+          <div class="paste-row"><span>Telefoon</span><code>+31 6 12 34 56 78</code></div>
+          <div class="paste-row"><span>Bedrijf</span><code>Bedrijf B.V. (publiek)</code></div>
+        </div>
+        <div class="paste-arrow">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 4 L24 12 L20 12 L20 22 C20 24, 18 26, 16 26 C14 26, 12 24, 12 22 L12 12 L8 12 Z"/>
+          </svg>
+          shield
+        </div>
+        <div class="paste-col paste-col--out">
+          <h4>Wat AI ziet</h4>
+          <div class="paste-row"><span>Naam</span><code id="alias-demo-name-out">Wandering Pelican</code></div>
+          <div class="paste-row"><span>E-mail</span><code id="alias-demo-email-out">wandering-pelican@example.test</code></div>
+          <div class="paste-row"><span>Telefoon</span><code>[redacted]</code></div>
+          <div class="paste-row"><span>Bedrijf</span><code>Bedrijf B.V. (publiek)</code></div>
+        </div>
+      </div>
+      <p class="paste-caption">
+        Publieke gegevens (bedrijfsnamen uit het Handelsregister bijvoorbeeld) worden niet ge-aliased — daar is geen privacy-winst bij. Niet-publieke identifiers worden standaard beschermd.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Slide 7: Jouw keuzes (form) ===== -->
+  <section class="slide slide--choices" data-nav-title="Jouw keuzes" id="slide-choices">
+    <div class="slide__inner">
+      <p class="slide__kicker">Even jouw keuzes vastleggen</p>
+      <h2 class="slide__title">Hoe heet je, en wat mag AI doen?</h2>
+      <p class="slide__subtitle">
+        Twee dingen hebben we van je nodig voor we naar de juridische tekst gaan: hoe we naar je verwijzen in onze interne notities, en of AI je persoonlijke data mag verwerken.
+      </p>
+      <form class="choices-form" id="choices-form" novalidate>
+        <div class="form-row">
+          <label for="cp_rep_name">Volledige naam <span class="req">*</span></label>
+          <input type="text" id="cp_rep_name" placeholder="Voornaam Achternaam" required autocomplete="name">
+        </div>
+        <div class="form-row">
+          <label for="cp_rep_role">Functie <span class="req">*</span></label>
+          <input type="text" id="cp_rep_role" placeholder="bv. Directeur, Hoofd Innovatie, Mede-oprichter" required>
+        </div>
+        <div class="form-row">
+          <label for="cp_rep_email">E-mailadres <span class="req">*</span></label>
+          <input type="email" id="cp_rep_email" placeholder="naam@bedrijf.nl" required autocomplete="email">
+        </div>
+        <div class="form-row">
+          <label for="cp_rep_phone">Telefoonnummer <span class="help">— optioneel</span></label>
+          <input type="tel" id="cp_rep_phone" placeholder="+31 6 …" autocomplete="tel">
+        </div>
+
+        <div class="form-row" style="margin-top: 28px;">
+          <label>Hoe wil je heten in onze interne notities? <span class="help">— willekeurig dier-alias, herrol gerust</span></label>
+          <div class="alias-picker">
+            <div class="alias-picker__display" id="alias-display">
+              <span class="alias-picker__icon">🎲</span>
+              <span id="alias-text">Curious Octopus</span>
+            </div>
+            <button type="button" class="alias-picker__reroll" id="alias-reroll" aria-label="Andere alias">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+              andere
+            </button>
+          </div>
+          <p class="alias-picker__custom"><a id="alias-use-real">of: gebruik mijn echte naam intern</a></p>
+        </div>
+
+        <div class="form-row" style="margin-top: 24px;">
+          <label>Mag AI jouw persoonlijke data verwerken? <span class="help">— wijzigbaar via consent-dashboard</span></label>
+          <div class="ai-permission" id="ai-permission">
+            <label class="ai-permission__option" data-value="0">
+              <input type="radio" name="ai_consent" value="0">
+              <strong>Liever niet</strong>
+              <span>AI ziet jouw persoonlijke gegevens nooit; advies blijft mogelijk maar werk gaat handmatig.</span>
+            </label>
+            <label class="ai-permission__option" data-value="1">
+              <input type="radio" name="ai_consent" value="1">
+              <strong>Ja, met shield</strong>
+              <span>Sneller advies; jouw data passeert eerst de paste-alias-shield die directe identifiers vervangt.</span>
+            </label>
+          </div>
+        </div>
+        <p class="form-footnote">
+          Beide keuzes (alias + AI-toestemming) kunnen later op elk moment worden gewijzigd via de consent-dashboard van Regen Studio. Geen DPA-revisie nodig.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== Slide 8: Sub-processors ===== -->
+  <section class="slide slide--subprocessors" data-nav-title="Sub-processors" id="slide-subprocessors">
+    <div class="slide__inner">
+      <p class="slide__kicker">Wie raakt jouw data aan</p>
+      <h2 class="slide__title">Onze sub-processors</h2>
+      <p class="slide__subtitle">
+        Volledige lijst staat in Annex A van de overeenkomst hieronder. Hier per sub-processor één regel — wat ze doen, en of ze in scope zijn voor deze Engagement.
+      </p>
+      <div class="subprocs-list">
+        <div class="subproc-row subproc-row--in">
+          <div class="subproc-row__status">✓</div>
+          <div>
+            <div class="subproc-row__name">Supabase</div>
+            <div class="subproc-row__purpose">Database + Edge Functions — hier woont je data, encrypted at rest</div>
+          </div>
+          <div class="subproc-row__country">EU (DE)</div>
+        </div>
+        <div class="subproc-row subproc-row--in">
+          <div class="subproc-row__status">✓</div>
+          <div>
+            <div class="subproc-row__name">AI-verwerker</div>
+            <div class="subproc-row__purpose">LLM-inferentie — alleen waar jij toestemt, met paste-alias-shield ervoor</div>
+          </div>
+          <div class="subproc-row__country">VS</div>
+        </div>
+        <div class="subproc-row subproc-row--in">
+          <div class="subproc-row__status">✓</div>
+          <div>
+            <div class="subproc-row__name">Lettermint</div>
+            <div class="subproc-row__purpose">E-mail-bezorging (deze uitnodiging, magic-links, project-correspondentie)</div>
+          </div>
+          <div class="subproc-row__country">NL</div>
+        </div>
+        <div class="subproc-row subproc-row--in">
+          <div class="subproc-row__status">✓</div>
+          <div>
+            <div class="subproc-row__name">Proton</div>
+            <div class="subproc-row__purpose">E-mail-hosting + werkdossier-opslag — end-to-end encrypted</div>
+          </div>
+          <div class="subproc-row__country">CH</div>
+        </div>
+        <div class="subproc-row subproc-row--in">
+          <div class="subproc-row__status">✓</div>
+          <div>
+            <div class="subproc-row__name">GitHub Pages</div>
+            <div class="subproc-row__purpose">Statische hosting van regenstudio.world — geen jouw data, alleen publieke pagina's</div>
+          </div>
+          <div class="subproc-row__country">VS</div>
+        </div>
+        <div class="subproc-row subproc-row--in">
+          <div class="subproc-row__status">✓</div>
+          <div>
+            <div class="subproc-row__name">Exact Online</div>
+            <div class="subproc-row__purpose">Boekhouding — alleen factuur-regel-metadata (naam + factuuradres)</div>
+          </div>
+          <div class="subproc-row__country">NL</div>
+        </div>
+        <div class="subproc-row subproc-row--out">
+          <div class="subproc-row__status">·</div>
+          <div>
+            <div class="subproc-row__name">CircularTech Advisory</div>
+            <div class="subproc-row__purpose">Advisory-coöperatie — niet ingeschakeld voor jouw Engagement</div>
+          </div>
+          <div class="subproc-row__country">DE</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Slide 9: Transparantie ===== -->
+  <section class="slide slide--transparency" data-nav-title="Transparantie" id="slide-transparency">
+    <div class="slide__inner">
+      <p class="slide__kicker">Vertrouwen kun je niet vragen</p>
+      <h2 class="slide__title">Kijk zelf hoe we werken</h2>
+      <p class="slide__subtitle">
+        We laten je niet de juridische tekst zien op GitHub — die is voor jou en ons specifiek geschreven. Maar de manier waarop we techniek inzetten staat er volledig open.
+      </p>
+      <div class="transparency-grid">
+        <a class="transparency-card" href="https://github.com/YHDP/regenstudio-website/blob/main/assets/js/dpa-pdf-renderer.js" target="_blank" rel="noopener">
+          <span class="transparency-card__icon">🔧</span>
+          <div class="transparency-card__title">
+            Hoe je PDF gemaakt wordt
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </div>
+          <p class="transparency-card__desc">De rendering-code draait in JOUW browser — bewijs dat we niets server-side opslaan tijdens het tekenen.</p>
+          <div class="transparency-card__path">assets/js/dpa-pdf-renderer.js</div>
+        </a>
+        <a class="transparency-card" href="https://github.com/YHDP/regenstudio-website/blob/main/privacy.html#analytics" target="_blank" rel="noopener">
+          <span class="transparency-card__icon">📊</span>
+          <div class="transparency-card__title">
+            Analytics zonder jouw identiteit
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </div>
+          <p class="transparency-card__desc">SHA-256(daily_salt : IP : UA), raw events na 48u weg, geen cookies — CNIL-erkend consent-vrij.</p>
+          <div class="transparency-card__path">privacy.html#analytics</div>
+        </a>
+        <a class="transparency-card" href="https://github.com/YHDP/regenstudio-website/blob/main/privacy.html" target="_blank" rel="noopener">
+          <span class="transparency-card__icon">🛡️</span>
+          <div class="transparency-card__title">
+            Wat we publiek vertellen
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </div>
+          <p class="transparency-card__desc">Onze sub-processor-disclosure, retentie-beleid, doorgifte-mechanismen — zelfde lijst als in deze overeenkomst.</p>
+          <div class="transparency-card__path">privacy.html</div>
+        </a>
+        <a class="transparency-card" href="https://github.com/YHDP/regenstudio-website/blob/main/NOTICE.md" target="_blank" rel="noopener">
+          <span class="transparency-card__icon">📚</span>
+          <div class="transparency-card__title">
+            Wat we attribueren
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </div>
+          <p class="transparency-card__desc">Self-hosted fonts, geen Google Fonts CDN, license-discipline op elke dependency.</p>
+          <div class="transparency-card__path">NOTICE.md</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Slide 10: Klaar ===== -->
+  <section class="slide slide--ready" data-nav-title="Naar de overeenkomst" id="slide-ready">
+    <div class="slide__inner">
+      <p class="slide__kicker">Klaar om te tekenen</p>
+      <h2 class="slide__title">Kort recap, dan de juridische tekst</h2>
+      <p class="slide__subtitle">
+        Je weet nu hoe we werken. Hieronder de Verwerkersovereenkomst — we hebben hem zo kort en duidelijk mogelijk gehouden, zonder klare-taal-blokken (die heb je net allemaal gezien).
+      </p>
+      <div class="ready-recap">
+        <ul class="ready-recap__list">
+          <li><span><strong>Alias:</strong> <span id="recap-alias">Curious Octopus</span></span></li>
+          <li><span><strong>AI-toestemming:</strong> <span id="recap-ai">—</span></span></li>
+          <li><span><strong>Sub-processors in scope:</strong> 6 (zie Annex A)</span></li>
+          <li><span><strong>Looptijd:</strong> tot project-einddatum + bewaarplicht (zie engagement-card)</span></li>
+        </ul>
+      </div>
+      <button type="button" class="ready-cta" id="ready-cta" disabled>
+        Naar de Verwerkersovereenkomst
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <p class="ready-validation" id="ready-validation">Vul eerst je gegevens in op de "Jouw keuzes" slide.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- Slide nav dots -->
+<nav class="nav-dots" id="nav-dots" hidden aria-label="Slide-navigatie"></nav>
+
+<script>
+(function () {
+  'use strict';
+
+  // ===== Constants =====
+  const SUPABASE_URL = "https://uemspezaqxmkhenimwuf.supabase.co";
+  const VERIFY_TOKEN_URL = SUPABASE_URL + "/functions/v1/dpa-verify-token";
+  const TOKEN_RE = /^[0-9a-f]{64}$/;
+
+  // ===== Alias pool =====
+  const ADJECTIVES = [
+    "Wandering", "Curious", "Stoic", "Drifting", "Mischievous", "Plotting",
+    "Diplomatic", "Sceptical", "Patient", "Nocturnal", "Theatrical", "Unhurried",
+    "Vigilant", "Bookish", "Affable", "Pensive", "Resolute", "Whimsical",
+    "Tactful", "Solitary", "Earnest", "Brisk", "Composed", "Restless",
+    "Inscrutable", "Genial", "Gallant", "Quiet", "Serene", "Wry"
+  ];
+  const ANIMALS = [
+    "Pelican", "Octopus", "Marmot", "Capybara", "Lemur", "Mongoose",
+    "Otter", "Ibex", "Heron", "Pangolin", "Flamingo", "Sloth",
+    "Meerkat", "Owl", "Tapir", "Badger", "Lynx", "Tortoise",
+    "Raven", "Stoat", "Fennec", "Wombat", "Quokka", "Aardvark",
+    "Narwhal", "Albatross", "Bobcat", "Caracal", "Dingo", "Echidna",
+    "Falcon", "Gibbon", "Hare", "Iguana", "Jackal", "Kestrel",
+    "Lemming", "Manatee", "Numbat", "Osprey"
+  ];
+
+  function randomAlias() {
+    const adj = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)];
+    const animal = ANIMALS[Math.floor(Math.random() * ANIMALS.length)];
+    return adj + " " + animal;
+  }
+
+  // ===== State =====
+  const state = {
+    token: null,
+    body: null,
+    profile: null,
+    aliasMode: 'random', // 'random' or 'real'
+    formValid: false,
+  };
+
+  // ===== Elements =====
+  const $ = (sel) => document.querySelector(sel);
+  const els = {
+    loading: $('#loading-state'),
+    error: $('#error-state'),
+    errorMessage: $('#error-message'),
+    slides: $('#slides'),
+    navDots: $('#nav-dots'),
+    welcomeName: $('#welcome-name'),
+    engCard: $('#engagement-card'),
+    engLabel: $('#eng-label'),
+    engParties: $('#eng-parties'),
+    engAard: $('#eng-aard'),
+    engRegulatory: $('#eng-regulatory'),
+    engEinddatum: $('#eng-einddatum'),
+    engBewaar: $('#eng-bewaar'),
+    aliasText: $('#alias-text'),
+    aliasDisplay: $('#alias-display'),
+    aliasReroll: $('#alias-reroll'),
+    aliasUseReal: $('#alias-use-real'),
+    aliasDemoNameOut: $('#alias-demo-name-out'),
+    aliasDemoEmailOut: $('#alias-demo-email-out'),
+    repName: $('#cp_rep_name'),
+    repRole: $('#cp_rep_role'),
+    repEmail: $('#cp_rep_email'),
+    repPhone: $('#cp_rep_phone'),
+    aiPermission: $('#ai-permission'),
+    recapAlias: $('#recap-alias'),
+    recapAi: $('#recap-ai'),
+    readyCta: $('#ready-cta'),
+    readyValidation: $('#ready-validation'),
+    choicesForm: $('#choices-form'),
+  };
+
+  // ===== Helpers =====
+  function fmtDate(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+  function showError(msg) {
+    els.loading.style.display = 'none';
+    els.error.style.display = 'flex';
+    els.errorMessage.innerHTML = msg;
+  }
+  function isEmail(s) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+  }
+
+  // ===== Render =====
+  function renderEngagement() {
+    const profile = state.profile;
+    const repName = profile && (profile.cp_rep_name || profile.representative_name);
+    if (repName) {
+      const firstName = String(repName).split(' ')[0];
+      els.welcomeName.textContent = firstName;
+    }
+    const orgName = profile && (profile.legal_name || profile.cp_legal_name);
+    els.engLabel.textContent = state.body.engagement_label || profile.label || '—';
+    els.engParties.textContent = (orgName || '—') + ' (Verantwoordelijke) en Regen Studio B.V. (Verwerker)';
+    const aard = profile.aard_van_verwerking || profile.nature
+      || (profile.engagement_type === 'voucher' && profile.regulatory_label
+          ? 'DPP-advisory ter voorbereiding op ' + profile.regulatory_label
+          : '—');
+    els.engAard.textContent = aard;
+    els.engRegulatory.textContent = profile.regulatory_label || '—';
+    els.engEinddatum.textContent = fmtDate(profile.project_einddatum);
+    els.engBewaar.textContent = fmtDate(profile.bewaarplicht_einddatum);
+  }
+
+  function setAlias(name) {
+    els.aliasText.textContent = name;
+    // Update slide 6 demo example with the user's actual rolled alias
+    const slug = name.toLowerCase().replace(/\s+/g, '-');
+    if (els.aliasDemoNameOut) els.aliasDemoNameOut.textContent = name;
+    if (els.aliasDemoEmailOut) els.aliasDemoEmailOut.textContent = slug + '@example.test';
+    els.recapAlias.textContent = name;
+  }
+
+  function setAliasMode(mode) {
+    state.aliasMode = mode;
+    if (mode === 'real') {
+      const realName = els.repName.value.trim();
+      if (realName) {
+        setAlias(realName);
+        els.aliasDisplay.style.opacity = '0.8';
+        els.aliasUseReal.textContent = 'of: gebruik een willekeurig dier-alias';
+        els.aliasReroll.disabled = true;
+        els.aliasReroll.style.opacity = '0.4';
+      } else {
+        // Fall back to random if no real name yet
+        state.aliasMode = 'random';
+      }
+    }
+    if (state.aliasMode === 'random') {
+      els.aliasDisplay.style.opacity = '1';
+      els.aliasUseReal.textContent = 'of: gebruik mijn echte naam intern';
+      els.aliasReroll.disabled = false;
+      els.aliasReroll.style.opacity = '1';
+    }
+  }
+
+  function rollNewAlias() {
+    els.aliasDisplay.classList.add('is-rolling');
+    setTimeout(() => {
+      setAlias(randomAlias());
+      els.aliasDisplay.classList.remove('is-rolling');
+    }, 180);
+  }
+
+  // ===== Form validation =====
+  function checkFormValid() {
+    const aiRadio = document.querySelector('input[name="ai_consent"]:checked');
+    const valid =
+      els.repName.value.trim().length >= 2 &&
+      els.repRole.value.trim().length >= 2 &&
+      isEmail(els.repEmail.value.trim()) &&
+      !!aiRadio;
+    state.formValid = valid;
+    els.readyCta.disabled = !valid;
+    els.readyValidation.classList.toggle('is-shown', !valid);
+    if (aiRadio) {
+      els.recapAi.textContent = aiRadio.value === '1'
+        ? 'Ja, met paste-alias-shield'
+        : 'Liever niet — geen AI-verwerking van persoonlijke data';
+    }
+    return valid;
+  }
+
+  // ===== AI permission radio styling =====
+  function bindAiPermission() {
+    const radios = document.querySelectorAll('input[name="ai_consent"]');
+    radios.forEach(r => {
+      r.addEventListener('change', () => {
+        document.querySelectorAll('.ai-permission__option').forEach(o => o.classList.remove('ai-permission__option--checked'));
+        r.closest('.ai-permission__option').classList.add('ai-permission__option--checked');
+        checkFormValid();
+      });
+    });
+  }
+
+  // ===== Nav dots =====
+  function buildNavDots() {
+    const sections = document.querySelectorAll('.slide');
+    els.navDots.innerHTML = '';
+    sections.forEach((sec, i) => {
+      const btn = document.createElement('button');
+      btn.title = sec.dataset.navTitle || ('Slide ' + (i + 1));
+      btn.setAttribute('aria-label', btn.title);
+      btn.addEventListener('click', () => sec.scrollIntoView({ behavior: 'smooth' }));
+      els.navDots.appendChild(btn);
+    });
+    // Observe which slide is in view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = Array.from(sections).indexOf(entry.target);
+          els.navDots.querySelectorAll('button').forEach((b, i) => {
+            b.classList.toggle('is-current', i === idx);
+          });
+        }
+      });
+    }, { root: els.slides, threshold: 0.6 });
+    sections.forEach(s => observer.observe(s));
+    els.navDots.hidden = false;
+  }
+
+  // ===== Submit =====
+  function onReadyClick() {
+    if (!checkFormValid()) {
+      // scroll to choices slide
+      document.getElementById('slide-choices').scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+    const aiRadio = document.querySelector('input[name="ai_consent"]:checked');
+    const formData = {
+      cp_legal_name: state.profile.legal_name || state.profile.cp_legal_name || '',
+      cp_legal_form: state.profile.legal_form_default || '',
+      cp_address: state.profile.address_default || '',
+      cp_country: state.profile.country_default || '',
+      cp_registration_number: state.profile.registration_number_default || '',
+      cp_rep_name: els.repName.value.trim(),
+      cp_rep_role: els.repRole.value.trim(),
+      cp_rep_email: els.repEmail.value.trim().toLowerCase(),
+      cp_rep_phone: els.repPhone.value.trim() || '',
+      ai_alias_name: state.aliasMode === 'real' ? '' : els.aliasText.textContent,
+      ai_processing_consent: aiRadio.value === '1',
+      doc_toggles: {},
+      _saved_at: new Date().toISOString(),
+    };
+    const engagementMeta = {
+      engagement_key: state.body.engagement_key,
+      engagement_label: state.body.engagement_label,
+      link_id: state.body.link_id,
+      expires_at: state.body.expires_at,
+      processor_signature_b64: state.body.processor_signature_b64 || null,
+    };
+    try {
+      sessionStorage.setItem('dpa_intake_formdata', JSON.stringify(formData));
+      sessionStorage.setItem('dpa_intake_token', state.token);
+      sessionStorage.setItem('dpa_intake_engagement', JSON.stringify(engagementMeta));
+      sessionStorage.setItem('dpa_intake_profile', JSON.stringify(state.profile));
+      if (state.body.canonical_md) sessionStorage.setItem('dpa_intake_canonical_md', state.body.canonical_md);
+      if (state.body.schedule_md) sessionStorage.setItem('dpa_intake_schedule_md', state.body.schedule_md);
+      else sessionStorage.removeItem('dpa_intake_schedule_md');
+      if (state.body.annex_c_md) sessionStorage.setItem('dpa_intake_annex_c_md', state.body.annex_c_md);
+      else sessionStorage.removeItem('dpa_intake_annex_c_md');
+      if (state.body.side_letter_md) sessionStorage.setItem('dpa_intake_side_letter_md', state.body.side_letter_md);
+      else sessionStorage.removeItem('dpa_intake_side_letter_md');
+    } catch (e) {
+      alert('Uw browser blokkeert opslag. Schakel cookies/storage tijdelijk in voor regenstudio.world en probeer opnieuw.');
+      return;
+    }
+    window.location.href = 'dpa-contract.html?token=' + encodeURIComponent(state.token);
+  }
+
+  // ===== Bootstrap =====
+  function init() {
+    const params = new URLSearchParams(location.search);
+    state.token = (params.get('token') || '').trim().toLowerCase();
+    if (!TOKEN_RE.test(state.token)) {
+      showError('<strong>Uitnodiging niet geldig.</strong><br>De link in uw uitnodigings-mail is incompleet of beschadigd.');
+      return;
+    }
+    fetch(VERIFY_TOKEN_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: state.token }),
+    })
+      .then(r => r.json().then(j => ({ ok: r.ok, body: j })))
+      .then(({ ok, body }) => {
+        if (!ok || !body || body.success !== true || !body.engagement_profile) {
+          showError('<strong>Uitnodiging niet verifieerbaar.</strong><br>Mogelijke oorzaken: link is verlopen (7 dagen geldig), link is al gebruikt, of de URL is incompleet.');
+          return;
+        }
+        state.body = body;
+        state.profile = body.engagement_profile;
+
+        renderEngagement();
+        setAlias(randomAlias());
+        bindAiPermission();
+        buildNavDots();
+
+        // Bind alias controls
+        els.aliasReroll.addEventListener('click', rollNewAlias);
+        els.aliasUseReal.addEventListener('click', (e) => {
+          e.preventDefault();
+          setAliasMode(state.aliasMode === 'real' ? 'random' : 'real');
+        });
+        // Re-update real alias if name changes while in real mode
+        els.repName.addEventListener('input', () => {
+          if (state.aliasMode === 'real') setAliasMode('real');
+          checkFormValid();
+        });
+        ['input', 'change'].forEach(ev => {
+          els.choicesForm.addEventListener(ev, checkFormValid);
+        });
+        els.readyCta.addEventListener('click', onReadyClick);
+
+        els.loading.style.display = 'none';
+        els.slides.hidden = false;
+        checkFormValid();
+      })
+      .catch(err => {
+        console.error('verify-token failed:', err);
+        showError('<strong>Verbindingsstoring.</strong><br>Probeer opnieuw of mail Regen Studio.');
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+</body>
+</html>
