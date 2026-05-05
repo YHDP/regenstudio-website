@@ -48,7 +48,7 @@ while read local_ref local_sha remote_ref remote_sha; do
   fi
 
   # 1. Check for external script/link tags (CDN, Google Fonts, etc.)
-  EXTERNAL_TAGS=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(src|href)="https?://' | grep -viE '(supabase\.co|regenstudio\.(world|space)|player\.vimeo\.com|w\.soundcloud\.com|linkedin\.com|bsky\.app|mastodon\.social|schema\.org|ogp\.me)' || true)
+  EXTERNAL_TAGS=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(src|href)="https?://' | grep -viE '(supabase\.co|regenstudio\.(world|space)|player\.vimeo\.com|w\.soundcloud\.com|linkedin\.com|bsky\.app|mastodon\.social|schema\.org|ogp\.me|github\.com/YHDP/regenstudio-website)' || true)
   if [ -n "$EXTERNAL_TAGS" ]; then
     echo -e "${RED}BLOCKED: External URL(s) found in added lines:${NC}"
     echo "$EXTERNAL_TAGS" | head -10
