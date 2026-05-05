@@ -853,8 +853,23 @@
 <script src="assets/js/vendor/jspdf.umd.min.js"></script>
 <script src="assets/js/vendor/signature_pad.umd.min.js"></script>
 <script src="assets/js/dpa-md-render.js"></script>
-<script src="assets/js/dpa-pdf-renderer.js"></script>
-<script src="assets/js/dpa-pdf-builder.js"></script>
+
+<!-- Brand font modules — loaded BEFORE the renderer so registerBrandFonts()
+     finds the window globals at doc-creation time. ~3MB total (~671KB gzipped).
+     Per references/typography-system.md (~/.claude/skills/pdf-rendering/). -->
+<script src="assets/fonts/jspdf/koho-bold.js"></script>
+<script src="assets/fonts/jspdf/koho-regular.js"></script>
+<script src="assets/fonts/jspdf/koho-light.js"></script>
+<script src="assets/fonts/jspdf/lora-regular.js"></script>
+<script src="assets/fonts/jspdf/lora-bold.js"></script>
+<script src="assets/fonts/jspdf/inter-regular.js"></script>
+<script src="assets/fonts/jspdf/inter-medium.js"></script>
+<script src="assets/fonts/jspdf/inter-semibold.js"></script>
+<script src="assets/fonts/jspdf/inter-bold.js"></script>
+<script src="assets/fonts/jspdf/jetbrains-mono-regular.js"></script>
+
+<script src="assets/js/dpa-pdf-renderer.js?v=20260505"></script>
+<script src="assets/js/dpa-pdf-builder.js?v=20260505"></script>
 <script>
   (function() {
     // PRODUCTION wire — Phase 3.
@@ -1089,6 +1104,13 @@
           bewaarplichtEinddatum: fmtDate(engagementProfile.bewaarplicht_einddatum),
           legalName: data.cp_legal_name || engagementProfile.legal_name,
           regulatoryLabel: engagementProfile.regulatory_label || '',
+          // Aard van verwerking — short cover-line description. Derive from
+          // engagement_type + regulatory_label when an explicit nature isn't set.
+          aardVanVerwerking: engagementProfile.aard_van_verwerking
+            || engagementProfile.nature
+            || (engagementProfile.engagement_type === 'voucher'
+                ? 'DPP-advisory ter voorbereiding op ' + (engagementProfile.regulatory_label || 'sectorale DPP-regelgeving')
+                : 'Engagement-specifieke advisory — zie Annex B § B.2'),
         }) : null;
 
         // EF-arch refactor 2026-05-05 — markdown content is delivered by
