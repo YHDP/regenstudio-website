@@ -40,7 +40,7 @@
   'use strict';
 
   // Loaded-version banner so we can verify cache freshness in DevTools console.
-  console.log('[pdf-rendering] renderer v2026-05-05d loaded — fixed /Rect inversion, single-§ + Annex refs');
+  console.log('[pdf-rendering] renderer v2026-05-05f loaded — Inter body (sans-serif) + density-tuned + blockquote keeps Lora Italic');
 
   // -------------------------------------------------------------------------
   // Layout constants — A4 portrait, points (1pt = 1/72 inch).
@@ -58,19 +58,21 @@
   PAGE.contentHeight = PAGE.height - PAGE.marginTop - PAGE.marginBottom;
 
   // Typography per references/typography-system.md (legal-typography 2026 spec).
+  // Density-tuned 2026-05-05 to fit ~33-34 pages instead of 40 while staying
+  // within the 1.45× leading minimum (Dorian Law / GoConstellation 2026).
   const FONT = {
     body: 11,
-    bodyLeading: 17,           // 1.55× (Dorian Law / GoConstellation 2026 recommendation)
-    h1: 18, h1Leading: 24, h1MarginAbove: 22, h1MarginBelow: 14,
-    h2: 14, h2Leading: 20, h2MarginAbove: 22, h2MarginBelow: 10,
-    h3: 12, h3Leading: 17, h3MarginAbove: 16, h3MarginBelow: 8,
-    h4: 10.5, h4Leading: 15, h4MarginAbove: 12, h4MarginBelow: 6,
+    bodyLeading: 16,           // 1.45× — at the lower end of legal-spec, still readable
+    h1: 18, h1Leading: 23, h1MarginAbove: 16, h1MarginBelow: 10,
+    h2: 14, h2Leading: 19, h2MarginAbove: 18, h2MarginBelow: 8,
+    h3: 12, h3Leading: 16, h3MarginAbove: 12, h3MarginBelow: 6,
+    h4: 10.5, h4Leading: 14, h4MarginAbove: 10, h4MarginBelow: 5,
     code: 9.5,
     caption: 8,
     coverTitle: 32,
-    paragraphSpacing: 10,
+    paragraphSpacing: 7,
     listIndent: 16,
-    listItemSpacing: 5,
+    listItemSpacing: 3,
     blockquoteIndent: 18,
   };
 
@@ -127,10 +129,17 @@
       case 'h2':                return f.inter     ? ['Inter-SemiBold', 'normal']: ['helvetica', 'bold'];
       case 'h3':                return f.inter     ? ['Inter-Medium', 'normal']  : ['helvetica', 'bold'];
       case 'h4':                return f.inter     ? ['Inter-Medium', 'normal']  : ['helvetica', 'bold'];
-      case 'body':              return f.lora      ? ['Lora', 'normal']          : ['helvetica', 'normal'];
-      case 'body-bold':         return f.lora      ? ['Lora', 'bold']            : ['helvetica', 'bold'];
-      case 'body-italic':       return f.lora      ? ['Lora', 'italic']          : ['helvetica', 'italic'];
-      case 'body-bolditalic':   return f.lora      ? ['Lora', 'bolditalic']      : ['helvetica', 'bolditalic'];
+      // Body: Inter Regular — sans-serif, modern, scant compacter dan Lora
+      // serif. Legal-typography 2026 increasingly accepts sans-serif body
+      // (Stripe Atlas, modern fintech docs). Switch made 2026-05-05 after
+      // 40-page DPA round-trip showed Lora-driven density was too sparse.
+      // Italics fall back to Inter Regular (no separate Inter-Italic shipped).
+      // Blockquotes keep Lora Italic for visual+brand distinction (see fontFor 'blockquote').
+      case 'body':              return f.inter     ? ['Inter', 'normal']         : ['helvetica', 'normal'];
+      case 'body-bold':         return f.inter     ? ['Inter', 'bold']           : ['helvetica', 'bold'];
+      case 'body-italic':       return f.inter     ? ['Inter', 'normal']         : ['helvetica', 'italic'];
+      case 'body-bolditalic':   return f.inter     ? ['Inter', 'bold']           : ['helvetica', 'bolditalic'];
+      case 'blockquote':        return f.lora      ? ['Lora', 'italic']          : ['helvetica', 'italic'];
       case 'code':              return f.jetbrains ? ['JetBrainsMono', 'normal'] : ['courier', 'normal'];
       case 'caption':           return f.inter     ? ['Inter', 'normal']         : ['helvetica', 'normal'];
       case 'caption-bold':      return f.inter     ? ['Inter-SemiBold', 'normal']: ['helvetica', 'bold'];
@@ -708,7 +717,8 @@
   function renderBlockquote(state, node) {
     const indent = FONT.blockquoteIndent;
     const startY = state.cursorY;
-    renderRuns(state, node.runs, { indent: indent, maxWidth: PAGE.contentWidth - indent, color: COLOR.muted });
+    // Blockquote uses Lora Italic for visual + brand distinction from body Inter.
+    renderRuns(state, node.runs, { indent: indent, maxWidth: PAGE.contentWidth - indent, color: COLOR.muted, role: 'blockquote' });
     // Left border
     setDraw(state.doc, COLOR.gold);
     state.doc.setLineWidth(2);
