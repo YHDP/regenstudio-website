@@ -40,7 +40,7 @@
   'use strict';
 
   // Loaded-version banner so we can verify cache freshness in DevTools console.
-  console.log('[pdf-rendering] renderer v2026-05-05f loaded — Inter body (sans-serif) + density-tuned + blockquote keeps Lora Italic');
+  console.log('[pdf-rendering] renderer v2026-05-05g loaded — river-cap on justify + SemiBold body emphasis + 10pt code');
 
   // -------------------------------------------------------------------------
   // Layout constants — A4 portrait, points (1pt = 1/72 inch).
@@ -67,7 +67,7 @@
     h2: 14, h2Leading: 19, h2MarginAbove: 18, h2MarginBelow: 8,
     h3: 12, h3Leading: 16, h3MarginAbove: 12, h3MarginBelow: 6,
     h4: 10.5, h4Leading: 14, h4MarginAbove: 10, h4MarginBelow: 5,
-    code: 9.5,
+    code: 10,                  // Closer to body 11pt to minimize baseline-jump on inline code tokens
     caption: 8,
     coverTitle: 32,
     paragraphSpacing: 7,
@@ -136,9 +136,12 @@
       // Italics fall back to Inter Regular (no separate Inter-Italic shipped).
       // Blockquotes keep Lora Italic for visual+brand distinction (see fontFor 'blockquote').
       case 'body':              return f.inter     ? ['Inter', 'normal']         : ['helvetica', 'normal'];
-      case 'body-bold':         return f.inter     ? ['Inter', 'bold']           : ['helvetica', 'bold'];
+      // body-bold uses SemiBold (600) instead of Bold (700) so emphasis reads
+      // as "noticeable" rather than "shouting" — important on definition-style
+      // paragraphs with many bolded terms in a row.
+      case 'body-bold':         return f.inter     ? ['Inter-SemiBold', 'normal']: ['helvetica', 'bold'];
       case 'body-italic':       return f.inter     ? ['Inter', 'normal']         : ['helvetica', 'italic'];
-      case 'body-bolditalic':   return f.inter     ? ['Inter', 'bold']           : ['helvetica', 'bolditalic'];
+      case 'body-bolditalic':   return f.inter     ? ['Inter-SemiBold', 'normal']: ['helvetica', 'bolditalic'];
       case 'blockquote':        return f.lora      ? ['Lora', 'italic']          : ['helvetica', 'italic'];
       case 'code':              return f.jetbrains ? ['JetBrainsMono', 'normal'] : ['courier', 'normal'];
       case 'caption':           return f.inter     ? ['Inter', 'normal']         : ['helvetica', 'normal'];
@@ -538,8 +541,13 @@
       // Number of inter-word spaces eligible for distribution
       const wsCount = line.tokens.filter(t => t.isWhitespace).length;
 
-      const doJustify = justify && !line.isLastLine && wsCount > 0 && slack > 0 && slack < maxWidth * 0.35;
-      const extraPerSpace = doJustify ? slack / wsCount : 0;
+      // Cap extra per space at ~1.2pt — beyond that, rivers become visible
+      // and the line reads worse than a ragged-right one would. If the slack
+      // per space exceeds the cap, we leave the line partially-ragged (extra
+      // slack stays at end of line). Empirical sweet-spot for 11pt sans-serif.
+      const MAX_EXTRA_PT = 1.2;
+      const doJustify = justify && !line.isLastLine && wsCount > 0 && slack > 0 && slack < maxWidth * 0.30;
+      const extraPerSpace = doJustify ? Math.min(slack / wsCount, MAX_EXTRA_PT) : 0;
 
       let cursorX = lineLeft;
       for (let ti = 0; ti < line.tokens.length; ti++) {
