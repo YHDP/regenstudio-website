@@ -1595,6 +1595,12 @@
         cp_rep_role:     data.cp_rep_role,
         cp_rep_email:    String(data.cp_rep_email || '').trim().toLowerCase(),
         ai_processing_consent: !!data.ai_processing_consent,
+        // Subject-provided alias from intake step. Optional. Persisted to
+        // contact_profiles.alias by dpa-submit-signature post-RPC. Used by
+        // the AI paste-alias-shield in preference to pool-generated aliases
+        // when present (consent-gate.md § Memory ≠ Consent + alias-source-
+        // priority). Capped client-side at 80 chars; server re-validates.
+        ai_alias_name:   String(data.ai_alias_name || '').trim().slice(0, 80),
         doc_toggles:     docToggles,
         html_snapshot:   htmlSnapshot,
         pdf_b64:         pdfB64,
