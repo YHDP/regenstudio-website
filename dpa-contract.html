@@ -1488,6 +1488,15 @@
       // is filled server-side post-submit — for the at-sign-time PDF, we pass
       // a placeholder signedAt and let the Edge Function regenerate the final
       // PDF if it needs the canonical SHA over server-stamped fields.
+      //
+      // IDENTICAL-RENDER convention 2026-05-05: this args object's SHAPE is
+      // the source of truth that the Preview path (dpa/ops/index.html
+      // preview-btn handler) MUST mirror. When changing fields here — adding,
+      // removing, renaming — also update the Preview path so it produces a
+      // byte-equivalent render. Legitimate divergences are: signature
+      // .handDrawnPng (real here, null in Preview), signedAt timestamp, and
+      // counterparty .repName/.repRole (real form values here, representative
+      // placeholders in Preview).
       let pdfBlob;
       const draftSignedAt = new Date().toISOString();
       try {
