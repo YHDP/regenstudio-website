@@ -1072,9 +1072,15 @@
           'engagement.label': ep.label || (engagementMeta && engagementMeta.engagement_label) || '',
           'engagement.type': ep.type || (ep.has_voucher_annexes ? 'voucher' : ''),
           'engagement.regulatory_regime': ep.regulatory_regime || '',
-          'engagement.nature': ep.nature || ep.label || '',
-          'engagement.purpose': ep.purpose || ep.regulatory_label || '',
-          'engagement.nature_and_purpose': ep.nature_and_purpose || (ep.nature && ep.purpose ? ep.nature + ' — ' + ep.purpose : (ep.label || '')),
+          // 2026-05-05: removed label-fallback on nature/purpose. Falling back
+          // to ep.label (engagement-key) caused "Aard van de verwerking" to
+          // render as the engagement-key string — duplicating the Onderwerp
+          // line and confusing readers. Empty string + canonical-side R-1
+          // (collapse §3 bullets to referential paragraph) makes the wrong-
+          // info disappear cleanly.
+          'engagement.nature': ep.nature || '',
+          'engagement.purpose': ep.purpose || '',
+          'engagement.nature_and_purpose': ep.nature_and_purpose || (ep.nature && ep.purpose ? ep.nature + ' — ' + ep.purpose : ''),
           'engagement.start_date': fmtDate(ep.start_date) || '(start van Engagement-contract / Offerte; zie Schedule § B.2)',
           'engagement.end_condition': ep.end_condition || ('Project-einddatum ' + (fmtDate(ep.project_einddatum) || '—') + '; voor voucher-engagements aangevuld met de bewaarplicht na vaststelling'),
           'engagement.statutory_retention': fmtDate(ep.bewaarplicht_einddatum) || ep.statutory_retention || '',
