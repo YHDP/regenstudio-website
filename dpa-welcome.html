@@ -13,6 +13,24 @@
 <link rel="stylesheet" href="assets/fonts/koho.css">
 
 <style>
+  /* Full-character KoHo for headlines (the koho.css logo-subset doesn't include
+     non-REGEN-STUDIO glyphs like "Welkom"). Loaded from the TTF source files
+     used by the jsPDF renderer; ~94KB each but only fetched once. */
+  @font-face {
+    font-family: 'KoHo Full';
+    src: url('assets/fonts/KoHo-Regular.ttf') format('truetype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'KoHo Full';
+    src: url('assets/fonts/KoHo-Bold.ttf') format('truetype');
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'KoHo Full';
+    src: url('assets/fonts/KoHo-Light.ttf') format('truetype');
+    font-weight: 300; font-style: normal; font-display: swap;
+  }
   :root {
     --emerald: #008545;
     --emerald-dark: #006d38;
@@ -80,7 +98,7 @@
     color: var(--gold); margin: 0 0 16px;
   }
   .slide__title {
-    font-family: 'KoHo', 'Playfair Display', Georgia, serif;
+    font-family: 'KoHo Full', 'Playfair Display', Georgia, serif;
     font-size: clamp(32px, 5vw, 52px);
     font-weight: 700; line-height: 1.15;
     color: var(--ink); margin: 0 0 18px;
@@ -92,14 +110,30 @@
     max-width: 680px;
   }
   .slide__hint {
-    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
-    font-size: 12px; color: var(--muted); letter-spacing: 0.5px;
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
-    pointer-events: none;
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    background: none; border: none; padding: 0; cursor: pointer;
+    font-family: inherit;
     animation: bob 3s ease-in-out infinite;
+    transition: transform 0.2s;
   }
-  @keyframes bob { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -6px); } }
-  .slide__hint svg { width: 16px; height: 16px; opacity: 0.6; }
+  .slide__hint:hover { animation-play-state: paused; }
+  .slide__hint:hover .slide__hint-triangle { transform: scale(1.1); }
+  .slide__hint:focus-visible { outline: 2px solid var(--emerald); outline-offset: 8px; border-radius: 8px; }
+  @keyframes bob { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -10px); } }
+  .slide__hint-text {
+    font-size: 14px; color: var(--ink-soft); font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .slide__hint-triangle {
+    width: 0; height: 0;
+    border-left: 32px solid transparent;
+    border-right: 32px solid transparent;
+    border-top: 44px solid var(--emerald);
+    transition: transform 0.25s, filter 0.2s;
+    filter: drop-shadow(0 4px 8px rgba(0,133,69,0.25));
+  }
+  .slide__hint:hover .slide__hint-triangle { filter: drop-shadow(0 6px 14px rgba(0,133,69,0.4)); }
 
   /* ===== Watercolor backgrounds (specific per slide) ===== */
   .slide--welcome { background: radial-gradient(ellipse at top, rgba(255,169,45,0.08), transparent 60%), var(--paper); }
@@ -121,9 +155,16 @@
     width: clamp(88px, 12vw, 128px); height: auto;
     filter: drop-shadow(0 4px 12px rgba(0,133,69,0.15));
   }
+  .welcome-hero__wordmark {
+    font-family: 'KoHo Full', serif;
+    font-size: clamp(20px, 2.4vw, 26px);
+    color: var(--ink); margin: 12px 0 0; letter-spacing: 1.5px;
+  }
+  .welcome-hero__regen { font-weight: 700; }
+  .welcome-hero__studio { font-weight: 300; margin-left: 4px; }
   .welcome-hero__greeting {
-    font-family: 'KoHo', serif; font-size: clamp(36px, 6vw, 64px); font-weight: 700;
-    color: var(--ink); margin: 0; letter-spacing: -0.5px; line-height: 1.1;
+    font-family: 'KoHo Full', serif; font-size: clamp(36px, 6vw, 64px); font-weight: 700;
+    color: var(--ink); margin: 24px 0 0; letter-spacing: -0.5px; line-height: 1.1;
   }
   .welcome-hero__name { color: var(--emerald); }
   .welcome-hero__intro {
@@ -133,29 +174,29 @@
 
   /* ===== Slide 2 — Wie zijn we ===== */
   .who-card {
-    display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px;
+    display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0;
   }
-  .who-card__chameleon { width: 96px; height: auto; }
   .who-card__wordmark {
-    font-family: 'KoHo', serif;
-    font-size: clamp(28px, 3.5vw, 38px);
+    font-family: 'KoHo Full', serif;
+    font-size: clamp(32px, 4.5vw, 48px);
     color: var(--ink);
-    letter-spacing: 1px;
-    margin: 8px 0 0;
+    letter-spacing: 1.5px;
+    margin: 16px 0 0;
   }
   .who-card__regen { font-weight: 700; }
-  .who-card__studio { font-weight: 200; margin-left: 4px; }
+  .who-card__studio { font-weight: 300; margin-left: 6px; }
   .who-card__tagline {
     font-style: italic; color: var(--gold);
-    font-size: clamp(14px, 1.6vw, 16px); margin: 0;
+    font-size: clamp(17px, 2vw, 20px); margin: 14px 0 0;
   }
   .who-card__details {
-    margin-top: 24px; padding-top: 24px;
+    margin-top: 32px; padding-top: 32px;
     border-top: 1px solid var(--border);
-    display: flex; flex-wrap: wrap; gap: 24px; justify-content: center;
-    font-size: 13px; color: var(--muted);
+    display: flex; flex-wrap: wrap; gap: 32px; justify-content: center;
+    font-size: clamp(15px, 1.8vw, 17px); color: var(--ink-soft);
+    line-height: 1.6;
   }
-  .who-card__detail strong { color: var(--ink); font-weight: 500; }
+  .who-card__detail strong { color: var(--ink); font-weight: 600; }
 
   /* ===== Slide 3 — Engagement ===== */
   .engagement-card {
@@ -302,7 +343,7 @@
   .alias-picker__display {
     flex: 1; padding: 10px 14px; border: 1px solid var(--border);
     border-radius: 6px; background: linear-gradient(135deg, var(--paper) 0%, rgba(0,133,69,0.04) 100%);
-    font-family: 'KoHo', serif; font-size: 18px; color: var(--ink);
+    font-family: 'KoHo Full', serif; font-size: 18px; color: var(--ink);
     display: flex; align-items: center; gap: 12px;
     transition: opacity 0.2s;
   }
@@ -474,16 +515,19 @@
     <div class="slide__inner">
       <div class="welcome-hero">
         <img src="Images/logo-icon.svg" alt="" class="welcome-hero__chameleon">
+        <p class="welcome-hero__wordmark">
+          <span class="welcome-hero__regen">REGEN</span><span class="welcome-hero__studio">STUDIO</span>
+        </p>
         <h1 class="welcome-hero__greeting">Welkom <span class="welcome-hero__name" id="welcome-name">terug</span></h1>
         <p class="welcome-hero__intro">
           Voor we de afspraken juridisch vastleggen, willen we ze rustig met je doorlopen — open, transparant en zonder verrassingen.
         </p>
       </div>
     </div>
-    <div class="slide__hint">
-      <span>scroll om te beginnen</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-    </div>
+    <button class="slide__hint" id="welcome-cta" aria-label="Klik op de pijl om te beginnen">
+      <span class="slide__hint-text">klik op de pijl om te beginnen</span>
+      <span class="slide__hint-triangle" aria-hidden="true"></span>
+    </button>
   </section>
 
   <!-- ===== Slide 2: Wie zijn we ===== -->
@@ -495,15 +539,14 @@
         Regen Studio is een eenpersoons-advisory voor Digitaal Productpaspoort. Je werkt rechtstreeks met de oprichter — geen lagen tussen je en de uitvoering.
       </p>
       <div class="who-card">
-        <img src="Images/logo-icon.svg" alt="" class="who-card__chameleon">
         <p class="who-card__wordmark">
           <span class="who-card__regen">REGEN</span><span class="who-card__studio">STUDIO</span>
         </p>
         <p class="who-card__tagline">advisory voor Digitaal Productpaspoort</p>
         <div class="who-card__details">
-          <span class="who-card__detail">Yvo Hunink — <strong>Bestuurder (DGA)</strong></span>
-          <span class="who-card__detail">Berg en Dal — <strong>Nederland</strong></span>
-          <span class="who-card__detail">KvK <strong>90337948</strong></span>
+          <span class="who-card__detail"><strong>Yvo Hunink</strong> — Bestuurder (DGA)</span>
+          <span class="who-card__detail"><strong>Berg en Dal</strong> — Nederland</span>
+          <span class="who-card__detail"><strong>KvK</strong> 90337948</span>
         </div>
       </div>
     </div>
@@ -1211,6 +1254,14 @@
         setAlias(randomAlias());
         bindAiPermission();
         buildNavDots();
+
+        // Bind welcome CTA — clicking the triangle scrolls to slide 2
+        const welcomeCta = document.getElementById('welcome-cta');
+        if (welcomeCta) {
+          welcomeCta.addEventListener('click', () => {
+            document.getElementById('slide-who').scrollIntoView({ behavior: 'smooth' });
+          });
+        }
 
         // Bind alias controls
         els.aliasReroll.addEventListener('click', rollNewAlias);
