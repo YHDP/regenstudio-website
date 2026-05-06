@@ -134,6 +134,13 @@
     filter: drop-shadow(0 4px 8px rgba(0,133,69,0.25));
   }
   .slide__hint:hover .slide__hint-triangle { filter: drop-shadow(0 6px 14px rgba(0,133,69,0.4)); }
+  .slide__hint--mini { bottom: 24px; gap: 0; opacity: 0.85; }
+  .slide__hint--mini .slide__hint-triangle {
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 24px solid var(--emerald);
+    filter: drop-shadow(0 2px 5px rgba(0,133,69,0.18));
+  }
 
   /* ===== Watercolor backgrounds (specific per slide) ===== */
   .slide--welcome { background: radial-gradient(ellipse at top, rgba(255,169,45,0.08), transparent 60%), var(--paper); }
@@ -179,8 +186,8 @@
     border-radius: 4px;
     padding: clamp(28px, 4vw, 44px) clamp(28px, 4vw, 48px);
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    max-width: 640px;
-    margin: 0 auto;
+    max-width: 720px;
+    margin: 0;
   }
   .who-card__header {
     padding-bottom: 18px;
@@ -229,6 +236,18 @@
   }
 
   /* ===== Slide 3 — Engagement ===== */
+  .engagement-narrative {
+    margin: 0 0 24px;
+    padding: 20px 24px;
+    background: linear-gradient(180deg, rgba(255,169,45,0.06), rgba(255,169,45,0.02));
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    max-width: 760px;
+  }
+  .engagement-narrative p {
+    margin: 0; font-size: 15px; line-height: 1.65; color: var(--ink);
+  }
+  .engagement-narrative strong { color: var(--ink); font-weight: 600; }
   .engagement-card {
     background: white; border-radius: 12px; padding: clamp(24px, 4vw, 40px);
     box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,133,69,0.04);
@@ -246,22 +265,114 @@
     .engagement-card__row { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
   }
 
-  /* ===== Slide 4 — Architectuur (watercolor flow) ===== */
-  .arch-flow {
+  /* ===== Slide 4 — Architectuur (horizontal sweep, staggered fade-in) ===== */
+  .arch-grid {
     margin-top: 20px;
-    display: flex; justify-content: center;
+    display: flex; flex-direction: column; gap: 14px;
+    max-width: 880px; width: 100%; margin-inline: auto;
   }
-  .arch-flow svg { width: 100%; max-width: 720px; height: auto; }
+  .arch-row--main {
+    display: grid;
+    grid-template-columns: 1fr 22px 1fr 22px 1fr 22px 1fr;
+    gap: 6px; align-items: center;
+  }
+  .arch-row--branches {
+    display: grid;
+    grid-template-columns: 1fr 22px 1fr 22px 1fr 22px 1fr;
+    gap: 6px; align-items: start;
+  }
+  .arch-row--ai {
+    display: flex; gap: 10px; justify-content: flex-end;
+    align-items: center; margin-top: 4px;
+  }
+  .arch-node {
+    background: white; border-radius: 10px; padding: 10px 12px;
+    text-align: center; box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .arch-node__title { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+  .arch-node__sub { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+  .arch-node__sub small { font-size: 10px; opacity: 0.85; }
+  .arch-node--user      { border: 1.5px solid #FFA92D; }
+  .arch-node--internal  { border: 1px solid #008545; }
+  .arch-node--external  { border: 1px dashed #009BBB; }
+  .arch-node--gated     { border: 1px solid #93093F; }
+
+  .arch-arrow {
+    color: #6b7280; font-size: 16px; text-align: center;
+    opacity: 0; transition: opacity 0.4s ease;
+  }
+  .arch-arrow--down { display: block; margin: 4px auto; }
+  .arch-arrow--gated { color: #93093F; font-size: 18px; }
+  .arch-branch-label {
+    color: #93093F; font-size: 11px; font-style: italic; line-height: 1.3;
+    text-align: right;
+    opacity: 0; transition: opacity 0.4s ease;
+  }
+  .arch-branch-stack { display: flex; flex-direction: column; gap: 12px; align-items: stretch; }
+
+  /* Staggered reveal once slide enters viewport */
+  .slide--architecture.is-visible .is-user      { opacity: 1; transform: none; transition-delay: 0.05s; }
+  .slide--architecture.is-visible .is-cdn       { opacity: 1; transform: none; transition-delay: 0.20s; }
+  .slide--architecture.is-visible .is-edge      { opacity: 1; transform: none; transition-delay: 0.35s; }
+  .slide--architecture.is-visible .is-postgres  { opacity: 1; transform: none; transition-delay: 0.50s; }
+  .slide--architecture.is-visible .arch-row--main .arch-arrow { opacity: 1; transition-delay: 0.30s; }
+  .slide--architecture.is-visible .is-lettermint{ opacity: 1; transform: none; transition-delay: 0.65s; }
+  .slide--architecture.is-visible .is-proton    { opacity: 1; transform: none; transition-delay: 0.75s; }
+  .slide--architecture.is-visible .is-exact     { opacity: 1; transform: none; transition-delay: 0.90s; }
+  .slide--architecture.is-visible .arch-row--branches .arch-arrow { opacity: 1; transition-delay: 0.60s; }
+  .slide--architecture.is-visible .is-paste     { opacity: 1; transform: none; transition-delay: 1.05s; }
+  .slide--architecture.is-visible .is-ai        { opacity: 1; transform: none; transition-delay: 1.20s; }
+  .slide--architecture.is-visible .arch-row--ai .arch-arrow,
+  .slide--architecture.is-visible .arch-branch-label { opacity: 1; transition-delay: 1.00s; }
+  .slide--architecture.is-visible .arch-mini-step { opacity: 1; transform: none; }
+  .slide--architecture.is-visible .arch-mini-step:nth-of-type(1) { transition-delay: 1.35s; }
+  .slide--architecture.is-visible .arch-mini-step:nth-of-type(2) { transition-delay: 1.50s; }
+  .slide--architecture.is-visible .arch-mini-step:nth-of-type(3) { transition-delay: 1.65s; }
+  .slide--architecture.is-visible .arch-mini-arrow { opacity: 1; transition-delay: 1.45s; }
+
+  .arch-divider { height: 1px; background: var(--border); margin: 18px 0 10px; opacity: 0.6; }
+  .arch-mini-flow-label {
+    font-size: 12px; color: rgba(70,75,200,0.9); font-style: italic;
+    text-align: center; margin-bottom: 10px;
+  }
+  .arch-mini-flow {
+    display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
+  }
+  .arch-mini-step {
+    background: white; border: 1.5px dashed rgba(99,102,241,0.5);
+    border-radius: 8px; padding: 8px 12px;
+    font-size: 12px; color: var(--ink-soft); line-height: 1.4;
+    text-align: center; min-width: 140px;
+    opacity: 0; transform: translateY(6px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .arch-mini-step code { font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace; font-size: 11px; color: rgba(70,75,200,1); }
+  .arch-mini-arrow {
+    color: rgba(99,102,241,0.7); font-size: 14px;
+    opacity: 0; transition: opacity 0.4s ease;
+  }
+
   .arch-legend {
-    margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
-    font-size: 13px; color: var(--ink-soft);
+    margin-top: 24px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+    font-size: 12px; color: var(--ink-soft); line-height: 1.5;
   }
   .arch-legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .arch-legend .dot {
-    width: 10px; height: 10px; border-radius: 50%;
+  .arch-legend .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .arch-legend .dot--internal  { background: transparent; border: 1.5px solid #008545; }
+  .arch-legend .dot--external  { background: transparent; border: 1.5px dashed #009BBB; }
+  .arch-legend .dot--gated     { background: transparent; border: 1.5px solid #93093F; }
+  .arch-legend .dot--analytics { background: transparent; border: 1.5px dashed rgba(99,102,241,0.7); }
+
+  @media (max-width: 768px) {
+    .arch-row--main, .arch-row--branches { grid-template-columns: 1fr; gap: 6px; }
+    .arch-row--main .arch-arrow, .arch-row--branches .arch-arrow { transform: rotate(90deg); }
+    .arch-row--ai { flex-direction: column; align-items: stretch; }
+    .arch-branch-label { text-align: center; }
+    .arch-mini-flow { flex-direction: column; align-items: stretch; }
+    .arch-mini-arrow { transform: rotate(90deg); }
   }
-  .arch-legend .dot--main { background: var(--emerald); }
-  .arch-legend .dot--analytics { background: rgba(99,102,241,0.5); border: 1.5px dashed rgba(99,102,241,0.9); }
 
   /* ===== Slide 5 — Analytics ===== */
   .analytics-flow {
@@ -366,19 +477,38 @@
   .form-row input:focus { outline: none; border-color: var(--emerald); background: white; }
   .form-row input:invalid:not(:placeholder-shown) { border-color: var(--magenta); }
 
-  /* Alias picker */
+  /* Alias picker (now lives on slide 6 — paste-alias-shield) */
+  .alias-picker-block {
+    margin-top: 32px; padding: 24px; border-radius: 10px;
+    background: linear-gradient(135deg, rgba(147,9,63,0.04) 0%, rgba(255,169,45,0.04) 100%);
+    border: 1px dashed rgba(147,9,63,0.3);
+  }
+  .alias-picker-block__title {
+    font-family: 'KoHo Full', serif; font-size: 20px; font-weight: 700;
+    color: var(--ink); margin: 0 0 8px;
+  }
+  .alias-picker-block__intro {
+    font-size: 14px; color: var(--ink-soft); margin: 0 0 16px; line-height: 1.55;
+  }
   .alias-picker {
     display: flex; gap: 10px; align-items: stretch;
   }
-  .alias-picker__display {
-    flex: 1; padding: 10px 14px; border: 1px solid var(--border);
-    border-radius: 6px; background: linear-gradient(135deg, var(--paper) 0%, rgba(0,133,69,0.04) 100%);
-    font-family: 'KoHo Full', serif; font-size: 18px; color: var(--ink);
-    display: flex; align-items: center; gap: 12px;
-    transition: opacity 0.2s;
+  .alias-picker__icon {
+    font-size: 18px; display: flex; align-items: center; padding: 0 4px 0 6px;
   }
-  .alias-picker__display.is-rolling { opacity: 0.5; }
-  .alias-picker__icon { font-size: 18px; }
+  .alias-picker__input {
+    flex: 1; padding: 10px 14px; border: 1px solid var(--border);
+    border-radius: 6px; background: white;
+    font-family: 'KoHo Full', serif; font-size: 18px; color: var(--ink);
+    letter-spacing: 0.3px;
+    transition: opacity 0.2s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .alias-picker__input:focus {
+    outline: none; border-color: var(--emerald);
+    box-shadow: 0 0 0 3px rgba(0,133,69,0.12);
+  }
+  .alias-picker__input.is-rolling { opacity: 0.5; }
+  .alias-picker__input.is-real { background: rgba(0,133,69,0.05); border-color: var(--emerald); }
   .alias-picker__reroll {
     padding: 0 16px; background: white; border: 1px solid var(--border);
     border-radius: 6px; cursor: pointer; font-size: 13px; color: var(--ink-soft);
@@ -388,7 +518,7 @@
   .alias-picker__reroll:hover { background: var(--emerald); color: white; border-color: var(--emerald); }
   .alias-picker__reroll svg { width: 14px; height: 14px; }
   .alias-picker__custom {
-    margin-top: 8px; font-size: 12px; color: var(--muted);
+    margin-top: 10px; font-size: 12px; color: var(--muted);
   }
   .alias-picker__custom a { color: var(--emerald-dark); cursor: pointer; text-decoration: underline; }
 
@@ -514,7 +644,7 @@
   /* ===== Reduced motion ===== */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .slide__hint, .paste-arrow svg, .alias-picker__display { animation: none; }
+    .slide__hint, .paste-arrow svg, .alias-picker__input { animation: none; }
     .ready-cta:hover { transform: none; }
   }
 </style>
@@ -573,15 +703,15 @@
           <p class="who-card__wordmark">
             <span class="who-card__regen">REGEN</span><span class="who-card__studio">STUDIO</span>
           </p>
-          <p class="who-card__tagline">Advisory voor Digitaal Productpaspoort</p>
+          <p class="who-card__tagline">Mens, Stad en Natuur.</p>
         </div>
         <dl class="who-card__rows">
           <dt>Rechtspersoon</dt>
           <dd>Regen Studio B.V.</dd>
           <dt>Bestuurder (DGA)</dt>
           <dd>Yvo Hunink</dd>
-          <dt>Vestigingsplaats</dt>
-          <dd>Berg en Dal, Nederland</dd>
+          <dt>Vestigingsadres</dt>
+          <dd>Stollenbergweg 43, 6571 AB Berg en Dal, Nederland</dd>
           <dt>KvK-nummer</dt>
           <dd>90337948</dd>
           <dt>BTW-nummer</dt>
@@ -591,6 +721,9 @@
         </dl>
       </div>
     </div>
+    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
+      <span class="slide__hint-triangle" aria-hidden="true"></span>
+    </button>
   </section>
 
   <!-- ===== Slide 3: Engagement ===== -->
@@ -601,6 +734,9 @@
       <p class="slide__subtitle">
         De Verwerkersovereenkomst die we straks tekenen ondersteunt deze concrete Engagement.
       </p>
+      <div class="engagement-narrative" id="engagement-narrative">
+        <p id="engagement-narrative-body">—</p>
+      </div>
       <div class="engagement-card" id="engagement-card">
         <div class="engagement-card__row">
           <div class="engagement-card__label">Project</div>
@@ -609,10 +745,6 @@
         <div class="engagement-card__row">
           <div class="engagement-card__label">Tussen</div>
           <div class="engagement-card__value" id="eng-parties">—</div>
-        </div>
-        <div class="engagement-card__row">
-          <div class="engagement-card__label">Aard van het werk</div>
-          <div class="engagement-card__value" id="eng-aard">—</div>
         </div>
         <div class="engagement-card__row">
           <div class="engagement-card__label">Regulatoir kader</div>
@@ -628,6 +760,9 @@
         </div>
       </div>
     </div>
+    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
+      <span class="slide__hint-triangle" aria-hidden="true"></span>
+    </button>
   </section>
 
   <!-- ===== Slide 4: Architectuur ===== -->
@@ -638,96 +773,100 @@
       <p class="slide__subtitle">
         De hoofd-flow loopt over jouw browser → Supabase Edge in Frankfurt → encrypted in EU. Voor AI-werk zit de paste-alias-shield ertussen. Daarnaast loopt een aparte, geanonimiseerde analytics-stroom (volgende slide).
       </p>
-      <div class="arch-flow">
-        <svg viewBox="0 0 720 460" xmlns="http://www.w3.org/2000/svg" aria-label="Data-architectuur diagram">
-          <!-- Watercolor blob backgrounds (subtle) -->
-          <defs>
-            <radialGradient id="grad-emerald" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#008545" stop-opacity="0.5"/>
-              <stop offset="100%" stop-color="#008545" stop-opacity="0"/>
-            </radialGradient>
-            <radialGradient id="grad-teal" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#009BBB" stop-opacity="0.5"/>
-              <stop offset="100%" stop-color="#009BBB" stop-opacity="0"/>
-            </radialGradient>
-            <radialGradient id="grad-orange" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#FFA92D" stop-opacity="0.5"/>
-              <stop offset="100%" stop-color="#FFA92D" stop-opacity="0"/>
-            </radialGradient>
-            <radialGradient id="grad-magenta" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#93093F" stop-opacity="0.5"/>
-              <stop offset="100%" stop-color="#93093F" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
+      <div class="arch-grid">
+        <!-- Row 1: main horizontal data path -->
+        <div class="arch-row--main">
+          <div class="arch-node arch-node--user is-user">
+            <div class="arch-node__title">Jij — je browser</div>
+            <div class="arch-node__sub">magic-link, geen cookies</div>
+          </div>
+          <span class="arch-arrow">&rarr;</span>
+          <div class="arch-node arch-node--internal is-cdn">
+            <div class="arch-node__title">GitHub Pages CDN</div>
+            <div class="arch-node__sub">statisch, geen PII</div>
+          </div>
+          <span class="arch-arrow">&rarr;</span>
+          <div class="arch-node arch-node--internal is-edge">
+            <div class="arch-node__title">Supabase Edge Function</div>
+            <div class="arch-node__sub">Frankfurt, EU</div>
+          </div>
+          <span class="arch-arrow">&rarr;</span>
+          <div class="arch-node arch-node--internal is-postgres">
+            <div class="arch-node__title">Supabase Postgres</div>
+            <div class="arch-node__sub">encrypted at rest, eigen sleutel</div>
+          </div>
+        </div>
 
-          <!-- Main flow column -->
-          <!-- Node 1: Klant browser -->
-          <ellipse cx="360" cy="50" rx="68" ry="32" fill="url(#grad-orange)"/>
-          <text x="360" y="48" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#1a1a2e">Jij — je browser</text>
-          <text x="360" y="64" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#6b7280">magic-link, geen cookies</text>
+        <!-- Row 2: branches that drop down from Edge + Postgres -->
+        <div class="arch-row--branches">
+          <!-- col 1: under user — empty --><div></div>
+          <div></div>
+          <!-- col 3: under CDN — empty --><div></div>
+          <div></div>
+          <!-- col 5: under Edge — Lettermint -->
+          <div>
+            <span class="arch-arrow arch-arrow--down">&darr;</span>
+            <div class="arch-node arch-node--external is-lettermint">
+              <div class="arch-node__title">Lettermint</div>
+              <div class="arch-node__sub">NL — outbound mail<br><small>magic-link, signed-doc-receipt, project-mail</small></div>
+            </div>
+          </div>
+          <div></div>
+          <!-- col 7: under Postgres — Proton + Exact stacked -->
+          <div class="arch-branch-stack">
+            <div>
+              <span class="arch-arrow arch-arrow--down">&darr;</span>
+              <div class="arch-node arch-node--external is-proton">
+                <div class="arch-node__title">Proton AG</div>
+                <div class="arch-node__sub">CH — werkdossier-backup<br><small>e2e-encrypted; geen plain-text</small></div>
+              </div>
+            </div>
+            <div>
+              <span class="arch-arrow arch-arrow--down">&darr;</span>
+              <div class="arch-node arch-node--external is-exact">
+                <div class="arch-node__title">Exact Online</div>
+                <div class="arch-node__sub">NL — factuur-metadata<br><small>geen vrije tekst, geen project-content</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-          <!-- Arrow 1 -->
-          <line x1="360" y1="86" x2="360" y2="118" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="3,3"/>
-          <polygon points="356,118 360,128 364,118" fill="#6b7280"/>
-          <text x="378" y="106" font-family="Inter, sans-serif" font-size="10" fill="#6b7280">HTTPS</text>
+        <!-- Row 3: consent-gated AI sub-flow, right-aligned -->
+        <div class="arch-row--ai">
+          <span class="arch-branch-label">vanuit Postgres,<br>alleen met<br>expliciete toestemming &rarr;</span>
+          <div class="arch-node arch-node--gated is-paste">
+            <div class="arch-node__title">paste-alias-shield</div>
+            <div class="arch-node__sub">strip identifiers</div>
+          </div>
+          <span class="arch-arrow arch-arrow--gated">&rarr;</span>
+          <div class="arch-node arch-node--gated is-ai">
+            <div class="arch-node__title">AI-verwerker (US)</div>
+            <div class="arch-node__sub">SCC's Module 2 + 3</div>
+          </div>
+        </div>
 
-          <!-- Node 2: GitHub Pages CDN -->
-          <ellipse cx="360" cy="148" rx="74" ry="28" fill="url(#grad-teal)"/>
-          <text x="360" y="146" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#1a1a2e">GitHub Pages CDN</text>
-          <text x="360" y="161" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#6b7280">statisch, geen PII</text>
-
-          <!-- Arrow 2 -->
-          <line x1="360" y1="178" x2="360" y2="208" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="3,3"/>
-          <polygon points="356,208 360,218 364,208" fill="#6b7280"/>
-
-          <!-- Node 3: Edge Function -->
-          <ellipse cx="360" cy="238" rx="80" ry="30" fill="url(#grad-emerald)"/>
-          <text x="360" y="236" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#1a1a2e">Supabase Edge Function</text>
-          <text x="360" y="251" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#6b7280">Frankfurt, EU</text>
-
-          <!-- Arrow 3 -->
-          <line x1="360" y1="268" x2="360" y2="298" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="3,3"/>
-          <polygon points="356,298 360,308 364,298" fill="#6b7280"/>
-
-          <!-- Node 4: Postgres -->
-          <ellipse cx="360" cy="328" rx="78" ry="28" fill="url(#grad-emerald)"/>
-          <text x="360" y="326" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#1a1a2e">Supabase Postgres</text>
-          <text x="360" y="341" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#6b7280">encrypted at rest, eigen sleutel</text>
-
-          <!-- Branch right: paste-alias + AI -->
-          <line x1="438" y1="328" x2="488" y2="328" stroke="#93093F" stroke-width="1.2" stroke-dasharray="3,3"/>
-          <text x="498" y="318" font-family="Inter, sans-serif" font-size="10" fill="#93093F">alleen met</text>
-          <text x="498" y="332" font-family="Inter, sans-serif" font-size="10" fill="#93093F">toestemming</text>
-
-          <!-- Node 5: Paste-alias-shield -->
-          <ellipse cx="600" cy="328" rx="68" ry="28" fill="url(#grad-magenta)"/>
-          <text x="600" y="326" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#1a1a2e">paste-alias-shield</text>
-          <text x="600" y="341" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#6b7280">strip identifiers</text>
-
-          <!-- Arrow to AI -->
-          <line x1="600" y1="358" x2="600" y2="394" stroke="#93093F" stroke-width="1.2" stroke-dasharray="3,3"/>
-          <polygon points="596,394 600,404 604,394" fill="#93093F"/>
-
-          <!-- Node 6: AI -->
-          <ellipse cx="600" cy="424" rx="62" ry="26" fill="url(#grad-magenta)"/>
-          <text x="600" y="422" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#1a1a2e">AI-verwerker (US)</text>
-          <text x="600" y="437" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#6b7280">SCC's Module 2 + 3</text>
-
-          <!-- Side branch left: Analytics (de aparte stroom, dunne lijn) -->
-          <line x1="280" y1="50" x2="180" y2="50" stroke="rgba(99,102,241,0.6)" stroke-width="1" stroke-dasharray="2,2"/>
-          <text x="148" y="42" font-family="Inter, sans-serif" font-size="10" fill="rgba(70,75,200,0.8)" text-anchor="end">page-paths</text>
-          <text x="148" y="55" font-family="Inter, sans-serif" font-size="10" fill="rgba(70,75,200,0.8)" text-anchor="end">+ event-types</text>
-
-          <ellipse cx="100" cy="50" rx="44" ry="24" fill="rgba(99,102,241,0.08)" stroke="rgba(99,102,241,0.4)" stroke-width="1" stroke-dasharray="2,2"/>
-          <text x="100" y="48" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="rgba(70,75,200,1)">analytics</text>
-          <text x="100" y="61" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" fill="#6b7280">anoniem (zie volg.)</text>
-        </svg>
+        <!-- Divider + aparte analytics-stroom (privacy.html .analytics-flow stijl) -->
+        <div class="arch-divider"></div>
+        <div class="arch-mini-flow-label">Aparte stroom &mdash; anonieme website-analytics (zoom in op slide 5):</div>
+        <div class="arch-mini-flow">
+          <div class="arch-mini-step">Browser stuurt<br><code>page-path + event-type</code></div>
+          <span class="arch-mini-arrow">&rarr;</span>
+          <div class="arch-mini-step">Server hashed IP met<br><strong>daily-rotating salt</strong></div>
+          <span class="arch-mini-arrow">&rarr;</span>
+          <div class="arch-mini-step">Raw events na <strong>48u</strong> weg<br><small>alleen aggregaten blijven</small></div>
+        </div>
       </div>
+
       <div class="arch-legend">
-        <span><i class="dot dot--main"></i> Hoofd-flow met jouw data</span>
+        <span><i class="dot dot--internal"></i> Eigen Regen-infrastructuur (Supabase Edge + Postgres, GitHub)</span>
+        <span><i class="dot dot--external"></i> Externe sub-processors (Lettermint, Proton, Exact)</span>
+        <span><i class="dot dot--gated"></i> Alleen met expliciete toestemming (AI-pad)</span>
         <span><i class="dot dot--analytics"></i> Aparte anonieme analytics-stroom</span>
       </div>
     </div>
+    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
+      <span class="slide__hint-triangle" aria-hidden="true"></span>
+    </button>
   </section>
 
   <!-- ===== Slide 5: Analytics ===== -->
@@ -762,6 +901,9 @@
         Lees mee in onze <a href="https://www.regenstudio.world/privacy.html#analytics" target="_blank" rel="noopener">privacy-architectuur op GitHub →</a>
       </p>
     </div>
+    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
+      <span class="slide__hint-triangle" aria-hidden="true"></span>
+    </button>
   </section>
 
   <!-- ===== Slide 6: Paste-alias-shield ===== -->
@@ -797,16 +939,35 @@
       <p class="paste-caption">
         Publieke gegevens (bedrijfsnamen uit het Handelsregister bijvoorbeeld) worden niet ge-aliased — daar is geen privacy-winst bij. Niet-publieke identifiers worden standaard beschermd.
       </p>
+
+      <div class="alias-picker-block">
+        <h3 class="alias-picker-block__title">Hoe wil je dat AI naar jou verwijst?</h3>
+        <p class="alias-picker-block__intro">
+          Dit is hoe je naam erin gaat. Pak een willekeurig dier-alias dat we voor je hebben gegooid, type je eigen versie, of gebruik je echte naam.
+        </p>
+        <div class="alias-picker">
+          <span class="alias-picker__icon">🎲</span>
+          <input type="text" class="alias-picker__input" id="alias-text" value="Curious Octopus" autocomplete="off" aria-label="Alias — bewerk vrij of gebruik de gegooide voorbeeld" maxlength="40">
+          <button type="button" class="alias-picker__reroll" id="alias-reroll" aria-label="Andere voorbeeld-alias">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+            andere
+          </button>
+        </div>
+        <p class="alias-picker__custom"><a id="alias-use-real">of: gebruik mijn echte naam intern</a></p>
+      </div>
     </div>
+    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
+      <span class="slide__hint-triangle" aria-hidden="true"></span>
+    </button>
   </section>
 
   <!-- ===== Slide 7: Jouw keuzes (form) ===== -->
   <section class="slide slide--choices" data-nav-title="Jouw keuzes" id="slide-choices">
     <div class="slide__inner">
       <p class="slide__kicker">Even jouw keuzes vastleggen</p>
-      <h2 class="slide__title">Hoe heet je, en wat mag AI doen?</h2>
+      <h2 class="slide__title">Wie tekent — en wat mag AI doen?</h2>
       <p class="slide__subtitle">
-        Twee dingen hebben we van je nodig voor we naar de juridische tekst gaan: hoe we naar je verwijzen in onze interne notities, en of AI je persoonlijke data mag verwerken.
+        Twee dingen voor we naar de juridische tekst gaan: jouw contactgegevens als ondertekenaar, en of AI je persoonlijke data mag verwerken (alias-keuze stond op de vorige slide).
       </p>
       <form class="choices-form" id="choices-form" novalidate>
         <div class="form-row">
@@ -824,21 +985,6 @@
         <div class="form-row">
           <label for="cp_rep_phone">Telefoonnummer <span class="help">— optioneel</span></label>
           <input type="tel" id="cp_rep_phone" placeholder="+31 6 …" autocomplete="tel">
-        </div>
-
-        <div class="form-row" style="margin-top: 28px;">
-          <label>Hoe wil je heten in onze interne notities? <span class="help">— willekeurig dier-alias, herrol gerust</span></label>
-          <div class="alias-picker">
-            <div class="alias-picker__display" id="alias-display">
-              <span class="alias-picker__icon">🎲</span>
-              <span id="alias-text">Curious Octopus</span>
-            </div>
-            <button type="button" class="alias-picker__reroll" id="alias-reroll" aria-label="Andere alias">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
-              andere
-            </button>
-          </div>
-          <p class="alias-picker__custom"><a id="alias-use-real">of: gebruik mijn echte naam intern</a></p>
         </div>
 
         <div class="form-row" style="margin-top: 24px;">
@@ -861,6 +1007,9 @@
         </p>
       </form>
     </div>
+    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
+      <span class="slide__hint-triangle" aria-hidden="true"></span>
+    </button>
   </section>
 
   <!-- ===== Slide 8: Sub-processors ===== -->
@@ -930,6 +1079,9 @@
         </div>
       </div>
     </div>
+    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
+      <span class="slide__hint-triangle" aria-hidden="true"></span>
+    </button>
   </section>
 
   <!-- ===== Slide 9: Transparantie ===== -->
@@ -979,6 +1131,9 @@
         </a>
       </div>
     </div>
+    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
+      <span class="slide__hint-triangle" aria-hidden="true"></span>
+    </button>
   </section>
 
   <!-- ===== Slide 10: Klaar ===== -->
@@ -1064,12 +1219,11 @@
     engCard: $('#engagement-card'),
     engLabel: $('#eng-label'),
     engParties: $('#eng-parties'),
-    engAard: $('#eng-aard'),
+    engNarrative: $('#engagement-narrative-body'),
     engRegulatory: $('#eng-regulatory'),
     engEinddatum: $('#eng-einddatum'),
     engBewaar: $('#eng-bewaar'),
     aliasText: $('#alias-text'),
-    aliasDisplay: $('#alias-display'),
     aliasReroll: $('#alias-reroll'),
     aliasUseReal: $('#alias-use-real'),
     aliasDemoNameOut: $('#alias-demo-name-out'),
@@ -1113,23 +1267,48 @@
     const orgName = profile && (profile.legal_name || profile.cp_legal_name);
     els.engLabel.textContent = state.body.engagement_label || profile.label || '—';
     els.engParties.textContent = (orgName || '—') + ' (Verantwoordelijke) en Regen Studio B.V. (Verwerker)';
-    const aard = profile.aard_van_verwerking || profile.nature
-      || (profile.engagement_type === 'voucher' && profile.regulatory_label
-          ? 'DPP-advisory ter voorbereiding op ' + profile.regulatory_label
-          : '—');
-    els.engAard.textContent = aard;
     els.engRegulatory.textContent = profile.regulatory_label || '—';
     els.engEinddatum.textContent = fmtDate(profile.project_einddatum);
     els.engBewaar.textContent = fmtDate(profile.bewaarplicht_einddatum);
+    if (els.engNarrative) els.engNarrative.innerHTML = buildEngagementNarrative(profile);
+  }
+
+  function buildEngagementNarrative(profile) {
+    const org = profile.legal_name || profile.cp_legal_name || 'jouw organisatie';
+    const regLabel = profile.regulatory_label || 'het toepasselijke regulatoire kader';
+    const einddatum = fmtDate(profile.project_einddatum);
+    const uren = profile.expert_uren || null;
+    const subsidie = profile.subsidie_bedrag_eur || null;
+    const orgEsc = String(org).replace(/[<>&]/g, '');
+    const regEsc = String(regLabel).replace(/[<>&]/g, '');
+    if (profile.engagement_type === 'voucher') {
+      const budget = uren ? ' onder een vast budget van <strong>' + uren + ' adviesuren</strong>' : '';
+      const subsTxt = subsidie ? ' (voucher t.w.v. €' + (subsidie / 1000).toFixed(1).replace('.', ',') + 'k via de KvW3 / EFRO-regeling)' : '';
+      return 'Een DPP-readiness traject voor <strong>' + orgEsc + '</strong>' + subsTxt +
+             '. Samen brengen we je product-portfolio in kaart, identificeren de data-gaps richting <strong>' + regEsc + '</strong>, ' +
+             'adviseren over conforme implementatie (data-architectuur, leveranciers-ketens, audit-trail), ' +
+             'en leveren een geprioriteerde roadmap richting <strong>' + einddatum + '</strong>' + budget +
+             '. Concreet werk: gesprekken, document-review, gap-analyse, en geprioriteerde aanbevelingen — geen software-ontwikkeling.';
+    }
+    if (profile.engagement_type === 'partnership' || profile.engagement_type === 'research') {
+      return 'Een samenwerkingsverband tussen <strong>' + orgEsc + '</strong> en Regen Studio voor onderzoeks- en advisory-werk binnen <strong>' + regEsc + '</strong>. ' +
+             'Concreet werk: analyses, position papers, regulatoire-monitoring, en gezamenlijke deliverables — looptijd t/m <strong>' + einddatum + '</strong>.';
+    }
+    return 'Een advisory-engagement tussen <strong>' + orgEsc + '</strong> en Regen Studio binnen <strong>' + regEsc + '</strong>, looptijd t/m <strong>' + einddatum + '</strong>. ' +
+           'De Verwerkersovereenkomst regelt hoe persoonsgegevens binnen deze samenwerking worden verwerkt.';
   }
 
   function setAlias(name) {
-    els.aliasText.textContent = name;
-    // Update slide 6 demo example with the user's actual rolled alias
-    const slug = name.toLowerCase().replace(/\s+/g, '-');
+    els.aliasText.value = name;
+    syncAliasDownstream(name);
+  }
+
+  function syncAliasDownstream(rawName) {
+    const name = (rawName || '').trim() || '—';
+    const slug = name.toLowerCase().replace(/[^\w]+/g, '-').replace(/^-|-$/g, '') || 'alias';
     if (els.aliasDemoNameOut) els.aliasDemoNameOut.textContent = name;
     if (els.aliasDemoEmailOut) els.aliasDemoEmailOut.textContent = slug + '@example.test';
-    els.recapAlias.textContent = name;
+    if (els.recapAlias) els.recapAlias.textContent = name;
   }
 
   function setAliasMode(mode) {
@@ -1138,28 +1317,23 @@
       const realName = els.repName.value.trim();
       if (realName) {
         setAlias(realName);
-        els.aliasDisplay.style.opacity = '0.8';
+        els.aliasText.classList.add('is-real');
         els.aliasUseReal.textContent = 'of: gebruik een willekeurig dier-alias';
-        els.aliasReroll.disabled = true;
-        els.aliasReroll.style.opacity = '0.4';
       } else {
-        // Fall back to random if no real name yet
         state.aliasMode = 'random';
       }
     }
     if (state.aliasMode === 'random') {
-      els.aliasDisplay.style.opacity = '1';
+      els.aliasText.classList.remove('is-real');
       els.aliasUseReal.textContent = 'of: gebruik mijn echte naam intern';
-      els.aliasReroll.disabled = false;
-      els.aliasReroll.style.opacity = '1';
     }
   }
 
   function rollNewAlias() {
-    els.aliasDisplay.classList.add('is-rolling');
+    els.aliasText.classList.add('is-rolling');
     setTimeout(() => {
       setAlias(randomAlias());
-      els.aliasDisplay.classList.remove('is-rolling');
+      els.aliasText.classList.remove('is-rolling');
     }, 180);
   }
 
@@ -1218,6 +1392,18 @@
     }, { root: els.slides, threshold: 0.6 });
     sections.forEach(s => observer.observe(s));
     els.navDots.hidden = false;
+
+    // One-shot staggered reveal for the architecture slide
+    const archSlide = document.querySelector('.slide--architecture');
+    if (archSlide) {
+      const archObs = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          archSlide.classList.add('is-visible');
+          archObs.disconnect();
+        }
+      }, { root: els.slides, threshold: 0.4 });
+      archObs.observe(archSlide);
+    }
   }
 
   // ===== Submit =====
@@ -1238,7 +1424,7 @@
       cp_rep_role: els.repRole.value.trim(),
       cp_rep_email: els.repEmail.value.trim().toLowerCase(),
       cp_rep_phone: els.repPhone.value.trim() || '',
-      ai_alias_name: state.aliasMode === 'real' ? '' : els.aliasText.textContent,
+      ai_alias_name: state.aliasMode === 'real' ? '' : (els.aliasText.value || '').trim(),
       ai_processing_consent: aiRadio.value === '1',
       doc_toggles: {},
       _saved_at: new Date().toISOString(),
@@ -1303,12 +1489,26 @@
             document.getElementById('slide-who').scrollIntoView({ behavior: 'smooth' });
           });
         }
+        // Bind generic next-slide hints (slides 2-9)
+        document.querySelectorAll('.slide__hint[data-action="next-slide"]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const section = btn.closest('section.slide');
+            const next = section && section.nextElementSibling;
+            if (next && next.classList.contains('slide')) {
+              next.scrollIntoView({ behavior: 'smooth' });
+            }
+          });
+        });
 
         // Bind alias controls
         els.aliasReroll.addEventListener('click', rollNewAlias);
         els.aliasUseReal.addEventListener('click', (e) => {
           e.preventDefault();
           setAliasMode(state.aliasMode === 'real' ? 'random' : 'real');
+        });
+        // Live-sync downstream demo + recap when user edits the alias input
+        els.aliasText.addEventListener('input', () => {
+          syncAliasDownstream(els.aliasText.value);
         });
         // Re-update real alias if name changes while in real mode
         els.repName.addEventListener('input', () => {
