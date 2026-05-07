@@ -1,0 +1,725 @@
+<!doctype html>
+<!--
+  scope-contract.html — Project-agnostic agreement-text + signature page for
+  the JPA / scope contract flow. Loaded after scope-sign.html collected the
+  intake fields. Visual register mirrors dpa-contract.html: Inter body,
+  KoHo logo wordmark, --emerald accent, identical canonical-render styling.
+
+  Lifecycle:
+    1. scope-sign.html stored token + engagement JSON + intake in sessionStorage.
+    2. This page reads sessionStorage on load. Missing data → redirect to welcome.
+    3. Renders cover band + parties table + agreement text (canonical_md →
+       HTML via window.RegenScopeMD.render).
+    4. Counterparty draws signature, clicks Sign and submit.
+    5. Bilateral PDF rendered client-side via window.buildSignedScopePdf
+       (concept:false), POST to scope-submit-signature with the rendered PDF,
+       intake fields, and HTML snapshot. Token burns server-side.
+
+  Project-agnostic — all engagement-specific content comes from sessionStorage.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Project Scope Agreement · Regen Studio</title>
+  <link rel="stylesheet" href="assets/fonts/inter.css">
+  <link rel="stylesheet" href="assets/fonts/koho.css">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://*.supabase.co; form-action 'self' https://*.supabase.co; base-uri 'self'; object-src 'none';">
+  <style>
+    /* ===== Visual register mirrors dpa-contract.html ===== */
+    :root {
+      --emerald: #006d38;
+      --teal: #00728b;
+      --gold: #7a5814;
+      --ink: #1a1a2e;
+      --muted: #5b6470;
+      --border: #d8dbe0;
+      --bg: #f7f8f9;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    .nav {
+      background: var(--white);
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 50;
+    }
+    .nav__inner { max-width: 880px; margin: 0 auto; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .nav__motif { display: inline-flex; gap: 4px; align-items: center; margin-right: 8px; }
+    .nav__motif span {
+      width: 0; height: 0;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 10px solid #93093F;
+    }
+    .nav__motif span:nth-child(2) { border-left-color: #FFA92D; }
+    .nav__motif span:nth-child(3) { border-left-color: #008545; }
+    .nav__motif span:nth-child(4) { border-left-color: #009BBB; }
+    .nav__logo-text { font-family: 'KoHo', sans-serif; font-size: 1.4rem; letter-spacing: 0.02em; line-height: 1; color: var(--ink); }
+    .nav__logo-regen  { font-weight: 700; }
+    .nav__logo-studio { font-weight: 200; }
+    .nav__divider { color: var(--muted); font-size: 0.95rem; padding: 0 4px; }
+    .nav__context { color: var(--muted); font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    main { max-width: 880px; margin: 0 auto; padding: 32px 24px 80px; }
+
+    h1.screen-title {
+      font-size: 1.9rem;
+      margin: 0 0 6px;
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin: 0 0 24px;
+    }
+
+    /* ===== Summary card (mirror dpa-contract summary-card) ===== */
+    .summary-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--emerald);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 8px 20px;
+      font-size: 0.94rem;
+    }
+    .summary-grid > div:nth-child(odd) { color: var(--muted); font-weight: 500; }
+    .summary-grid > div:nth-child(even) { color: var(--ink); }
+
+    /* ===== Download CTA (kept from prior version) ===== */
+    .download-cta {
+      background: #fff8e1;
+      border: 1px dashed var(--gold);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 0 0 28px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .download-cta__copy { flex: 1 1 280px; min-width: 240px; }
+    .download-cta__copy strong { display: block; margin-bottom: 2px; font-size: 0.96rem; color: var(--ink); }
+    .download-cta__copy span { font-size: 0.84rem; color: var(--muted); }
+    .download-btn {
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.94rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .download-btn:hover { background: #5d4310; }
+    .download-btn:disabled { background: #c9b893; cursor: not-allowed; }
+
+    /* ===== Canonical render — mirror of .dpa-canonical-render ===== */
+    .scope-canonical-render {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin: 18px 0 28px;
+    }
+    .scope-canonical-render h1 {
+      font-size: 1.6rem;
+      margin: 0 0 12px;
+      color: var(--ink);
+      border-bottom: 2px solid var(--emerald);
+      padding-bottom: 8px;
+    }
+    .scope-canonical-render h2 {
+      font-size: 1.25rem;
+      margin: 28px 0 10px;
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .scope-canonical-render h3 {
+      font-size: 1.05rem;
+      margin: 22px 0 8px;
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .scope-canonical-render h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 18px 0 6px;
+      color: var(--ink);
+    }
+    .scope-canonical-render p { margin: 0 0 12px; }
+    .scope-canonical-render ul, .scope-canonical-render ol { padding-left: 22px; margin: 8px 0 14px; }
+    .scope-canonical-render li { margin-bottom: 4px; }
+    .scope-canonical-render strong { color: var(--ink); font-weight: 600; }
+    .scope-canonical-render em { color: var(--ink); }
+    .scope-canonical-render table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px;
+      font-size: 0.94rem;
+    }
+    .scope-canonical-render th,
+    .scope-canonical-render td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    .scope-canonical-render th { background: #f0f4f7; font-weight: 600; }
+    .scope-canonical-render tbody tr:nth-child(even) td { background: #fafbfc; }
+    .scope-canonical-render hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+    .scope-canonical-render blockquote {
+      border-left: 3px solid var(--gold);
+      padding: 8px 14px;
+      margin: 12px 0;
+      background: #faf6ec;
+      color: var(--ink);
+      font-style: italic;
+    }
+    .scope-canonical-render code {
+      background: #f0f3f5;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 0.86em;
+    }
+
+    /* ===== Sign section ===== */
+    .sign-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--emerald);
+      border-radius: 6px;
+      padding: 28px 32px 32px;
+      margin: 32px 0 24px;
+    }
+    .sign-section h2 {
+      font-size: 1.25rem;
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .sign-section .sign-intro { color: var(--muted); margin: 0 0 22px; font-size: 0.95rem; }
+    .who-summary {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin-bottom: 22px;
+      font-size: 0.92rem;
+    }
+    .who-summary strong { color: var(--ink); }
+    .who-summary span { color: var(--muted); }
+    .who-summary .edit-link {
+      color: var(--emerald);
+      text-decoration: none;
+      font-size: 0.86rem;
+      border-bottom: 1px solid var(--emerald);
+      margin-left: 12px;
+    }
+    .sig-label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .sig-pad-wrap {
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      background: var(--white);
+      position: relative;
+      height: 200px;
+    }
+    .sig-pad-wrap canvas { width: 100%; height: 100%; cursor: crosshair; touch-action: none; }
+    .sig-pad-wrap .placeholder {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: #b5b3b0; font-size: 0.88rem; pointer-events: none; font-style: italic;
+    }
+    .sig-actions { display: flex; gap: 8px; margin-top: 8px; }
+    .sig-actions button {
+      background: none; border: 1px solid var(--border); padding: 6px 14px;
+      border-radius: 4px; font-size: 0.82rem; cursor: pointer;
+      color: var(--muted); font-family: inherit;
+    }
+    .sig-actions button:hover { border-color: var(--emerald); color: var(--emerald); }
+
+    .submit-row { margin-top: 24px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+    .btn-submit {
+      background: var(--emerald);
+      color: #fff;
+      border: 0;
+      padding: 14px 30px;
+      border-radius: 99px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-submit:hover { background: #00592e; }
+    .btn-submit:disabled { background: #c4cdd5; cursor: not-allowed; }
+    .submit-status { color: var(--muted); font-size: 0.86rem; }
+    .submit-status.error { color: #b00020; }
+
+    .expires-note {
+      font-size: 0.84rem;
+      color: var(--muted);
+      text-align: center;
+      margin: 32px 0 0;
+    }
+
+    .alert {
+      background: #fee2e2;
+      border: 1px solid #fca5a5;
+      color: #991b1b;
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin: 24px 0;
+    }
+    .alert a { color: #991b1b; font-weight: 600; }
+
+    .success {
+      text-align: center;
+      padding: 80px 24px;
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .success h2 { font-size: 1.6rem; color: var(--emerald); margin: 0 0 16px; font-weight: 600; }
+    .success p { color: var(--muted); margin: 0 0 12px; }
+    .success a { color: var(--emerald); text-decoration: none; border-bottom: 1px solid var(--emerald); }
+
+    @media (max-width: 600px) {
+      main { padding: 24px 16px 56px; }
+      h1.screen-title { font-size: 1.5rem; }
+      .scope-canonical-render { padding: 22px 20px; }
+      .sign-section { padding: 22px 20px 26px; }
+      .nav__context { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <span class="nav__motif" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+    <span class="nav__logo-text"><span class="nav__logo-regen">REGEN</span><span class="nav__logo-studio"> STUDIO</span></span>
+    <span class="nav__divider">·</span>
+    <span class="nav__context">Project Scope Agreement</span>
+  </div>
+</nav>
+
+<main id="main">
+
+  <div id="missingDataAlert" class="alert" style="display:none">
+    <strong>No data found.</strong> It looks like you landed on this page without first
+    completing the welcome step. <a href="scope-sign.html" id="backToWelcome">Go back to the welcome page</a>
+    to continue.
+  </div>
+
+  <div id="contractUI" style="display:none">
+    <h1 class="screen-title">Project Scope Agreement</h1>
+    <p class="subtitle">between <strong id="partyALine">—</strong> and <strong id="partyBLine">—</strong> · <span id="engagementLabelInline">—</span></p>
+
+    <div class="summary-card">
+      <div class="summary-grid">
+        <div>Engagement</div><div id="summaryLabel">—</div>
+        <div>Master Agreement</div><div id="summaryMaster">—</div>
+        <div>Governing law</div><div id="summaryLaw">—</div>
+        <div>Link expires</div><div id="summaryExpires">—</div>
+      </div>
+    </div>
+
+    <div class="download-cta">
+      <div class="download-cta__copy">
+        <strong>📄 Download draft for review</strong>
+        <span>Watermarked DRAFT — for offline reading or sharing with counsel. The link is not consumed; signing is one-shot.</span>
+      </div>
+      <button type="button" class="download-btn" id="download-draft-btn">Download draft (.pdf)</button>
+    </div>
+
+    <article class="scope-canonical-render" id="docBody"></article>
+
+    <section class="sign-section">
+      <h2>Sign and submit</h2>
+      <p class="sign-intro">When you're ready, draw your signature below and submit.
+        Both Parties receive a PDF copy by email immediately afterwards.</p>
+
+      <div class="who-summary" id="whoSummary">
+        Signing as <strong id="whoName">—</strong>, <span id="whoRole">—</span> for
+        <strong id="whoLegal">—</strong> &middot; <span id="whoEmail">—</span>
+        <a href="scope-sign.html" class="edit-link" id="editIntakeLink">Edit details</a>
+      </div>
+
+      <label class="sig-label" for="sigCanvas">Sign here</label>
+      <div class="sig-pad-wrap">
+        <canvas id="sigCanvas"></canvas>
+        <div class="placeholder" id="sigPlaceholder">Sign with mouse, trackpad, or touchscreen</div>
+      </div>
+      <div class="sig-actions">
+        <button type="button" id="sigClear">Clear signature</button>
+      </div>
+
+      <div class="submit-row">
+        <button type="button" class="btn-submit" id="btnSubmit" disabled>Sign and submit</button>
+        <span class="submit-status" id="submitStatus"></span>
+      </div>
+    </section>
+
+    <p class="expires-note" id="expiresNote">—</p>
+  </div>
+
+</main>
+
+<!-- Generic rendering infrastructure -->
+<script src="assets/js/vendor/signature_pad.umd.min.js"></script>
+<script src="assets/js/vendor/jspdf.umd.min.js"></script>
+<script src="assets/fonts/jspdf/koho-bold.js"></script>
+<script src="assets/fonts/jspdf/koho-regular.js"></script>
+<script src="assets/fonts/jspdf/koho-light.js"></script>
+<script src="assets/js/scope-md-render.js"></script>
+<script src="assets/js/scope-pdf-renderer.js"></script>
+<script src="assets/js/scope-pdf-builder.js"></script>
+
+<script>
+(function () {
+  'use strict';
+
+  const SUBMIT_ENDPOINT = 'https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/scope-submit-signature';
+  const TOKEN_RE = /^[0-9a-f]{64}$/;
+
+  let CTX = null;
+  let pad = null;
+
+  // --------------------------------------------------------------------------
+  // Bootstrap — read sessionStorage; fall through to "missing data" alert if
+  // someone landed here directly.
+  // --------------------------------------------------------------------------
+  function loadFromSession() {
+    try {
+      const token = sessionStorage.getItem('scope_intake_token');
+      const engRaw = sessionStorage.getItem('scope_intake_engagement_json');
+      const intakeRaw = sessionStorage.getItem('scope_intake_intake');
+      if (!token || !TOKEN_RE.test(token) || !engRaw || !intakeRaw) return null;
+      const engagement = JSON.parse(engRaw);
+      const intake = JSON.parse(intakeRaw);
+      return { token, engagement, intake };
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function showMissing(token) {
+    document.getElementById('contractUI').style.display = 'none';
+    document.getElementById('missingDataAlert').style.display = 'block';
+    if (token && TOKEN_RE.test(token)) {
+      document.getElementById('backToWelcome').href = 'scope-sign.html?t=' + encodeURIComponent(token);
+    }
+  }
+
+  function bootstrap() {
+    const params = new URLSearchParams(window.location.search);
+    const urlToken = (params.get('t') || params.get('token') || '').trim().toLowerCase();
+    const sessionData = loadFromSession();
+    if (!sessionData) {
+      showMissing(urlToken);
+      return;
+    }
+    if (urlToken && urlToken !== sessionData.token) {
+      // URL token doesn't match what's in sessionStorage — likely came from
+      // a different invitation. Clear and route back to welcome.
+      sessionStorage.removeItem('scope_intake_token');
+      sessionStorage.removeItem('scope_intake_engagement_json');
+      sessionStorage.removeItem('scope_intake_intake');
+      showMissing(urlToken);
+      return;
+    }
+    mount(sessionData);
+  }
+
+  // --------------------------------------------------------------------------
+  // Mount — populate DOM from session data, render markdown, init signature
+  // --------------------------------------------------------------------------
+  function mount(s) {
+    const data = s.engagement;
+    const profile = data.engagement_profile || {};
+    const parties = profile.parties || [];
+    const partyA = parties.find(function (p) { return p.role === 'party_a'; }) || {};
+    const partyB = parties.find(function (p) { return p.role === 'party_b'; }) || {};
+
+    CTX = {
+      link_id: data.link_id,
+      token: s.token,
+      engagement_key: data.engagement_key,
+      engagement_label: data.engagement_label,
+      canonical_text_key: profile.canonical_text_key,
+      canonical_sha: data.canonical_sha,
+      canonical_md: data.canonical_md,
+      party_a_signature_b64: data.party_a_signature_b64,
+      party_a: partyA,
+      party_b: Object.assign({}, partyB, s.intake),
+      intake: s.intake,
+      submit_endpoint: SUBMIT_ENDPOINT,
+    };
+
+    // Header lines
+    document.getElementById('partyALine').textContent = partyA.legal_name || 'Regen Studio B.V.';
+    document.getElementById('partyBLine').textContent = s.intake.legal_name || partyB.legal_name || '—';
+    document.getElementById('engagementLabelInline').textContent = data.engagement_label || profile.label || '—';
+
+    // Summary card
+    document.getElementById('summaryLabel').textContent = data.engagement_label || profile.label || '—';
+    document.getElementById('summaryMaster').textContent = profile.master_agreement_ref || '—';
+    document.getElementById('summaryLaw').textContent = profile.governing_law || '—';
+    let expiresHuman = data.expires_at;
+    try {
+      const d = new Date(data.expires_at);
+      if (!isNaN(d.getTime())) {
+        expiresHuman = d.toLocaleString('en-GB', { dateStyle: 'long', timeStyle: 'short' });
+      }
+    } catch (_) { /* keep raw */ }
+    document.getElementById('summaryExpires').textContent = expiresHuman || '—';
+
+    // Who summary
+    document.getElementById('whoName').textContent = s.intake.rep_name || '—';
+    document.getElementById('whoRole').textContent = s.intake.rep_role || 'role not provided';
+    document.getElementById('whoLegal').textContent = s.intake.legal_name || '—';
+    document.getElementById('whoEmail').textContent = s.intake.rep_email || '—';
+    document.getElementById('editIntakeLink').href = 'scope-sign.html?t=' + encodeURIComponent(s.token);
+
+    // Render canonical agreement text
+    const docBody = document.getElementById('docBody');
+    if (window.RegenScopeMD && typeof window.RegenScopeMD.render === 'function') {
+      docBody.innerHTML = window.RegenScopeMD.render(data.canonical_md || '');
+    } else {
+      const pre = document.createElement('pre');
+      pre.textContent = data.canonical_md || '(canonical text could not be rendered — please contact Regen Studio.)';
+      pre.style.whiteSpace = 'pre-wrap';
+      docBody.appendChild(pre);
+    }
+
+    // Expires note
+    document.getElementById('expiresNote').textContent =
+      'You can revisit this page as many times as you’d like to review or download a draft. ' +
+      'Signing is one-shot — submitting your signature consumes the link. Link expires ' + expiresHuman + '.';
+
+    document.getElementById('contractUI').style.display = 'block';
+
+    initSignaturePad();
+    wireDownloadDraft();
+    wireSubmit();
+  }
+
+  // --------------------------------------------------------------------------
+  // Signature pad
+  // --------------------------------------------------------------------------
+  function fitCanvas() {
+    const canvas = document.getElementById('sigCanvas');
+    if (!canvas) return;
+    const ratio = Math.max(window.devicePixelRatio || 1, 1);
+    const w = canvas.offsetWidth;
+    const h = canvas.offsetHeight;
+    canvas.width = w * ratio;
+    canvas.height = h * ratio;
+    canvas.getContext('2d').scale(ratio, ratio);
+    if (pad) pad.clear();
+  }
+
+  function refreshSubmitState() {
+    const btn = document.getElementById('btnSubmit');
+    if (!btn) return;
+    btn.disabled = !(pad && !pad.isEmpty());
+  }
+
+  function initSignaturePad() {
+    if (typeof window.SignaturePad === 'undefined') {
+      setTimeout(initSignaturePad, 60);
+      return;
+    }
+    const canvas = document.getElementById('sigCanvas');
+    const placeholder = document.getElementById('sigPlaceholder');
+    pad = new window.SignaturePad(canvas, {
+      penColor: '#1a1a2e',
+      backgroundColor: 'rgba(255,255,255,0)',
+      minWidth: 0.6, maxWidth: 2.0,
+    });
+    pad.addEventListener('beginStroke', function () { placeholder.style.display = 'none'; refreshSubmitState(); });
+    pad.addEventListener('endStroke', refreshSubmitState);
+    fitCanvas();
+    window.addEventListener('resize', fitCanvas);
+    document.getElementById('sigClear').addEventListener('click', function () {
+      if (pad) pad.clear();
+      placeholder.style.display = 'flex';
+      refreshSubmitState();
+    });
+  }
+
+  // --------------------------------------------------------------------------
+  // SHA helpers
+  // --------------------------------------------------------------------------
+  async function sha256Hex(s) {
+    const enc = new TextEncoder().encode(s);
+    const buf = await crypto.subtle.digest('SHA-256', enc);
+    return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+  }
+  async function sha256HexBytes(u8) {
+    const buf = await crypto.subtle.digest('SHA-256', u8);
+    return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+  }
+
+  // --------------------------------------------------------------------------
+  // Bilateral PDF builder (shared by draft download + signed submit)
+  // --------------------------------------------------------------------------
+  async function buildPdfBlob(signaturePng, opts) {
+    if (!window.RegenScopePDF || !window.RegenScopeMD || !window.buildSignedScopePdf) {
+      throw new Error('PDF rendering infrastructure not loaded. Refresh the page; if it persists, contact the sender.');
+    }
+    return await window.buildSignedScopePdf({
+      engagement: { key: CTX.engagement_key, label: CTX.engagement_label, canonical_text_key: CTX.canonical_text_key },
+      canonical_md: CTX.canonical_md,
+      parties: { party_a: CTX.party_a, party_b: CTX.party_b },
+      signatures: {
+        party_a_png_b64: CTX.party_a_signature_b64,
+        party_b_png_b64: signaturePng,
+        signed_at: new Date().toISOString(),
+      },
+      concept: !!(opts && opts.concept),
+    });
+  }
+
+  // --------------------------------------------------------------------------
+  // Download draft — does NOT touch the token
+  // --------------------------------------------------------------------------
+  function wireDownloadDraft() {
+    const btn = document.getElementById('download-draft-btn');
+    if (!btn) return;
+    btn.addEventListener('click', async function () {
+      const orig = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = '⏳ Generating draft…';
+      try {
+        const blob = await buildPdfBlob(null, { concept: true });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const slug = (CTX.engagement_label || 'project-scope-agreement')
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-|-$/g, '')
+          .slice(0, 60);
+        a.download = 'DRAFT-' + slug + '.pdf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+        btn.textContent = '✓ Draft downloaded';
+        setTimeout(function () { btn.textContent = orig; }, 2500);
+      } catch (err) {
+        console.error('Draft render failed:', err);
+        btn.textContent = '✗ Render failed — try again';
+        setTimeout(function () { btn.textContent = orig; }, 3000);
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }
+
+  // --------------------------------------------------------------------------
+  // Sign + submit
+  // --------------------------------------------------------------------------
+  function wireSubmit() {
+    const btnSubmit = document.getElementById('btnSubmit');
+    const status = document.getElementById('submitStatus');
+    if (!btnSubmit) return;
+    btnSubmit.addEventListener('click', async function () {
+      btnSubmit.disabled = true;
+      status.textContent = 'Preparing your signed PDF…';
+      status.className = 'submit-status';
+      try {
+        if (!pad || pad.isEmpty()) {
+          throw new Error('Please draw your signature before submitting.');
+        }
+        const sigPng = pad.toDataURL('image/png').split(',')[1];
+        const snapshotHtml = '<!doctype html>' + document.documentElement.outerHTML;
+        const snapshotSha = await sha256Hex(snapshotHtml);
+        const pdfBlob = await buildPdfBlob(sigPng, { concept: false });
+        const pdfBytes = new Uint8Array(await pdfBlob.arrayBuffer());
+        const pdfSha = await sha256HexBytes(pdfBytes);
+        const pdfB64 = btoa(Array.from(pdfBytes).map(function (b) { return String.fromCharCode(b); }).join(''));
+
+        status.textContent = 'Submitting to Regen Studio…';
+
+        const resp = await fetch(CTX.submit_endpoint, {  // supabase.co Edge Function
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            token: CTX.token,
+            engagement_key: CTX.engagement_key,
+            canonical_text_key: CTX.canonical_text_key,
+            canonical_sha: CTX.canonical_sha,
+            intake: CTX.intake,
+            signature_png_b64: sigPng,
+            html_snapshot: snapshotHtml,
+            html_snapshot_sha: snapshotSha,
+            pdf_b64: pdfB64,
+            pdf_sha: pdfSha,
+          }),
+        });
+        const data = await resp.json();
+        if (!resp.ok || !data.success) {
+          throw new Error(data.error || data.reason || 'Submission failed (HTTP ' + resp.status + ')');
+        }
+
+        // Clear sessionStorage — token is burned, intake no longer needed.
+        sessionStorage.removeItem('scope_intake_token');
+        sessionStorage.removeItem('scope_intake_engagement_json');
+        sessionStorage.removeItem('scope_intake_intake');
+        sessionStorage.removeItem('scope_intake_saved_at');
+
+        document.getElementById('main').innerHTML = '<div class="success">'
+          + '<h2>Signed.</h2>'
+          + '<p>A copy of the signed Project Scope Agreement has been emailed to you and to Regen Studio.</p>'
+          + '<p style="margin-top:24px;font-size:0.86rem">Reference: ' + (data.request_id || '?') + '</p>'
+          + (data.party_b_access_url
+              ? ('<p style="margin-top:8px;font-size:0.86rem"><a href="' + data.party_b_access_url + '">Download your copy again here</a></p>')
+              : '')
+          + '</div>';
+        window.scrollTo(0, 0);
+      } catch (err) {
+        status.className = 'submit-status error';
+        status.textContent = 'Could not submit: ' + (err && err.message ? err.message : String(err));
+        btnSubmit.disabled = false;
+      }
+    });
+  }
+
+  // Kick off
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootstrap);
+  } else {
+    bootstrap();
+  }
+})();
+</script>
+</body>
+</html>
