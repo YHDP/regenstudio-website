@@ -4,6 +4,9 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /blog-post.html
+Disallow: /scope-sign.html
+Disallow: /dpa-welcome.html
+Disallow: /dpa-contract.html
 
 # AI search & citation bots — explicitly allowed
 User-agent: OAI-SearchBot

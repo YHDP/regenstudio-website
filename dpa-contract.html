@@ -770,7 +770,7 @@
     <div class="dpa-signatures__row">
       <div class="dpa-signatures__box">
         <div class="dpa-signatures__sig-wrap">
-          <img id="dpa-sig-processor-img" class="dpa-signatures__img" alt="" src="" data-empty-caption="(handtekening niet geladen — DPA_PROCESSOR_SIG_B64 env var niet gezet op de Supabase-project)">
+          <img id="dpa-sig-processor-img" class="dpa-signatures__img" alt="" src="" data-empty-caption="(handtekening niet geladen — YVO_SIG_SECRET env var niet gezet op de Supabase-project)">
         </div>
         <div class="dpa-signatures__caption">
           <strong>Verwerker</strong><br>
@@ -1565,7 +1565,7 @@
             // P1 / Phase D Path A: processor signature delivered via the
             // dpa-verify-token response (env-gated, never world-readable).
             // Falls back to null → §17 single-sig layout with missing-asset
-            // hint if env var DPA_PROCESSOR_SIG_B64 is not set on the
+            // hint if env var YVO_SIG_SECRET is not set on the
             // Supabase project.
             processorPng: engagementMeta.processor_signature_b64 || null,
             // SHA / requestId / ipHash / uaHash deliberately omitted — they

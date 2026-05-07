@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Scope cover hero — c2 Convergent streams (locked from design-lab Round 1)
+  Composition: Two flows arriving from opposite sides, blooming where they meet.
+  Diagonal wave systems flowing IN from left and right, meeting at the centre.
+  A magenta sail blooms at the convergence — the joint outcome.
+  Side sails (orange left, teal right) feed in from the banks.
+
+  Picked from design-lab/labs/scope-cover-hero-lab.html.
+  Loaded by scope-pdf-builder.js — same canvas-rasterise pattern as
+  loadHeroC11Png in dpa-pdf-builder.js (fetch → <img> → canvas → PNG dataURL
+  → addImage() in jsPDF).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595 250" width="595" height="250">
+
+    <defs>
+      <radialGradient id="c2-mag-r" cx="85%" cy="50%" r="85%">
+        <stop offset="0%"  stop-color="#93093F" stop-opacity=".92"/>
+        <stop offset="50%" stop-color="#93093F" stop-opacity=".45"/>
+        <stop offset="100%" stop-color="#93093F" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="c2-mag-l" cx="15%" cy="50%" r="85%">
+        <stop offset="0%"  stop-color="#93093F" stop-opacity=".92"/>
+        <stop offset="50%" stop-color="#93093F" stop-opacity=".45"/>
+        <stop offset="100%" stop-color="#93093F" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="c2-or-r" cx="85%" cy="50%" r="85%">
+        <stop offset="0%"  stop-color="#FFA92D" stop-opacity=".92"/>
+        <stop offset="50%" stop-color="#FFA92D" stop-opacity=".45"/>
+        <stop offset="100%" stop-color="#FFA92D" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="c2-or-l" cx="15%" cy="50%" r="85%">
+        <stop offset="0%"  stop-color="#FFA92D" stop-opacity=".92"/>
+        <stop offset="50%" stop-color="#FFA92D" stop-opacity=".45"/>
+        <stop offset="100%" stop-color="#FFA92D" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="c2-em-r" cx="85%" cy="50%" r="85%">
+        <stop offset="0%"  stop-color="#008545" stop-opacity=".92"/>
+        <stop offset="50%" stop-color="#008545" stop-opacity=".45"/>
+        <stop offset="100%" stop-color="#008545" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="c2-em-l" cx="15%" cy="50%" r="85%">
+        <stop offset="0%"  stop-color="#008545" stop-opacity=".92"/>
+        <stop offset="50%" stop-color="#008545" stop-opacity=".45"/>
+        <stop offset="100%" stop-color="#008545" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="c2-te-r" cx="85%" cy="50%" r="85%">
+        <stop offset="0%"  stop-color="#009BBB" stop-opacity=".92"/>
+        <stop offset="50%" stop-color="#009BBB" stop-opacity=".45"/>
+        <stop offset="100%" stop-color="#009BBB" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="c2-te-l" cx="15%" cy="50%" r="85%">
+        <stop offset="0%"  stop-color="#009BBB" stop-opacity=".92"/>
+        <stop offset="50%" stop-color="#009BBB" stop-opacity=".45"/>
+        <stop offset="100%" stop-color="#009BBB" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="c2-fade" x1="0" y1="50" x2="0" y2="240" gradientUnits="userSpaceOnUse">
+        <stop offset="0%"  stop-color="#fff" stop-opacity="1"/>
+        <stop offset="60%" stop-color="#fff" stop-opacity=".85"/>
+        <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
+      <mask id="c2-mask"><rect width="595" height="250" fill="url(#c2-fade)"/></mask>
+    </defs>
+
+<g mask="url(#c2-mask)">
+      <!-- left-incoming wave (orange) -->
+      <path d="M0,80 C90,100 200,140 297.5,150 L297.5,250 L0,250 Z"
+            fill="#FFA92D" fill-opacity=".14"/>
+      <!-- right-incoming wave (teal), mirrored -->
+      <path d="M595,80 C505,100 395,140 297.5,150 L297.5,250 L595,250 Z"
+            fill="#009BBB" fill-opacity=".14"/>
+      <!-- shared ground (emerald) -->
+      <path d="M0,180 C150,170 445,170 595,180 L595,250 L0,250 Z"
+            fill="#008545" fill-opacity=".22"/>
+
+      <!-- left feeder sail — orange pointing right -->
+      <polygon points="92,108 92,144 124,126" fill="url(#c2-or-r)"/>
+      <!-- right feeder sail — teal pointing left -->
+      <polygon points="503,108 503,144 471,126" fill="url(#c2-te-l)"/>
+
+      <!-- center bloom — magenta UP-pointing isosceles triangle at convergence -->
+      <polygon points="280,162 315,162 297.5,118" fill="url(#c2-mag-r)"/>
+    </g>
+</svg>
