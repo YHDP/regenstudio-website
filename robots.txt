@@ -5,8 +5,11 @@ Allow: /
 Disallow: /admin/
 Disallow: /blog-post.html
 Disallow: /scope-sign.html
+Disallow: /scope-contract.html
+Disallow: /scope-signed/
 Disallow: /dpa-welcome.html
 Disallow: /dpa-contract.html
+Disallow: /dpa-signed/
 
 # AI search & citation bots — explicitly allowed
 User-agent: OAI-SearchBot

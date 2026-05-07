@@ -734,12 +734,33 @@
   function renderBlockquote(state, node) {
     const indent = FONT.blockquoteIndent;
     const startY = state.cursorY;
+    const startPage = state.pageNumber;
     // Blockquote uses Lora Italic for visual + brand distinction from body Inter.
     renderRuns(state, node.runs, { indent: indent, maxWidth: PAGE.contentWidth - indent, color: COLOR.muted, role: 'blockquote' });
-    // Left border
+    // Left border. If the blockquote crossed one or more page breaks, jsPDF's
+    // implicit "current page" is the final page — drawing a single line from
+    // startY (page N) to cursorY (page N+M) would render a runaway vertical
+    // rule on the final page. Walk every page the blockquote touched and
+    // draw the relevant segment on each.
+    const endPage = state.pageNumber;
+    const pageBottom = PAGE.height - PAGE.marginBottom;
     setDraw(state.doc, COLOR.gold);
     state.doc.setLineWidth(2);
-    state.doc.line(PAGE.marginLeft + 4, startY, PAGE.marginLeft + 4, state.cursorY);
+    if (startPage === endPage) {
+      state.doc.line(PAGE.marginLeft + 4, startY, PAGE.marginLeft + 4, state.cursorY);
+    } else {
+      // First page: from startY to bottom-of-content
+      state.doc.setPage(startPage);
+      state.doc.line(PAGE.marginLeft + 4, startY, PAGE.marginLeft + 4, pageBottom);
+      // Intermediate full-page segments (rare but supported)
+      for (let p = startPage + 1; p < endPage; p++) {
+        state.doc.setPage(p);
+        state.doc.line(PAGE.marginLeft + 4, PAGE.marginTop, PAGE.marginLeft + 4, pageBottom);
+      }
+      // Final page: from top-of-content to current cursor
+      state.doc.setPage(endPage);
+      state.doc.line(PAGE.marginLeft + 4, PAGE.marginTop, PAGE.marginLeft + 4, state.cursorY);
+    }
     state.cursorY += FONT.paragraphSpacing;
   }
 

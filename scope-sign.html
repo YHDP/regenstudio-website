@@ -45,39 +45,41 @@
       line-height: 1.6;
       font-size: 16px;
     }
+    /* Banner mirrors regenstudio.world main-site nav (chameleon icon +
+       KoHo REGEN STUDIO wordmark) but without the menu links — this is a
+       signing surface, not a navigable site. Decorative div, not a link,
+       to keep the counterparty's flow contained on this page. */
     .nav {
       background: var(--white);
-      padding: 16px 24px;
+      padding: 18px 0;
       border-bottom: 1px solid var(--border);
     }
     .nav__inner {
       max-width: 880px;
       margin: 0 auto;
+      padding: 0 24px;
       display: flex;
       align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
+      gap: 12px;
     }
-    .nav__motif {
-      display: inline-flex;
-      gap: 4px;
+    .nav__logo {
+      display: flex;
       align-items: center;
-      margin-right: 8px;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
     }
-    .nav__motif span {
-      width: 0; height: 0;
-      border-top: 6px solid transparent;
-      border-bottom: 6px solid transparent;
-      border-left: 10px solid #93093F;
+    .nav__logo-icon { height: 48px; width: auto; }
+    .nav__logo-text {
+      display: flex;
+      align-items: baseline;
+      gap: 0.2em;
+      font-size: 18px;
+      line-height: 1;
+      letter-spacing: 0.08em;
     }
-    .nav__motif span:nth-child(2) { border-left-color: #FFA92D; }
-    .nav__motif span:nth-child(3) { border-left-color: #008545; }
-    .nav__motif span:nth-child(4) { border-left-color: #009BBB; }
-    .nav__logo-text { font-family: 'KoHo', sans-serif; font-size: 1.4rem; letter-spacing: 0.02em; line-height: 1; color: var(--ink); }
-    .nav__logo-regen  { font-weight: 700; }
-    .nav__logo-studio { font-weight: 200; }
-    .nav__divider { color: var(--muted); font-size: 0.95rem; padding: 0 4px; }
-    .nav__context { color: var(--muted); font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .nav__logo-regen { font-family: 'KoHo', sans-serif; font-weight: 700; color: var(--ink); }
+    .nav__logo-studio { font-family: 'KoHo', sans-serif; font-weight: 200; color: var(--ink); }
 
     main {
       max-width: 720px;
@@ -222,7 +224,8 @@
     @media (max-width: 600px) {
       main { padding: 32px 16px 56px; }
       .greeting h1 { font-size: 1.7rem; }
-      .nav__context { display: none; }
+      .nav__logo-icon { height: 40px; }
+      .nav__logo-text { font-size: 15px; }
     }
   </style>
 </head>
@@ -230,10 +233,13 @@
 
 <nav class="nav">
   <div class="nav__inner">
-    <span class="nav__motif" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
-    <span class="nav__logo-text"><span class="nav__logo-regen">REGEN</span><span class="nav__logo-studio"> STUDIO</span></span>
-    <span class="nav__divider">·</span>
-    <span class="nav__context">Project Scope Agreement</span>
+    <div class="nav__logo">
+      <img src="Images/logo-icon.svg" alt="Regen Studio" class="nav__logo-icon" width="54" height="48">
+      <span class="nav__logo-text">
+        <span class="nav__logo-regen">REGEN</span>
+        <span class="nav__logo-studio">STUDIO</span>
+      </span>
+    </div>
   </div>
 </nav>
 

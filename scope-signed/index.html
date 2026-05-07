@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--
+  scope-signed/index.html — Download landing page for the JPA / scope flow.
+  Mirror of dpa-signed/index.html, English copy. The post-signature email
+  to both Parties contains a tokenised URL pointing here:
+    https://www.regenstudio.world/scope-signed/?t=<64-char-hex>
+  The page POSTs the token to verify-scope-access, gets back a signed URL
+  to the PDF in the scope-signed Storage bucket, and offers it as download.
+  Token is single-use (30-min window after first access).
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Signed Project Scope Agreement · Regen Studio</title>
+  <link rel="stylesheet" href="../assets/fonts/inter.css">
+  <link rel="stylesheet" href="../assets/fonts/koho.css">
+  <style>
+    :root {
+      --emerald: #006d38;
+      --gold: #7a5814;
+      --ink: #1a1a2e;
+      --muted: #5b6470;
+      --border: #d8dbe0;
+      --bg: #f7f8f9;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .nav {
+      background: var(--white);
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner { max-width: 880px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 12px; }
+    .nav__logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+    .nav__logo-icon { height: 48px; width: auto; }
+    .nav__logo-text { display: flex; align-items: baseline; gap: 0.2em; font-size: 18px; line-height: 1; letter-spacing: 0.08em; }
+    .nav__logo-regen { font-family: 'KoHo', sans-serif; font-weight: 700; color: var(--ink); }
+    .nav__logo-studio { font-family: 'KoHo', sans-serif; font-weight: 200; color: var(--ink); }
+
+    .container {
+      max-width: 720px;
+      margin: 60px auto;
+      padding: 0 22px;
+    }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 40px;
+    }
+    h1 { margin: 0 0 8px; font-size: 1.5rem; color: var(--ink); }
+    h1 .check { color: var(--emerald); margin-right: 6px; }
+    p { margin: 0 0 14px; }
+    .muted { color: var(--muted); font-size: 0.92rem; }
+    .meta {
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 18px 0;
+    }
+    .meta dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; }
+    .meta dt { font-weight: 600; color: var(--ink); font-size: 0.88rem; }
+    .meta dd { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+    .btn {
+      display: inline-block;
+      background: var(--emerald);
+      color: #fff;
+      padding: 14px 30px;
+      border-radius: 99px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .btn:hover { background: #00592e; }
+
+    .alert {
+      background: #fee2e2;
+      border: 1px solid #fca5a5;
+      color: #991b1b;
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin: 18px 0;
+    }
+
+    .footer-note { margin-top: 24px; font-size: 0.86rem; color: var(--muted); }
+    .footer-note a { color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <div class="nav__logo">
+      <img src="../Images/logo-icon.svg" alt="Regen Studio" class="nav__logo-icon" width="54" height="48">
+      <span class="nav__logo-text">
+        <span class="nav__logo-regen">REGEN</span>
+        <span class="nav__logo-studio">STUDIO</span>
+      </span>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="card">
+
+    <div id="loading">
+      <p class="muted">Verifying your download link…</p>
+    </div>
+
+    <div id="success" style="display:none">
+      <h1><span class="check">✅</span> Signed Project Scope Agreement</h1>
+      <p>Your download link is verified. Click below to download the signed PDF.</p>
+
+      <p style="margin: 22px 0">
+        <a id="download-link" class="btn" download>Download signed PDF →</a>
+      </p>
+
+      <p class="muted">
+        ⚠️ <strong>Important:</strong> this link expires 30 minutes after this first
+        opening. Save the file to your own disk immediately — you can always re-open
+        it locally afterwards.
+      </p>
+
+      <div class="meta">
+        <dl>
+          <dt>Signed at</dt>
+          <dd id="meta-signed-at">—</dd>
+          <dt>Engagement</dt>
+          <dd id="meta-engagement">—</dd>
+          <dt>Your role</dt>
+          <dd id="meta-party">—</dd>
+        </dl>
+      </div>
+
+      <p class="footer-note">
+        Questions? Email
+        <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.
+      </p>
+    </div>
+
+    <div id="error" style="display:none">
+      <h1>⚠️ Download link not valid</h1>
+      <div class="alert" id="error-message"></div>
+      <p class="muted">
+        Email <a href="mailto:info@regenstudio.world?subject=Re-issue%20signed%20Scope%20Agreement%20download" style="color:var(--muted)">info@regenstudio.world</a>
+        for a fresh download link.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function () {
+    const SUPABASE_URL = "https://uemspezaqxmkhenimwuf.supabase.co";  // supabase.co Edge Function
+    const VERIFY_ACCESS_URL = SUPABASE_URL + "/functions/v1/verify-scope-access";
+
+    const TOKEN_RE = /^[0-9a-f]{64}$/;
+
+    const REASON_MAP = {
+      'malformed':              'The download link is incomplete or corrupted. Open the link directly from the email.',
+      'not_found':              'This download link is unknown.',
+      'expired':                'This download link has expired (30 days after signing).',
+      'expired_after_first_use':'This download link expired thirty (30) minutes after first opening.',
+      'snapshot_missing':       'The signed file could not be located in storage. Email Yvo to recover.',
+      'snapshot_path_missing':  'The internal pointer to the signed file is broken. Email Yvo to recover.',
+      'server_error':           'Temporary server issue. Try again in a few minutes.',
+      'method_not_allowed':     'Wrong call method. Reload the page.',
+      'forbidden_origin':       'Request blocked by origin gate. Open the link directly from the email.',
+    };
+    function translate(reason) {
+      return REASON_MAP[reason] || ('Unknown error: ' + String(reason || '').slice(0, 80));
+    }
+
+    function showError(message) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('success').style.display = 'none';
+      document.getElementById('error').style.display = 'block';
+      document.getElementById('error-message').textContent = message;
+    }
+
+    function showSuccess(body) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+      const link = document.getElementById('download-link');
+      link.href = body.signed_url;
+      // Suggest a meaningful filename if the server didn't set Content-Disposition
+      const slug = (body.engagement_label || 'project-scope-agreement')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '')
+        .slice(0, 60);
+      link.setAttribute('download', 'SIGNED-' + slug + '.pdf');
+      document.getElementById('meta-signed-at').textContent = body.signed_at || '—';
+      document.getElementById('meta-engagement').textContent = body.engagement_label || '—';
+      document.getElementById('meta-party').textContent =
+        body.party === 'party_a' ? 'Party A (Regen Studio)' :
+        body.party === 'party_b' ? 'Party B (counterparty)' :
+        (body.party || '—');
+    }
+
+    const params = new URLSearchParams(location.search);
+    const token = (params.get("t") || "").trim().toLowerCase();
+
+    if (!TOKEN_RE.test(token)) {
+      showError(translate('malformed'));
+      return;
+    }
+
+    // Scrub the token from the URL bar (Referer-leak harm reduction).
+    try { history.replaceState(null, '', location.pathname); } catch (e) { /* ignore */ }
+
+    fetch(VERIFY_ACCESS_URL, {  // supabase.co Edge Function
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: token }),
+    })
+      .then(r => r.json().then(j => ({ ok: r.ok, status: r.status, body: j })))
+      .then(({ ok, body }) => {
+        if (!ok || !body || body.success !== true) {
+          showError(translate((body && body.reason) || 'server_error'));
+          return;
+        }
+        showSuccess(body);
+      })
+      .catch(err => {
+        console.error('verify-scope-access failed:', err);
+        showError('Connection issue. Please try again, or email info@regenstudio.world.');
+      });
+  })();
+</script>
+
+</body>
+</html>
