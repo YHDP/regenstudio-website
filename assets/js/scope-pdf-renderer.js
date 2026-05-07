@@ -1076,7 +1076,7 @@
     setFontByRole(doc, 'cover-subtitle');
     doc.setFontSize(8.5);
     setColor(doc, COLOR.muted);
-    const subtitle = cover.subtitle || 'project scope agreement · joint two-party contract · eIDAS Art 25(1) · Reg (EU) 910/2014';
+    const subtitle = cover.subtitle || 'project scope agreement · joint two-party contract';
     const subW = doc.getTextWidth(subtitle);
     doc.text(subtitle, (PAGE.width - subW) / 2, y);
 
