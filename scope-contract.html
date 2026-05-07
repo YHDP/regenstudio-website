@@ -26,6 +26,8 @@
   <title>Project Scope Agreement · Regen Studio</title>
   <link rel="stylesheet" href="assets/fonts/inter.css">
   <link rel="stylesheet" href="assets/fonts/koho.css">
+  <link rel="preload" href="assets/fonts/koho-logo-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/koho-logo-200.woff2" as="font" type="font/woff2" crossorigin>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://*.supabase.co; form-action 'self' https://*.supabase.co; base-uri 'self'; object-src 'none';">
   <style>
     /* ===== Visual register mirrors dpa-contract.html ===== */
@@ -94,11 +96,14 @@
       width: 100%;
       max-height: 240px;
       display: block;
-      margin: 0 0 6px;
+      margin: 0;
     }
     .scope-hero img { width: 100%; height: auto; display: block; }
 
-    .header-block { padding: 8px 24px 0; }
+    /* Breathing room between the hero band and the agreement title — keeps
+       the title from looking like it's stamped on the bottom edge of the
+       watercolor. */
+    .header-block { padding: 36px 24px 0; }
 
     h1.screen-title {
       font-size: 1.9rem;

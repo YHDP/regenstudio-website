@@ -24,6 +24,12 @@
   <title>Project Scope Agreement · Regen Studio</title>
   <link rel="stylesheet" href="assets/fonts/inter.css">
   <link rel="stylesheet" href="assets/fonts/koho.css">
+  <!-- Preload KoHo logo subset so the REGEN STUDIO wordmark in the nav
+       renders in KoHo on first paint. koho.css declares font-display:optional,
+       which lets the browser fall back to the system sans-serif if the woff2
+       hasn't arrived in time; preloading guarantees it has. -->
+  <link rel="preload" href="assets/fonts/koho-logo-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/koho-logo-200.woff2" as="font" type="font/woff2" crossorigin>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://*.supabase.co; form-action 'self' https://*.supabase.co; base-uri 'self'; object-src 'none';">
   <style>
     :root {
