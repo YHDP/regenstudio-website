@@ -67,3 +67,12 @@ dpa-test-content
 dpa-rendering-lab/
 node_modules/
 package*.json
+
+# JPA (Joint Project Agreement) signing flow — admin ops tool + test content.
+# The 4 Edge Functions live on Proton Drive (private). The generic rendering
+# JS (scope-pdf-builder.js, scope-pdf-renderer.js, scope-md-render.js) IS
+# tracked because it contains no agreement text, only rendering infrastructure.
+# Per user directive: nothing engagement-text-related lives in the public repo.
+scope/
+scope-test-content/
+scope-test-*.html

@@ -966,6 +966,41 @@
       });
       document.title = (engagementProfile.label || "Verwerkersovereenkomst") + " · Regen Studio";
 
+      // Phase H — single-body DPA cover swap. When the engagement carries
+      // canonical_text_key (sub-processor DPA + future variants), the voucher
+      // cover (Verantwoordelijke ↔ Verwerker, voucher # / project end /
+      // regulatoir kader) is wrong: those fields are null and the role
+      // labels are inverted (Regen is Processor in this scenario, not
+      // Controller). Swap the title block + summary card in place.
+      if (engagementProfile.canonical_text_key) {
+        document.body.classList.add("dpa-singlebody");
+        const titleEl = document.querySelector(".dpa-cover__title");
+        const subEl   = document.querySelector(".dpa-cover__subtitle");
+        const partiesEl = document.querySelector(".dpa-cover__parties");
+        const heroEl  = document.querySelector(".dpa-cover__hero");
+        if (titleEl) titleEl.textContent = "Sub-processor DPA";
+        if (subEl)   subEl.textContent   = engagementProfile.subtitle ||
+          "GDPR Article 28(3) sub-processor agreement · partnership-wide · back-to-back with each upstream Controller↔Processor DPA";
+        if (heroEl)  heroEl.style.backgroundImage = "url('Images/scope-cover-hero-c2.svg')";
+        if (partiesEl) {
+          const masterRef = engagementProfile.master_agreement_ref || "—";
+          partiesEl.innerHTML =
+            "<tr><td>Processor</td><td><strong>Regen Studio B.V.</strong></td></tr>" +
+            "<tr><td>Sub-processor</td><td><strong>" + (engagementProfile.legal_name || "—") + "</strong></td></tr>" +
+            "<tr><td>Reference</td><td>" + masterRef + "</td></tr>";
+        }
+        // Hide voucher-only summary fields (project end / bewaarplicht / regulatoir kader / project summary).
+        const summary = document.querySelector(".summary-card");
+        if (summary) summary.style.display = "none";
+        // Screen-only title (above the canonical render) — relabel to match.
+        const screenTitle = document.querySelector(".dpa-screen-title");
+        if (screenTitle) screenTitle.textContent = "Sub-processor DPA";
+        const screenSub = document.querySelector(".subtitle.dpa-screen-only");
+        if (screenSub) screenSub.innerHTML =
+          "between <strong>Regen Studio B.V.</strong> and <strong>" + (engagementProfile.legal_name || "—") + "</strong> · " +
+          (engagementProfile.master_agreement_ref || "");
+      }
+
       // Register the profile under window.DPA_PROFILE_LIBRARY so the
       // pdf-builder.js can resolveEngagement() without a hardcoded library.
       // Convert snake_case (from Edge Function) → camelCase (pdf-builder convention).
