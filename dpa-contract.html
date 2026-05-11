@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" data-i18n-doc-title="contract.page_title">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,7 @@
   <title>Verwerkersovereenkomst &middot; Regen Studio</title>
   <link rel="stylesheet" href="assets/fonts/inter.css">
   <link rel="stylesheet" href="assets/fonts/koho.css">
+  <script src="assets/js/dpa-i18n.js"></script>
   <style>
     :root {
       --emerald: #006d38;
@@ -205,30 +206,12 @@
       font-family: ui-monospace, SFMono-Regular, monospace;
       font-size: 0.86em;
     }
-    .toggle-bar {
-      background: #f0f4f7;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 3px;
-      display: inline-flex;
-      gap: 0;
-      margin-bottom: 18px;
-    }
-    .toggle-bar button {
-      border: none;
-      background: transparent;
-      padding: 6px 14px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 0.84rem;
-      color: var(--muted);
-      font-weight: 500;
-    }
-    .toggle-bar button.is-active {
-      background: var(--ink);
-      color: var(--white);
-    }
+    /* Plain-language blocks (non-canonical informative summaries paired with
+       legal sections). Removed klare-taal toggle 2026-05-11 per Yvo —
+       contract body now renders the legal text only; .plain blocks remain
+       inline as informative annotations that are always visible, without a
+       toggle option. They are explicitly NON-CANONICAL — the binding text is
+       always the legal block they sit next to. */
     .plain {
       background: var(--plain-bg);
       border-left: 3px solid var(--plain-border);
@@ -250,18 +233,6 @@
       gap: 6px;
     }
     .plain p:last-child { margin-bottom: 0; }
-    body.plain-only .legal,
-    body.legal-only .plain {
-      display: none;
-    }
-    /* Audit F2 — side-letter §17a is acknowledged at sign time and MUST remain
-       visible in every toggle mode (plain-only, legal-only, both). Otherwise
-       a controller signing in 'Alleen klare taal' mode confirms reading a
-       section that was hidden. .always-visible escapes the toggle filters. */
-    body.plain-only .always-visible,
-    body.legal-only .always-visible {
-      display: block !important;
-    }
     .summary-card {
       background: #f1faf4;
       border: 2px solid var(--emerald);
@@ -669,7 +640,7 @@
 </head>
 <body>
 
-<div class="prod-banner" role="status" aria-live="polite" style="background:#E8F5E9;border-bottom:4px solid #006d38;color:#1B5E20;padding:10px 16px;text-align:center;font-size:0.95rem">
+<div class="prod-banner" role="status" aria-live="polite" style="background:#E8F5E9;border-bottom:4px solid #006d38;color:#1B5E20;padding:10px 16px;text-align:center;font-size:0.95rem" data-i18n-html="contract.banner">
   <strong>✅ Stap 2 van 2 — Onderteken (productie)</strong> &nbsp;·&nbsp; Uw klik op "Onderteken" hieronder is <strong>juridisch bindend</strong> onder eIDAS Art 25(1) — gelijkwaardig aan een handgeschreven handtekening.
 </div>
 
@@ -681,7 +652,7 @@
       <span class="sr-only">Regen Studio</span>
     </a>
     <span class="nav__motif" aria-hidden="true" style="margin-left:auto"><span></span><span></span><span></span><span></span></span>
-    <a href="dpa-intake.html" class="nav__back">← Gegevens aanpassen</a>
+    <a href="dpa-intake.html" class="nav__back" data-i18n="contract.nav_back">← Gegevens aanpassen</a>
   </div>
 </nav>
 
@@ -700,51 +671,45 @@
     </div>
     <div class="dpa-cover__hero" role="img" aria-label="Watercolor sails — Regen Studio cover hero"></div>
     <div class="dpa-cover__title-block">
-      <h1 class="dpa-cover__title">Verwerkersovereenkomst</h1>
-      <p class="dpa-cover__subtitle">onder Artikel 28 AVG &middot; Verordening (EU) 2016/679</p>
+      <h1 class="dpa-cover__title" data-i18n="contract.cover.title_fallback">Verwerkersovereenkomst</h1>
+      <p class="dpa-cover__subtitle" data-i18n="contract.cover.subtitle_fallback">onder Artikel 28 AVG &middot; Verordening (EU) 2016/679</p>
       <table class="dpa-cover__parties">
-        <tr><td>Verantwoordelijke</td><td><strong data-tpl="legal_name">&hellip;</strong></td></tr>
-        <tr><td>Verwerker</td><td><strong>Regen Studio B.V.</strong></td></tr>
-        <tr><td>Engagement</td><td data-tpl="label">&hellip;</td></tr>
-        <tr><td>Project-einddatum</td><td data-tpl="project_einddatum_label">&hellip;</td></tr>
+        <tr><td data-i18n="contract.cover.controller_label">Verantwoordelijke</td><td><strong data-tpl="legal_name">&hellip;</strong></td></tr>
+        <tr><td data-i18n="contract.cover.processor_label">Verwerker</td><td><strong>Regen Studio B.V.</strong></td></tr>
+        <tr><td data-i18n="contract.cover.engagement_label">Engagement</td><td data-tpl="label">&hellip;</td></tr>
+        <tr><td data-i18n="contract.cover.einddatum_label">Project-einddatum</td><td data-tpl="project_einddatum_label">&hellip;</td></tr>
       </table>
     </div>
     <div class="dpa-cover__strip">
-      <span>Bilateraal ondertekend met Simple Electronic Signatures &middot; eIDAS Art 25(1)</span>
+      <span data-i18n="contract.cover.strip">Bilateraal ondertekend met Simple Electronic Signatures &middot; eIDAS Art 25(1)</span>
       <span class="dpa-cover__strip-mark"><span></span><span></span><span></span><span></span></span>
     </div>
   </section>
 
-  <h1 class="dpa-screen-title">Verwerkersovereenkomst</h1>
-  <p class="subtitle dpa-screen-only">tussen <strong data-tpl="legal_name">&hellip;</strong> en <strong>Regen Studio B.V.</strong> &middot; <span data-tpl="label">&hellip;</span></p>
+  <h1 class="dpa-screen-title" data-i18n="contract.cover.title_fallback">Verwerkersovereenkomst</h1>
+  <p class="subtitle dpa-screen-only"><span data-i18n="contract.screen_subtitle_prefix">tussen</span> <strong data-tpl="legal_name">&hellip;</strong> <span data-i18n="contract.screen_subtitle_and">en</span> <strong>Regen Studio B.V.</strong> &middot; <span data-tpl="label">&hellip;</span></p>
 
   <div class="download-cta">
     <div class="download-cta__copy">
-      <strong>📄 Download concept-PDF</strong>
-      <span>Voor offline lezen of intern delen — niet ondertekend, geen e-mail verstuurd. Watermerk "CONCEPT" wordt automatisch toegevoegd.</span>
+      <strong data-i18n="contract.download.title">📄 Download concept-PDF</strong>
+      <span data-i18n="contract.download.desc">Voor offline lezen of intern delen — niet ondertekend, geen e-mail verstuurd. Watermerk "CONCEPT" wordt automatisch toegevoegd.</span>
     </div>
-    <button type="button" class="download-btn" id="download-concept-btn">Download concept</button>
+    <button type="button" class="download-btn" id="download-concept-btn" data-i18n="contract.download.button">Download concept</button>
   </div>
 
-  <div id="missing-data-alert" class="alert" style="display:none">
+  <div id="missing-data-alert" class="alert" style="display:none" data-i18n-html="contract.missing_data">
     <strong>Geen gegevens gevonden.</strong> Het lijkt erop dat u rechtstreeks op deze pagina bent geland zonder eerst stap 1 te doorlopen.
     Ga eerst naar <a href="dpa-intake.html">de invul-pagina</a> om uw gegevens en voorkeuren in te vullen.
-  </div>
-
-  <div class="toggle-bar">
-    <button id="toggle-both" class="is-active" type="button">⚖️📖 Beide</button>
-    <button id="toggle-plain" type="button">📖 Alleen klare taal</button>
-    <button id="toggle-legal" type="button">⚖️ Alleen juridisch</button>
   </div>
 
   <!-- Engagement compact summary -->
   <div class="summary-card">
     <div class="summary-grid">
-      <div>Project</div><div data-tpl="project_summary">&hellip;</div>
-      <div>Werkpakketten</div><div>Per Engagement-contract / Offerte (zie Schedule &sect; B.2)</div>
-      <div>Project-einddatum</div><div data-tpl="project_einddatum_label">&hellip;</div>
-      <div>Bewaarplicht</div><div data-tpl="bewaarplicht_label">&hellip;</div>
-      <div>Regulatoir kader</div><div data-tpl="regulatory_label">&hellip;</div>
+      <div data-i18n="contract.summary.project">Project</div><div data-tpl="project_summary">&hellip;</div>
+      <div data-i18n="contract.summary.wp_label">Werkpakketten</div><div data-i18n="contract.summary.wp_value">Per Engagement-contract / Offerte (zie Schedule &sect; B.2)</div>
+      <div data-i18n="contract.summary.einddatum_label">Project-einddatum</div><div data-tpl="project_einddatum_label">&hellip;</div>
+      <div data-i18n="contract.summary.bewaar_label">Bewaarplicht</div><div data-tpl="bewaarplicht_label">&hellip;</div>
+      <div data-i18n="contract.summary.regulatory_label">Regulatoir kader</div><div data-tpl="regulatory_label">&hellip;</div>
     </div>
   </div>
 
@@ -755,7 +720,7 @@
        canonical source and what the user sees in browser / preview / PDF.
        Loading state is shown until fetch+render completes. -->
   <div id="dpa-canonical-render" class="dpa-canonical-render">
-    <p class="dpa-canonical-loading" style="text-align:center;color:var(--muted);padding:32px 16px;font-style:italic">
+    <p class="dpa-canonical-loading" style="text-align:center;color:var(--muted);padding:32px 16px;font-style:italic" data-i18n="contract.canonical_loading">
       Verwerkersovereenkomst wordt geladen vanuit canonical-NL.md…
     </p>
   </div>
@@ -766,15 +731,15 @@
        (env-gated, dpa-verify-token response), RIGHT from sigPad canvas. If
        either is missing the box renders empty with a caption fallback. -->
   <section class="dpa-signatures" aria-hidden="true">
-    <h3 class="dpa-signatures__heading">Handtekeningen</h3>
+    <h3 class="dpa-signatures__heading" data-i18n="contract.signatures.heading">Handtekeningen</h3>
     <div class="dpa-signatures__row">
       <div class="dpa-signatures__box">
         <div class="dpa-signatures__sig-wrap">
           <img id="dpa-sig-processor-img" class="dpa-signatures__img" alt="" src="" data-empty-caption="(handtekening niet geladen — YVO_SIG_SECRET env var niet gezet op de Supabase-project)">
         </div>
         <div class="dpa-signatures__caption">
-          <strong>Verwerker</strong><br>
-          Yvo Hunink &middot; Directeur<br>
+          <strong data-i18n="contract.signatures.processor_role">Verwerker</strong><br>
+          Yvo Hunink &middot; <span data-i18n="contract.signatures.director_label">Directeur</span><br>
           Regen Studio B.V.
         </div>
       </div>
@@ -783,52 +748,52 @@
           <img id="dpa-sig-controller-img" class="dpa-signatures__img" alt="" src="" data-empty-caption="(geen visuele handtekening — juridische binding via SES + server-side hash-anker)">
         </div>
         <div class="dpa-signatures__caption">
-          <strong>Verantwoordelijke</strong><br>
+          <strong data-i18n="contract.signatures.controller_role">Verantwoordelijke</strong><br>
           <span data-tpl-fill="cp_rep_name">—</span> &middot; <span data-tpl-fill="cp_rep_role">—</span><br>
-          namens <span data-tpl-fill="cp_legal_name">—</span>
+          <span data-i18n="contract.signatures.on_behalf_of">namens</span> <span data-tpl-fill="cp_legal_name">—</span>
         </div>
       </div>
     </div>
-    <p class="dpa-signatures__attestation">
+    <p class="dpa-signatures__attestation" data-i18n-html="contract.signatures.attestation">
       Visuele bevestiging &middot; de juridische ankers zijn de server-side opgeslagen SHA-256-hash + token-hash + signed_at + IP/UA-hash op de <code>dpa_signatures</code> rij van de Verwerker. Bilateraal ondertekend met Simple Electronic Signatures onder eIDAS Art 25(1) &middot; Verordening (EU) 910/2014. Tijdstip ondertekening (server-vastgelegd): <span id="dpa-sig-signed-at">—</span>.
     </p>
   </section>
 
   <div class="sign-section" data-html2canvas-ignore="true">
-    <h2 style="color:var(--ink)">Ondertekening</h2>
-    <p>U ondertekent als <strong><span class="pre-fill" data-field="cp_rep_name">—</span></strong> (<span class="pre-fill" data-field="cp_rep_role">—</span>) namens <strong><span class="pre-fill" data-field="cp_legal_name">—</span></strong>.</p>
+    <h2 style="color:var(--ink)" data-i18n="contract.sign.heading">Ondertekening</h2>
+    <p data-i18n-html="contract.sign.intro"><span data-i18n="contract.sign.intro_prefix">U ondertekent als</span> <strong><span class="pre-fill" data-field="cp_rep_name">—</span></strong> (<span class="pre-fill" data-field="cp_rep_role">—</span>) <span data-i18n="contract.sign.intro_namens">namens</span> <strong><span class="pre-fill" data-field="cp_legal_name">—</span></strong>.</p>
 
     <label class="sign-confirm">
       <input type="checkbox" id="confirm-binding">
-      <span>
-        Ik bevestig dat ik <strong>(a)</strong> de bovenstaande Overeenkomst <strong>inclusief de zes kennisnemingen in de side-letter</strong> (&sect;1 aansprakelijkheids-cap met &euro;25.000-vloer · &sect;2 48-uur datalek-melding aan u · &sect;3 geen PI-verzekering · &sect;4 scope-uitbreiding per e-mail · &sect;5 5-werkdagen audit-termijn bij incidenten · &sect;6 externe juridische audit-commitment) heb gelezen; <strong>(b)</strong> bevoegd ben de Verantwoordelijke aan deze Overeenkomst en de side-letter te binden; en <strong>(c)</strong> begrijp dat mijn klik op Onderteken juridisch dezelfde waarde heeft als een handgeschreven handtekening (onder Art 25(1) eIDAS &mdash; Verordening (EU) 910/2014).
+      <span data-i18n="contract.sign.confirm_text">
+        Ik bevestig dat ik bovenstaande Overeenkomst heb gelezen, bevoegd ben om mijn organisatie hieraan te binden, en dat mijn klik op Onderteken dezelfde juridische waarde heeft als een handgeschreven handtekening (eIDAS Art 25(1)).
       </span>
     </label>
 
     <div class="sig-pad-wrap" style="margin:22px 0 8px">
-      <p style="margin:0 0 4px;font-size:0.92rem;color:var(--ink);font-weight:600">Handtekening <span style="color:var(--muted);font-weight:400;font-size:0.86rem">(optioneel)</span></p>
-      <p style="margin:0 0 12px;font-size:0.82rem;color:var(--muted)">Een visuele bevestiging die in de PDF wordt opgenomen. Het juridische anker blijft de SHA-256-hash + token-hash + server-side signed_at — geen afbeelding nodig.</p>
+      <p style="margin:0 0 4px;font-size:0.92rem;color:var(--ink);font-weight:600"><span data-i18n="contract.sign.sigpad_label">Handtekening</span> <span style="color:var(--muted);font-weight:400;font-size:0.86rem" data-i18n="contract.sign.sigpad_optional">(optioneel)</span></p>
+      <p style="margin:0 0 12px;font-size:0.82rem;color:var(--muted)" data-i18n="contract.sign.sigpad_desc">Een visuele bevestiging die in de PDF wordt opgenomen. Het juridische anker blijft de SHA-256-hash + token-hash + server-side signed_at — geen afbeelding nodig.</p>
       <div style="background:#FAFBFC;border:1px solid var(--border);border-radius:8px;padding:6px;display:inline-block">
         <canvas id="sig-pad" width="500" height="160" data-html2canvas-ignore="true" style="display:block;background:#fff;border-radius:4px;cursor:crosshair;touch-action:none"></canvas>
       </div>
       <div style="margin-top:8px;display:flex;gap:10px;align-items:center">
-        <button type="button" id="sig-pad-clear" style="background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:6px;font-size:0.82rem;cursor:pointer;font-family:inherit">Wis</button>
+        <button type="button" id="sig-pad-clear" style="background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:6px;font-size:0.82rem;cursor:pointer;font-family:inherit" data-i18n="contract.sign.sigpad_clear">Wis</button>
         <span id="sig-pad-status" style="font-size:0.82rem;color:var(--muted)"></span>
       </div>
     </div>
 
-    <button class="sign-btn" id="sign-btn" disabled>✍️ Onderteken</button>
+    <button class="sign-btn" id="sign-btn" disabled data-i18n="contract.sign.button">✍️ Onderteken</button>
 
     <div class="plain" style="margin-top:18px">
-      <div class="plain__label">💡 Wat gebeurt er na ondertekening?</div>
+      <div class="plain__label" data-i18n="contract.after_sign.label">💡 Wat gebeurt er na ondertekening?</div>
       <ol style="margin:8px 0 8px 22px">
-        <li>SES-handtekening gegenereerd onder Art 25(1) eIDAS;</li>
-        <li>Volledige Overeenkomst vastgelegd als HTML-snapshot (de juridische integriteits-anker — een PDF kan op verzoek door beide Partijen client-side worden gegenereerd vanuit dezelfde snapshot);</li>
-        <li>SHA-256 over de snapshot vastgelegd in <code>dpa_signatures</code> samen met token-hash, IP-hash, UA-hash, timestamp;</li>
-        <li><strong>Tokenised download-link naar de getekende snapshot wordt direct per e-mail naar uw e-mailadres verstuurd</strong>, met receipt-link;</li>
-        <li>Relevante <code>consent_records</code>-rijen aangemaakt; uw eventuele alias-naam geregistreerd.</li>
+        <li data-i18n-html="contract.after_sign.step1">SES-handtekening gegenereerd onder Art 25(1) eIDAS;</li>
+        <li data-i18n-html="contract.after_sign.step2">Volledige Overeenkomst vastgelegd als HTML-snapshot (de juridische integriteits-anker — een PDF kan op verzoek door beide Partijen client-side worden gegenereerd vanuit dezelfde snapshot);</li>
+        <li data-i18n-html="contract.after_sign.step3">SHA-256 over de snapshot vastgelegd in <code>dpa_signatures</code> samen met token-hash, IP-hash, UA-hash, timestamp;</li>
+        <li data-i18n-html="contract.after_sign.step4"><strong>Tokenised download-link naar de getekende snapshot wordt direct per e-mail naar uw e-mailadres verstuurd</strong>, met receipt-link;</li>
+        <li data-i18n-html="contract.after_sign.step5">Relevante <code>consent_records</code>-rijen aangemaakt; uw eventuele alias-naam geregistreerd.</li>
       </ol>
-      <p style="margin-bottom:0">Beheer uw toestemming via <code>regenstudio.world/manage-consent</code>.</p>
+      <p style="margin-bottom:0" data-i18n-html="contract.after_sign.manage">Beheer uw toestemming via <code>regenstudio.world/manage-consent</code>.</p>
     </div>
   </div>
 
@@ -836,10 +801,10 @@
 
 <div class="modal" id="modal" role="dialog" aria-modal="true">
   <div class="modal__inner">
-    <h2 style="margin-top:0;color:var(--emerald)">✅ Test-handtekening geregistreerd</h2>
-    <p>In productie zou onderstaande JSON-payload door de Edge Function <code>submit-dpa-signature</code> worden ontvangen na verificatie van de magic-link-token, en zou direct daarna een tokenised download-link naar de getekende HTML-snapshot per e-mail naar het ingevulde e-mailadres worden verstuurd, met receipt-link. In deze test wordt geen e-mail verstuurd, geen database-rij aangemaakt, geen snapshot opgeslagen.</p>
+    <h2 style="margin-top:0;color:var(--emerald)" data-i18n="contract.modal.test_heading">✅ Test-handtekening geregistreerd</h2>
+    <p data-i18n-html="contract.modal.test_body">In productie zou onderstaande JSON-payload door de Edge Function <code>submit-dpa-signature</code> worden ontvangen na verificatie van de magic-link-token, en zou direct daarna een tokenised download-link naar de getekende HTML-snapshot per e-mail naar het ingevulde e-mailadres worden verstuurd, met receipt-link. In deze test wordt geen e-mail verstuurd, geen database-rij aangemaakt, geen snapshot opgeslagen.</p>
     <pre class="payload" id="payload"></pre>
-    <button class="modal__close" id="modal-close">Sluit</button>
+    <button class="modal__close" id="modal-close" data-i18n="contract.modal.close">Sluit</button>
   </div>
 </div>
 
@@ -853,6 +818,7 @@
 <script src="assets/js/vendor/jspdf.umd.min.js"></script>
 <script src="assets/js/vendor/signature_pad.umd.min.js"></script>
 <script src="assets/js/dpa-md-render.js"></script>
+<script src="assets/js/canonical-loader.js"></script>
 
 <!-- Brand font modules — loaded BEFORE the renderer so registerBrandFonts()
      finds the window globals at doc-creation time. ~3MB total (~671KB gzipped).
@@ -907,6 +873,18 @@
     catch (e) { console.error(storageKeys.engagement + ' parse failed:', e); engagementMeta = null; }
     try { engagementProfile = JSON.parse(storage.getItem(storageKeys.profile) || 'null'); }
     catch (e) { console.error(storageKeys.profile + ' parse failed:', e); engagementProfile = null; }
+
+    // i18n bootstrap — load + apply the engagement's language. Fire-and-forget;
+    // data-i18n elements re-render on next tick after fetch. The sync DOM updates
+    // below use the inline NL fallback initially, then dpaI18n.apply() swaps them.
+    // For EN/PT engagements there is a brief NL flicker — acceptable trade-off.
+    const _i18nLang = (engagementProfile && engagementProfile.default_language) || 'nl';
+    if (window.dpaI18n) {
+      window.dpaI18n.load(_i18nLang).then(() => window.dpaI18n.apply());
+    }
+    function t(key, fallback) {
+      return (window.dpaI18n && window.dpaI18n.t) ? window.dpaI18n.t(key, fallback) : fallback;
+    }
 
     // Path A v0.2 — DOM-inject [data-tpl="..."] placeholders from the engagement
     // profile (server-side library returned by dpa-verify-token, persisted to
@@ -964,41 +942,94 @@
           el.textContent = tplMap[key];
         }
       });
-      document.title = (engagementProfile.label || "Verwerkersovereenkomst") + " · Regen Studio";
+      document.title = (engagementProfile.label || t('contract.cover.title_fallback', 'Verwerkersovereenkomst')) + " · Regen Studio";
 
-      // Phase H — single-body DPA cover swap. When the engagement carries
-      // canonical_text_key (sub-processor DPA + future variants), the voucher
-      // cover (Verantwoordelijke ↔ Verwerker, voucher # / project end /
-      // regulatoir kader) is wrong: those fields are null and the role
-      // labels are inverted (Regen is Processor in this scenario, not
-      // Controller). Swap the title block + summary card in place.
-      if (engagementProfile.canonical_text_key) {
-        document.body.classList.add("dpa-singlebody");
-        const titleEl = document.querySelector(".dpa-cover__title");
-        const subEl   = document.querySelector(".dpa-cover__subtitle");
-        const partiesEl = document.querySelector(".dpa-cover__parties");
-        const heroEl  = document.querySelector(".dpa-cover__hero");
-        if (titleEl) titleEl.textContent = "Sub-processor DPA";
-        if (subEl)   subEl.textContent   = engagementProfile.subtitle ||
-          "GDPR Article 28(3) sub-processor agreement · partnership-wide · back-to-back with each upstream Controller↔Processor DPA";
-        if (heroEl)  heroEl.style.backgroundImage = "url('Images/scope-cover-hero-c2.svg')";
-        if (partiesEl) {
-          const masterRef = engagementProfile.master_agreement_ref || "—";
-          partiesEl.innerHTML =
-            "<tr><td>Processor</td><td><strong>Regen Studio B.V.</strong></td></tr>" +
-            "<tr><td>Sub-processor</td><td><strong>" + (engagementProfile.legal_name || "—") + "</strong></td></tr>" +
-            "<tr><td>Reference</td><td>" + masterRef + "</td></tr>";
+      // Cover canonicalisation (Phase H-bis cover-spec migration) — cover
+      // labels live in the canonical .md's YAML frontmatter (parsed by
+      // canonical-loader.js). Single source for HTML cover here AND for the
+      // PDF cover renderer (via window.__dpaCoverMetadata). Adding a new
+      // variant is one frontmatter edit on the canonical .md, no JS change
+      // required.
+      //
+      // Resolution order:
+      //   1. Storage key (dpa_{preview,intake}_cover_metadata) — server-parsed
+      //   2. Parse canonical_md frontmatter directly (preview flow ships full
+      //      .md text, parsing happens client-side)
+      //   3. null → renderer falls back to legacy hardcoded Dutch voucher
+      //      cover (the 5 KvW3 voucher engagements pre-frontmatter migration)
+      let coverMetadata = null;
+      const directKey = isPreview ? 'dpa_preview_cover_metadata' : 'dpa_intake_cover_metadata';
+      const directStored = storage.getItem(directKey);
+      if (directStored) {
+        try { coverMetadata = JSON.parse(directStored); }
+        catch (e) { console.warn(directKey + ' parse failed:', e); }
+      }
+      if (!coverMetadata && window.RegenCanonical) {
+        const _cm = storage.getItem(isPreview ? 'dpa_preview_canonical_md' : 'dpa_intake_canonical_md');
+        if (_cm) {
+          const parsed = window.RegenCanonical.parseCanonical(_cm);
+          if (parsed.coverMetadata) coverMetadata = parsed.coverMetadata;
         }
-        // Hide voucher-only summary fields (project end / bewaarplicht / regulatoir kader / project summary).
-        const summary = document.querySelector(".summary-card");
-        if (summary) summary.style.display = "none";
-        // Screen-only title (above the canonical render) — relabel to match.
+      }
+      if (coverMetadata && window.RegenCanonical) {
+        coverMetadata = window.RegenCanonical.interpolate(coverMetadata, {
+          legal_name: engagementProfile.legal_name || '',
+          master_agreement_ref: engagementProfile.master_agreement_ref || '',
+        });
+      }
+      window.__dpaCoverMetadata = coverMetadata;
+
+      if (coverMetadata) {
+        document.body.classList.add("dpa-singlebody");
+        applyCoverMetadata(coverMetadata, engagementProfile);
+      }
+
+      function applyCoverMetadata(meta, profile) {
+        const titleEl   = document.querySelector(".dpa-cover__title");
+        const subEl     = document.querySelector(".dpa-cover__subtitle");
+        const partiesEl = document.querySelector(".dpa-cover__parties");
+        const heroEl    = document.querySelector(".dpa-cover__hero");
+        if (titleEl) titleEl.textContent = meta.document_title || "Sub-processor DPA";
+        if (subEl)   subEl.textContent   = meta.subtitle || "";
+        if (heroEl && meta.hero_asset)   heroEl.style.backgroundImage = "url('" + meta.hero_asset + "')";
+        if (partiesEl && Array.isArray(meta.parties)) {
+          let html = '';
+          for (let i = 0; i < meta.parties.length; i++) {
+            const row = meta.parties[i];
+            if (!row || row.length < 2) continue;
+            const label = String(row[0] || '');
+            const value = String(row[1] || '—');
+            // Bold legal-entity-shaped values (B.V. / GmbH / Ltd / Inc / S.A.); leave descriptors plain.
+            const looksLikeEntity = /(B\.V\.|GmbH|S\.A\.|Ltd\.?|Inc\.|UAB|N\.V\.)\b/.test(value);
+            const valueHtml = looksLikeEntity
+              ? '<strong>' + escapeForHtml(value) + '</strong>'
+              : escapeForHtml(value);
+            html += '<tr><td>' + escapeForHtml(label) + '</td><td>' + valueHtml + '</td></tr>';
+          }
+          partiesEl.innerHTML = html;
+        }
+        if (meta.show_summary_card === false) {
+          const summary = document.querySelector(".summary-card");
+          if (summary) summary.style.display = "none";
+        }
         const screenTitle = document.querySelector(".dpa-screen-title");
-        if (screenTitle) screenTitle.textContent = "Sub-processor DPA";
+        if (screenTitle) screenTitle.textContent = meta.document_title || "Sub-processor DPA";
         const screenSub = document.querySelector(".subtitle.dpa-screen-only");
-        if (screenSub) screenSub.innerHTML =
-          "between <strong>Regen Studio B.V.</strong> and <strong>" + (engagementProfile.legal_name || "—") + "</strong> · " +
-          (engagementProfile.master_agreement_ref || "");
+        if (screenSub && meta.screen_subtitle) {
+          // Re-bold legal-entity tokens in the screen subtitle for visual parity with cover.
+          screenSub.innerHTML = String(meta.screen_subtitle).replace(
+            /\b(Regen Studio B\.V\.|[A-Z][\w &-]*?(?:B\.V\.|GmbH|S\.A\.|Ltd\.?|Inc\.|UAB|N\.V\.))\b/g,
+            '<strong>$1</strong>'
+          );
+        }
+      }
+
+      function escapeForHtml(s) {
+        return String(s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
       }
 
       // Register the profile under window.DPA_PROFILE_LIBRARY so the
@@ -1046,7 +1077,7 @@
       if (alertEl) {
         alertEl.innerHTML = isPreview
           ? '<strong>Preview-data ontbreekt.</strong> Open de Preview opnieuw vanaf de dpa/ops admin tool — de engagement-profiel-data wordt via localStorage doorgegeven.'
-          : '<strong>Sessie-gegevens ontbreken.</strong> Mogelijke oorzaken: u heeft de browser-tab gesloten en opnieuw geopend; u gebruikt een privé-venster waarin sessionStorage wordt gewist; of de uitnodigings-link is direct geopend zonder eerst stap 1 te doorlopen.<br><br>Ga terug naar de uitnodigings-mail en open de link opnieuw — start vanaf de intake-pagina.';
+          : t('contract.errors.session_missing', '<strong>Sessie-gegevens ontbreken.</strong> Mogelijke oorzaken: u heeft de browser-tab gesloten en opnieuw geopend; u gebruikt een privé-venster waarin sessionStorage wordt gewist; of de uitnodigings-link is direct geopend zonder eerst stap 1 te doorlopen.<br><br>Ga terug naar de uitnodigings-mail en open de link opnieuw — start vanaf de intake-pagina.');
       }
       // Hide the sign section so user cannot reach the sign button.
       const signSec = document.querySelector('.sign-section');
@@ -1165,13 +1196,21 @@
         // Token-gated authentication ensures only the authorized counterparty
         // can fetch their engagement-specific text — production deploy stays
         // free of any DPA legal-text static assets.
-        const canonicalMd = storage.getItem(isPreview ? 'dpa_preview_canonical_md' : 'dpa_intake_canonical_md');
+        let canonicalMd = storage.getItem(isPreview ? 'dpa_preview_canonical_md' : 'dpa_intake_canonical_md');
         const scheduleMd  = storage.getItem(isPreview ? 'dpa_preview_schedule_md'  : 'dpa_intake_schedule_md');
         const annexCMd    = storage.getItem(isPreview ? 'dpa_preview_annex_c_md'   : 'dpa_intake_annex_c_md');
         const sideLetterMd = storage.getItem(isPreview ? 'dpa_preview_side_letter_md' : 'dpa_intake_side_letter_md');
 
+        // Strip YAML frontmatter from canonical_md before AST parse (Phase
+        // H-bis) — the cover-swap block above already extracted any cover
+        // metadata. The body half is what RegenMD.parse should consume.
+        if (canonicalMd && window.RegenCanonical) {
+          const _parsed = window.RegenCanonical.parseCanonical(canonicalMd);
+          if (_parsed.coverMetadata) canonicalMd = _parsed.body;
+        }
+
         if (!canonicalMd) {
-          mount.innerHTML = '<div class="alert" style="background:#FEE;border-left:4px solid #C00;padding:16px;margin:24px 0;color:#900"><strong>Canonical text niet beschikbaar.</strong><br>Verify-token-respons bevatte geen canonical_md. Open de uitnodigings-link opnieuw, of neem contact op met info@regenstudio.world. Onderteken niet voordat dit is opgelost.</div>';
+          mount.innerHTML = '<div class="alert" style="background:#FEE;border-left:4px solid #C00;padding:16px;margin:24px 0;color:#900">' + t('contract.errors.canonical_unavailable', '<strong>Canonical text niet beschikbaar.</strong><br>Verify-token-respons bevatte geen canonical_md. Open de uitnodigings-link opnieuw, of neem contact op met info@regenstudio.world. Onderteken niet voordat dit is opgelost.') + '</div>';
           const signSec = document.querySelector('.sign-section');
           if (signSec) signSec.style.display = 'none';
           throw new Error('canonical_md missing from session storage');
@@ -1204,7 +1243,7 @@
           } catch (err) {
             console.error('Markdown parse failed for ' + src.label + ':', err);
             if (src.label === 'canonical-NL') {
-              mount.innerHTML = '<div class="alert" style="background:#FEE;border-left:4px solid #C00;padding:16px;margin:24px 0;color:#900"><strong>Canonical text kon niet worden geparsed.</strong><br>' + window.RegenMD.escapeHtml(err.message) + '<br><br>Neem contact op met info@regenstudio.world. Onderteken niet voordat dit is opgelost.</div>';
+              mount.innerHTML = '<div class="alert" style="background:#FEE;border-left:4px solid #C00;padding:16px;margin:24px 0;color:#900">' + t('contract.errors.canonical_parse_failed', '<strong>Canonical text kon niet worden geparsed.</strong>') + '<br>' + window.RegenMD.escapeHtml(err.message) + '<br><br>' + t('contract.errors.contact_support', 'Neem contact op met info@regenstudio.world. Onderteken niet voordat dit is opgelost.') + '</div>';
               const signSec = document.querySelector('.sign-section');
               if (signSec) signSec.style.display = 'none';
               throw err;
@@ -1252,14 +1291,14 @@
       banner.innerHTML = '🔍 PREVIEW MODE — niet voor ondertekening · gebruik de knop hieronder om de PDF te genereren';
       document.body.insertBefore(banner, document.body.firstChild);
 
-      // Inject a Preview PDF button at top of main, above the toggle bar.
+      // Inject a Preview PDF button at top of main, above the summary card.
       const previewBtn = document.createElement('button');
       previewBtn.type = 'button';
       previewBtn.textContent = '📄 Download Preview PDF';
       previewBtn.style.cssText = 'background:var(--emerald);color:#fff;border:none;padding:14px 28px;border-radius:8px;font-size:1rem;font-weight:600;font-family:inherit;cursor:pointer;display:block;margin:18px auto 24px';
       const mainEl = document.querySelector('main');
-      const toggleBar = document.querySelector('.toggle-bar');
-      if (mainEl && toggleBar) mainEl.insertBefore(previewBtn, toggleBar);
+      const summaryCard = document.querySelector('.summary-card');
+      if (mainEl && summaryCard) mainEl.insertBefore(previewBtn, summaryCard);
 
       previewBtn.addEventListener('click', async () => {
         previewBtn.disabled = true;
@@ -1381,26 +1420,10 @@
       }
     });
 
-    // Toggle bar
-    const toggleBoth = document.getElementById('toggle-both');
-    const togglePlain = document.getElementById('toggle-plain');
-    const toggleLegal = document.getElementById('toggle-legal');
-    function setMode(mode) {
-      document.body.classList.remove('plain-only', 'legal-only');
-      [toggleBoth, togglePlain, toggleLegal].forEach(b => b.classList.remove('is-active'));
-      if (mode === 'plain') {
-        document.body.classList.add('plain-only');
-        togglePlain.classList.add('is-active');
-      } else if (mode === 'legal') {
-        document.body.classList.add('legal-only');
-        toggleLegal.classList.add('is-active');
-      } else {
-        toggleBoth.classList.add('is-active');
-      }
-    }
-    toggleBoth.addEventListener('click', () => setMode('both'));
-    togglePlain.addEventListener('click', () => setMode('plain'));
-    toggleLegal.addEventListener('click', () => setMode('legal'));
+    // Klare-taal toggle removed 2026-05-11 per Yvo. Contract body renders
+    // legal text only; .plain blocks remain inline as informative annotations.
+    // Removed: setMode(), 'plain-only' / 'legal-only' body classes, three
+    // toggle buttons (Beide / Alleen klare taal / Alleen juridisch).
 
     // Reason-code → Dutch-message map. Closes audit B19 — Edge Functions
     // return raw English `reason` strings; the user must see actionable Dutch.
@@ -1745,7 +1768,7 @@
       // text into `message` should not become an XSS vector.
       banner.replaceChildren();
       const strong = document.createElement('strong');
-      strong.textContent = 'Ondertekening mislukt.';
+      strong.textContent = t('contract.post_sign.failed', 'Ondertekening mislukt.');
       banner.appendChild(strong);
       banner.appendChild(document.createElement('br'));
       banner.appendChild(document.createTextNode(String(message || '')));
@@ -1756,17 +1779,21 @@
       const modal = document.getElementById('modal');
       modal.classList.add('modal--open');
       const inner = modal.querySelector('.modal__inner') || modal;
+      const _signedAtLabel = t('contract.signatures.signed_at_label', 'Tijdstip ondertekening');
+      const _shaLabel = t('contract.post_sign.sha_label', 'SHA-256 van de getekende snapshot');
+      const _reqIdLabel = t('contract.post_sign.request_id_label', 'Request-ID');
+      const _notReceivedSubj = t('contract.post_sign.not_received_subject', 'Getekende DPA niet ontvangen');
       inner.innerHTML =
-        '<h2 style="margin-top:0;color:var(--emerald)">✅ Verwerkersovereenkomst getekend</h2>' +
-        '<p>Uw handtekening is geregistreerd. We hebben een download-link voor de getekende DPA naar <strong>' + escapeHtml(rep_email) + '</strong> gestuurd.</p>' +
-        '<p><strong>Belangrijk:</strong> de download-link is 30 dagen geldig vanaf nu, maar verloopt 30 minuten na de eerste keer dat u hem opent — sla het bestand direct op nadat u het downloadt.</p>' +
+        '<h2 style="margin-top:0;color:var(--emerald)">' + t('contract.post_sign.heading', '✅ Verwerkersovereenkomst getekend') + '</h2>' +
+        '<p>' + t('contract.post_sign.body_prefix', 'Uw handtekening is geregistreerd. We hebben een download-link voor de getekende DPA naar') + ' <strong>' + escapeHtml(rep_email) + '</strong> ' + t('contract.post_sign.body_suffix', 'gestuurd.') + '</p>' +
+        '<p>' + t('contract.post_sign.expires', '<strong>Belangrijk:</strong> de download-link is 30 dagen geldig vanaf nu, maar verloopt 30 minuten na de eerste keer dat u hem opent — sla het bestand direct op nadat u het downloadt.') + '</p>' +
         '<dl style="font-size:0.9em;color:#5781A1;border-top:1px solid #E4E2E2;padding-top:12px;margin-top:18px">' +
-          '<dt style="font-weight:600">Tijdstip ondertekening</dt><dd style="margin:2px 0 8px">' + escapeHtml(signed_at || '') + '</dd>' +
-          '<dt style="font-weight:600">SHA-256 van de getekende snapshot</dt><dd style="margin:2px 0 8px;font-family:monospace;font-size:0.85em;word-break:break-all">' + escapeHtml(snapshot_sha || '') + '</dd>' +
-          '<dt style="font-weight:600">Request-ID</dt><dd style="margin:2px 0 8px;font-family:monospace;font-size:0.85em">' + escapeHtml(request_id || '') + '</dd>' +
+          '<dt style="font-weight:600">' + _signedAtLabel + '</dt><dd style="margin:2px 0 8px">' + escapeHtml(signed_at || '') + '</dd>' +
+          '<dt style="font-weight:600">' + _shaLabel + '</dt><dd style="margin:2px 0 8px;font-family:monospace;font-size:0.85em;word-break:break-all">' + escapeHtml(snapshot_sha || '') + '</dd>' +
+          '<dt style="font-weight:600">' + _reqIdLabel + '</dt><dd style="margin:2px 0 8px;font-family:monospace;font-size:0.85em">' + escapeHtml(request_id || '') + '</dd>' +
         '</dl>' +
-        '<p style="font-size:0.9em;color:#5781A1;margin-top:18px">Niet ontvangen binnen 5 minuten? Controleer uw spam-map, of mail <a href="mailto:info@regenstudio.world?subject=Getekende%20DPA%20niet%20ontvangen" style="color:var(--emerald);text-decoration:underline">info@regenstudio.world</a>.</p>' +
-        '<button class="modal__close" id="modal-close-success" style="margin-top:18px">Sluiten</button>';
+        '<p style="font-size:0.9em;color:#5781A1;margin-top:18px">' + t('contract.post_sign.not_received', 'Niet ontvangen binnen 5 minuten? Controleer uw spam-map, of mail') + ' <a href="mailto:info@regenstudio.world?subject=' + encodeURIComponent(_notReceivedSubj) + '" style="color:var(--emerald);text-decoration:underline">info@regenstudio.world</a>.</p>' +
+        '<button class="modal__close" id="modal-close-success" style="margin-top:18px">' + t('contract.post_sign.close', 'Sluiten') + '</button>';
       document.getElementById('modal-close-success').addEventListener('click', () => {
         modal.classList.remove('modal--open');
       });

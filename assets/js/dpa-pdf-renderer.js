@@ -997,28 +997,50 @@
       doc.text('STUDIO', startX + regenW + spaceW, y);
     }
 
+    // ----- Phase H-bis cover canonicalisation -----
+    // cover.metadata (when present) drives: header subtitle, title, parties
+    // line, mid-section table, signature box. Source = YAML frontmatter on
+    // the canonical .md, parsed at the Edge Function and ferried via
+    // window.__dpaCoverMetadata. Single edit on the canonical → both HTML
+    // and PDF covers update together. cover.metadata === null → legacy
+    // hardcoded Dutch voucher cover (the 5 KvW3 voucher engagements
+    // pre-frontmatter migration).
+    const meta = cover.metadata || null;
+
     // ----- Subtle divider + small subtitle line below brand -----
     y += 22;
     setFontByRole(doc, 'cover-subtitle');
     doc.setFontSize(8.5);
     setColor(doc, COLOR.muted);
-    const subtitle = 'verwerkersovereenkomst · GDPR Art 28 · Verordening (EU) 2016/679';
-    const subW = doc.getTextWidth(subtitle);
-    doc.text(subtitle, (PAGE.width - subW) / 2, y);
+    const headerSubtitle = (meta && meta.variant && meta.variant !== 'voucher')
+      ? 'Sub-processor DPA · GDPR Art 28(3) · Regulation (EU) 2016/679'
+      : 'verwerkersovereenkomst · GDPR Art 28 · Verordening (EU) 2016/679';
+    const subW = doc.getTextWidth(headerSubtitle);
+    doc.text(headerSubtitle, (PAGE.width - subW) / 2, y);
 
     // ----- Title block (push down for breathing room) -----
     y += 56;
     setFontByRole(doc, 'cover-title');
     doc.setFontSize(FONT.coverTitle);
     setColor(doc, COLOR.ink);
-    doc.text('Verwerkersovereenkomst', PAGE.marginLeft, y);
+    const coverTitle = (meta && meta.document_title) ? meta.document_title : 'Verwerkersovereenkomst';
+    doc.text(pdfSafeText(coverTitle), PAGE.marginLeft, y);
 
+    // Variant subtitle (multi-line) OR legacy "tussen X en Regen Studio B.V."
     y += 22;
     setFontByRole(doc, 'cover-subtitle');
     doc.setFontSize(11);
     setColor(doc, COLOR.muted);
-    const partiesLine = 'tussen ' + (cover.legalName || '—') + ' en Regen Studio B.V.';
-    doc.text(pdfSafeText(partiesLine), PAGE.marginLeft, y);
+    if (meta && meta.subtitle) {
+      const subLines = doc.splitTextToSize(pdfSafeText(meta.subtitle), PAGE.contentWidth);
+      for (let l = 0; l < subLines.length; l++) {
+        doc.text(subLines[l], PAGE.marginLeft, y + l * 13);
+      }
+      y += (subLines.length - 1) * 13;
+    } else {
+      const partiesLine = 'tussen ' + (cover.legalName || '—') + ' en Regen Studio B.V.';
+      doc.text(pdfSafeText(partiesLine), PAGE.marginLeft, y);
+    }
 
     // ----- Gold engagement-key tagline (uppercase, letter-spaced) -----
     y += 20;
@@ -1034,66 +1056,112 @@
     doc.setLineWidth(0.5);
     doc.line(PAGE.marginLeft, y, PAGE.marginLeft + 80, y);
 
-    // ----- Engagement section header -----
+    // ----- Mid-section: parties table (variant) OR Engagement summary (voucher) -----
     y += 30;
-    setFontByRole(doc, 'h3');
-    doc.setFontSize(11);
-    setColor(doc, COLOR.emerald);
-    doc.text('Engagement', PAGE.marginLeft, y);
+    if (meta && Array.isArray(meta.parties) && meta.parties.length) {
+      // Variant cover — render parties as a clean table; suppress voucher
+      // summary panel.
+      setFontByRole(doc, 'h3');
+      doc.setFontSize(11);
+      setColor(doc, COLOR.emerald);
+      doc.text('Parties', PAGE.marginLeft, y);
+      y += 14;
+      const labelWv = 110;
+      doc.setFontSize(9.5);
+      for (let i = 0; i < meta.parties.length; i++) {
+        const row = meta.parties[i];
+        if (!row || row.length < 2) continue;
+        setFontByRole(doc, 'caption');
+        setColor(doc, COLOR.muted);
+        doc.text(pdfSafeText(String(row[0])), PAGE.marginLeft, y + 9);
 
-    // ----- Engagement metadata table (clean, no top/bottom borders, just row dividers) -----
-    y += 14;
-    const labelW = 145;
-    const rows = [
-      ['Project', cover.label || '—'],
-      ['Toepasselijk recht', cover.applicableLaw || 'Nederlands recht; AVG (Verordening (EU) 2016/679) — Verwerker-rol onder Artikel 28'],
-      ['Aard van verwerking', cover.aardVanVerwerking || '—'],
-      ['Project-einddatum', cover.projectEinddatum || '—'],
-      ['Bewaarplicht t/m', cover.bewaarplichtEinddatum || '—'],
-    ];
-
-    doc.setFontSize(9.5);
-    for (let i = 0; i < rows.length; i++) {
-      setFontByRole(doc, 'caption');
-      setColor(doc, COLOR.muted);
-      doc.text(pdfSafeText(rows[i][0]), PAGE.marginLeft, y + 9);
-
-      setFontByRole(doc, 'body');
-      setColor(doc, COLOR.ink);
-      const lines = doc.splitTextToSize(pdfSafeText(rows[i][1]), PAGE.contentWidth - labelW);
-      for (let l = 0; l < lines.length; l++) {
-        doc.text(lines[l], PAGE.marginLeft + labelW, y + 9 + l * 12);
+        setFontByRole(doc, 'body');
+        setColor(doc, COLOR.ink);
+        const vlines = doc.splitTextToSize(pdfSafeText(String(row[1])), PAGE.contentWidth - labelWv);
+        for (let l = 0; l < vlines.length; l++) {
+          doc.text(vlines[l], PAGE.marginLeft + labelWv, y + 9 + l * 12);
+        }
+        const rowHv = Math.max(22, vlines.length * 12 + 8);
+        setDraw(doc, COLOR.border);
+        doc.setLineWidth(0.4);
+        doc.line(PAGE.marginLeft, y + rowHv, PAGE.marginLeft + PAGE.contentWidth, y + rowHv);
+        y += rowHv;
       }
+    } else if (!(meta && meta.show_summary_card === false)) {
+      // Legacy voucher cover — Engagement summary panel.
+      setFontByRole(doc, 'h3');
+      doc.setFontSize(11);
+      setColor(doc, COLOR.emerald);
+      doc.text('Engagement', PAGE.marginLeft, y);
+      y += 14;
+      const labelW = 145;
+      const rows = [
+        ['Project', cover.label || '—'],
+        ['Toepasselijk recht', cover.applicableLaw || 'Nederlands recht; AVG (Verordening (EU) 2016/679) — Verwerker-rol onder Artikel 28'],
+        ['Aard van verwerking', cover.aardVanVerwerking || '—'],
+        ['Project-einddatum', cover.projectEinddatum || '—'],
+        ['Bewaarplicht t/m', cover.bewaarplichtEinddatum || '—'],
+      ];
+      doc.setFontSize(9.5);
+      for (let i = 0; i < rows.length; i++) {
+        setFontByRole(doc, 'caption');
+        setColor(doc, COLOR.muted);
+        doc.text(pdfSafeText(rows[i][0]), PAGE.marginLeft, y + 9);
 
-      const rowH = Math.max(22, lines.length * 12 + 8);
-      // Subtle bottom-border under each row
-      setDraw(doc, COLOR.border);
-      doc.setLineWidth(0.4);
-      doc.line(PAGE.marginLeft, y + rowH, PAGE.marginLeft + PAGE.contentWidth, y + rowH);
-      y += rowH;
+        setFontByRole(doc, 'body');
+        setColor(doc, COLOR.ink);
+        const lines = doc.splitTextToSize(pdfSafeText(rows[i][1]), PAGE.contentWidth - labelW);
+        for (let l = 0; l < lines.length; l++) {
+          doc.text(lines[l], PAGE.marginLeft + labelW, y + 9 + l * 12);
+        }
+
+        const rowH = Math.max(22, lines.length * 12 + 8);
+        setDraw(doc, COLOR.border);
+        doc.setLineWidth(0.4);
+        doc.line(PAGE.marginLeft, y + rowH, PAGE.marginLeft + PAGE.contentWidth, y + rowH);
+        y += rowH;
+      }
     }
 
-    // ----- Bottom: green-bordered "Ondertekend bilateraal" box -----
+    // ----- Bottom: green-bordered bilateral-signature box -----
     const boxH = 64;
     const boxY = PAGE.height - PAGE.marginBottom - boxH - 24;
     setDraw(doc, COLOR.emerald);
     doc.setLineWidth(0.8);
     doc.rect(PAGE.marginLeft, boxY, PAGE.contentWidth, boxH);
 
+    const sigBox = (meta && meta.signature_box) ? meta.signature_box : null;
+    const sigBoxTitle = sigBox && sigBox.title ? sigBox.title : 'Ondertekend bilateraal';
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(9.5);
     setColor(doc, COLOR.emerald);
-    doc.text('Ondertekend bilateraal', PAGE.marginLeft + 12, boxY + 14);
+    doc.text(pdfSafeText(sigBoxTitle), PAGE.marginLeft + 12, boxY + 14);
 
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(8.5);
     setColor(doc, COLOR.ink);
-    const sigLine1 = 'Verantwoordelijke: ' + (cover.controllerSignerName || '—') +
-      ' (' + (cover.controllerSignerRole || '—') + ') namens ' + (cover.legalName || '—');
-    const sigLine2 = 'Verwerker: ' + (cover.processorSignerName || 'Yvo Hunink') +
-      ' (' + (cover.processorSignerRole || 'Directeur') + ') namens Regen Studio B.V. — vooraf-getekende mandaat-handtekening';
-    const sigLine3 = 'Datum counter-ondertekening: ' + (cover.signedAtDisplay || cover.signedAt || '—');
-    const sigLine4 = 'Simple Electronic Signatures onder eIDAS Art 25(1) · Verordening (EU) 910/2014. Volledige bewijscomponenten in §17.';
+
+    let sigLine1, sigLine2, sigLine3, sigLine4;
+    if (sigBox) {
+      // Variant signature lines: Party A (pre-drawn Regen) first, Party B
+      // (counter-signing recipient) second.
+      const partyARole = sigBox.party_a_role || 'Party A — Regen Studio B.V.';
+      const partyBRole = sigBox.party_b_role || ('Party B — ' + (cover.legalName || '—'));
+      sigLine1 = partyARole + ': ' + (cover.processorSignerName || 'Yvo Hunink') +
+        ' (' + (cover.processorSignerRole || 'Bestuurder') + ') — pre-drawn mandate signature';
+      sigLine2 = partyBRole + ': ' + (cover.controllerSignerName || '—') +
+        ' (' + (cover.controllerSignerRole || '—') + ') — counter-signed';
+      sigLine3 = 'Date countersigned: ' + (cover.signedAtDisplay || cover.signedAt || '—');
+      sigLine4 = 'Simple Electronic Signatures under eIDAS Art 25(1) · Regulation (EU) 910/2014. Full evidentiary components in §13.';
+    } else {
+      // Legacy voucher signature lines (Dutch).
+      sigLine1 = 'Verantwoordelijke: ' + (cover.controllerSignerName || '—') +
+        ' (' + (cover.controllerSignerRole || '—') + ') namens ' + (cover.legalName || '—');
+      sigLine2 = 'Verwerker: ' + (cover.processorSignerName || 'Yvo Hunink') +
+        ' (' + (cover.processorSignerRole || 'Directeur') + ') namens Regen Studio B.V. — vooraf-getekende mandaat-handtekening';
+      sigLine3 = 'Datum counter-ondertekening: ' + (cover.signedAtDisplay || cover.signedAt || '—');
+      sigLine4 = 'Simple Electronic Signatures onder eIDAS Art 25(1) · Verordening (EU) 910/2014. Volledige bewijscomponenten in §17.';
+    }
 
     doc.text(pdfSafeText(sigLine1), PAGE.marginLeft + 12, boxY + 28, { maxWidth: PAGE.contentWidth - 24 });
     doc.text(pdfSafeText(sigLine2), PAGE.marginLeft + 12, boxY + 39, { maxWidth: PAGE.contentWidth - 24 });

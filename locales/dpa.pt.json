@@ -1,0 +1,291 @@
+{
+  "_meta": {
+    "language": "pt-BR",
+    "scope": "DPA signing flow",
+    "purpose": "Brazilian Portuguese translations for assets/js/dpa-i18n.js. Falls back to NL via dpaI18n's fallback chain when keys are missing.",
+    "register": "Formal-readable, BR conventions (você not tu, usuário not utilizador, e-mail). EU regulation names per glossary (RGPD, DPP→Passaporte Digital do Produto)."
+  },
+  "welcome": {
+    "page_title": "Bem-vindo — Contrato de Processamento de Dados — Regen Studio",
+    "loading": "Validando seu convite…",
+    "error": {
+      "title": "Não foi possível verificar o convite",
+      "help_prefix": "Envie um e-mail para",
+      "help_subject": "Reenvio do convite de DPA",
+      "help_suffix": "para receber um novo link.",
+      "invalid": "<strong>Convite inválido.</strong><br>O link no seu e-mail de convite está incompleto ou danificado.",
+      "unverifiable": "<strong>Não foi possível verificar o convite.</strong><br>Possíveis causas: o link expirou (válido por 7 dias), o link já foi utilizado ou a URL está incompleta.",
+      "connection": "<strong>Falha de conexão.</strong><br>Tente novamente ou envie um e-mail para a Regen Studio.",
+      "storage_blocked": "Seu navegador está bloqueando o armazenamento. Habilite cookies/storage temporariamente para regenstudio.world e tente novamente."
+    },
+    "nav": {
+      "next_aria": "Continuar para o próximo slide",
+      "begin_aria": "Clique na seta para começar",
+      "begin_text": "clique na seta para começar",
+      "slide_nav_aria": "Navegação de slides"
+    },
+    "slide_welcome": {
+      "nav_title": "Bem-vindo",
+      "greeting_prefix": "Bem-vindo",
+      "default_name": "de volta",
+      "intro": "Antes de formalizar o acordo em texto legal, queremos passar por ele com calma — de forma aberta, transparente e sem surpresas."
+    },
+    "slide_who": {
+      "nav_title": "Quem somos",
+      "kicker": "Quem está do outro lado da mesa",
+      "title": "Uma pessoa. Uma empresa.",
+      "subtitle": "A Regen Studio é uma consultoria unipessoal para Passaporte Digital do Produto. Você trabalha diretamente com o fundador — sem camadas entre você e o trabalho.",
+      "tagline": "Pessoas, Cidade e Natureza.",
+      "rows": {
+        "entity": "Pessoa jurídica",
+        "director": "Administrador (DGA)",
+        "address": "Endereço da sede",
+        "kvk": "Câmara de Comércio (KvK)",
+        "vat": "Número de IVA",
+        "contact": "Contato"
+      }
+    },
+    "slide_engagement": {
+      "nav_title": "O que faremos",
+      "kicker": "Nosso acordo",
+      "title": "O que vamos fazer juntos",
+      "subtitle": "O Contrato de Processamento de Dados que assinaremos a seguir dá suporte a este Engajamento concreto.",
+      "rows": {
+        "project": "Projeto",
+        "parties": "Entre",
+        "master": "Sob",
+        "regulatory": "Marco regulatório",
+        "einddatum": "Data final do projeto",
+        "bewaar": "Retenção até"
+      },
+      "parties_template": "{org} (Controlador) e Regen Studio B.V. (Operador)",
+      "org_fallback": "sua organização",
+      "regulatory_fallback": "o marco regulatório aplicável",
+      "gdpr_retention_fallback": "conforme retenção RGPD",
+      "narrative": {
+        "voucher_intro": "Um trajeto de DPP-readiness para",
+        "voucher_subsidie": "(voucher no valor de €{amount}k via o programa KvW3 / EFRO)",
+        "voucher_body": ". Juntos mapeamos seu portfólio de produtos, identificamos as lacunas de dados frente a",
+        "voucher_advice": ", aconselhamos sobre implementação em conformidade (arquitetura de dados, cadeias de fornecedores, trilha de auditoria),",
+        "voucher_roadmap": "e entregamos um roadmap priorizado em direção a",
+        "voucher_budget": " sob um orçamento fixo de {uren} horas de consultoria",
+        "voucher_concrete": ". Trabalho concreto: conversas, revisão de documentos, análise de lacunas e recomendações priorizadas — sem desenvolvimento de software.",
+        "partnership_intro": "Uma parceria entre",
+        "partnership_body": "e Regen Studio para trabalhos de pesquisa e consultoria dentro de",
+        "partnership_concrete": ". Trabalho concreto: análises, position papers, monitoramento regulatório e entregáveis conjuntos — vigência até",
+        "default_intro": "Um engajamento de consultoria entre",
+        "default_body": "e Regen Studio dentro de",
+        "default_term": ", vigência até",
+        "default_purpose": ". O Contrato de Processamento de Dados regula como dados pessoais são processados nesta colaboração."
+      }
+    },
+    "slide_dna": {
+      "nav_title": "Proteção de dados",
+      "kicker": "Nossa postura de base",
+      "title": "Proteção de dados está no nosso DNA",
+      "subtitle": "Veja como fazemos analytics do site: sem cookies, sem tracking pixels, sem identificadores cross-site. Contamos page visits via um salt rotativo diário — impossível seguir visitantes ao longo dos dias.",
+      "step1_lead": "Seu navegador envia",
+      "step1_emphasis": "page-path + event-type",
+      "step2_lead": "O servidor faz hash do seu IP com um",
+      "step2_emphasis": "salt rotativo diário",
+      "step3_lead": "Raw events apagados após 48 horas",
+      "step3_emphasis": "só agregados permanecem",
+      "note": "O salt rotaciona a cada 24 horas via uma função de banco de dados automatizada — tornando impossível identificar o mesmo visitante em dias diferentes. Esta arquitetura cai fora dos requisitos de consentimento de cookies da ePrivacy Art 5(3) e foi reconhecida pela CNIL como isenta de consentimento.",
+      "note_link": "Leia mais na nossa",
+      "note_link_text": "arquitetura de privacidade no GitHub →"
+    },
+    "slide_arch": {
+      "nav_title": "Arquitetura",
+      "kicker": "Sob o capô",
+      "title": "Como seus dados fluem pelos nossos sistemas",
+      "subtitle": "O fluxo principal vai do seu navegador → Supabase Edge em Frankfurt → criptografado na UE. A execução pelo operador (conversas, consultoria, trabalho com IA) segue por uma rota separada com consentimento explícito, conduzida pelo colaborador da Regen.",
+      "nodes": {
+        "user_title": "Você — seu navegador",
+        "user_sub": "magic link, sem cookies",
+        "cdn_title": "GitHub Pages CDN",
+        "cdn_sub": "estático, sem PII",
+        "edge_title": "Supabase Edge Function",
+        "edge_sub": "Frankfurt, UE",
+        "postgres_title": "Supabase Postgres",
+        "postgres_sub": "criptografado em repouso, chave própria",
+        "lettermint_title": "Lettermint",
+        "lettermint_sub": "NL — e-mail de saída",
+        "lettermint_purposes": "magic link, comprovante de assinatura, e-mail de projeto",
+        "lettermint_archive": "→ arquivado na Proton AG",
+        "proton_title": "Proton AG",
+        "proton_sub": "CH — backup de dossiê",
+        "proton_detail": "e2e criptografado; sem texto puro",
+        "exact_title": "Exact Online",
+        "exact_sub": "NL — metadados de fatura",
+        "exact_detail": "sem texto livre, sem conteúdo de projeto",
+        "device_title": "Colaborador Regen — dispositivo próprio",
+        "device_sub": "macOS, disco e2e criptografado",
+        "device_detail": "trabalho manual: conversas, consultoria, revisão de documentos",
+        "paste_title": "paste-alias-shield",
+        "paste_sub": "passo manual — nome → alias",
+        "ai_title": "Anthropic (Claude) (EUA)",
+        "ai_sub": "SCCs Módulos 2 + 3"
+      },
+      "device_label": "via export do Postgres e sync do Proton Drive →",
+      "ai_label": "do dispositivo próprio, manualmente & somente com consentimento explícito →",
+      "legend": {
+        "internal": "Infraestrutura própria Regen (Supabase Edge + Postgres, GitHub)",
+        "external": "Sub-operadores externos (Lettermint, Proton, Exact)",
+        "operator": "Execução pelo operador (dispositivo próprio)",
+        "gated": "Somente com consentimento explícito (rota de IA)"
+      }
+    },
+    "slide_shield": {
+      "nav_title": "alias",
+      "kicker": "Sua parte — com um alias",
+      "title": "Ajude-nos a protegê-lo contra a IA com um alias",
+      "subtitle": "Em toda documentação derivada de IA (transcrições, resumos, arquivos de trabalho), nos referimos a você por meio de um alias. Se algum dia houver um vazamento de dados num desses arquivos, seu nome real não estará vinculado a esta interação — uma camada extra de privacidade além da responsabilidade legal que, claro, permanece. Seu e-mail e nome público da empresa permanecem visíveis para a IA, pois a comunicação operacional não funcionaria de outra forma.",
+      "in_header": "O que você nos envia",
+      "out_header": "O que a IA vê",
+      "row_name": "Nome",
+      "row_email": "E-mail",
+      "row_phone": "Telefone",
+      "row_company": "Empresa",
+      "demo_phone_redacted": "[redigido]",
+      "arrow_label": "alias",
+      "caption": "Apenas seu nome é substituído por um alias. E-mail e dados públicos da empresa permanecem visíveis (sem eles a IA não consegue ajudar com perguntas práticas). Telefones são redigidos.",
+      "picker_title": "Como a IA deve se referir a você?",
+      "picker_intro": "É assim que seu nome aparecerá. Escolha um alias de animal aleatório que sorteamos para você, digite sua própria versão ou use seu nome real.",
+      "picker_input_aria": "Alias — edite livremente ou use o exemplo sugerido",
+      "picker_reroll": "outro",
+      "picker_reroll_aria": "Outro alias de exemplo",
+      "picker_use_real": "ou: use meu nome real internamente",
+      "picker_use_random": "ou: use um alias de animal aleatório"
+    },
+    "slide_subproc": {
+      "nav_title": "Sub-operadores",
+      "kicker": "Quem toca seus dados",
+      "title": "Nossos sub-operadores",
+      "subtitle": "A lista completa está no Anexo A do contrato abaixo. Aqui uma linha por sub-operador — o que fazem e se estão em escopo para este Engajamento.",
+      "rows": {
+        "supabase_name": "Supabase",
+        "supabase_purpose": "Banco de dados + Edge Functions — onde seus dados moram, criptografados em repouso",
+        "anthropic_name": "Anthropic (Claude)",
+        "anthropic_purpose": "Inferência LLM — somente onde você consente, com paste-alias-shield à frente",
+        "lettermint_name": "Lettermint",
+        "lettermint_purpose": "Entrega de e-mail (este convite, magic links, correspondência de projeto)",
+        "proton_name": "Proton",
+        "proton_purpose": "Hospedagem de e-mail + armazenamento de dossiê — criptografia de ponta-a-ponta",
+        "github_name": "GitHub Pages",
+        "github_purpose": "Hospedagem estática de regenstudio.world — nenhum dado seu, apenas páginas públicas",
+        "exact_name": "Exact Online",
+        "exact_purpose": "Contabilidade — apenas metadados de linha de fatura (nome + endereço de cobrança)",
+        "ctf_name": "CircularTech Advisory",
+        "ctf_purpose": "Cooperativa de consultoria — não engajada para este Engajamento"
+      }
+    },
+    "slide_form": {
+      "nav_title": "Suas escolhas",
+      "kicker": "Vamos registrar suas escolhas",
+      "title": "Quem assina — e o que a IA pode fazer?",
+      "subtitle": "Duas coisas antes de irmos para o texto legal: seus dados de contato como signatário, e se a IA pode processar seus dados pessoais (a escolha do alias estava no slide anterior).",
+      "label_name": "Nome completo",
+      "placeholder_name": "Nome Sobrenome",
+      "label_role": "Cargo",
+      "placeholder_role": "ex.: Diretor, Chefe de Inovação, Cofundador",
+      "label_email": "E-mail",
+      "placeholder_email": "nome@empresa.com.br",
+      "email_warning": "Insira aqui o e-mail no qual recebeu o link, caso contrário não funcionará.",
+      "label_phone": "Telefone",
+      "phone_optional": "— opcional",
+      "placeholder_phone": "+55 …",
+      "ai_label": "A IA pode processar seus dados pessoais?",
+      "ai_help": "— alterável via consent-dashboard",
+      "ai_no_title": "Prefiro que não",
+      "ai_no_desc": "A IA nunca vê seus dados pessoais; consultoria continua possível, mas o trabalho é feito manualmente.",
+      "ai_yes_title": "Sim, com shield",
+      "ai_yes_desc": "Consultoria mais rápida; seus dados passam primeiro pelo paste-alias-shield, que substitui identificadores diretos.",
+      "footnote": "Ambas as escolhas (alias + consentimento de IA) podem ser alteradas a qualquer momento via o consent-dashboard da Regen Studio. Nenhuma revisão de DPA necessária.",
+      "cta": "Para o Contrato de Processamento de Dados",
+      "validation": "Preencha todos os campos obrigatórios para continuar."
+    }
+  },
+  "contract": {
+    "page_title": "Contrato de Processamento de Dados · Regen Studio",
+    "banner": "<strong>✅ Etapa 2 de 2 — Assinar (produção)</strong> &nbsp;·&nbsp; Seu clique em \"Assinar\" abaixo é <strong>juridicamente vinculante</strong> conforme eIDAS Art 25(1) — equivalente a uma assinatura manuscrita.",
+    "nav_back": "← Editar dados",
+    "cover": {
+      "title_fallback": "Contrato de Processamento de Dados",
+      "subtitle_fallback": "conforme Artigo 28 RGPD · Regulamento (UE) 2016/679",
+      "controller_label": "Controlador",
+      "processor_label": "Operador",
+      "engagement_label": "Engajamento",
+      "einddatum_label": "Data final do projeto",
+      "strip": "Assinado bilateralmente com Simple Electronic Signatures · eIDAS Art 25(1)"
+    },
+    "screen_subtitle_prefix": "entre",
+    "screen_subtitle_and": "e",
+    "download": {
+      "title": "📄 Baixar PDF do rascunho",
+      "desc": "Para leitura offline ou compartilhamento interno — não assinado, nenhum e-mail enviado. Uma marca d'água \"RASCUNHO\" é adicionada automaticamente.",
+      "button": "Baixar rascunho"
+    },
+    "missing_data": "<strong>Dados não encontrados.</strong> Parece que você chegou diretamente a esta página sem concluir a etapa 1. Vá para <a href=\"dpa-intake.html\">a página de preenchimento</a> primeiro para informar seus dados e preferências.",
+    "summary": {
+      "project": "Projeto",
+      "wp_label": "Pacotes de trabalho",
+      "wp_value": "Por Contrato de Engajamento / Proposta (ver Schedule § B.2)",
+      "einddatum_label": "Data final do projeto",
+      "bewaar_label": "Retenção",
+      "regulatory_label": "Marco regulatório"
+    },
+    "canonical_loading": "O Contrato está sendo carregado a partir do texto canônico…",
+    "signatures": {
+      "heading": "Assinaturas",
+      "processor_role": "Operador",
+      "controller_role": "Controlador",
+      "director_label": "Diretor",
+      "on_behalf_of": "em nome de",
+      "attestation": "Confirmação visual · as âncoras jurídicas são o hash SHA-256 + hash do token + signed_at + hash IP/UA armazenados no servidor na linha <code>dpa_signatures</code> do Operador. Assinado bilateralmente com Simple Electronic Signatures conforme eIDAS Art 25(1) · Regulamento (UE) 910/2014. Momento da assinatura (registrado no servidor): <span id=\"dpa-sig-signed-at\">—</span>."
+    },
+    "sign": {
+      "heading": "Assinatura",
+      "intro_prefix": "Você está assinando como",
+      "intro_namens": "em nome de",
+      "confirm_text": "Confirmo que li o Contrato acima, tenho autoridade para vincular minha organização a ele, e que meu clique em Assinar tem o mesmo valor legal de uma assinatura manuscrita (eIDAS Art 25(1)).",
+      "sigpad_label": "Assinatura",
+      "sigpad_optional": "(opcional)",
+      "sigpad_desc": "Uma confirmação visual que será incluída no PDF. A âncora jurídica continua sendo o hash SHA-256 + hash do token + signed_at no servidor — imagem não é necessária.",
+      "sigpad_clear": "Limpar",
+      "button": "✍️ Assinar"
+    },
+    "after_sign": {
+      "label": "💡 O que acontece após a assinatura?",
+      "step1": "Assinatura SES gerada conforme eIDAS Art 25(1);",
+      "step2": "Contrato completo registrado como snapshot HTML (a âncora de integridade jurídica — um PDF pode ser gerado no cliente, sob demanda, por qualquer Parte a partir do mesmo snapshot);",
+      "step3": "SHA-256 sobre o snapshot registrado em <code>dpa_signatures</code> junto com hash do token, hash do IP, hash do UA, timestamp;",
+      "step4": "<strong>Link de download tokenizado para o snapshot assinado é enviado diretamente para seu e-mail</strong>, com link de recibo;",
+      "step5": "Linhas relevantes em <code>consent_records</code> criadas; seu alias (se houver) registrado.",
+      "manage": "Gerencie seu consentimento via <code>regenstudio.world/manage-consent</code>."
+    },
+    "modal": {
+      "test_heading": "✅ Assinatura de teste registrada",
+      "test_body": "Em produção, o payload JSON abaixo seria recebido pela Edge Function <code>submit-dpa-signature</code> após a verificação do token magic-link, e um link de download tokenizado para o snapshot HTML assinado seria enviado imediatamente para o e-mail informado, com link de recibo. Neste teste, nenhum e-mail é enviado, nenhuma linha de banco de dados é criada, nenhum snapshot é armazenado.",
+      "close": "Fechar"
+    },
+    "errors": {
+      "canonical_unavailable": "<strong>Texto canônico não disponível.</strong><br>A resposta de verify-token não continha canonical_md. Abra o link de convite novamente ou entre em contato com info@regenstudio.world. Não assine até que isto seja resolvido.",
+      "canonical_parse_failed": "<strong>O texto canônico não pôde ser analisado.</strong>",
+      "contact_support": "Entre em contato com info@regenstudio.world. Não assine até que isto seja resolvido.",
+      "session_missing": "<strong>Dados da sessão ausentes.</strong> Possíveis causas: você fechou e reabriu a aba do navegador; está usando uma janela privada que limpa o sessionStorage; ou o link de convite foi aberto diretamente sem concluir a etapa 1.<br><br>Volte ao e-mail de convite e abra o link novamente — comece pela página de preenchimento."
+    },
+    "post_sign": {
+      "heading": "✅ Contrato de Processamento de Dados assinado",
+      "body_prefix": "Sua assinatura foi registrada. Enviamos um link de download para o DPA assinado para",
+      "body_suffix": ".",
+      "expires": "<strong>Importante:</strong> o link de download é válido por 30 dias a partir de agora, mas expira 30 minutos após a primeira vez que você o abrir — salve o arquivo imediatamente após o download.",
+      "signed_at_label": "Momento da assinatura",
+      "sha_label": "SHA-256 do snapshot assinado",
+      "request_id_label": "ID da requisição",
+      "not_received": "Não recebeu em 5 minutos? Verifique sua pasta de spam ou envie um e-mail para",
+      "not_received_subject": "DPA assinado não recebido",
+      "close": "Fechar",
+      "failed": "Falha na assinatura."
+    }
+  }
+}

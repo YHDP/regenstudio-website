@@ -6,8 +6,8 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="referrer" content="no-referrer">
   <title>DPA Portal · Regen Studio</title>
-  <link rel="icon" href="Images/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/png" href="Images/favicon.png">
+  <link rel="stylesheet" href="assets/fonts/inter.css">
   <style>
     :root {
       --emerald:#008545; --emerald-dark:#006d38;
@@ -465,6 +465,15 @@
               sessionStorage.setItem("dpa_intake_side_letter_md", body.side_letter_md);
             } else {
               sessionStorage.removeItem("dpa_intake_side_letter_md");
+            }
+            // Phase H-bis cover canonicalisation — server-parsed cover metadata
+            // (from canonical .md YAML frontmatter). null for legacy 4-fragment
+            // voucher engagements; dpa-contract.html falls back to parsing
+            // canonical_md frontmatter directly when this is absent.
+            if (body.cover_metadata) {
+              sessionStorage.setItem("dpa_intake_cover_metadata", JSON.stringify(body.cover_metadata));
+            } else {
+              sessionStorage.removeItem("dpa_intake_cover_metadata");
             }
           } catch (e) {
             console.error("sessionStorage write failed:", e);

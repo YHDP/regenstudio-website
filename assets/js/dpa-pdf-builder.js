@@ -105,25 +105,36 @@
     const repName = safe(controller.repName) || '—';
     const repRole = safe(controller.repRole) || '—';
 
+    // Phase H-bis cover canonicalisation — when dpa-contract.html parsed
+    // YAML frontmatter on the canonical .md, it published the (interpolated)
+    // cover metadata on window.__dpaCoverMetadata. The PDF renderer reads
+    // cover.metadata to drive title / subtitle / parties / signature box,
+    // matching the HTML cover. When metadata is null (legacy 4-fragment
+    // voucher engagements pre-frontmatter migration), the renderer falls
+    // back to the hardcoded Dutch Verwerkersovereenkomst layout below.
+    const coverMetadata = root.__dpaCoverMetadata || null;
+
     const cover = {
+      // Per-engagement scalar fields — used for tagline + voucher-cover
+      // table values. Always populated (legacy + variant covers both need
+      // these).
       legalName: legalName,
       label: engagementLabel,
-      // Tagline: ENGAGEMENT-LABEL uppercased — e.g. "SEEPJE — KVW3-DPP-VOUCHER KVW3-00568"
       taglineLabel: engagementLabel,
-      // Applicable law — Dutch DPA standard. Override via cachedProfile.applicableLaw if needed.
       applicableLaw: safe(cachedProfile.applicableLaw || cachedProfile.applicable_law)
+        || (coverMetadata && coverMetadata.applicable_law)
         || 'Nederlands recht; AVG (Verordening (EU) 2016/679) — Verwerker-rol onder Artikel 28',
-      // Aard van verwerking — short engagement-nature description
       aardVanVerwerking: safe(cachedProfile.aardVanVerwerking || cachedProfile.aard_van_verwerking || cachedProfile.engagement_nature) || '—',
       projectEinddatum: fmtDate(cachedProfile.projectEinddatum || cachedProfile.project_einddatum),
       bewaarplichtEinddatum: fmtDate(cachedProfile.bewaarplichtEinddatum || cachedProfile.bewaarplicht_einddatum),
       regulatoryLabel: safe(cachedProfile.regulatoryLabel || cachedProfile.regulatory_label) || '',
-      // Bottom-of-cover signature box fields
       controllerSignerName: repName,
       controllerSignerRole: repRole,
       processorSignerName: 'Yvo Hunink',
       processorSignerRole: 'Directeur',
       signedAtDisplay: fmtSignedAt(signature.signedAt),
+      // Cover-spec metadata (variant + structural cover content). null = legacy.
+      metadata: coverMetadata,
     };
 
     const signatures = {
@@ -138,11 +149,18 @@
       signedAt: fmtSignedAt(signature.signedAt),
     };
 
+    // Hero asset: cover metadata's hero_asset wins when present (variant
+    // covers point at scope-cover-hero-c2 etc.); legacy voucher cover keeps
+    // the watercolour-sails Dutch DPA hero.
+    const heroSrc = (coverMetadata && coverMetadata.hero_asset)
+      ? coverMetadata.hero_asset
+      : 'Images/dpa-cover-hero-c11.svg';
+
     return await root.RegenPDF.render(ast, {
       cover: cover,
       signatures: signatures,
       concept: concept,
-      coverHeroSrc: 'Images/dpa-cover-hero-c11.svg',
+      coverHeroSrc: heroSrc,
       coverLogoSrc: 'Images/logo-icon.svg',
     });
   }

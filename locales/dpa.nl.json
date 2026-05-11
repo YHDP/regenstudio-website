@@ -1,0 +1,291 @@
+{
+  "_meta": {
+    "language": "nl",
+    "scope": "DPA signing flow (dpa-welcome.html, dpa-contract.html, dpa-signed/, dpa-intake.html)",
+    "purpose": "Page-scoped locale dict consumed by assets/js/dpa-i18n.js. Loaded after dpa-verify-token returns engagement_profile.default_language.",
+    "convention": "Keys are dot-notation; namespaces by surface (welcome.*, contract.*, signed.*, intake.*, errors.*). NL is the regression baseline; EN/PT fall back to NL via dpaI18n's fallback chain."
+  },
+  "welcome": {
+    "page_title": "Welkom — Verwerkersovereenkomst — Regen Studio",
+    "loading": "Even uw uitnodiging valideren…",
+    "error": {
+      "title": "Uitnodiging niet verifieerbaar",
+      "help_prefix": "Mail",
+      "help_subject": "DPA-uitnodiging opnieuw",
+      "help_suffix": "voor een nieuwe link.",
+      "invalid": "<strong>Uitnodiging niet geldig.</strong><br>De link in uw uitnodigings-mail is incompleet of beschadigd.",
+      "unverifiable": "<strong>Uitnodiging niet verifieerbaar.</strong><br>Mogelijke oorzaken: link is verlopen (7 dagen geldig), link is al gebruikt, of de URL is incompleet.",
+      "connection": "<strong>Verbindingsstoring.</strong><br>Probeer opnieuw of mail Regen Studio.",
+      "storage_blocked": "Uw browser blokkeert opslag. Schakel cookies/storage tijdelijk in voor regenstudio.world en probeer opnieuw."
+    },
+    "nav": {
+      "next_aria": "Verder naar volgende slide",
+      "begin_aria": "Klik op de pijl om te beginnen",
+      "begin_text": "klik op de pijl om te beginnen",
+      "slide_nav_aria": "Slide-navigatie"
+    },
+    "slide_welcome": {
+      "nav_title": "Welkom",
+      "greeting_prefix": "Welkom",
+      "default_name": "terug",
+      "intro": "Voor we de afspraken juridisch vastleggen, willen we ze rustig met je doorlopen — open, transparant en zonder verrassingen."
+    },
+    "slide_who": {
+      "nav_title": "Wie zijn we",
+      "kicker": "Wie staat er tegenover je",
+      "title": "Eén persoon. Eén firma.",
+      "subtitle": "Regen Studio is een eenpersoons-advisory voor Digitaal Productpaspoort. Je werkt rechtstreeks met de oprichter — geen lagen tussen je en de uitvoering.",
+      "tagline": "Mens, Stad en Natuur.",
+      "rows": {
+        "entity": "Rechtspersoon",
+        "director": "Bestuurder (DGA)",
+        "address": "Vestigingsadres",
+        "kvk": "KvK-nummer",
+        "vat": "BTW-nummer",
+        "contact": "Contact"
+      }
+    },
+    "slide_engagement": {
+      "nav_title": "Wat doen we",
+      "kicker": "Onze afspraak",
+      "title": "Wat we samen gaan doen",
+      "subtitle": "De Verwerkersovereenkomst die we straks tekenen ondersteunt deze concrete Engagement.",
+      "rows": {
+        "project": "Project",
+        "parties": "Tussen",
+        "master": "Onder",
+        "regulatory": "Regulatoir kader",
+        "einddatum": "Project-einddatum",
+        "bewaar": "Bewaarplicht t/m"
+      },
+      "parties_template": "{org} (Verantwoordelijke) en Regen Studio B.V. (Verwerker)",
+      "org_fallback": "jouw organisatie",
+      "regulatory_fallback": "het toepasselijke regulatoire kader",
+      "gdpr_retention_fallback": "conform GDPR-bewaarplicht",
+      "narrative": {
+        "voucher_intro": "Een DPP-readiness traject voor",
+        "voucher_subsidie": "(voucher t.w.v. €{amount}k via de KvW3 / EFRO-regeling)",
+        "voucher_body": ". Samen brengen we je product-portfolio in kaart, identificeren de data-gaps richting",
+        "voucher_advice": ", adviseren over conforme implementatie (data-architectuur, leveranciers-ketens, audit-trail),",
+        "voucher_roadmap": "en leveren een geprioriteerde roadmap richting",
+        "voucher_budget": " onder een vast budget van {uren} adviesuren",
+        "voucher_concrete": ". Concreet werk: gesprekken, document-review, gap-analyse, en geprioriteerde aanbevelingen — geen software-ontwikkeling.",
+        "partnership_intro": "Een samenwerkingsverband tussen",
+        "partnership_body": "en Regen Studio voor onderzoeks- en advisory-werk binnen",
+        "partnership_concrete": ". Concreet werk: analyses, position papers, regulatoire-monitoring, en gezamenlijke deliverables — looptijd t/m",
+        "default_intro": "Een advisory-engagement tussen",
+        "default_body": "en Regen Studio binnen",
+        "default_term": ", looptijd t/m",
+        "default_purpose": ". De Verwerkersovereenkomst regelt hoe persoonsgegevens binnen deze samenwerking worden verwerkt."
+      }
+    },
+    "slide_dna": {
+      "nav_title": "Data bescherming",
+      "kicker": "Onze grondhouding",
+      "title": "Data bescherming zit in ons DNA",
+      "subtitle": "Kijk maar naar hoe we website-analytics doen: geen cookies, geen tracking pixels, geen cross-site identifiers. We tellen page visits via een dagelijks-roterende salt — onmogelijk om bezoekers over dagen heen te volgen.",
+      "step1_lead": "Je browser stuurt",
+      "step1_emphasis": "page-path + event-type",
+      "step2_lead": "Server hashed je IP met een",
+      "step2_emphasis": "dagelijks-roterende salt",
+      "step3_lead": "Raw events na 48 uur weg",
+      "step3_emphasis": "alleen aggregaten blijven",
+      "note": "De salt rotereert elke 24 uur via een geautomatiseerde database-functie — daardoor is het onmogelijk om dezelfde bezoeker te identificeren over verschillende dagen heen. Deze architectuur valt buiten de cookie-toestemming-vereisten van ePrivacy Art 5(3) en is door CNIL erkend als consent-vrij.",
+      "note_link": "Lees mee in onze",
+      "note_link_text": "privacy-architectuur op GitHub →"
+    },
+    "slide_arch": {
+      "nav_title": "Architectuur",
+      "kicker": "Onder de motorkap",
+      "title": "Hoe je data door onze systemen vloeit",
+      "subtitle": "De hoofd-flow loopt over jouw browser → Supabase Edge in Frankfurt → encrypted in EU. Operator-uitvoering (gesprekken, advies, AI-werk) loopt via een aparte, expliciet-toestemmings-route door de Regen-medewerker.",
+      "nodes": {
+        "user_title": "Jij — je browser",
+        "user_sub": "magic-link, geen cookies",
+        "cdn_title": "GitHub Pages CDN",
+        "cdn_sub": "statisch, geen PII",
+        "edge_title": "Supabase Edge Function",
+        "edge_sub": "Frankfurt, EU",
+        "postgres_title": "Supabase Postgres",
+        "postgres_sub": "encrypted at rest, eigen sleutel",
+        "lettermint_title": "Lettermint",
+        "lettermint_sub": "NL — outbound mail",
+        "lettermint_purposes": "magic-link, signed-doc-receipt, project-mail",
+        "lettermint_archive": "→ gearchiveerd in Proton AG",
+        "proton_title": "Proton AG",
+        "proton_sub": "CH — werkdossier-backup",
+        "proton_detail": "e2e-encrypted; geen plain-text",
+        "exact_title": "Exact Online",
+        "exact_sub": "NL — factuur-metadata",
+        "exact_detail": "geen vrije tekst, geen project-content",
+        "device_title": "Regen-medewerker — eigen device",
+        "device_sub": "macOS, e2e-encrypted disk",
+        "device_detail": "handmatig werk: gesprekken, advies, document-review",
+        "paste_title": "paste-alias-shield",
+        "paste_sub": "handmatige stap — naam → alias",
+        "ai_title": "Anthropic (Claude) (US)",
+        "ai_sub": "SCC's Module 2 + 3"
+      },
+      "device_label": "via Postgres-export en Proton Drive sync →",
+      "ai_label": "vanuit eigen device, handmatig & alleen met expliciete toestemming →",
+      "legend": {
+        "internal": "Eigen Regen-infrastructuur (Supabase Edge + Postgres, GitHub)",
+        "external": "Externe sub-processors (Lettermint, Proton, Exact)",
+        "operator": "Operator-uitvoering (eigen device)",
+        "gated": "Alleen met expliciete toestemming (AI-pad)"
+      }
+    },
+    "slide_shield": {
+      "nav_title": "paste-alias-shield",
+      "kicker": "Jouw rol — met een alias",
+      "title": "Help ons om jou te beschermen tegen AI met een alias",
+      "subtitle": "In alle AI-afgeleide documentatie (transcripten, samenvattingen, werkbestanden) verwijzen we naar jou via een alias. Mocht er ooit een data-lek zijn in zo'n bestand, dan is jouw echte naam niet aan deze interactie te koppelen — een laag extra privacy boven op de wettelijke aansprakelijkheid die uiteraard blijft staan. Je e-mailadres en publieke bedrijfsnaam blijven wél zichtbaar voor AI, omdat operationele communicatie anders niet kan werken.",
+      "in_header": "Wat je ons stuurt",
+      "out_header": "Wat AI ziet",
+      "row_name": "Naam",
+      "row_email": "E-mail",
+      "row_phone": "Telefoon",
+      "row_company": "Bedrijf",
+      "demo_phone_redacted": "[redacted]",
+      "arrow_label": "alias",
+      "caption": "Alleen je naam wordt door een alias vervangen. E-mail en publieke bedrijfsgegevens blijven zichtbaar (zonder die kan AI niet helpen met praktische vragen). Telefoon wordt geredacteerd.",
+      "picker_title": "Hoe wil je dat AI naar jou verwijst?",
+      "picker_intro": "Dit is hoe je naam erin gaat. Pak een willekeurig dier-alias dat we voor je hebben gegooid, type je eigen versie, of gebruik je echte naam.",
+      "picker_input_aria": "Alias — bewerk vrij of gebruik de gegooide voorbeeld",
+      "picker_reroll": "andere",
+      "picker_reroll_aria": "Andere voorbeeld-alias",
+      "picker_use_real": "of: gebruik mijn echte naam intern",
+      "picker_use_random": "of: gebruik een willekeurig dier-alias"
+    },
+    "slide_subproc": {
+      "nav_title": "Sub-processors",
+      "kicker": "Wie raakt jouw data aan",
+      "title": "Onze sub-processors",
+      "subtitle": "Volledige lijst staat in Annex A van de overeenkomst hieronder. Hier per sub-processor één regel — wat ze doen, en of ze in scope zijn voor deze Engagement.",
+      "rows": {
+        "supabase_name": "Supabase",
+        "supabase_purpose": "Database + Edge Functions — hier woont je data, encrypted at rest",
+        "anthropic_name": "Anthropic (Claude)",
+        "anthropic_purpose": "LLM-inferentie — alleen waar jij toestemt, met paste-alias-shield ervoor",
+        "lettermint_name": "Lettermint",
+        "lettermint_purpose": "E-mail-bezorging (deze uitnodiging, magic-links, project-correspondentie)",
+        "proton_name": "Proton",
+        "proton_purpose": "E-mail-hosting + werkdossier-opslag — end-to-end encrypted",
+        "github_name": "GitHub Pages",
+        "github_purpose": "Statische hosting van regenstudio.world — geen jouw data, alleen publieke pagina's",
+        "exact_name": "Exact Online",
+        "exact_purpose": "Boekhouding — alleen factuur-regel-metadata (naam + factuuradres)",
+        "ctf_name": "CircularTech Advisory",
+        "ctf_purpose": "Advisory-coöperatie — niet ingeschakeld voor jouw Engagement"
+      }
+    },
+    "slide_form": {
+      "nav_title": "Jouw keuzes",
+      "kicker": "Even jouw keuzes vastleggen",
+      "title": "Wie tekent — en wat mag AI doen?",
+      "subtitle": "Twee dingen voor we naar de juridische tekst gaan: jouw contactgegevens als ondertekenaar, en of AI je persoonlijke data mag verwerken (alias-keuze stond op de vorige slide).",
+      "label_name": "Volledige naam",
+      "placeholder_name": "Voornaam Achternaam",
+      "label_role": "Functie",
+      "placeholder_role": "bv. Directeur, Hoofd Innovatie, Mede-oprichter",
+      "label_email": "E-mailadres",
+      "placeholder_email": "naam@bedrijf.nl",
+      "email_warning": "Vul hier het e-mailadres in waarop je de link hebt ontvangen, anders werkt het niet.",
+      "label_phone": "Telefoonnummer",
+      "phone_optional": "— optioneel",
+      "placeholder_phone": "+31 6 …",
+      "ai_label": "Mag AI jouw persoonlijke data verwerken?",
+      "ai_help": "— wijzigbaar via consent-dashboard",
+      "ai_no_title": "Liever niet",
+      "ai_no_desc": "AI ziet jouw persoonlijke gegevens nooit; advies blijft mogelijk maar werk gaat handmatig.",
+      "ai_yes_title": "Ja, met shield",
+      "ai_yes_desc": "Sneller advies; jouw data passeert eerst de paste-alias-shield die directe identifiers vervangt.",
+      "footnote": "Beide keuzes (alias + AI-toestemming) kunnen later op elk moment worden gewijzigd via de consent-dashboard van Regen Studio. Geen DPA-revisie nodig.",
+      "cta": "Naar de Verwerkersovereenkomst",
+      "validation": "Vul alle verplichte velden in om door te kunnen."
+    }
+  },
+  "contract": {
+    "page_title": "Verwerkersovereenkomst · Regen Studio",
+    "banner": "<strong>✅ Stap 2 van 2 — Onderteken (productie)</strong> &nbsp;·&nbsp; Uw klik op \"Onderteken\" hieronder is <strong>juridisch bindend</strong> onder eIDAS Art 25(1) — gelijkwaardig aan een handgeschreven handtekening.",
+    "nav_back": "← Gegevens aanpassen",
+    "cover": {
+      "title_fallback": "Verwerkersovereenkomst",
+      "subtitle_fallback": "onder Artikel 28 AVG · Verordening (EU) 2016/679",
+      "controller_label": "Verantwoordelijke",
+      "processor_label": "Verwerker",
+      "engagement_label": "Engagement",
+      "einddatum_label": "Project-einddatum",
+      "strip": "Bilateraal ondertekend met Simple Electronic Signatures · eIDAS Art 25(1)"
+    },
+    "screen_subtitle_prefix": "tussen",
+    "screen_subtitle_and": "en",
+    "download": {
+      "title": "📄 Download concept-PDF",
+      "desc": "Voor offline lezen of intern delen — niet ondertekend, geen e-mail verstuurd. Watermerk \"CONCEPT\" wordt automatisch toegevoegd.",
+      "button": "Download concept"
+    },
+    "missing_data": "<strong>Geen gegevens gevonden.</strong> Het lijkt erop dat u rechtstreeks op deze pagina bent geland zonder eerst stap 1 te doorlopen. Ga eerst naar <a href=\"dpa-intake.html\">de invul-pagina</a> om uw gegevens en voorkeuren in te vullen.",
+    "summary": {
+      "project": "Project",
+      "wp_label": "Werkpakketten",
+      "wp_value": "Per Engagement-contract / Offerte (zie Schedule § B.2)",
+      "einddatum_label": "Project-einddatum",
+      "bewaar_label": "Bewaarplicht",
+      "regulatory_label": "Regulatoir kader"
+    },
+    "canonical_loading": "Verwerkersovereenkomst wordt geladen vanuit canonical-NL.md…",
+    "signatures": {
+      "heading": "Handtekeningen",
+      "processor_role": "Verwerker",
+      "controller_role": "Verantwoordelijke",
+      "director_label": "Directeur",
+      "on_behalf_of": "namens",
+      "attestation": "Visuele bevestiging · de juridische ankers zijn de server-side opgeslagen SHA-256-hash + token-hash + signed_at + IP/UA-hash op de <code>dpa_signatures</code> rij van de Verwerker. Bilateraal ondertekend met Simple Electronic Signatures onder eIDAS Art 25(1) · Verordening (EU) 910/2014. Tijdstip ondertekening (server-vastgelegd): <span id=\"dpa-sig-signed-at\">—</span>."
+    },
+    "sign": {
+      "heading": "Ondertekening",
+      "intro_prefix": "U ondertekent als",
+      "intro_namens": "namens",
+      "confirm_text": "Ik bevestig dat ik bovenstaande Overeenkomst heb gelezen, bevoegd ben om mijn organisatie hieraan te binden, en dat mijn klik op Onderteken dezelfde juridische waarde heeft als een handgeschreven handtekening (eIDAS Art 25(1)).",
+      "sigpad_label": "Handtekening",
+      "sigpad_optional": "(optioneel)",
+      "sigpad_desc": "Een visuele bevestiging die in de PDF wordt opgenomen. Het juridische anker blijft de SHA-256-hash + token-hash + server-side signed_at — geen afbeelding nodig.",
+      "sigpad_clear": "Wis",
+      "button": "✍️ Onderteken"
+    },
+    "after_sign": {
+      "label": "💡 Wat gebeurt er na ondertekening?",
+      "step1": "SES-handtekening gegenereerd onder Art 25(1) eIDAS;",
+      "step2": "Volledige Overeenkomst vastgelegd als HTML-snapshot (de juridische integriteits-anker — een PDF kan op verzoek door beide Partijen client-side worden gegenereerd vanuit dezelfde snapshot);",
+      "step3": "SHA-256 over de snapshot vastgelegd in <code>dpa_signatures</code> samen met token-hash, IP-hash, UA-hash, timestamp;",
+      "step4": "<strong>Tokenised download-link naar de getekende snapshot wordt direct per e-mail naar uw e-mailadres verstuurd</strong>, met receipt-link;",
+      "step5": "Relevante <code>consent_records</code>-rijen aangemaakt; uw eventuele alias-naam geregistreerd.",
+      "manage": "Beheer uw toestemming via <code>regenstudio.world/manage-consent</code>."
+    },
+    "modal": {
+      "test_heading": "✅ Test-handtekening geregistreerd",
+      "test_body": "In productie zou onderstaande JSON-payload door de Edge Function <code>submit-dpa-signature</code> worden ontvangen na verificatie van de magic-link-token, en zou direct daarna een tokenised download-link naar de getekende HTML-snapshot per e-mail naar het ingevulde e-mailadres worden verstuurd, met receipt-link. In deze test wordt geen e-mail verstuurd, geen database-rij aangemaakt, geen snapshot opgeslagen.",
+      "close": "Sluit"
+    },
+    "errors": {
+      "canonical_unavailable": "<strong>Canonical text niet beschikbaar.</strong><br>Verify-token-respons bevatte geen canonical_md. Open de uitnodigings-link opnieuw, of neem contact op met info@regenstudio.world. Onderteken niet voordat dit is opgelost.",
+      "canonical_parse_failed": "<strong>Canonical text kon niet worden geparsed.</strong>",
+      "contact_support": "Neem contact op met info@regenstudio.world. Onderteken niet voordat dit is opgelost.",
+      "session_missing": "<strong>Sessie-gegevens ontbreken.</strong> Mogelijke oorzaken: u heeft de browser-tab gesloten en opnieuw geopend; u gebruikt een privé-venster waarin sessionStorage wordt gewist; of de uitnodigings-link is direct geopend zonder eerst stap 1 te doorlopen.<br><br>Ga terug naar de uitnodigings-mail en open de link opnieuw — start vanaf de intake-pagina."
+    },
+    "post_sign": {
+      "heading": "✅ Verwerkersovereenkomst getekend",
+      "body_prefix": "Uw handtekening is geregistreerd. We hebben een download-link voor de getekende DPA naar",
+      "body_suffix": "gestuurd.",
+      "expires": "<strong>Belangrijk:</strong> de download-link is 30 dagen geldig vanaf nu, maar verloopt 30 minuten na de eerste keer dat u hem opent — sla het bestand direct op nadat u het downloadt.",
+      "signed_at_label": "Tijdstip ondertekening",
+      "sha_label": "SHA-256 van de getekende snapshot",
+      "request_id_label": "Request-ID",
+      "not_received": "Niet ontvangen binnen 5 minuten? Controleer uw spam-map, of mail",
+      "not_received_subject": "Getekende DPA niet ontvangen",
+      "close": "Sluiten",
+      "failed": "Ondertekening mislukt."
+    }
+  }
+}

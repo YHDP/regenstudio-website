@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" data-i18n-doc-title="welcome.page_title">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <title>Welkom — Verwerkersovereenkomst — Regen Studio</title>
 <link rel="icon" href="Images/logo-icon.svg" type="image/svg+xml">
+<script src="assets/js/dpa-i18n.js"></script>
 
 <!-- Self-hosted fonts (Inter body, KoHo cover, Lora accent already loaded by other pages — re-include here) -->
 <link rel="stylesheet" href="assets/fonts/inter.css">
@@ -298,6 +299,15 @@
   .arch-node--internal  { border: 1px solid #008545; }
   .arch-node--external  { border: 1px dashed #009BBB; }
   .arch-node--gated     { border: 1px solid #93093F; }
+  .arch-node--operator  { border: 1.5px solid #7a5814; background: rgba(255, 169, 45, 0.05); }
+  .arch-archive-edge {
+    font-size: 10px; color: #009BBB; font-style: italic; margin-top: 3px;
+    display: block;
+  }
+  .arch-row--operator {
+    display: flex; gap: 10px; justify-content: flex-end;
+    align-items: center; margin-top: 4px;
+  }
 
   .arch-arrow {
     color: #6b7280; font-size: 16px; text-align: center;
@@ -322,15 +332,12 @@
   .slide--architecture.is-visible .is-proton    { opacity: 1; transform: none; transition-delay: 0.75s; }
   .slide--architecture.is-visible .is-exact     { opacity: 1; transform: none; transition-delay: 0.90s; }
   .slide--architecture.is-visible .arch-row--branches .arch-arrow { opacity: 1; transition-delay: 0.60s; }
-  .slide--architecture.is-visible .is-paste     { opacity: 1; transform: none; transition-delay: 1.05s; }
-  .slide--architecture.is-visible .is-ai        { opacity: 1; transform: none; transition-delay: 1.20s; }
+  .slide--architecture.is-visible .is-device    { opacity: 1; transform: none; transition-delay: 1.00s; }
+  .slide--architecture.is-visible .is-paste     { opacity: 1; transform: none; transition-delay: 1.15s; }
+  .slide--architecture.is-visible .is-ai        { opacity: 1; transform: none; transition-delay: 1.30s; }
   .slide--architecture.is-visible .arch-row--ai .arch-arrow,
-  .slide--architecture.is-visible .arch-branch-label { opacity: 1; transition-delay: 1.00s; }
-  .slide--architecture.is-visible .arch-mini-step { opacity: 1; transform: none; }
-  .slide--architecture.is-visible .arch-mini-step:nth-of-type(1) { transition-delay: 1.35s; }
-  .slide--architecture.is-visible .arch-mini-step:nth-of-type(2) { transition-delay: 1.50s; }
-  .slide--architecture.is-visible .arch-mini-step:nth-of-type(3) { transition-delay: 1.65s; }
-  .slide--architecture.is-visible .arch-mini-arrow { opacity: 1; transition-delay: 1.45s; }
+  .slide--architecture.is-visible .arch-row--operator .arch-arrow,
+  .slide--architecture.is-visible .arch-branch-label { opacity: 1; transition-delay: 1.10s; }
 
   .arch-divider { height: 1px; background: var(--border); margin: 18px 0 10px; opacity: 0.6; }
   .arch-mini-flow-label {
@@ -363,12 +370,13 @@
   .arch-legend .dot--internal  { background: transparent; border: 1.5px solid #008545; }
   .arch-legend .dot--external  { background: transparent; border: 1.5px dashed #009BBB; }
   .arch-legend .dot--gated     { background: transparent; border: 1.5px solid #93093F; }
+  .arch-legend .dot--operator  { background: transparent; border: 1.5px solid #7a5814; }
   .arch-legend .dot--analytics { background: transparent; border: 1.5px dashed rgba(99,102,241,0.7); }
 
   @media (max-width: 768px) {
     .arch-row--main, .arch-row--branches { grid-template-columns: 1fr; gap: 6px; }
     .arch-row--main .arch-arrow, .arch-row--branches .arch-arrow { transform: rotate(90deg); }
-    .arch-row--ai { flex-direction: column; align-items: stretch; }
+    .arch-row--ai, .arch-row--operator { flex-direction: column; align-items: stretch; }
     .arch-branch-label { text-align: center; }
     .arch-mini-flow { flex-direction: column; align-items: stretch; }
     .arch-mini-arrow { transform: rotate(90deg); }
@@ -538,6 +546,10 @@
   .ai-permission__option span { font-size: 12px; color: var(--muted); line-height: 1.45; }
   @media (max-width: 640px) { .ai-permission { grid-template-columns: 1fr; } }
   .form-footnote { margin-top: 16px; font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .form-warning {
+    margin-top: 6px; font-size: 12px; color: var(--magenta); line-height: 1.4;
+    font-weight: 500;
+  }
 
   /* ===== Slide 8 — Sub-processors ===== */
   .subprocs-list {
@@ -654,7 +666,7 @@
 <!-- Loading state -->
 <div id="loading-state" class="full-screen">
   <div class="spinner"></div>
-  <p>Even uw uitnodiging valideren…</p>
+  <p data-i18n="welcome.loading">Even uw uitnodiging valideren…</p>
 </div>
 
 <!-- Error state -->
@@ -662,40 +674,44 @@
   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
   </svg>
-  <h1>Uitnodiging niet verifieerbaar</h1>
+  <h1 data-i18n="welcome.error.title">Uitnodiging niet verifieerbaar</h1>
   <p id="error-message"></p>
-  <p>Mail <a href="mailto:info@regenstudio.world?subject=DPA-uitnodiging%20opnieuw">info@regenstudio.world</a> voor een nieuwe link.</p>
+  <p>
+    <span data-i18n="welcome.error.help_prefix">Mail</span>
+    <a href="mailto:info@regenstudio.world?subject=DPA-uitnodiging%20opnieuw">info@regenstudio.world</a>
+    <span data-i18n="welcome.error.help_suffix">voor een nieuwe link.</span>
+  </p>
 </div>
 
 <!-- Slides -->
 <main class="slides" id="slides" hidden>
 
   <!-- ===== Slide 1: Welkom ===== -->
-  <section class="slide slide--welcome" data-nav-title="Welkom" id="slide-welcome">
+  <section class="slide slide--welcome" data-i18n-nav-title="welcome.slide_welcome.nav_title" data-nav-title="Welkom" id="slide-welcome">
     <div class="slide__inner">
       <div class="welcome-hero">
         <img src="Images/logo-icon.svg" alt="" class="welcome-hero__chameleon">
         <p class="welcome-hero__wordmark">
           <span class="welcome-hero__regen">REGEN</span><span class="welcome-hero__studio">STUDIO</span>
         </p>
-        <h1 class="welcome-hero__greeting">Welkom <span class="welcome-hero__name" id="welcome-name">terug</span></h1>
-        <p class="welcome-hero__intro">
+        <h1 class="welcome-hero__greeting"><span data-i18n="welcome.slide_welcome.greeting_prefix">Welkom</span> <span class="welcome-hero__name" id="welcome-name" data-i18n="welcome.slide_welcome.default_name">terug</span></h1>
+        <p class="welcome-hero__intro" data-i18n="welcome.slide_welcome.intro">
           Voor we de afspraken juridisch vastleggen, willen we ze rustig met je doorlopen — open, transparant en zonder verrassingen.
         </p>
       </div>
     </div>
-    <button class="slide__hint" id="welcome-cta" aria-label="Klik op de pijl om te beginnen">
-      <span class="slide__hint-text">klik op de pijl om te beginnen</span>
+    <button class="slide__hint" id="welcome-cta" data-i18n-aria="welcome.nav.begin_aria" aria-label="Klik op de pijl om te beginnen">
+      <span class="slide__hint-text" data-i18n="welcome.nav.begin_text">klik op de pijl om te beginnen</span>
       <span class="slide__hint-triangle" aria-hidden="true"></span>
     </button>
   </section>
 
   <!-- ===== Slide 2: Wie zijn we ===== -->
-  <section class="slide slide--who" data-nav-title="Wie zijn we" id="slide-who">
+  <section class="slide slide--who" data-i18n-nav-title="welcome.slide_who.nav_title" data-nav-title="Wie zijn we" id="slide-who">
     <div class="slide__inner">
-      <p class="slide__kicker">Wie staat er tegenover je</p>
-      <h2 class="slide__title">Eén persoon. Eén firma.</h2>
-      <p class="slide__subtitle">
+      <p class="slide__kicker" data-i18n="welcome.slide_who.kicker">Wie staat er tegenover je</p>
+      <h2 class="slide__title" data-i18n="welcome.slide_who.title">Eén persoon. Eén firma.</h2>
+      <p class="slide__subtitle" data-i18n="welcome.slide_who.subtitle">
         Regen Studio is een eenpersoons-advisory voor Digitaal Productpaspoort. Je werkt rechtstreeks met de oprichter — geen lagen tussen je en de uitvoering.
       </p>
       <div class="who-card">
@@ -703,97 +719,138 @@
           <p class="who-card__wordmark">
             <span class="who-card__regen">REGEN</span><span class="who-card__studio">STUDIO</span>
           </p>
-          <p class="who-card__tagline">Mens, Stad en Natuur.</p>
+          <p class="who-card__tagline" data-i18n="welcome.slide_who.tagline">Mens, Stad en Natuur.</p>
         </div>
         <dl class="who-card__rows">
-          <dt>Rechtspersoon</dt>
+          <dt data-i18n="welcome.slide_who.rows.entity">Rechtspersoon</dt>
           <dd>Regen Studio B.V.</dd>
-          <dt>Bestuurder (DGA)</dt>
+          <dt data-i18n="welcome.slide_who.rows.director">Bestuurder (DGA)</dt>
           <dd>Yvo Hunink</dd>
-          <dt>Vestigingsadres</dt>
+          <dt data-i18n="welcome.slide_who.rows.address">Vestigingsadres</dt>
           <dd>Stollenbergweg 43, 6571 AB Berg en Dal, Nederland</dd>
-          <dt>KvK-nummer</dt>
+          <dt data-i18n="welcome.slide_who.rows.kvk">KvK-nummer</dt>
           <dd>90337948</dd>
-          <dt>BTW-nummer</dt>
+          <dt data-i18n="welcome.slide_who.rows.vat">BTW-nummer</dt>
           <dd>NL865282377B01</dd>
-          <dt>Contact</dt>
+          <dt data-i18n="welcome.slide_who.rows.contact">Contact</dt>
           <dd>info@regenstudio.world</dd>
         </dl>
       </div>
     </div>
-    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
+    <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
       <span class="slide__hint-triangle" aria-hidden="true"></span>
     </button>
   </section>
 
   <!-- ===== Slide 3: Engagement ===== -->
-  <section class="slide slide--engagement" data-nav-title="Wat doen we" id="slide-engagement">
+  <section class="slide slide--engagement" data-i18n-nav-title="welcome.slide_engagement.nav_title" data-nav-title="Wat doen we" id="slide-engagement">
     <div class="slide__inner">
-      <p class="slide__kicker">Onze afspraak</p>
-      <h2 class="slide__title">Wat we samen gaan doen</h2>
-      <p class="slide__subtitle">
+      <p class="slide__kicker" data-i18n="welcome.slide_engagement.kicker">Onze afspraak</p>
+      <h2 class="slide__title" data-i18n="welcome.slide_engagement.title">Wat we samen gaan doen</h2>
+      <p class="slide__subtitle" data-i18n="welcome.slide_engagement.subtitle">
         De Verwerkersovereenkomst die we straks tekenen ondersteunt deze concrete Engagement.
       </p>
       <div class="engagement-narrative" id="engagement-narrative">
         <p id="engagement-narrative-body">—</p>
       </div>
       <div class="engagement-card" id="engagement-card">
-        <div class="engagement-card__row">
-          <div class="engagement-card__label">Project</div>
+        <div class="engagement-card__row" id="eng-row-label">
+          <div class="engagement-card__label" data-i18n="welcome.slide_engagement.rows.project">Project</div>
           <div class="engagement-card__value" id="eng-label">—</div>
         </div>
-        <div class="engagement-card__row">
-          <div class="engagement-card__label">Tussen</div>
+        <div class="engagement-card__row" id="eng-row-parties">
+          <div class="engagement-card__label" data-i18n="welcome.slide_engagement.rows.parties">Tussen</div>
           <div class="engagement-card__value" id="eng-parties">—</div>
         </div>
-        <div class="engagement-card__row">
-          <div class="engagement-card__label">Regulatoir kader</div>
+        <div class="engagement-card__row" id="eng-row-master" hidden>
+          <div class="engagement-card__label" data-i18n="welcome.slide_engagement.rows.master">Onder</div>
+          <div class="engagement-card__value" id="eng-master">—</div>
+        </div>
+        <div class="engagement-card__row" id="eng-row-regulatory" hidden>
+          <div class="engagement-card__label" data-i18n="welcome.slide_engagement.rows.regulatory">Regulatoir kader</div>
           <div class="engagement-card__value" id="eng-regulatory">—</div>
         </div>
-        <div class="engagement-card__row">
-          <div class="engagement-card__label">Project-einddatum</div>
+        <div class="engagement-card__row" id="eng-row-einddatum" hidden>
+          <div class="engagement-card__label" data-i18n="welcome.slide_engagement.rows.einddatum">Project-einddatum</div>
           <div class="engagement-card__value" id="eng-einddatum">—</div>
         </div>
-        <div class="engagement-card__row">
-          <div class="engagement-card__label">Bewaarplicht t/m</div>
+        <div class="engagement-card__row" id="eng-row-bewaar" hidden>
+          <div class="engagement-card__label" data-i18n="welcome.slide_engagement.rows.bewaar">Bewaarplicht t/m</div>
           <div class="engagement-card__value" id="eng-bewaar">—</div>
         </div>
       </div>
     </div>
-    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
+    <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
       <span class="slide__hint-triangle" aria-hidden="true"></span>
     </button>
   </section>
 
-  <!-- ===== Slide 4: Architectuur ===== -->
-  <section class="slide slide--architecture" data-nav-title="Architectuur" id="slide-architecture">
+  <!-- ===== Slide 4: Data bescherming zit in ons DNA (was Analytics — moved before architecture) ===== -->
+  <section class="slide slide--analytics" data-i18n-nav-title="welcome.slide_dna.nav_title" data-nav-title="Data bescherming" id="slide-dna">
     <div class="slide__inner">
-      <p class="slide__kicker">Onder de motorkap</p>
-      <h2 class="slide__title">Hoe je data door onze systemen vloeit</h2>
-      <p class="slide__subtitle">
-        De hoofd-flow loopt over jouw browser → Supabase Edge in Frankfurt → encrypted in EU. Voor AI-werk zit de paste-alias-shield ertussen. Daarnaast loopt een aparte, geanonimiseerde analytics-stroom (volgende slide).
+      <p class="slide__kicker" data-i18n="welcome.slide_dna.kicker">Onze grondhouding</p>
+      <h2 class="slide__title" data-i18n="welcome.slide_dna.title">Data bescherming zit in ons DNA</h2>
+      <p class="slide__subtitle" data-i18n="welcome.slide_dna.subtitle">
+        Kijk maar naar hoe we website-analytics doen: geen cookies, geen tracking pixels, geen cross-site identifiers. We tellen page visits via een dagelijks-roterende salt — onmogelijk om bezoekers over dagen heen te volgen.
+      </p>
+      <div class="analytics-flow">
+        <div class="analytics-step">
+          <div class="analytics-step__num">1</div>
+          <span data-i18n="welcome.slide_dna.step1_lead">Je browser stuurt</span><strong data-i18n="welcome.slide_dna.step1_emphasis">page-path + event-type</strong>
+        </div>
+        <div class="analytics-arrow">→</div>
+        <div class="analytics-step">
+          <div class="analytics-step__num">2</div>
+          <span data-i18n="welcome.slide_dna.step2_lead">Server hashed je IP met een</span><strong data-i18n="welcome.slide_dna.step2_emphasis">dagelijks-roterende salt</strong>
+        </div>
+        <div class="analytics-arrow">→</div>
+        <div class="analytics-step">
+          <div class="analytics-step__num">3</div>
+          <span data-i18n="welcome.slide_dna.step3_lead">Raw events na 48 uur weg</span><strong data-i18n="welcome.slide_dna.step3_emphasis">alleen aggregaten blijven</strong>
+        </div>
+      </div>
+      <div class="analytics-formula">
+        SHA-256( daily_salt&nbsp;:&nbsp;IP&nbsp;:&nbsp;User-Agent )
+      </div>
+      <p class="analytics-note">
+        <span data-i18n="welcome.slide_dna.note">De salt rotereert elke 24 uur via een geautomatiseerde database-functie — daardoor is het onmogelijk om dezelfde bezoeker te identificeren over verschillende dagen heen. Deze architectuur valt buiten de cookie-toestemming-vereisten van ePrivacy Art 5(3) en is door CNIL erkend als consent-vrij.</span>
+        <span data-i18n="welcome.slide_dna.note_link">Lees mee in onze</span> <a href="https://www.regenstudio.world/privacy.html#analytics" target="_blank" rel="noopener" data-i18n="welcome.slide_dna.note_link_text">privacy-architectuur op GitHub →</a>
+      </p>
+    </div>
+    <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
+      <span class="slide__hint-triangle" aria-hidden="true"></span>
+    </button>
+  </section>
+
+  <!-- ===== Slide 5: Architectuur (data-flow diagram) ===== -->
+  <section class="slide slide--architecture" data-i18n-nav-title="welcome.slide_arch.nav_title" data-nav-title="Architectuur" id="slide-architecture">
+    <div class="slide__inner">
+      <p class="slide__kicker" data-i18n="welcome.slide_arch.kicker">Onder de motorkap</p>
+      <h2 class="slide__title" data-i18n="welcome.slide_arch.title">Hoe je data door onze systemen vloeit</h2>
+      <p class="slide__subtitle" data-i18n="welcome.slide_arch.subtitle">
+        De hoofd-flow loopt over jouw browser → Supabase Edge in Frankfurt → encrypted in EU. Operator-uitvoering (gesprekken, advies, AI-werk) loopt via een aparte, expliciet-toestemmings-route door de Regen-medewerker.
       </p>
       <div class="arch-grid">
         <!-- Row 1: main horizontal data path -->
         <div class="arch-row--main">
           <div class="arch-node arch-node--user is-user">
-            <div class="arch-node__title">Jij — je browser</div>
-            <div class="arch-node__sub">magic-link, geen cookies</div>
+            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.user_title">Jij — je browser</div>
+            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.user_sub">magic-link, geen cookies</div>
           </div>
           <span class="arch-arrow">&rarr;</span>
           <div class="arch-node arch-node--internal is-cdn">
-            <div class="arch-node__title">GitHub Pages CDN</div>
-            <div class="arch-node__sub">statisch, geen PII</div>
+            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.cdn_title">GitHub Pages CDN</div>
+            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.cdn_sub">statisch, geen PII</div>
           </div>
           <span class="arch-arrow">&rarr;</span>
           <div class="arch-node arch-node--internal is-edge">
-            <div class="arch-node__title">Supabase Edge Function</div>
-            <div class="arch-node__sub">Frankfurt, EU</div>
+            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.edge_title">Supabase Edge Function</div>
+            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.edge_sub">Frankfurt, EU</div>
           </div>
           <span class="arch-arrow">&rarr;</span>
           <div class="arch-node arch-node--internal is-postgres">
-            <div class="arch-node__title">Supabase Postgres</div>
-            <div class="arch-node__sub">encrypted at rest, eigen sleutel</div>
+            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.postgres_title">Supabase Postgres</div>
+            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.postgres_sub">encrypted at rest, eigen sleutel</div>
           </div>
         </div>
 
@@ -807,8 +864,8 @@
           <div>
             <span class="arch-arrow arch-arrow--down">&darr;</span>
             <div class="arch-node arch-node--external is-lettermint">
-              <div class="arch-node__title">Lettermint</div>
-              <div class="arch-node__sub">NL — outbound mail<br><small>magic-link, signed-doc-receipt, project-mail</small></div>
+              <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.lettermint_title">Lettermint</div>
+              <div class="arch-node__sub"><span data-i18n="welcome.slide_arch.nodes.lettermint_sub">NL — outbound mail</span><br><small data-i18n="welcome.slide_arch.nodes.lettermint_purposes">magic-link, signed-doc-receipt, project-mail</small><span class="arch-archive-edge" data-i18n="welcome.slide_arch.nodes.lettermint_archive">&rarr; gearchiveerd in Proton AG</span></div>
             </div>
           </div>
           <div></div>
@@ -817,353 +874,241 @@
             <div>
               <span class="arch-arrow arch-arrow--down">&darr;</span>
               <div class="arch-node arch-node--external is-proton">
-                <div class="arch-node__title">Proton AG</div>
-                <div class="arch-node__sub">CH — werkdossier-backup<br><small>e2e-encrypted; geen plain-text</small></div>
+                <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.proton_title">Proton AG</div>
+                <div class="arch-node__sub"><span data-i18n="welcome.slide_arch.nodes.proton_sub">CH — werkdossier-backup</span><br><small data-i18n="welcome.slide_arch.nodes.proton_detail">e2e-encrypted; geen plain-text</small></div>
               </div>
             </div>
             <div>
               <span class="arch-arrow arch-arrow--down">&darr;</span>
               <div class="arch-node arch-node--external is-exact">
-                <div class="arch-node__title">Exact Online</div>
-                <div class="arch-node__sub">NL — factuur-metadata<br><small>geen vrije tekst, geen project-content</small></div>
+                <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.exact_title">Exact Online</div>
+                <div class="arch-node__sub"><span data-i18n="welcome.slide_arch.nodes.exact_sub">NL — factuur-metadata</span><br><small data-i18n="welcome.slide_arch.nodes.exact_detail">geen vrije tekst, geen project-content</small></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Row 3: consent-gated AI sub-flow, right-aligned -->
-        <div class="arch-row--ai">
-          <span class="arch-branch-label">vanuit Postgres,<br>alleen met<br>expliciete toestemming &rarr;</span>
-          <div class="arch-node arch-node--gated is-paste">
-            <div class="arch-node__title">paste-alias-shield</div>
-            <div class="arch-node__sub">strip identifiers</div>
-          </div>
-          <span class="arch-arrow arch-arrow--gated">&rarr;</span>
-          <div class="arch-node arch-node--gated is-ai">
-            <div class="arch-node__title">AI-verwerker (US)</div>
-            <div class="arch-node__sub">SCC's Module 2 + 3</div>
+        <!-- Row 3: operator-receiving — device where the operator works locally with the data -->
+        <div class="arch-row--operator">
+          <span class="arch-branch-label" data-i18n="welcome.slide_arch.device_label">via Postgres-export en Proton Drive sync &rarr;</span>
+          <div class="arch-node arch-node--operator is-device">
+            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.device_title">Regen-medewerker — eigen device</div>
+            <div class="arch-node__sub"><span data-i18n="welcome.slide_arch.nodes.device_sub">macOS, e2e-encrypted disk</span><br><small data-i18n="welcome.slide_arch.nodes.device_detail">handmatig werk: gesprekken, advies, document-review</small></div>
           </div>
         </div>
 
-        <!-- Divider + aparte analytics-stroom (privacy.html .analytics-flow stijl) -->
-        <div class="arch-divider"></div>
-        <div class="arch-mini-flow-label">Aparte stroom &mdash; anonieme website-analytics (zoom in op slide 5):</div>
-        <div class="arch-mini-flow">
-          <div class="arch-mini-step">Browser stuurt<br><code>page-path + event-type</code></div>
-          <span class="arch-mini-arrow">&rarr;</span>
-          <div class="arch-mini-step">Server hashed IP met<br><strong>daily-rotating salt</strong></div>
-          <span class="arch-mini-arrow">&rarr;</span>
-          <div class="arch-mini-step">Raw events na <strong>48u</strong> weg<br><small>alleen aggregaten blijven</small></div>
+        <!-- Row 4: consent-gated AI sub-flow, originating from the operator's device (not from Postgres directly) -->
+        <div class="arch-row--ai">
+          <span class="arch-branch-label" data-i18n="welcome.slide_arch.ai_label">vanuit eigen device, handmatig &amp; alleen met expliciete toestemming &rarr;</span>
+          <div class="arch-node arch-node--gated is-paste">
+            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.paste_title">paste-alias-shield</div>
+            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.paste_sub">handmatige stap — naam &rarr; alias</div>
+          </div>
+          <span class="arch-arrow arch-arrow--gated">&rarr;</span>
+          <div class="arch-node arch-node--gated is-ai">
+            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.ai_title">Anthropic (Claude) (US)</div>
+            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.ai_sub">SCC's Module 2 + 3</div>
+          </div>
         </div>
       </div>
 
       <div class="arch-legend">
-        <span><i class="dot dot--internal"></i> Eigen Regen-infrastructuur (Supabase Edge + Postgres, GitHub)</span>
-        <span><i class="dot dot--external"></i> Externe sub-processors (Lettermint, Proton, Exact)</span>
-        <span><i class="dot dot--gated"></i> Alleen met expliciete toestemming (AI-pad)</span>
-        <span><i class="dot dot--analytics"></i> Aparte anonieme analytics-stroom</span>
+        <span><i class="dot dot--internal"></i> <span data-i18n="welcome.slide_arch.legend.internal">Eigen Regen-infrastructuur (Supabase Edge + Postgres, GitHub)</span></span>
+        <span><i class="dot dot--external"></i> <span data-i18n="welcome.slide_arch.legend.external">Externe sub-processors (Lettermint, Proton, Exact)</span></span>
+        <span><i class="dot dot--operator"></i> <span data-i18n="welcome.slide_arch.legend.operator">Operator-uitvoering (eigen device)</span></span>
+        <span><i class="dot dot--gated"></i> <span data-i18n="welcome.slide_arch.legend.gated">Alleen met expliciete toestemming (AI-pad)</span></span>
       </div>
     </div>
-    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
+    <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
       <span class="slide__hint-triangle" aria-hidden="true"></span>
     </button>
   </section>
 
-  <!-- ===== Slide 5: Analytics ===== -->
-  <section class="slide slide--analytics" data-nav-title="Analytics" id="slide-analytics">
+  <!-- ===== Slide 6: Alias-shield (Help ons om jou te beschermen) ===== -->
+  <section class="slide slide--paste-alias" data-i18n-nav-title="welcome.slide_shield.nav_title" data-nav-title="paste-alias-shield" id="slide-paste-alias">
     <div class="slide__inner">
-      <p class="slide__kicker">Inzoomen — anonieme analytics</p>
-      <h2 class="slide__title">Hoe we website-analytics doen</h2>
-      <p class="slide__subtitle">
-        Geen cookies. Geen tracking pixels. Geen cross-site identifiers. We tellen page visits via een dagelijks-roterende salt — onmogelijk om bezoekers over dagen heen te volgen.
-      </p>
-      <div class="analytics-flow">
-        <div class="analytics-step">
-          <div class="analytics-step__num">1</div>
-          Je browser stuurt<strong>page-path + event-type</strong>
-        </div>
-        <div class="analytics-arrow">→</div>
-        <div class="analytics-step">
-          <div class="analytics-step__num">2</div>
-          Server hashed je IP met een<strong>dagelijks-roterende salt</strong>
-        </div>
-        <div class="analytics-arrow">→</div>
-        <div class="analytics-step">
-          <div class="analytics-step__num">3</div>
-          Raw events na 48 uur weg<strong>alleen aggregaten blijven</strong>
-        </div>
-      </div>
-      <div class="analytics-formula">
-        SHA-256( daily_salt&nbsp;:&nbsp;IP&nbsp;:&nbsp;User-Agent )
-      </div>
-      <p class="analytics-note">
-        De salt rotereert elke 24 uur via een geautomatiseerde database-functie — daardoor is het onmogelijk om dezelfde bezoeker te identificeren over verschillende dagen heen. Deze architectuur valt buiten de cookie-toestemming-vereisten van ePrivacy Art 5(3) en is door CNIL erkend als consent-vrij.
-        Lees mee in onze <a href="https://www.regenstudio.world/privacy.html#analytics" target="_blank" rel="noopener">privacy-architectuur op GitHub →</a>
-      </p>
-    </div>
-    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
-      <span class="slide__hint-triangle" aria-hidden="true"></span>
-    </button>
-  </section>
-
-  <!-- ===== Slide 6: Paste-alias-shield ===== -->
-  <section class="slide slide--paste-alias" data-nav-title="paste-alias-shield" id="slide-paste-alias">
-    <div class="slide__inner">
-      <p class="slide__kicker">Inzoomen — wat AI ziet</p>
-      <h2 class="slide__title">Wat AI van jou ziet — en wat niet</h2>
-      <p class="slide__subtitle">
-        Voordat we iets aan AI voorleggen, vervangt onze paste-alias-shield directe identifiers (namen, mails, telefoons) door interne aliassen. Niet om wettelijke aansprakelijkheid te omzeilen — die blijft staan — maar om je gegevens veilig te stellen.
+      <p class="slide__kicker" data-i18n="welcome.slide_shield.kicker">Jouw rol — met een alias</p>
+      <h2 class="slide__title" data-i18n="welcome.slide_shield.title">Help ons om jou te beschermen tegen AI met een alias</h2>
+      <p class="slide__subtitle" data-i18n="welcome.slide_shield.subtitle">
+        In alle AI-afgeleide documentatie (transcripten, samenvattingen, werkbestanden) verwijzen we naar jou via een alias. Mocht er ooit een data-lek zijn in zo'n bestand, dan is jouw echte naam niet aan deze interactie te koppelen — een laag extra privacy boven op de wettelijke aansprakelijkheid die uiteraard blijft staan. Je e-mailadres en publieke bedrijfsnaam blijven wél zichtbaar voor AI, omdat operationele communicatie anders niet kan werken.
       </p>
       <div class="paste-alias-grid">
         <div class="paste-col paste-col--in">
-          <h4>Wat je ons stuurt</h4>
-          <div class="paste-row"><span>Naam</span><code id="alias-demo-name-in">Jan Jansen</code></div>
-          <div class="paste-row"><span>E-mail</span><code id="alias-demo-email-in">jan@bedrijf.nl</code></div>
-          <div class="paste-row"><span>Telefoon</span><code>+31 6 12 34 56 78</code></div>
-          <div class="paste-row"><span>Bedrijf</span><code>Bedrijf B.V. (publiek)</code></div>
+          <h4 data-i18n="welcome.slide_shield.in_header">Wat je ons stuurt</h4>
+          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_name">Naam</span><code id="alias-demo-name-in">Jan Jansen</code></div>
+          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_email">E-mail</span><code id="alias-demo-email-in">jan@bedrijf.nl</code></div>
+          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_phone">Telefoon</span><code>+31 6 12 34 56 78</code></div>
+          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_company">Bedrijf</span><code>Bedrijf B.V. (publiek)</code></div>
         </div>
         <div class="paste-arrow">
           <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M16 4 L24 12 L20 12 L20 22 C20 24, 18 26, 16 26 C14 26, 12 24, 12 22 L12 12 L8 12 Z"/>
           </svg>
-          shield
+          <span data-i18n="welcome.slide_shield.arrow_label">alias</span>
         </div>
         <div class="paste-col paste-col--out">
-          <h4>Wat AI ziet</h4>
-          <div class="paste-row"><span>Naam</span><code id="alias-demo-name-out">Wandering Pelican</code></div>
-          <div class="paste-row"><span>E-mail</span><code id="alias-demo-email-out">wandering-pelican@example.test</code></div>
-          <div class="paste-row"><span>Telefoon</span><code>[redacted]</code></div>
-          <div class="paste-row"><span>Bedrijf</span><code>Bedrijf B.V. (publiek)</code></div>
+          <h4 data-i18n="welcome.slide_shield.out_header">Wat AI ziet</h4>
+          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_name">Naam</span><code id="alias-demo-name-out">Wandering Pelican</code></div>
+          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_email">E-mail</span><code id="alias-demo-email-out">jan@bedrijf.nl</code></div>
+          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_phone">Telefoon</span><code data-i18n="welcome.slide_shield.demo_phone_redacted">[redacted]</code></div>
+          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_company">Bedrijf</span><code>Bedrijf B.V. (publiek)</code></div>
         </div>
       </div>
-      <p class="paste-caption">
-        Publieke gegevens (bedrijfsnamen uit het Handelsregister bijvoorbeeld) worden niet ge-aliased — daar is geen privacy-winst bij. Niet-publieke identifiers worden standaard beschermd.
+      <p class="paste-caption" data-i18n="welcome.slide_shield.caption">
+        Alleen je naam wordt door een alias vervangen. E-mail en publieke bedrijfsgegevens blijven zichtbaar (zonder die kan AI niet helpen met praktische vragen). Telefoon wordt geredacteerd.
       </p>
 
       <div class="alias-picker-block">
-        <h3 class="alias-picker-block__title">Hoe wil je dat AI naar jou verwijst?</h3>
-        <p class="alias-picker-block__intro">
+        <h3 class="alias-picker-block__title" data-i18n="welcome.slide_shield.picker_title">Hoe wil je dat AI naar jou verwijst?</h3>
+        <p class="alias-picker-block__intro" data-i18n="welcome.slide_shield.picker_intro">
           Dit is hoe je naam erin gaat. Pak een willekeurig dier-alias dat we voor je hebben gegooid, type je eigen versie, of gebruik je echte naam.
         </p>
         <div class="alias-picker">
           <span class="alias-picker__icon">🎲</span>
-          <input type="text" class="alias-picker__input" id="alias-text" value="Curious Octopus" autocomplete="off" aria-label="Alias — bewerk vrij of gebruik de gegooide voorbeeld" maxlength="40">
-          <button type="button" class="alias-picker__reroll" id="alias-reroll" aria-label="Andere voorbeeld-alias">
+          <input type="text" class="alias-picker__input" id="alias-text" value="Curious Octopus" autocomplete="off" data-i18n-aria="welcome.slide_shield.picker_input_aria" aria-label="Alias — bewerk vrij of gebruik de gegooide voorbeeld" maxlength="40">
+          <button type="button" class="alias-picker__reroll" id="alias-reroll" data-i18n-aria="welcome.slide_shield.picker_reroll_aria" aria-label="Andere voorbeeld-alias">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
-            andere
+            <span data-i18n="welcome.slide_shield.picker_reroll">andere</span>
           </button>
         </div>
-        <p class="alias-picker__custom"><a id="alias-use-real">of: gebruik mijn echte naam intern</a></p>
+        <p class="alias-picker__custom"><a id="alias-use-real" data-i18n="welcome.slide_shield.picker_use_real">of: gebruik mijn echte naam intern</a></p>
       </div>
     </div>
-    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
+    <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
       <span class="slide__hint-triangle" aria-hidden="true"></span>
     </button>
   </section>
 
-  <!-- ===== Slide 7: Jouw keuzes (form) ===== -->
-  <section class="slide slide--choices" data-nav-title="Jouw keuzes" id="slide-choices">
+  <!-- ===== Slide 7: Sub-processors ===== -->
+  <section class="slide slide--subprocessors" data-i18n-nav-title="welcome.slide_subproc.nav_title" data-nav-title="Sub-processors" id="slide-subprocessors">
     <div class="slide__inner">
-      <p class="slide__kicker">Even jouw keuzes vastleggen</p>
-      <h2 class="slide__title">Wie tekent — en wat mag AI doen?</h2>
-      <p class="slide__subtitle">
-        Twee dingen voor we naar de juridische tekst gaan: jouw contactgegevens als ondertekenaar, en of AI je persoonlijke data mag verwerken (alias-keuze stond op de vorige slide).
-      </p>
-      <form class="choices-form" id="choices-form" novalidate>
-        <div class="form-row">
-          <label for="cp_rep_name">Volledige naam <span class="req">*</span></label>
-          <input type="text" id="cp_rep_name" placeholder="Voornaam Achternaam" required autocomplete="name">
-        </div>
-        <div class="form-row">
-          <label for="cp_rep_role">Functie <span class="req">*</span></label>
-          <input type="text" id="cp_rep_role" placeholder="bv. Directeur, Hoofd Innovatie, Mede-oprichter" required>
-        </div>
-        <div class="form-row">
-          <label for="cp_rep_email">E-mailadres <span class="req">*</span></label>
-          <input type="email" id="cp_rep_email" placeholder="naam@bedrijf.nl" required autocomplete="email">
-        </div>
-        <div class="form-row">
-          <label for="cp_rep_phone">Telefoonnummer <span class="help">— optioneel</span></label>
-          <input type="tel" id="cp_rep_phone" placeholder="+31 6 …" autocomplete="tel">
-        </div>
-
-        <div class="form-row" style="margin-top: 24px;">
-          <label>Mag AI jouw persoonlijke data verwerken? <span class="help">— wijzigbaar via consent-dashboard</span></label>
-          <div class="ai-permission" id="ai-permission">
-            <label class="ai-permission__option" data-value="0">
-              <input type="radio" name="ai_consent" value="0">
-              <strong>Liever niet</strong>
-              <span>AI ziet jouw persoonlijke gegevens nooit; advies blijft mogelijk maar werk gaat handmatig.</span>
-            </label>
-            <label class="ai-permission__option" data-value="1">
-              <input type="radio" name="ai_consent" value="1">
-              <strong>Ja, met shield</strong>
-              <span>Sneller advies; jouw data passeert eerst de paste-alias-shield die directe identifiers vervangt.</span>
-            </label>
-          </div>
-        </div>
-        <p class="form-footnote">
-          Beide keuzes (alias + AI-toestemming) kunnen later op elk moment worden gewijzigd via de consent-dashboard van Regen Studio. Geen DPA-revisie nodig.
-        </p>
-      </form>
-    </div>
-    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
-      <span class="slide__hint-triangle" aria-hidden="true"></span>
-    </button>
-  </section>
-
-  <!-- ===== Slide 8: Sub-processors ===== -->
-  <section class="slide slide--subprocessors" data-nav-title="Sub-processors" id="slide-subprocessors">
-    <div class="slide__inner">
-      <p class="slide__kicker">Wie raakt jouw data aan</p>
-      <h2 class="slide__title">Onze sub-processors</h2>
-      <p class="slide__subtitle">
+      <p class="slide__kicker" data-i18n="welcome.slide_subproc.kicker">Wie raakt jouw data aan</p>
+      <h2 class="slide__title" data-i18n="welcome.slide_subproc.title">Onze sub-processors</h2>
+      <p class="slide__subtitle" data-i18n="welcome.slide_subproc.subtitle">
         Volledige lijst staat in Annex A van de overeenkomst hieronder. Hier per sub-processor één regel — wat ze doen, en of ze in scope zijn voor deze Engagement.
       </p>
       <div class="subprocs-list">
         <div class="subproc-row subproc-row--in">
           <div class="subproc-row__status">✓</div>
           <div>
-            <div class="subproc-row__name">Supabase</div>
-            <div class="subproc-row__purpose">Database + Edge Functions — hier woont je data, encrypted at rest</div>
+            <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.supabase_name">Supabase</div>
+            <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.supabase_purpose">Database + Edge Functions — hier woont je data, encrypted at rest</div>
           </div>
           <div class="subproc-row__country">EU (DE)</div>
         </div>
         <div class="subproc-row subproc-row--in">
           <div class="subproc-row__status">✓</div>
           <div>
-            <div class="subproc-row__name">AI-verwerker</div>
-            <div class="subproc-row__purpose">LLM-inferentie — alleen waar jij toestemt, met paste-alias-shield ervoor</div>
+            <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.anthropic_name">Anthropic (Claude)</div>
+            <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.anthropic_purpose">LLM-inferentie — alleen waar jij toestemt, met paste-alias-shield ervoor</div>
           </div>
           <div class="subproc-row__country">VS</div>
         </div>
         <div class="subproc-row subproc-row--in">
           <div class="subproc-row__status">✓</div>
           <div>
-            <div class="subproc-row__name">Lettermint</div>
-            <div class="subproc-row__purpose">E-mail-bezorging (deze uitnodiging, magic-links, project-correspondentie)</div>
+            <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.lettermint_name">Lettermint</div>
+            <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.lettermint_purpose">E-mail-bezorging (deze uitnodiging, magic-links, project-correspondentie)</div>
           </div>
           <div class="subproc-row__country">NL</div>
         </div>
         <div class="subproc-row subproc-row--in">
           <div class="subproc-row__status">✓</div>
           <div>
-            <div class="subproc-row__name">Proton</div>
-            <div class="subproc-row__purpose">E-mail-hosting + werkdossier-opslag — end-to-end encrypted</div>
+            <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.proton_name">Proton</div>
+            <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.proton_purpose">E-mail-hosting + werkdossier-opslag — end-to-end encrypted</div>
           </div>
           <div class="subproc-row__country">CH</div>
         </div>
         <div class="subproc-row subproc-row--in">
           <div class="subproc-row__status">✓</div>
           <div>
-            <div class="subproc-row__name">GitHub Pages</div>
-            <div class="subproc-row__purpose">Statische hosting van regenstudio.world — geen jouw data, alleen publieke pagina's</div>
+            <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.github_name">GitHub Pages</div>
+            <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.github_purpose">Statische hosting van regenstudio.world — geen jouw data, alleen publieke pagina's</div>
           </div>
           <div class="subproc-row__country">VS</div>
         </div>
         <div class="subproc-row subproc-row--in">
           <div class="subproc-row__status">✓</div>
           <div>
-            <div class="subproc-row__name">Exact Online</div>
-            <div class="subproc-row__purpose">Boekhouding — alleen factuur-regel-metadata (naam + factuuradres)</div>
+            <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.exact_name">Exact Online</div>
+            <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.exact_purpose">Boekhouding — alleen factuur-regel-metadata (naam + factuuradres)</div>
           </div>
           <div class="subproc-row__country">NL</div>
         </div>
         <div class="subproc-row subproc-row--out">
           <div class="subproc-row__status">·</div>
           <div>
-            <div class="subproc-row__name">CircularTech Advisory</div>
-            <div class="subproc-row__purpose">Advisory-coöperatie — niet ingeschakeld voor jouw Engagement</div>
+            <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.ctf_name">CircularTech Advisory</div>
+            <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.ctf_purpose">Advisory-coöperatie — niet ingeschakeld voor jouw Engagement</div>
           </div>
           <div class="subproc-row__country">DE</div>
         </div>
       </div>
     </div>
-    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
+    <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
       <span class="slide__hint-triangle" aria-hidden="true"></span>
     </button>
   </section>
 
-  <!-- ===== Slide 9: Transparantie ===== -->
-  <section class="slide slide--transparency" data-nav-title="Transparantie" id="slide-transparency">
+  <!-- ===== Slide 8: Jouw keuzes (form) — FINAL slide ===== -->
+  <section class="slide slide--choices" data-i18n-nav-title="welcome.slide_form.nav_title" data-nav-title="Jouw keuzes" id="slide-choices">
     <div class="slide__inner">
-      <p class="slide__kicker">Vertrouwen kun je niet vragen</p>
-      <h2 class="slide__title">Kijk zelf hoe we werken</h2>
-      <p class="slide__subtitle">
-        We laten je niet de juridische tekst zien op GitHub — die is voor jou en ons specifiek geschreven. Maar de manier waarop we techniek inzetten staat er volledig open.
+      <p class="slide__kicker" data-i18n="welcome.slide_form.kicker">Even jouw keuzes vastleggen</p>
+      <h2 class="slide__title" data-i18n="welcome.slide_form.title">Wie tekent — en wat mag AI doen?</h2>
+      <p class="slide__subtitle" data-i18n="welcome.slide_form.subtitle">
+        Twee dingen voor we naar de juridische tekst gaan: jouw contactgegevens als ondertekenaar, en of AI je persoonlijke data mag verwerken (alias-keuze stond op de vorige slide).
       </p>
-      <div class="transparency-grid">
-        <a class="transparency-card" href="https://github.com/YHDP/regenstudio-website/blob/main/assets/js/dpa-pdf-renderer.js" target="_blank" rel="noopener">
-          <span class="transparency-card__icon">🔧</span>
-          <div class="transparency-card__title">
-            Hoe je PDF gemaakt wordt
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </div>
-          <p class="transparency-card__desc">De rendering-code draait in JOUW browser — bewijs dat we niets server-side opslaan tijdens het tekenen.</p>
-          <div class="transparency-card__path">assets/js/dpa-pdf-renderer.js</div>
-        </a>
-        <a class="transparency-card" href="https://github.com/YHDP/regenstudio-website/blob/main/privacy.html#analytics" target="_blank" rel="noopener">
-          <span class="transparency-card__icon">📊</span>
-          <div class="transparency-card__title">
-            Analytics zonder jouw identiteit
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </div>
-          <p class="transparency-card__desc">SHA-256(daily_salt : IP : UA), raw events na 48u weg, geen cookies — CNIL-erkend consent-vrij.</p>
-          <div class="transparency-card__path">privacy.html#analytics</div>
-        </a>
-        <a class="transparency-card" href="https://github.com/YHDP/regenstudio-website/blob/main/privacy.html" target="_blank" rel="noopener">
-          <span class="transparency-card__icon">🛡️</span>
-          <div class="transparency-card__title">
-            Wat we publiek vertellen
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </div>
-          <p class="transparency-card__desc">Onze sub-processor-disclosure, retentie-beleid, doorgifte-mechanismen — zelfde lijst als in deze overeenkomst.</p>
-          <div class="transparency-card__path">privacy.html</div>
-        </a>
-        <a class="transparency-card" href="https://github.com/YHDP/regenstudio-website/blob/main/NOTICE.md" target="_blank" rel="noopener">
-          <span class="transparency-card__icon">📚</span>
-          <div class="transparency-card__title">
-            Wat we attribueren
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </div>
-          <p class="transparency-card__desc">Self-hosted fonts, geen Google Fonts CDN, license-discipline op elke dependency.</p>
-          <div class="transparency-card__path">NOTICE.md</div>
-        </a>
-      </div>
-    </div>
-    <button class="slide__hint slide__hint--mini" data-action="next-slide" aria-label="Verder naar volgende slide">
-      <span class="slide__hint-triangle" aria-hidden="true"></span>
-    </button>
-  </section>
+      <form class="choices-form" id="choices-form" novalidate>
+        <div class="form-row">
+          <label for="cp_rep_name"><span data-i18n="welcome.slide_form.label_name">Volledige naam</span> <span class="req">*</span></label>
+          <input type="text" id="cp_rep_name" data-i18n-placeholder="welcome.slide_form.placeholder_name" placeholder="Voornaam Achternaam" required autocomplete="name">
+        </div>
+        <div class="form-row">
+          <label for="cp_rep_role"><span data-i18n="welcome.slide_form.label_role">Functie</span> <span class="req">*</span></label>
+          <input type="text" id="cp_rep_role" data-i18n-placeholder="welcome.slide_form.placeholder_role" placeholder="bv. Directeur, Hoofd Innovatie, Mede-oprichter" required>
+        </div>
+        <div class="form-row">
+          <label for="cp_rep_email"><span data-i18n="welcome.slide_form.label_email">E-mailadres</span> <span class="req">*</span></label>
+          <input type="email" id="cp_rep_email" data-i18n-placeholder="welcome.slide_form.placeholder_email" placeholder="naam@bedrijf.nl" required autocomplete="email">
+          <p class="form-warning" data-i18n="welcome.slide_form.email_warning">Vul hier het e-mailadres in waarop je de link hebt ontvangen, anders werkt het niet.</p>
+        </div>
+        <div class="form-row">
+          <label for="cp_rep_phone"><span data-i18n="welcome.slide_form.label_phone">Telefoonnummer</span> <span class="help" data-i18n="welcome.slide_form.phone_optional">— optioneel</span></label>
+          <input type="tel" id="cp_rep_phone" data-i18n-placeholder="welcome.slide_form.placeholder_phone" placeholder="+31 6 …" autocomplete="tel">
+        </div>
 
-  <!-- ===== Slide 10: Klaar ===== -->
-  <section class="slide slide--ready" data-nav-title="Naar de overeenkomst" id="slide-ready">
-    <div class="slide__inner">
-      <p class="slide__kicker">Klaar om te tekenen</p>
-      <h2 class="slide__title">Kort recap, dan de juridische tekst</h2>
-      <p class="slide__subtitle">
-        Je weet nu hoe we werken. Hieronder de Verwerkersovereenkomst — we hebben hem zo kort en duidelijk mogelijk gehouden, zonder klare-taal-blokken (die heb je net allemaal gezien).
-      </p>
-      <div class="ready-recap">
-        <ul class="ready-recap__list">
-          <li><span><strong>Alias:</strong> <span id="recap-alias">Curious Octopus</span></span></li>
-          <li><span><strong>AI-toestemming:</strong> <span id="recap-ai">—</span></span></li>
-          <li><span><strong>Sub-processors in scope:</strong> 6 (zie Annex A)</span></li>
-          <li><span><strong>Looptijd:</strong> tot project-einddatum + bewaarplicht (zie engagement-card)</span></li>
-        </ul>
-      </div>
+        <div class="form-row" style="margin-top: 24px;">
+          <label><span data-i18n="welcome.slide_form.ai_label">Mag AI jouw persoonlijke data verwerken?</span> <span class="help" data-i18n="welcome.slide_form.ai_help">— wijzigbaar via consent-dashboard</span></label>
+          <div class="ai-permission" id="ai-permission">
+            <label class="ai-permission__option" data-value="0">
+              <input type="radio" name="ai_consent" value="0">
+              <strong data-i18n="welcome.slide_form.ai_no_title">Liever niet</strong>
+              <span data-i18n="welcome.slide_form.ai_no_desc">AI ziet jouw persoonlijke gegevens nooit; advies blijft mogelijk maar werk gaat handmatig.</span>
+            </label>
+            <label class="ai-permission__option" data-value="1">
+              <input type="radio" name="ai_consent" value="1">
+              <strong data-i18n="welcome.slide_form.ai_yes_title">Ja, met shield</strong>
+              <span data-i18n="welcome.slide_form.ai_yes_desc">Sneller advies; jouw data passeert eerst de paste-alias-shield die directe identifiers vervangt.</span>
+            </label>
+          </div>
+        </div>
+        <p class="form-footnote" data-i18n="welcome.slide_form.footnote">
+          Beide keuzes (alias + AI-toestemming) kunnen later op elk moment worden gewijzigd via de consent-dashboard van Regen Studio. Geen DPA-revisie nodig.
+        </p>
+      </form>
       <button type="button" class="ready-cta" id="ready-cta" disabled>
-        Naar de Verwerkersovereenkomst
+        <span data-i18n="welcome.slide_form.cta">Naar de Verwerkersovereenkomst</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </button>
-      <p class="ready-validation" id="ready-validation">Vul eerst je gegevens in op de "Jouw keuzes" slide.</p>
+      <p class="ready-validation" id="ready-validation" data-i18n="welcome.slide_form.validation">Vul alle verplichte velden in om door te kunnen.</p>
     </div>
   </section>
 
 </main>
 
 <!-- Slide nav dots -->
-<nav class="nav-dots" id="nav-dots" hidden aria-label="Slide-navigatie"></nav>
+<nav class="nav-dots" id="nav-dots" hidden data-i18n-aria="welcome.nav.slide_nav_aria" aria-label="Slide-navigatie"></nav>
 
 <script>
 (function () {
@@ -1219,10 +1164,15 @@
     engCard: $('#engagement-card'),
     engLabel: $('#eng-label'),
     engParties: $('#eng-parties'),
+    engMaster: $('#eng-master'),
     engNarrative: $('#engagement-narrative-body'),
     engRegulatory: $('#eng-regulatory'),
     engEinddatum: $('#eng-einddatum'),
     engBewaar: $('#eng-bewaar'),
+    engRowMaster: $('#eng-row-master'),
+    engRowRegulatory: $('#eng-row-regulatory'),
+    engRowEinddatum: $('#eng-row-einddatum'),
+    engRowBewaar: $('#eng-row-bewaar'),
     aliasText: $('#alias-text'),
     aliasReroll: $('#alias-reroll'),
     aliasUseReal: $('#alias-use-real'),
@@ -1233,19 +1183,20 @@
     repEmail: $('#cp_rep_email'),
     repPhone: $('#cp_rep_phone'),
     aiPermission: $('#ai-permission'),
-    recapAlias: $('#recap-alias'),
-    recapAi: $('#recap-ai'),
     readyCta: $('#ready-cta'),
     readyValidation: $('#ready-validation'),
     choicesForm: $('#choices-form'),
   };
 
   // ===== Helpers =====
+  // Locale codes for date formatting per UI language.
+  const DATE_LOCALES = { nl: 'nl-NL', en: 'en-GB', pt: 'pt-BR' };
   function fmtDate(iso) {
     if (!iso) return '—';
     const d = new Date(iso);
     if (isNaN(d.getTime())) return iso;
-    return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+    const lang = (window.dpaI18n && window.dpaI18n.lang) || 'nl';
+    return d.toLocaleDateString(DATE_LOCALES[lang] || 'nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
   }
   function showError(msg) {
     els.loading.style.display = 'none';
@@ -1257,6 +1208,21 @@
   }
 
   // ===== Render =====
+  // Hide rows where the populated value is empty/null/em-dash — stop showing "Regulatoir kader: —"
+  // noise on partnership DPAs (CTF) where those fields don't apply. For partnership engagements
+  // with a master_agreement_ref, surface that as the overarching binding reference instead.
+  function showRow(rowEl, valueEl, value) {
+    if (!rowEl || !valueEl) return false;
+    const v = (value == null) ? '' : String(value).trim();
+    if (!v || v === '—') {
+      rowEl.hidden = true;
+      return false;
+    }
+    valueEl.textContent = v;
+    rowEl.hidden = false;
+    return true;
+  }
+
   function renderEngagement() {
     const profile = state.profile;
     const repName = profile && (profile.cp_rep_name || profile.representative_name);
@@ -1266,36 +1232,62 @@
     }
     const orgName = profile && (profile.legal_name || profile.cp_legal_name);
     els.engLabel.textContent = state.body.engagement_label || profile.label || '—';
-    els.engParties.textContent = (orgName || '—') + ' (Verantwoordelijke) en Regen Studio B.V. (Verwerker)';
-    els.engRegulatory.textContent = profile.regulatory_label || '—';
-    els.engEinddatum.textContent = fmtDate(profile.project_einddatum);
-    els.engBewaar.textContent = fmtDate(profile.bewaarplicht_einddatum);
+    const partiesTemplate = t('welcome.slide_engagement.parties_template',
+      '{org} (Verantwoordelijke) en Regen Studio B.V. (Verwerker)');
+    els.engParties.textContent = partiesTemplate.replace('{org}', orgName || '—');
+    // master_agreement_ref — typically present for partnership DPAs (CTF) where there's no
+    // project-einddatum / bewaarplicht / regulatoir kader at the engagement level.
+    const hasMaster = showRow(els.engRowMaster, els.engMaster, profile.master_agreement_ref);
+    // regulatoir kader — only render if the engagement has a regulatory_label set
+    showRow(els.engRowRegulatory, els.engRegulatory, profile.regulatory_label);
+    // project-einddatum — only if set
+    showRow(els.engRowEinddatum, els.engEinddatum, profile.project_einddatum ? fmtDate(profile.project_einddatum) : null);
+    // bewaarplicht — if explicitly set, show the date. Otherwise: hide entirely when there's
+    // already a master_agreement_ref (term is governed by the master agreement, separate row
+    // would be redundant). Without either, fall back to a generic GDPR-retention phrase so
+    // the user sees a baseline statement rather than an empty card.
+    let bewaarText = null;
+    if (profile.bewaarplicht_einddatum) {
+      bewaarText = fmtDate(profile.bewaarplicht_einddatum);
+    } else if (!hasMaster) {
+      bewaarText = t('welcome.slide_engagement.gdpr_retention_fallback', 'conform GDPR-bewaarplicht');
+    }
+    showRow(els.engRowBewaar, els.engBewaar, bewaarText);
     if (els.engNarrative) els.engNarrative.innerHTML = buildEngagementNarrative(profile);
   }
 
   function buildEngagementNarrative(profile) {
-    const org = profile.legal_name || profile.cp_legal_name || 'jouw organisatie';
-    const regLabel = profile.regulatory_label || 'het toepasselijke regulatoire kader';
+    const org = profile.legal_name || profile.cp_legal_name || t('welcome.slide_engagement.org_fallback', 'jouw organisatie');
+    const regLabel = profile.regulatory_label || t('welcome.slide_engagement.regulatory_fallback', 'het toepasselijke regulatoire kader');
     const einddatum = fmtDate(profile.project_einddatum);
     const uren = profile.expert_uren || null;
     const subsidie = profile.subsidie_bedrag_eur || null;
     const orgEsc = String(org).replace(/[<>&]/g, '');
     const regEsc = String(regLabel).replace(/[<>&]/g, '');
+    const n = 'welcome.slide_engagement.narrative.';
     if (profile.engagement_type === 'voucher') {
-      const budget = uren ? ' onder een vast budget van <strong>' + uren + ' adviesuren</strong>' : '';
-      const subsTxt = subsidie ? ' (voucher t.w.v. €' + (subsidie / 1000).toFixed(1).replace('.', ',') + 'k via de KvW3 / EFRO-regeling)' : '';
-      return 'Een DPP-readiness traject voor <strong>' + orgEsc + '</strong>' + subsTxt +
-             '. Samen brengen we je product-portfolio in kaart, identificeren de data-gaps richting <strong>' + regEsc + '</strong>, ' +
-             'adviseren over conforme implementatie (data-architectuur, leveranciers-ketens, audit-trail), ' +
-             'en leveren een geprioriteerde roadmap richting <strong>' + einddatum + '</strong>' + budget +
-             '. Concreet werk: gesprekken, document-review, gap-analyse, en geprioriteerde aanbevelingen — geen software-ontwikkeling.';
+      const budget = uren
+        ? ' ' + t(n + 'voucher_budget', ' onder een vast budget van {uren} adviesuren').replace('{uren}', '<strong>' + uren + ' adviesuren</strong>').replace(' adviesuren adviesuren', ' adviesuren')
+        : '';
+      const subsAmount = subsidie ? (subsidie / 1000).toFixed(1).replace('.', ',') : '';
+      const subsTxt = subsidie
+        ? ' ' + t(n + 'voucher_subsidie', '(voucher t.w.v. €{amount}k via de KvW3 / EFRO-regeling)').replace('{amount}', subsAmount)
+        : '';
+      return t(n + 'voucher_intro', 'Een DPP-readiness traject voor') + ' <strong>' + orgEsc + '</strong>' + subsTxt +
+             t(n + 'voucher_body', '. Samen brengen we je product-portfolio in kaart, identificeren de data-gaps richting') + ' <strong>' + regEsc + '</strong>' +
+             t(n + 'voucher_advice', ', adviseren over conforme implementatie (data-architectuur, leveranciers-ketens, audit-trail),') + ' ' +
+             t(n + 'voucher_roadmap', 'en leveren een geprioriteerde roadmap richting') + ' <strong>' + einddatum + '</strong>' + budget +
+             t(n + 'voucher_concrete', '. Concreet werk: gesprekken, document-review, gap-analyse, en geprioriteerde aanbevelingen — geen software-ontwikkeling.');
     }
     if (profile.engagement_type === 'partnership' || profile.engagement_type === 'research') {
-      return 'Een samenwerkingsverband tussen <strong>' + orgEsc + '</strong> en Regen Studio voor onderzoeks- en advisory-werk binnen <strong>' + regEsc + '</strong>. ' +
-             'Concreet werk: analyses, position papers, regulatoire-monitoring, en gezamenlijke deliverables — looptijd t/m <strong>' + einddatum + '</strong>.';
+      return t(n + 'partnership_intro', 'Een samenwerkingsverband tussen') + ' <strong>' + orgEsc + '</strong> ' +
+             t(n + 'partnership_body', 'en Regen Studio voor onderzoeks- en advisory-werk binnen') + ' <strong>' + regEsc + '</strong>' +
+             t(n + 'partnership_concrete', '. Concreet werk: analyses, position papers, regulatoire-monitoring, en gezamenlijke deliverables — looptijd t/m') + ' <strong>' + einddatum + '</strong>.';
     }
-    return 'Een advisory-engagement tussen <strong>' + orgEsc + '</strong> en Regen Studio binnen <strong>' + regEsc + '</strong>, looptijd t/m <strong>' + einddatum + '</strong>. ' +
-           'De Verwerkersovereenkomst regelt hoe persoonsgegevens binnen deze samenwerking worden verwerkt.';
+    return t(n + 'default_intro', 'Een advisory-engagement tussen') + ' <strong>' + orgEsc + '</strong> ' +
+           t(n + 'default_body', 'en Regen Studio binnen') + ' <strong>' + regEsc + '</strong>' +
+           t(n + 'default_term', ', looptijd t/m') + ' <strong>' + einddatum + '</strong>' +
+           t(n + 'default_purpose', '. De Verwerkersovereenkomst regelt hoe persoonsgegevens binnen deze samenwerking worden verwerkt.');
   }
 
   function setAlias(name) {
@@ -1305,10 +1297,13 @@
 
   function syncAliasDownstream(rawName) {
     const name = (rawName || '').trim() || '—';
-    const slug = name.toLowerCase().replace(/[^\w]+/g, '-').replace(/^-|-$/g, '') || 'alias';
     if (els.aliasDemoNameOut) els.aliasDemoNameOut.textContent = name;
-    if (els.aliasDemoEmailOut) els.aliasDemoEmailOut.textContent = slug + '@example.test';
-    if (els.recapAlias) els.recapAlias.textContent = name;
+    // E-mail is NOT aliased in the real flow — the OUT column mirrors the IN column.
+    // The alias only governs how the subject is referenced in AI-derived artifacts.
+    if (els.aliasDemoEmailOut) {
+      const inEmail = document.getElementById('alias-demo-email-in');
+      els.aliasDemoEmailOut.textContent = inEmail ? inEmail.textContent : 'jan@bedrijf.nl';
+    }
   }
 
   function setAliasMode(mode) {
@@ -1318,14 +1313,14 @@
       if (realName) {
         setAlias(realName);
         els.aliasText.classList.add('is-real');
-        els.aliasUseReal.textContent = 'of: gebruik een willekeurig dier-alias';
+        els.aliasUseReal.textContent = t('welcome.slide_shield.picker_use_random', 'of: gebruik een willekeurig dier-alias');
       } else {
         state.aliasMode = 'random';
       }
     }
     if (state.aliasMode === 'random') {
       els.aliasText.classList.remove('is-real');
-      els.aliasUseReal.textContent = 'of: gebruik mijn echte naam intern';
+      els.aliasUseReal.textContent = t('welcome.slide_shield.picker_use_real', 'of: gebruik mijn echte naam intern');
     }
   }
 
@@ -1348,11 +1343,6 @@
     state.formValid = valid;
     els.readyCta.disabled = !valid;
     els.readyValidation.classList.toggle('is-shown', !valid);
-    if (aiRadio) {
-      els.recapAi.textContent = aiRadio.value === '1'
-        ? 'Ja, met paste-alias-shield'
-        : 'Liever niet — geen AI-verwerking van persoonlijke data';
-    }
     return valid;
   }
 
@@ -1374,8 +1364,11 @@
     els.navDots.innerHTML = '';
     sections.forEach((sec, i) => {
       const btn = document.createElement('button');
-      btn.title = sec.dataset.navTitle || ('Slide ' + (i + 1));
-      btn.setAttribute('aria-label', btn.title);
+      // Prefer i18n key if present, fall back to inline data-nav-title (NL), then generic
+      const i18nKey = sec.dataset.i18nNavTitle;
+      const label = (i18nKey ? t(i18nKey, sec.dataset.navTitle) : sec.dataset.navTitle) || ('Slide ' + (i + 1));
+      btn.title = label;
+      btn.setAttribute('aria-label', label);
       btn.addEventListener('click', () => sec.scrollIntoView({ behavior: 'smooth' }));
       els.navDots.appendChild(btn);
     });
@@ -1448,11 +1441,19 @@
       else sessionStorage.removeItem('dpa_intake_annex_c_md');
       if (state.body.side_letter_md) sessionStorage.setItem('dpa_intake_side_letter_md', state.body.side_letter_md);
       else sessionStorage.removeItem('dpa_intake_side_letter_md');
+      // Phase H-bis cover canonicalisation — see dpa-intake.html.
+      if (state.body.cover_metadata) sessionStorage.setItem('dpa_intake_cover_metadata', JSON.stringify(state.body.cover_metadata));
+      else sessionStorage.removeItem('dpa_intake_cover_metadata');
     } catch (e) {
-      alert('Uw browser blokkeert opslag. Schakel cookies/storage tijdelijk in voor regenstudio.world en probeer opnieuw.');
+      alert(t('welcome.error.storage_blocked', 'Uw browser blokkeert opslag. Schakel cookies/storage tijdelijk in voor regenstudio.world en probeer opnieuw.'));
       return;
     }
     window.location.href = 'dpa-contract.html?token=' + encodeURIComponent(state.token);
+  }
+
+  // i18n helper — short alias so inline strings stay readable
+  function t(key, fallback) {
+    return (window.dpaI18n && window.dpaI18n.t) ? window.dpaI18n.t(key, fallback) : fallback;
   }
 
   // ===== Bootstrap =====
@@ -1460,7 +1461,8 @@
     const params = new URLSearchParams(location.search);
     state.token = (params.get('token') || '').trim().toLowerCase();
     if (!TOKEN_RE.test(state.token)) {
-      showError('<strong>Uitnodiging niet geldig.</strong><br>De link in uw uitnodigings-mail is incompleet of beschadigd.');
+      // Token validation fails before locale loads — fall back to NL inline (page already in NL).
+      showError(t('welcome.error.invalid', '<strong>Uitnodiging niet geldig.</strong><br>De link in uw uitnodigings-mail is incompleet of beschadigd.'));
       return;
     }
     fetch(VERIFY_TOKEN_URL, { // supabase.co same-origin (Edge Function)
@@ -1471,62 +1473,69 @@
       .then(r => r.json().then(j => ({ ok: r.ok, body: j })))
       .then(({ ok, body }) => {
         if (!ok || !body || body.success !== true || !body.engagement_profile) {
-          showError('<strong>Uitnodiging niet verifieerbaar.</strong><br>Mogelijke oorzaken: link is verlopen (7 dagen geldig), link is al gebruikt, of de URL is incompleet.');
+          showError(t('welcome.error.unverifiable', '<strong>Uitnodiging niet verifieerbaar.</strong><br>Mogelijke oorzaken: link is verlopen (7 dagen geldig), link is al gebruikt, of de URL is incompleet.'));
           return;
         }
         state.body = body;
         state.profile = body.engagement_profile;
 
-        renderEngagement();
-        setAlias(randomAlias());
-        bindAiPermission();
-        buildNavDots();
+        // i18n — load + apply the engagement's language before any prose renders.
+        // Fallback to 'nl' if default_language is missing (voucher baseline).
+        const lang = (state.profile.default_language || 'nl');
+        const i18nReady = (window.dpaI18n && window.dpaI18n.load)
+          ? window.dpaI18n.load(lang).then(() => window.dpaI18n.apply())
+          : Promise.resolve();
 
-        // Bind welcome CTA — clicking the triangle scrolls to slide 2
-        const welcomeCta = document.getElementById('welcome-cta');
-        if (welcomeCta) {
-          welcomeCta.addEventListener('click', () => {
-            document.getElementById('slide-who').scrollIntoView({ behavior: 'smooth' });
-          });
-        }
-        // Bind generic next-slide hints (slides 2-9)
-        document.querySelectorAll('.slide__hint[data-action="next-slide"]').forEach(btn => {
-          btn.addEventListener('click', () => {
-            const section = btn.closest('section.slide');
-            const next = section && section.nextElementSibling;
-            if (next && next.classList.contains('slide')) {
-              next.scrollIntoView({ behavior: 'smooth' });
-            }
-          });
-        });
+        return i18nReady.then(() => {
+          renderEngagement();
+          setAlias(randomAlias());
+          bindAiPermission();
+          buildNavDots();
 
-        // Bind alias controls
-        els.aliasReroll.addEventListener('click', rollNewAlias);
-        els.aliasUseReal.addEventListener('click', (e) => {
-          e.preventDefault();
-          setAliasMode(state.aliasMode === 'real' ? 'random' : 'real');
-        });
-        // Live-sync downstream demo + recap when user edits the alias input
-        els.aliasText.addEventListener('input', () => {
-          syncAliasDownstream(els.aliasText.value);
-        });
-        // Re-update real alias if name changes while in real mode
-        els.repName.addEventListener('input', () => {
-          if (state.aliasMode === 'real') setAliasMode('real');
+          // Bind welcome CTA — clicking the triangle scrolls to slide 2
+          const welcomeCta = document.getElementById('welcome-cta');
+          if (welcomeCta) {
+            welcomeCta.addEventListener('click', () => {
+              document.getElementById('slide-who').scrollIntoView({ behavior: 'smooth' });
+            });
+          }
+          // Bind generic next-slide hints
+          document.querySelectorAll('.slide__hint[data-action="next-slide"]').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const section = btn.closest('section.slide');
+              const next = section && section.nextElementSibling;
+              if (next && next.classList.contains('slide')) {
+                next.scrollIntoView({ behavior: 'smooth' });
+              }
+            });
+          });
+
+          // Bind alias controls
+          els.aliasReroll.addEventListener('click', rollNewAlias);
+          els.aliasUseReal.addEventListener('click', (e) => {
+            e.preventDefault();
+            setAliasMode(state.aliasMode === 'real' ? 'random' : 'real');
+          });
+          els.aliasText.addEventListener('input', () => {
+            syncAliasDownstream(els.aliasText.value);
+          });
+          els.repName.addEventListener('input', () => {
+            if (state.aliasMode === 'real') setAliasMode('real');
+            checkFormValid();
+          });
+          ['input', 'change'].forEach(ev => {
+            els.choicesForm.addEventListener(ev, checkFormValid);
+          });
+          els.readyCta.addEventListener('click', onReadyClick);
+
+          els.loading.style.display = 'none';
+          els.slides.hidden = false;
           checkFormValid();
         });
-        ['input', 'change'].forEach(ev => {
-          els.choicesForm.addEventListener(ev, checkFormValid);
-        });
-        els.readyCta.addEventListener('click', onReadyClick);
-
-        els.loading.style.display = 'none';
-        els.slides.hidden = false;
-        checkFormValid();
       })
       .catch(err => {
         console.error('verify-token failed:', err);
-        showError('<strong>Verbindingsstoring.</strong><br>Probeer opnieuw of mail Regen Studio.');
+        showError(t('welcome.error.connection', '<strong>Verbindingsstoring.</strong><br>Probeer opnieuw of mail Regen Studio.'));
       });
   }
 
