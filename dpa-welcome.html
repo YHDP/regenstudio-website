@@ -311,6 +311,36 @@
     display: flex; gap: 10px; justify-content: flex-end;
     align-items: center; margin-top: 4px;
   }
+  /* Absolute-positioned diagram exported from arch-diagram-lab (slide 5).
+     Authored at 1764×600 px; inner stays at native size so SVG edges remain
+     pixel-aligned with nodes. Wrapper scales the whole thing down to fit
+     the slide width (no JS resize observer — pure CSS). */
+  .arch-grid-wrap {
+    position: relative;
+    width: 100%;
+    overflow: visible;
+    margin: 16px 0;
+    /* Scaled height = 600 × scale. Capped at 600. */
+    height: min(600px, calc(100vw * 600 / 1764 - 40px));
+    min-height: 360px;
+  }
+  .arch-grid--absolute {
+    transform-origin: top left;
+    /* Cap scale at 1; below 1764px viewport scale down to fit. */
+    transform: scale(min(1, calc((100vw - 80px) / 1764)));
+  }
+  .arch-edge-label {
+    font-size: 11px; font-style: italic; color: var(--magenta);
+    background: var(--paper); padding: 1px 6px; border-radius: 3px;
+    line-height: 1.3; max-width: 240px;
+  }
+  .arch-edge-label[data-edge="e7"] { color: var(--teal); }
+  /* Widen the slide's max-width for the architecture slide so the scaled
+     diagram has room to breathe. */
+  .slide--architecture .slide__inner {
+    max-width: 1700px;
+  }
+  .slide--architecture { padding-left: 32px; padding-right: 32px; }
 
   .arch-arrow {
     color: #6b7280; font-size: 16px; text-align: center;
@@ -894,93 +924,68 @@
       <p class="slide__subtitle" data-i18n="welcome.slide_arch.subtitle">
         De hoofd-flow loopt over jouw browser → Supabase Edge in Frankfurt → encrypted in EU. Operator-uitvoering (gesprekken, advies, AI-werk) loopt via een aparte, expliciet-toestemmings-route door de Regen-medewerker.
       </p>
-      <div class="arch-grid">
-        <!-- Row 1: main horizontal data path -->
-        <div class="arch-row--main">
-          <div class="arch-node arch-node--user is-user">
-            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.user_title">Jij — je browser</div>
-            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.user_sub">magic-link, geen cookies</div>
+      <!-- Architecture diagram layout — authored in design-lab/arch-diagram-lab.html
+           2026-05-11 by Yvo, exported as absolute-positioned nodes + SVG edges.
+           Canvas viewBox is 1764x600; nodes use pixel coordinates from that canvas.
+           Class hooks (is-user, is-edge, etc.) keep the existing staggered-fade-in
+           reveal CSS working. data-i18n attributes plug into the locale loader.
+           For mobile / narrow screens the wrapper scales the whole diagram down
+           via CSS transform — see .arch-grid--absolute @media block. -->
+      <div class="arch-grid-wrap">
+        <div class="arch-grid arch-grid--absolute" style="position:relative;width:1764px;height:600px">
+          <div class="arch-node arch-node--user is-user" data-id="user" style="position:absolute;left:312px;top:56px">
+            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.user_title">You — your browser</div>
+            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.user_sub">magic link, no cookies</div>
           </div>
-          <span class="arch-arrow">&rarr;</span>
-          <div class="arch-node arch-node--internal is-cdn">
-            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.cdn_title">GitHub Pages CDN</div>
-            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.cdn_sub">statisch, geen PII</div>
-          </div>
-          <span class="arch-arrow">&rarr;</span>
-          <div class="arch-node arch-node--internal is-edge">
-            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.edge_title">Supabase Edge Function</div>
+          <div class="arch-node arch-node--internal is-edge" data-id="edge" style="position:absolute;left:585px;top:60px">
+            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.edge_title">Supabase</div>
             <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.edge_sub">Frankfurt, EU</div>
           </div>
-          <span class="arch-arrow">&rarr;</span>
-          <div class="arch-node arch-node--internal is-postgres">
-            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.postgres_title">Supabase Postgres</div>
-            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.postgres_sub">encrypted at rest, eigen sleutel</div>
+          <div class="arch-node arch-node--external is-lettermint" data-id="lettermint" style="position:absolute;left:534px;top:230px">
+            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.lettermint_title">Lettermint</div>
+            <div class="arch-node__sub" data-i18n-html="welcome.slide_arch.nodes.lettermint_sub_full">NL — outbound mail<br><small>magic link, signed-doc receipt, project mail</small></div>
           </div>
-        </div>
-
-        <!-- Row 2: branches that drop down from Edge + Postgres -->
-        <div class="arch-row--branches">
-          <!-- col 1: under user — empty --><div></div>
-          <div></div>
-          <!-- col 3: under CDN — empty --><div></div>
-          <div></div>
-          <!-- col 5: under Edge — Lettermint -->
-          <div>
-            <span class="arch-arrow arch-arrow--down">&darr;</span>
-            <div class="arch-node arch-node--external is-lettermint">
-              <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.lettermint_title">Lettermint</div>
-              <div class="arch-node__sub"><span data-i18n="welcome.slide_arch.nodes.lettermint_sub">NL — outbound mail</span><br><small data-i18n="welcome.slide_arch.nodes.lettermint_purposes">magic-link, signed-doc-receipt, project-mail</small><span class="arch-archive-edge" data-i18n="welcome.slide_arch.nodes.lettermint_archive">&rarr; gearchiveerd in Proton AG</span></div>
-            </div>
+          <div class="arch-node arch-node--external is-proton" data-id="proton" style="position:absolute;left:814px;top:226px">
+            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.proton_title">Proton BusinessMail Calendar Drive</div>
+            <div class="arch-node__sub" data-i18n-html="welcome.slide_arch.nodes.proton_sub_full">CH — working-file backup<br><small>e2e encrypted; no plain text</small></div>
           </div>
-          <div></div>
-          <!-- col 7: under Postgres — Proton + Exact stacked -->
-          <div class="arch-branch-stack">
-            <div>
-              <span class="arch-arrow arch-arrow--down">&darr;</span>
-              <div class="arch-node arch-node--external is-proton">
-                <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.proton_title">Proton AG</div>
-                <div class="arch-node__sub"><span data-i18n="welcome.slide_arch.nodes.proton_sub">CH — werkdossier-backup</span><br><small data-i18n="welcome.slide_arch.nodes.proton_detail">e2e-encrypted; geen plain-text</small></div>
-              </div>
-            </div>
-            <div>
-              <span class="arch-arrow arch-arrow--down">&darr;</span>
-              <div class="arch-node arch-node--external is-exact">
-                <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.exact_title">Exact Online</div>
-                <div class="arch-node__sub"><span data-i18n="welcome.slide_arch.nodes.exact_sub">NL — factuur-metadata</span><br><small data-i18n="welcome.slide_arch.nodes.exact_detail">geen vrije tekst, geen project-content</small></div>
-              </div>
-            </div>
+          <div class="arch-node arch-node--external is-exact" data-id="exact" style="position:absolute;left:873px;top:51px">
+            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.exact_title">Exact Online</div>
+            <div class="arch-node__sub" data-i18n-html="welcome.slide_arch.nodes.exact_sub_full">NL — invoice metadata<br><small>no free text, no project content</small></div>
           </div>
-        </div>
-
-        <!-- Row 3: operator-receiving — device where the operator works locally with the data -->
-        <div class="arch-row--operator">
-          <span class="arch-branch-label" data-i18n="welcome.slide_arch.device_label">via Postgres-export en Proton Drive sync &rarr;</span>
-          <div class="arch-node arch-node--operator is-device">
-            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.device_title">Regen-medewerker — eigen device</div>
-            <div class="arch-node__sub"><span data-i18n="welcome.slide_arch.nodes.device_sub">macOS, e2e-encrypted disk</span><br><small data-i18n="welcome.slide_arch.nodes.device_detail">handmatig werk: gesprekken, advies, document-review</small></div>
+          <div class="arch-node arch-node--operator is-device" data-id="device" style="position:absolute;left:1150px;top:204px">
+            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.device_title">Regen team member — own device</div>
+            <div class="arch-node__sub" data-i18n-html="welcome.slide_arch.nodes.device_sub_full">macOS, e2e encrypted disk<br><small>manual work: conversations, advice, document review</small></div>
           </div>
-        </div>
-
-        <!-- Row 4: consent-gated AI sub-flow, originating from the operator's device (not from Postgres directly) -->
-        <div class="arch-row--ai">
-          <span class="arch-branch-label" data-i18n="welcome.slide_arch.ai_label">vanuit eigen device, handmatig &amp; alleen met expliciete toestemming &rarr;</span>
-          <div class="arch-node arch-node--gated is-paste">
-            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.paste_title">paste-alias-shield</div>
-            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.paste_sub">handmatige stap — naam &rarr; alias</div>
+          <div class="arch-node arch-node--gated is-paste" data-id="shield" style="position:absolute;left:1207px;top:60px">
+            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.paste_title">AI Data Protection Services</div>
+            <div class="arch-node__sub" data-i18n-html="welcome.slide_arch.nodes.paste_sub">paste-alias-shield /<br>consent registry /<br>pre-hooks</div>
           </div>
-          <span class="arch-arrow arch-arrow--gated">&rarr;</span>
-          <div class="arch-node arch-node--gated is-ai">
+          <div class="arch-node arch-node--gated is-ai" data-id="ai" style="position:absolute;left:1484px;top:69px">
             <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.ai_title">Anthropic (Claude) (US)</div>
-            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.ai_sub">SCC's Module 2 + 3</div>
+            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.ai_sub">SCCs Module 2 + 3</div>
           </div>
+          <svg class="arch-edges" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none" viewBox="0 0 1764 600" preserveAspectRatio="none">
+            <line data-edge="e4"        data-flavor="default"  x1="648"  y1="117" x2="650"  y2="230" stroke="#6b7280" stroke-width="1.5"/>
+            <line data-edge="e7"        data-flavor="archive"  x1="758"  y1="262" x2="814"  y2="262" stroke="#009BBB" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <line data-edge="e9"        data-flavor="operator" x1="1069" y1="250" x2="1150" y2="251" stroke="#7a5814" stroke-width="1.5"/>
+            <line data-edge="eA"        data-flavor="gated"    x1="1282" y1="204" x2="1282" y2="148" stroke="#93093F" stroke-width="1.8"/>
+            <line data-edge="eB"        data-flavor="gated"    x1="1410" y1="102" x2="1484" y2="102" stroke="#93093F" stroke-width="1.8"/>
+            <line data-edge="emp1rwwx7" data-flavor="default"  x1="725"  y1="87"  x2="873"  y2="88"  stroke="#6b7280" stroke-width="1.5"/>
+            <line data-edge="emp1rx3b2" data-flavor="default"  x1="696"  y1="117" x2="883"  y2="226" stroke="#6b7280" stroke-width="1.5"/>
+            <line data-edge="emp1saz21" data-flavor="default"  x1="1365" y1="204" x2="1484" y2="134" stroke="#6b7280" stroke-width="1.5"/>
+            <line data-edge="emp1seyf3" data-flavor="default"  x1="467"  y1="86"  x2="585"  y2="88"  stroke="#6b7280" stroke-width="1.5"/>
+            <line data-edge="emp1sfalt" data-flavor="default"  x1="944"  y1="124" x2="944"  y2="226" stroke="#6b7280" stroke-width="1.5"/>
+          </svg>
+          <div class="arch-edge-label" data-edge="e7" style="position:absolute;left:922px;top:170px" data-i18n="welcome.slide_arch.edge_label_archive">archived in Proton AG</div>
         </div>
       </div>
 
       <div class="arch-legend">
-        <span><i class="dot dot--internal"></i> <span data-i18n="welcome.slide_arch.legend.internal">Eigen Regen-infrastructuur (Supabase Edge + Postgres, GitHub)</span></span>
-        <span><i class="dot dot--external"></i> <span data-i18n="welcome.slide_arch.legend.external">Externe sub-processors (Lettermint, Proton, Exact)</span></span>
-        <span><i class="dot dot--operator"></i> <span data-i18n="welcome.slide_arch.legend.operator">Operator-uitvoering (eigen device)</span></span>
-        <span><i class="dot dot--gated"></i> <span data-i18n="welcome.slide_arch.legend.gated">Alleen met expliciete toestemming (AI-pad)</span></span>
+        <span><i class="dot dot--internal"></i> <span data-i18n="welcome.slide_arch.legend.internal">Own Regen infrastructure (Supabase)</span></span>
+        <span><i class="dot dot--external"></i> <span data-i18n="welcome.slide_arch.legend.external">External sub-processors (Lettermint, Proton, Exact)</span></span>
+        <span><i class="dot dot--operator"></i> <span data-i18n="welcome.slide_arch.legend.operator">Operator execution (own device)</span></span>
+        <span><i class="dot dot--gated"></i> <span data-i18n="welcome.slide_arch.legend.gated">Only with explicit consent (AI path)</span></span>
       </div>
     </div>
     <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
