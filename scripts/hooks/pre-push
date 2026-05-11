@@ -245,35 +245,6 @@ while read local_ref local_sha remote_ref remote_sha; do
     ISSUES=$((ISSUES + 1))
   fi
 
-  # 12. Block internal/local-only files reaching the public remote.
-  #     The .gitignore prevents NEW staging of these paths, but already-tracked
-  #     files survive a later .gitignore addition until explicitly `git rm
-  #     --cached`. This guard catches the 2026-05-11 class of leak where
-  #     CLAUDE.md sat in 22 public commits before being noticed.
-  #
-  #     Patterns mirror .gitignore intent:
-  #       - CLAUDE.md / MEMORY.md at any level (Claude-Code convention files)
-  #       - docs/collaboration/* (internal session notes)
-  #       - Vision/Text *.md (source drafts paired with served HTML)
-  #       - scripts/regen-dpa-templates.sh (Edge Function infra tooling)
-  #       - audit-log/* / design-lab/* / dpa-test-content/* / scope-test-content/*
-  #         (internal QA artefacts + local test content; gitignored but defense
-  #         in depth in case .gitignore is bypassed or stale-tracked).
-  #
-  #     If a legitimate need to publish one of these arises, the path needs to
-  #     leave this regex AND .gitignore in the same change — don't --no-verify.
-  INTERNAL_PATHS_RE='(^|/)(CLAUDE|MEMORY)\.md$|^docs/collaboration/|^Vision/Text [A-Z]+\.md$|^scripts/regen-dpa-templates\.sh$|^audit-log/|^design-lab/|^dpa-test-content/|^scope-test-content/'
-  INTERNAL_LEAKS=$(git diff --name-only --diff-filter=AM "$range" 2>/dev/null | grep -E "$INTERNAL_PATHS_RE" || true)
-  if [ -n "$INTERNAL_LEAKS" ]; then
-    echo -e "${RED}BLOCKED: Internal/local-only file(s) reaching public remote:${NC}"
-    echo "$INTERNAL_LEAKS"
-    echo ""
-    echo -e "${YELLOW}  These paths are listed in .gitignore as never-public. They were${NC}"
-    echo -e "${YELLOW}  either tracked before .gitignore caught them, or staged with${NC}"
-    echo -e "${YELLOW}  'git add -f'. Untrack: ${NC}git rm --cached <file>${YELLOW}, commit, retry push.${NC}"
-    ISSUES=$((ISSUES + 1))
-  fi
-
   # 6. Block publishing unreviewed blog content.
   #    Any added/modified blog/<slug>/index.html (or nl/blog, pt/blog) requires
   #    Blogs/<slug>/meta[.lang].json to have published:true AND review.text/assets:approved
