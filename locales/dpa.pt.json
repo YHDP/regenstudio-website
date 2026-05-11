@@ -310,96 +310,6 @@
       "contact_support": "Entre em contato com info@regenstudio.world. Não assine até que isto seja resolvido.",
       "session_missing": "<strong>Dados da sessão ausentes.</strong> Possíveis causas: você fechou e reabriu a aba do navegador; está usando uma janela privada que limpa o sessionStorage; ou o link de convite foi aberto diretamente sem concluir a etapa 1.<br><br>Volte ao e-mail de convite e abra o link novamente — comece pela página de preenchimento."
     },
-    "intake": {
-      "page_title": "DPA Portal · Regen Studio",
-      "topbar": "DPA Portal · Intake do Contrato de Processamento de Dados",
-      "loading": "Verificando convite…",
-      "title_prefix": "Contrato de Processamento de Dados",
-      "lead": "Você foi convidado a assinar o Contrato de Processamento de Dados (DPA) conforme o Artigo 28 do RGPD para a colaboração entre <strong data-tpl=\"legal_name\"></strong> e Regen Studio B.V. Preencha seus dados abaixo e confirme o escopo da colaboração; na próxima página você assina o documento.",
-      "section_1": "1. Visão geral do engajamento",
-      "section_2": "2. Dados do Controlador",
-      "section_3": "3. Representante autorizado (signatário)",
-      "section_4": "4. Categorias de documentos no escopo",
-      "section_5": "5. Consentimento para processamento por IA dos seus dados pessoais",
-      "section_6": "6. Confirmar e continuar",
-      "summary": {
-        "engagement": "Engajamento",
-        "voucher": "Voucher / referência",
-        "subsidie": "Valor do subsídio",
-        "einddatum": "Data final do projeto",
-        "regulatory": "Marco regulatório aplicável",
-        "bewaar": "Retenção até"
-      },
-      "fields": {
-        "legal_name": "Razão social",
-        "legal_form": "Forma jurídica",
-        "legal_form_placeholder": "ex. Besloten Vennootschap (B.V.)",
-        "address": "Endereço",
-        "address_placeholder": "Rua número, CEP cidade",
-        "country": "País de incorporação",
-        "kvk": "Câmara de Comércio (ou equivalente)",
-        "prefilled_hint": "Os campos em cinza-claro foram pré-preenchidos a partir de registros públicos; revise e ajuste se necessário.",
-        "rep_intro": "Preencha seus dados de contato como signatário em nome de <strong data-tpl=\"legal_name\"></strong>.",
-        "rep_name": "Nome completo *",
-        "rep_name_placeholder": "Nome Sobrenome",
-        "rep_role": "Cargo *",
-        "rep_role_placeholder": "ex. Diretor, CEO, Cofundador",
-        "rep_email": "E-mail *",
-        "rep_email_placeholder": "nome@empresa.com.br",
-        "rep_phone": "Telefone (opcional)",
-        "rep_phone_placeholder": "+55 …"
-      },
-      "docs": {
-        "intro": "As categorias de documentos abaixo estão no escopo do processamento para este Engajamento (veja também canonical § 5.4 + Schedule § B.6). Desmarque o que quiser excluir para este projeto específico.",
-        "group_product": "Dados de produto, material e cadeia de fornecimento",
-        "group_operational": "Documentos operacionais",
-        "group_external": "Fontes externas",
-        "excluded_label": "Categoricamente excluído do processamento por IA"
-      },
-      "ai_consent": {
-        "headline": "Dou permissão para a Regen Studio também ter meus dados pessoais (nome, e-mail, cargo, telefone) processados pela Anthropic Claude",
-        "body": " como parte da prestação de serviço assistida por IA para este Engajamento, conforme canonical § 5.4. Este consentimento é <em>voluntário</em>; o DPA é válido mesmo sem ele. Você pode revogar este consentimento a qualquer momento via <a href=\"mailto:info@regenstudio.world\">info@regenstudio.world</a>.",
-        "alias_intro": "Opcionalmente você pode fornecer um alias que a Regen usará nos documentos de trabalho em vez do seu nome real:",
-        "alias_placeholder": "ex. um alias à sua escolha"
-      },
-      "confirm": "Ao clicar em <strong>Para o Contrato</strong> você confirma que (i) tem autoridade para vincular <span data-tpl=\"legal_name\"></span>, (ii) os dados acima estão corretos, e (iii) concorda com o conteúdo do Contrato de Processamento de Dados como exibido na próxima página, antes da assinatura.",
-      "next_button": "Para o Contrato →",
-      "footer": "Dúvidas ou precisa de um novo link de convite? <a href=\"mailto:info@regenstudio.world\">info@regenstudio.world</a> · <a href=\"/privacy.html\">Política de privacidade</a> · <a href=\"/\">regenstudio.world</a>",
-      "errors": {
-        "invalid": "<strong>Convite inválido.</strong><br>O link no seu e-mail de convite está incompleto ou danificado. Abra o link diretamente do e-mail ou copie a URL completa.",
-        "unverifiable": "<strong>Não foi possível verificar o convite.</strong><br>Possíveis causas: o link expirou (válido por 7 dias), o link já foi utilizado ou a URL está incompleta.",
-        "profile_missing": "<strong>Perfil do engajamento não encontrado.</strong><br>Entre em contato com a Regen Studio para suporte.",
-        "connection": "<strong>Falha de conexão.</strong><br>Tente novamente ou envie um e-mail para a Regen Studio.",
-        "storage_blocked": "Seu navegador está bloqueando o armazenamento. Habilite cookies/storage temporariamente para regenstudio.world e tente novamente."
-      }
-    },
-    "signed": {
-      "page_title": "DPA assinado · Regen Studio",
-      "loading": "⏳ Verificando seu link de download…",
-      "success_title": "Contrato de Processamento de Dados assinado",
-      "success_intro": "Seu link de download foi verificado. Clique abaixo para baixar o DPA assinado.",
-      "download_btn": "Baixar DPA assinado →",
-      "expires_warning": "⚠️ <strong>Importante:</strong> este link expira 30 minutos após esta primeira abertura. Salve o arquivo no seu sistema imediatamente após o download — você sempre pode reabri-lo a partir do seu próprio disco.",
-      "meta_signed_at": "Momento da assinatura",
-      "meta_engagement": "Engajamento",
-      "meta_party": "Parte",
-      "questions": "Dúvidas? Envie um e-mail para <a href=\"mailto:info@regenstudio.world\" style=\"color:var(--muted)\">info@regenstudio.world</a>.",
-      "error_title": "⚠️ Link de download inválido",
-      "error_help": "Envie um e-mail para <a href=\"mailto:info@regenstudio.world?subject=Novo%20link%20de%20download%20DPA\" style=\"color:var(--muted)\">info@regenstudio.world</a> para um novo link.",
-      "party_controller": "Controlador",
-      "party_processor": "Operador",
-      "reasons": {
-        "malformed": "O link de download está incompleto ou danificado. Abra o link diretamente do e-mail.",
-        "not_found": "Este link de download é desconhecido.",
-        "expired": "Este link de download expirou (30 dias após a assinatura).",
-        "expired_after_first_use": "Este link expirou trinta (30) minutos após a primeira abertura.",
-        "snapshot_missing": "O arquivo não foi encontrado no armazenamento. Envie um e-mail para info@regenstudio.world para recuperação.",
-        "snapshot_path_missing": "A referência interna ao arquivo está inválida. Envie um e-mail para info@regenstudio.world para recuperação.",
-        "server_error": "Falha temporária no servidor. Tente novamente em alguns minutos.",
-        "method_not_allowed": "Método de chamada incorreto. Recarregue a página.",
-        "connection": "Falha de conexão. Tente novamente ou envie um e-mail para info@regenstudio.world."
-      }
-    },
     "post_sign": {
       "heading": "✅ Contrato de Processamento de Dados assinado",
       "body_prefix": "Sua assinatura foi registrada. Enviamos um link de download para o DPA assinado para",
@@ -412,6 +322,96 @@
       "not_received_subject": "DPA assinado não recebido",
       "close": "Fechar",
       "failed": "Falha na assinatura."
+    }
+  },
+  "intake": {
+    "page_title": "DPA Portal · Regen Studio",
+    "topbar": "DPA Portal · Intake do Contrato de Processamento de Dados",
+    "loading": "Verificando convite…",
+    "title_prefix": "Contrato de Processamento de Dados",
+    "lead": "Você foi convidado a assinar o Contrato de Processamento de Dados (DPA) conforme o Artigo 28 do RGPD para a colaboração entre <strong data-tpl=\"legal_name\"></strong> e Regen Studio B.V. Preencha seus dados abaixo e confirme o escopo da colaboração; na próxima página você assina o documento.",
+    "section_1": "1. Visão geral do engajamento",
+    "section_2": "2. Dados do Controlador",
+    "section_3": "3. Representante autorizado (signatário)",
+    "section_4": "4. Categorias de documentos no escopo",
+    "section_5": "5. Consentimento para processamento por IA dos seus dados pessoais",
+    "section_6": "6. Confirmar e continuar",
+    "summary": {
+      "engagement": "Engajamento",
+      "voucher": "Voucher / referência",
+      "subsidie": "Valor do subsídio",
+      "einddatum": "Data final do projeto",
+      "regulatory": "Marco regulatório aplicável",
+      "bewaar": "Retenção até"
+    },
+    "fields": {
+      "legal_name": "Razão social",
+      "legal_form": "Forma jurídica",
+      "legal_form_placeholder": "ex. Besloten Vennootschap (B.V.)",
+      "address": "Endereço",
+      "address_placeholder": "Rua número, CEP cidade",
+      "country": "País de incorporação",
+      "kvk": "Câmara de Comércio (ou equivalente)",
+      "prefilled_hint": "Os campos em cinza-claro foram pré-preenchidos a partir de registros públicos; revise e ajuste se necessário.",
+      "rep_intro": "Preencha seus dados de contato como signatário em nome de <strong data-tpl=\"legal_name\"></strong>.",
+      "rep_name": "Nome completo *",
+      "rep_name_placeholder": "Nome Sobrenome",
+      "rep_role": "Cargo *",
+      "rep_role_placeholder": "ex. Diretor, CEO, Cofundador",
+      "rep_email": "E-mail *",
+      "rep_email_placeholder": "nome@empresa.com.br",
+      "rep_phone": "Telefone (opcional)",
+      "rep_phone_placeholder": "+55 …"
+    },
+    "docs": {
+      "intro": "As categorias de documentos abaixo estão no escopo do processamento para este Engajamento (veja também canonical § 5.4 + Schedule § B.6). Desmarque o que quiser excluir para este projeto específico.",
+      "group_product": "Dados de produto, material e cadeia de fornecimento",
+      "group_operational": "Documentos operacionais",
+      "group_external": "Fontes externas",
+      "excluded_label": "Categoricamente excluído do processamento por IA"
+    },
+    "ai_consent": {
+      "headline": "Dou permissão para a Regen Studio também ter meus dados pessoais (nome, e-mail, cargo, telefone) processados pela Anthropic Claude",
+      "body": " como parte da prestação de serviço assistida por IA para este Engajamento, conforme canonical § 5.4. Este consentimento é <em>voluntário</em>; o DPA é válido mesmo sem ele. Você pode revogar este consentimento a qualquer momento via <a href=\"mailto:info@regenstudio.world\">info@regenstudio.world</a>.",
+      "alias_intro": "Opcionalmente você pode fornecer um alias que a Regen usará nos documentos de trabalho em vez do seu nome real:",
+      "alias_placeholder": "ex. um alias à sua escolha"
+    },
+    "confirm": "Ao clicar em <strong>Para o Contrato</strong> você confirma que (i) tem autoridade para vincular <span data-tpl=\"legal_name\"></span>, (ii) os dados acima estão corretos, e (iii) concorda com o conteúdo do Contrato de Processamento de Dados como exibido na próxima página, antes da assinatura.",
+    "next_button": "Para o Contrato →",
+    "footer": "Dúvidas ou precisa de um novo link de convite? <a href=\"mailto:info@regenstudio.world\">info@regenstudio.world</a> · <a href=\"/privacy.html\">Política de privacidade</a> · <a href=\"/\">regenstudio.world</a>",
+    "errors": {
+      "invalid": "<strong>Convite inválido.</strong><br>O link no seu e-mail de convite está incompleto ou danificado. Abra o link diretamente do e-mail ou copie a URL completa.",
+      "unverifiable": "<strong>Não foi possível verificar o convite.</strong><br>Possíveis causas: o link expirou (válido por 7 dias), o link já foi utilizado ou a URL está incompleta.",
+      "profile_missing": "<strong>Perfil do engajamento não encontrado.</strong><br>Entre em contato com a Regen Studio para suporte.",
+      "connection": "<strong>Falha de conexão.</strong><br>Tente novamente ou envie um e-mail para a Regen Studio.",
+      "storage_blocked": "Seu navegador está bloqueando o armazenamento. Habilite cookies/storage temporariamente para regenstudio.world e tente novamente."
+    }
+  },
+  "signed": {
+    "page_title": "DPA assinado · Regen Studio",
+    "loading": "⏳ Verificando seu link de download…",
+    "success_title": "Contrato de Processamento de Dados assinado",
+    "success_intro": "Seu link de download foi verificado. Clique abaixo para baixar o DPA assinado.",
+    "download_btn": "Baixar DPA assinado →",
+    "expires_warning": "⚠️ <strong>Importante:</strong> este link expira 30 minutos após esta primeira abertura. Salve o arquivo no seu sistema imediatamente após o download — você sempre pode reabri-lo a partir do seu próprio disco.",
+    "meta_signed_at": "Momento da assinatura",
+    "meta_engagement": "Engajamento",
+    "meta_party": "Parte",
+    "questions": "Dúvidas? Envie um e-mail para <a href=\"mailto:info@regenstudio.world\" style=\"color:var(--muted)\">info@regenstudio.world</a>.",
+    "error_title": "⚠️ Link de download inválido",
+    "error_help": "Envie um e-mail para <a href=\"mailto:info@regenstudio.world?subject=Novo%20link%20de%20download%20DPA\" style=\"color:var(--muted)\">info@regenstudio.world</a> para um novo link.",
+    "party_controller": "Controlador",
+    "party_processor": "Operador",
+    "reasons": {
+      "malformed": "O link de download está incompleto ou danificado. Abra o link diretamente do e-mail.",
+      "not_found": "Este link de download é desconhecido.",
+      "expired": "Este link de download expirou (30 dias após a assinatura).",
+      "expired_after_first_use": "Este link expirou trinta (30) minutos após a primeira abertura.",
+      "snapshot_missing": "O arquivo não foi encontrado no armazenamento. Envie um e-mail para info@regenstudio.world para recuperação.",
+      "snapshot_path_missing": "A referência interna ao arquivo está inválida. Envie um e-mail para info@regenstudio.world para recuperação.",
+      "server_error": "Falha temporária no servidor. Tente novamente em alguns minutos.",
+      "method_not_allowed": "Método de chamada incorreto. Recarregue a página.",
+      "connection": "Falha de conexão. Tente novamente ou envie um e-mail para info@regenstudio.world."
     }
   }
 }

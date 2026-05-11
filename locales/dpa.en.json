@@ -310,96 +310,6 @@
       "contact_support": "Please contact info@regenstudio.world. Do not sign until this is resolved.",
       "session_missing": "<strong>Session data missing.</strong> Possible causes: you closed and reopened the browser tab; you are using a private window that clears sessionStorage; or the invitation link was opened directly without completing step 1.<br><br>Please return to the invitation email and open the link again — start from the intake page."
     },
-    "intake": {
-      "page_title": "DPA Portal · Regen Studio",
-      "topbar": "DPA Portal · Data Processing Agreement intake",
-      "loading": "Verifying invitation…",
-      "title_prefix": "Data Processing Agreement",
-      "lead": "You have been invited to sign the Data Processing Agreement (DPA) under Article 28 GDPR for the collaboration between <strong data-tpl=\"legal_name\"></strong> and Regen Studio B.V. Fill in your details below and confirm the collaboration scope; on the next page you sign the document.",
-      "section_1": "1. Engagement overview",
-      "section_2": "2. Controller details",
-      "section_3": "3. Authorised representative (signatory)",
-      "section_4": "4. Document categories in scope",
-      "section_5": "5. Consent for AI processing of your personal data",
-      "section_6": "6. Confirm and continue",
-      "summary": {
-        "engagement": "Engagement",
-        "voucher": "Voucher / reference",
-        "subsidie": "Subsidy amount",
-        "einddatum": "Project end date",
-        "regulatory": "Applicable regulatory framework",
-        "bewaar": "Retention until"
-      },
-      "fields": {
-        "legal_name": "Legal entity name",
-        "legal_form": "Legal form",
-        "legal_form_placeholder": "e.g. Besloten Vennootschap (B.V.)",
-        "address": "Address",
-        "address_placeholder": "Street number, postcode city",
-        "country": "Country of incorporation",
-        "kvk": "Chamber of Commerce no. (or equivalent)",
-        "prefilled_hint": "Light-grey fields are pre-filled from public registers; review and adjust where needed.",
-        "rep_intro": "Fill in your own contact details as the person signing on behalf of <strong data-tpl=\"legal_name\"></strong>.",
-        "rep_name": "Full name *",
-        "rep_name_placeholder": "First Last",
-        "rep_role": "Role *",
-        "rep_role_placeholder": "e.g. Director, CEO, Co-founder",
-        "rep_email": "Email *",
-        "rep_email_placeholder": "name@company.com",
-        "rep_phone": "Phone number (optional)",
-        "rep_phone_placeholder": "+1 …"
-      },
-      "docs": {
-        "intro": "The document categories below fall within the processing scope for this Engagement (see also canonical § 5.4 + Schedule § B.6). Uncheck what you'd like to exclude for this specific project.",
-        "group_product": "Product, material and supply-chain data",
-        "group_operational": "Operational documents",
-        "group_external": "External sources",
-        "excluded_label": "Categorically excluded from AI processing"
-      },
-      "ai_consent": {
-        "headline": "I give Regen Studio permission to also have my personal data (name, email, role, phone number) processed by Anthropic Claude",
-        "body": " as part of AI-assisted service delivery for this Engagement, in line with canonical § 5.4. This consent is <em>voluntary</em>; the DPA is valid without it. You can withdraw this consent at any time via <a href=\"mailto:info@regenstudio.world\">info@regenstudio.world</a>.",
-        "alias_intro": "Optionally you can provide an alias that Regen uses in working documents instead of your real name:",
-        "alias_placeholder": "e.g. an alias of your choice"
-      },
-      "confirm": "By clicking <strong>To the Agreement</strong> you confirm that (i) you are authorised to bind <span data-tpl=\"legal_name\"></span>, (ii) the above details are correct, and (iii) you agree to the contents of the Data Processing Agreement as shown on the next page, prior to signing.",
-      "next_button": "To the Agreement →",
-      "footer": "Questions or need a new invitation link? <a href=\"mailto:info@regenstudio.world\">info@regenstudio.world</a> · <a href=\"/privacy.html\">Privacy statement</a> · <a href=\"/\">regenstudio.world</a>",
-      "errors": {
-        "invalid": "<strong>Invitation not valid.</strong><br>The link in your invitation email is incomplete or damaged. Open the link directly from the email or copy the full URL.",
-        "unverifiable": "<strong>Invitation could not be verified.</strong><br>Possible causes: the link expired (valid for 7 days), the link was already used, or the URL is incomplete.",
-        "profile_missing": "<strong>Engagement profile not found.</strong><br>Please contact Regen Studio for support.",
-        "connection": "<strong>Connection issue.</strong><br>Please try again or email Regen Studio.",
-        "storage_blocked": "Your browser is blocking storage. Temporarily enable cookies/storage for regenstudio.world and try again."
-      }
-    },
-    "signed": {
-      "page_title": "Signed DPA · Regen Studio",
-      "loading": "⏳ Verifying your download link…",
-      "success_title": "Signed Data Processing Agreement",
-      "success_intro": "Your download link has been verified. Click below to download the signed DPA.",
-      "download_btn": "Download signed DPA →",
-      "expires_warning": "⚠️ <strong>Important:</strong> this link expires 30 minutes after this first opening. Save the file to your system immediately after downloading — you can always reopen it from your own disk.",
-      "meta_signed_at": "Time of signing",
-      "meta_engagement": "Engagement",
-      "meta_party": "Party",
-      "questions": "Questions? Email <a href=\"mailto:info@regenstudio.world\" style=\"color:var(--muted)\">info@regenstudio.world</a>.",
-      "error_title": "⚠️ Download link not valid",
-      "error_help": "Email <a href=\"mailto:info@regenstudio.world?subject=New%20DPA%20download%20link\" style=\"color:var(--muted)\">info@regenstudio.world</a> for a new download link.",
-      "party_controller": "Controller",
-      "party_processor": "Processor",
-      "reasons": {
-        "malformed": "The download link is incomplete or damaged. Open the link directly from the email.",
-        "not_found": "This download link is unknown.",
-        "expired": "This download link has expired (30 days after signing).",
-        "expired_after_first_use": "This download link expired thirty (30) minutes after first opening.",
-        "snapshot_missing": "The file could not be found in storage. Please email info@regenstudio.world to recover.",
-        "snapshot_path_missing": "The internal file reference is invalid. Please email info@regenstudio.world to recover.",
-        "server_error": "Temporary server issue. Please try again in a few minutes.",
-        "method_not_allowed": "Incorrect call method. Reload the page.",
-        "connection": "Connection issue. Please try again, or email info@regenstudio.world."
-      }
-    },
     "post_sign": {
       "heading": "✅ Data Processing Agreement signed",
       "body_prefix": "Your signature is registered. We have sent a download link for the signed DPA to",
@@ -412,6 +322,96 @@
       "not_received_subject": "Signed DPA not received",
       "close": "Close",
       "failed": "Signing failed."
+    }
+  },
+  "intake": {
+    "page_title": "DPA Portal · Regen Studio",
+    "topbar": "DPA Portal · Data Processing Agreement intake",
+    "loading": "Verifying invitation…",
+    "title_prefix": "Data Processing Agreement",
+    "lead": "You have been invited to sign the Data Processing Agreement (DPA) under Article 28 GDPR for the collaboration between <strong data-tpl=\"legal_name\"></strong> and Regen Studio B.V. Fill in your details below and confirm the collaboration scope; on the next page you sign the document.",
+    "section_1": "1. Engagement overview",
+    "section_2": "2. Controller details",
+    "section_3": "3. Authorised representative (signatory)",
+    "section_4": "4. Document categories in scope",
+    "section_5": "5. Consent for AI processing of your personal data",
+    "section_6": "6. Confirm and continue",
+    "summary": {
+      "engagement": "Engagement",
+      "voucher": "Voucher / reference",
+      "subsidie": "Subsidy amount",
+      "einddatum": "Project end date",
+      "regulatory": "Applicable regulatory framework",
+      "bewaar": "Retention until"
+    },
+    "fields": {
+      "legal_name": "Legal entity name",
+      "legal_form": "Legal form",
+      "legal_form_placeholder": "e.g. Besloten Vennootschap (B.V.)",
+      "address": "Address",
+      "address_placeholder": "Street number, postcode city",
+      "country": "Country of incorporation",
+      "kvk": "Chamber of Commerce no. (or equivalent)",
+      "prefilled_hint": "Light-grey fields are pre-filled from public registers; review and adjust where needed.",
+      "rep_intro": "Fill in your own contact details as the person signing on behalf of <strong data-tpl=\"legal_name\"></strong>.",
+      "rep_name": "Full name *",
+      "rep_name_placeholder": "First Last",
+      "rep_role": "Role *",
+      "rep_role_placeholder": "e.g. Director, CEO, Co-founder",
+      "rep_email": "Email *",
+      "rep_email_placeholder": "name@company.com",
+      "rep_phone": "Phone number (optional)",
+      "rep_phone_placeholder": "+1 …"
+    },
+    "docs": {
+      "intro": "The document categories below fall within the processing scope for this Engagement (see also canonical § 5.4 + Schedule § B.6). Uncheck what you'd like to exclude for this specific project.",
+      "group_product": "Product, material and supply-chain data",
+      "group_operational": "Operational documents",
+      "group_external": "External sources",
+      "excluded_label": "Categorically excluded from AI processing"
+    },
+    "ai_consent": {
+      "headline": "I give Regen Studio permission to also have my personal data (name, email, role, phone number) processed by Anthropic Claude",
+      "body": " as part of AI-assisted service delivery for this Engagement, in line with canonical § 5.4. This consent is <em>voluntary</em>; the DPA is valid without it. You can withdraw this consent at any time via <a href=\"mailto:info@regenstudio.world\">info@regenstudio.world</a>.",
+      "alias_intro": "Optionally you can provide an alias that Regen uses in working documents instead of your real name:",
+      "alias_placeholder": "e.g. an alias of your choice"
+    },
+    "confirm": "By clicking <strong>To the Agreement</strong> you confirm that (i) you are authorised to bind <span data-tpl=\"legal_name\"></span>, (ii) the above details are correct, and (iii) you agree to the contents of the Data Processing Agreement as shown on the next page, prior to signing.",
+    "next_button": "To the Agreement →",
+    "footer": "Questions or need a new invitation link? <a href=\"mailto:info@regenstudio.world\">info@regenstudio.world</a> · <a href=\"/privacy.html\">Privacy statement</a> · <a href=\"/\">regenstudio.world</a>",
+    "errors": {
+      "invalid": "<strong>Invitation not valid.</strong><br>The link in your invitation email is incomplete or damaged. Open the link directly from the email or copy the full URL.",
+      "unverifiable": "<strong>Invitation could not be verified.</strong><br>Possible causes: the link expired (valid for 7 days), the link was already used, or the URL is incomplete.",
+      "profile_missing": "<strong>Engagement profile not found.</strong><br>Please contact Regen Studio for support.",
+      "connection": "<strong>Connection issue.</strong><br>Please try again or email Regen Studio.",
+      "storage_blocked": "Your browser is blocking storage. Temporarily enable cookies/storage for regenstudio.world and try again."
+    }
+  },
+  "signed": {
+    "page_title": "Signed DPA · Regen Studio",
+    "loading": "⏳ Verifying your download link…",
+    "success_title": "Signed Data Processing Agreement",
+    "success_intro": "Your download link has been verified. Click below to download the signed DPA.",
+    "download_btn": "Download signed DPA →",
+    "expires_warning": "⚠️ <strong>Important:</strong> this link expires 30 minutes after this first opening. Save the file to your system immediately after downloading — you can always reopen it from your own disk.",
+    "meta_signed_at": "Time of signing",
+    "meta_engagement": "Engagement",
+    "meta_party": "Party",
+    "questions": "Questions? Email <a href=\"mailto:info@regenstudio.world\" style=\"color:var(--muted)\">info@regenstudio.world</a>.",
+    "error_title": "⚠️ Download link not valid",
+    "error_help": "Email <a href=\"mailto:info@regenstudio.world?subject=New%20DPA%20download%20link\" style=\"color:var(--muted)\">info@regenstudio.world</a> for a new download link.",
+    "party_controller": "Controller",
+    "party_processor": "Processor",
+    "reasons": {
+      "malformed": "The download link is incomplete or damaged. Open the link directly from the email.",
+      "not_found": "This download link is unknown.",
+      "expired": "This download link has expired (30 days after signing).",
+      "expired_after_first_use": "This download link expired thirty (30) minutes after first opening.",
+      "snapshot_missing": "The file could not be found in storage. Please email info@regenstudio.world to recover.",
+      "snapshot_path_missing": "The internal file reference is invalid. Please email info@regenstudio.world to recover.",
+      "server_error": "Temporary server issue. Please try again in a few minutes.",
+      "method_not_allowed": "Incorrect call method. Reload the page.",
+      "connection": "Connection issue. Please try again, or email info@regenstudio.world."
     }
   }
 }
