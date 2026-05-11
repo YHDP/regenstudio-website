@@ -260,6 +260,9 @@
     align-items: baseline;
   }
   .engagement-card__row:last-child { border-bottom: none; }
+  /* `hidden` attribute needs an explicit override since display:grid above wins
+     over the user-agent [hidden]{display:none} rule. */
+  .engagement-card__row[hidden] { display: none; }
   .engagement-card__label { color: var(--muted); font-size: 13px; font-weight: 500; }
   .engagement-card__value { color: var(--ink); font-size: 15px; }
   @media (max-width: 640px) {
@@ -1265,7 +1268,12 @@
     const orgEsc = String(org).replace(/[<>&]/g, '');
     const regEsc = String(regLabel).replace(/[<>&]/g, '');
     const n = 'welcome.slide_engagement.narrative.';
-    if (profile.engagement_type === 'voucher') {
+    // engagement_type is missing from the DB-path response (only in engagements.json bundle);
+    // derive from engagement_key prefix so partnership / voucher engagements pick the right
+    // narrative template even when the field isn't on the profile.
+    const engKey = (state.body && state.body.engagement_key) || profile.engagement_key || '';
+    const engType = profile.engagement_type || engKey.split('/')[0] || '';
+    if (engType === 'voucher') {
       const budget = uren
         ? ' ' + t(n + 'voucher_budget', ' onder een vast budget van {uren} adviesuren').replace('{uren}', '<strong>' + uren + ' adviesuren</strong>').replace(' adviesuren adviesuren', ' adviesuren')
         : '';
@@ -1279,7 +1287,17 @@
              t(n + 'voucher_roadmap', 'en leveren een geprioriteerde roadmap richting') + ' <strong>' + einddatum + '</strong>' + budget +
              t(n + 'voucher_concrete', '. Concreet werk: gesprekken, document-review, gap-analyse, en geprioriteerde aanbevelingen — geen software-ontwikkeling.');
     }
-    if (profile.engagement_type === 'partnership' || profile.engagement_type === 'research') {
+    if (engType === 'partnership' || engType === 'research') {
+      // Partnership DPAs (e.g. CTF) typically have no regulatory_label and no
+      // project_einddatum — they're coterminous with the Master Agreement. Build
+      // the narrative around master_agreement_ref instead of the missing fields.
+      const masterRef = profile.master_agreement_ref;
+      if (masterRef) {
+        const masterEsc = String(masterRef).replace(/[<>&]/g, '');
+        return t(n + 'partnership_master_intro', 'A partnership between') + ' <strong>' + orgEsc + '</strong> ' +
+               t(n + 'partnership_master_body', 'and Regen Studio under') + ' <strong>' + masterEsc + '</strong>' +
+               t(n + 'partnership_master_concrete', '. The Data Processing Agreement governs how personal data is processed within this collaboration; term is coterminous with the Master Agreement.');
+      }
       return t(n + 'partnership_intro', 'Een samenwerkingsverband tussen') + ' <strong>' + orgEsc + '</strong> ' +
              t(n + 'partnership_body', 'en Regen Studio voor onderzoeks- en advisory-werk binnen') + ' <strong>' + regEsc + '</strong>' +
              t(n + 'partnership_concrete', '. Concreet werk: analyses, position papers, regulatoire-monitoring, en gezamenlijke deliverables — looptijd t/m') + ' <strong>' + einddatum + '</strong>.';
