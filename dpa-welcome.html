@@ -294,6 +294,10 @@
     text-align: center; box-shadow: 0 1px 2px rgba(0,0,0,0.03);
     opacity: 0; transform: translateY(8px);
     transition: opacity 0.45s ease, transform 0.45s ease;
+    /* Mirror the lab's node sizing so anchor coordinates exported from the
+       lab line up with the actual rendered node centres here. Without this,
+       nodes shrink-wrap to content width and SVG edges miss their targets. */
+    min-width: 140px; max-width: 260px; box-sizing: border-box;
   }
   .arch-node__title { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.3; }
   .arch-node__sub { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
@@ -622,6 +626,14 @@
     display: flex; align-items: flex-start; gap: 10px;
     padding: 6px 0; cursor: pointer;
     font-size: 13px; color: var(--ink); line-height: 1.4;
+  }
+  .company-cat--group {
+    font-size: 14px; font-weight: 500;
+    padding: 10px 12px; border-left: 2px solid var(--emerald);
+    background: rgba(0,133,69,0.03); border-radius: 0 4px 4px 0;
+  }
+  .company-cat--group:has(input:not(:checked)) {
+    border-left-color: var(--muted); background: transparent;
   }
   .company-cat:hover { color: var(--emerald); }
   .company-cat input[type="checkbox"] {
@@ -1145,7 +1157,7 @@
           </div>
           <div class="subproc-row__country">NL</div>
         </div>
-        <div class="subproc-row subproc-row--out">
+        <div class="subproc-row subproc-row--out" id="subproc-row-ctf">
           <div class="subproc-row__status">·</div>
           <div>
             <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.ctf_name">CircularTech Advisory</div>
@@ -1451,34 +1463,26 @@
     // Render groups in the canonical order: product → operational → external → other.
     const groupOrder = ['product', 'operational', 'external'];
     Object.keys(groups).forEach(g => { if (groupOrder.indexOf(g) < 0) groupOrder.push(g); });
+    // Render ONE row per group (general category) — keeps the slide on-screen.
+    // Toggling a group flips every member cat.id in state, so the opt-out
+    // semantics survive even though individual labels aren't shown.
     groupOrder.forEach(g => {
       const list = groups[g];
       if (!list || !list.length) return;
-      const groupEl = document.createElement('div');
-      groupEl.className = 'company-cats__group';
       const title = t(COMPANY_GROUP_KEYS[g] || '', COMPANY_GROUP_FALLBACKS[g] || g);
-      const titleEl = document.createElement('p');
-      titleEl.className = 'company-cats__group-title';
-      titleEl.textContent = title;
-      groupEl.appendChild(titleEl);
-      list.forEach(cat => {
-        const label = document.createElement('label');
-        label.className = 'company-cat';
-        // Prefer i18n label if defined, otherwise fall back to label_nl from the profile.
-        const i18nKey = 'welcome.slide_company.categories.' + cat.id;
-        const labelText = t(i18nKey, cat.label_nl || cat.id);
-        label.innerHTML =
-          '<input type="checkbox" data-cat-id="' + escapeAttrOnce(cat.id) + '"' +
-          (state.docToggles[cat.id] ? ' checked' : '') + '>' +
-          '<span>' + escapeHtmlOnce(labelText) + '</span>';
-        groupEl.appendChild(label);
-      });
-      catsRoot.appendChild(groupEl);
+      const allChecked = list.every(c => state.docToggles[c.id] !== false);
+      const label = document.createElement('label');
+      label.className = 'company-cat company-cat--group';
+      label.innerHTML =
+        '<input type="checkbox" data-group="' + escapeAttrOnce(g) + '"' +
+        (allChecked ? ' checked' : '') + '>' +
+        '<span>' + escapeHtmlOnce(title) + '</span>';
+      catsRoot.appendChild(label);
     });
-    // Bind change handlers.
     catsRoot.querySelectorAll('input[type="checkbox"]').forEach(cb => {
       cb.addEventListener('change', () => {
-        state.docToggles[cb.dataset.catId] = cb.checked;
+        const g = cb.dataset.group;
+        (groups[g] || []).forEach(cat => { state.docToggles[cat.id] = cb.checked; });
       });
     });
 
@@ -1723,6 +1727,17 @@
         return i18nReady.then(() => {
           renderEngagement();
           renderCompanyData(state.profile);
+          // If this DPA is being signed BY CircularTech themselves, the
+          // CircularTech-Advisory row on the sub-processors slide is recursive
+          // nonsense — hide it.
+          (function hideSelfSubprocRow() {
+            const engKey = (state.body && state.body.engagement_key) ||
+                           (state.profile && state.profile.engagement_key) || '';
+            if (/^partnership\/regen-ctf/.test(engKey)) {
+              const row = document.getElementById('subproc-row-ctf');
+              if (row) row.style.display = 'none';
+            }
+          })();
           setAlias(randomAlias());
           bindAiPermission();
           buildNavDots();
