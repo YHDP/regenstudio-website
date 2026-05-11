@@ -37,6 +37,21 @@ Blogs/BLOG_GUIDE.md
 Newsletter/README.md
 Newsletter/template.json
 
+# Claude workspace doc (env-var table + architecture notes — local-only).
+CLAUDE.md
+
+# Internal collaboration notes (bug log + recurring-patterns lessons — local-only).
+docs/collaboration/
+
+# Infrastructure tooling — regenerates Edge Function template bundle from
+# Proton Drive source. Lives in repo for dev convenience; not visitor-facing.
+scripts/regen-dpa-templates.sh
+
+# Vision page source drafts (markdown — vision.html is the served artifact).
+Vision/Text EN.md
+Vision/Text NL.md
+Vision/Text PT.md
+
 # Experimental pages
 trial.html
 trial2.html
