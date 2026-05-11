@@ -187,15 +187,10 @@
         "doc_progress": "Voortgangs-rapportages voor de voucher",
         "doc_final": "Eindrapportage en prestatieverklaringen",
         "doc_comms": "Communicatie-uitingen voor het project",
-        "doc_legal": "Wetgevings-documenten (ESPR / DSR / CLP / PCN)",
+        "doc_legal": "Wetgevings-documenten",
         "doc_branche": "Branche-publicaties en sector-rapporten",
         "doc_research": "Onderzoeksbronnen en literatuur",
-        "doc_competitors": "Concurrent- en marktvergelijkingen",
-        "doc_conformity": "Conformiteitsbeoordeling-stukken",
-        "doc_indicators": "Milieu-indicator-rapporten (LCA / PEFCR)",
-        "doc_ufi": "UFI-koppeling-data (CLP-/PCN-route)",
-        "doc_formulation_cat": "Formulering-data op categorie-niveau (geen volledige recepten)",
-        "doc_origin": "Garment-composition data en supply-chain herkomst-informatie"
+        "doc_competitors": "Concurrent- en marktvergelijkingen"
       }
     },
     "slide_subproc": {

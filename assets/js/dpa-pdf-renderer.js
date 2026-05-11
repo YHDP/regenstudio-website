@@ -340,6 +340,14 @@
       doc.triangle(tx, footY - triSize / 2 - 2, tx + triSize, footY - 2, tx, footY + triSize / 2 - 2, 'F');
       tx += triSize + triGap;
     }
+
+    // Restore text color + font to body defaults so continuation paragraphs on
+    // the next page don't inherit the muted footer color. Without this, any
+    // paragraph that spans a page break renders the post-break portion in
+    // COLOR.muted (the "Pagina N" blue). Bug surfaced 2026-05-11 by Yvo.
+    setColor(doc, COLOR.ink);
+    setFontByRole(doc, 'body');
+    doc.setFontSize(FONT.body);
   }
 
   function stampWatermark(state) {

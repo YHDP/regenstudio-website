@@ -187,15 +187,10 @@
         "doc_progress": "Progress reports for the voucher",
         "doc_final": "Final report and performance statements",
         "doc_comms": "Communication materials for the project",
-        "doc_legal": "Regulatory documents (ESPR / DSR / CLP / PCN)",
+        "doc_legal": "Regulatory documents",
         "doc_branche": "Sector publications and industry reports",
         "doc_research": "Research sources and literature",
-        "doc_competitors": "Competitor and market comparisons",
-        "doc_conformity": "Conformity assessment documents",
-        "doc_indicators": "Environmental indicator reports (LCA / PEFCR)",
-        "doc_ufi": "UFI linking data (CLP/PCN path)",
-        "doc_formulation_cat": "Formulation data at category level (no full recipes)",
-        "doc_origin": "Garment-composition data and supply-chain origin information"
+        "doc_competitors": "Competitor and market comparisons"
       }
     },
     "slide_subproc": {

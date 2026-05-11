@@ -187,15 +187,10 @@
         "doc_progress": "Relatórios de progresso do voucher",
         "doc_final": "Relatório final e declarações de desempenho",
         "doc_comms": "Materiais de comunicação do projeto",
-        "doc_legal": "Documentos regulatórios (ESPR / DSR / CLP / PCN)",
+        "doc_legal": "Documentos regulatórios",
         "doc_branche": "Publicações setoriais e relatórios do setor",
         "doc_research": "Fontes de pesquisa e literatura",
-        "doc_competitors": "Comparações de concorrentes e de mercado",
-        "doc_conformity": "Documentos de avaliação de conformidade",
-        "doc_indicators": "Relatórios de indicadores ambientais (LCA / PEFCR)",
-        "doc_ufi": "Dados de vinculação UFI (rota CLP/PCN)",
-        "doc_formulation_cat": "Dados de formulação no nível de categoria (sem receitas completas)",
-        "doc_origin": "Dados de composição de vestuário e origem na cadeia de fornecimento"
+        "doc_competitors": "Comparações de concorrentes e de mercado"
       }
     },
     "slide_subproc": {
