@@ -160,6 +160,44 @@
       "picker_use_real": "of: gebruik mijn echte naam intern",
       "picker_use_random": "of: gebruik een willekeurig dier-alias"
     },
+    "slide_company": {
+      "nav_title": "Bedrijfsdata",
+      "kicker": "Bedrijfsdata — gebruik & bescherming",
+      "title": "Hoe we jouw bedrijfsdata gebruiken en beschermen",
+      "subtitle": "We zetten AI in voor concreet werk — DPP-prototyping, regulatoir-onderzoek, document-review, rapportage. Hieronder zie je per data-categorie wat we standaard mogen verwerken (vink uit wat je liever niet deelt), en een aparte kolom met wat we sowieso níét aanraken.",
+      "use_title": "Wat we gebruiken",
+      "use_intro": "Standaard staan alle categorieën aan. Vink uit wat AI <em>niet</em> mag zien voor jouw engagement — geldt direct, geen DPA-revisie nodig.",
+      "protect_title": "Wat we niet aanraken",
+      "protect_intro": "Onafhankelijk van wat je aanvinkt, blokkeren onze interne hooks de volgende data-categorieën automatisch — ze komen niet door de paste-alias-shield, worden niet aan AI voorgelegd, en worden niet vastgelegd in werkbestanden.",
+      "protect_footnote": "Gecodificeerd in <code>scope-enforcement-gate.md</code> · gehandhaafd door geautomatiseerde tests · auditbaar in <code>regenstudio.world/manage-consent</code>.",
+      "protect_fallback": "Bedrijfsgevoelige IP en propriëtaire data, conform §13 van de DPA.",
+      "groups": {
+        "product": "Product- en supply-chain-data",
+        "operational": "Project-uitvoering",
+        "external": "Externe bronnen & marktinfo"
+      },
+      "categories": {
+        "doc_bom": "Bills-of-Materials (BoM) en productsamenstelling",
+        "doc_suppliers": "Leveranciers-overzichten + leveranciers-metadata",
+        "doc_supplychain": "Supply-chain audit-resultaten",
+        "doc_dpprecord": "Concept-DPP-records (JSON / JSON-LD / XML)",
+        "doc_email": "E-mail-correspondentie binnen het project",
+        "doc_meetings": "Vergader-notities en agenda's",
+        "doc_audio": "Audio-opnames + transcripten van bilaterale gesprekken (mits opname-toestemming)",
+        "doc_progress": "Voortgangs-rapportages voor de voucher",
+        "doc_final": "Eindrapportage en prestatieverklaringen",
+        "doc_comms": "Communicatie-uitingen voor het project",
+        "doc_legal": "Wetgevings-documenten (ESPR / DSR / CLP / PCN)",
+        "doc_branche": "Branche-publicaties en sector-rapporten",
+        "doc_research": "Onderzoeksbronnen en literatuur",
+        "doc_competitors": "Concurrent- en marktvergelijkingen",
+        "doc_conformity": "Conformiteitsbeoordeling-stukken",
+        "doc_indicators": "Milieu-indicator-rapporten (LCA / PEFCR)",
+        "doc_ufi": "UFI-koppeling-data (CLP-/PCN-route)",
+        "doc_formulation_cat": "Formulering-data op categorie-niveau (geen volledige recepten)",
+        "doc_origin": "Garment-composition data en supply-chain herkomst-informatie"
+      }
+    },
     "slide_subproc": {
       "nav_title": "Sub-processors",
       "kicker": "Wie raakt jouw data aan",

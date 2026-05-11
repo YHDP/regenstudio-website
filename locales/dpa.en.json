@@ -160,6 +160,44 @@
       "picker_use_real": "or: use my real name internally",
       "picker_use_random": "or: use a random animal alias"
     },
+    "slide_company": {
+      "nav_title": "Company data",
+      "kicker": "Company data — use & protection",
+      "title": "How we use & protect your company data",
+      "subtitle": "We use AI for concrete work — DPP prototyping, regulatory research, document review, reporting. Below you can see per data category what we may process by default (uncheck anything you'd rather not share), with a separate column listing what we never touch.",
+      "use_title": "What we use",
+      "use_intro": "All categories are on by default. Uncheck anything AI should <em>not</em> see for your engagement — takes effect immediately, no DPA revision needed.",
+      "protect_title": "What we don't touch",
+      "protect_intro": "Independent of what you check, our internal hooks automatically block the following data categories — they don't pass through the paste-alias-shield, are not presented to AI, and are not recorded in working files.",
+      "protect_footnote": "Codified in <code>scope-enforcement-gate.md</code> · enforced by automated tests · auditable in <code>regenstudio.world/manage-consent</code>.",
+      "protect_fallback": "Business-sensitive IP and proprietary data, per §13 of the DPA.",
+      "groups": {
+        "product": "Product & supply-chain data",
+        "operational": "Project execution",
+        "external": "External sources & market intel"
+      },
+      "categories": {
+        "doc_bom": "Bills of Materials (BoM) and product composition",
+        "doc_suppliers": "Supplier overviews + supplier metadata",
+        "doc_supplychain": "Supply-chain audit results",
+        "doc_dpprecord": "Draft DPP records (JSON / JSON-LD / XML)",
+        "doc_email": "Email correspondence within the project",
+        "doc_meetings": "Meeting notes and agendas",
+        "doc_audio": "Audio recordings + transcripts of bilateral calls (with recording consent)",
+        "doc_progress": "Progress reports for the voucher",
+        "doc_final": "Final report and performance statements",
+        "doc_comms": "Communication materials for the project",
+        "doc_legal": "Regulatory documents (ESPR / DSR / CLP / PCN)",
+        "doc_branche": "Sector publications and industry reports",
+        "doc_research": "Research sources and literature",
+        "doc_competitors": "Competitor and market comparisons",
+        "doc_conformity": "Conformity assessment documents",
+        "doc_indicators": "Environmental indicator reports (LCA / PEFCR)",
+        "doc_ufi": "UFI linking data (CLP/PCN path)",
+        "doc_formulation_cat": "Formulation data at category level (no full recipes)",
+        "doc_origin": "Garment-composition data and supply-chain origin information"
+      }
+    },
     "slide_subproc": {
       "nav_title": "Sub-processors",
       "kicker": "Who touches your data",

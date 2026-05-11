@@ -160,6 +160,44 @@
       "picker_use_real": "ou: use meu nome real internamente",
       "picker_use_random": "ou: use um alias de animal aleatório"
     },
+    "slide_company": {
+      "nav_title": "Dados da empresa",
+      "kicker": "Dados da empresa — uso & proteção",
+      "title": "Como usamos e protegemos os dados da sua empresa",
+      "subtitle": "Usamos IA para trabalho concreto — prototipagem de DPP, pesquisa regulatória, revisão de documentos, relatórios. Abaixo você vê por categoria de dado o que podemos processar por padrão (desmarque o que preferir não compartilhar), com uma coluna separada listando o que nunca tocamos.",
+      "use_title": "O que usamos",
+      "use_intro": "Todas as categorias estão ativas por padrão. Desmarque o que a IA <em>não</em> deve ver para este engajamento — vale imediatamente, sem revisão do DPA.",
+      "protect_title": "O que não tocamos",
+      "protect_intro": "Independentemente do que você marcar, nossos hooks internos bloqueiam automaticamente as seguintes categorias — elas não passam pelo paste-alias-shield, não são apresentadas à IA e não são registradas em arquivos de trabalho.",
+      "protect_footnote": "Codificado em <code>scope-enforcement-gate.md</code> · imposto por testes automatizados · auditável em <code>regenstudio.world/manage-consent</code>.",
+      "protect_fallback": "IP comercialmente sensível e dados proprietários, conforme §13 do DPA.",
+      "groups": {
+        "product": "Dados de produto & cadeia de fornecimento",
+        "operational": "Execução do projeto",
+        "external": "Fontes externas & inteligência de mercado"
+      },
+      "categories": {
+        "doc_bom": "Bills of Materials (BoM) e composição do produto",
+        "doc_suppliers": "Lista de fornecedores + metadados",
+        "doc_supplychain": "Resultados de auditorias na cadeia de fornecimento",
+        "doc_dpprecord": "Rascunhos de DPP (JSON / JSON-LD / XML)",
+        "doc_email": "Correspondência de e-mail dentro do projeto",
+        "doc_meetings": "Notas e pautas de reunião",
+        "doc_audio": "Gravações + transcrições de chamadas bilaterais (com consentimento)",
+        "doc_progress": "Relatórios de progresso do voucher",
+        "doc_final": "Relatório final e declarações de desempenho",
+        "doc_comms": "Materiais de comunicação do projeto",
+        "doc_legal": "Documentos regulatórios (ESPR / DSR / CLP / PCN)",
+        "doc_branche": "Publicações setoriais e relatórios do setor",
+        "doc_research": "Fontes de pesquisa e literatura",
+        "doc_competitors": "Comparações de concorrentes e de mercado",
+        "doc_conformity": "Documentos de avaliação de conformidade",
+        "doc_indicators": "Relatórios de indicadores ambientais (LCA / PEFCR)",
+        "doc_ufi": "Dados de vinculação UFI (rota CLP/PCN)",
+        "doc_formulation_cat": "Dados de formulação no nível de categoria (sem receitas completas)",
+        "doc_origin": "Dados de composição de vestuário e origem na cadeia de fornecimento"
+      }
+    },
     "slide_subproc": {
       "nav_title": "Sub-operadores",
       "kicker": "Quem toca seus dados",

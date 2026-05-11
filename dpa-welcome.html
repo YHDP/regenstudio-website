@@ -554,6 +554,67 @@
     font-weight: 500;
   }
 
+  /* ===== Slide 7 — Company data (use + protect) ===== */
+  .slide--company-data { background: linear-gradient(180deg, var(--paper) 0%, rgba(0,155,187,0.04) 100%); }
+  .company-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    margin-top: 24px; max-width: 1000px;
+  }
+  .company-col {
+    background: white; border: 1px solid var(--border);
+    border-radius: 12px; padding: clamp(20px, 3vw, 28px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .company-col--use      { border-top: 3px solid var(--emerald); }
+  .company-col--protect  { border-top: 3px solid var(--magenta); background: linear-gradient(180deg, #fff 0%, rgba(147,9,63,0.02) 100%); }
+  .company-col__title {
+    font-family: 'KoHo Full', serif; font-size: 18px; font-weight: 700;
+    color: var(--ink); margin: 0 0 8px; letter-spacing: -0.2px;
+  }
+  .company-col__intro { font-size: 13px; color: var(--ink-soft); line-height: 1.55; margin: 0 0 18px; }
+  .company-col__footnote {
+    font-size: 11px; color: var(--muted); margin: 16px 0 0;
+    padding-top: 12px; border-top: 1px dashed var(--border); line-height: 1.5;
+  }
+  .company-col__footnote code {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-size: 10.5px; background: var(--paper-deep); padding: 1px 4px; border-radius: 3px;
+  }
+  .company-cats { display: flex; flex-direction: column; gap: 14px; }
+  .company-cats__group {
+    border-left: 2px solid var(--border); padding-left: 12px;
+  }
+  .company-cats__group-title {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--gold); margin: 0 0 6px;
+  }
+  .company-cat {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 6px 0; cursor: pointer;
+    font-size: 13px; color: var(--ink); line-height: 1.4;
+  }
+  .company-cat:hover { color: var(--emerald); }
+  .company-cat input[type="checkbox"] {
+    margin-top: 3px; flex-shrink: 0;
+    accent-color: var(--emerald); cursor: pointer;
+  }
+  .company-cat:has(input:not(:checked)) { color: var(--muted); text-decoration: line-through; opacity: 0.7; }
+  .company-protect {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .company-protect__item {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 8px 12px; background: rgba(147,9,63,0.04);
+    border-left: 2px solid var(--magenta); border-radius: 4px;
+    font-size: 13px; color: var(--ink); line-height: 1.45;
+  }
+  .company-protect__item::before {
+    content: '🛡'; flex-shrink: 0; font-size: 13px;
+  }
+  @media (max-width: 768px) {
+    .company-grid { grid-template-columns: 1fr; }
+  }
+
   /* ===== Slide 8 — Sub-processors ===== */
   .subprocs-list {
     background: white; border-radius: 12px; border: 1px solid var(--border); overflow: hidden;
@@ -982,7 +1043,47 @@
     </button>
   </section>
 
-  <!-- ===== Slide 7: Sub-processors ===== -->
+  <!-- ===== Slide 7: Company data — what AI processes, what's protected =====
+       Companion to slide 6 (alias-shield = personal data). Renders the engagement's
+       doc_categories[] from verify-token as clickable per-category opt-out toggles,
+       plus the sensitive_data_exclusion_narrative as the "what we don't touch" panel. -->
+  <section class="slide slide--company-data" data-i18n-nav-title="welcome.slide_company.nav_title" data-nav-title="Bedrijfsdata" id="slide-company-data">
+    <div class="slide__inner">
+      <p class="slide__kicker" data-i18n="welcome.slide_company.kicker">Bedrijfsdata — gebruik &amp; bescherming</p>
+      <h2 class="slide__title" data-i18n="welcome.slide_company.title">Hoe we jouw bedrijfsdata gebruiken en beschermen</h2>
+      <p class="slide__subtitle" data-i18n="welcome.slide_company.subtitle">
+        We zetten AI in voor concreet werk — DPP-prototyping, regulatoir-onderzoek, document-review, rapportage. Hieronder zie je per data-categorie wat we standaard mogen verwerken (vink uit wat je liever niet deelt), en een aparte kolom met wat we sowieso níét aanraken.
+      </p>
+      <div class="company-grid">
+        <div class="company-col company-col--use">
+          <h3 class="company-col__title" data-i18n="welcome.slide_company.use_title">Wat we gebruiken</h3>
+          <p class="company-col__intro" data-i18n="welcome.slide_company.use_intro">
+            Standaard staan alle categorieën aan. Vink uit wat AI <em>niet</em> mag zien voor jouw engagement — geldt direct, geen DPA-revisie nodig.
+          </p>
+          <div class="company-cats" id="company-cats">
+            <!-- Categories rendered at runtime from engagement_profile.doc_categories. -->
+          </div>
+        </div>
+        <div class="company-col company-col--protect">
+          <h3 class="company-col__title" data-i18n="welcome.slide_company.protect_title">Wat we niet aanraken</h3>
+          <p class="company-col__intro" data-i18n="welcome.slide_company.protect_intro">
+            Onafhankelijk van wat je aanvinkt, blokkeren onze interne hooks de volgende data-categorieën automatisch — ze komen niet door de paste-alias-shield, worden niet aan AI voorgelegd, en worden niet vastgelegd in werkbestanden.
+          </p>
+          <div class="company-protect" id="company-protect">
+            <!-- Exclusion narrative rendered at runtime from engagement_profile. -->
+          </div>
+          <p class="company-col__footnote" data-i18n="welcome.slide_company.protect_footnote">
+            Codified in <code>scope-enforcement-gate.md</code> · enforced by automated tests · auditable in <code>regenstudio.world/manage-consent</code>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
+      <span class="slide__hint-triangle" aria-hidden="true"></span>
+    </button>
+  </section>
+
+  <!-- ===== Slide 8: Sub-processors ===== -->
   <section class="slide slide--subprocessors" data-i18n-nav-title="welcome.slide_subproc.nav_title" data-nav-title="Sub-processors" id="slide-subprocessors">
     <div class="slide__inner">
       <p class="slide__kicker" data-i18n="welcome.slide_subproc.kicker">Wie raakt jouw data aan</p>
@@ -1153,6 +1254,7 @@
     profile: null,
     aliasMode: 'random', // 'random' or 'real'
     formValid: false,
+    docToggles: {}, // { doc_bom: true, doc_suppliers: false, ... } — per-category opt-out for THIS engagement
   };
 
   // ===== Elements =====
@@ -1308,6 +1410,100 @@
            t(n + 'default_purpose', '. De Verwerkersovereenkomst regelt hoe persoonsgegevens binnen deze samenwerking worden verwerkt.');
   }
 
+  // ===== Slide 7 — Company data renderers =====
+  // Group labels — keyed to category.group; each group has an i18n key.
+  const COMPANY_GROUP_KEYS = {
+    product:      'welcome.slide_company.groups.product',
+    operational:  'welcome.slide_company.groups.operational',
+    external:     'welcome.slide_company.groups.external',
+  };
+  const COMPANY_GROUP_FALLBACKS = {
+    product:      'Product- en supply-chain-data',
+    operational:  'Project-uitvoering',
+    external:     'Externe bronnen & marktinfo',
+  };
+
+  function renderCompanyData(profile) {
+    const catsRoot = document.getElementById('company-cats');
+    const protectRoot = document.getElementById('company-protect');
+    if (!catsRoot || !protectRoot) return;
+
+    // ---- Left column: categories grouped by .group ----
+    catsRoot.innerHTML = '';
+    const cats = Array.isArray(profile.doc_categories) ? profile.doc_categories : [];
+    // Initialise toggle state from default_checked if not already set.
+    cats.forEach(c => {
+      if (!(c.id in state.docToggles)) {
+        state.docToggles[c.id] = c.default_checked !== false;
+      }
+    });
+    // Group by .group field, preserving Edge-Function order within each group.
+    const groups = {};
+    cats.forEach(c => {
+      const g = c.group || 'other';
+      (groups[g] = groups[g] || []).push(c);
+    });
+    // Render groups in the canonical order: product → operational → external → other.
+    const groupOrder = ['product', 'operational', 'external'];
+    Object.keys(groups).forEach(g => { if (groupOrder.indexOf(g) < 0) groupOrder.push(g); });
+    groupOrder.forEach(g => {
+      const list = groups[g];
+      if (!list || !list.length) return;
+      const groupEl = document.createElement('div');
+      groupEl.className = 'company-cats__group';
+      const title = t(COMPANY_GROUP_KEYS[g] || '', COMPANY_GROUP_FALLBACKS[g] || g);
+      const titleEl = document.createElement('p');
+      titleEl.className = 'company-cats__group-title';
+      titleEl.textContent = title;
+      groupEl.appendChild(titleEl);
+      list.forEach(cat => {
+        const label = document.createElement('label');
+        label.className = 'company-cat';
+        // Prefer i18n label if defined, otherwise fall back to label_nl from the profile.
+        const i18nKey = 'welcome.slide_company.categories.' + cat.id;
+        const labelText = t(i18nKey, cat.label_nl || cat.id);
+        label.innerHTML =
+          '<input type="checkbox" data-cat-id="' + escapeAttrOnce(cat.id) + '"' +
+          (state.docToggles[cat.id] ? ' checked' : '') + '>' +
+          '<span>' + escapeHtmlOnce(labelText) + '</span>';
+        groupEl.appendChild(label);
+      });
+      catsRoot.appendChild(groupEl);
+    });
+    // Bind change handlers.
+    catsRoot.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        state.docToggles[cb.dataset.catId] = cb.checked;
+      });
+    });
+
+    // ---- Right column: exclusion narrative + scope-gate exclusions ----
+    protectRoot.innerHTML = '';
+    const exclusionItems = [];
+    // Primary: profile.sensitive_data_exclusion_narrative_nl (regime-derived, hand-curated).
+    if (profile.sensitive_data_exclusion_narrative_nl) {
+      exclusionItems.push(profile.sensitive_data_exclusion_narrative_nl);
+    }
+    // Defensive append: any extra hardcoded "we never touch" items (PII outside scope, special-category Art 9, etc.)
+    // Currently uses regime narrative only; future engagements may surface
+    // ai_exclusion_categories[] from the DPA frontmatter via verify-token.
+    if (exclusionItems.length === 0) {
+      exclusionItems.push(t('welcome.slide_company.protect_fallback',
+        'Bedrijfsgevoelige IP en propriëtaire data, conform §13 van de DPA.'));
+    }
+    exclusionItems.forEach(text => {
+      const div = document.createElement('div');
+      div.className = 'company-protect__item';
+      div.innerHTML = '<span>' + escapeHtmlOnce(text) + '</span>';
+      protectRoot.appendChild(div);
+    });
+  }
+
+  function escapeHtmlOnce(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[c]);
+  }
+  function escapeAttrOnce(s) { return escapeHtmlOnce(s); }
+
   function setAlias(name) {
     els.aliasText.value = name;
     syncAliasDownstream(name);
@@ -1437,7 +1633,7 @@
       cp_rep_phone: els.repPhone.value.trim() || '',
       ai_alias_name: state.aliasMode === 'real' ? '' : (els.aliasText.value || '').trim(),
       ai_processing_consent: aiRadio.value === '1',
-      doc_toggles: {},
+      doc_toggles: Object.assign({}, state.docToggles),
       _saved_at: new Date().toISOString(),
     };
     const engagementMeta = {
@@ -1521,6 +1717,7 @@
 
         return i18nReady.then(() => {
           renderEngagement();
+          renderCompanyData(state.profile);
           setAlias(randomAlias());
           bindAiPermission();
           buildNavDots();
