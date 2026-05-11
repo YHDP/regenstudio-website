@@ -310,6 +310,33 @@
       "contact_support": "Please contact info@regenstudio.world. Do not sign until this is resolved.",
       "session_missing": "<strong>Session data missing.</strong> Possible causes: you closed and reopened the browser tab; you are using a private window that clears sessionStorage; or the invitation link was opened directly without completing step 1.<br><br>Please return to the invitation email and open the link again — start from the intake page."
     },
+    "signed": {
+      "page_title": "Signed DPA · Regen Studio",
+      "loading": "⏳ Verifying your download link…",
+      "success_title": "Signed Data Processing Agreement",
+      "success_intro": "Your download link has been verified. Click below to download the signed DPA.",
+      "download_btn": "Download signed DPA →",
+      "expires_warning": "⚠️ <strong>Important:</strong> this link expires 30 minutes after this first opening. Save the file to your system immediately after downloading — you can always reopen it from your own disk.",
+      "meta_signed_at": "Time of signing",
+      "meta_engagement": "Engagement",
+      "meta_party": "Party",
+      "questions": "Questions? Email <a href=\"mailto:info@regenstudio.world\" style=\"color:var(--muted)\">info@regenstudio.world</a>.",
+      "error_title": "⚠️ Download link not valid",
+      "error_help": "Email <a href=\"mailto:info@regenstudio.world?subject=New%20DPA%20download%20link\" style=\"color:var(--muted)\">info@regenstudio.world</a> for a new download link.",
+      "party_controller": "Controller",
+      "party_processor": "Processor",
+      "reasons": {
+        "malformed": "The download link is incomplete or damaged. Open the link directly from the email.",
+        "not_found": "This download link is unknown.",
+        "expired": "This download link has expired (30 days after signing).",
+        "expired_after_first_use": "This download link expired thirty (30) minutes after first opening.",
+        "snapshot_missing": "The file could not be found in storage. Please email info@regenstudio.world to recover.",
+        "snapshot_path_missing": "The internal file reference is invalid. Please email info@regenstudio.world to recover.",
+        "server_error": "Temporary server issue. Please try again in a few minutes.",
+        "method_not_allowed": "Incorrect call method. Reload the page.",
+        "connection": "Connection issue. Please try again, or email info@regenstudio.world."
+      }
+    },
     "post_sign": {
       "heading": "✅ Data Processing Agreement signed",
       "body_prefix": "Your signature is registered. We have sent a download link for the signed DPA to",

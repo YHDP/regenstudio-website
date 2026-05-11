@@ -310,6 +310,33 @@
       "contact_support": "Neem contact op met info@regenstudio.world. Onderteken niet voordat dit is opgelost.",
       "session_missing": "<strong>Sessie-gegevens ontbreken.</strong> Mogelijke oorzaken: u heeft de browser-tab gesloten en opnieuw geopend; u gebruikt een privé-venster waarin sessionStorage wordt gewist; of de uitnodigings-link is direct geopend zonder eerst stap 1 te doorlopen.<br><br>Ga terug naar de uitnodigings-mail en open de link opnieuw — start vanaf de intake-pagina."
     },
+    "signed": {
+      "page_title": "Getekende DPA · Regen Studio",
+      "loading": "⏳ Bezig met verifiëren van uw download-link…",
+      "success_title": "Getekende verwerkersovereenkomst",
+      "success_intro": "Uw download-link is geverifieerd. Klik hieronder om de getekende DPA te downloaden.",
+      "download_btn": "Download getekende DPA →",
+      "expires_warning": "⚠️ <strong>Belangrijk:</strong> deze link verloopt 30 minuten na deze eerste opening. Sla het bestand direct op uw systeem op nadat u het downloadt — u kunt het altijd opnieuw openen vanaf uw eigen schijf.",
+      "meta_signed_at": "Tijdstip ondertekening",
+      "meta_engagement": "Engagement",
+      "meta_party": "Partij",
+      "questions": "Vragen? Mail <a href=\"mailto:info@regenstudio.world\" style=\"color:var(--muted)\">info@regenstudio.world</a>.",
+      "error_title": "⚠️ Download-link niet geldig",
+      "error_help": "Mail <a href=\"mailto:info@regenstudio.world?subject=Nieuwe%20download-link%20DPA\" style=\"color:var(--muted)\">info@regenstudio.world</a> voor een nieuwe download-link.",
+      "party_controller": "Verantwoordelijke (controller)",
+      "party_processor": "Verwerker (processor)",
+      "reasons": {
+        "malformed": "De download-link is incompleet of beschadigd. Open de link rechtstreeks vanuit de e-mail.",
+        "not_found": "Deze download-link is onbekend.",
+        "expired": "Deze download-link is verlopen (30 dagen na ondertekening).",
+        "expired_after_first_use": "Deze download-link is dertig (30) minuten na de eerste opening verlopen.",
+        "snapshot_missing": "Het bestand kon niet worden gevonden in de opslag. Mail Yvo voor herstel.",
+        "snapshot_path_missing": "De interne verwijzing naar het bestand klopt niet. Mail Yvo voor herstel.",
+        "server_error": "Tijdelijke server-storing. Probeer opnieuw over een paar minuten.",
+        "method_not_allowed": "Verkeerde aanroep-methode. Herlaad de pagina.",
+        "connection": "Er is een verbindingsstoring. Probeer opnieuw, of mail info@regenstudio.world."
+      }
+    },
     "post_sign": {
       "heading": "✅ Verwerkersovereenkomst getekend",
       "body_prefix": "Uw handtekening is geregistreerd. We hebben een download-link voor de getekende DPA naar",

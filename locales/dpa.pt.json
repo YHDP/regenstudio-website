@@ -310,6 +310,33 @@
       "contact_support": "Entre em contato com info@regenstudio.world. Não assine até que isto seja resolvido.",
       "session_missing": "<strong>Dados da sessão ausentes.</strong> Possíveis causas: você fechou e reabriu a aba do navegador; está usando uma janela privada que limpa o sessionStorage; ou o link de convite foi aberto diretamente sem concluir a etapa 1.<br><br>Volte ao e-mail de convite e abra o link novamente — comece pela página de preenchimento."
     },
+    "signed": {
+      "page_title": "DPA assinado · Regen Studio",
+      "loading": "⏳ Verificando seu link de download…",
+      "success_title": "Contrato de Processamento de Dados assinado",
+      "success_intro": "Seu link de download foi verificado. Clique abaixo para baixar o DPA assinado.",
+      "download_btn": "Baixar DPA assinado →",
+      "expires_warning": "⚠️ <strong>Importante:</strong> este link expira 30 minutos após esta primeira abertura. Salve o arquivo no seu sistema imediatamente após o download — você sempre pode reabri-lo a partir do seu próprio disco.",
+      "meta_signed_at": "Momento da assinatura",
+      "meta_engagement": "Engajamento",
+      "meta_party": "Parte",
+      "questions": "Dúvidas? Envie um e-mail para <a href=\"mailto:info@regenstudio.world\" style=\"color:var(--muted)\">info@regenstudio.world</a>.",
+      "error_title": "⚠️ Link de download inválido",
+      "error_help": "Envie um e-mail para <a href=\"mailto:info@regenstudio.world?subject=Novo%20link%20de%20download%20DPA\" style=\"color:var(--muted)\">info@regenstudio.world</a> para um novo link.",
+      "party_controller": "Controlador",
+      "party_processor": "Operador",
+      "reasons": {
+        "malformed": "O link de download está incompleto ou danificado. Abra o link diretamente do e-mail.",
+        "not_found": "Este link de download é desconhecido.",
+        "expired": "Este link de download expirou (30 dias após a assinatura).",
+        "expired_after_first_use": "Este link expirou trinta (30) minutos após a primeira abertura.",
+        "snapshot_missing": "O arquivo não foi encontrado no armazenamento. Envie um e-mail para info@regenstudio.world para recuperação.",
+        "snapshot_path_missing": "A referência interna ao arquivo está inválida. Envie um e-mail para info@regenstudio.world para recuperação.",
+        "server_error": "Falha temporária no servidor. Tente novamente em alguns minutos.",
+        "method_not_allowed": "Método de chamada incorreto. Recarregue a página.",
+        "connection": "Falha de conexão. Tente novamente ou envie um e-mail para info@regenstudio.world."
+      }
+    },
     "post_sign": {
       "heading": "✅ Contrato de Processamento de Dados assinado",
       "body_prefix": "Sua assinatura foi registrada. Enviamos um link de download para o DPA assinado para",
