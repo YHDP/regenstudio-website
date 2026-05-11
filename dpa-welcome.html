@@ -1460,9 +1460,24 @@
   function init() {
     const params = new URLSearchParams(location.search);
     state.token = (params.get('token') || '').trim().toLowerCase();
+
+    // Early language hint from URL param (?lang=en|pt). dpa-request-link
+    // appends this when the engagement language is non-NL so the welcome
+    // lander can pre-load the locale in parallel with verify-token —
+    // eliminates the NL-flicker on the loading state for EN/PT engagements.
+    // The engagement_profile.default_language from verify-token is still
+    // authoritative; if it mismatches the URL hint we re-load below.
+    const urlLangHint = (params.get('lang') || '').toLowerCase();
+    const SUPPORTED_LANGS = ['nl', 'en', 'pt'];
+    const initialLang = SUPPORTED_LANGS.indexOf(urlLangHint) >= 0 ? urlLangHint : 'nl';
+    const earlyI18n = (window.dpaI18n && window.dpaI18n.load)
+      ? window.dpaI18n.load(initialLang).then(() => window.dpaI18n.apply())
+      : Promise.resolve();
+
     if (!TOKEN_RE.test(state.token)) {
-      // Token validation fails before locale loads — fall back to NL inline (page already in NL).
-      showError(t('welcome.error.invalid', '<strong>Uitnodiging niet geldig.</strong><br>De link in uw uitnodigings-mail is incompleet of beschadigd.'));
+      // Token validation fails before locale loads — fall back to inline NL on initial render;
+      // earlyI18n will swap to the URL-hinted language before the user can read the message.
+      earlyI18n.finally(() => showError(t('welcome.error.invalid', '<strong>Uitnodiging niet geldig.</strong><br>De link in uw uitnodigings-mail is incompleet of beschadigd.')));
       return;
     }
     fetch(VERIFY_TOKEN_URL, { // supabase.co same-origin (Edge Function)
