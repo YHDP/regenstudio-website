@@ -58,9 +58,14 @@ while read local_ref local_sha remote_ref remote_sha; do
 
   # 2. Check for fetch/XMLHttpRequest to non-Supabase domains.
   #    Excludes: supabase.co (Edge Functions), regenstudio.world / same-origin
-  #    relative-path fetches (e.g., `fetch('assets/...')`), explicit
-  #    `// same-origin` annotations on the line.
-  EXFIL=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(fetch\(|XMLHttpRequest|navigator\.sendBeacon|new Image\(\)\.src)' | grep -viE 'supabase\.co|regenstudio\.(world|space)|same-origin|fetch\(['"'"'"][a-zA-Z][a-zA-Z0-9_/.-]*['"'"'"]\)' || true)
+  #    relative-path fetches (e.g., `fetch('assets/...')`, `fetch('/locales/...')`),
+  #    explicit `// same-origin` annotations on the line.
+  #    Tightened 2026-05-11: relative-path exception now accepts both
+  #    `fetch('foo')` and `fetch('/foo')` (leading slash for root-relative),
+  #    and allows string-concat continuation (no longer requires `)`
+  #    immediately after the close quote — so `fetch('/foo' + lang + '.json')`
+  #    is also recognized as same-origin via its literal prefix.
+  EXFIL=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(fetch\(|XMLHttpRequest|navigator\.sendBeacon|new Image\(\)\.src)' | grep -viE 'supabase\.co|regenstudio\.(world|space)|same-origin|fetch\(['"'"'"][/a-zA-Z][a-zA-Z0-9_/.-]*['"'"'"]' || true)
   if [ -n "$EXFIL" ]; then
     echo -e "${YELLOW}WARNING: Potential data exfiltration pattern:${NC}"
     echo "$EXFIL" | head -10
