@@ -223,7 +223,7 @@
       "phone_optional": "— opcional",
       "placeholder_phone": "+55 …",
       "matrix_label": "Por categoria de dado: o que a IA pode fazer com ele?",
-      "matrix_help": "Escolha uma opção por linha. Os padrões estão pré-selecionados; ajuste o que preferir diferente. Granular, auditável, RGPD Art. 4(11) \"específico\".",
+      "matrix_help": "Escolha uma opção por linha. Os padrões estão pré-selecionados; ajuste o que preferir diferente. Granular, auditável, RGPD Art. 4(11) \"específico\". <em>Observação:</em> as escolhas por categoria são registradas no DPA + registro de consentimento hoje como trilha de auditoria; a aplicação automatizada em nível de linha pelas nossas AI gates será implantada no 3º trimestre de 2026. Até lá, a escolha agregada (IA pode vs apenas-operador/excluído) é aplicada, e o operador aplica manualmente as escolhas mais finas.",
       "matrix": {
         "col_ai": "IA pode processar",
         "col_operator": "Somente operador",

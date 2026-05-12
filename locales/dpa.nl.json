@@ -223,7 +223,7 @@
       "phone_optional": "— optioneel",
       "placeholder_phone": "+31 6 …",
       "matrix_label": "Per data-categorie: wat mag AI ermee doen?",
-      "matrix_help": "Kies één optie per rij. Standaardinstellingen zijn ingevuld; pas aan wat je liever anders ziet. Granulair, controleerbaar, AVG art. 4(11) \"specifiek\".",
+      "matrix_help": "Kies één optie per rij. Standaardinstellingen zijn ingevuld; pas aan wat je liever anders ziet. Granulair, controleerbaar, AVG art. 4(11) \"specifiek\". <em>Let op:</em> per-categorie keuzes worden nu in de DPA en het consent-register vastgelegd als audit-trail; geautomatiseerde handhaving op rij-niveau door onze AI-gates rolt uit in Q3-2026. Tot dan wordt de aggregaat-keuze (AI mag t.o.v. operator-only/uitgesloten) gehandhaafd, en de operator past de fijnere keuzes handmatig toe.",
       "matrix": {
         "col_ai": "AI mag verwerken",
         "col_operator": "Alleen operator",

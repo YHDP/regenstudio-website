@@ -223,7 +223,7 @@
       "phone_optional": "— optional",
       "placeholder_phone": "+1 …",
       "matrix_label": "Per data category: what may AI do with it?",
-      "matrix_help": "Pick one option per row. Sensible defaults are pre-selected; override anything you'd rather see different. Granular, auditable, GDPR Art 4(11) \"specific\".",
+      "matrix_help": "Pick one option per row. Sensible defaults are pre-selected; override anything you'd rather see different. Granular, auditable, GDPR Art 4(11) \"specific\". <em>Note:</em> per-category choices are recorded in the DPA + consent registry today as an audit trail; automated row-level enforcement by our AI gates rolls out Q3-2026. Until then the aggregate choice (AI may vs operator-only/excluded) is enforced, and the operator applies the finer choices manually.",
       "matrix": {
         "col_ai": "AI may process",
         "col_operator": "Operator only",
