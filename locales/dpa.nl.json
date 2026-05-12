@@ -225,9 +225,9 @@
       "ai_label": "Mag AI jouw bedrijfs- en persoonlijke data verwerken?",
       "ai_help": "",
       "ai_no_title": "Liever niet",
-      "ai_no_desc": "AI ziet jouw persoonlijke gegevens nooit; advies blijft mogelijk maar werk gaat handmatig.",
+      "ai_no_desc": "AI ziet jouw persoonlijke gegevens en bedrijfsdata nooit; advies blijft mogelijk maar werk gaat handmatig.",
       "ai_yes_title": "Ja, met shield",
-      "ai_yes_desc": "Sneller advies; jouw data passeert eerst de paste-alias-shield die directe identifiers vervangt.",
+      "ai_yes_desc": "Sneller advies; persoonlijke gegevens passeren de paste-alias-shield, bedrijfsdata blijft binnen de scope die je op de vorige slide hebt ingesteld.",
       "footnote": "Beide keuzes (alias + AI-toestemming) kunnen later op elk moment worden gewijzigd via de consent-dashboard van Regen Studio. Geen DPA-revisie nodig.",
       "cta": "Naar de Verwerkersovereenkomst",
       "validation": "Vul alle verplichte velden in om door te kunnen."

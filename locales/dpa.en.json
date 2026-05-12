@@ -225,9 +225,9 @@
       "ai_label": "May AI process your company and personal data?",
       "ai_help": "",
       "ai_no_title": "Rather not",
-      "ai_no_desc": "AI never sees your personal data; advice remains possible but work is done manually.",
+      "ai_no_desc": "AI never sees your personal or company data; advice remains possible but work is done manually.",
       "ai_yes_title": "Yes, with shield",
-      "ai_yes_desc": "Faster advice; your data passes through the paste-alias-shield first, which replaces direct identifiers.",
+      "ai_yes_desc": "Faster advice; personal data passes through the paste-alias-shield, company data stays inside the scope you set on the previous slide.",
       "footnote": "Both choices (alias + AI consent) can be changed at any time via the Regen Studio consent dashboard. No DPA revision required.",
       "cta": "To the Data Processing Agreement",
       "validation": "Fill in all required fields to continue."

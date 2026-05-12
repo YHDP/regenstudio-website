@@ -225,9 +225,9 @@
       "ai_label": "A IA pode processar seus dados corporativos e pessoais?",
       "ai_help": "",
       "ai_no_title": "Prefiro que não",
-      "ai_no_desc": "A IA nunca vê seus dados pessoais; consultoria continua possível, mas o trabalho é feito manualmente.",
+      "ai_no_desc": "A IA nunca vê seus dados pessoais ou corporativos; a consultoria continua possível, mas o trabalho é feito manualmente.",
       "ai_yes_title": "Sim, com shield",
-      "ai_yes_desc": "Consultoria mais rápida; seus dados passam primeiro pelo paste-alias-shield, que substitui identificadores diretos.",
+      "ai_yes_desc": "Consultoria mais rápida; dados pessoais passam pelo paste-alias-shield, dados corporativos permanecem dentro do escopo definido no slide anterior.",
       "footnote": "Ambas as escolhas (alias + consentimento de IA) podem ser alteradas a qualquer momento via o consent-dashboard da Regen Studio. Nenhuma revisão de DPA necessária.",
       "cta": "Para o Contrato de Processamento de Dados",
       "validation": "Preencha todos os campos obrigatórios para continuar."

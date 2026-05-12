@@ -1146,12 +1146,12 @@
             <label class="ai-permission__option" data-value="0">
               <input type="radio" name="ai_consent" value="0">
               <strong data-i18n="welcome.slide_form.ai_no_title">Liever niet</strong>
-              <span data-i18n="welcome.slide_form.ai_no_desc">AI ziet jouw persoonlijke gegevens nooit; advies blijft mogelijk maar werk gaat handmatig.</span>
+              <span data-i18n="welcome.slide_form.ai_no_desc">AI ziet jouw persoonlijke gegevens en bedrijfsdata nooit; advies blijft mogelijk maar werk gaat handmatig.</span>
             </label>
             <label class="ai-permission__option" data-value="1">
               <input type="radio" name="ai_consent" value="1">
               <strong data-i18n="welcome.slide_form.ai_yes_title">Ja, met shield</strong>
-              <span data-i18n="welcome.slide_form.ai_yes_desc">Sneller advies; jouw data passeert eerst de paste-alias-shield die directe identifiers vervangt.</span>
+              <span data-i18n="welcome.slide_form.ai_yes_desc">Sneller advies; persoonlijke gegevens passeren de paste-alias-shield, bedrijfsdata blijft binnen de scope die je op de vorige slide hebt ingesteld.</span>
             </label>
           </div>
         </div>
@@ -1668,6 +1668,18 @@
         return i18nReady.then(() => {
           renderEngagement();
           renderCompanyData(state.profile);
+          // Swap the slide-5 architecture PNG to the locale-specific version.
+          // EN keeps the unsuffixed filename (base); NL/PT are -nl/-pt suffixed.
+          (function setArchPng() {
+            const lang = state.profile.default_language || 'nl';
+            const map = {
+              en: 'Images/dpa-arch-diagram.png',
+              nl: 'Images/dpa-arch-diagram-nl.png',
+              pt: 'Images/dpa-arch-diagram-pt.png'
+            };
+            const img = document.querySelector('.arch-static-img');
+            if (img) img.src = map[lang] || map.nl;
+          })();
           // If this DPA is being signed BY CircularTech themselves, the
           // CircularTech-Advisory row on the sub-processors slide is recursive
           // nonsense — hide it.
