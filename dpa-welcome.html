@@ -289,15 +289,8 @@
     display: flex; gap: 10px; justify-content: flex-end;
     align-items: center; margin-top: 4px;
   }
-  .arch-node {
-    background: white; border-radius: 10px; padding: 10px 12px;
-    text-align: center; box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-    opacity: 0; transform: translateY(8px);
-    transition: opacity 0.45s ease, transform 0.45s ease;
-    /* Mirror the lab's node sizing so anchor coordinates exported from the
-       lab line up with the actual rendered node centres here. Without this,
-       nodes shrink-wrap to content width and SVG edges miss their targets. */
-    min-width: 140px; max-width: 260px; box-sizing: border-box;
+  .arch-static-img {
+    display: block; max-width: 100%; height: auto; margin: 16px auto;
   }
   .arch-node__title { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.3; }
   .arch-node__sub { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
@@ -932,62 +925,14 @@
       <p class="slide__subtitle" data-i18n="welcome.slide_arch.subtitle">
         De hoofd-flow loopt over jouw browser → Supabase Edge in Frankfurt → encrypted in EU. Operator-uitvoering (gesprekken, advies, AI-werk) loopt via een aparte, expliciet-toestemmings-route door de Regen-medewerker.
       </p>
-      <!-- Architecture diagram layout — authored in design-lab/arch-diagram-lab.html
-           2026-05-11 by Yvo, exported as absolute-positioned nodes + SVG edges.
-           Canvas viewBox is 1764x600; nodes use pixel coordinates from that canvas.
-           Class hooks (is-user, is-edge, etc.) keep the existing staggered-fade-in
-           reveal CSS working. data-i18n attributes plug into the locale loader.
-           For mobile / narrow screens the wrapper scales the whole diagram down
-           via CSS transform — see .arch-grid--absolute @media block. -->
-      <div class="arch-grid-wrap">
-        <div class="arch-grid arch-grid--absolute" style="position:relative;width:1764px;height:600px">
-          <div class="arch-node arch-node--user is-user" data-id="user" style="position:absolute;left:312px;top:56px">
-            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.user_title">You — your browser</div>
-            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.user_sub">magic link, no cookies</div>
-          </div>
-          <div class="arch-node arch-node--internal is-edge" data-id="edge" style="position:absolute;left:585px;top:60px">
-            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.edge_title">Supabase</div>
-            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.edge_sub">Frankfurt, EU</div>
-          </div>
-          <div class="arch-node arch-node--external is-lettermint" data-id="lettermint" style="position:absolute;left:534px;top:230px">
-            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.lettermint_title">Lettermint</div>
-            <div class="arch-node__sub" data-i18n-html="welcome.slide_arch.nodes.lettermint_sub_full">NL — outbound mail<br><small>magic link, signed-doc receipt, project mail</small></div>
-          </div>
-          <div class="arch-node arch-node--external is-proton" data-id="proton" style="position:absolute;left:814px;top:226px">
-            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.proton_title">Proton BusinessMail Calendar Drive</div>
-            <div class="arch-node__sub" data-i18n-html="welcome.slide_arch.nodes.proton_sub_full">CH — working-file backup<br><small>e2e encrypted; no plain text</small></div>
-          </div>
-          <div class="arch-node arch-node--external is-exact" data-id="exact" style="position:absolute;left:873px;top:51px">
-            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.exact_title">Exact Online</div>
-            <div class="arch-node__sub" data-i18n-html="welcome.slide_arch.nodes.exact_sub_full">NL — invoice metadata<br><small>no free text, no project content</small></div>
-          </div>
-          <div class="arch-node arch-node--operator is-device" data-id="device" style="position:absolute;left:1150px;top:204px">
-            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.device_title">Regen team member — own device</div>
-            <div class="arch-node__sub" data-i18n-html="welcome.slide_arch.nodes.device_sub_full">macOS, e2e encrypted disk<br><small>manual work: conversations, advice, document review</small></div>
-          </div>
-          <div class="arch-node arch-node--gated is-paste" data-id="shield" style="position:absolute;left:1207px;top:60px">
-            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.paste_title">AI Data Protection Services</div>
-            <div class="arch-node__sub" data-i18n-html="welcome.slide_arch.nodes.paste_sub">paste-alias-shield /<br>consent registry /<br>pre-hooks</div>
-          </div>
-          <div class="arch-node arch-node--gated is-ai" data-id="ai" style="position:absolute;left:1484px;top:69px">
-            <div class="arch-node__title" data-i18n="welcome.slide_arch.nodes.ai_title">Anthropic (Claude) (US)</div>
-            <div class="arch-node__sub" data-i18n="welcome.slide_arch.nodes.ai_sub">SCCs Module 2 + 3</div>
-          </div>
-          <svg class="arch-edges" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none" viewBox="0 0 1764 600" preserveAspectRatio="none">
-            <line data-edge="e4"        data-flavor="default"  x1="648"  y1="117" x2="650"  y2="230" stroke="#6b7280" stroke-width="1.5"/>
-            <line data-edge="e7"        data-flavor="archive"  x1="758"  y1="262" x2="814"  y2="262" stroke="#009BBB" stroke-width="1.5" stroke-dasharray="4 3"/>
-            <line data-edge="e9"        data-flavor="operator" x1="1069" y1="250" x2="1150" y2="251" stroke="#7a5814" stroke-width="1.5"/>
-            <line data-edge="eA"        data-flavor="gated"    x1="1282" y1="204" x2="1282" y2="148" stroke="#93093F" stroke-width="1.8"/>
-            <line data-edge="eB"        data-flavor="gated"    x1="1410" y1="102" x2="1484" y2="102" stroke="#93093F" stroke-width="1.8"/>
-            <line data-edge="emp1rwwx7" data-flavor="default"  x1="725"  y1="87"  x2="873"  y2="88"  stroke="#6b7280" stroke-width="1.5"/>
-            <line data-edge="emp1rx3b2" data-flavor="default"  x1="696"  y1="117" x2="883"  y2="226" stroke="#6b7280" stroke-width="1.5"/>
-            <line data-edge="emp1saz21" data-flavor="default"  x1="1365" y1="204" x2="1484" y2="134" stroke="#6b7280" stroke-width="1.5"/>
-            <line data-edge="emp1seyf3" data-flavor="default"  x1="467"  y1="86"  x2="585"  y2="88"  stroke="#6b7280" stroke-width="1.5"/>
-            <line data-edge="emp1sfalt" data-flavor="default"  x1="944"  y1="124" x2="944"  y2="226" stroke="#6b7280" stroke-width="1.5"/>
-          </svg>
-          <div class="arch-edge-label" data-edge="e7" style="position:absolute;left:922px;top:170px" data-i18n="welcome.slide_arch.edge_label_archive">archived in Proton AG</div>
-        </div>
-      </div>
+      <!-- Architecture diagram: pre-rendered PNG exported from
+           design-lab/arch-static-export.html. Static image avoids the
+           transform/scale + IntersectionObserver complexity that kept
+           breaking responsive layout. Authored at 1812×400, scales naturally
+           via max-width:100%. -->
+      <img src="Images/dpa-arch-diagram.png"
+           alt="Data flows: You → Supabase Edge (Frankfurt) → Lettermint / Exact / Proton; Regen team member device routes through AI Data Protection Services to Anthropic (Claude) with explicit consent."
+           class="arch-static-img">
 
       <div class="arch-legend">
         <span><i class="dot dot--internal"></i> <span data-i18n="welcome.slide_arch.legend.internal">Own Regen infrastructure (Supabase)</span></span>
@@ -1436,32 +1381,6 @@
     external:     'Externe bronnen & marktinfo',
   };
 
-  function fitArchDiagram() {
-    const wrap  = document.querySelector('.slide--architecture .arch-grid-wrap');
-    const inner = wrap && wrap.querySelector('.arch-grid--absolute');
-    if (!wrap || !inner) return;
-    // Authored canvas dimensions (must match the export from arch-diagram-lab).
-    const NATIVE_W = 1764, NATIVE_H = 600;
-    const apply = (available) => {
-      if (!available) return;
-      const scale = Math.min(1, available / NATIVE_W);
-      inner.style.transform = 'scale(' + scale + ')';
-      wrap.style.height = (NATIVE_H * scale) + 'px';
-    };
-    // Use ResizeObserver where available — fires when the wrapper has a real
-    // layout box, which avoids the "clientWidth is 0 at init" trap with the
-    // off-screen slides in a horizontally-scrolling deck.
-    if (typeof ResizeObserver === 'function') {
-      const ro = new ResizeObserver(entries => {
-        for (const e of entries) apply(e.contentRect.width);
-      });
-      ro.observe(wrap);
-    } else {
-      apply(wrap.clientWidth);
-      window.addEventListener('resize', () => apply(wrap.clientWidth));
-    }
-  }
-
   function renderCompanyData(profile) {
     const catsRoot = document.getElementById('company-cats');
     const protectRoot = document.getElementById('company-protect');
@@ -1749,7 +1668,6 @@
         return i18nReady.then(() => {
           renderEngagement();
           renderCompanyData(state.profile);
-          fitArchDiagram();
           // If this DPA is being signed BY CircularTech themselves, the
           // CircularTech-Advisory row on the sub-processors slide is recursive
           // nonsense — hide it.
