@@ -316,22 +316,18 @@
     align-items: center; margin-top: 4px;
   }
   /* Absolute-positioned diagram exported from arch-diagram-lab (slide 5).
-     Authored at 1764×600 px; inner stays at native size so SVG edges remain
-     pixel-aligned with nodes. Wrapper scales the whole thing down to fit
-     the slide width (no JS resize observer — pure CSS). */
+     Authored at 1764×600 px. A JS sizer (fitArchDiagram, below) measures the
+     wrapper at load + on resize and sets transform: scale + wrapper height
+     so the diagram always fits the slide width without overflowing. */
   .arch-grid-wrap {
     position: relative;
     width: 100%;
     overflow: visible;
     margin: 16px 0;
-    /* Scaled height = 600 × scale. Capped at 600. */
-    height: min(600px, calc(100vw * 600 / 1764 - 40px));
     min-height: 360px;
   }
   .arch-grid--absolute {
     transform-origin: top left;
-    /* Cap scale at 1; below 1764px viewport scale down to fit. */
-    transform: scale(min(1, calc((100vw - 80px) / 1764)));
   }
   .arch-edge-label {
     font-size: 11px; font-style: italic; color: var(--magenta);
@@ -1440,6 +1436,20 @@
     external:     'Externe bronnen & marktinfo',
   };
 
+  function fitArchDiagram() {
+    const wrap  = document.querySelector('.slide--architecture .arch-grid-wrap');
+    const inner = wrap && wrap.querySelector('.arch-grid--absolute');
+    if (!wrap || !inner) return;
+    // Authored canvas dimensions (must match the export from arch-diagram-lab).
+    const NATIVE_W = 1764, NATIVE_H = 600;
+    const available = wrap.clientWidth;
+    const scale = Math.min(1, available / NATIVE_W);
+    inner.style.transform = 'scale(' + scale + ')';
+    // Wrapper occupies the visible height of the scaled diagram so the next
+    // slide content doesn't slide up underneath it.
+    wrap.style.height = (NATIVE_H * scale) + 'px';
+  }
+
   function renderCompanyData(profile) {
     const catsRoot = document.getElementById('company-cats');
     const protectRoot = document.getElementById('company-protect');
@@ -1727,6 +1737,8 @@
         return i18nReady.then(() => {
           renderEngagement();
           renderCompanyData(state.profile);
+          fitArchDiagram();
+          window.addEventListener('resize', fitArchDiagram);
           // If this DPA is being signed BY CircularTech themselves, the
           // CircularTech-Advisory row on the sub-processors slide is recursive
           // nonsense — hide it.
