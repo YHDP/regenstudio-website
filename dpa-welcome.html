@@ -1010,7 +1010,7 @@
       <p class="slide__kicker" data-i18n="welcome.slide_company.kicker">Bedrijfsdata — gebruik &amp; bescherming</p>
       <h2 class="slide__title" data-i18n="welcome.slide_company.title">Hoe we jouw bedrijfsdata gebruiken en beschermen</h2>
       <p class="slide__subtitle" data-i18n="welcome.slide_company.subtitle">
-        We zetten AI in voor concreet werk — DPP-prototyping, regulatoir-onderzoek, document-review, rapportage. Hieronder zie je per data-categorie wat we standaard mogen verwerken (vink uit wat je liever niet deelt), en een aparte kolom met wat we sowieso níét aanraken.
+        AI helpt bij concreet werk — DPP-prototyping, regulatoir-onderzoek, document-review, rapportage. Per algemene categorie zie je wat AI standaard mag verwerken (vink uit wat je liever niet deelt); rechts staat wat we sowieso níét aanraken.
       </p>
       <div class="company-grid">
         <div class="company-col company-col--use">
@@ -1430,9 +1430,16 @@
     // ---- Right column: exclusion narrative + scope-gate exclusions ----
     protectRoot.innerHTML = '';
     const exclusionItems = [];
-    // Primary: profile.sensitive_data_exclusion_narrative_nl (regime-derived, hand-curated).
-    if (profile.sensitive_data_exclusion_narrative_nl) {
-      exclusionItems.push(profile.sensitive_data_exclusion_narrative_nl);
+    // Primary: profile.sensitive_data_exclusion_narrative[lang] (regime-derived).
+    // Falls back to the NL field for older verify-token responses that don't
+    // include the language-keyed map yet.
+    const lang = (profile.default_language || 'nl');
+    const narrativeMap = profile.sensitive_data_exclusion_narrative;
+    const narrative = narrativeMap
+      ? (narrativeMap[lang] || narrativeMap.nl)
+      : profile.sensitive_data_exclusion_narrative_nl;
+    if (narrative) {
+      exclusionItems.push(narrative);
     }
     // Defensive append: any extra hardcoded "we never touch" items (PII outside scope, special-category Art 9, etc.)
     // Currently uses regime narrative only; future engagements may surface
@@ -1680,16 +1687,15 @@
             const img = document.querySelector('.arch-static-img');
             if (img) img.src = map[lang] || map.nl;
           })();
-          // If this DPA is being signed BY CircularTech themselves, the
-          // CircularTech-Advisory row on the sub-processors slide is recursive
-          // nonsense — hide it.
+          // Hide the sub-processor row that corresponds to the counterparty
+          // signing this DPA (self-reference is recursive nonsense). Driven by
+          // profile.self_subproc_id from verify-token — extend the mapping in
+          // dpa-verify-token's deriveSelfSubprocId() to support new partnerships.
           (function hideSelfSubprocRow() {
-            const engKey = (state.body && state.body.engagement_key) ||
-                           (state.profile && state.profile.engagement_key) || '';
-            if (/^partnership\/regen-ctf/.test(engKey)) {
-              const row = document.getElementById('subproc-row-ctf');
-              if (row) row.style.display = 'none';
-            }
+            const selfId = state.profile && state.profile.self_subproc_id;
+            if (!selfId) return;
+            const row = document.getElementById(selfId);
+            if (row) row.style.display = 'none';
           })();
           setAlias(randomAlias());
           bindAiPermission();

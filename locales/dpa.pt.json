@@ -156,12 +156,12 @@
       "nav_title": "Dados da empresa",
       "kicker": "Dados da empresa — uso & proteção",
       "title": "Como usamos e protegemos os dados da sua empresa",
-      "subtitle": "A IA apoia trabalho concreto — prototipagem de DPP, pesquisa regulatória, revisão de documentos, relatórios. Ative ou desative as categorias gerais abaixo; a coluna à direita lista o que nunca tocamos.",
+      "subtitle": "A IA apoia trabalho concreto — prototipagem de DPP, pesquisa regulatória, revisão de documentos, relatórios. Em cada categoria geral, veja o que a IA pode processar por padrão (desmarque o que preferir não compartilhar); a coluna à direita lista o que nunca tocamos.",
       "use_title": "O que usamos",
       "use_intro": "Todas as categorias ativas por padrão. Desmarque o que a IA <em>não</em> deve ver — vale imediatamente, sem revisão do DPA.",
       "protect_title": "O que não tocamos",
       "protect_intro": "Independentemente do que você marcar, nossos hooks internos bloqueiam automaticamente as seguintes categorias — elas não passam pelo paste-alias-shield, não são apresentadas à IA e não são registradas em arquivos de trabalho.",
-      "protect_footnote": "Codificado em <code>scope-enforcement-gate.md</code> · imposto por testes automatizados · auditável em <code>regenstudio.world/manage-consent</code>.",
+      "protect_footnote": "Codificado em <code>scope-enforcement-gate.md</code> · imposto pelo operador a cada invocação de IA · auditável em <code>regenstudio.world/manage-consent</code>.",
       "protect_fallback": "IP comercialmente sensível e dados proprietários, conforme §13 do DPA.",
       "groups": {
         "product": "Dados de produto & cadeia de fornecimento",
@@ -364,7 +364,7 @@
     },
     "ai_consent": {
       "headline": "Dou permissão para a Regen Studio também ter meus dados pessoais (nome, e-mail, cargo, telefone) processados pela Anthropic Claude",
-      "body": " como parte da prestação de serviço assistida por IA para este Engajamento, conforme canonical § 5.4. Este consentimento é <em>voluntário</em>; o DPA é válido mesmo sem ele. Você pode revogar este consentimento a qualquer momento via <a href=\"mailto:info@regenstudio.world\">info@regenstudio.world</a>.",
+      "body": " como parte da prestação de serviço assistida por IA para este Engajamento, conforme canonical § 5.4. Este consentimento é <em>voluntário</em>; o DPA é válido mesmo sem ele. Você pode revogar este consentimento a qualquer momento — um clique — via <a href=\"https://www.regenstudio.world/manage-consent\" target=\"_blank\" rel=\"noopener\">regenstudio.world/manage-consent</a> (Art. 7(3) RGPD).",
       "alias_intro": "Opcionalmente você pode fornecer um alias que a Regen usará nos documentos de trabalho em vez do seu nome real:",
       "alias_placeholder": "ex. um alias à sua escolha"
     },

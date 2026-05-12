@@ -156,12 +156,12 @@
       "nav_title": "Bedrijfsdata",
       "kicker": "Bedrijfsdata — gebruik & bescherming",
       "title": "Hoe we jouw bedrijfsdata gebruiken en beschermen",
-      "subtitle": "AI helpt bij concreet werk — DPP-prototyping, regulatoir-onderzoek, document-review, rapportage. Zet de algemene categorieën hieronder aan of uit; de rechterkolom toont wat we sowieso níét aanraken.",
+      "subtitle": "AI helpt bij concreet werk — DPP-prototyping, regulatoir-onderzoek, document-review, rapportage. Per algemene categorie zie je wat AI standaard mag verwerken (vink uit wat je liever niet deelt); rechts staat wat we sowieso níét aanraken.",
       "use_title": "Wat we gebruiken",
       "use_intro": "Alle categorieën staan standaard aan. Vink uit wat AI <em>niet</em> mag zien — geldt direct, geen DPA-revisie.",
       "protect_title": "Wat we niet aanraken",
       "protect_intro": "Onafhankelijk van wat je aanvinkt, blokkeren onze interne hooks de volgende data-categorieën automatisch — ze komen niet door de paste-alias-shield, worden niet aan AI voorgelegd, en worden niet vastgelegd in werkbestanden.",
-      "protect_footnote": "Gecodificeerd in <code>scope-enforcement-gate.md</code> · gehandhaafd door geautomatiseerde tests · auditbaar in <code>regenstudio.world/manage-consent</code>.",
+      "protect_footnote": "Gecodificeerd in <code>scope-enforcement-gate.md</code> · gehandhaafd door de operator bij elke AI-aanroep · auditbaar in <code>regenstudio.world/manage-consent</code>.",
       "protect_fallback": "Bedrijfsgevoelige IP en propriëtaire data, conform §13 van de DPA.",
       "groups": {
         "product": "Product- en supply-chain-data",
@@ -364,7 +364,7 @@
     },
     "ai_consent": {
       "headline": "Ik geef Regen Studio toestemming om mijn persoonsgegevens (naam, e-mail, functie, telefoonnummer) ook door Anthropic Claude te laten verwerken",
-      "body": " als onderdeel van de AI-ondersteunde dienstverlening voor dit Engagement, conform canonical § 5.4. Deze toestemming is <em>vrijwillig</em>; de DPA is geldig ook zonder deze toestemming. U kunt deze toestemming op elk moment intrekken via <a href=\"mailto:info@regenstudio.world\">info@regenstudio.world</a>.",
+      "body": " als onderdeel van de AI-ondersteunde dienstverlening voor dit Engagement, conform canonical § 5.4. Deze toestemming is <em>vrijwillig</em>; de DPA is geldig ook zonder deze toestemming. U kunt deze toestemming op elk moment — één klik — intrekken via <a href=\"https://www.regenstudio.world/manage-consent\" target=\"_blank\" rel=\"noopener\">regenstudio.world/manage-consent</a> (AVG art. 7 lid 3).",
       "alias_intro": "Optioneel kunt u een alias-naam opgeven die Regen in werkdocumenten gebruikt in plaats van uw werkelijke naam:",
       "alias_placeholder": "bv. een door u gekozen alias"
     },
