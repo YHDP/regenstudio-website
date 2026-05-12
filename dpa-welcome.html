@@ -1442,12 +1442,24 @@
     if (!wrap || !inner) return;
     // Authored canvas dimensions (must match the export from arch-diagram-lab).
     const NATIVE_W = 1764, NATIVE_H = 600;
-    const available = wrap.clientWidth;
-    const scale = Math.min(1, available / NATIVE_W);
-    inner.style.transform = 'scale(' + scale + ')';
-    // Wrapper occupies the visible height of the scaled diagram so the next
-    // slide content doesn't slide up underneath it.
-    wrap.style.height = (NATIVE_H * scale) + 'px';
+    const apply = (available) => {
+      if (!available) return;
+      const scale = Math.min(1, available / NATIVE_W);
+      inner.style.transform = 'scale(' + scale + ')';
+      wrap.style.height = (NATIVE_H * scale) + 'px';
+    };
+    // Use ResizeObserver where available — fires when the wrapper has a real
+    // layout box, which avoids the "clientWidth is 0 at init" trap with the
+    // off-screen slides in a horizontally-scrolling deck.
+    if (typeof ResizeObserver === 'function') {
+      const ro = new ResizeObserver(entries => {
+        for (const e of entries) apply(e.contentRect.width);
+      });
+      ro.observe(wrap);
+    } else {
+      apply(wrap.clientWidth);
+      window.addEventListener('resize', () => apply(wrap.clientWidth));
+    }
   }
 
   function renderCompanyData(profile) {
@@ -1738,7 +1750,6 @@
           renderEngagement();
           renderCompanyData(state.profile);
           fitArchDiagram();
-          window.addEventListener('resize', fitArchDiagram);
           // If this DPA is being signed BY CircularTech themselves, the
           // CircularTech-Advisory row on the sub-processors slide is recursive
           // nonsense — hide it.
