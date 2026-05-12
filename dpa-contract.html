@@ -1679,6 +1679,10 @@
 
       // doc_toggles — pass through the intake selections.
       const docToggles = data.doc_toggles || {};
+      // Phase 1 granular consent matrix (2026-05-13). Null when signing from
+      // an older sessionStorage payload that pre-dates the matrix; server's
+      // RPC then falls back to the legacy binary path via ai_processing_consent.
+      const docTogglesV2 = data.doc_toggles_v2 || null;
 
       const payload = {
         token: token,
@@ -1694,6 +1698,7 @@
         // priority). Capped client-side at 80 chars; server re-validates.
         ai_alias_name:   String(data.ai_alias_name || '').trim().slice(0, 80),
         doc_toggles:     docToggles,
+        doc_toggles_v2:  docTogglesV2,
         html_snapshot:   htmlSnapshot,
         pdf_b64:         pdfB64,
         schedule_sha:    scheduleSha,

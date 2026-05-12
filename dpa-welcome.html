@@ -557,6 +557,76 @@
   .alias-picker__custom a { color: var(--emerald-dark); cursor: pointer; text-decoration: underline; }
 
   /* AI permission radio */
+  /* Granular consent matrix (Phase 1, 2026-05-13) — 4 categories × 3 scopes. */
+  .cm-label { font-weight: 600; }
+  .cm-help { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 4px 0 12px; }
+  .consent-matrix {
+    border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+    background: var(--paper);
+  }
+  .cm-header, .cm-row {
+    display: grid;
+    grid-template-columns: minmax(180px, 1.8fr) repeat(3, minmax(80px, 1fr));
+    align-items: stretch;
+  }
+  .cm-header {
+    background: var(--paper-deep);
+    border-bottom: 1px solid var(--border);
+  }
+  .cm-row {
+    border-bottom: 1px solid var(--border);
+  }
+  .cm-row:last-child { border-bottom: none; }
+  .cm-cat-cell {
+    padding: 12px 14px;
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .cm-cat-cell strong { font-size: 13px; color: var(--ink); font-weight: 600; }
+  .cm-cat-cell span { font-size: 11.5px; color: var(--muted); line-height: 1.45; }
+  .cm-scope-cell {
+    padding: 10px 8px; text-align: center;
+    font-size: 11px; font-weight: 600; color: var(--ink-soft);
+    border-right: 1px solid var(--border);
+    text-transform: uppercase; letter-spacing: 0.4px;
+    line-height: 1.3;
+  }
+  .cm-scope-cell:last-child { border-right: none; }
+  .cm-radio {
+    display: flex; align-items: center; justify-content: center;
+    padding: 14px 8px; cursor: pointer;
+    border-right: 1px solid var(--border);
+    transition: background 0.15s ease;
+  }
+  .cm-radio:last-child { border-right: none; }
+  .cm-radio:hover { background: rgba(0,133,69,0.04); }
+  .cm-radio input { position: absolute; opacity: 0; pointer-events: none; }
+  .cm-dot {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 2px solid var(--border);
+    transition: border-color 0.15s ease, background 0.15s ease;
+    position: relative;
+  }
+  .cm-radio:has(input:checked) { background: rgba(0,133,69,0.06); }
+  .cm-radio:has(input:checked) .cm-dot { border-color: var(--emerald); }
+  .cm-radio:has(input:checked) .cm-dot::after {
+    content: ''; position: absolute; inset: 3px;
+    border-radius: 50%; background: var(--emerald);
+  }
+  @media (max-width: 640px) {
+    .cm-header, .cm-row { grid-template-columns: 1fr; }
+    .cm-cat-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .cm-header { display: none; }
+    .cm-row { padding: 8px 0; }
+    .cm-radio {
+      padding: 10px 14px; justify-content: flex-start; gap: 12px;
+      border-right: none; border-bottom: 1px solid var(--border);
+    }
+    .cm-radio::after {
+      content: attr(data-scope-label);
+      font-size: 12px; color: var(--ink);
+    }
+  }
   .ai-permission {
     display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px;
   }
@@ -1152,22 +1222,55 @@
         </div>
 
         <div class="form-row" style="margin-top: 24px;">
-          <label><span data-i18n="welcome.slide_form.ai_label">Mag AI jouw bedrijfs- en persoonlijke data verwerken?</span> <span class="help" data-i18n="welcome.slide_form.ai_help"></span></label>
-          <div class="ai-permission" id="ai-permission">
-            <label class="ai-permission__option" data-value="0">
-              <input type="radio" name="ai_consent" value="0">
-              <strong data-i18n="welcome.slide_form.ai_no_title">Liever niet</strong>
-              <span data-i18n="welcome.slide_form.ai_no_desc">AI ziet jouw persoonlijke gegevens en bedrijfsdata nooit; advies blijft mogelijk maar werk gaat handmatig.</span>
-            </label>
-            <label class="ai-permission__option" data-value="1">
-              <input type="radio" name="ai_consent" value="1">
-              <strong data-i18n="welcome.slide_form.ai_yes_title">Ja, met shield</strong>
-              <span data-i18n="welcome.slide_form.ai_yes_desc">Sneller advies; persoonlijke gegevens passeren de paste-alias-shield, bedrijfsdata blijft binnen de scope die je op de vorige slide hebt ingesteld.</span>
-            </label>
+          <label class="cm-label"><span data-i18n="welcome.slide_form.matrix_label">Per data-categorie: wat mag AI ermee doen?</span></label>
+          <p class="cm-help" data-i18n="welcome.slide_form.matrix_help">Kies één optie per rij. Standaardinstellingen zijn ingevuld; pas aan wat je liever anders ziet. Granulair, controleerbaar, GDPR Art. 4(11) "specifiek".</p>
+          <div class="consent-matrix" id="consent-matrix">
+            <div class="cm-header">
+              <div class="cm-cat-cell"></div>
+              <div class="cm-scope-cell" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</div>
+              <div class="cm-scope-cell" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</div>
+              <div class="cm-scope-cell" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</div>
+            </div>
+            <div class="cm-row" data-category="contact_info">
+              <div class="cm-cat-cell">
+                <strong data-i18n="welcome.slide_form.matrix.cat_contact_title">Contactgegevens</strong>
+                <span data-i18n="welcome.slide_form.matrix.cat_contact_desc">Naam, e-mail, telefoon, rol</span>
+              </div>
+              <label class="cm-radio"><input type="radio" name="cat_contact_info" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span></label>
+              <label class="cm-radio"><input type="radio" name="cat_contact_info" value="operator_only"><span class="cm-dot" aria-hidden="true"></span></label>
+              <label class="cm-radio"><input type="radio" name="cat_contact_info" value="excluded"><span class="cm-dot" aria-hidden="true"></span></label>
+            </div>
+            <div class="cm-row" data-category="project_content">
+              <div class="cm-cat-cell">
+                <strong data-i18n="welcome.slide_form.matrix.cat_project_title">Projectinhoud</strong>
+                <span data-i18n="welcome.slide_form.matrix.cat_project_desc">Documenten, notities, deliverables, correspondentie</span>
+              </div>
+              <label class="cm-radio"><input type="radio" name="cat_project_content" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span></label>
+              <label class="cm-radio"><input type="radio" name="cat_project_content" value="operator_only"><span class="cm-dot" aria-hidden="true"></span></label>
+              <label class="cm-radio"><input type="radio" name="cat_project_content" value="excluded"><span class="cm-dot" aria-hidden="true"></span></label>
+            </div>
+            <div class="cm-row" data-category="financial_data">
+              <div class="cm-cat-cell">
+                <strong data-i18n="welcome.slide_form.matrix.cat_financial_title">Financiële data</strong>
+                <span data-i18n="welcome.slide_form.matrix.cat_financial_desc">Factuurregels, budgetten, betaalreferenties</span>
+              </div>
+              <label class="cm-radio"><input type="radio" name="cat_financial_data" value="ai_may_process"><span class="cm-dot" aria-hidden="true"></span></label>
+              <label class="cm-radio"><input type="radio" name="cat_financial_data" value="operator_only" checked><span class="cm-dot" aria-hidden="true"></span></label>
+              <label class="cm-radio"><input type="radio" name="cat_financial_data" value="excluded"><span class="cm-dot" aria-hidden="true"></span></label>
+            </div>
+            <div class="cm-row" data-category="metadata">
+              <div class="cm-cat-cell">
+                <strong data-i18n="welcome.slide_form.matrix.cat_metadata_title">Metadata</strong>
+                <span data-i18n="welcome.slide_form.matrix.cat_metadata_desc">Tijdstempels, IP's, geaggregeerde gebruikscijfers</span>
+              </div>
+              <label class="cm-radio"><input type="radio" name="cat_metadata" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span></label>
+              <label class="cm-radio"><input type="radio" name="cat_metadata" value="operator_only"><span class="cm-dot" aria-hidden="true"></span></label>
+              <label class="cm-radio"><input type="radio" name="cat_metadata" value="excluded"><span class="cm-dot" aria-hidden="true"></span></label>
+            </div>
           </div>
         </div>
         <p class="form-footnote" data-i18n="welcome.slide_form.footnote">
-          Beide keuzes (alias + AI-toestemming) kunnen later op elk moment worden gewijzigd via de consent-dashboard van Regen Studio. Geen DPA-revisie nodig.
+          Deze keuzes worden vastgelegd in de DPA. Volledig intrekken kan via de consent-dashboard (één klik). Voor granulair wijzigen — een specifieke rij omzetten — is een nieuwe DPA-ondertekening nodig.
         </p>
       </form>
       <button type="button" class="ready-cta" id="ready-cta" disabled>
@@ -1515,29 +1618,35 @@
   }
 
   // ===== Form validation =====
+  // Matrix categories: each must have exactly one radio checked.
+  const MATRIX_CATEGORIES = ['contact_info', 'project_content', 'financial_data', 'metadata'];
+  function readConsentMatrix() {
+    const result = {};
+    for (const cat of MATRIX_CATEGORIES) {
+      const checked = document.querySelector('input[name="cat_' + cat + '"]:checked');
+      if (checked) result[cat] = checked.value;
+    }
+    return result;
+  }
   function checkFormValid() {
-    const aiRadio = document.querySelector('input[name="ai_consent"]:checked');
+    const matrix = readConsentMatrix();
+    const matrixComplete = MATRIX_CATEGORIES.every(c => matrix[c]);
     const valid =
       els.repName.value.trim().length >= 2 &&
       els.repRole.value.trim().length >= 2 &&
       isEmail(els.repEmail.value.trim()) &&
-      !!aiRadio;
+      matrixComplete;
     state.formValid = valid;
+    state.consentMatrix = matrix;
     els.readyCta.disabled = !valid;
     els.readyValidation.classList.toggle('is-shown', !valid);
     return valid;
   }
 
-  // ===== AI permission radio styling =====
+  // ===== Consent matrix wiring =====
   function bindAiPermission() {
-    const radios = document.querySelectorAll('input[name="ai_consent"]');
-    radios.forEach(r => {
-      r.addEventListener('change', () => {
-        document.querySelectorAll('.ai-permission__option').forEach(o => o.classList.remove('ai-permission__option--checked'));
-        r.closest('.ai-permission__option').classList.add('ai-permission__option--checked');
-        checkFormValid();
-      });
-    });
+    const radios = document.querySelectorAll('.consent-matrix input[type="radio"]');
+    radios.forEach(r => r.addEventListener('change', checkFormValid));
   }
 
   // ===== Nav dots =====
@@ -1588,7 +1697,10 @@
       document.getElementById('slide-choices').scrollIntoView({ behavior: 'smooth' });
       return;
     }
-    const aiRadio = document.querySelector('input[name="ai_consent"]:checked');
+    const matrix = readConsentMatrix();
+    // Aggregate boolean for backward-compat with consumers reading
+    // ai_processing_consent: true if any category resolves to ai_may_process.
+    const anyAiMay = MATRIX_CATEGORIES.some(c => matrix[c] === 'ai_may_process');
     const formData = {
       cp_legal_name: state.profile.legal_name || state.profile.cp_legal_name || '',
       cp_legal_form: state.profile.legal_form_default || '',
@@ -1600,8 +1712,9 @@
       cp_rep_email: els.repEmail.value.trim().toLowerCase(),
       cp_rep_phone: els.repPhone.value.trim() || '',
       ai_alias_name: state.aliasMode === 'real' ? '' : (els.aliasText.value || '').trim(),
-      ai_processing_consent: aiRadio.value === '1',
+      ai_processing_consent: anyAiMay,
       doc_toggles: Object.assign({}, state.docToggles),
+      doc_toggles_v2: matrix,  // Phase 1 granular consent (2026-05-13)
       _saved_at: new Date().toISOString(),
     };
     const engagementMeta = {
