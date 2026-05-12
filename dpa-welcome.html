@@ -926,10 +926,17 @@
         De hoofd-flow loopt over jouw browser → Supabase Edge in Frankfurt → encrypted in EU. Operator-uitvoering (gesprekken, advies, AI-werk) loopt via een aparte, expliciet-toestemmings-route door de Regen-medewerker.
       </p>
       <!-- Architecture diagram: pre-rendered PNG exported from
-           design-lab/arch-static-export.html. Static image avoids the
-           transform/scale + IntersectionObserver complexity that kept
-           breaking responsive layout. Authored at 1812×400, scales naturally
-           via max-width:100%. -->
+           design-lab/arch-static-export{,-nl,-pt}.html (gitignored sources).
+           Re-render via Brave headless when the lab changes:
+             "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" \
+               --headless=new --disable-gpu --no-sandbox --hide-scrollbars \
+               --window-size=1812,440 \
+               --screenshot=Images/dpa-arch-diagram{,-nl,-pt}.png \
+               "file://.../design-lab/arch-static-export{,-nl,-pt}.html"
+           Static image avoids the transform/scale + IntersectionObserver
+           complexity that kept breaking responsive layout. Authored at 1812×440,
+           scales naturally via max-width:100%. Locale swap is done by setArchPng
+           in init based on profile.default_language. -->
       <img src="Images/dpa-arch-diagram.png"
            alt="Data flows: You → Supabase Edge (Frankfurt) → Lettermint / Exact / Proton; Regen team member device routes through AI Data Protection Services to Anthropic (Claude) with explicit consent."
            class="arch-static-img">
@@ -1031,7 +1038,7 @@
             <!-- Exclusion narrative rendered at runtime from engagement_profile. -->
           </div>
           <p class="company-col__footnote" data-i18n="welcome.slide_company.protect_footnote">
-            Codified in <code>scope-enforcement-gate.md</code> · enforced by automated tests · auditable in <code>regenstudio.world/manage-consent</code>.
+            Gecodificeerd in <code>scope-enforcement-gate.md</code> · gehandhaafd door de operator bij elke AI-aanroep · auditbaar in <code>regenstudio.world/manage-consent</code>.
           </p>
         </div>
       </div>
@@ -1098,6 +1105,10 @@
           </div>
           <div class="subproc-row__country">NL</div>
         </div>
+        <!-- id="subproc-row-ctf" is paired with deriveSelfSubprocId() in
+             supabase/functions/dpa-verify-token/index.ts — when the engagement
+             counterparty IS CircularTech, this row is hidden via the
+             profile.self_subproc_id → DOM-id lookup in setArchPng's neighbour. -->
         <div class="subproc-row subproc-row--out" id="subproc-row-ctf">
           <div class="subproc-row__status">·</div>
           <div>
@@ -1141,7 +1152,7 @@
         </div>
 
         <div class="form-row" style="margin-top: 24px;">
-          <label><span data-i18n="welcome.slide_form.ai_label">Mag AI jouw persoonlijke data verwerken?</span> <span class="help" data-i18n="welcome.slide_form.ai_help">— wijzigbaar via consent-dashboard</span></label>
+          <label><span data-i18n="welcome.slide_form.ai_label">Mag AI jouw bedrijfs- en persoonlijke data verwerken?</span> <span class="help" data-i18n="welcome.slide_form.ai_help"></span></label>
           <div class="ai-permission" id="ai-permission">
             <label class="ai-permission__option" data-value="0">
               <input type="radio" name="ai_consent" value="0">
