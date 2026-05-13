@@ -203,7 +203,8 @@
         "exact_name": "Exact Online",
         "exact_purpose": "Contabilidade — apenas metadados de linha de fatura (nome + endereço de cobrança)",
         "ctf_name": "CircularTech Advisory",
-        "ctf_purpose": "Cooperativa de consultoria — não engajada para este Engajamento"
+        "ctf_purpose": "Cooperativa de consultoria — não engajada para este Engajamento",
+        "ctf_purpose_in_scope": "Cooperativa de consultoria — parceira de colaboração para este Engajamento"
       },
       "objection_footer": "<strong>Objetar a um sub-processador?</strong> Sob o Art. 28(2) do RGPD, você como Controlador tem o direito de objetar a sub-processadores novos ou existentes. <a id=\"subproc-objection-link\" href=\"#\" rel=\"noopener\">Envie uma objeção fundamentada →</a> (abre no seu cliente de e-mail; respondemos em até 30 dias)."
     },

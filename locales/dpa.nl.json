@@ -203,7 +203,8 @@
         "exact_name": "Exact Online",
         "exact_purpose": "Boekhouding — alleen factuur-regel-metadata (naam + factuuradres)",
         "ctf_name": "CircularTech Advisory",
-        "ctf_purpose": "Advisory-coöperatie — niet ingeschakeld voor jouw Engagement"
+        "ctf_purpose": "Advisory-coöperatie — niet ingeschakeld voor jouw Engagement",
+        "ctf_purpose_in_scope": "Advisory-coöperatie — samenwerkingspartner voor deze Engagement"
       },
       "objection_footer": "<strong>Bezwaar maken tegen een sub-processor?</strong> Onder AVG art. 28(2) heb je als Verantwoordelijke het recht om bezwaar te maken tegen nieuwe of bestaande sub-processors. <a id=\"subproc-objection-link\" href=\"#\" rel=\"noopener\">Stuur een gemotiveerd bezwaar →</a> (opent in je e-mail-client; we reageren binnen 30 dagen)."
     },

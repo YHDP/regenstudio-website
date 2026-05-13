@@ -1896,6 +1896,25 @@
             const row = document.getElementById(selfId);
             if (row) row.style.display = 'none';
           })();
+
+          // Flip CTF from --out to --in when the engagement profile lists it
+          // in subprocessors_in_scope. Drives all 5 DPP-voucher engagements
+          // where Elliana (CircularTech Advisory) is the samenwerkingspartner.
+          (function setSubprocCtfScope() {
+            const inScope = (state.profile && state.profile.subprocessors_in_scope) || [];
+            if (!inScope.includes('ctf')) return;
+            const row = document.getElementById('subproc-row-ctf');
+            if (!row) return;
+            row.classList.remove('subproc-row--out');
+            row.classList.add('subproc-row--in');
+            const statusEl = row.querySelector('.subproc-row__status');
+            if (statusEl) statusEl.textContent = '✓';
+            const purposeEl = row.querySelector('.subproc-row__purpose');
+            if (purposeEl) {
+              purposeEl.textContent = t('welcome.slide_subproc.rows.ctf_purpose_in_scope', 'Advisory-coöperatie — samenwerkingspartner voor deze Engagement');
+              purposeEl.setAttribute('data-i18n', 'welcome.slide_subproc.rows.ctf_purpose_in_scope');
+            }
+          })();
           setAlias(randomAlias());
           bindAiPermission();
           buildNavDots();

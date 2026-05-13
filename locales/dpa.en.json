@@ -203,7 +203,8 @@
         "exact_name": "Exact Online",
         "exact_purpose": "Bookkeeping — invoice-line metadata only (name + invoice address)",
         "ctf_name": "CircularTech Advisory",
-        "ctf_purpose": "Advisory cooperative — not engaged for your Engagement"
+        "ctf_purpose": "Advisory cooperative — not engaged for your Engagement",
+        "ctf_purpose_in_scope": "Advisory cooperative — collaboration partner for this Engagement"
       },
       "objection_footer": "<strong>Object to a sub-processor?</strong> Under GDPR Art 28(2) you as Controller have the right to object to new or existing sub-processors. <a id=\"subproc-objection-link\" href=\"#\" rel=\"noopener\">Send a reasoned objection →</a> (opens in your email client; we respond within 30 days)."
     },
