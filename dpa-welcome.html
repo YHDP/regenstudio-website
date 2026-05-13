@@ -649,73 +649,37 @@
     font-weight: 500;
   }
 
-  /* ===== Slide 7 — Company data (use + protect) ===== */
-  .slide--company-data { background: linear-gradient(180deg, var(--paper) 0%, rgba(0,155,187,0.04) 100%); }
-  .company-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-    margin-top: 24px; max-width: 1000px;
+  /* ===== Slide 7 — AI-value showcase ===== */
+  .slide--value { background: linear-gradient(180deg, var(--paper) 0%, rgba(0,155,187,0.04) 100%); }
+  .value-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    margin-top: 18px; max-width: 1040px;
   }
-  .company-col {
+  .value-card {
     background: white; border: 1px solid var(--border);
-    border-radius: 12px; padding: clamp(20px, 3vw, 28px);
+    border-radius: 12px; padding: 16px 18px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    border-top: 3px solid var(--emerald);
+    display: flex; flex-direction: column; gap: 6px;
   }
-  .company-col--use      { border-top: 3px solid var(--emerald); }
-  .company-col--protect  { border-top: 3px solid var(--magenta); background: linear-gradient(180deg, #fff 0%, rgba(147,9,63,0.02) 100%); }
-  .company-col__title {
-    font-family: 'KoHo Full', serif; font-size: 18px; font-weight: 700;
-    color: var(--ink); margin: 0 0 8px; letter-spacing: -0.2px;
+  .value-card__icon {
+    font-size: 22px; line-height: 1; margin-bottom: 4px;
   }
-  .company-col__intro { font-size: 13px; color: var(--ink-soft); line-height: 1.55; margin: 0 0 18px; }
-  .company-col__footnote {
-    font-size: 11px; color: var(--muted); margin: 16px 0 0;
-    padding-top: 12px; border-top: 1px dashed var(--border); line-height: 1.5;
+  .value-card__title {
+    font-family: 'KoHo Full', serif; font-size: 15px; font-weight: 700;
+    color: var(--ink); margin: 0; letter-spacing: -0.1px; line-height: 1.3;
   }
-  .company-col__footnote code {
-    font-family: ui-monospace, SFMono-Regular, monospace;
-    font-size: 10.5px; background: var(--paper-deep); padding: 1px 4px; border-radius: 3px;
+  .value-card__body {
+    font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin: 0;
   }
-  .company-cats { display: flex; flex-direction: column; gap: 14px; }
-  .company-cats__group {
-    border-left: 2px solid var(--border); padding-left: 12px;
+  .value-footnote {
+    margin-top: 14px; font-size: 12.5px; color: var(--muted); max-width: 760px; line-height: 1.55;
   }
-  .company-cats__group-title {
-    font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.5px; color: var(--gold); margin: 0 0 6px;
+  @media (max-width: 900px) {
+    .value-grid { grid-template-columns: 1fr 1fr; }
   }
-  .company-cat {
-    display: flex; align-items: flex-start; gap: 10px;
-    padding: 6px 0; cursor: pointer;
-    font-size: 13px; color: var(--ink); line-height: 1.4;
-  }
-  .company-cat--group {
-    font-size: 14px; font-weight: 500;
-    padding: 10px 12px; border-left: 2px solid var(--emerald);
-    background: rgba(0,133,69,0.03); border-radius: 0 4px 4px 0;
-  }
-  .company-cat--group:has(input:not(:checked)) {
-    border-left-color: var(--muted); background: transparent;
-  }
-  .company-cat:hover { color: var(--emerald); }
-  .company-cat input[type="checkbox"] {
-    margin-top: 3px; flex-shrink: 0;
-    accent-color: var(--emerald); cursor: pointer;
-  }
-  .company-cat:has(input:not(:checked)) { color: var(--muted); text-decoration: line-through; opacity: 0.7; }
-  .company-protect {
-    display: flex; flex-direction: column; gap: 10px;
-  }
-  .company-protect__item {
-    display: flex; align-items: flex-start; gap: 8px;
-    padding: 8px 12px; background: rgba(147,9,63,0.04);
-    border-left: 2px solid var(--magenta); border-radius: 4px;
-    font-size: 13px; color: var(--ink); line-height: 1.45;
-  }
-  .company-protect__item::before {
-    content: '🛡'; flex-shrink: 0; font-size: 13px;
-  }
-  @media (max-width: 768px) {
-    .company-grid { grid-template-columns: 1fr; }
+  @media (max-width: 560px) {
+    .value-grid { grid-template-columns: 1fr; }
   }
 
   /* ===== Slide 8 — Sub-processors ===== */
@@ -1085,118 +1049,52 @@
     </button>
   </section>
 
-  <!-- ===== Slide 7: Company data — what AI processes, what's protected =====
-       Companion to slide 6 (alias-shield = personal data). Renders the engagement's
-       doc_categories[] from verify-token as clickable per-category opt-out toggles,
-       plus the sensitive_data_exclusion_narrative as the "what we don't touch" panel. -->
-  <section class="slide slide--company-data" data-i18n-nav-title="welcome.slide_company.nav_title" data-nav-title="Bedrijfsdata" id="slide-company-data">
+  <!-- ===== Slide 7: AI value showcase — what AI enables, "onder de motorkap" =====
+       Replaces the old slide-company-data checkbox UI. The per-category opt-out
+       has moved to slide-consent (Phase 1 granular matrix). This slide now
+       showcases concrete deliverables AI enables when the controller grants
+       processing. -->
+  <section class="slide slide--value" data-i18n-nav-title="welcome.slide_value.nav_title" data-nav-title="Waarde van AI" id="slide-value">
     <div class="slide__inner">
-      <p class="slide__kicker" data-i18n="welcome.slide_company.kicker">Bedrijfsdata — gebruik &amp; bescherming</p>
-      <h2 class="slide__title" data-i18n="welcome.slide_company.title">Hoe we jouw bedrijfsdata gebruiken en beschermen</h2>
-      <p class="slide__subtitle" data-i18n="welcome.slide_company.subtitle">
-        AI helpt bij concreet werk — DPP-prototyping, regulatoir-onderzoek, document-review, rapportage. Per algemene categorie zie je wat AI standaard mag verwerken (vink uit wat je liever niet deelt); rechts staat wat we sowieso níét aanraken.
+      <p class="slide__kicker" data-i18n="welcome.slide_value.kicker">Onder de motorkap</p>
+      <h2 class="slide__title" data-i18n="welcome.slide_value.title">Wat AI voor jou kan — als je het toestaat</h2>
+      <p class="slide__subtitle" data-i18n="welcome.slide_value.subtitle">
+        Met AI-toegang versnelt elke werkstroom: regelgevings-research, document-review, data-mapping, taal-localisatie. Hier zes concrete deliverables die zonder AI uren tot dagen langer duren.
       </p>
-      <div class="company-grid">
-        <div class="company-col company-col--use">
-          <h3 class="company-col__title" data-i18n="welcome.slide_company.use_title">Wat we gebruiken</h3>
-          <p class="company-col__intro" data-i18n="welcome.slide_company.use_intro">
-            Standaard staan alle categorieën aan. Vink uit wat AI <em>niet</em> mag zien voor jouw engagement — geldt direct, geen DPA-revisie nodig.
-          </p>
-          <div class="company-cats" id="company-cats">
-            <!-- Categories rendered at runtime from engagement_profile.doc_categories. -->
-          </div>
+      <div class="value-grid">
+        <div class="value-card">
+          <span class="value-card__icon" aria-hidden="true">⚡</span>
+          <h3 class="value-card__title" data-i18n="welcome.slide_value.card_research_title">Snellere regelgevings-research</h3>
+          <p class="value-card__body" data-i18n="welcome.slide_value.card_research_body">10 EU-artikelen cross-referencen in minuten — i.p.v. 2 dagen handmatig.</p>
         </div>
-        <div class="company-col company-col--protect">
-          <h3 class="company-col__title" data-i18n="welcome.slide_company.protect_title">Wat we niet aanraken</h3>
-          <p class="company-col__intro" data-i18n="welcome.slide_company.protect_intro">
-            Onafhankelijk van wat je aanvinkt, blokkeren onze interne hooks de volgende data-categorieën automatisch — ze komen niet door de paste-alias-shield, worden niet aan AI voorgelegd, en worden niet vastgelegd in werkbestanden.
-          </p>
-          <div class="company-protect" id="company-protect">
-            <!-- Exclusion narrative rendered at runtime from engagement_profile. -->
-          </div>
-          <p class="company-col__footnote" data-i18n="welcome.slide_company.protect_footnote">
-            Gecodificeerd in <code>scope-enforcement-gate.md</code> · gehandhaafd door de operator bij elke AI-aanroep · auditbaar in <code>regenstudio.world/manage-consent</code>.
-          </p>
+        <div class="value-card">
+          <span class="value-card__icon" aria-hidden="true">🔍</span>
+          <h3 class="value-card__title" data-i18n="welcome.slide_value.card_review_title">Diepere document-review</h3>
+          <p class="value-card__body" data-i18n="welcome.slide_value.card_review_body">Elk leveranciers-contract gescand op risico-clausules en DPP-aandachtspunten.</p>
+        </div>
+        <div class="value-card">
+          <span class="value-card__icon" aria-hidden="true">🌐</span>
+          <h3 class="value-card__title" data-i18n="welcome.slide_value.card_lang_title">Meertalig zonder meerprijs</h3>
+          <p class="value-card__body" data-i18n="welcome.slide_value.card_lang_body">NL/EN/PT versies van elke briefing in één doorloop.</p>
+        </div>
+        <div class="value-card">
+          <span class="value-card__icon" aria-hidden="true">📊</span>
+          <h3 class="value-card__title" data-i18n="welcome.slide_value.card_gap_title">Live data-gap-analyse</h3>
+          <p class="value-card__body" data-i18n="welcome.slide_value.card_gap_body">Jouw bestaande data getoetst aan DPP-vereisten — wat ontbreekt, wat is herbruikbaar.</p>
+        </div>
+        <div class="value-card">
+          <span class="value-card__icon" aria-hidden="true">🔄</span>
+          <h3 class="value-card__title" data-i18n="welcome.slide_value.card_monitor_title">Continue regelgevings-monitoring</h3>
+          <p class="value-card__body" data-i18n="welcome.slide_value.card_monitor_body">Wijzigingen in EU-werkprogramma's geflagd binnen uren na publicatie.</p>
+        </div>
+        <div class="value-card">
+          <span class="value-card__icon" aria-hidden="true">📝</span>
+          <h3 class="value-card__title" data-i18n="welcome.slide_value.card_audit_title">Audit-trail-generatie</h3>
+          <p class="value-card__body" data-i18n="welcome.slide_value.card_audit_body">Elke beslissing gedocumenteerd voor vaststelling — geen reconstructie achteraf.</p>
         </div>
       </div>
-    </div>
-    <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
-      <span class="slide__hint-triangle" aria-hidden="true"></span>
-    </button>
-  </section>
-
-  <!-- ===== Slide 8: Sub-processors ===== -->
-  <section class="slide slide--subprocessors" data-i18n-nav-title="welcome.slide_subproc.nav_title" data-nav-title="Sub-processors" id="slide-subprocessors">
-    <div class="slide__inner">
-      <p class="slide__kicker" data-i18n="welcome.slide_subproc.kicker">Wie raakt jouw data aan</p>
-      <h2 class="slide__title" data-i18n="welcome.slide_subproc.title">Onze sub-processors</h2>
-      <p class="slide__subtitle" data-i18n="welcome.slide_subproc.subtitle">
-        Volledige lijst staat in Annex A van de overeenkomst hieronder. Hier per sub-processor één regel — wat ze doen, en of ze in scope zijn voor deze Engagement.
-      </p>
-      <div class="subprocs-list">
-        <div class="subproc-row subproc-row--in">
-          <div class="subproc-row__status">✓</div>
-          <div>
-            <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.supabase_name">Supabase</div>
-            <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.supabase_purpose">Database + Edge Functions — hier woont je data, encrypted at rest</div>
-          </div>
-          <div class="subproc-row__country">EU (DE)</div>
-        </div>
-        <div class="subproc-row subproc-row--in">
-          <div class="subproc-row__status">✓</div>
-          <div>
-            <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.anthropic_name">Anthropic (Claude)</div>
-            <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.anthropic_purpose">LLM-inferentie — alleen waar jij toestemt, met paste-alias-shield ervoor</div>
-          </div>
-          <div class="subproc-row__country">VS</div>
-        </div>
-        <div class="subproc-row subproc-row--in">
-          <div class="subproc-row__status">✓</div>
-          <div>
-            <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.lettermint_name">Lettermint</div>
-            <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.lettermint_purpose">E-mail-bezorging (deze uitnodiging, magic-links, project-correspondentie)</div>
-          </div>
-          <div class="subproc-row__country">NL</div>
-        </div>
-        <div class="subproc-row subproc-row--in">
-          <div class="subproc-row__status">✓</div>
-          <div>
-            <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.proton_name">Proton</div>
-            <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.proton_purpose">E-mail-hosting + werkdossier-opslag — end-to-end encrypted</div>
-          </div>
-          <div class="subproc-row__country">CH</div>
-        </div>
-        <div class="subproc-row subproc-row--in">
-          <div class="subproc-row__status">✓</div>
-          <div>
-            <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.github_name">GitHub Pages</div>
-            <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.github_purpose">Statische hosting van regenstudio.world — geen jouw data, alleen publieke pagina's</div>
-          </div>
-          <div class="subproc-row__country">VS</div>
-        </div>
-        <div class="subproc-row subproc-row--in">
-          <div class="subproc-row__status">✓</div>
-          <div>
-            <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.exact_name">Exact Online</div>
-            <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.exact_purpose">Boekhouding — alleen factuur-regel-metadata (naam + factuuradres)</div>
-          </div>
-          <div class="subproc-row__country">NL</div>
-        </div>
-        <!-- id="subproc-row-ctf" is paired with deriveSelfSubprocId() in
-             supabase/functions/dpa-verify-token/index.ts — when the engagement
-             counterparty IS CircularTech, this row is hidden via the
-             profile.self_subproc_id → DOM-id lookup in setArchPng's neighbour. -->
-        <div class="subproc-row subproc-row--out" id="subproc-row-ctf">
-          <div class="subproc-row__status">·</div>
-          <div>
-            <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.ctf_name">CircularTech Advisory</div>
-            <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.ctf_purpose">Advisory-coöperatie — niet ingeschakeld voor jouw Engagement</div>
-          </div>
-          <div class="subproc-row__country">DE</div>
-        </div>
-      </div>
-      <p class="subprocs-footer" data-i18n-html="welcome.slide_subproc.objection_footer">
-        <strong>Bezwaar maken tegen een sub-processor?</strong> Onder AVG art. 28(2) heb je als Verantwoordelijke het recht om bezwaar te maken tegen nieuwe of bestaande sub-processors. <a id="subproc-objection-link" href="#" rel="noopener">Stuur een gemotiveerd bezwaar →</a> (open in je e-mail-client; we reageren binnen 30 dagen).
+      <p class="value-footnote" data-i18n="welcome.slide_value.footnote">
+        Op de volgende slide bepaal je per data-categorie wat AI mag — granulair, intrekbaar, controleerbaar.
       </p>
     </div>
     <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
@@ -1204,41 +1102,10 @@
     </button>
   </section>
 
-  <!-- ===== Slide 8 + 9: Choices form wraps both sections so radios + inputs all submit together ===== -->
+  <!-- ===== Slides 8-10: Form wraps consent matrix + sub-processors + contact ===== -->
   <form class="choices-form" id="choices-form" novalidate>
 
-    <!-- ===== Slide 8: Wie tekent (contact fields) ===== -->
-    <section class="slide slide--choices" data-i18n-nav-title="welcome.slide_form.nav_title" data-nav-title="Jouw keuzes" id="slide-choices">
-      <div class="slide__inner">
-        <p class="slide__kicker" data-i18n="welcome.slide_form.kicker">Even jouw keuzes vastleggen</p>
-        <h2 class="slide__title" data-i18n="welcome.slide_form.title">Wie tekent?</h2>
-        <p class="slide__subtitle" data-i18n="welcome.slide_form.subtitle">
-          Jouw contactgegevens als ondertekenaar. Op de volgende slide kies je per data-categorie wat AI ermee mag doen.
-        </p>
-        <div class="form-row">
-          <label for="cp_rep_name"><span data-i18n="welcome.slide_form.label_name">Volledige naam</span> <span class="req">*</span></label>
-          <input type="text" id="cp_rep_name" data-i18n-placeholder="welcome.slide_form.placeholder_name" placeholder="Voornaam Achternaam" required autocomplete="name">
-        </div>
-        <div class="form-row">
-          <label for="cp_rep_role"><span data-i18n="welcome.slide_form.label_role">Functie</span> <span class="req">*</span></label>
-          <input type="text" id="cp_rep_role" data-i18n-placeholder="welcome.slide_form.placeholder_role" placeholder="bv. Directeur, Hoofd Innovatie, Mede-oprichter" required>
-        </div>
-        <div class="form-row">
-          <label for="cp_rep_email"><span data-i18n="welcome.slide_form.label_email">E-mailadres</span> <span class="req">*</span></label>
-          <input type="email" id="cp_rep_email" data-i18n-placeholder="welcome.slide_form.placeholder_email" placeholder="naam@bedrijf.nl" required autocomplete="email">
-          <p class="form-warning" data-i18n="welcome.slide_form.email_warning">Vul hier het e-mailadres in waarop je de link hebt ontvangen, anders werkt het niet.</p>
-        </div>
-        <div class="form-row">
-          <label for="cp_rep_phone"><span data-i18n="welcome.slide_form.label_phone">Telefoonnummer</span> <span class="help" data-i18n="welcome.slide_form.phone_optional">— optioneel</span></label>
-          <input type="tel" id="cp_rep_phone" data-i18n-placeholder="welcome.slide_form.placeholder_phone" placeholder="+31 6 …" autocomplete="tel">
-        </div>
-        <button type="button" class="slide__hint--mini" data-action="next-slide">
-          <span data-i18n="welcome.slide_form.continue">Volgende — data-categorieën</span>
-        </button>
-      </div>
-    </section>
-
-    <!-- ===== Slide 9: Per data-categorie (consent matrix) — FINAL slide ===== -->
+    <!-- ===== Slide 8: Per data-categorie (consent matrix) ===== -->
     <section class="slide slide--consent" data-i18n-nav-title="welcome.slide_consent.nav_title" data-nav-title="Data-categorieën" id="slide-consent">
       <div class="slide__inner">
         <p class="slide__kicker" data-i18n="welcome.slide_consent.kicker">Per data-categorie</p>
@@ -1314,6 +1181,118 @@
             <label class="cm-radio"><input type="radio" name="cat_metadata" value="operator_only"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
             <label class="cm-radio"><input type="radio" name="cat_metadata" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
           </div>
+        </div>
+      </div>
+      <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
+        <span class="slide__hint-triangle" aria-hidden="true"></span>
+      </button>
+    </section>
+
+    <!-- ===== Slide 9: Sub-processors (informational, inside form) ===== -->
+    <section class="slide slide--subprocessors" data-i18n-nav-title="welcome.slide_subproc.nav_title" data-nav-title="Sub-processors" id="slide-subprocessors">
+      <div class="slide__inner">
+        <p class="slide__kicker" data-i18n="welcome.slide_subproc.kicker">Wie raakt jouw data aan</p>
+        <h2 class="slide__title" data-i18n="welcome.slide_subproc.title">Onze sub-processors</h2>
+        <p class="slide__subtitle" data-i18n="welcome.slide_subproc.subtitle">
+          Volledige lijst staat in Annex A van de overeenkomst hieronder. Hier per sub-processor één regel — wat ze doen, en of ze in scope zijn voor deze Engagement.
+        </p>
+        <div class="subprocs-list">
+          <div class="subproc-row subproc-row--in">
+            <div class="subproc-row__status">✓</div>
+            <div>
+              <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.supabase_name">Supabase</div>
+              <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.supabase_purpose">Database + Edge Functions — hier woont je data, encrypted at rest</div>
+            </div>
+            <div class="subproc-row__country">EU (DE)</div>
+          </div>
+          <div class="subproc-row subproc-row--in">
+            <div class="subproc-row__status">✓</div>
+            <div>
+              <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.anthropic_name">Anthropic (Claude)</div>
+              <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.anthropic_purpose">LLM-inferentie — alleen waar jij toestemt, met paste-alias-shield ervoor</div>
+            </div>
+            <div class="subproc-row__country">VS</div>
+          </div>
+          <div class="subproc-row subproc-row--in">
+            <div class="subproc-row__status">✓</div>
+            <div>
+              <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.lettermint_name">Lettermint</div>
+              <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.lettermint_purpose">E-mail-bezorging (deze uitnodiging, magic-links, project-correspondentie)</div>
+            </div>
+            <div class="subproc-row__country">NL</div>
+          </div>
+          <div class="subproc-row subproc-row--in">
+            <div class="subproc-row__status">✓</div>
+            <div>
+              <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.proton_name">Proton</div>
+              <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.proton_purpose">E-mail-hosting + werkdossier-opslag — end-to-end encrypted</div>
+            </div>
+            <div class="subproc-row__country">CH</div>
+          </div>
+          <div class="subproc-row subproc-row--in">
+            <div class="subproc-row__status">✓</div>
+            <div>
+              <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.github_name">GitHub Pages</div>
+              <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.github_purpose">Statische hosting van regenstudio.world — geen jouw data, alleen publieke pagina's</div>
+            </div>
+            <div class="subproc-row__country">VS</div>
+          </div>
+          <div class="subproc-row subproc-row--in">
+            <div class="subproc-row__status">✓</div>
+            <div>
+              <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.exact_name">Exact Online</div>
+              <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.exact_purpose">Boekhouding — alleen factuur-regel-metadata (naam + factuuradres)</div>
+            </div>
+            <div class="subproc-row__country">NL</div>
+          </div>
+          <!-- id="subproc-row-ctf" is paired with deriveSelfSubprocId() in
+               supabase/functions/dpa-verify-token/index.ts — when the engagement
+               counterparty IS CircularTech, this row is hidden via the
+               profile.self_subproc_id → DOM-id lookup in setArchPng's neighbour.
+               When 'ctf' is in profile.subprocessors_in_scope[], setSubprocCtfScope()
+               flips this row to --in with the partner-flavoured purpose copy. -->
+          <div class="subproc-row subproc-row--out" id="subproc-row-ctf">
+            <div class="subproc-row__status">·</div>
+            <div>
+              <div class="subproc-row__name" data-i18n="welcome.slide_subproc.rows.ctf_name">CircularTech Advisory</div>
+              <div class="subproc-row__purpose" data-i18n="welcome.slide_subproc.rows.ctf_purpose">Advisory-coöperatie — niet ingeschakeld voor jouw Engagement</div>
+            </div>
+            <div class="subproc-row__country">DE</div>
+          </div>
+        </div>
+        <p class="subprocs-footer" data-i18n-html="welcome.slide_subproc.objection_footer">
+          <strong>Bezwaar maken tegen een sub-processor?</strong> Onder AVG art. 28(2) heb je als Verantwoordelijke het recht om bezwaar te maken tegen nieuwe of bestaande sub-processors. <a id="subproc-objection-link" href="#" rel="noopener">Stuur een gemotiveerd bezwaar →</a> (open in je e-mail-client; we reageren binnen 30 dagen).
+        </p>
+      </div>
+      <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
+        <span class="slide__hint-triangle" aria-hidden="true"></span>
+      </button>
+    </section>
+
+    <!-- ===== Slide 10: Wie tekent (contact fields + ready-cta) — FINAL slide ===== -->
+    <section class="slide slide--choices" data-i18n-nav-title="welcome.slide_form.nav_title" data-nav-title="Jouw keuzes" id="slide-choices">
+      <div class="slide__inner">
+        <p class="slide__kicker" data-i18n="welcome.slide_form.kicker">Even jouw keuzes vastleggen</p>
+        <h2 class="slide__title" data-i18n="welcome.slide_form.title">Wie tekent?</h2>
+        <p class="slide__subtitle" data-i18n="welcome.slide_form.subtitle">
+          Jouw contactgegevens als ondertekenaar — laatste stap voor we tekenen.
+        </p>
+        <div class="form-row">
+          <label for="cp_rep_name"><span data-i18n="welcome.slide_form.label_name">Volledige naam</span> <span class="req">*</span></label>
+          <input type="text" id="cp_rep_name" data-i18n-placeholder="welcome.slide_form.placeholder_name" placeholder="Voornaam Achternaam" required autocomplete="name">
+        </div>
+        <div class="form-row">
+          <label for="cp_rep_role"><span data-i18n="welcome.slide_form.label_role">Functie</span> <span class="req">*</span></label>
+          <input type="text" id="cp_rep_role" data-i18n-placeholder="welcome.slide_form.placeholder_role" placeholder="bv. Directeur, Hoofd Innovatie, Mede-oprichter" required>
+        </div>
+        <div class="form-row">
+          <label for="cp_rep_email"><span data-i18n="welcome.slide_form.label_email">E-mailadres</span> <span class="req">*</span></label>
+          <input type="email" id="cp_rep_email" data-i18n-placeholder="welcome.slide_form.placeholder_email" placeholder="naam@bedrijf.nl" required autocomplete="email">
+          <p class="form-warning" data-i18n="welcome.slide_form.email_warning">Vul hier het e-mailadres in waarop je de link hebt ontvangen, anders werkt het niet.</p>
+        </div>
+        <div class="form-row">
+          <label for="cp_rep_phone"><span data-i18n="welcome.slide_form.label_phone">Telefoonnummer</span> <span class="help" data-i18n="welcome.slide_form.phone_optional">— optioneel</span></label>
+          <input type="tel" id="cp_rep_phone" data-i18n-placeholder="welcome.slide_form.placeholder_phone" placeholder="+31 6 …" autocomplete="tel">
         </div>
         <p class="form-footnote" data-i18n="welcome.slide_form.footnote">
           Deze keuzes worden vastgelegd in de DPA. Volledig intrekken kan via de consent-dashboard (één klik). Voor granulair wijzigen — een specifieke rij omzetten — is een nieuwe DPA-ondertekening nodig.
@@ -1535,91 +1514,20 @@
            t(n + 'default_purpose', '. De Verwerkersovereenkomst regelt hoe persoonsgegevens binnen deze samenwerking worden verwerkt.');
   }
 
-  // ===== Slide 7 — Company data renderers =====
-  // Group labels — keyed to category.group; each group has an i18n key.
-  const COMPANY_GROUP_KEYS = {
-    product:      'welcome.slide_company.groups.product',
-    operational:  'welcome.slide_company.groups.operational',
-    external:     'welcome.slide_company.groups.external',
-  };
-  const COMPANY_GROUP_FALLBACKS = {
-    product:      'Product- en supply-chain-data',
-    operational:  'Project-uitvoering',
-    external:     'Externe bronnen & marktinfo',
-  };
-
-  function renderCompanyData(profile) {
-    const catsRoot = document.getElementById('company-cats');
-    const protectRoot = document.getElementById('company-protect');
-    if (!catsRoot || !protectRoot) return;
-
-    // ---- Left column: categories grouped by .group ----
-    catsRoot.innerHTML = '';
-    const cats = Array.isArray(profile.doc_categories) ? profile.doc_categories : [];
-    // Initialise toggle state from default_checked if not already set.
+  // ===== Slide 7 — Doc-toggles defaults =====
+  // The old slide-company-data checkbox UI was repurposed into slide-value
+  // (an AI-value showcase). The per-category opt-out semantics moved to the
+  // granular consent matrix on slide-consent. But the v1 doc_toggles payload
+  // is still required downstream (dpa-submit-signature record_dpa_signature
+  // RPC arg `doc_toggles_arg`), so we initialise state.docToggles[] from the
+  // profile's default_checked flags (effectively all-true unless explicitly
+  // false). No interactive UI; users grant/restrict via the v2 matrix instead.
+  function initDocTogglesDefaults(profile) {
+    const cats = Array.isArray(profile && profile.doc_categories) ? profile.doc_categories : [];
     cats.forEach(c => {
       if (!(c.id in state.docToggles)) {
         state.docToggles[c.id] = c.default_checked !== false;
       }
-    });
-    // Group by .group field, preserving Edge-Function order within each group.
-    const groups = {};
-    cats.forEach(c => {
-      const g = c.group || 'other';
-      (groups[g] = groups[g] || []).push(c);
-    });
-    // Render groups in the canonical order: product → operational → external → other.
-    const groupOrder = ['product', 'operational', 'external'];
-    Object.keys(groups).forEach(g => { if (groupOrder.indexOf(g) < 0) groupOrder.push(g); });
-    // Render ONE row per group (general category) — keeps the slide on-screen.
-    // Toggling a group flips every member cat.id in state, so the opt-out
-    // semantics survive even though individual labels aren't shown.
-    groupOrder.forEach(g => {
-      const list = groups[g];
-      if (!list || !list.length) return;
-      const title = t(COMPANY_GROUP_KEYS[g] || '', COMPANY_GROUP_FALLBACKS[g] || g);
-      const allChecked = list.every(c => state.docToggles[c.id] !== false);
-      const label = document.createElement('label');
-      label.className = 'company-cat company-cat--group';
-      label.innerHTML =
-        '<input type="checkbox" data-group="' + escapeAttrOnce(g) + '"' +
-        (allChecked ? ' checked' : '') + '>' +
-        '<span>' + escapeHtmlOnce(title) + '</span>';
-      catsRoot.appendChild(label);
-    });
-    catsRoot.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-      cb.addEventListener('change', () => {
-        const g = cb.dataset.group;
-        (groups[g] || []).forEach(cat => { state.docToggles[cat.id] = cb.checked; });
-      });
-    });
-
-    // ---- Right column: exclusion narrative + scope-gate exclusions ----
-    protectRoot.innerHTML = '';
-    const exclusionItems = [];
-    // Primary: profile.sensitive_data_exclusion_narrative[lang] (regime-derived).
-    // Falls back to the NL field for older verify-token responses that don't
-    // include the language-keyed map yet.
-    const lang = (profile.default_language || 'nl');
-    const narrativeMap = profile.sensitive_data_exclusion_narrative;
-    const narrative = narrativeMap
-      ? (narrativeMap[lang] || narrativeMap.nl)
-      : profile.sensitive_data_exclusion_narrative_nl;
-    if (narrative) {
-      exclusionItems.push(narrative);
-    }
-    // Defensive append: any extra hardcoded "we never touch" items (PII outside scope, special-category Art 9, etc.)
-    // Currently uses regime narrative only; future engagements may surface
-    // ai_exclusion_categories[] from the DPA frontmatter via verify-token.
-    if (exclusionItems.length === 0) {
-      exclusionItems.push(t('welcome.slide_company.protect_fallback',
-        'Bedrijfsgevoelige IP en propriëtaire data, conform §13 van de DPA.'));
-    }
-    exclusionItems.forEach(text => {
-      const div = document.createElement('div');
-      div.className = 'company-protect__item';
-      div.innerHTML = '<span>' + escapeHtmlOnce(text) + '</span>';
-      protectRoot.appendChild(div);
     });
   }
 
@@ -1851,7 +1759,7 @@
 
         return i18nReady.then(() => {
           renderEngagement();
-          renderCompanyData(state.profile);
+          initDocTogglesDefaults(state.profile);
           // Swap the slide-5 architecture PNG to the locale-specific version.
           // EN keeps the unsuffixed filename (base); NL/PT are -nl/-pt suffixed.
           (function setArchPng() {
