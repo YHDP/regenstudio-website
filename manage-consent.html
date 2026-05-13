@@ -140,6 +140,16 @@
     .mc-consent-row__state--given     { background: #DCFCE7; color: #166534; }
     .mc-consent-row__state--withdrawn { background: #F1F5F9; color: #475569; }
     .mc-consent-row__state--expired   { background: #FEF3C7; color: #92400E; }
+    /* Phase 2 (2026-05-13) — scope_label badges next to per-category consent rows */
+    .mc-scope-badge {
+      display: inline-block; margin-left: 8px;
+      padding: 2px 8px; border-radius: 4px;
+      font-size: 0.7rem; font-weight: 600;
+      vertical-align: middle;
+    }
+    .mc-scope-badge--ai_may_process { background: #DBEAFE; color: #1E40AF; }
+    .mc-scope-badge--operator_only  { background: #FEF3C7; color: #92400E; }
+    .mc-scope-badge--excluded       { background: #FEE2E2; color: #991B1B; }
     .mc-revoke-btn {
       padding: 8px 18px;
       background: transparent;

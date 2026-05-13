@@ -91,8 +91,12 @@
         loading.hidden = true;
         content.hidden = false;
         aliasEl.textContent = data.alias || '(unknown)';
-        renderConsents(data.consents || [], token, listEl, revokeStatus);
-        if (!data.consents || data.consents.length === 0) {
+        // Prefer granular rows (Phase 2, 2026-05-13). Each per-category row is
+        // an independent revocable unit. Falls back to aggregate-only when the
+        // function returns the old shape.
+        var rows = data.consents_granular || data.consents || [];
+        renderConsents(rows, token, listEl, revokeStatus);
+        if (rows.length === 0) {
           listEl.innerHTML = '<li class="mc-consent-row"><div class="mc-consent-row__info">No consents on record under this email.</div></li>';
         }
       })
@@ -104,15 +108,31 @@
 
   function renderConsents(consents, token, listEl, statusEl) {
     listEl.innerHTML = '';
-    consents.forEach(function (c) {
+    // Sort so aggregate rows (data_category=null) appear first per purpose,
+    // followed by per-category rows. Stable visual hierarchy.
+    var sorted = consents.slice().sort(function (a, b) {
+      if (a.purpose !== b.purpose) return a.purpose < b.purpose ? -1 : 1;
+      var ac = a.data_category || ''; var bc = b.data_category || '';
+      return ac < bc ? -1 : ac > bc ? 1 : 0;
+    });
+    sorted.forEach(function (c) {
       var row = document.createElement('li');
       row.className = 'mc-consent-row';
       row.dataset.purpose = c.purpose;
+      if (c.data_category) row.dataset.dataCategory = c.data_category;
+
+      var labelText = humanLabel(c.purpose);
+      if (c.data_category) {
+        labelText += ' — ' + categoryLabel(c.data_category);
+      }
+      if (c.scope_label && c.data_category) {
+        labelText += ' <span class="mc-scope-badge mc-scope-badge--' + c.scope_label + '">' + scopeLabelText(c.scope_label) + '</span>';
+      }
 
       var info = document.createElement('div');
       info.className = 'mc-consent-row__info';
       info.innerHTML =
-        '<div class="mc-consent-row__purpose">' + humanLabel(c.purpose) + '</div>' +
+        '<div class="mc-consent-row__purpose">' + labelText + '</div>' +
         '<div class="mc-consent-row__meta">Legal basis: ' + escapeHtml(c.legal_basis || '—') +
         ' · Given at: ' + (c.given_at ? new Date(c.given_at).toLocaleString() : '—') + '</div>';
       row.appendChild(info);
@@ -128,7 +148,7 @@
         btn.className = 'mc-revoke-btn';
         btn.textContent = 'Revoke';
         btn.addEventListener('click', function () {
-          revokeOne(c.purpose, token, btn, statusEl, row, stateSpan);
+          revokeOne(c.purpose, c.data_category || null, token, btn, statusEl, row, stateSpan);
         });
         row.appendChild(btn);
       }
@@ -136,14 +156,21 @@
     });
   }
 
-  function revokeOne(purpose, token, btn, statusEl, row, stateSpan) {
-    if (!confirm('Revoke "' + humanLabel(purpose) + '" consent? This action will trigger secure deletion of your data within 72 hours.')) {
+  function revokeOne(purpose, dataCategory, token, btn, statusEl, row, stateSpan) {
+    var humanLine = humanLabel(purpose);
+    if (dataCategory) humanLine += ' — ' + categoryLabel(dataCategory);
+    if (!confirm('Revoke "' + humanLine + '" consent? This action will trigger secure deletion of the relevant data within 72 hours.')) {
       return;
     }
     btn.disabled = true;
     btn.innerHTML = '<span class="mc-spinner"></span>Revoking';
 
-    fetchJson({ action: 'revoke', token: token, purposes: [purpose] })
+    // Send via the new granular `categories` shape when data_category is set;
+    // fall back to legacy `purposes` shape for aggregate-only revocations.
+    var payload = dataCategory
+      ? { action: 'revoke', token: token, categories: [{ purpose: purpose, data_category: dataCategory }] }
+      : { action: 'revoke', token: token, purposes: [purpose] };
+    fetchJson(payload)
       .then(function (data) {
         // Update UI to reflect withdrawn state
         stateSpan.className = 'mc-consent-row__state mc-consent-row__state--withdrawn';
@@ -175,6 +202,25 @@
       'sensitive_consent':               'Special-category data (GDPR Art 9 / LGPD Art 11)',
     };
     return map[purpose] || purpose;
+  }
+
+  function categoryLabel(category) {
+    var map = {
+      'contact_info':    'Contact info (name, email, phone, role)',
+      'project_content': 'Project content (documents, notes, deliverables)',
+      'financial_data':  'Financial data (invoices, budgets)',
+      'metadata':        'Metadata (timestamps, IPs, aggregates)',
+    };
+    return map[category] || category;
+  }
+
+  function scopeLabelText(scope) {
+    var map = {
+      'ai_may_process': 'AI may process',
+      'operator_only':  'Operator only',
+      'excluded':       'Excluded',
+    };
+    return map[scope] || scope;
   }
 
   function escapeHtml(s) {
