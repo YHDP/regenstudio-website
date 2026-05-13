@@ -99,6 +99,13 @@
         if (rows.length === 0) {
           listEl.innerHTML = '<li class="mc-consent-row"><div class="mc-consent-row__info">No consents on record under this email.</div></li>';
         }
+        // Phase 2 — audit panel showing AI processing events per data category.
+        // Renders only when at least one event is logged; otherwise the
+        // dashboard stays focused on the consent state.
+        renderProcessingPanel(
+          data.ai_processing_events_summary || {},
+          data.ai_processing_events_recent || []
+        );
       })
       .catch(function (err) {
         loading.hidden = true;
@@ -202,6 +209,40 @@
       'sensitive_consent':               'Special-category data (GDPR Art 9 / LGPD Art 11)',
     };
     return map[purpose] || purpose;
+  }
+
+  function renderProcessingPanel(summary, recent) {
+    var panel = $('mc-ai-activity');
+    if (!panel) return;  // Old DOM (no panel) — silently skip.
+    var totalEvents = Object.values(summary).reduce(function (a, b) { return a + b; }, 0);
+    if (totalEvents === 0) {
+      panel.hidden = true;
+      return;
+    }
+    var summaryHtml = '<ul class="mc-activity-summary">';
+    for (var cat in summary) {
+      if (Object.prototype.hasOwnProperty.call(summary, cat)) {
+        summaryHtml += '<li><strong>' + summary[cat] + '</strong> event' +
+          (summary[cat] === 1 ? '' : 's') + ' on ' + escapeHtml(categoryLabel(cat)) + '</li>';
+      }
+    }
+    summaryHtml += '</ul>';
+    var recentHtml = '';
+    if (recent.length) {
+      recentHtml = '<details class="mc-activity-detail"><summary>Most recent ' +
+        recent.length + ' events</summary><ul class="mc-activity-recent">';
+      recent.forEach(function (e) {
+        recentHtml += '<li>' + new Date(e.occurred_at).toLocaleString() + ' — <code>' +
+          escapeHtml(e.operation || '') + '</code> via <code>' +
+          escapeHtml(e.vendor || '') + '</code> on ' +
+          escapeHtml(categoryLabel(e.data_category)) + '</li>';
+      });
+      recentHtml += '</ul></details>';
+    }
+    panel.innerHTML = '<h3 class="mc-activity-h">AI activity on your data</h3>' +
+      '<p class="mc-activity-lead">Operator-logged events under your DPA. Each row reflects an AI invocation; counts are aggregated by data category. Retention 90 days per event.</p>' +
+      summaryHtml + recentHtml;
+    panel.hidden = false;
   }
 
   function categoryLabel(category) {
