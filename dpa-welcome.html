@@ -739,6 +739,13 @@
   .subproc-row__name { font-weight: 600; color: var(--ink); font-size: 14px; }
   .subproc-row__purpose { font-size: 12px; color: var(--muted); margin-top: 2px; }
   .subproc-row__country { font-size: 11px; color: var(--muted); white-space: nowrap; font-family: 'JetBrains Mono', monospace; }
+  .subprocs-footer {
+    margin-top: 18px; padding: 14px 18px;
+    background: rgba(0,123,194,0.04); border-left: 3px solid var(--blue, #0077b6);
+    border-radius: 0 6px 6px 0;
+    font-size: 13px; color: var(--ink); line-height: 1.55;
+  }
+  .subprocs-footer a { color: var(--emerald); text-decoration: underline; font-weight: 600; }
 
   /* ===== Slide 9 — Transparantie ===== */
   .transparency-grid {
@@ -1190,6 +1197,9 @@
           <div class="subproc-row__country">DE</div>
         </div>
       </div>
+      <p class="subprocs-footer" data-i18n-html="welcome.slide_subproc.objection_footer">
+        <strong>Bezwaar maken tegen een sub-processor?</strong> Onder AVG art. 28(2) heb je als Verantwoordelijke het recht om bezwaar te maken tegen nieuwe of bestaande sub-processors. <a id="subproc-objection-link" href="#" rel="noopener">Stuur een gemotiveerd bezwaar →</a> (open in je e-mail-client; we reageren binnen 30 dagen).
+      </p>
     </div>
     <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
       <span class="slide__hint-triangle" aria-hidden="true"></span>
@@ -1457,10 +1467,16 @@
       const subsTxt = subsidie
         ? ' ' + t(n + 'voucher_subsidie', '(voucher t.w.v. €{amount}k via de KvW3 / EFRO-regeling)').replace('{amount}', subsAmount)
         : '';
+      // einddatum can be null for vouchers without a fixed project-einddatum.
+      // Fall back to a generic in-term phrase so the prose reads cleanly
+      // rather than "richting —".
+      const roadmapPhrase = profile.project_einddatum
+        ? t(n + 'voucher_roadmap', 'en leveren een geprioriteerde roadmap richting') + ' <strong>' + einddatum + '</strong>'
+        : t(n + 'voucher_roadmap_open', 'en leveren een geprioriteerde roadmap binnen de looptijd van de voucher');
       return t(n + 'voucher_intro', 'Een DPP-readiness traject voor') + ' <strong>' + orgEsc + '</strong>' + subsTxt +
              t(n + 'voucher_body', '. Samen brengen we je product-portfolio in kaart, identificeren de data-gaps richting') + ' <strong>' + regEsc + '</strong>' +
              t(n + 'voucher_advice', ', adviseren over conforme implementatie (data-architectuur, leveranciers-ketens, audit-trail),') + ' ' +
-             t(n + 'voucher_roadmap', 'en leveren een geprioriteerde roadmap richting') + ' <strong>' + einddatum + '</strong>' + budget +
+             roadmapPhrase + budget +
              t(n + 'voucher_concrete', '. Concreet werk: gesprekken, document-review, gap-analyse, en geprioriteerde aanbevelingen — geen software-ontwikkeling.');
     }
     if (engType === 'partnership' || engType === 'research') {
@@ -1817,6 +1833,28 @@
           // signing this DPA (self-reference is recursive nonsense). Driven by
           // profile.self_subproc_id from verify-token — extend the mapping in
           // dpa-verify-token's deriveSelfSubprocId() to support new partnerships.
+          // Sub-processor objection mailto — Art 28(2) right to object.
+          // Pre-fills the engagement_key + label so we can route the bezwaar to
+          // the right project without the signer having to spell it out.
+          (function setSubprocObjectionLink() {
+            const link = document.getElementById('subproc-objection-link');
+            if (!link) return;
+            const engKey = (state.body && state.body.engagement_key) || '';
+            const engLabel = (state.body && state.body.engagement_label) ||
+                             (state.profile && state.profile.label) || '';
+            const subject = encodeURIComponent('Bezwaar sub-processor — ' + (engLabel || engKey));
+            const body = encodeURIComponent(
+              'Engagement: ' + (engLabel || '(unknown)') + '\n' +
+              'Engagement key: ' + engKey + '\n\n' +
+              'Sub-processor waar ik bezwaar tegen maak:\n' +
+              '(noteer welke — bijv. Anthropic, Lettermint, Proton, Exact, GitHub Pages, Supabase)\n\n' +
+              'Motivatie / alternatief voorstel:\n' +
+              '(beschrijf de reden voor het bezwaar en, indien mogelijk, een alternatieve sub-processor of mitigatie)\n\n' +
+              '— Verzonden vanaf dpa-welcome.html · Art 28(2) AVG'
+            );
+            link.href = 'mailto:info@regenstudio.world?subject=' + subject + '&body=' + body;
+          })();
+
           (function hideSelfSubprocRow() {
             const selfId = state.profile && state.profile.self_subproc_id;
             if (!selfId) return;

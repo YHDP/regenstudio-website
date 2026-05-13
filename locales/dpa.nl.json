@@ -68,6 +68,7 @@
         "voucher_body": ". Samen brengen we je product-portfolio in kaart, identificeren de data-gaps richting",
         "voucher_advice": ", adviseren over conforme implementatie (data-architectuur, leveranciers-ketens, audit-trail),",
         "voucher_roadmap": "en leveren een geprioriteerde roadmap richting",
+        "voucher_roadmap_open": "en leveren een geprioriteerde roadmap binnen de looptijd van de voucher",
         "voucher_budget": " onder een vast budget van {uren} adviesuren",
         "voucher_concrete": ". Concreet werk: gesprekken, document-review, gap-analyse, en geprioriteerde aanbevelingen — geen software-ontwikkeling.",
         "partnership_intro": "Een samenwerkingsverband tussen",
@@ -205,7 +206,8 @@
         "exact_purpose": "Boekhouding — alleen factuur-regel-metadata (naam + factuuradres)",
         "ctf_name": "CircularTech Advisory",
         "ctf_purpose": "Advisory-coöperatie — niet ingeschakeld voor jouw Engagement"
-      }
+      },
+      "objection_footer": "<strong>Bezwaar maken tegen een sub-processor?</strong> Onder AVG art. 28(2) heb je als Verantwoordelijke het recht om bezwaar te maken tegen nieuwe of bestaande sub-processors. <a id=\"subproc-objection-link\" href=\"#\" rel=\"noopener\">Stuur een gemotiveerd bezwaar →</a> (opent in je e-mail-client; we reageren binnen 30 dagen)."
     },
     "slide_form": {
       "nav_title": "Jouw keuzes",
@@ -223,7 +225,7 @@
       "phone_optional": "— optioneel",
       "placeholder_phone": "+31 6 …",
       "matrix_label": "Per data-categorie: wat mag AI ermee doen?",
-      "matrix_help": "Kies één optie per rij. Standaardinstellingen zijn ingevuld; pas aan wat je liever anders ziet. Granulair, controleerbaar, AVG art. 4(11) \"specifiek\". <em>Let op:</em> per-categorie keuzes worden nu in de DPA en het consent-register vastgelegd als audit-trail; geautomatiseerde handhaving op rij-niveau door onze AI-gates rolt uit in Q3-2026. Tot dan wordt de aggregaat-keuze (AI mag t.o.v. operator-only/uitgesloten) gehandhaafd, en de operator past de fijnere keuzes handmatig toe.",
+      "matrix_help": "Kies één optie per rij. Standaardinstellingen zijn ingevuld; pas aan wat je liever anders ziet. <em>Granulair en gehandhaafd:</em> elke rij wordt per-categorie afgedwongen door onze AI-gates (consent-gate.md), niet alleen vastgelegd. \"Alleen operator\" betekent: Yvo mag het handmatig verwerken, AI niet. \"Niet verwerken\" betekent: ook niet handmatig — buiten scope. AVG art. 4(11) \"specifiek\".",
       "matrix": {
         "col_ai": "AI mag verwerken",
         "col_operator": "Alleen operator",

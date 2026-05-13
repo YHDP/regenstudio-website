@@ -68,6 +68,7 @@
         "voucher_body": ". Juntos mapeamos seu portfólio de produtos, identificamos as lacunas de dados frente a",
         "voucher_advice": ", aconselhamos sobre implementação em conformidade (arquitetura de dados, cadeias de fornecedores, trilha de auditoria),",
         "voucher_roadmap": "e entregamos um roadmap priorizado em direção a",
+        "voucher_roadmap_open": "e entregamos um roadmap priorizado dentro do prazo do voucher",
         "voucher_budget": " sob um orçamento fixo de {uren} horas de consultoria",
         "voucher_concrete": ". Trabalho concreto: conversas, revisão de documentos, análise de lacunas e recomendações priorizadas — sem desenvolvimento de software.",
         "partnership_intro": "Uma parceria entre",
@@ -205,7 +206,8 @@
         "exact_purpose": "Contabilidade — apenas metadados de linha de fatura (nome + endereço de cobrança)",
         "ctf_name": "CircularTech Advisory",
         "ctf_purpose": "Cooperativa de consultoria — não engajada para este Engajamento"
-      }
+      },
+      "objection_footer": "<strong>Objetar a um sub-processador?</strong> Sob o Art. 28(2) do RGPD, você como Controlador tem o direito de objetar a sub-processadores novos ou existentes. <a id=\"subproc-objection-link\" href=\"#\" rel=\"noopener\">Envie uma objeção fundamentada →</a> (abre no seu cliente de e-mail; respondemos em até 30 dias)."
     },
     "slide_form": {
       "nav_title": "Suas escolhas",
@@ -223,7 +225,7 @@
       "phone_optional": "— opcional",
       "placeholder_phone": "+55 …",
       "matrix_label": "Por categoria de dado: o que a IA pode fazer com ele?",
-      "matrix_help": "Escolha uma opção por linha. Os padrões estão pré-selecionados; ajuste o que preferir diferente. Granular, auditável, RGPD Art. 4(11) \"específico\". <em>Observação:</em> as escolhas por categoria são registradas no DPA + registro de consentimento hoje como trilha de auditoria; a aplicação automatizada em nível de linha pelas nossas AI gates será implantada no 3º trimestre de 2026. Até lá, a escolha agregada (IA pode vs apenas-operador/excluído) é aplicada, e o operador aplica manualmente as escolhas mais finas.",
+      "matrix_help": "Escolha uma opção por linha. Os padrões estão pré-selecionados; ajuste o que preferir diferente. <em>Granular e aplicado:</em> cada linha é controlada por categoria pelas nossas AI gates (consent-gate.md), não apenas registrada. \"Somente operador\" significa: Yvo pode processar manualmente, a IA não. \"Não processar\" significa: nem mesmo manualmente — fora do escopo. RGPD Art. 4(11) \"específico\".",
       "matrix": {
         "col_ai": "IA pode processar",
         "col_operator": "Somente operador",

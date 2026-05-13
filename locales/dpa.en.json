@@ -68,6 +68,7 @@
         "voucher_body": ". Together we map your product portfolio, identify the data gaps against",
         "voucher_advice": ", advise on compliant implementation (data architecture, supply chains, audit trail),",
         "voucher_roadmap": "and deliver a prioritised roadmap towards",
+        "voucher_roadmap_open": "and deliver a prioritised roadmap within the voucher's term",
         "voucher_budget": " under a fixed budget of {uren} advisory hours",
         "voucher_concrete": ". Concrete work: conversations, document review, gap analysis, and prioritised recommendations — no software development.",
         "partnership_intro": "A partnership between",
@@ -205,7 +206,8 @@
         "exact_purpose": "Bookkeeping — invoice-line metadata only (name + invoice address)",
         "ctf_name": "CircularTech Advisory",
         "ctf_purpose": "Advisory cooperative — not engaged for your Engagement"
-      }
+      },
+      "objection_footer": "<strong>Object to a sub-processor?</strong> Under GDPR Art 28(2) you as Controller have the right to object to new or existing sub-processors. <a id=\"subproc-objection-link\" href=\"#\" rel=\"noopener\">Send a reasoned objection →</a> (opens in your email client; we respond within 30 days)."
     },
     "slide_form": {
       "nav_title": "Your choices",
@@ -223,7 +225,7 @@
       "phone_optional": "— optional",
       "placeholder_phone": "+1 …",
       "matrix_label": "Per data category: what may AI do with it?",
-      "matrix_help": "Pick one option per row. Sensible defaults are pre-selected; override anything you'd rather see different. Granular, auditable, GDPR Art 4(11) \"specific\". <em>Note:</em> per-category choices are recorded in the DPA + consent registry today as an audit trail; automated row-level enforcement by our AI gates rolls out Q3-2026. Until then the aggregate choice (AI may vs operator-only/excluded) is enforced, and the operator applies the finer choices manually.",
+      "matrix_help": "Pick one option per row. Sensible defaults are pre-selected; override anything you'd rather see different. <em>Granular and enforced:</em> each row is gated per-category by our AI gates (consent-gate.md), not just recorded. \"Operator only\" means: Yvo may process manually, AI may not. \"Do not process\" means: not even manually — out of scope. GDPR Art 4(11) \"specific\".",
       "matrix": {
         "col_ai": "AI may process",
         "col_operator": "Operator only",
