@@ -446,16 +446,16 @@
 
   /* ===== Slide 6 — Paste-alias-shield split ===== */
   .paste-alias-grid {
-    display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px;
-    align-items: stretch; margin-top: 20px;
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px;
+    align-items: stretch; margin-top: 14px;
   }
   .paste-col {
-    background: white; padding: 24px; border-radius: 12px;
+    background: white; padding: 16px 18px; border-radius: 12px;
     border: 1px solid var(--border);
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
   .paste-col h4 {
-    margin: 0 0 16px; font-size: 12px; text-transform: uppercase;
+    margin: 0 0 10px; font-size: 12px; text-transform: uppercase;
     letter-spacing: 1.2px; color: var(--muted); font-weight: 600;
   }
   .paste-col--in h4::before { content: "📥 "; }
@@ -483,8 +483,8 @@
     50% { opacity: 1; transform: scale(1.08); }
   }
   .paste-caption {
-    margin-top: 18px; font-size: 13px; color: var(--muted);
-    line-height: 1.6; max-width: 760px;
+    margin-top: 12px; font-size: 13px; color: var(--muted);
+    line-height: 1.55; max-width: 760px;
   }
   @media (max-width: 760px) {
     .paste-alias-grid { grid-template-columns: 1fr; }
@@ -513,16 +513,16 @@
 
   /* Alias picker (now lives on slide 6 — paste-alias-shield) */
   .alias-picker-block {
-    margin-top: 32px; padding: 24px; border-radius: 10px;
+    margin-top: 18px; padding: 16px 18px; border-radius: 10px;
     background: linear-gradient(135deg, rgba(147,9,63,0.04) 0%, rgba(255,169,45,0.04) 100%);
     border: 1px dashed rgba(147,9,63,0.3);
   }
   .alias-picker-block__title {
-    font-family: 'KoHo Full', serif; font-size: 20px; font-weight: 700;
-    color: var(--ink); margin: 0 0 8px;
+    font-family: 'KoHo Full', serif; font-size: 18px; font-weight: 700;
+    color: var(--ink); margin: 0 0 6px;
   }
   .alias-picker-block__intro {
-    font-size: 14px; color: var(--ink-soft); margin: 0 0 16px; line-height: 1.55;
+    font-size: 13px; color: var(--ink-soft); margin: 0 0 10px; line-height: 1.5;
   }
   .alias-picker {
     display: flex; gap: 10px; align-items: stretch;
@@ -1038,14 +1038,13 @@
       <p class="slide__kicker" data-i18n="welcome.slide_shield.kicker">Jouw rol — met een alias</p>
       <h2 class="slide__title" data-i18n="welcome.slide_shield.title">Help ons om jou te beschermen tegen AI met een alias</h2>
       <p class="slide__subtitle" data-i18n="welcome.slide_shield.subtitle">
-        In alle AI-afgeleide documentatie (transcripten, samenvattingen, werkbestanden) verwijzen we naar jou via een alias. Mocht er ooit een data-lek zijn in zo'n bestand, dan is jouw echte naam niet aan deze interactie te koppelen — een laag extra privacy boven op de wettelijke aansprakelijkheid die uiteraard blijft staan. Je e-mailadres en publieke bedrijfsnaam blijven wél zichtbaar voor AI, omdat operationele communicatie anders niet kan werken.
+        In artefacten die we voor of over jou maken (transcripten, samenvattingen, werkbestanden) hanteren we jouw alias in plaats van je echte naam — als operator-conventie. Mocht er ooit een lek zijn in zo'n bestand, dan beperkt de alias de koppeling, al blijft je e-mail een herleidbaar identifier. Wettelijke aansprakelijkheid blijft uiteraard staan. Je e-mailadres en publieke bedrijfsnaam blijven zichtbaar voor AI — anders kan operationele communicatie niet werken.
       </p>
       <div class="paste-alias-grid">
         <div class="paste-col paste-col--in">
           <h4 data-i18n="welcome.slide_shield.in_header">Wat je ons stuurt</h4>
           <div class="paste-row"><span data-i18n="welcome.slide_shield.row_name">Naam</span><code id="alias-demo-name-in">Jan Jansen</code></div>
           <div class="paste-row"><span data-i18n="welcome.slide_shield.row_email">E-mail</span><code id="alias-demo-email-in">jan@bedrijf.nl</code></div>
-          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_phone">Telefoon</span><code>+31 6 12 34 56 78</code></div>
           <div class="paste-row"><span data-i18n="welcome.slide_shield.row_company">Bedrijf</span><code>Bedrijf B.V. (publiek)</code></div>
         </div>
         <div class="paste-arrow">
@@ -1058,12 +1057,11 @@
           <h4 data-i18n="welcome.slide_shield.out_header">Wat AI ziet</h4>
           <div class="paste-row"><span data-i18n="welcome.slide_shield.row_name">Naam</span><code id="alias-demo-name-out">Wandering Pelican</code></div>
           <div class="paste-row"><span data-i18n="welcome.slide_shield.row_email">E-mail</span><code id="alias-demo-email-out">jan@bedrijf.nl</code></div>
-          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_phone">Telefoon</span><code data-i18n="welcome.slide_shield.demo_phone_redacted">[redacted]</code></div>
           <div class="paste-row"><span data-i18n="welcome.slide_shield.row_company">Bedrijf</span><code>Bedrijf B.V. (publiek)</code></div>
         </div>
       </div>
       <p class="paste-caption" data-i18n="welcome.slide_shield.caption">
-        Alleen je naam wordt door een alias vervangen. E-mail en publieke bedrijfsgegevens blijven zichtbaar (zonder die kan AI niet helpen met praktische vragen). Telefoon wordt geredacteerd.
+        Alleen je naam wordt vervangen door een alias. E-mail en publieke bedrijfsgegevens blijven zichtbaar — anders kan AI niet helpen met praktische vragen.
       </p>
 
       <div class="alias-picker-block">
@@ -1206,15 +1204,17 @@
     </button>
   </section>
 
-  <!-- ===== Slide 8: Jouw keuzes (form) — FINAL slide ===== -->
-  <section class="slide slide--choices" data-i18n-nav-title="welcome.slide_form.nav_title" data-nav-title="Jouw keuzes" id="slide-choices">
-    <div class="slide__inner">
-      <p class="slide__kicker" data-i18n="welcome.slide_form.kicker">Even jouw keuzes vastleggen</p>
-      <h2 class="slide__title" data-i18n="welcome.slide_form.title">Wie tekent — en wat mag AI doen?</h2>
-      <p class="slide__subtitle" data-i18n="welcome.slide_form.subtitle">
-        Twee dingen voor we naar de juridische tekst gaan: jouw contactgegevens als ondertekenaar, en of AI je persoonlijke data mag verwerken (alias-keuze stond op de vorige slide).
-      </p>
-      <form class="choices-form" id="choices-form" novalidate>
+  <!-- ===== Slide 8 + 9: Choices form wraps both sections so radios + inputs all submit together ===== -->
+  <form class="choices-form" id="choices-form" novalidate>
+
+    <!-- ===== Slide 8: Wie tekent (contact fields) ===== -->
+    <section class="slide slide--choices" data-i18n-nav-title="welcome.slide_form.nav_title" data-nav-title="Jouw keuzes" id="slide-choices">
+      <div class="slide__inner">
+        <p class="slide__kicker" data-i18n="welcome.slide_form.kicker">Even jouw keuzes vastleggen</p>
+        <h2 class="slide__title" data-i18n="welcome.slide_form.title">Wie tekent?</h2>
+        <p class="slide__subtitle" data-i18n="welcome.slide_form.subtitle">
+          Jouw contactgegevens als ondertekenaar. Op de volgende slide kies je per data-categorie wat AI ermee mag doen.
+        </p>
         <div class="form-row">
           <label for="cp_rep_name"><span data-i18n="welcome.slide_form.label_name">Volledige naam</span> <span class="req">*</span></label>
           <input type="text" id="cp_rep_name" data-i18n-placeholder="welcome.slide_form.placeholder_name" placeholder="Voornaam Achternaam" required autocomplete="name">
@@ -1232,66 +1232,101 @@
           <label for="cp_rep_phone"><span data-i18n="welcome.slide_form.label_phone">Telefoonnummer</span> <span class="help" data-i18n="welcome.slide_form.phone_optional">— optioneel</span></label>
           <input type="tel" id="cp_rep_phone" data-i18n-placeholder="welcome.slide_form.placeholder_phone" placeholder="+31 6 …" autocomplete="tel">
         </div>
+        <button type="button" class="slide__hint--mini" data-action="next-slide">
+          <span data-i18n="welcome.slide_form.continue">Volgende — data-categorieën</span>
+        </button>
+      </div>
+    </section>
 
-        <div class="form-row" style="margin-top: 24px;">
-          <label class="cm-label"><span data-i18n="welcome.slide_form.matrix_label">Per data-categorie: wat mag AI ermee doen?</span></label>
-          <p class="cm-help" data-i18n-html="welcome.slide_form.matrix_help">Kies één optie per rij. Standaardinstellingen zijn ingevuld; pas aan wat je liever anders ziet. Granulair, controleerbaar, AVG art. 4(11) "specifiek". <em>Let op:</em> per-categorie keuzes worden nu in de DPA en het consent-register vastgelegd als audit-trail; geautomatiseerde handhaving op rij-niveau door onze AI-gates rolt uit in Q3-2026. Tot dan wordt de aggregaat-keuze (AI mag t.o.v. operator-only/uitgesloten) gehandhaafd, en de operator past de fijnere keuzes handmatig toe.</p>
-          <div class="consent-matrix" id="consent-matrix">
-            <div class="cm-header">
-              <div class="cm-cat-cell"></div>
-              <div class="cm-scope-cell" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</div>
-              <div class="cm-scope-cell" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</div>
-              <div class="cm-scope-cell" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</div>
+    <!-- ===== Slide 9: Per data-categorie (consent matrix) — FINAL slide ===== -->
+    <section class="slide slide--consent" data-i18n-nav-title="welcome.slide_consent.nav_title" data-nav-title="Data-categorieën" id="slide-consent">
+      <div class="slide__inner">
+        <p class="slide__kicker" data-i18n="welcome.slide_consent.kicker">Per data-categorie</p>
+        <h2 class="slide__title" data-i18n="welcome.slide_consent.title">Wat mag AI ermee doen?</h2>
+        <p class="slide__subtitle" data-i18n-html="welcome.slide_consent.subtitle">Kies één optie per rij. Standaardinstellingen zijn ingevuld; pas aan wat je liever anders ziet. Granulair, controleerbaar, AVG art. 4(11) "specifiek". <em>Let op:</em> per-categorie keuzes worden in de DPA en het consent-register vastgelegd als audit-trail; geautomatiseerde handhaving op rij-niveau door onze AI-gates rolt uit in Q3-2026. Tot dan wordt de aggregaat-keuze (AI mag t.o.v. operator-only/uitgesloten) gehandhaafd, en de operator past de fijnere keuzes handmatig toe.</p>
+        <div class="consent-matrix" id="consent-matrix">
+          <div class="cm-header">
+            <div class="cm-cat-cell"></div>
+            <div class="cm-scope-cell" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</div>
+            <div class="cm-scope-cell" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</div>
+            <div class="cm-scope-cell" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</div>
+          </div>
+          <div class="cm-row" data-category="contact_info">
+            <div class="cm-cat-cell">
+              <strong data-i18n="welcome.slide_form.matrix.cat_contact_title">Contactgegevens</strong>
+              <span data-i18n="welcome.slide_form.matrix.cat_contact_desc">Naam, e-mail, telefoon, rol</span>
             </div>
-            <div class="cm-row" data-category="contact_info">
-              <div class="cm-cat-cell">
-                <strong data-i18n="welcome.slide_form.matrix.cat_contact_title">Contactgegevens</strong>
-                <span data-i18n="welcome.slide_form.matrix.cat_contact_desc">Naam, e-mail, telefoon, rol</span>
-              </div>
-              <label class="cm-radio"><input type="radio" name="cat_contact_info" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
-              <label class="cm-radio"><input type="radio" name="cat_contact_info" value="operator_only"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
-              <label class="cm-radio"><input type="radio" name="cat_contact_info" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_contact_info" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_contact_info" value="operator_only"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_contact_info" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+          </div>
+          <div class="cm-row" data-category="project_content">
+            <div class="cm-cat-cell">
+              <strong data-i18n="welcome.slide_form.matrix.cat_general_comms_title">Algemene communicatie</strong>
+              <span data-i18n="welcome.slide_form.matrix.cat_general_comms_desc">E-mails, gespreksnotities, algemene correspondentie</span>
             </div>
-            <div class="cm-row" data-category="project_content">
-              <div class="cm-cat-cell">
-                <strong data-i18n="welcome.slide_form.matrix.cat_project_title">Projectinhoud</strong>
-                <span data-i18n="welcome.slide_form.matrix.cat_project_desc">Documenten, notities, deliverables, correspondentie</span>
-              </div>
-              <label class="cm-radio"><input type="radio" name="cat_project_content" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
-              <label class="cm-radio"><input type="radio" name="cat_project_content" value="operator_only"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
-              <label class="cm-radio"><input type="radio" name="cat_project_content" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_project_content" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_project_content" value="operator_only"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_project_content" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+          </div>
+          <div class="cm-row" data-category="production_data">
+            <div class="cm-cat-cell">
+              <strong data-i18n="welcome.slide_form.matrix.cat_production_title">Productiegegevens</strong>
+              <span data-i18n="welcome.slide_form.matrix.cat_production_desc">Productieprocessen, ingrediënten, recepturen, BOM</span>
             </div>
-            <div class="cm-row" data-category="financial_data">
-              <div class="cm-cat-cell">
-                <strong data-i18n="welcome.slide_form.matrix.cat_financial_title">Financiële data</strong>
-                <span data-i18n="welcome.slide_form.matrix.cat_financial_desc">Factuurregels, budgetten, betaalreferenties</span>
-              </div>
-              <label class="cm-radio"><input type="radio" name="cat_financial_data" value="ai_may_process"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
-              <label class="cm-radio"><input type="radio" name="cat_financial_data" value="operator_only" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
-              <label class="cm-radio"><input type="radio" name="cat_financial_data" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_production_data" value="ai_may_process"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_production_data" value="operator_only" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_production_data" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+          </div>
+          <div class="cm-row" data-category="transport_data">
+            <div class="cm-cat-cell">
+              <strong data-i18n="welcome.slide_form.matrix.cat_transport_title">Transportgegevens</strong>
+              <span data-i18n="welcome.slide_form.matrix.cat_transport_desc">Logistiek, herkomst-routing, douane-bewegingen</span>
             </div>
-            <div class="cm-row" data-category="metadata">
-              <div class="cm-cat-cell">
-                <strong data-i18n="welcome.slide_form.matrix.cat_metadata_title">Metadata</strong>
-                <span data-i18n="welcome.slide_form.matrix.cat_metadata_desc">Tijdstempels, IP's, geaggregeerde gebruikscijfers</span>
-              </div>
-              <label class="cm-radio"><input type="radio" name="cat_metadata" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
-              <label class="cm-radio"><input type="radio" name="cat_metadata" value="operator_only"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
-              <label class="cm-radio"><input type="radio" name="cat_metadata" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_transport_data" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_transport_data" value="operator_only"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_transport_data" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+          </div>
+          <div class="cm-row" data-category="supplier_data">
+            <div class="cm-cat-cell">
+              <strong data-i18n="welcome.slide_form.matrix.cat_supplier_title">Leveranciersgegevens</strong>
+              <span data-i18n="welcome.slide_form.matrix.cat_supplier_desc">Leveranciers, ketenpartners, sub-tier sourcing</span>
             </div>
+            <label class="cm-radio"><input type="radio" name="cat_supplier_data" value="ai_may_process"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_supplier_data" value="operator_only" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_supplier_data" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+          </div>
+          <div class="cm-row" data-category="certification_audit_data">
+            <div class="cm-cat-cell">
+              <strong data-i18n="welcome.slide_form.matrix.cat_certification_title">Certificering- en auditgegevens</strong>
+              <span data-i18n="welcome.slide_form.matrix.cat_certification_desc">Certificaten, audit-rapporten, conformity assessments</span>
+            </div>
+            <label class="cm-radio"><input type="radio" name="cat_certification_audit_data" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_certification_audit_data" value="operator_only"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_certification_audit_data" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+          </div>
+          <div class="cm-row" data-category="metadata">
+            <div class="cm-cat-cell">
+              <strong data-i18n="welcome.slide_form.matrix.cat_metadata_title">Metadata</strong>
+              <span data-i18n="welcome.slide_form.matrix.cat_metadata_desc">Tijdstempels, IP's, geaggregeerde gebruikscijfers</span>
+            </div>
+            <label class="cm-radio"><input type="radio" name="cat_metadata" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_metadata" value="operator_only"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
+            <label class="cm-radio"><input type="radio" name="cat_metadata" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
           </div>
         </div>
         <p class="form-footnote" data-i18n="welcome.slide_form.footnote">
           Deze keuzes worden vastgelegd in de DPA. Volledig intrekken kan via de consent-dashboard (één klik). Voor granulair wijzigen — een specifieke rij omzetten — is een nieuwe DPA-ondertekening nodig.
         </p>
-      </form>
-      <button type="button" class="ready-cta" id="ready-cta" disabled>
-        <span data-i18n="welcome.slide_form.cta">Naar de Verwerkersovereenkomst</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
-      <p class="ready-validation" id="ready-validation" data-i18n="welcome.slide_form.validation">Vul alle verplichte velden in om door te kunnen.</p>
-    </div>
-  </section>
+        <button type="button" class="ready-cta" id="ready-cta" disabled>
+          <span data-i18n="welcome.slide_form.cta">Naar de Verwerkersovereenkomst</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <p class="ready-validation" id="ready-validation" data-i18n="welcome.slide_form.validation">Vul alle verplichte velden in om door te kunnen.</p>
+      </div>
+    </section>
+
+  </form>
 
 </main>
 
@@ -1637,7 +1672,7 @@
 
   // ===== Form validation =====
   // Matrix categories: each must have exactly one radio checked.
-  const MATRIX_CATEGORIES = ['contact_info', 'project_content', 'financial_data', 'metadata'];
+  const MATRIX_CATEGORIES = ['contact_info', 'project_content', 'production_data', 'transport_data', 'supplier_data', 'certification_audit_data', 'metadata'];
   function readConsentMatrix() {
     const result = {};
     for (const cat of MATRIX_CATEGORIES) {
