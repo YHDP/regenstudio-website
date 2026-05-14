@@ -902,13 +902,13 @@
               <span class="tdot tdot--red" aria-hidden="true"></span><span class="tdot tdot--amber" aria-hidden="true"></span><span class="tdot tdot--green" aria-hidden="true"></span>
               <span class="terminal__name">Claude Code · Regen Studio</span>
             </div>
-<pre class="terminal__body"><span class="t-prompt">$</span> open .consent-gated/acme/production-data.md
+<pre class="terminal__body"><span class="t-prompt">$</span> open .consent-gated/<span id="ref-slug">acme</span>/production-data.md
 
 <span class="t-refusal">SCOPE-ENFORCEMENT GATE: REFUSED</span>
-  <span class="t-key">Subject:</span>        Acme B.V.
-  <span class="t-key">Engagement:</span>     voucher/acme-bv
+  <span class="t-key">Subject:</span>        <span id="ref-subject">Acme B.V.</span>
+  <span class="t-key">Engagement:</span>     <span id="ref-engagement">voucher/acme-bv</span>
   <span class="t-key">Content type:</span>   production_data
-  <span class="t-key">Excluded by:</span>    garment_composition_supply_chain_origin
+  <span class="t-key">Excluded by:</span>    <span id="ref-excluded-by">garment_composition_supply_chain_origin</span>
   <span class="t-key">Source:</span>         DPA Schedule §B.6 + manifest opt-out</pre>
           </div>
           <p class="refusal-card__caption" data-i18n="welcome.slide_dna.wij_caption">Pre-tool hook weigert. Niets bereikt de AI.</p>
@@ -980,7 +980,7 @@
         </div>
         <div class="ai-memory__row">
           <span class="ai-memory__key" data-i18n="welcome.slide_shield.memory_key_company">company</span>
-          <span class="ai-memory__val">Bedrijf B.V.</span>
+          <span class="ai-memory__val" id="ai-memory-company">Bedrijf B.V.</span>
         </div>
         <div class="ai-memory__row">
           <span class="ai-memory__key" data-i18n="welcome.slide_shield.memory_key_updated">last_updated</span>
@@ -1254,7 +1254,12 @@
     aliasReroll: $('#alias-reroll'),
     aliasUseReal: $('#alias-use-real'),
     aiMemoryName: $('#ai-memory-name'),
+    aiMemoryCompany: $('#ai-memory-company'),
     pasteAliasSlide: $('.slide--paste-alias'),
+    refSlug: $('#ref-slug'),
+    refSubject: $('#ref-subject'),
+    refEngagement: $('#ref-engagement'),
+    refExcludedBy: $('#ref-excluded-by'),
     repName: $('#cp_rep_name'),
     repRole: $('#cp_rep_role'),
     repEmail: $('#cp_rep_email'),
@@ -1331,6 +1336,36 @@
     }
     showRow(els.engRowBewaar, els.engBewaar, bewaarText);
     if (els.engNarrative) els.engNarrative.innerHTML = buildEngagementNarrative(profile);
+    renderRefusalTerminal(profile);
+    renderAiMemoryCard(profile);
+  }
+
+  // Default per-regime AI-exclusion category, mirroring scope-enforcement-gate.md.
+  // The dpa-verify-token profile carries regulatory_regime but not the resolved
+  // exclusion list — derive client-side so the slide-dna terminal reads as a
+  // realistic scope-gate refusal for THIS engagement.
+  const REGIME_EXCLUSION = {
+    'dsr': 'volledige_formulering_recepten_clp_ip',
+    'espr': 'product_design_specs_complete_bom',
+    'espr_textiles': 'garment_composition_supply_chain_origin',
+    'other': 'bedrijfsgevoelige_ip_propertaire_data',
+  };
+
+  function renderRefusalTerminal(profile) {
+    const slug = (profile && profile.slug) || 'acme';
+    const subject = (profile && (profile.legal_name || profile.cp_legal_name)) || 'Acme B.V.';
+    const engKey = (state.body && state.body.engagement_key) || (profile && profile.engagement_key) || 'voucher/acme-bv';
+    const regime = (profile && profile.regulatory_regime) || 'other';
+    const excludedBy = REGIME_EXCLUSION[regime] || REGIME_EXCLUSION['other'];
+    if (els.refSlug) els.refSlug.textContent = slug;
+    if (els.refSubject) els.refSubject.textContent = subject;
+    if (els.refEngagement) els.refEngagement.textContent = engKey;
+    if (els.refExcludedBy) els.refExcludedBy.textContent = excludedBy;
+  }
+
+  function renderAiMemoryCard(profile) {
+    const company = (profile && (profile.legal_name || profile.cp_legal_name)) || 'Bedrijf B.V.';
+    if (els.aiMemoryCompany) els.aiMemoryCompany.textContent = company;
   }
 
   function buildEngagementNarrative(profile) {
