@@ -28,7 +28,7 @@
       "nav_title": "Welkom",
       "greeting_prefix": "We",
       "default_name": "gaan samenwerken",
-      "intro": "Daar horen ook afspraken over datagebruik bij en die willen we graag vastleggen met jou. Hier vind je een aantal screens die je in normale taal informeren, voordat we de juridische tekst induiken."
+      "intro": "Daar horen ook afspraken over datagebruik bij — die legt Regen Studio graag vast met jou. Hier vind je een aantal screens die je in normale taal informeren, voordat de juridische tekst volgt."
     },
     "slide_who": {
       "nav_title": "Wie zijn we",
@@ -49,7 +49,7 @@
       "nav_title": "Wat doen we",
       "kicker": "Onze afspraak",
       "title": "Wat we samen gaan doen",
-      "subtitle": "De Verwerkersovereenkomst die we straks tekenen ondersteunt deze concrete Engagement.",
+      "subtitle": "De Verwerkersovereenkomst tussen jou en Regen Studio ondersteunt deze concrete Engagement.",
       "rows": {
         "project": "Project",
         "parties": "Tussen",
@@ -65,7 +65,7 @@
       "narrative": {
         "voucher_intro": "Een DPP-readiness traject voor",
         "voucher_subsidie": "(voucher t.w.v. €{amount}k via de KvW3 / EFRO-regeling)",
-        "voucher_body": ". Samen brengen we je product-portfolio in kaart, identificeren de data-gaps richting",
+        "voucher_body": ". Regen Studio brengt samen met jou het product-portfolio in kaart, identificeert de data-gaps richting",
         "voucher_advice": ", adviseren over conforme implementatie (data-architectuur, leveranciers-ketens, audit-trail),",
         "voucher_roadmap": "en leveren een geprioriteerde roadmap richting",
         "voucher_roadmap_open": "en leveren een geprioriteerde roadmap binnen de looptijd van de voucher",
@@ -96,7 +96,7 @@
       "chat_claude_lede": "Sorry, ik kan dit bestand niet voor je openen.",
       "chat_claude_explain_a": "heeft",
       "chat_claude_explain_b": "uitgesloten van AI-verwerking in jullie Verwerkersovereenkomst (§B.6).",
-      "chat_claude_offer": "Een Regen-medewerker kan dit handmatig oppakken — wil je dat ik daar een ping naar stuur?"
+      "chat_claude_offer": "Je moet het deze keer manueel oplossen."
     },
     "slide_arch": {
       "nav_title": "Architectuur",
@@ -141,7 +141,7 @@
       "demo_shield": "paste-alias-shield · actief",
       "warning_reserved": "Deze alias is al in gebruik door Yvo Hunink, founder van Regen Studio. Kies een andere.",
       "picker_title": "Hoe wil je dat AI naar jou verwijst?",
-      "picker_intro": "Dit is hoe je naam erin gaat. Pak een willekeurig dier-alias dat we voor je hebben gegooid, type je eigen versie, of gebruik je echte naam.",
+      "picker_intro": "Dit is hoe je naam erin gaat. Pak een willekeurig dier-alias dat Regen Studio voor je heeft gegooid, type je eigen versie, of gebruik je echte naam.",
       "picker_input_aria": "Alias — bewerk vrij of gebruik de gegooide voorbeeld",
       "picker_reroll": "andere",
       "picker_reroll_aria": "Andere voorbeeld-alias",
@@ -209,7 +209,7 @@
       "nav_title": "Jouw keuzes",
       "kicker": "Even jouw keuzes vastleggen",
       "title": "Wie tekent?",
-      "subtitle": "Jouw contactgegevens als ondertekenaar — laatste stap voor we tekenen.",
+      "subtitle": "Jouw contactgegevens als ondertekenaar — laatste stap voor het tekenen.",
       "label_name": "Volledige naam",
       "placeholder_name": "Voornaam Achternaam",
       "label_role": "Functie",
@@ -254,7 +254,7 @@
       "choice_ai": "AI mag verwerken",
       "choice_operator": "Alleen operator",
       "choice_excluded": "Niet verwerken",
-      "footnote": "Per-categorie keuzes worden in de DPA en het consent-register vastgelegd als audit-trail; geautomatiseerde handhaving op rij-niveau door onze AI-gates rolt uit in Q3-2026. Tot dan handhaaft de operator de fijnere keuzes handmatig.",
+      "footnote": "Per-categorie keuzes worden in de DPA en het consent-register vastgelegd als audit-trail; geautomatiseerde handhaving op rij-niveau door de AI-gates van Regen Studio rolt uit in Q3-2026. Tot dan handhaaft de operator de fijnere keuzes handmatig.",
       "cards": {
         "contact_info": {
           "title": "Contactgegevens",
@@ -294,7 +294,7 @@
         "financial_data": {
           "title": "Financiële gegevens",
           "sub": "Facturen, budgetten, betalingsgegevens, fee-structuren",
-          "benefit": "<strong>Standaard uitgesloten:</strong> Dit hebben we niet nodig — en hoeven we ook niet te zien. Geen reden om dit aan AI te tonen."
+          "benefit": "<strong>Standaard uitgesloten:</strong> Regen Studio heeft dit niet nodig — en hoeft het ook niet te zien. Geen reden om dit aan AI te tonen."
         }
       }
     }
