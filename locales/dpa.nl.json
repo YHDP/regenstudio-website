@@ -26,15 +26,15 @@
     },
     "slide_welcome": {
       "nav_title": "Welkom",
-      "greeting_prefix": "Welkom",
-      "default_name": "terug",
-      "intro": "Voor we de afspraken juridisch vastleggen, willen we ze rustig met je doorlopen — open, transparant en zonder verrassingen."
+      "greeting_prefix": "We",
+      "default_name": "gaan samenwerken",
+      "intro": "Daar horen ook afspraken over datagebruik bij en die willen we graag vastleggen met jou. Hier vind je een aantal screens die je in normale taal informeren, voordat we de juridische tekst induiken."
     },
     "slide_who": {
       "nav_title": "Wie zijn we",
       "kicker": "Wie staat er tegenover je",
       "title": "Eén persoon. Eén firma.",
-      "subtitle": "Regen Studio is een eenpersoons-advisory voor Digitaal Productpaspoort. Je werkt rechtstreeks met de oprichter — geen lagen tussen je en de uitvoering.",
+      "subtitle": "Regen Studio is een BV met één werknemer, de directeur — geen lagen tussen jou en de uitvoering.",
       "tagline": "Mens, Stad en Natuur.",
       "rows": {
         "entity": "Rechtspersoon",
@@ -84,19 +84,14 @@
       }
     },
     "slide_dna": {
-      "nav_title": "Data bescherming",
-      "kicker": "Onze grondhouding",
-      "title": "Data bescherming zit in ons DNA",
-      "subtitle": "Kijk maar naar hoe we website-analytics doen: geen cookies, geen tracking pixels, geen cross-site identifiers. We tellen page visits via een dagelijks-roterende salt — onmogelijk om bezoekers over dagen heen te volgen.",
-      "step1_lead": "Je browser stuurt",
-      "step1_emphasis": "page-path + event-type",
-      "step2_lead": "Server hashed je IP met een",
-      "step2_emphasis": "dagelijks-roterende salt",
-      "step3_lead": "Raw events na 48 uur weg",
-      "step3_emphasis": "alleen aggregaten blijven",
-      "note": "De salt rotereert elke 24 uur via een geautomatiseerde database-functie — daardoor is het onmogelijk om dezelfde bezoeker te identificeren over verschillende dagen heen. Deze architectuur valt buiten de cookie-toestemming-vereisten van ePrivacy Art 5(3) en is door CNIL erkend als consent-vrij.",
-      "note_link": "Lees mee in onze",
-      "note_link_text": "privacy-architectuur op GitHub →"
+      "nav_title": "AI says no",
+      "kicker": "Toestemming vs. stille inname",
+      "title": "Anderen doen het achter je rug — wij vragen toestemming en blokkeren AI-gebruik bij de bron.",
+      "anderen_label": "Anderen",
+      "anderen_saas": "SaaS slurpt",
+      "anderen_caption": "Geen toestemming, geen blokkade, geen audit-trail.",
+      "wij_label": "Wij",
+      "wij_caption": "Pre-tool hook weigert. Niets bereikt de AI."
     },
     "slide_arch": {
       "nav_title": "Architectuur",
@@ -135,14 +130,13 @@
       "nav_title": "paste-alias-shield",
       "kicker": "Jouw rol — met een alias",
       "title": "Help ons om jou te beschermen tegen AI met een alias",
-      "subtitle": "In artefacten die we voor of over jou maken (transcripten, samenvattingen, werkbestanden) hanteren we jouw alias in plaats van je echte naam — als operator-conventie. Mocht er ooit een lek zijn in zo'n bestand, dan beperkt de alias de koppeling, al blijft je e-mail een herleidbaar identifier. Wettelijke aansprakelijkheid blijft uiteraard staan. Je e-mailadres en publieke bedrijfsnaam blijven zichtbaar voor AI — anders kan operationele communicatie niet werken.",
-      "in_header": "Wat je ons stuurt",
-      "out_header": "Wat AI ziet",
-      "row_name": "Naam",
-      "row_email": "E-mail",
-      "row_company": "Bedrijf",
-      "arrow_label": "alias",
-      "caption": "Alleen je naam wordt vervangen door een alias. E-mail en publieke bedrijfsgegevens blijven zichtbaar — anders kan AI niet helpen met praktische vragen.",
+      "lede": "Zo zie jij eruit voor AI in onze werkbestanden:",
+      "memory_badge": "MEMORY",
+      "memory_path": "subject · counterparty_record",
+      "memory_key_name": "name",
+      "memory_key_email": "email",
+      "memory_key_company": "company",
+      "memory_key_updated": "last_updated",
       "picker_title": "Hoe wil je dat AI naar jou verwijst?",
       "picker_intro": "Dit is hoe je naam erin gaat. Pak een willekeurig dier-alias dat we voor je hebben gegooid, type je eigen versie, of gebruik je echte naam.",
       "picker_input_aria": "Alias — bewerk vrij of gebruik de gegooide voorbeeld",
@@ -150,25 +144,6 @@
       "picker_reroll_aria": "Andere voorbeeld-alias",
       "picker_use_real": "of: gebruik mijn echte naam intern",
       "picker_use_random": "of: gebruik een willekeurig dier-alias"
-    },
-    "slide_value": {
-      "nav_title": "Waarde van AI",
-      "kicker": "Onder de motorkap",
-      "title": "Wat AI voor jou kan — als je het toestaat",
-      "subtitle": "Met AI-toegang versnelt elke werkstroom: regelgevings-research, document-review, data-mapping, taal-localisatie. Hier zes concrete deliverables die zonder AI uren tot dagen langer duren.",
-      "card_research_title": "Snellere regelgevings-research",
-      "card_research_body": "10 EU-artikelen cross-referencen in minuten — i.p.v. 2 dagen handmatig.",
-      "card_review_title": "Diepere document-review",
-      "card_review_body": "Elk leveranciers-contract gescand op risico-clausules en DPP-aandachtspunten.",
-      "card_lang_title": "Meertalig zonder meerprijs",
-      "card_lang_body": "NL/EN/PT versies van elke briefing in één doorloop.",
-      "card_gap_title": "Live data-gap-analyse",
-      "card_gap_body": "Jouw bestaande data getoetst aan DPP-vereisten — wat ontbreekt, wat is herbruikbaar.",
-      "card_monitor_title": "Continue regelgevings-monitoring",
-      "card_monitor_body": "Wijzigingen in EU-werkprogramma's geflagd binnen uren na publicatie.",
-      "card_audit_title": "Audit-trail-generatie",
-      "card_audit_body": "Elke beslissing gedocumenteerd voor vaststelling — geen reconstructie achteraf.",
-      "footnote": "Op de volgende slide bepaal je per data-categorie wat AI mag — granulair, intrekbaar, controleerbaar."
     },
     "slide_company": {
       "nav_title": "Bedrijfsdata",
@@ -271,8 +246,49 @@
     "slide_consent": {
       "nav_title": "Data-categorieën",
       "kicker": "Per data-categorie",
-      "title": "Wat mag AI ermee doen?",
-      "subtitle": "Kies één optie per rij. Standaardinstellingen zijn ingevuld; pas aan wat je liever anders ziet. Granulair, controleerbaar, AVG art. 4(11) \"specifiek\". <em>Let op:</em> per-categorie keuzes worden in de DPA en het consent-register vastgelegd als audit-trail; geautomatiseerde handhaving op rij-niveau door onze AI-gates rolt uit in Q3-2026. Tot dan wordt de aggregaat-keuze (AI mag t.o.v. operator-only/uitgesloten) gehandhaafd, en de operator past de fijnere keuzes handmatig toe."
+      "title": "Wat krijg je terug — en wat geef je toestemming voor?",
+      "intro": "Voor elke data-categorie: wat AI ermee kan als je toegang geeft, en wat jouw keuze is. Granulair, intrekbaar, controleerbaar.",
+      "choice_ai": "AI mag verwerken",
+      "choice_operator": "Alleen operator",
+      "choice_excluded": "Niet verwerken",
+      "footnote": "Per-categorie keuzes worden in de DPA en het consent-register vastgelegd als audit-trail; geautomatiseerde handhaving op rij-niveau door onze AI-gates rolt uit in Q3-2026. Tot dan handhaaft de operator de fijnere keuzes handmatig.",
+      "cards": {
+        "contact_info": {
+          "title": "Contactgegevens",
+          "sub": "Naam, e-mail, telefoon, rol",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> Auto-pre-filled briefings aan jouw kwaliteitsmanager — geen handmatige copy-paste van namen en rollen tussen tools."
+        },
+        "project_content": {
+          "title": "Algemene communicatie",
+          "sub": "E-mails, gespreksnotities, algemene correspondentie",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> Gespreksnotulen + actielijst klaar binnen minuten na elke call — i.p.v. 30 minuten per gesprek handmatig uittypen."
+        },
+        "production_data": {
+          "title": "Productiegegevens",
+          "sub": "Productieprocessen, ingrediënten, recepturen, BOM",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> Jouw BOM in één doorloop gemapped naar 30+ DPP-velden per product — i.p.v. handmatig veld-voor-veld."
+        },
+        "transport_data": {
+          "title": "Transportgegevens",
+          "sub": "Logistiek, herkomst-routing, douane-bewegingen",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> EUDR herkomst-claims per zending automatisch gevalideerd tegen geo-coördinaten — i.p.v. handmatig per kavel checken."
+        },
+        "supplier_data": {
+          "title": "Leveranciersgegevens",
+          "sub": "Leveranciers, ketenpartners, sub-tier sourcing",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> Elk leverancierscontract gescand op DPP-risicoclausules in minuten — i.p.v. dagen per contract."
+        },
+        "certification_audit_data": {
+          "title": "Certificering- en auditgegevens",
+          "sub": "Certificaten, audit-rapporten, conformity assessments",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> Certificaten-portfolio getoetst aan ESPR/CPR-eisen in één doorloop — wat ontbreekt, wat verloopt wanneer."
+        },
+        "metadata": {
+          "title": "Metadata",
+          "sub": "Tijdstempels, IP's, geaggregeerde gebruikscijfers",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> Audit-trail automatisch opgebouwd per beslissing — geen reconstructie achteraf bij vaststelling."
+        }
+      }
     }
   },
   "contract": {

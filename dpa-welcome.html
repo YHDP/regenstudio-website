@@ -148,7 +148,7 @@
   .slide--who { background: radial-gradient(circle at 70% 30%, rgba(0,155,187,0.08), transparent 65%), var(--paper); }
   .slide--engagement { background: var(--paper-deep); }
   .slide--architecture { background: linear-gradient(180deg, var(--paper) 0%, rgba(0,133,69,0.04) 100%); }
-  .slide--analytics { background: linear-gradient(180deg, rgba(99,102,241,0.04) 0%, var(--paper) 100%); }
+  .slide--refusal { background: linear-gradient(180deg, var(--paper) 0%, rgba(0,155,187,0.04) 100%); }
   .slide--paste-alias { background: var(--paper); }
   .slide--choices { background: linear-gradient(180deg, var(--paper) 0%, rgba(255,169,45,0.05) 100%); }
   .slide--transparency { background: linear-gradient(180deg, rgba(0,155,187,0.05) 0%, var(--paper) 100%); }
@@ -333,6 +333,12 @@
     max-width: 1700px;
   }
   .slide--architecture { padding-left: 32px; padding-right: 32px; }
+  /* Keep title-block aligned with the standard 980px slide width so the
+     architecture slide's kicker + title + subtitle line up with every other
+     slide. Diagram + legend stay outside this wrapper and use the full 1700px. */
+  .slide--architecture .slide__text-block {
+    max-width: 980px; margin: 0 auto 20px;
+  }
 
   .arch-arrow {
     color: #6b7280; font-size: 16px; text-align: center;
@@ -407,88 +413,113 @@
     .arch-mini-arrow { transform: rotate(90deg); }
   }
 
-  /* ===== Slide 5 — Analytics ===== */
-  .analytics-flow {
-    display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
-    gap: 16px; align-items: center; margin-top: 20px;
+  /* ===== Slide — Anderen vs. Wij (AI refusal panel) ===== */
+  .refusal-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    align-items: stretch; margin-top: 18px;
   }
-  .analytics-step {
-    background: white; padding: 18px 16px; border-radius: 10px;
-    border: 1px solid var(--border); text-align: center; font-size: 13px;
-    color: var(--ink-soft); line-height: 1.5;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-  }
-  .analytics-step__num {
-    width: 24px; height: 24px; border-radius: 50%;
-    background: rgba(99,102,241,0.1); color: rgba(70,75,200,1);
-    display: inline-flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 12px; margin-bottom: 8px;
-  }
-  .analytics-step strong { color: var(--ink); display: block; margin-top: 4px; }
-  .analytics-arrow { color: var(--muted); font-size: 18px; }
-  .analytics-formula {
-    margin-top: 24px; padding: 16px 20px; background: white;
-    border-radius: 8px; border: 1px solid var(--border);
-    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
-    font-size: 14px; color: var(--ink-soft); text-align: center;
-    overflow-x: auto;
-  }
-  .analytics-note {
-    margin-top: 18px; font-size: 13px; color: var(--muted); line-height: 1.6;
-    max-width: 680px;
-  }
-  .analytics-note a { color: var(--emerald-dark); }
-  @media (max-width: 760px) {
-    .analytics-flow { grid-template-columns: 1fr; }
-    .analytics-arrow { transform: rotate(90deg); justify-self: center; }
-  }
-
-  /* ===== Slide 6 — Paste-alias-shield split ===== */
-  .paste-alias-grid {
-    display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px;
-    align-items: stretch; margin-top: 14px;
-  }
-  .paste-col {
-    background: white; padding: 16px 18px; border-radius: 12px;
-    border: 1px solid var(--border);
+  .refusal-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 20px;
+    display: flex; flex-direction: column; gap: 14px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
-  .paste-col h4 {
-    margin: 0 0 10px; font-size: 12px; text-transform: uppercase;
-    letter-spacing: 1.2px; color: var(--muted); font-weight: 600;
+  .refusal-card h3 {
+    margin: 0; font-size: 12px; text-transform: uppercase;
+    letter-spacing: 1.4px; color: var(--muted); font-weight: 600;
   }
-  .paste-col--in h4::before { content: "📥 "; }
-  .paste-col--out h4::before { content: "🛡️ "; }
-  .paste-col--out { background: linear-gradient(180deg, white 0%, rgba(0,133,69,0.03) 100%); }
-  .paste-row {
-    display: flex; gap: 8px; padding: 8px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 14px;
+  .refusal-card--anderen { background: linear-gradient(180deg, white 0%, rgba(231,24,70,0.03) 100%); }
+  .refusal-card--wij { border-top: 3px solid var(--emerald); }
+  .paste-flow {
+    display: flex; align-items: center; justify-content: center;
+    gap: 14px; padding: 28px 8px;
   }
-  .paste-row:last-child { border-bottom: none; }
-  .paste-row span:first-child { color: var(--muted); width: 80px; flex-shrink: 0; font-size: 12px; }
-  .paste-row code {
-    font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
+  .paste-flow__doc { font-size: 36px; line-height: 1; }
+  .paste-flow__arrow { font-size: 22px; color: var(--muted); }
+  .paste-flow__saas {
+    background: rgba(231,24,70,0.08); color: var(--magenta);
+    padding: 8px 14px; border-radius: 16px;
+    font-size: 13px; font-weight: 600;
+    border: 1px dashed rgba(231,24,70,0.3);
+  }
+  .refusal-card__caption {
+    font-size: 12.5px; color: var(--muted); line-height: 1.55; margin: 0;
+  }
+  .terminal {
+    background: #1a1d20; border-radius: 8px; overflow: hidden;
+    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+  .terminal__titlebar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 12px; background: #2a2d30;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .tdot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .tdot--red { background: #ff5f57; }
+  .tdot--amber { background: #febc2e; }
+  .tdot--green { background: #28c840; }
+  .terminal__name {
+    margin-left: auto; font-size: 11px; color: #888c90;
+    letter-spacing: 0.3px;
+  }
+  .terminal__body {
+    color: #d4d8db; padding: 14px 16px; font-size: 12.5px;
+    line-height: 1.65; white-space: pre; overflow-x: auto; margin: 0;
+  }
+  .t-prompt { color: #28c840; }
+  .t-refusal {
+    color: #ff5f57; font-weight: 700; letter-spacing: 0.3px;
+  }
+  .t-key { color: #8ab4f8; }
+  @media (max-width: 760px) {
+    .refusal-grid { grid-template-columns: 1fr; }
+    .terminal__body { font-size: 11px; }
+  }
+
+  /* ===== Slide 6 — AI-memory card (animated name swap) ===== */
+  .ai-memory {
+    background: white; border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 22px; max-width: 480px;
+    margin: 18px auto 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border-top: 3px solid var(--emerald);
+  }
+  .ai-memory__header {
+    display: flex; align-items: center; gap: 10px;
+    padding-bottom: 10px; margin-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .ai-memory__badge {
+    display: inline-block; padding: 3px 8px; border-radius: 4px;
+    background: var(--emerald); color: white;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+  }
+  .ai-memory__path {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--muted);
+  }
+  .ai-memory__row {
+    display: flex; align-items: baseline; gap: 14px;
+    padding: 7px 0; border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+  .ai-memory__row:last-child { border-bottom: none; }
+  .ai-memory__key {
+    font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
+    color: var(--muted); width: 110px; flex-shrink: 0;
+  }
+  .ai-memory__val {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px;
     color: var(--ink); flex: 1; word-break: break-all;
   }
-  .paste-col--out .paste-row code { color: var(--emerald-dark); font-weight: 500; }
-  .paste-arrow {
-    align-self: center; display: flex; flex-direction: column; align-items: center; gap: 4px;
-    color: var(--paste-alias); font-size: 11px;
-    text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+  .ai-memory__val--swap { transition: color 0.2s ease; }
+  .ai-memory__val--swap.is-cycling { color: var(--magenta); }
+  @keyframes ai-memory-pulse {
+    0%, 100% { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    50% { box-shadow: 0 4px 22px rgba(147,9,63,0.15); }
   }
-  .paste-arrow svg { width: 32px; height: 32px; animation: pulse 2.5s ease-in-out infinite; }
-  @keyframes pulse {
-    0%, 100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.08); }
-  }
-  .paste-caption {
-    margin-top: 12px; font-size: 13px; color: var(--muted);
-    line-height: 1.55; max-width: 760px;
-  }
-  @media (max-width: 760px) {
-    .paste-alias-grid { grid-template-columns: 1fr; }
-    .paste-arrow { transform: rotate(90deg); justify-self: center; }
-  }
+  .slide--paste-alias.is-visible .ai-memory { animation: ai-memory-pulse 2.4s ease-in-out infinite; }
 
   /* ===== Slide 7 — Jouw keuzes (form) ===== */
   .choices-form { background: white; padding: clamp(24px, 4vw, 36px); border-radius: 12px;
@@ -555,78 +586,67 @@
   }
   .alias-picker__custom a { color: var(--emerald-dark); cursor: pointer; text-decoration: underline; }
 
-  /* AI permission radio */
-  /* Granular consent matrix (Phase 1, 2026-05-13) — 4 categories × 3 scopes. */
-  .cm-label { font-weight: 600; }
-  .cm-help { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 4px 0 12px; }
+  /* Consent-card grid — benefit + per-category consent in one card. */
   .consent-matrix {
-    border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
-    background: var(--paper);
-  }
-  .cm-header, .cm-row {
     display: grid;
-    grid-template-columns: minmax(180px, 1.8fr) repeat(3, minmax(80px, 1fr));
-    align-items: stretch;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px; margin-top: 18px;
   }
-  .cm-header {
-    background: var(--paper-deep);
-    border-bottom: 1px solid var(--border);
+  .consent-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    border-top: 3px solid var(--emerald);
+    display: flex; flex-direction: column; gap: 10px;
   }
-  .cm-row {
-    border-bottom: 1px solid var(--border);
+  .consent-card__head { display: flex; align-items: flex-start; gap: 10px; }
+  .consent-card__icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
+  .consent-card__title {
+    font-family: 'KoHo Full', serif; font-size: 14.5px; font-weight: 700;
+    color: var(--ink); margin: 0; letter-spacing: -0.1px; line-height: 1.25;
   }
-  .cm-row:last-child { border-bottom: none; }
-  .cm-cat-cell {
-    padding: 12px 14px;
-    border-right: 1px solid var(--border);
-    display: flex; flex-direction: column; gap: 2px;
+  .consent-card__sub {
+    font-size: 11.5px; color: var(--muted); line-height: 1.4; margin: 2px 0 0;
   }
-  .cm-cat-cell strong { font-size: 13px; color: var(--ink); font-weight: 600; }
-  .cm-cat-cell span { font-size: 11.5px; color: var(--muted); line-height: 1.45; }
-  .cm-scope-cell {
-    padding: 10px 8px; text-align: center;
-    font-size: 11px; font-weight: 600; color: var(--ink-soft);
-    border-right: 1px solid var(--border);
-    text-transform: uppercase; letter-spacing: 0.4px;
-    line-height: 1.3;
+  .consent-card__benefit {
+    font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; margin: 0;
   }
-  .cm-scope-cell:last-child { border-right: none; }
-  .cm-radio {
-    display: flex; align-items: center; justify-content: center;
-    padding: 14px 8px; cursor: pointer;
-    border-right: 1px solid var(--border);
-    transition: background 0.15s ease;
+  .consent-card__benefit strong { color: var(--emerald-dark); font-weight: 600; }
+  .consent-card__choices {
+    display: flex; flex-direction: column; gap: 4px;
+    border: none; padding: 0; margin: 4px 0 0;
   }
-  .cm-radio:last-child { border-right: none; }
-  .cm-radio:hover { background: rgba(0,133,69,0.04); }
-  .cm-radio input { position: absolute; opacity: 0; pointer-events: none; }
-  .cm-dot {
-    width: 18px; height: 18px; border-radius: 50%;
-    border: 2px solid var(--border);
+  .cc-radio {
+    display: flex; align-items: center; gap: 10px;
+    padding: 7px 10px; border-radius: 6px; cursor: pointer;
+    border: 1px solid transparent; transition: all 0.15s ease;
+    font-size: 12.5px; color: var(--ink-soft); position: relative;
+  }
+  .cc-radio:hover { background: rgba(0,133,69,0.04); }
+  .cc-radio input { position: absolute; opacity: 0; pointer-events: none; }
+  .cc-dot {
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 2px solid var(--border); flex-shrink: 0;
     transition: border-color 0.15s ease, background 0.15s ease;
     position: relative;
   }
-  .cm-radio:has(input:checked) { background: rgba(0,133,69,0.06); }
-  .cm-radio:has(input:checked) .cm-dot { border-color: var(--emerald); }
-  .cm-radio:has(input:checked) .cm-dot::after {
+  .cc-radio:has(input:checked) {
+    background: rgba(0,133,69,0.06);
+    border-color: rgba(0,133,69,0.2);
+  }
+  .cc-radio:has(input:checked) .cc-dot { border-color: var(--emerald); }
+  .cc-radio:has(input:checked) .cc-dot::after {
     content: ''; position: absolute; inset: 3px;
     border-radius: 50%; background: var(--emerald);
   }
-  /* Mobile labels — visible only on narrow viewports where the header row is
-     hidden. Inline span on each radio (instead of CSS attr() pseudo-element)
-     so the labels are i18n-bound and always present in DOM. */
-  .cm-mobile-label { display: none; }
+  .cc-radio:has(input:checked) .cc-label { color: var(--ink); font-weight: 600; }
+  .cc-label { line-height: 1.3; }
+  .consent-footnote {
+    margin-top: 18px; font-size: 12px; color: var(--muted);
+    max-width: 760px; line-height: 1.55;
+  }
   @media (max-width: 640px) {
-    .cm-header, .cm-row { grid-template-columns: 1fr; }
-    .cm-cat-cell { border-right: none; border-bottom: 1px solid var(--border); }
-    .cm-header { display: none; }
-    .cm-row { padding: 8px 0; }
-    .cm-radio {
-      padding: 10px 14px; justify-content: flex-start; gap: 12px;
-      border-right: none; border-bottom: 1px solid var(--border);
-    }
-    .cm-radio:last-child { border-bottom: none; }
-    .cm-mobile-label { display: inline; font-size: 13px; color: var(--ink); }
+    .consent-matrix { grid-template-columns: 1fr; }
   }
   .ai-permission {
     display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px;
@@ -646,39 +666,6 @@
   .form-warning {
     margin-top: 6px; font-size: 12px; color: var(--magenta); line-height: 1.4;
     font-weight: 500;
-  }
-
-  /* ===== Slide 7 — AI-value showcase ===== */
-  .slide--value { background: linear-gradient(180deg, var(--paper) 0%, rgba(0,155,187,0.04) 100%); }
-  .value-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-    margin-top: 18px; max-width: 1040px;
-  }
-  .value-card {
-    background: white; border: 1px solid var(--border);
-    border-radius: 12px; padding: 16px 18px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    border-top: 3px solid var(--emerald);
-    display: flex; flex-direction: column; gap: 6px;
-  }
-  .value-card__icon {
-    font-size: 22px; line-height: 1; margin-bottom: 4px;
-  }
-  .value-card__title {
-    font-family: 'KoHo Full', serif; font-size: 15px; font-weight: 700;
-    color: var(--ink); margin: 0; letter-spacing: -0.1px; line-height: 1.3;
-  }
-  .value-card__body {
-    font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin: 0;
-  }
-  .value-footnote {
-    margin-top: 14px; font-size: 12.5px; color: var(--muted); max-width: 760px; line-height: 1.55;
-  }
-  @media (max-width: 900px) {
-    .value-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 560px) {
-    .value-grid { grid-template-columns: 1fr; }
   }
 
   /* ===== Slide 9 — Transparantie ===== */
@@ -764,7 +751,7 @@
   /* ===== Reduced motion ===== */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .slide__hint, .paste-arrow svg, .alias-picker__input { animation: none; }
+    .slide__hint, .alias-picker__input, .slide--paste-alias .ai-memory { animation: none; }
     .ready-cta:hover { transform: none; }
   }
 </style>
@@ -802,9 +789,9 @@
         <p class="welcome-hero__wordmark">
           <span class="welcome-hero__regen">REGEN</span><span class="welcome-hero__studio">STUDIO</span>
         </p>
-        <h1 class="welcome-hero__greeting"><span data-i18n="welcome.slide_welcome.greeting_prefix">Welkom</span> <span class="welcome-hero__name" id="welcome-name" data-i18n="welcome.slide_welcome.default_name">terug</span></h1>
+        <h1 class="welcome-hero__greeting"><span data-i18n="welcome.slide_welcome.greeting_prefix">We</span> <span class="welcome-hero__name" id="welcome-name" data-i18n="welcome.slide_welcome.default_name">gaan samenwerken</span></h1>
         <p class="welcome-hero__intro" data-i18n="welcome.slide_welcome.intro">
-          Voor we de afspraken juridisch vastleggen, willen we ze rustig met je doorlopen — open, transparant en zonder verrassingen.
+          Daar horen ook afspraken over datagebruik bij en die willen we graag vastleggen met jou. Hier vind je een aantal screens die je in normale taal informeren, voordat we de juridische tekst induiken.
         </p>
       </div>
     </div>
@@ -820,7 +807,7 @@
       <p class="slide__kicker" data-i18n="welcome.slide_who.kicker">Wie staat er tegenover je</p>
       <h2 class="slide__title" data-i18n="welcome.slide_who.title">Eén persoon. Eén firma.</h2>
       <p class="slide__subtitle" data-i18n="welcome.slide_who.subtitle">
-        Regen Studio is een eenpersoons-advisory voor Digitaal Productpaspoort. Je werkt rechtstreeks met de oprichter — geen lagen tussen je en de uitvoering.
+        Regen Studio is een BV met één werknemer, de directeur — geen lagen tussen jou en de uitvoering.
       </p>
       <div class="who-card">
         <div class="who-card__header">
@@ -893,37 +880,40 @@
     </button>
   </section>
 
-  <!-- ===== Slide 4: Data bescherming zit in ons DNA (was Analytics — moved before architecture) ===== -->
-  <section class="slide slide--analytics" data-i18n-nav-title="welcome.slide_dna.nav_title" data-nav-title="Data bescherming" id="slide-dna">
+  <!-- ===== Slide 4: AI says no — anderen vs. wij ===== -->
+  <section class="slide slide--refusal" data-i18n-nav-title="welcome.slide_dna.nav_title" data-nav-title="AI says no" id="slide-dna">
     <div class="slide__inner">
-      <p class="slide__kicker" data-i18n="welcome.slide_dna.kicker">Onze grondhouding</p>
-      <h2 class="slide__title" data-i18n="welcome.slide_dna.title">Data bescherming zit in ons DNA</h2>
-      <p class="slide__subtitle" data-i18n="welcome.slide_dna.subtitle">
-        Kijk maar naar hoe we website-analytics doen: geen cookies, geen tracking pixels, geen cross-site identifiers. We tellen page visits via een dagelijks-roterende salt — onmogelijk om bezoekers over dagen heen te volgen.
-      </p>
-      <div class="analytics-flow">
-        <div class="analytics-step">
-          <div class="analytics-step__num">1</div>
-          <span data-i18n="welcome.slide_dna.step1_lead">Je browser stuurt</span><strong data-i18n="welcome.slide_dna.step1_emphasis">page-path + event-type</strong>
+      <p class="slide__kicker" data-i18n="welcome.slide_dna.kicker">Toestemming vs. stille inname</p>
+      <h2 class="slide__title" data-i18n="welcome.slide_dna.title">Anderen doen het achter je rug — wij vragen toestemming en blokkeren AI-gebruik bij de bron.</h2>
+      <div class="refusal-grid">
+        <div class="refusal-card refusal-card--anderen">
+          <h3 data-i18n="welcome.slide_dna.anderen_label">Anderen</h3>
+          <div class="paste-flow">
+            <span class="paste-flow__doc" aria-hidden="true">📄</span>
+            <span class="paste-flow__arrow" aria-hidden="true">→</span>
+            <span class="paste-flow__saas" data-i18n="welcome.slide_dna.anderen_saas">SaaS slurpt</span>
+          </div>
+          <p class="refusal-card__caption" data-i18n="welcome.slide_dna.anderen_caption">Geen toestemming, geen blokkade, geen audit-trail.</p>
         </div>
-        <div class="analytics-arrow">→</div>
-        <div class="analytics-step">
-          <div class="analytics-step__num">2</div>
-          <span data-i18n="welcome.slide_dna.step2_lead">Server hashed je IP met een</span><strong data-i18n="welcome.slide_dna.step2_emphasis">dagelijks-roterende salt</strong>
-        </div>
-        <div class="analytics-arrow">→</div>
-        <div class="analytics-step">
-          <div class="analytics-step__num">3</div>
-          <span data-i18n="welcome.slide_dna.step3_lead">Raw events na 48 uur weg</span><strong data-i18n="welcome.slide_dna.step3_emphasis">alleen aggregaten blijven</strong>
+        <div class="refusal-card refusal-card--wij">
+          <h3 data-i18n="welcome.slide_dna.wij_label">Wij</h3>
+          <div class="terminal">
+            <div class="terminal__titlebar">
+              <span class="tdot tdot--red" aria-hidden="true"></span><span class="tdot tdot--amber" aria-hidden="true"></span><span class="tdot tdot--green" aria-hidden="true"></span>
+              <span class="terminal__name">Claude Code · Regen Studio</span>
+            </div>
+<pre class="terminal__body"><span class="t-prompt">$</span> open .consent-gated/hwc/production-data.md
+
+<span class="t-refusal">SCOPE-ENFORCEMENT GATE: REFUSED</span>
+  <span class="t-key">Subject:</span>        Hollands Wol Collectief
+  <span class="t-key">Engagement:</span>     voucher/hollands-wol-collectief
+  <span class="t-key">Content type:</span>   production_data
+  <span class="t-key">Excluded by:</span>    garment_composition_supply_chain_origin
+  <span class="t-key">Source:</span>         DPA Schedule §B.6 + manifest opt-out</pre>
+          </div>
+          <p class="refusal-card__caption" data-i18n="welcome.slide_dna.wij_caption">Pre-tool hook weigert. Niets bereikt de AI.</p>
         </div>
       </div>
-      <div class="analytics-formula">
-        SHA-256( daily_salt&nbsp;:&nbsp;IP&nbsp;:&nbsp;User-Agent )
-      </div>
-      <p class="analytics-note">
-        <span data-i18n="welcome.slide_dna.note">De salt rotereert elke 24 uur via een geautomatiseerde database-functie — daardoor is het onmogelijk om dezelfde bezoeker te identificeren over verschillende dagen heen. Deze architectuur valt buiten de cookie-toestemming-vereisten van ePrivacy Art 5(3) en is door CNIL erkend als consent-vrij.</span>
-        <span data-i18n="welcome.slide_dna.note_link">Lees mee in onze</span> <a href="https://www.regenstudio.world/privacy.html#analytics" target="_blank" rel="noopener" data-i18n="welcome.slide_dna.note_link_text">privacy-architectuur op GitHub →</a>
-      </p>
     </div>
     <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
       <span class="slide__hint-triangle" aria-hidden="true"></span>
@@ -933,11 +923,13 @@
   <!-- ===== Slide 5: Architectuur (data-flow diagram) ===== -->
   <section class="slide slide--architecture" data-i18n-nav-title="welcome.slide_arch.nav_title" data-nav-title="Architectuur" id="slide-architecture">
     <div class="slide__inner">
-      <p class="slide__kicker" data-i18n="welcome.slide_arch.kicker">Onder de motorkap</p>
-      <h2 class="slide__title" data-i18n="welcome.slide_arch.title">Hoe je data door onze systemen vloeit</h2>
-      <p class="slide__subtitle" data-i18n="welcome.slide_arch.subtitle">
-        De hoofd-flow loopt over jouw browser → Supabase Edge in Frankfurt → encrypted in EU. Operator-uitvoering (gesprekken, advies, AI-werk) loopt via een aparte, expliciet-toestemmings-route door de Regen-medewerker.
-      </p>
+      <div class="slide__text-block">
+        <p class="slide__kicker" data-i18n="welcome.slide_arch.kicker">Onder de motorkap</p>
+        <h2 class="slide__title" data-i18n="welcome.slide_arch.title">Hoe je data door onze systemen vloeit</h2>
+        <p class="slide__subtitle" data-i18n="welcome.slide_arch.subtitle">
+          De hoofd-flow loopt over jouw browser → Supabase Edge in Frankfurt → encrypted in EU. Operator-uitvoering (gesprekken, advies, AI-werk) loopt via een aparte, expliciet-toestemmings-route door de Regen-medewerker.
+        </p>
+      </div>
       <!-- Architecture diagram: pre-rendered PNG exported from
            design-lab/arch-static-export{,-nl,-pt}.html (gitignored sources).
            Re-render via Brave headless when the lab changes:
@@ -971,32 +963,30 @@
     <div class="slide__inner">
       <p class="slide__kicker" data-i18n="welcome.slide_shield.kicker">Jouw rol — met een alias</p>
       <h2 class="slide__title" data-i18n="welcome.slide_shield.title">Help ons om jou te beschermen tegen AI met een alias</h2>
-      <p class="slide__subtitle" data-i18n="welcome.slide_shield.subtitle">
-        In artefacten die we voor of over jou maken (transcripten, samenvattingen, werkbestanden) hanteren we jouw alias in plaats van je echte naam — als operator-conventie. Mocht er ooit een lek zijn in zo'n bestand, dan beperkt de alias de koppeling, al blijft je e-mail een herleidbaar identifier. Wettelijke aansprakelijkheid blijft uiteraard staan. Je e-mailadres en publieke bedrijfsnaam blijven zichtbaar voor AI — anders kan operationele communicatie niet werken.
-      </p>
-      <div class="paste-alias-grid">
-        <div class="paste-col paste-col--in">
-          <h4 data-i18n="welcome.slide_shield.in_header">Wat je ons stuurt</h4>
-          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_name">Naam</span><code id="alias-demo-name-in">Jan Jansen</code></div>
-          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_email">E-mail</span><code id="alias-demo-email-in">jan@bedrijf.nl</code></div>
-          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_company">Bedrijf</span><code>Bedrijf B.V. (publiek)</code></div>
+      <p class="slide__subtitle" data-i18n="welcome.slide_shield.lede">Zo zie jij eruit voor AI in onze werkbestanden:</p>
+
+      <div class="ai-memory" aria-live="polite">
+        <div class="ai-memory__header">
+          <span class="ai-memory__badge" data-i18n="welcome.slide_shield.memory_badge">MEMORY</span>
+          <span class="ai-memory__path" data-i18n="welcome.slide_shield.memory_path">subject · counterparty_record</span>
         </div>
-        <div class="paste-arrow">
-          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 4 L24 12 L20 12 L20 22 C20 24, 18 26, 16 26 C14 26, 12 24, 12 22 L12 12 L8 12 Z"/>
-          </svg>
-          <span data-i18n="welcome.slide_shield.arrow_label">alias</span>
+        <div class="ai-memory__row">
+          <span class="ai-memory__key" data-i18n="welcome.slide_shield.memory_key_name">name</span>
+          <span class="ai-memory__val ai-memory__val--swap" id="ai-memory-name">John Doe</span>
         </div>
-        <div class="paste-col paste-col--out">
-          <h4 data-i18n="welcome.slide_shield.out_header">Wat AI ziet</h4>
-          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_name">Naam</span><code id="alias-demo-name-out">Wandering Pelican</code></div>
-          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_email">E-mail</span><code id="alias-demo-email-out">jan@bedrijf.nl</code></div>
-          <div class="paste-row"><span data-i18n="welcome.slide_shield.row_company">Bedrijf</span><code>Bedrijf B.V. (publiek)</code></div>
+        <div class="ai-memory__row">
+          <span class="ai-memory__key" data-i18n="welcome.slide_shield.memory_key_email">email</span>
+          <span class="ai-memory__val">john@bedrijf.nl</span>
+        </div>
+        <div class="ai-memory__row">
+          <span class="ai-memory__key" data-i18n="welcome.slide_shield.memory_key_company">company</span>
+          <span class="ai-memory__val">Bedrijf B.V.</span>
+        </div>
+        <div class="ai-memory__row">
+          <span class="ai-memory__key" data-i18n="welcome.slide_shield.memory_key_updated">last_updated</span>
+          <span class="ai-memory__val">2026-05-14</span>
         </div>
       </div>
-      <p class="paste-caption" data-i18n="welcome.slide_shield.caption">
-        Alleen je naam wordt vervangen door een alias. E-mail en publieke bedrijfsgegevens blijven zichtbaar — anders kan AI niet helpen met praktische vragen.
-      </p>
 
       <div class="alias-picker-block">
         <h3 class="alias-picker-block__title" data-i18n="welcome.slide_shield.picker_title">Hoe wil je dat AI naar jou verwijst?</h3>
@@ -1019,139 +1009,131 @@
     </button>
   </section>
 
-  <!-- ===== Slide 7: AI value showcase — what AI enables, "onder de motorkap" =====
-       Replaces the old slide-company-data checkbox UI. The per-category opt-out
-       has moved to slide-consent (Phase 1 granular matrix). This slide now
-       showcases concrete deliverables AI enables when the controller grants
-       processing. -->
-  <section class="slide slide--value" data-i18n-nav-title="welcome.slide_value.nav_title" data-nav-title="Waarde van AI" id="slide-value">
-    <div class="slide__inner">
-      <p class="slide__kicker" data-i18n="welcome.slide_value.kicker">Onder de motorkap</p>
-      <h2 class="slide__title" data-i18n="welcome.slide_value.title">Wat AI voor jou kan — als je het toestaat</h2>
-      <p class="slide__subtitle" data-i18n="welcome.slide_value.subtitle">
-        Met AI-toegang versnelt elke werkstroom: regelgevings-research, document-review, data-mapping, taal-localisatie. Hier zes concrete deliverables die zonder AI uren tot dagen langer duren.
-      </p>
-      <div class="value-grid">
-        <div class="value-card">
-          <span class="value-card__icon" aria-hidden="true">⚡</span>
-          <h3 class="value-card__title" data-i18n="welcome.slide_value.card_research_title">Snellere regelgevings-research</h3>
-          <p class="value-card__body" data-i18n="welcome.slide_value.card_research_body">10 EU-artikelen cross-referencen in minuten — i.p.v. 2 dagen handmatig.</p>
-        </div>
-        <div class="value-card">
-          <span class="value-card__icon" aria-hidden="true">🔍</span>
-          <h3 class="value-card__title" data-i18n="welcome.slide_value.card_review_title">Diepere document-review</h3>
-          <p class="value-card__body" data-i18n="welcome.slide_value.card_review_body">Elk leveranciers-contract gescand op risico-clausules en DPP-aandachtspunten.</p>
-        </div>
-        <div class="value-card">
-          <span class="value-card__icon" aria-hidden="true">🌐</span>
-          <h3 class="value-card__title" data-i18n="welcome.slide_value.card_lang_title">Meertalig zonder meerprijs</h3>
-          <p class="value-card__body" data-i18n="welcome.slide_value.card_lang_body">NL/EN/PT versies van elke briefing in één doorloop.</p>
-        </div>
-        <div class="value-card">
-          <span class="value-card__icon" aria-hidden="true">📊</span>
-          <h3 class="value-card__title" data-i18n="welcome.slide_value.card_gap_title">Live data-gap-analyse</h3>
-          <p class="value-card__body" data-i18n="welcome.slide_value.card_gap_body">Jouw bestaande data getoetst aan DPP-vereisten — wat ontbreekt, wat is herbruikbaar.</p>
-        </div>
-        <div class="value-card">
-          <span class="value-card__icon" aria-hidden="true">🔄</span>
-          <h3 class="value-card__title" data-i18n="welcome.slide_value.card_monitor_title">Continue regelgevings-monitoring</h3>
-          <p class="value-card__body" data-i18n="welcome.slide_value.card_monitor_body">Wijzigingen in EU-werkprogramma's geflagd binnen uren na publicatie.</p>
-        </div>
-        <div class="value-card">
-          <span class="value-card__icon" aria-hidden="true">📝</span>
-          <h3 class="value-card__title" data-i18n="welcome.slide_value.card_audit_title">Audit-trail-generatie</h3>
-          <p class="value-card__body" data-i18n="welcome.slide_value.card_audit_body">Elke beslissing gedocumenteerd voor vaststelling — geen reconstructie achteraf.</p>
-        </div>
-      </div>
-      <p class="value-footnote" data-i18n="welcome.slide_value.footnote">
-        Op de volgende slide bepaal je per data-categorie wat AI mag — granulair, intrekbaar, controleerbaar.
-      </p>
-    </div>
-    <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
-      <span class="slide__hint-triangle" aria-hidden="true"></span>
-    </button>
-  </section>
-
-  <!-- ===== Slides 8-10: Form wraps consent matrix + sub-processors + contact ===== -->
+  <!-- ===== Form wraps merged consent slide + signer slide ===== -->
   <form class="choices-form" id="choices-form" novalidate>
 
-    <!-- ===== Slide 8: Per data-categorie (consent matrix) ===== -->
+    <!-- ===== Slide: Per data-categorie — benefit + consent in één kaart ===== -->
     <section class="slide slide--consent" data-i18n-nav-title="welcome.slide_consent.nav_title" data-nav-title="Data-categorieën" id="slide-consent">
       <div class="slide__inner">
         <p class="slide__kicker" data-i18n="welcome.slide_consent.kicker">Per data-categorie</p>
-        <h2 class="slide__title" data-i18n="welcome.slide_consent.title">Wat mag AI ermee doen?</h2>
-        <p class="slide__subtitle" data-i18n-html="welcome.slide_consent.subtitle">Kies één optie per rij. Standaardinstellingen zijn ingevuld; pas aan wat je liever anders ziet. Granulair, controleerbaar, AVG art. 4(11) "specifiek". <em>Let op:</em> per-categorie keuzes worden in de DPA en het consent-register vastgelegd als audit-trail; geautomatiseerde handhaving op rij-niveau door onze AI-gates rolt uit in Q3-2026. Tot dan wordt de aggregaat-keuze (AI mag t.o.v. operator-only/uitgesloten) gehandhaafd, en de operator past de fijnere keuzes handmatig toe.</p>
+        <h2 class="slide__title" data-i18n="welcome.slide_consent.title">Wat krijg je terug — en wat geef je toestemming voor?</h2>
+        <p class="slide__subtitle" data-i18n="welcome.slide_consent.intro">Voor elke data-categorie: wat AI ermee kan als je toegang geeft, en wat jouw keuze is. Granulair, intrekbaar, controleerbaar.</p>
         <div class="consent-matrix" id="consent-matrix">
-          <div class="cm-header">
-            <div class="cm-cat-cell"></div>
-            <div class="cm-scope-cell" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</div>
-            <div class="cm-scope-cell" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</div>
-            <div class="cm-scope-cell" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</div>
-          </div>
-          <div class="cm-row" data-category="contact_info">
-            <div class="cm-cat-cell">
-              <strong data-i18n="welcome.slide_form.matrix.cat_contact_title">Contactgegevens</strong>
-              <span data-i18n="welcome.slide_form.matrix.cat_contact_desc">Naam, e-mail, telefoon, rol</span>
+
+          <div class="consent-card" data-category="contact_info">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">📇</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards.contact_info.title">Contactgegevens</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards.contact_info.sub">Naam, e-mail, telefoon, rol</p>
+              </div>
             </div>
-            <label class="cm-radio"><input type="radio" name="cat_contact_info" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
-            <label class="cm-radio"><input type="radio" name="cat_contact_info" value="operator_only"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
-            <label class="cm-radio"><input type="radio" name="cat_contact_info" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards.contact_info.benefit"><strong>Als AI dit mag inzien:</strong> Auto-pre-filled briefings aan jouw kwaliteitsmanager — geen handmatige copy-paste van namen en rollen tussen tools.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_contact_info" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_contact_info" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_contact_info" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+            </fieldset>
           </div>
-          <div class="cm-row" data-category="project_content">
-            <div class="cm-cat-cell">
-              <strong data-i18n="welcome.slide_form.matrix.cat_general_comms_title">Algemene communicatie</strong>
-              <span data-i18n="welcome.slide_form.matrix.cat_general_comms_desc">E-mails, gespreksnotities, algemene correspondentie</span>
+
+          <div class="consent-card" data-category="project_content">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">💬</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards.project_content.title">Algemene communicatie</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards.project_content.sub">E-mails, gespreksnotities, algemene correspondentie</p>
+              </div>
             </div>
-            <label class="cm-radio"><input type="radio" name="cat_project_content" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
-            <label class="cm-radio"><input type="radio" name="cat_project_content" value="operator_only"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
-            <label class="cm-radio"><input type="radio" name="cat_project_content" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards.project_content.benefit"><strong>Als AI dit mag inzien:</strong> Gespreksnotulen + actielijst klaar binnen minuten na elke call — i.p.v. 30 minuten per gesprek handmatig uittypen.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_project_content" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_project_content" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_project_content" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+            </fieldset>
           </div>
-          <div class="cm-row" data-category="production_data">
-            <div class="cm-cat-cell">
-              <strong data-i18n="welcome.slide_form.matrix.cat_production_title">Productiegegevens</strong>
-              <span data-i18n="welcome.slide_form.matrix.cat_production_desc">Productieprocessen, ingrediënten, recepturen, BOM</span>
+
+          <div class="consent-card" data-category="production_data">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">🏭</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards.production_data.title">Productiegegevens</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards.production_data.sub">Productieprocessen, ingrediënten, recepturen, BOM</p>
+              </div>
             </div>
-            <label class="cm-radio"><input type="radio" name="cat_production_data" value="ai_may_process"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
-            <label class="cm-radio"><input type="radio" name="cat_production_data" value="operator_only" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
-            <label class="cm-radio"><input type="radio" name="cat_production_data" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards.production_data.benefit"><strong>Als AI dit mag inzien:</strong> Jouw BOM in één doorloop gemapped naar 30+ DPP-velden per product — i.p.v. handmatig veld-voor-veld.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_production_data" value="ai_may_process"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_production_data" value="operator_only" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_production_data" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+            </fieldset>
           </div>
-          <div class="cm-row" data-category="transport_data">
-            <div class="cm-cat-cell">
-              <strong data-i18n="welcome.slide_form.matrix.cat_transport_title">Transportgegevens</strong>
-              <span data-i18n="welcome.slide_form.matrix.cat_transport_desc">Logistiek, herkomst-routing, douane-bewegingen</span>
+
+          <div class="consent-card" data-category="transport_data">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">🚚</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards.transport_data.title">Transportgegevens</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards.transport_data.sub">Logistiek, herkomst-routing, douane-bewegingen</p>
+              </div>
             </div>
-            <label class="cm-radio"><input type="radio" name="cat_transport_data" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
-            <label class="cm-radio"><input type="radio" name="cat_transport_data" value="operator_only"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
-            <label class="cm-radio"><input type="radio" name="cat_transport_data" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards.transport_data.benefit"><strong>Als AI dit mag inzien:</strong> EUDR herkomst-claims per zending automatisch gevalideerd tegen geo-coördinaten — i.p.v. handmatig per kavel checken.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_transport_data" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_transport_data" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_transport_data" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+            </fieldset>
           </div>
-          <div class="cm-row" data-category="supplier_data">
-            <div class="cm-cat-cell">
-              <strong data-i18n="welcome.slide_form.matrix.cat_supplier_title">Leveranciersgegevens</strong>
-              <span data-i18n="welcome.slide_form.matrix.cat_supplier_desc">Leveranciers, ketenpartners, sub-tier sourcing</span>
+
+          <div class="consent-card" data-category="supplier_data">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">🔗</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards.supplier_data.title">Leveranciersgegevens</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards.supplier_data.sub">Leveranciers, ketenpartners, sub-tier sourcing</p>
+              </div>
             </div>
-            <label class="cm-radio"><input type="radio" name="cat_supplier_data" value="ai_may_process"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
-            <label class="cm-radio"><input type="radio" name="cat_supplier_data" value="operator_only" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
-            <label class="cm-radio"><input type="radio" name="cat_supplier_data" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards.supplier_data.benefit"><strong>Als AI dit mag inzien:</strong> Elk leverancierscontract gescand op DPP-risicoclausules in minuten — i.p.v. dagen per contract.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_supplier_data" value="ai_may_process"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_supplier_data" value="operator_only" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_supplier_data" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+            </fieldset>
           </div>
-          <div class="cm-row" data-category="certification_audit_data">
-            <div class="cm-cat-cell">
-              <strong data-i18n="welcome.slide_form.matrix.cat_certification_title">Certificering- en auditgegevens</strong>
-              <span data-i18n="welcome.slide_form.matrix.cat_certification_desc">Certificaten, audit-rapporten, conformity assessments</span>
+
+          <div class="consent-card" data-category="certification_audit_data">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">📋</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards.certification_audit_data.title">Certificering- en auditgegevens</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards.certification_audit_data.sub">Certificaten, audit-rapporten, conformity assessments</p>
+              </div>
             </div>
-            <label class="cm-radio"><input type="radio" name="cat_certification_audit_data" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
-            <label class="cm-radio"><input type="radio" name="cat_certification_audit_data" value="operator_only"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
-            <label class="cm-radio"><input type="radio" name="cat_certification_audit_data" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards.certification_audit_data.benefit"><strong>Als AI dit mag inzien:</strong> Certificaten-portfolio getoetst aan ESPR/CPR-eisen in één doorloop — wat ontbreekt, wat verloopt wanneer.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_certification_audit_data" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_certification_audit_data" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_certification_audit_data" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+            </fieldset>
           </div>
-          <div class="cm-row" data-category="metadata">
-            <div class="cm-cat-cell">
-              <strong data-i18n="welcome.slide_form.matrix.cat_metadata_title">Metadata</strong>
-              <span data-i18n="welcome.slide_form.matrix.cat_metadata_desc">Tijdstempels, IP's, geaggregeerde gebruikscijfers</span>
+
+          <div class="consent-card" data-category="metadata">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">📊</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards.metadata.title">Metadata</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards.metadata.sub">Tijdstempels, IP's, geaggregeerde gebruikscijfers</p>
+              </div>
             </div>
-            <label class="cm-radio"><input type="radio" name="cat_metadata" value="ai_may_process" checked><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_ai">AI mag verwerken</span></label>
-            <label class="cm-radio"><input type="radio" name="cat_metadata" value="operator_only"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_operator">Alleen operator</span></label>
-            <label class="cm-radio"><input type="radio" name="cat_metadata" value="excluded"><span class="cm-dot" aria-hidden="true"></span><span class="cm-mobile-label" data-i18n="welcome.slide_form.matrix.col_excluded">Niet verwerken</span></label>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards.metadata.benefit"><strong>Als AI dit mag inzien:</strong> Audit-trail automatisch opgebouwd per beslissing — geen reconstructie achteraf bij vaststelling.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_metadata" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_metadata" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_metadata" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+            </fieldset>
           </div>
+
         </div>
+        <p class="consent-footnote" data-i18n-html="welcome.slide_consent.footnote">Per-categorie keuzes worden in de DPA en het consent-register vastgelegd als audit-trail; geautomatiseerde handhaving op rij-niveau door onze AI-gates rolt uit in Q3-2026. Tot dan handhaaft de operator de fijnere keuzes handmatig.</p>
       </div>
       <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
         <span class="slide__hint-triangle" aria-hidden="true"></span>
@@ -1242,6 +1224,7 @@
     body: null,
     profile: null,
     aliasMode: 'random', // 'random' or 'real'
+    aliasTarget: '', // latest alias to render in the AI-memory card on slide enter
     formValid: false,
     docToggles: {}, // { doc_bom: true, doc_suppliers: false, ... } — per-category opt-out for THIS engagement
   };
@@ -1270,8 +1253,8 @@
     aliasText: $('#alias-text'),
     aliasReroll: $('#alias-reroll'),
     aliasUseReal: $('#alias-use-real'),
-    aliasDemoNameOut: $('#alias-demo-name-out'),
-    aliasDemoEmailOut: $('#alias-demo-email-out'),
+    aiMemoryName: $('#ai-memory-name'),
+    pasteAliasSlide: $('.slide--paste-alias'),
     repName: $('#cp_rep_name'),
     repRole: $('#cp_rep_role'),
     repEmail: $('#cp_rep_email'),
@@ -1405,14 +1388,12 @@
            t(n + 'default_purpose', '. De Verwerkersovereenkomst regelt hoe persoonsgegevens binnen deze samenwerking worden verwerkt.');
   }
 
-  // ===== Slide 7 — Doc-toggles defaults =====
-  // The old slide-company-data checkbox UI was repurposed into slide-value
-  // (an AI-value showcase). The per-category opt-out semantics moved to the
-  // granular consent matrix on slide-consent. But the v1 doc_toggles payload
-  // is still required downstream (dpa-submit-signature record_dpa_signature
-  // RPC arg `doc_toggles_arg`), so we initialise state.docToggles[] from the
-  // profile's default_checked flags (effectively all-true unless explicitly
-  // false). No interactive UI; users grant/restrict via the v2 matrix instead.
+  // ===== Doc-toggles defaults =====
+  // Per-category opt-out semantics live in the granular consent-card grid on
+  // slide-consent. But the v1 doc_toggles payload is still required downstream
+  // (dpa-submit-signature record_dpa_signature RPC arg `doc_toggles_arg`), so
+  // we initialise state.docToggles[] from the profile's default_checked flags
+  // (effectively all-true unless explicitly false). No interactive UI.
   function initDocTogglesDefaults(profile) {
     const cats = Array.isArray(profile && profile.doc_categories) ? profile.doc_categories : [];
     cats.forEach(c => {
@@ -1434,13 +1415,40 @@
 
   function syncAliasDownstream(rawName) {
     const name = (rawName || '').trim() || '—';
-    if (els.aliasDemoNameOut) els.aliasDemoNameOut.textContent = name;
-    // E-mail is NOT aliased in the real flow — the OUT column mirrors the IN column.
-    // The alias only governs how the subject is referenced in AI-derived artifacts.
-    if (els.aliasDemoEmailOut) {
-      const inEmail = document.getElementById('alias-demo-email-in');
-      els.aliasDemoEmailOut.textContent = inEmail ? inEmail.textContent : 'jan@bedrijf.nl';
+    state.aliasTarget = name;
+    // If the paste-alias slide has already been revealed, animate to the new name
+    // in place. If not, just store it — the slide-enter observer will pick it up.
+    if (els.aiMemoryName && els.pasteAliasSlide && els.pasteAliasSlide.classList.contains('is-visible')) {
+      scrambleText(els.aiMemoryName, els.aiMemoryName.textContent, name);
     }
+  }
+
+  // Character-scramble animation for the AI-memory name field.
+  // Letters settle progressively left-to-right; total duration ~900ms.
+  // prefers-reduced-motion → instant swap.
+  function scrambleText(el, fromText, toText, duration) {
+    if (!el) return;
+    duration = duration || 900;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { el.textContent = toText; return; }
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const maxLen = Math.max(fromText.length, toText.length);
+    const start = performance.now();
+    el.classList.add('is-cycling');
+    function frame(now) {
+      const t = Math.min(1, (now - start) / duration);
+      let out = '';
+      for (let i = 0; i < maxLen; i++) {
+        const landAt = (i / Math.max(1, maxLen)) * 0.7;
+        if (t >= landAt + 0.2) out += toText[i] || '';
+        else if (t < landAt) out += fromText[i] || ' ';
+        else out += chars[Math.floor(Math.random() * chars.length)];
+      }
+      el.textContent = out;
+      if (t < 1) requestAnimationFrame(frame);
+      else { el.textContent = toText; el.classList.remove('is-cycling'); }
+    }
+    requestAnimationFrame(frame);
   }
 
   function setAliasMode(mode) {
@@ -1539,6 +1547,19 @@
         }
       }, { root: els.slides, threshold: 0.4 });
       archObs.observe(archSlide);
+    }
+
+    // One-shot reveal + name-swap animation for the paste-alias slide
+    if (els.pasteAliasSlide && els.aiMemoryName) {
+      const paObs = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          els.pasteAliasSlide.classList.add('is-visible');
+          const target = state.aliasTarget || (els.aliasText && els.aliasText.value) || els.aiMemoryName.textContent;
+          scrambleText(els.aiMemoryName, els.aiMemoryName.textContent, target);
+          paObs.disconnect();
+        }
+      }, { root: els.slides, threshold: 0.5 });
+      paObs.observe(els.pasteAliasSlide);
     }
   }
 
