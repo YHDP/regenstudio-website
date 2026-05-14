@@ -445,81 +445,102 @@
   .refusal-card__caption {
     font-size: 12.5px; color: var(--muted); line-height: 1.55; margin: 0;
   }
-  .terminal {
-    background: #1a1d20; border-radius: 8px; overflow: hidden;
-    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  .chat {
+    display: flex; flex-direction: column; gap: 14px;
+    padding: 14px 12px 18px;
+    background: #f7f6ef; border-radius: 10px;
+    border: 1px solid var(--border);
   }
-  .terminal__titlebar {
-    display: flex; align-items: center; gap: 6px;
-    padding: 8px 12px; background: #2a2d30;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+  .chat__msg { display: flex; }
+  .chat__msg--user { justify-content: flex-end; }
+  .chat__msg--claude { justify-content: flex-start; }
+  .chat__bubble {
+    max-width: 90%; padding: 10px 14px; border-radius: 14px;
+    font-size: 13px; line-height: 1.55; position: relative;
   }
-  .tdot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-  .tdot--red { background: #ff5f57; }
-  .tdot--amber { background: #febc2e; }
-  .tdot--green { background: #28c840; }
-  .terminal__name {
-    margin-left: auto; font-size: 11px; color: #888c90;
-    letter-spacing: 0.3px;
+  .chat__bubble p { margin: 0 0 6px; }
+  .chat__bubble p:last-child { margin-bottom: 0; }
+  .chat__bubble--user {
+    background: var(--ink); color: white;
+    border-bottom-right-radius: 4px;
   }
-  .terminal__body {
-    color: #d4d8db; padding: 14px 16px; font-size: 12.5px;
-    line-height: 1.65; white-space: pre; overflow-x: auto; margin: 0;
+  .chat__bubble--claude {
+    background: white; color: var(--ink);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
   }
-  .t-prompt { color: #28c840; }
-  .t-refusal {
-    color: #ff5f57; font-weight: 700; letter-spacing: 0.3px;
+  .chat__bubble--claude strong { color: var(--magenta); font-weight: 700; }
+  .chat__bubble--claude em { font-style: normal; color: var(--ink-soft); }
+  .chat__file {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.18); padding: 5px 10px;
+    border-radius: 6px; margin-top: 8px;
+    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace; font-size: 11.5px;
   }
-  .t-key { color: #8ab4f8; }
+  .chat__file-icon { font-size: 13px; }
+  .chat__label {
+    display: block; margin-top: 8px; padding-top: 8px;
+    border-top: 1px dashed rgba(0,0,0,0.08);
+    font-size: 10.5px; color: var(--magenta);
+    letter-spacing: 0.6px; text-transform: uppercase; font-weight: 600;
+  }
   @media (max-width: 760px) {
     .refusal-grid { grid-template-columns: 1fr; }
-    .terminal__body { font-size: 11px; }
+    .chat__bubble { font-size: 12.5px; max-width: 95%; }
   }
 
-  /* ===== Slide 6 — AI-memory card (animated name swap) ===== */
-  .ai-memory {
+  /* ===== Slide 6 — Alias-shield demo (typewriter → scramble) ===== */
+  .alias-demo {
     background: white; border: 1px solid var(--border);
-    border-radius: 12px; padding: 18px 22px; max-width: 480px;
-    margin: 18px auto 12px;
+    border-radius: 12px; padding: 22px 24px;
+    max-width: 720px; margin: 18px auto 8px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.06);
     border-top: 3px solid var(--emerald);
+    min-height: 120px;
   }
-  .ai-memory__header {
-    display: flex; align-items: center; gap: 10px;
-    padding-bottom: 10px; margin-bottom: 6px;
-    border-bottom: 1px solid var(--border);
+  .alias-demo__line {
+    margin: 0; font-size: 16px; line-height: 1.55; color: var(--ink);
+    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    letter-spacing: -0.1px;
   }
-  .ai-memory__badge {
-    display: inline-block; padding: 3px 8px; border-radius: 4px;
-    background: var(--emerald); color: white;
-    font-family: 'JetBrains Mono', monospace; font-size: 10px;
-    font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+  .alias-demo__name {
+    color: var(--ink); transition: color 0.2s ease;
+    background: rgba(255,169,45,0.18);
+    padding: 1px 4px; border-radius: 3px;
   }
-  .ai-memory__path {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    color: var(--muted);
+  .alias-demo__name.is-shielded {
+    color: var(--emerald-dark);
+    background: rgba(0,133,69,0.12);
   }
-  .ai-memory__row {
-    display: flex; align-items: baseline; gap: 14px;
-    padding: 7px 0; border-bottom: 1px solid rgba(0,0,0,0.04);
+  .alias-demo__name.is-cycling {
+    color: var(--magenta);
+    background: rgba(147,9,63,0.10);
   }
-  .ai-memory__row:last-child { border-bottom: none; }
-  .ai-memory__key {
-    font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
-    color: var(--muted); width: 110px; flex-shrink: 0;
+  .alias-demo__caret {
+    display: inline-block; width: 1ch; color: var(--emerald);
+    animation: alias-caret-blink 0.9s steps(1) infinite;
   }
-  .ai-memory__val {
-    font-family: 'JetBrains Mono', monospace; font-size: 14px;
-    color: var(--ink); flex: 1; word-break: break-all;
+  .alias-demo__caret.is-hidden { animation: none; opacity: 0; }
+  @keyframes alias-caret-blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
   }
-  .ai-memory__val--swap { transition: color 0.2s ease; }
-  .ai-memory__val--swap.is-cycling { color: var(--magenta); }
-  @keyframes ai-memory-pulse {
-    0%, 100% { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
-    50% { box-shadow: 0 4px 22px rgba(147,9,63,0.15); }
+  .alias-demo__shield {
+    margin: 14px 0 0; padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    font-size: 12px; color: var(--emerald-dark); font-weight: 600;
+    letter-spacing: 0.3px;
+    display: flex; align-items: center; gap: 6px;
+    opacity: 0; transform: translateY(4px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
   }
-  .slide--paste-alias.is-visible .ai-memory { animation: ai-memory-pulse 2.4s ease-in-out infinite; }
+  .alias-demo__shield.is-shown { opacity: 1; transform: none; }
+  .alias-demo__shield-icon { font-size: 14px; }
+  .alias-picker__warning {
+    margin: 8px 0 0; font-size: 12.5px; color: var(--magenta);
+    line-height: 1.45; font-weight: 500;
+  }
 
   /* ===== Slide 7 — Jouw keuzes (form) ===== */
   .choices-form { background: white; padding: clamp(24px, 4vw, 36px); border-radius: 12px;
@@ -612,6 +633,11 @@
     font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; margin: 0;
   }
   .consent-card__benefit strong { color: var(--emerald-dark); font-weight: 600; }
+  .consent-card--exclude {
+    border-top-color: var(--magenta);
+    background: linear-gradient(180deg, white 0%, rgba(147,9,63,0.025) 100%);
+  }
+  .consent-card__benefit--exclude strong { color: var(--magenta); }
   .consent-card__choices {
     display: flex; flex-direction: column; gap: 4px;
     border: none; padding: 0; margin: 4px 0 0;
@@ -751,7 +777,7 @@
   /* ===== Reduced motion ===== */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .slide__hint, .alias-picker__input, .slide--paste-alias .ai-memory { animation: none; }
+    .slide__hint, .alias-picker__input, .alias-demo__caret { animation: none; }
     .ready-cta:hover { transform: none; }
   }
 </style>
@@ -897,19 +923,24 @@
         </div>
         <div class="refusal-card refusal-card--wij">
           <h3 data-i18n="welcome.slide_dna.wij_label">Wij</h3>
-          <div class="terminal">
-            <div class="terminal__titlebar">
-              <span class="tdot tdot--red" aria-hidden="true"></span><span class="tdot tdot--amber" aria-hidden="true"></span><span class="tdot tdot--green" aria-hidden="true"></span>
-              <span class="terminal__name">Claude Code · Regen Studio</span>
+          <div class="chat" role="figure" aria-label="Voorbeeld: Claude weigert toegang">
+            <div class="chat__msg chat__msg--user">
+              <div class="chat__bubble chat__bubble--user">
+                <p data-i18n="welcome.slide_dna.chat_user_msg">Kan je deze data analyseren en mappen naar DPP-velden?</p>
+                <div class="chat__file">
+                  <span class="chat__file-icon" aria-hidden="true">📎</span>
+                  <span class="chat__file-name" id="ref-file">productie-data-q3.xlsx</span>
+                </div>
+              </div>
             </div>
-<pre class="terminal__body"><span class="t-prompt">$</span> open .consent-gated/<span id="ref-slug">acme</span>/production-data.md
-
-<span class="t-refusal">SCOPE-ENFORCEMENT GATE: REFUSED</span>
-  <span class="t-key">Subject:</span>        <span id="ref-subject">Acme B.V.</span>
-  <span class="t-key">Engagement:</span>     <span id="ref-engagement">voucher/acme-bv</span>
-  <span class="t-key">Content type:</span>   production_data
-  <span class="t-key">Excluded by:</span>    <span id="ref-excluded-by">garment_composition_supply_chain_origin</span>
-  <span class="t-key">Source:</span>         DPA Schedule §B.6 + manifest opt-out</pre>
+            <div class="chat__msg chat__msg--claude">
+              <div class="chat__bubble chat__bubble--claude">
+                <p data-i18n="welcome.slide_dna.chat_claude_lede">Sorry, ik kan dit bestand niet voor je openen.</p>
+                <p><strong id="ref-subject">Acme B.V.</strong> <span data-i18n="welcome.slide_dna.chat_claude_explain_a">heeft</span> <em id="ref-category-label">productiegegevens (BOMs, recepten, processen)</em> <span data-i18n="welcome.slide_dna.chat_claude_explain_b">uitgesloten van AI-verwerking in jullie Verwerkersovereenkomst (§B.6).</span></p>
+                <p data-i18n="welcome.slide_dna.chat_claude_offer">Een Regen-medewerker kan dit handmatig oppakken — wil je dat ik daar een ping naar stuur?</p>
+                <span class="chat__label">Claude · Regen Studio</span>
+              </div>
+            </div>
           </div>
           <p class="refusal-card__caption" data-i18n="welcome.slide_dna.wij_caption">Pre-tool hook weigert. Niets bereikt de AI.</p>
         </div>
@@ -962,30 +993,17 @@
   <section class="slide slide--paste-alias" data-i18n-nav-title="welcome.slide_shield.nav_title" data-nav-title="paste-alias-shield" id="slide-paste-alias">
     <div class="slide__inner">
       <p class="slide__kicker" data-i18n="welcome.slide_shield.kicker">Jouw rol — met een alias</p>
-      <h2 class="slide__title" data-i18n="welcome.slide_shield.title">Help ons om jou te beschermen tegen AI met een alias</h2>
-      <p class="slide__subtitle" data-i18n="welcome.slide_shield.lede">Zo zie jij eruit voor AI in onze werkbestanden:</p>
+      <h2 class="slide__title" data-i18n="welcome.slide_shield.title">Bescherm jezelf tegen AI, neem een alias!</h2>
+      <p class="slide__subtitle" data-i18n="welcome.slide_shield.lede">Wat de operator typt — en wat AI te zien krijgt:</p>
 
-      <div class="ai-memory" aria-live="polite">
-        <div class="ai-memory__header">
-          <span class="ai-memory__badge" data-i18n="welcome.slide_shield.memory_badge">MEMORY</span>
-          <span class="ai-memory__path" data-i18n="welcome.slide_shield.memory_path">subject · counterparty_record</span>
-        </div>
-        <div class="ai-memory__row">
-          <span class="ai-memory__key" data-i18n="welcome.slide_shield.memory_key_name">name</span>
-          <span class="ai-memory__val ai-memory__val--swap" id="ai-memory-name">John Doe</span>
-        </div>
-        <div class="ai-memory__row">
-          <span class="ai-memory__key" data-i18n="welcome.slide_shield.memory_key_email">email</span>
-          <span class="ai-memory__val">john@bedrijf.nl</span>
-        </div>
-        <div class="ai-memory__row">
-          <span class="ai-memory__key" data-i18n="welcome.slide_shield.memory_key_company">company</span>
-          <span class="ai-memory__val" id="ai-memory-company">Bedrijf B.V.</span>
-        </div>
-        <div class="ai-memory__row">
-          <span class="ai-memory__key" data-i18n="welcome.slide_shield.memory_key_updated">last_updated</span>
-          <span class="ai-memory__val">2026-05-14</span>
-        </div>
+      <div class="alias-demo" aria-live="polite">
+        <p class="alias-demo__line">
+          <span id="alias-demo-prefix"></span><span class="alias-demo__name" id="alias-demo-name"></span><span class="alias-demo__caret" id="alias-demo-caret">|</span>
+        </p>
+        <p class="alias-demo__shield" id="alias-demo-shield">
+          <span class="alias-demo__shield-icon" aria-hidden="true">🛡️</span>
+          <span data-i18n="welcome.slide_shield.demo_shield">paste-alias-shield · actief</span>
+        </p>
       </div>
 
       <div class="alias-picker-block">
@@ -1001,6 +1019,7 @@
             <span data-i18n="welcome.slide_shield.picker_reroll">andere</span>
           </button>
         </div>
+        <p class="alias-picker__warning" id="alias-warning" hidden data-i18n="welcome.slide_shield.warning_reserved">Deze alias is al in gebruik door Yvo Hunink, founder van Regen Studio. Kies een andere.</p>
         <p class="alias-picker__custom"><a id="alias-use-real" data-i18n="welcome.slide_shield.picker_use_real">of: gebruik mijn echte naam intern</a></p>
       </div>
     </div>
@@ -1062,8 +1081,8 @@
             </div>
             <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards.production_data.benefit"><strong>Als AI dit mag inzien:</strong> Jouw BOM in één doorloop gemapped naar 30+ DPP-velden per product — i.p.v. handmatig veld-voor-veld.</p>
             <fieldset class="consent-card__choices">
-              <label class="cc-radio"><input type="radio" name="cat_production_data" value="ai_may_process"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
-              <label class="cc-radio"><input type="radio" name="cat_production_data" value="operator_only" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_production_data" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_production_data" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
               <label class="cc-radio"><input type="radio" name="cat_production_data" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
             </fieldset>
           </div>
@@ -1094,8 +1113,8 @@
             </div>
             <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards.supplier_data.benefit"><strong>Als AI dit mag inzien:</strong> Elk leverancierscontract gescand op DPP-risicoclausules in minuten — i.p.v. dagen per contract.</p>
             <fieldset class="consent-card__choices">
-              <label class="cc-radio"><input type="radio" name="cat_supplier_data" value="ai_may_process"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
-              <label class="cc-radio"><input type="radio" name="cat_supplier_data" value="operator_only" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_supplier_data" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_supplier_data" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
               <label class="cc-radio"><input type="radio" name="cat_supplier_data" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
             </fieldset>
           </div>
@@ -1129,6 +1148,22 @@
               <label class="cc-radio"><input type="radio" name="cat_metadata" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
               <label class="cc-radio"><input type="radio" name="cat_metadata" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
               <label class="cc-radio"><input type="radio" name="cat_metadata" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+            </fieldset>
+          </div>
+
+          <div class="consent-card consent-card--exclude" data-category="financial_data">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">🧾</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards.financial_data.title">Financiële gegevens</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards.financial_data.sub">Facturen, budgetten, betalingsgegevens, fee-structuren</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit consent-card__benefit--exclude" data-i18n-html="welcome.slide_consent.cards.financial_data.benefit"><strong>Standaard uitgesloten:</strong> Dit hebben we niet nodig — en hoeven we ook niet te zien. Geen reden om dit aan AI te tonen.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_financial_data" value="ai_may_process"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_financial_data" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_financial_data" value="excluded" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
             </fieldset>
           </div>
 
@@ -1224,7 +1259,9 @@
     body: null,
     profile: null,
     aliasMode: 'random', // 'random' or 'real'
-    aliasTarget: '', // latest alias to render in the AI-memory card on slide enter
+    aliasTarget: '', // latest alias chosen, used by the alias-demo animation
+    aliasDemoPlaying: false,
+    aliasDemoPlayed: false,
     formValid: false,
     docToggles: {}, // { doc_bom: true, doc_suppliers: false, ... } — per-category opt-out for THIS engagement
   };
@@ -1253,13 +1290,15 @@
     aliasText: $('#alias-text'),
     aliasReroll: $('#alias-reroll'),
     aliasUseReal: $('#alias-use-real'),
-    aiMemoryName: $('#ai-memory-name'),
-    aiMemoryCompany: $('#ai-memory-company'),
+    aliasDemoPrefix: $('#alias-demo-prefix'),
+    aliasDemoName: $('#alias-demo-name'),
+    aliasDemoCaret: $('#alias-demo-caret'),
+    aliasDemoShield: $('#alias-demo-shield'),
+    aliasWarning: $('#alias-warning'),
     pasteAliasSlide: $('.slide--paste-alias'),
-    refSlug: $('#ref-slug'),
     refSubject: $('#ref-subject'),
-    refEngagement: $('#ref-engagement'),
-    refExcludedBy: $('#ref-excluded-by'),
+    refCategoryLabel: $('#ref-category-label'),
+    refFile: $('#ref-file'),
     repName: $('#cp_rep_name'),
     repRole: $('#cp_rep_role'),
     repEmail: $('#cp_rep_email'),
@@ -1337,35 +1376,26 @@
     showRow(els.engRowBewaar, els.engBewaar, bewaarText);
     if (els.engNarrative) els.engNarrative.innerHTML = buildEngagementNarrative(profile);
     renderRefusalTerminal(profile);
-    renderAiMemoryCard(profile);
   }
 
-  // Default per-regime AI-exclusion category, mirroring scope-enforcement-gate.md.
-  // The dpa-verify-token profile carries regulatory_regime but not the resolved
-  // exclusion list — derive client-side so the slide-dna terminal reads as a
-  // realistic scope-gate refusal for THIS engagement.
-  const REGIME_EXCLUSION = {
-    'dsr': 'volledige_formulering_recepten_clp_ip',
-    'espr': 'product_design_specs_complete_bom',
-    'espr_textiles': 'garment_composition_supply_chain_origin',
-    'other': 'bedrijfsgevoelige_ip_propertaire_data',
+  // Per-regime category description shown in Claude's refusal bubble + the
+  // file name in the user's message. Keeps the chat mockup concrete to THIS
+  // engagement's regime (DSR → recepten; ESPR → BOMs; textiles → samenstelling).
+  // Source: scope-enforcement-gate.md regime defaults.
+  const REGIME_REFUSAL = {
+    'dsr':           { category: 'recepten en formuleringen',                 file: 'wasmiddel-formulering-q3.xlsx' },
+    'espr':          { category: 'BOMs en product-design-specs',              file: 'product-bom-q3.xlsx' },
+    'espr_textiles': { category: 'samenstelling, herkomst- en leveranciersdata', file: 'wol-samenstelling-q3.xlsx' },
+    'other':         { category: 'bedrijfsgevoelige IP',                      file: 'productie-data-q3.xlsx' },
   };
 
   function renderRefusalTerminal(profile) {
-    const slug = (profile && profile.slug) || 'acme';
     const subject = (profile && (profile.legal_name || profile.cp_legal_name)) || 'Acme B.V.';
-    const engKey = (state.body && state.body.engagement_key) || (profile && profile.engagement_key) || 'voucher/acme-bv';
     const regime = (profile && profile.regulatory_regime) || 'other';
-    const excludedBy = REGIME_EXCLUSION[regime] || REGIME_EXCLUSION['other'];
-    if (els.refSlug) els.refSlug.textContent = slug;
+    const r = REGIME_REFUSAL[regime] || REGIME_REFUSAL['other'];
     if (els.refSubject) els.refSubject.textContent = subject;
-    if (els.refEngagement) els.refEngagement.textContent = engKey;
-    if (els.refExcludedBy) els.refExcludedBy.textContent = excludedBy;
-  }
-
-  function renderAiMemoryCard(profile) {
-    const company = (profile && (profile.legal_name || profile.cp_legal_name)) || 'Bedrijf B.V.';
-    if (els.aiMemoryCompany) els.aiMemoryCompany.textContent = company;
+    if (els.refCategoryLabel) els.refCategoryLabel.textContent = r.category;
+    if (els.refFile) els.refFile.textContent = r.file;
   }
 
   function buildEngagementNarrative(profile) {
@@ -1451,14 +1481,70 @@
   function syncAliasDownstream(rawName) {
     const name = (rawName || '').trim() || '—';
     state.aliasTarget = name;
-    // If the paste-alias slide has already been revealed, animate to the new name
-    // in place. If not, just store it — the slide-enter observer will pick it up.
-    if (els.aiMemoryName && els.pasteAliasSlide && els.pasteAliasSlide.classList.contains('is-visible')) {
-      scrambleText(els.aiMemoryName, els.aiMemoryName.textContent, name);
+    // If the paste-alias slide has already played its typewriter intro, animate
+    // the name span in place. Else just store — the slide-enter observer picks
+    // it up when the user reaches the slide.
+    if (els.aliasDemoName && state.aliasDemoPlayed) {
+      scrambleText(els.aliasDemoName, els.aliasDemoName.textContent, name);
     }
   }
 
-  // Character-scramble animation for the AI-memory name field.
+  // ===== Alias-demo animation =====
+  // Sentence kept English so it reads the same across all locale variants.
+  const ALIAS_DEMO_PREFIX = "These are the minutes of this morning's meeting with ";
+  const ALIAS_DEMO_REAL_NAME = "John Doe";
+  const RESERVED_ALIASES = new Set(['skeptical chameleon']);
+
+  function isReservedAlias(name) {
+    return RESERVED_ALIASES.has((name || '').trim().toLowerCase());
+  }
+
+  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  async function typewriter(el, text, charDelay) {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { el.textContent = text; return; }
+    el.textContent = '';
+    for (let i = 0; i < text.length; i++) {
+      el.textContent += text[i];
+      await sleep(charDelay);
+    }
+  }
+
+  async function playAliasDemo() {
+    if (state.aliasDemoPlaying || state.aliasDemoPlayed) return;
+    state.aliasDemoPlaying = true;
+    const alias = (state.aliasTarget || (els.aliasText && els.aliasText.value) || '').trim() || 'Skeptical Chameleon';
+    if (els.aliasDemoPrefix) els.aliasDemoPrefix.textContent = '';
+    if (els.aliasDemoName) {
+      els.aliasDemoName.textContent = '';
+      els.aliasDemoName.classList.remove('is-shielded', 'is-cycling');
+    }
+    if (els.aliasDemoShield) els.aliasDemoShield.classList.remove('is-shown');
+    if (els.aliasDemoCaret) els.aliasDemoCaret.classList.remove('is-hidden');
+    // Phase 1: type the prefix
+    if (els.aliasDemoPrefix) await typewriter(els.aliasDemoPrefix, ALIAS_DEMO_PREFIX, 28);
+    // Phase 2: type the real name
+    if (els.aliasDemoName) await typewriter(els.aliasDemoName, ALIAS_DEMO_REAL_NAME, 55);
+    // Phase 3: pause — user "hits send"
+    await sleep(450);
+    if (els.aliasDemoCaret) els.aliasDemoCaret.classList.add('is-hidden');
+    // Phase 4: shield activates
+    if (els.aliasDemoShield) els.aliasDemoShield.classList.add('is-shown');
+    await sleep(280);
+    // Phase 5: scramble the name into the alias
+    if (els.aliasDemoName) {
+      scrambleText(els.aliasDemoName, ALIAS_DEMO_REAL_NAME, alias, 950);
+      // Mark "shielded" once the scramble settles (~950ms + a beat)
+      setTimeout(() => {
+        if (els.aliasDemoName) els.aliasDemoName.classList.add('is-shielded');
+      }, 1000);
+    }
+    state.aliasDemoPlaying = false;
+    state.aliasDemoPlayed = true;
+  }
+
+  // Character-scramble animation for the alias-demo name field.
   // Letters settle progressively left-to-right; total duration ~900ms.
   // prefers-reduced-motion → instant swap.
   function scrambleText(el, fromText, toText, duration) {
@@ -1514,7 +1600,7 @@
 
   // ===== Form validation =====
   // Matrix categories: each must have exactly one radio checked.
-  const MATRIX_CATEGORIES = ['contact_info', 'project_content', 'production_data', 'transport_data', 'supplier_data', 'certification_audit_data', 'metadata'];
+  const MATRIX_CATEGORIES = ['contact_info', 'project_content', 'production_data', 'transport_data', 'supplier_data', 'certification_audit_data', 'metadata', 'financial_data'];
   function readConsentMatrix() {
     const result = {};
     for (const cat of MATRIX_CATEGORIES) {
@@ -1526,11 +1612,14 @@
   function checkFormValid() {
     const matrix = readConsentMatrix();
     const matrixComplete = MATRIX_CATEGORIES.every(c => matrix[c]);
+    const aliasReserved = state.aliasMode === 'random' && isReservedAlias(els.aliasText.value);
+    if (els.aliasWarning) els.aliasWarning.hidden = !aliasReserved;
     const valid =
       els.repName.value.trim().length >= 2 &&
       els.repRole.value.trim().length >= 2 &&
       isEmail(els.repEmail.value.trim()) &&
-      matrixComplete;
+      matrixComplete &&
+      !aliasReserved;
     state.formValid = valid;
     state.consentMatrix = matrix;
     els.readyCta.disabled = !valid;
@@ -1584,13 +1673,12 @@
       archObs.observe(archSlide);
     }
 
-    // One-shot reveal + name-swap animation for the paste-alias slide
-    if (els.pasteAliasSlide && els.aiMemoryName) {
+    // One-shot reveal + typewriter→scramble for the paste-alias slide
+    if (els.pasteAliasSlide && els.aliasDemoName) {
       const paObs = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
           els.pasteAliasSlide.classList.add('is-visible');
-          const target = state.aliasTarget || (els.aliasText && els.aliasText.value) || els.aiMemoryName.textContent;
-          scrambleText(els.aiMemoryName, els.aiMemoryName.textContent, target);
+          playAliasDemo();
           paObs.disconnect();
         }
       }, { root: els.slides, threshold: 0.5 });
@@ -1722,7 +1810,7 @@
           // Sub-processor slide removed from welcome flow; the canonical
           // sub-processor list and Art 28(2) objection right now live in the
           // DPA contract body (Annex A + correspondence footer).
-          setAlias(randomAlias());
+          setAlias('Skeptical Chameleon');
           bindAiPermission();
           buildNavDots();
 

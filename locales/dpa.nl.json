@@ -91,7 +91,12 @@
       "anderen_saas": "SaaS slurpt",
       "anderen_caption": "Geen toestemming, geen blokkade, geen audit-trail.",
       "wij_label": "Wij",
-      "wij_caption": "Pre-tool hook weigert. Niets bereikt de AI."
+      "wij_caption": "Pre-tool hook weigert. Niets bereikt de AI.",
+      "chat_user_msg": "Kan je deze data analyseren en mappen naar DPP-velden?",
+      "chat_claude_lede": "Sorry, ik kan dit bestand niet voor je openen.",
+      "chat_claude_explain_a": "heeft",
+      "chat_claude_explain_b": "uitgesloten van AI-verwerking in jullie Verwerkersovereenkomst (§B.6).",
+      "chat_claude_offer": "Een Regen-medewerker kan dit handmatig oppakken — wil je dat ik daar een ping naar stuur?"
     },
     "slide_arch": {
       "nav_title": "Architectuur",
@@ -129,14 +134,12 @@
     "slide_shield": {
       "nav_title": "paste-alias-shield",
       "kicker": "Jouw rol — met een alias",
-      "title": "Help ons om jou te beschermen tegen AI met een alias",
-      "lede": "Zo zie jij eruit voor AI in onze werkbestanden:",
-      "memory_badge": "MEMORY",
-      "memory_path": "subject · counterparty_record",
-      "memory_key_name": "name",
-      "memory_key_email": "email",
-      "memory_key_company": "company",
-      "memory_key_updated": "last_updated",
+      "title": "Bescherm jezelf tegen AI, neem een alias!",
+      "lede": "Wat de operator typt — en wat AI te zien krijgt:",
+      "demo_caption_operator": "Wat de operator typt",
+      "demo_caption_ai": "Wat AI ervan ziet",
+      "demo_shield": "paste-alias-shield · actief",
+      "warning_reserved": "Deze alias is al in gebruik door Yvo Hunink, founder van Regen Studio. Kies een andere.",
       "picker_title": "Hoe wil je dat AI naar jou verwijst?",
       "picker_intro": "Dit is hoe je naam erin gaat. Pak een willekeurig dier-alias dat we voor je hebben gegooid, type je eigen versie, of gebruik je echte naam.",
       "picker_input_aria": "Alias — bewerk vrij of gebruik de gegooide voorbeeld",
@@ -287,6 +290,11 @@
           "title": "Metadata",
           "sub": "Tijdstempels, IP's, geaggregeerde gebruikscijfers",
           "benefit": "<strong>Als AI dit mag inzien:</strong> Audit-trail automatisch opgebouwd per beslissing — geen reconstructie achteraf bij vaststelling."
+        },
+        "financial_data": {
+          "title": "Financiële gegevens",
+          "sub": "Facturen, budgetten, betalingsgegevens, fee-structuren",
+          "benefit": "<strong>Standaard uitgesloten:</strong> Dit hebben we niet nodig — en hoeven we ook niet te zien. Geen reden om dit aan AI te tonen."
         }
       }
     }
