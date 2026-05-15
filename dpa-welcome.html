@@ -430,17 +430,86 @@
   }
   .refusal-card--anderen { background: linear-gradient(180deg, white 0%, rgba(231,24,70,0.03) 100%); }
   .refusal-card--wij { border-top: 3px solid var(--emerald); }
-  .paste-flow {
-    display: flex; align-items: center; justify-content: center;
-    gap: 14px; padding: 28px 8px;
+  /* "Anderen" data-leak scene — visible personal+company fragments stream
+     into a pulsing red cluster of named LLM products. */
+  .leak-scene {
+    display: grid; grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr);
+    gap: 8px; align-items: stretch; padding: 4px 0;
   }
-  .paste-flow__doc { font-size: 36px; line-height: 1; }
-  .paste-flow__arrow { font-size: 22px; color: var(--muted); }
-  .paste-flow__saas {
-    background: rgba(231,24,70,0.08); color: var(--magenta);
-    padding: 8px 14px; border-radius: 16px;
-    font-size: 13px; font-weight: 600;
-    border: 1px dashed rgba(231,24,70,0.3);
+  .leak-doc {
+    background: white; border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    display: flex; flex-direction: column;
+  }
+  .leak-doc__bar {
+    padding: 5px 8px; background: rgba(0,0,0,0.04);
+    border-bottom: 1px solid var(--border);
+  }
+  .leak-doc__filename {
+    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    font-size: 9.5px; color: var(--muted);
+  }
+  .leak-doc__body { padding: 6px 8px; display: flex; flex-direction: column; gap: 3px; }
+  .leak-line { display: flex; gap: 6px; align-items: baseline; font-size: 9.5px; line-height: 1.35; }
+  .leak-key {
+    color: var(--muted); width: 58px; flex-shrink: 0;
+    text-transform: uppercase; letter-spacing: 0.4px; font-size: 8.5px; font-weight: 600;
+  }
+  .leak-val {
+    color: var(--ink);
+    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    font-size: 9.5px; word-break: break-all;
+  }
+  .leak-redact {
+    color: rgba(147,9,63,0.55); letter-spacing: -0.5px;
+    font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    font-size: 9.5px;
+  }
+  .leak-streams {
+    display: flex; flex-direction: column; justify-content: space-around;
+    padding: 6px 0;
+  }
+  .leak-stream {
+    height: 2px; border-radius: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(231,24,70,0.65) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: leak-flow 1.6s linear infinite;
+  }
+  .leak-stream:nth-child(2) { animation-delay: 0.32s; }
+  .leak-stream:nth-child(3) { animation-delay: 0.64s; }
+  .leak-stream:nth-child(4) { animation-delay: 0.96s; }
+  .leak-stream:nth-child(5) { animation-delay: 1.28s; }
+  @keyframes leak-flow {
+    0%   { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+  .leak-cloud {
+    display: flex; flex-direction: column; gap: 4px; padding: 8px;
+    border: 1.5px dashed rgba(231,24,70,0.5); border-radius: 10px;
+    background: rgba(231,24,70,0.05);
+    animation: leak-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes leak-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(231,24,70,0.0); }
+    50%      { box-shadow: 0 0 0 6px rgba(231,24,70,0.10); }
+  }
+  .leak-cloud__chip {
+    background: white; color: var(--ink);
+    border: 1px solid rgba(231,24,70,0.25);
+    border-radius: 3px;
+    padding: 3px 6px;
+    font-size: 9.5px; line-height: 1.3;
+    text-align: center;
+  }
+  .leak-cloud__chip--more {
+    background: transparent; border: none;
+    color: var(--muted); font-style: italic; font-size: 9px;
+  }
+  @media (max-width: 760px) {
+    .leak-scene { grid-template-columns: 1fr; }
+    .leak-streams { flex-direction: row; padding: 4px 0; }
+    .leak-stream { height: 100%; width: 2px; }
   }
   .refusal-card__caption {
     font-size: 12.5px; color: var(--muted); line-height: 1.55; margin: 0;
@@ -667,6 +736,14 @@
   }
   .cc-radio:has(input:checked) .cc-label { color: var(--ink); font-weight: 600; }
   .cc-label { line-height: 1.3; }
+  .cc-radio--locked {
+    opacity: 0.4; cursor: not-allowed; pointer-events: none;
+  }
+  .cc-radio--locked .cc-label { font-style: italic; }
+  .consent-card__locked-help {
+    margin: 6px 0 0; font-size: 11.5px; color: var(--muted);
+    line-height: 1.4; font-style: italic;
+  }
   .consent-footnote {
     margin-top: 18px; font-size: 12px; color: var(--muted);
     max-width: 760px; line-height: 1.55;
@@ -777,7 +854,8 @@
   /* ===== Reduced motion ===== */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .slide__hint, .alias-picker__input, .alias-demo__caret { animation: none; }
+    .slide__hint, .alias-picker__input, .alias-demo__caret,
+    .leak-stream, .leak-cloud { animation: none; }
     .ready-cta:hover { transform: none; }
   }
 </style>
@@ -910,16 +988,36 @@
   <section class="slide slide--refusal" data-i18n-nav-title="welcome.slide_dna.nav_title" data-nav-title="AI says no" id="slide-dna">
     <div class="slide__inner">
       <p class="slide__kicker" data-i18n="welcome.slide_dna.kicker">Toestemming vs. stille inname</p>
-      <h2 class="slide__title" data-i18n="welcome.slide_dna.title">Anderen doen het achter je rug — wij vragen toestemming en blokkeren AI-gebruik bij de bron.</h2>
+      <h2 class="slide__title" data-i18n="welcome.slide_dna.title">Anderen doen het achter je rug — Regen Studio vraagt toestemming en blokkeert AI-gebruik bij de bron.</h2>
       <div class="refusal-grid">
         <div class="refusal-card refusal-card--anderen">
           <h3 data-i18n="welcome.slide_dna.anderen_label">Anderen</h3>
-          <div class="paste-flow">
-            <span class="paste-flow__doc" aria-hidden="true">📄</span>
-            <span class="paste-flow__arrow" aria-hidden="true">→</span>
-            <span class="paste-flow__saas" data-i18n="welcome.slide_dna.anderen_saas">SaaS slurpt</span>
+          <div class="leak-scene">
+            <div class="leak-doc" aria-hidden="true">
+              <div class="leak-doc__bar">
+                <span class="leak-doc__filename" data-i18n="welcome.slide_dna.leak_filename">jouw_notulen_2026-05-14.pdf</span>
+              </div>
+              <div class="leak-doc__body">
+                <div class="leak-line"><span class="leak-key" data-i18n="welcome.slide_dna.leak_key_name">Aanwezig</span><span class="leak-val" id="leak-name">Yvo Hunink</span></div>
+                <div class="leak-line"><span class="leak-key" data-i18n="welcome.slide_dna.leak_key_email">Email</span><span class="leak-val" id="leak-email">yvo@regenstudio.world</span></div>
+                <div class="leak-line"><span class="leak-key" data-i18n="welcome.slide_dna.leak_key_company">Firma</span><span class="leak-val" id="leak-company">Regen Studio B.V.</span></div>
+                <div class="leak-line"><span class="leak-key" data-i18n="welcome.slide_dna.leak_key_recipe">Recept</span><span class="leak-redact">███ formulering ███</span></div>
+                <div class="leak-line"><span class="leak-key" data-i18n="welcome.slide_dna.leak_key_production">Productie</span><span class="leak-redact">██████ BOM ████</span></div>
+              </div>
+            </div>
+            <div class="leak-streams" aria-hidden="true">
+              <span class="leak-stream"></span><span class="leak-stream"></span><span class="leak-stream"></span><span class="leak-stream"></span><span class="leak-stream"></span>
+            </div>
+            <div class="leak-cloud" aria-hidden="true">
+              <div class="leak-cloud__chip">ChatGPT</div>
+              <div class="leak-cloud__chip">Copilot</div>
+              <div class="leak-cloud__chip">Gemini</div>
+              <div class="leak-cloud__chip">Notion AI</div>
+              <div class="leak-cloud__chip">Perplexity</div>
+              <div class="leak-cloud__chip leak-cloud__chip--more" data-i18n="welcome.slide_dna.leak_cloud_more">+ 47 anderen</div>
+            </div>
           </div>
-          <p class="refusal-card__caption" data-i18n="welcome.slide_dna.anderen_caption">Geen toestemming, geen blokkade, geen audit-trail.</p>
+          <p class="refusal-card__caption" data-i18n-html="welcome.slide_dna.anderen_caption"><strong>Geen toestemming. Geen blokkade. Geen audit-trail.</strong><br>Eenmaal getypt, voor altijd ergens.</p>
         </div>
         <div class="refusal-card refusal-card--wij">
           <h3 data-i18n="welcome.slide_dna.wij_label">Wij</h3>
@@ -1035,7 +1133,7 @@
     <section class="slide slide--consent" data-i18n-nav-title="welcome.slide_consent.nav_title" data-nav-title="Data-categorieën" id="slide-consent">
       <div class="slide__inner">
         <p class="slide__kicker" data-i18n="welcome.slide_consent.kicker">Per data-categorie</p>
-        <h2 class="slide__title" data-i18n="welcome.slide_consent.title">Wat krijg je terug — en wat geef je toestemming voor?</h2>
+        <h2 class="slide__title" data-i18n="welcome.slide_consent.title">Waar vragen we toestemming voor en wat krijg je er voor terug?</h2>
         <p class="slide__subtitle" data-i18n="welcome.slide_consent.intro">Voor elke data-categorie: wat AI ermee kan als je toegang geeft, en wat jouw keuze is. Granulair, intrekbaar, controleerbaar.</p>
         <div class="consent-matrix" id="consent-matrix">
 
@@ -1051,8 +1149,9 @@
             <fieldset class="consent-card__choices">
               <label class="cc-radio"><input type="radio" name="cat_contact_info" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
               <label class="cc-radio"><input type="radio" name="cat_contact_info" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
-              <label class="cc-radio"><input type="radio" name="cat_contact_info" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+              <label class="cc-radio cc-radio--locked"><input type="radio" name="cat_contact_info" value="excluded" disabled><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
             </fieldset>
+            <p class="consent-card__locked-help" data-i18n="welcome.slide_consent.locked_excluded_help">Zonder dit kunnen we echt niet werken.</p>
           </div>
 
           <div class="consent-card" data-category="project_content">
@@ -1067,8 +1166,9 @@
             <fieldset class="consent-card__choices">
               <label class="cc-radio"><input type="radio" name="cat_project_content" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
               <label class="cc-radio"><input type="radio" name="cat_project_content" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
-              <label class="cc-radio"><input type="radio" name="cat_project_content" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+              <label class="cc-radio cc-radio--locked"><input type="radio" name="cat_project_content" value="excluded" disabled><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
             </fieldset>
+            <p class="consent-card__locked-help" data-i18n="welcome.slide_consent.locked_excluded_help">Zonder dit kunnen we echt niet werken.</p>
           </div>
 
           <div class="consent-card" data-category="production_data">
@@ -1261,7 +1361,7 @@
     aliasMode: 'random', // 'random' or 'real'
     aliasTarget: '', // latest alias chosen, used by the alias-demo animation
     aliasDemoPlaying: false,
-    aliasDemoPlayed: false,
+    aliasDemoLooping: false,
     formValid: false,
     docToggles: {}, // { doc_bom: true, doc_suppliers: false, ... } — per-category opt-out for THIS engagement
   };
@@ -1299,6 +1399,9 @@
     refSubject: $('#ref-subject'),
     refCategoryLabel: $('#ref-category-label'),
     refFile: $('#ref-file'),
+    leakName: $('#leak-name'),
+    leakEmail: $('#leak-email'),
+    leakCompany: $('#leak-company'),
     repName: $('#cp_rep_name'),
     repRole: $('#cp_rep_role'),
     repEmail: $('#cp_rep_email'),
@@ -1396,6 +1499,27 @@
     if (els.refSubject) els.refSubject.textContent = subject;
     if (els.refCategoryLabel) els.refCategoryLabel.textContent = r.category;
     if (els.refFile) els.refFile.textContent = r.file;
+    // Anderen-panel: visible personal+company fragments leaking to the AI cloud.
+    const name = (profile && (profile.cp_rep_name || profile.representative_name)) || 'Yvo Hunink';
+    const company = (profile && (profile.legal_name || profile.cp_legal_name)) || 'Regen Studio B.V.';
+    if (els.leakName) els.leakName.textContent = name;
+    if (els.leakCompany) els.leakCompany.textContent = company;
+    if (els.leakEmail) els.leakEmail.textContent = deriveDemoEmail(name, company);
+  }
+
+  // profile.cp_rep_email is not surfaced by dpa-verify-token; synthesise a
+  // realistic-looking address so the "leak" feels concrete without showing
+  // any real third-party email. Strips accents on the first name, slugs the
+  // company name into a TLD-style domain.
+  function deriveDemoEmail(name, company) {
+    const stripAccents = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
+    const first = (name || '').split(' ')[0] || 'yvo';
+    const localPart = stripAccents(first).toLowerCase().replace(/[^a-z0-9]/g, '');
+    const co = stripAccents((company || '').toLowerCase())
+      .replace(/\b(b\.?v\.?|n\.?v\.?|gmbh|ltd|llc|inc)\b/g, '')
+      .replace(/[^a-z0-9]/g, '');
+    const domain = co ? (co + '.world') : 'regenstudio.world';
+    return (localPart || 'yvo') + '@' + domain;
   }
 
   function buildEngagementNarrative(profile) {
@@ -1481,11 +1605,15 @@
   function syncAliasDownstream(rawName) {
     const name = (rawName || '').trim() || '—';
     state.aliasTarget = name;
-    // If the paste-alias slide has already played its typewriter intro, animate
-    // the name span in place. Else just store — the slide-enter observer picks
-    // it up when the user reaches the slide.
-    if (els.aliasDemoName && state.aliasDemoPlayed) {
-      scrambleText(els.aliasDemoName, els.aliasDemoName.textContent, name);
+    // If a one-shot scramble is currently the only thing showing (loop not running
+    // because slide-paste-alias hasn't been visited yet, or reduced-motion fallback),
+    // animate in place. When the loop IS running, skip — the next cycle picks up
+    // the new state.aliasTarget naturally and we avoid two animations fighting.
+    if (els.aliasDemoName && !state.aliasDemoLooping && !state.aliasDemoPlaying) {
+      const current = els.aliasDemoName.textContent;
+      if (current && current.trim()) {
+        scrambleText(els.aliasDemoName, current, name);
+      }
     }
   }
 
@@ -1512,7 +1640,7 @@
   }
 
   async function playAliasDemo() {
-    if (state.aliasDemoPlaying || state.aliasDemoPlayed) return;
+    if (state.aliasDemoPlaying) return;
     state.aliasDemoPlaying = true;
     const alias = (state.aliasTarget || (els.aliasText && els.aliasText.value) || '').trim() || 'Skeptical Chameleon';
     if (els.aliasDemoPrefix) els.aliasDemoPrefix.textContent = '';
@@ -1532,16 +1660,28 @@
     // Phase 4: shield activates
     if (els.aliasDemoShield) els.aliasDemoShield.classList.add('is-shown');
     await sleep(280);
-    // Phase 5: scramble the name into the alias
+    // Phase 5: scramble the name into the alias; wait for the settle.
     if (els.aliasDemoName) {
       scrambleText(els.aliasDemoName, ALIAS_DEMO_REAL_NAME, alias, 950);
-      // Mark "shielded" once the scramble settles (~950ms + a beat)
-      setTimeout(() => {
-        if (els.aliasDemoName) els.aliasDemoName.classList.add('is-shielded');
-      }, 1000);
+      await sleep(1000);
+      if (els.aliasDemoName) els.aliasDemoName.classList.add('is-shielded');
     }
     state.aliasDemoPlaying = false;
-    state.aliasDemoPlayed = true;
+  }
+
+  // Repeats playAliasDemo while the paste-alias slide is in view. Reduced-motion
+  // users get a single play (still informative; not restless).
+  async function cycleAliasDemo() {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { await playAliasDemo(); return; }
+    while (state.aliasDemoLooping) {
+      await playAliasDemo();
+      // Hold the settled alias so the user can register the swap.
+      await sleep(2200);
+      if (!state.aliasDemoLooping) break;
+      // Brief blank before next cycle.
+      await sleep(300);
+    }
   }
 
   // Character-scramble animation for the alias-demo name field.
@@ -1673,13 +1813,18 @@
       archObs.observe(archSlide);
     }
 
-    // One-shot reveal + typewriter→scramble for the paste-alias slide
+    // Loop the typewriter→scramble demo while the paste-alias slide is in view.
+    // Stop the loop when it scrolls out so we're not animating off-screen.
     if (els.pasteAliasSlide && els.aliasDemoName) {
       const paObs = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
           els.pasteAliasSlide.classList.add('is-visible');
-          playAliasDemo();
-          paObs.disconnect();
+          if (!state.aliasDemoLooping) {
+            state.aliasDemoLooping = true;
+            cycleAliasDemo();
+          }
+        } else {
+          state.aliasDemoLooping = false;
         }
       }, { root: els.slides, threshold: 0.5 });
       paObs.observe(els.pasteAliasSlide);

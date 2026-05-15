@@ -86,10 +86,16 @@
     "slide_dna": {
       "nav_title": "AI says no",
       "kicker": "Toestemming vs. stille inname",
-      "title": "Anderen doen het achter je rug — wij vragen toestemming en blokkeren AI-gebruik bij de bron.",
+      "title": "Anderen doen het achter je rug — Regen Studio vraagt toestemming en blokkeert AI-gebruik bij de bron.",
       "anderen_label": "Anderen",
-      "anderen_saas": "SaaS slurpt",
-      "anderen_caption": "Geen toestemming, geen blokkade, geen audit-trail.",
+      "anderen_caption": "<strong>Geen toestemming. Geen blokkade. Geen audit-trail.</strong><br>Eenmaal getypt, voor altijd ergens.",
+      "leak_filename": "jouw_notulen_2026-05-14.pdf",
+      "leak_key_name": "Aanwezig",
+      "leak_key_email": "Email",
+      "leak_key_company": "Firma",
+      "leak_key_recipe": "Recept",
+      "leak_key_production": "Productie",
+      "leak_cloud_more": "+ 47 anderen",
       "wij_label": "Wij",
       "wij_caption": "Pre-tool hook weigert. Niets bereikt de AI.",
       "chat_user_msg": "Kan je deze data analyseren en mappen naar DPP-velden?",
@@ -249,11 +255,12 @@
     "slide_consent": {
       "nav_title": "Data-categorieën",
       "kicker": "Per data-categorie",
-      "title": "Wat krijg je terug — en wat geef je toestemming voor?",
+      "title": "Waar vragen we toestemming voor en wat krijg je er voor terug?",
       "intro": "Voor elke data-categorie: wat AI ermee kan als je toegang geeft, en wat jouw keuze is. Granulair, intrekbaar, controleerbaar.",
       "choice_ai": "AI mag verwerken",
       "choice_operator": "Alleen operator",
       "choice_excluded": "Niet verwerken",
+      "locked_excluded_help": "Zonder dit kunnen we echt niet werken.",
       "footnote": "Per-categorie keuzes worden in de DPA en het consent-register vastgelegd als audit-trail; geautomatiseerde handhaving op rij-niveau door de AI-gates van Regen Studio rolt uit in Q3-2026. Tot dan handhaaft de operator de fijnere keuzes handmatig.",
       "cards": {
         "contact_info": {
