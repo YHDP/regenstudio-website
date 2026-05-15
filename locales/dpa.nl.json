@@ -146,6 +146,11 @@
       "demo_caption_ai": "Wat AI ervan ziet",
       "demo_shield": "paste-alias-shield · actief",
       "warning_reserved": "Deze alias is al in gebruik door Yvo Hunink, founder van Regen Studio. Kies een andere.",
+      "warning_empty": "Vul eerst een alias in (of vink aan dat je geen alias wilt).",
+      "warning_unconfirmed": "Bevestig je alias met de knop \"Bevestig\" — of vink aan dat je geen alias wilt.",
+      "no_alias_label": "Ik wil geen alias gebruiken — gebruik mijn echte naam intern",
+      "confirm_btn": "Bevestig",
+      "confirm_done": "Bevestigd ✓",
       "picker_title": "Hoe wil je dat AI naar jou verwijst?",
       "picker_intro": "Dit is hoe je naam erin gaat. Pak een willekeurig dier-alias dat Regen Studio voor je heeft gegooid, type je eigen versie, of gebruik je echte naam.",
       "picker_input_aria": "Alias — bewerk vrij of gebruik de gegooide voorbeeld",
@@ -250,7 +255,7 @@
       },
       "footnote": "Deze keuzes worden vastgelegd in de DPA. Volledig intrekken kan via de consent-dashboard (één klik). Voor granulair wijzigen — een specifieke rij omzetten — is een nieuwe DPA-ondertekening nodig.",
       "cta": "Naar de Verwerkersovereenkomst",
-      "validation": "Vul alle verplichte velden in om door te kunnen."
+      "validation": "Nog niet compleet — we hebben de rood-omkaderde onderdelen voor je gemarkeerd. Vul ze aan om door te gaan."
     },
     "slide_consent": {
       "nav_title": "Data-categorieën",

@@ -662,7 +662,6 @@
     box-shadow: 0 0 0 3px rgba(0,133,69,0.12);
   }
   .alias-picker__input.is-rolling { opacity: 0.5; }
-  .alias-picker__input.is-real { background: rgba(0,133,69,0.05); border-color: var(--emerald); }
   .alias-picker__reroll {
     padding: 0 16px; background: white; border: 1px solid var(--border);
     border-radius: 6px; cursor: pointer; font-size: 13px; color: var(--ink-soft);
@@ -675,6 +674,30 @@
     margin-top: 10px; font-size: 12px; color: var(--muted);
   }
   .alias-picker__custom a { color: var(--emerald-dark); cursor: pointer; text-decoration: underline; }
+  .alias-picker__confirm {
+    padding: 0 16px; background: var(--emerald); color: #fff; border: none;
+    border-radius: 6px; cursor: pointer; font-family: inherit;
+    font-size: 13px; font-weight: 600; transition: all 0.15s; white-space: nowrap;
+  }
+  .alias-picker__confirm:hover { background: var(--emerald-dark); }
+  .alias-picker__confirm:disabled { background: var(--muted); opacity: 0.55; cursor: not-allowed; }
+  .alias-picker__input.is-confirmed { border-color: var(--emerald); background: rgba(0,133,69,0.05); }
+  .alias-picker__input:disabled,
+  .alias-picker__reroll:disabled { opacity: 0.45; cursor: not-allowed; }
+  .alias-noalias {
+    display: flex; align-items: center; gap: 8px; margin-top: 12px;
+    font-size: 13px; color: var(--ink-soft); cursor: pointer;
+  }
+  .alias-noalias input { width: 16px; height: 16px; accent-color: var(--emerald); cursor: pointer; }
+  /* submit-time error framing */
+  .field-invalid {
+    border-color: var(--magenta) !important;
+    box-shadow: 0 0 0 3px rgba(231,24,70,0.15) !important;
+  }
+  .alias-picker-block.is-invalid {
+    border-color: var(--magenta);
+    box-shadow: 0 0 0 3px rgba(231,24,70,0.12);
+  }
 
   /* Consent-card grid — benefit + per-category consent in one card. */
   .consent-matrix {
@@ -1104,21 +1127,31 @@
         </p>
       </div>
 
-      <div class="alias-picker-block">
+      <div class="alias-picker-block" tabindex="-1">
         <h3 class="alias-picker-block__title" data-i18n="welcome.slide_shield.picker_title">Hoe wil je dat AI naar jou verwijst?</h3>
         <p class="alias-picker-block__intro" data-i18n="welcome.slide_shield.picker_intro">
           Dit is hoe je naam erin gaat. Pak een willekeurig dier-alias dat Regen Studio voor je heeft gegooid, type je eigen versie, of gebruik je echte naam.
         </p>
         <div class="alias-picker">
           <span class="alias-picker__icon">🎲</span>
-          <input type="text" class="alias-picker__input" id="alias-text" value="Curious Octopus" autocomplete="off" data-i18n-aria="welcome.slide_shield.picker_input_aria" aria-label="Alias — bewerk vrij of gebruik de gegooide voorbeeld" maxlength="40">
+          <!-- INTENTIONAL: the seed value is *exactly* the reserved alias
+               (= Regen Studio founder Yvo Hunink, see RESERVED_ALIASES).
+               This forces every signer to make an explicit alias decision
+               (press Bevestig on a non-reserved value, or tick the no-alias
+               box) before the form can submit. Do NOT "fix" this to a neutral
+               seed — it would silently defeat the forced-decision gate. -->
+          <input type="text" class="alias-picker__input" id="alias-text" value="Skeptical Chameleon" autocomplete="off" data-i18n-aria="welcome.slide_shield.picker_input_aria" aria-label="Alias — bewerk vrij of gebruik de gegooide voorbeeld" maxlength="40">
           <button type="button" class="alias-picker__reroll" id="alias-reroll" data-i18n-aria="welcome.slide_shield.picker_reroll_aria" aria-label="Andere voorbeeld-alias">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
             <span data-i18n="welcome.slide_shield.picker_reroll">andere</span>
           </button>
+          <button type="button" class="alias-picker__confirm" id="alias-confirm" data-i18n="welcome.slide_shield.confirm_btn">Bevestig</button>
         </div>
         <p class="alias-picker__warning" id="alias-warning" hidden data-i18n="welcome.slide_shield.warning_reserved">Deze alias is al in gebruik door Yvo Hunink, founder van Regen Studio. Kies een andere.</p>
-        <p class="alias-picker__custom"><a id="alias-use-real" data-i18n="welcome.slide_shield.picker_use_real">of: gebruik mijn echte naam intern</a></p>
+        <label class="alias-noalias">
+          <input type="checkbox" id="alias-no-alias">
+          <span data-i18n="welcome.slide_shield.no_alias_label">Ik wil geen alias gebruiken — gebruik mijn echte naam intern</span>
+        </label>
       </div>
     </div>
     <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
@@ -1305,7 +1338,7 @@
         <p class="form-footnote" data-i18n="welcome.slide_form.footnote">
           Deze keuzes worden vastgelegd in de DPA. Volledig intrekken kan via de consent-dashboard (één klik). Voor granulair wijzigen — een specifieke rij omzetten — is een nieuwe DPA-ondertekening nodig.
         </p>
-        <button type="button" class="ready-cta" id="ready-cta" disabled>
+        <button type="button" class="ready-cta" id="ready-cta">
           <span data-i18n="welcome.slide_form.cta">Naar de Verwerkersovereenkomst</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
@@ -1358,7 +1391,9 @@
     token: null,
     body: null,
     profile: null,
-    aliasMode: 'random', // 'random' or 'real'
+    aliasMode: 'random', // payload-facing: 'random' (use alias) | 'real' (no alias)
+    noAlias: false, // mirrors the "Ik wil geen alias" checkbox
+    aliasConfirmed: false, // user explicitly confirmed a non-reserved alias
     aliasTarget: '', // latest alias chosen, used by the alias-demo animation
     aliasDemoPlaying: false,
     aliasDemoLooping: false,
@@ -1389,7 +1424,10 @@
     engRowBewaar: $('#eng-row-bewaar'),
     aliasText: $('#alias-text'),
     aliasReroll: $('#alias-reroll'),
-    aliasUseReal: $('#alias-use-real'),
+    aliasConfirm: $('#alias-confirm'),
+    aliasNoAlias: $('#alias-no-alias'),
+    aliasBlock: $('.alias-picker-block'),
+    consentGrid: $('.consent-matrix'),
     aliasDemoPrefix: $('#alias-demo-prefix'),
     aliasDemoName: $('#alias-demo-name'),
     aliasDemoCaret: $('#alias-demo-caret'),
@@ -1621,6 +1659,11 @@
   // Sentence kept English so it reads the same across all locale variants.
   const ALIAS_DEMO_PREFIX = "These are the minutes of this morning's meeting with ";
   const ALIAS_DEMO_REAL_NAME = "John Doe";
+  // Aliases that no signer may claim — each is already "taken" by a known
+  // person at Regen Studio. 'skeptical chameleon' = founder Yvo Hunink; it is
+  // also the deliberate default seed of #alias-text (see the input markup) so
+  // the form forces an explicit alias decision. Lower-case; matched after
+  // trim()+toLowerCase() in isReservedAlias().
   const RESERVED_ALIASES = new Set(['skeptical chameleon']);
 
   function isReservedAlias(name) {
@@ -1712,29 +1755,71 @@
     requestAnimationFrame(frame);
   }
 
-  function setAliasMode(mode) {
-    state.aliasMode = mode;
-    if (mode === 'real') {
-      const realName = els.repName.value.trim();
-      if (realName) {
-        setAlias(realName);
-        els.aliasText.classList.add('is-real');
-        els.aliasUseReal.textContent = t('welcome.slide_shield.picker_use_random', 'of: gebruik een willekeurig dier-alias');
-      } else {
-        state.aliasMode = 'random';
+  // A fresh / edited / rerolled alias is no longer "confirmed" — the user must
+  // press Bevestig again. Resets visuals + hides the (confirm-time) warning.
+  function invalidateAliasConfirmation() {
+    state.aliasConfirmed = false;
+    if (els.aliasText) els.aliasText.classList.remove('is-confirmed');
+    if (els.aliasConfirm) els.aliasConfirm.textContent = t('welcome.slide_shield.confirm_btn', 'Bevestig');
+    if (els.aliasWarning) els.aliasWarning.hidden = true;
+    if (els.aliasBlock) els.aliasBlock.classList.remove('is-invalid');
+  }
+
+  // Explicit confirm — the only place the reserved/empty warning surfaces.
+  function confirmAlias() {
+    if (state.noAlias) return;
+    const v = (els.aliasText.value || '').trim();
+    if (!v) {
+      if (els.aliasWarning) {
+        els.aliasWarning.textContent = t('welcome.slide_shield.warning_empty', 'Vul eerst een alias in (of vink aan dat je geen alias wilt).');
+        els.aliasWarning.hidden = false;
       }
+      state.aliasConfirmed = false;
+      return;
     }
-    if (state.aliasMode === 'random') {
-      els.aliasText.classList.remove('is-real');
-      els.aliasUseReal.textContent = t('welcome.slide_shield.picker_use_real', 'of: gebruik mijn echte naam intern');
+    if (isReservedAlias(v)) {
+      if (els.aliasWarning) {
+        els.aliasWarning.textContent = t('welcome.slide_shield.warning_reserved', 'Deze alias is al in gebruik door Yvo Hunink, founder van Regen Studio. Kies een andere.');
+        els.aliasWarning.hidden = false;
+      }
+      if (els.aliasBlock) els.aliasBlock.classList.add('is-invalid');
+      state.aliasConfirmed = false;
+      return;
+    }
+    state.aliasConfirmed = true;
+    if (els.aliasWarning) els.aliasWarning.hidden = true;
+    if (els.aliasBlock) els.aliasBlock.classList.remove('is-invalid');
+    if (els.aliasText) els.aliasText.classList.add('is-confirmed');
+    if (els.aliasConfirm) els.aliasConfirm.textContent = t('welcome.slide_shield.confirm_done', 'Bevestigd ✓');
+  }
+
+  // "Ik wil geen alias gebruiken" checkbox.
+  function setNoAlias(on) {
+    state.noAlias = !!on;
+    state.aliasMode = state.noAlias ? 'real' : 'random';
+    const dis = state.noAlias;
+    [els.aliasText, els.aliasReroll, els.aliasConfirm].forEach(el => { if (el) el.disabled = dis; });
+    if (state.noAlias) {
+      // No alias chosen — drop any prior confirmation so the boolean never
+      // lingers stale-true while noAlias is the active choice. Payload uses
+      // aliasMode==='real' → '', and getFormProblems gates on noAlias, so this
+      // is belt-and-braces against a future consumer reading aliasConfirmed.
+      state.aliasConfirmed = false;
+      if (els.aliasWarning) els.aliasWarning.hidden = true;
+      if (els.aliasBlock) els.aliasBlock.classList.remove('is-invalid');
+      if (els.aliasText) els.aliasText.classList.remove('is-confirmed');
+    } else {
+      invalidateAliasConfirmation();
     }
   }
 
   function rollNewAlias() {
+    if (state.noAlias) return;
     els.aliasText.classList.add('is-rolling');
     setTimeout(() => {
       setAlias(randomAlias());
       els.aliasText.classList.remove('is-rolling');
+      invalidateAliasConfirmation();
     }, 180);
   }
 
@@ -1749,22 +1834,42 @@
     }
     return result;
   }
-  function checkFormValid() {
+  // Ordered list of what's still missing/invalid. Document order = the order
+  // we guide the user through on a failed submit. The reserved-alias check is
+  // NOT here — it only fires on the explicit Bevestig action (confirmAlias).
+  function getFormProblems() {
     const matrix = readConsentMatrix();
-    const matrixComplete = MATRIX_CATEGORIES.every(c => matrix[c]);
-    const aliasReserved = state.aliasMode === 'random' && isReservedAlias(els.aliasText.value);
-    if (els.aliasWarning) els.aliasWarning.hidden = !aliasReserved;
-    const valid =
-      els.repName.value.trim().length >= 2 &&
-      els.repRole.value.trim().length >= 2 &&
-      isEmail(els.repEmail.value.trim()) &&
-      matrixComplete &&
-      !aliasReserved;
-    state.formValid = valid;
     state.consentMatrix = matrix;
-    els.readyCta.disabled = !valid;
-    els.readyValidation.classList.toggle('is-shown', !valid);
-    return valid;
+    const probs = [];
+    if (!(state.noAlias || state.aliasConfirmed))
+      probs.push({ key: 'alias', el: els.aliasBlock, slide: 'slide-paste-alias' });
+    if (!MATRIX_CATEGORIES.every(c => matrix[c]))
+      probs.push({ key: 'matrix', el: els.consentGrid, slide: 'slide-consent' });
+    if (els.repName.value.trim().length < 2)
+      probs.push({ key: 'repName', el: els.repName, slide: 'slide-choices' });
+    if (els.repRole.value.trim().length < 2)
+      probs.push({ key: 'repRole', el: els.repRole, slide: 'slide-choices' });
+    if (!isEmail(els.repEmail.value.trim()))
+      probs.push({ key: 'repEmail', el: els.repEmail, slide: 'slide-choices' });
+    return probs;
+  }
+
+  // Live updater: recompute validity + clear any red frame on a field that is
+  // no longer a problem. Never ADDS frames and never shows the validation
+  // message — that's submit-time only (onReadyClick).
+  function checkFormValid() {
+    const probs = getFormProblems();
+    const problemEls = new Set(probs.map(p => p.el));
+    document.querySelectorAll('.field-invalid').forEach(el => {
+      if (!problemEls.has(el)) el.classList.remove('field-invalid');
+    });
+    if (els.aliasBlock && !problemEls.has(els.aliasBlock)) {
+      // keep the confirm-time reserved frame until re-confirm; only clear the
+      // submit-time frame when the alias requirement is satisfied.
+      if (state.noAlias || state.aliasConfirmed) els.aliasBlock.classList.remove('is-invalid');
+    }
+    state.formValid = probs.length === 0;
+    return state.formValid;
   }
 
   // ===== Consent matrix wiring =====
@@ -1833,11 +1938,33 @@
 
   // ===== Submit =====
   function onReadyClick() {
-    if (!checkFormValid()) {
-      // scroll to choices slide
-      document.getElementById('slide-choices').scrollIntoView({ behavior: 'smooth' });
+    const probs = getFormProblems();
+    if (probs.length) {
+      // Clear prior frames, re-frame every current problem (nothing hidden),
+      // then guide the user to the first one in document order.
+      document.querySelectorAll('.field-invalid').forEach(el => el.classList.remove('field-invalid'));
+      if (els.aliasBlock) els.aliasBlock.classList.remove('is-invalid');
+      probs.forEach(p => {
+        if (p.el) p.el.classList.add(p.key === 'alias' ? 'is-invalid' : 'field-invalid');
+      });
+      // The alias box is pre-filled with the seeded value, so a generic
+      // "fill the red-framed field" message misdirects: the user must press
+      // Bevestig (or tick no-alias), not type. Surface that instruction at
+      // submit time. Empty/reserved variants stay confirm-time only.
+      if (probs.some(p => p.key === 'alias') && els.aliasWarning) {
+        els.aliasWarning.textContent = t('welcome.slide_shield.warning_unconfirmed', 'Bevestig je alias met de knop "Bevestig" — of vink aan dat je geen alias wilt.');
+        els.aliasWarning.hidden = false;
+      }
+      const first = probs[0];
+      const target = (first.slide && document.getElementById(first.slide)) || first.el;
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => {
+        try { if (first.el && first.el.focus) first.el.focus({ preventScroll: true }); } catch (e) {}
+      }, 450);
+      els.readyValidation.classList.add('is-shown');
       return;
     }
+    els.readyValidation.classList.remove('is-shown');
     const matrix = readConsentMatrix();
     // Aggregate boolean for backward-compat with consumers reading
     // ai_processing_consent: true if any category resolves to ai_may_process.
@@ -1979,17 +2106,17 @@
 
           // Bind alias controls
           els.aliasReroll.addEventListener('click', rollNewAlias);
-          els.aliasUseReal.addEventListener('click', (e) => {
-            e.preventDefault();
-            setAliasMode(state.aliasMode === 'real' ? 'random' : 'real');
+          els.aliasConfirm.addEventListener('click', () => { confirmAlias(); checkFormValid(); });
+          els.aliasNoAlias.addEventListener('change', () => {
+            setNoAlias(els.aliasNoAlias.checked);
+            checkFormValid();
           });
           els.aliasText.addEventListener('input', () => {
             syncAliasDownstream(els.aliasText.value);
-          });
-          els.repName.addEventListener('input', () => {
-            if (state.aliasMode === 'real') setAliasMode('real');
+            invalidateAliasConfirmation();
             checkFormValid();
           });
+          els.repName.addEventListener('input', checkFormValid);
           ['input', 'change'].forEach(ev => {
             els.choicesForm.addEventListener(ev, checkFormValid);
           });
