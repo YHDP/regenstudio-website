@@ -247,10 +247,14 @@
 
   function categoryLabel(category) {
     var map = {
-      'contact_info':    'Contact info (name, email, phone, role)',
-      'project_content': 'Project content (documents, notes, deliverables)',
-      'financial_data':  'Financial data (invoices, budgets)',
-      'metadata':        'Metadata (timestamps, IPs, aggregates)',
+      'contact_info':             'Contact info (name, email, phone, role)',
+      'project_content':          'Project content (documents, notes, deliverables)',
+      'production_data':          'Production data (processes, ingredients, recipes, BOM)',
+      'transport_data':           'Transport data (logistics, origin routing, customs)',
+      'supplier_data':            'Supplier data (suppliers, chain partners, sub-tier sourcing)',
+      'certification_audit_data': 'Certification & audit data (certificates, audit reports, conformity)',
+      'financial_data':           'Financial data (invoices, budgets)',
+      'metadata':                 'Metadata (timestamps, IPs, aggregates)',
     };
     return map[category] || category;
   }
