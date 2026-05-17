@@ -10,6 +10,7 @@ Disallow: /scope-signed/
 Disallow: /dpa-welcome.html
 Disallow: /dpa-contract.html
 Disallow: /dpa-signed/
+Disallow: /_review/
 
 # AI search & citation bots — explicitly allowed
 User-agent: OAI-SearchBot
