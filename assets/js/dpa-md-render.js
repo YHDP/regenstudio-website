@@ -184,6 +184,22 @@
         }
       }
 
+      // Autolink: <https://…> / <http://…> (reconciliation #56 — canonical
+      // uses angle-bracket autolinks for privacy.html + dataprivacyframework.gov;
+      // without this they render as literal &lt;https://…&gt; text).
+      if (ch === '<') {
+        const closeAngle = text.indexOf('>', i + 1);
+        if (closeAngle > i) {
+          const inner = text.slice(i + 1, closeAngle).trim();
+          if (/^https?:\/\/[^\s<>]+$/.test(inner)) {
+            flushPlain();
+            runs.push({ type: 'link', text: inner, href: inner, bold: false, italic: false });
+            i = closeAngle + 1;
+            continue;
+          }
+        }
+      }
+
       plainBuf += ch;
       i++;
     }

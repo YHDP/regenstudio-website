@@ -199,6 +199,14 @@
       page-break-before: always;
       break-before: page;
     }
+    /* Reconciliation #53 — Annex A always starts a new page. Annex A lives
+       inside the canonical-NL section (it is the 2nd <h1>, after the document
+       title). :not(:first-of-type) targets it precisely without forcing a
+       blank leading page before the title. */
+    .dpa-canonical-section[data-source="canonical-NL"] .dpa-canonical-render h1:not(:first-of-type) {
+      page-break-before: always;
+      break-before: page;
+    }
     code {
       background: #f0f3f5;
       padding: 1px 5px;
@@ -1108,7 +1116,13 @@
         // (rather than silent "undefined" or empty-string substitution).
         const fmtDate = function (iso) {
           if (!iso) return '';
-          const d = new Date(iso);
+          // Date-only ISO (YYYY-MM-DD) must be parsed as LOCAL, not UTC:
+          // `new Date('2026-04-19')` is UTC-midnight and shifts back one
+          // calendar day when formatted in a negative-offset timezone
+          // (e.g. Brazil UTC-3) — corrupting legally authoritative dates
+          // (beschikking-datum, project-einddatum, bewaarplicht).
+          const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso));
+          const d = m ? new Date(+m[1], +m[2] - 1, +m[3]) : new Date(iso);
           if (isNaN(d.getTime())) return iso;
           return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
         };
@@ -1132,7 +1146,7 @@
           'cp.representative_name': data.cp_rep_name || '',
           'cp.representative_role': data.cp_rep_role || '',
           'cp.representative_email': data.cp_rep_email || '',
-          'cp.representative_phone': data.cp_rep_phone || '',
+          'cp.representative_phone': data.cp_rep_phone || '— niet opgegeven',  // reconciliation #2 — optional field: never render the raw {{token}} when empty
           // Engagement profile fields (from dpa-verify-token Edge Function).
           'engagement.key': (engagementMeta && engagementMeta.engagement_key) || '',
           'engagement.label': ep.label || (engagementMeta && engagementMeta.engagement_label) || '',
@@ -1159,6 +1173,22 @@
           'engagement.ai_data_categories': ep.ai_data_categories || ep.sensitive_data_exclusion_narrative_nl || '(zie Schedule § B.6)',
           'engagement.ai_exclusions': ep.ai_exclusions || ep.sensitive_data_exclusion_narrative_nl || '(zie Schedule § B.6 voor de uitsluitings-lijst)',
           'engagement.sensitive_exclusions': ep.sensitive_exclusions || ep.sensitive_data_exclusion_narrative_nl || '(zie Schedule § B.6)',
+          // P6 BLOCK-1 fix 2026-05-18 (voucher-DPA Round-2) — parameterised
+          // Annex B / side-letter need the bare contract value + hours as
+          // tokens; no token existed before (only the intake summary
+          // data-tpl). Formatted nl-NL, NO € (templates carry the literal €).
+          // Null (engagement amount/hours not yet on file) → '' so
+          // substituteVars keeps the {{…}} placeholder visible (the
+          // engagement is intentionally not finalisable until those
+          // values are confirmed from the source documents).
+          'engagement.subsidie_bedrag_eur': ep.subsidie_bedrag_eur != null
+            ? Number(ep.subsidie_bedrag_eur).toLocaleString('nl-NL', { maximumFractionDigits: 0 })
+            : '',
+          'engagement.expert_uren': ep.expert_uren != null ? String(ep.expert_uren) : '',
+          'engagement.subsidie_bedrag_label': [
+            ep.subsidie_bedrag_eur != null ? '€' + Number(ep.subsidie_bedrag_eur).toLocaleString('nl-NL', { maximumFractionDigits: 0 }) + ' excl. BTW' : null,
+            ep.expert_uren != null ? ep.expert_uren + ' expert-uur' : null,
+          ].filter(Boolean).join(' · '),
           // System fields — populated at sign-time via direct DOM injection in
           // the signature block; left as visible placeholders here for the
           // pre-sign concept render.
