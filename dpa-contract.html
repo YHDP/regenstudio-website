@@ -145,6 +145,7 @@
       border-collapse: collapse;
       margin: 12px 0 18px;
       font-size: 0.94rem;
+      table-layout: auto;
     }
     .dpa-canonical-render th,
     .dpa-canonical-render td {
@@ -152,6 +153,19 @@
       padding: 8px 10px;
       vertical-align: top;
       text-align: left;
+      /* R8 (browser/HTML view): break at word boundaries, not mid-word;
+         only hard-break unbreakable tokens (long URLs). Does NOT affect the
+         jsPDF binding PDF — see docs/collaboration/known-bugs.md. */
+      word-break: normal;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+    @media print {
+      /* Wide annex tables (Annex A = 8 cols) shrink to fit A4 in the
+         print path; jsPDF path tracked separately as a known bug. */
+      .dpa-canonical-render table { font-size: 0.72rem; }
+      .dpa-canonical-render th,
+      .dpa-canonical-render td { padding: 4px 5px; }
     }
     .dpa-canonical-render th {
       background: #f0f4f7;
@@ -902,7 +916,9 @@
       const formatEur = (n) => n == null ? null : "€" + Number(n).toLocaleString("nl-NL", { maximumFractionDigits: 0 });
       const formatDate = (iso) => {
         if (!iso) return "—";
-        const d = new Date(iso);
+        // Date-only ISO parsed LOCAL, not UTC (negative-offset TZ off-by-one).
+        const _m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso));
+        const d = _m ? new Date(+_m[1], +_m[2] - 1, +_m[3]) : new Date(iso);
         if (isNaN(d.getTime())) return iso;
         return d.toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
       };

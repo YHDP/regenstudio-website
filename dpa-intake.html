@@ -136,6 +136,7 @@
           <div class="summary-grid__lbl" data-i18n="intake.summary.bewaar">Bewaarplicht tot</div>
           <div class="summary-grid__val" data-tpl="bewaarplicht_einddatum"></div>
         </div>
+        <p style="margin:14px 0 0;font-size:0.9rem;color:var(--muted);line-height:1.55">Bovenstaande specificaties én de hieronder voor-ingevulde bedrijfsgegevens komen uit uw subsidiebeschikking/offerte. Controleer ze en corrigeer waar nodig — het is uw bindende overeenkomst.</p>
       </div>
 
       <h2 data-i18n="intake.section_2">2. Gegevens van de Verantwoordelijke</h2>
@@ -278,7 +279,9 @@
       const formatEur = (n) => n == null ? "—" : "€" + Number(n).toLocaleString("nl-NL", { maximumFractionDigits: 0 });
       const formatDate = (iso) => {
         if (!iso) return "—";
-        const d = new Date(iso);
+        // Date-only ISO parsed LOCAL, not UTC (negative-offset TZ off-by-one).
+        const _m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso));
+        const d = _m ? new Date(+_m[1], +_m[2] - 1, +_m[3]) : new Date(iso);
         if (isNaN(d.getTime())) return iso;
         return d.toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" });
       };

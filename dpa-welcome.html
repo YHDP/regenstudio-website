@@ -428,8 +428,25 @@
     margin: 0; font-size: 12px; text-transform: uppercase;
     letter-spacing: 1.4px; color: var(--muted); font-weight: 600;
   }
-  .refusal-card--anderen { background: linear-gradient(180deg, white 0%, rgba(231,24,70,0.03) 100%); }
-  .refusal-card--wij { border-top: 3px solid var(--emerald); }
+  /* R2 — Stronger split: "Anderen" de-emphasised/recessed (the wrong choice);
+     "Wij" elevated/dominant (the recommended choice). Brand palette, WCAG-AA
+     text variants (#D51641 / #006d38 per project CLAUDE.md), no glow, muted
+     colours not opacity, ✗/✓ reinforce (meaning also carried by labels). */
+  .refusal-card--anderen {
+    background: #f4f4f5;
+    border-color: #e3e4e6;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .refusal-card--anderen h3 { color: #D51641; }
+  .refusal-card--anderen h3::before { content: "\2717\00a0"; font-weight: 700; }
+  .refusal-card--wij {
+    background: linear-gradient(180deg, #ffffff 0%, rgba(0,133,69,0.05) 100%);
+    border-top: 4px solid var(--emerald);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08), 0 0 0 1px var(--emerald);
+    transform: translateY(-2px);
+  }
+  .refusal-card--wij h3 { color: #006d38; }
+  .refusal-card--wij h3::before { content: "\2713\00a0"; font-weight: 700; }
   /* "Anderen" data-leak scene — visible personal+company fragments stream
      into a pulsing red cluster of named LLM products. */
   .leak-scene {
@@ -556,6 +573,7 @@
   }
   @media (max-width: 760px) {
     .refusal-grid { grid-template-columns: 1fr; }
+    .refusal-card--wij { transform: none; }  /* no lift when stacked */
     .chat__bubble { font-size: 12.5px; max-width: 95%; }
   }
 
@@ -1001,6 +1019,7 @@
           <div class="engagement-card__value" id="eng-bewaar">—</div>
         </div>
       </div>
+      <p style="margin:12px 0 0;font-size:12.5px;color:var(--muted);line-height:1.55">Deze specificaties zijn voor-ingevuld op basis van uw subsidiebeschikking/offerte. Controleer ze en corrigeer waar nodig — u bevestigt of past ze aan bij ondertekening.</p>
     </div>
     <button class="slide__hint slide__hint--mini" data-action="next-slide" data-i18n-aria="welcome.nav.next_aria" aria-label="Verder naar volgende slide">
       <span class="slide__hint-triangle" aria-hidden="true"></span>
@@ -1021,9 +1040,9 @@
                 <span class="leak-doc__filename" data-i18n="welcome.slide_dna.leak_filename">jouw_notulen_2026-05-14.pdf</span>
               </div>
               <div class="leak-doc__body">
-                <div class="leak-line"><span class="leak-key" data-i18n="welcome.slide_dna.leak_key_name">Aanwezig</span><span class="leak-val" id="leak-name">Yvo Hunink</span></div>
-                <div class="leak-line"><span class="leak-key" data-i18n="welcome.slide_dna.leak_key_email">Email</span><span class="leak-val" id="leak-email">yvo@regenstudio.world</span></div>
-                <div class="leak-line"><span class="leak-key" data-i18n="welcome.slide_dna.leak_key_company">Firma</span><span class="leak-val" id="leak-company">Regen Studio B.V.</span></div>
+                <div class="leak-line"><span class="leak-key" data-i18n="welcome.slide_dna.leak_key_name">Aanwezig</span><span class="leak-val" id="leak-name">Jan Jansen</span></div>
+                <div class="leak-line"><span class="leak-key" data-i18n="welcome.slide_dna.leak_key_email">Email</span><span class="leak-val" id="leak-email">jan@bedrijf.nl</span></div>
+                <div class="leak-line"><span class="leak-key" data-i18n="welcome.slide_dna.leak_key_company">Firma</span><span class="leak-val" id="leak-company">Bedrijf B.V.</span></div>
                 <div class="leak-line"><span class="leak-key" data-i18n="welcome.slide_dna.leak_key_recipe">Recept</span><span class="leak-redact">███ formulering ███</span></div>
                 <div class="leak-line"><span class="leak-key" data-i18n="welcome.slide_dna.leak_key_production">Productie</span><span class="leak-redact">██████ BOM ████</span></div>
               </div>
@@ -1057,7 +1076,7 @@
             <div class="chat__msg chat__msg--claude">
               <div class="chat__bubble chat__bubble--claude">
                 <p data-i18n="welcome.slide_dna.chat_claude_lede">Sorry, ik kan dit bestand niet voor je openen.</p>
-                <p><strong id="ref-subject">Acme B.V.</strong> <span data-i18n="welcome.slide_dna.chat_claude_explain_a">heeft</span> <em id="ref-category-label">productiegegevens (BOMs, recepten, processen)</em> <span data-i18n="welcome.slide_dna.chat_claude_explain_b">uitgesloten van AI-verwerking in jullie Verwerkersovereenkomst (§B.6).</span></p>
+                <p><strong id="ref-subject">Bedrijf B.V.</strong> <span data-i18n="welcome.slide_dna.chat_claude_explain_a">heeft</span> <em id="ref-category-label">productiegegevens (BOMs, recepten, processen)</em> <span data-i18n="welcome.slide_dna.chat_claude_explain_b">uitgesloten van AI-verwerking in jullie Verwerkersovereenkomst (§B.6).</span></p>
                 <p data-i18n="welcome.slide_dna.chat_claude_offer">Je moet het deze keer manueel oplossen.</p>
                 <span class="chat__label">Claude · Regen Studio</span>
               </div>
@@ -1455,7 +1474,11 @@
   const DATE_LOCALES = { nl: 'nl-NL', en: 'en-GB', pt: 'pt-BR' };
   function fmtDate(iso) {
     if (!iso) return '—';
-    const d = new Date(iso);
+    // Date-only ISO must parse as LOCAL, not UTC — else it shifts back a
+    // calendar day in negative-offset timezones (e.g. Brazil), corrupting
+    // legally authoritative dates (project-einddatum, bewaarplicht).
+    const _m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso));
+    const d = _m ? new Date(+_m[1], +_m[2] - 1, +_m[3]) : new Date(iso);
     if (isNaN(d.getTime())) return iso;
     const lang = (window.dpaI18n && window.dpaI18n.lang) || 'nl';
     return d.toLocaleDateString(DATE_LOCALES[lang] || 'nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -1531,33 +1554,22 @@
   };
 
   function renderRefusalTerminal(profile) {
-    const subject = (profile && (profile.legal_name || profile.cp_legal_name)) || 'Acme B.V.';
+    // R1 public-leak fix: this is an ILLUSTRATIVE example on a PUBLIC
+    // GitHub-Pages page (visible plaintext). It must stay company-agnostic
+    // AT ALL TIMES — never personalise it with the live engagement profile
+    // (doing so rendered real client identities, e.g. a real rep name /
+    // company / derived e-mail, as plaintext on a public page). Fixed
+    // generic placeholders only. The per-regime category/file is kept: it
+    // describes the regulatory regime, not the company (no PII / no
+    // client identifier).
     const regime = (profile && profile.regulatory_regime) || 'other';
     const r = REGIME_REFUSAL[regime] || REGIME_REFUSAL['other'];
-    if (els.refSubject) els.refSubject.textContent = subject;
+    if (els.refSubject) els.refSubject.textContent = 'Bedrijf B.V.';
     if (els.refCategoryLabel) els.refCategoryLabel.textContent = r.category;
     if (els.refFile) els.refFile.textContent = r.file;
-    // Anderen-panel: visible personal+company fragments leaking to the AI cloud.
-    const name = (profile && (profile.cp_rep_name || profile.representative_name)) || 'Yvo Hunink';
-    const company = (profile && (profile.legal_name || profile.cp_legal_name)) || 'Regen Studio B.V.';
-    if (els.leakName) els.leakName.textContent = name;
-    if (els.leakCompany) els.leakCompany.textContent = company;
-    if (els.leakEmail) els.leakEmail.textContent = deriveDemoEmail(name, company);
-  }
-
-  // profile.cp_rep_email is not surfaced by dpa-verify-token; synthesise a
-  // realistic-looking address so the "leak" feels concrete without showing
-  // any real third-party email. Strips accents on the first name, slugs the
-  // company name into a TLD-style domain.
-  function deriveDemoEmail(name, company) {
-    const stripAccents = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
-    const first = (name || '').split(' ')[0] || 'yvo';
-    const localPart = stripAccents(first).toLowerCase().replace(/[^a-z0-9]/g, '');
-    const co = stripAccents((company || '').toLowerCase())
-      .replace(/\b(b\.?v\.?|n\.?v\.?|gmbh|ltd|llc|inc)\b/g, '')
-      .replace(/[^a-z0-9]/g, '');
-    const domain = co ? (co + '.world') : 'regenstudio.world';
-    return (localPart || 'yvo') + '@' + domain;
+    if (els.leakName) els.leakName.textContent = 'Jan Jansen';
+    if (els.leakCompany) els.leakCompany.textContent = 'Bedrijf B.V.';
+    if (els.leakEmail) els.leakEmail.textContent = 'jan@bedrijf.nl';
   }
 
   function buildEngagementNarrative(profile) {

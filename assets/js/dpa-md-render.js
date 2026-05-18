@@ -234,6 +234,11 @@
   function parse(md, vars) {
     md = stripFrontmatter(md);
     md = substituteVars(md, vars);
+    // L7c safety-net: HTML comments must NEVER render as visible text in a
+    // binding contract. The Edge Function already strips §B-REGIME delimiter
+    // comments, but this guarantees ANY <!-- … --> in ANY template (current
+    // or future) is dropped at render. Standard markdown behaviour.
+    md = md.replace(/<!--[\s\S]*?-->/g, '');
 
     const lines = md.replace(/\r\n/g, '\n').split('\n');
     const ast = [];

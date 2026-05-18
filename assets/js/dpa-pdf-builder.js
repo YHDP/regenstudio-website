@@ -39,7 +39,10 @@
 
   function fmtDate(iso) {
     if (!iso) return '';
-    const d = new Date(iso);
+    // Date-only ISO parsed LOCAL, not UTC — negative-offset TZ (e.g. Brazil)
+    // otherwise shifts the calendar day back one (corrupts contract dates).
+    const _m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso));
+    const d = _m ? new Date(+_m[1], +_m[2] - 1, +_m[3]) : new Date(iso);
     if (isNaN(d.getTime())) return iso;
     return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
   }
