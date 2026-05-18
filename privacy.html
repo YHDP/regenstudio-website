@@ -578,12 +578,14 @@
         </div>
         <h2>Local storage</h2>
       </div>
-      <p>We use your browser&rsquo;s <code>localStorage</code> in two cases:</p>
+      <p>We use your browser&rsquo;s <code>localStorage</code> in the following cases:</p>
       <ul>
         <li><strong>Demo access tokens</strong> &mdash; when you access a demo using a magic link or password, we store a session token containing only the demo identifier and an expiry timestamp. This keeps you logged in so you don&rsquo;t have to re-authenticate on each page load.</li>
         <li><strong>Content unlock tokens</strong> &mdash; when you provide your email to access gated content (e.g., product family details), we store a timestamp recording when you unlocked access.</li>
+        <li><strong>Pre-publication review tool</strong> &mdash; when you are invited to comment on a draft article via a private review link, the name (or alias) and optional email or role you enter, your comments, and your consent timestamp are stored in your own browser&rsquo;s <code>localStorage</code> only. This is never transmitted to our servers automatically &mdash; it stays on your device until you choose to email the exported report to us.</li>
       </ul>
-      <p>In both cases, the stored value contains <strong>no personal data</strong> (no email, no name). All tokens are programmatically enforced to expire after 24 hours: the code checks the stored timestamp against the current time and removes expired tokens automatically.</p>
+      <p>In the first two cases, the stored value contains <strong>no personal data</strong> (no email, no name). All tokens are programmatically enforced to expire after 24 hours: the code checks the stored timestamp against the current time and removes expired tokens automatically.</p>
+      <p>The pre-publication review-tool data <strong>is</strong> personal data and stays solely in your browser. It reaches us only if you actively email the exported report. If you do, we then process that feedback &mdash; including any real name you entered &mdash; in AI-assisted editorial workflows (via <a href="#sub-processors">Anthropic Claude</a>, our disclosed AI sub-processor) to improve the draft, under the explicit consent you give in the tool. Entering a real name only exposes that name to this AI-assisted editorial workflow; it is not used to credit, attribute or publicly mention you. Enter an alias and omit the email to stay anonymous.</p>
       <p>We also use <code>sessionStorage</code> (tab-scoped, automatically cleared when you close the tab) to store the previous page path within the same browsing session. This is used solely to understand internal navigation patterns in aggregate analytics. No personal data is stored.</p>
       <p>This storage is <strong>strictly necessary</strong> to provide the service you requested and is exempt from consent under ePrivacy Directive Art. 5(3).</p>
     </section>
