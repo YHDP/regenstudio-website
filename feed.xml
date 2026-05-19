@@ -5,8 +5,20 @@
     <link>https://www.regenstudio.world/blog.html</link>
     <description>Innovations that regenerate Humans, Cities and Nature.</description>
     <language>en</language>
-    <pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate>
+    <pubDate>Sat, 16 May 2026 00:00:00 GMT</pubDate>
     <atom:link href="https://www.regenstudio.world/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Clean Fuel Protocol: How we designed for traceability of renewable fuels in the Dutch market with Digital Product Passports</title>
+      <link>https://www.regenstudio.world/blog/clean-fuel-protocol/</link>
+      <guid isPermaLink="true">https://www.regenstudio.world/blog/clean-fuel-protocol/</guid>
+      <pubDate>Sat, 16 May 2026 00:00:00 GMT</pubDate>
+      <description>Past the point where a renewable fuel is registered for national RED-III compliance, a company can barely claim more than a market-average reduction. This is the story of the Clean Fuel Protocol: a UNTP-based, voluntary Digital Product Passport for renewable fuels, set out by a consortium of the Centre of Excellence Digital Product Passports, TNO, Regen Studio and Fides for RVO, and now an annex to the government&apos;s RED-III completion letter to the Dutch House of Representatives (Tweede Kamer).</description>
+      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
+      <category>Client Projects</category>
+      <category>Digital Product Passport</category>
+      <category>Energy Transition</category>
+      <enclosure url="https://www.regenstudio.world/Blogs/clean-fuel-protocol/hero.webp" type="image/webp" length="214550" />
+    </item>
     <item>
       <title>Mapping Regional ESPR Impact: How Zuid-Holland Used Data to Prepare Its Businesses for Digital Product Passports</title>
       <link>https://www.regenstudio.world/blog/mapping-regional-espr-impact-for-zuid-holland/</link>
