@@ -2114,6 +2114,12 @@ em:only-of-type {
   filter: grayscale(0%);
 }
 
+/* FIDES logo is a white-on-dark colourway — dark chip instead of the white one
+   so it reads correctly in the carousel (same grayscale/opacity behaviour). */
+.clients__logos-track img[src*="OIP-7"] {
+  background: #1a1a1a;
+}
+
 @keyframes logoScroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -4375,6 +4381,7 @@ a.dpp-product--linked {
 .dpp-status--confirmed { background: #008545; }
 .dpp-status--expected { background: #006699; }
 .dpp-status--planned { background: #E5A100; }
+.dpp-status--voluntary { background: #6b7280; }
 
 /* Timeline section on card */
 .dpp-product__act {
@@ -4409,6 +4416,10 @@ a.dpp-product--linked {
   color: #B8860B;
   background: rgba(184, 134, 11, 0.08);
 }
+.dpp-product__date--voluntary {
+  color: #4b5563;
+  background: rgba(75, 85, 99, 0.10);
+}
 
 .dpp-product__reg {
   font-size: 0.64rem;
@@ -4416,6 +4427,21 @@ a.dpp-product--linked {
   color: var(--color-text-secondary);
   margin-top: 4px;
   opacity: 0.55;
+}
+
+/* Voluntary marker — pill in the slot where the regulation acronym normally sits */
+.dpp-product__reg--voluntary {
+  opacity: 1;
+  display: inline-block;
+  margin-top: 6px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: rgba(0, 133, 69, 0.10);
+  color: #006d38;
+  font-weight: 600;
+  font-size: 0.62rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 /* Status legend */

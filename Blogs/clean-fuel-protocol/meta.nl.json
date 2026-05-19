@@ -1,0 +1,40 @@
+{
+  "title": "Clean Fuel Protocol: hoe we traceerbaarheid van hernieuwbare brandstoffen in de Nederlandse markt ontwierpen met Digitale Productpaspoorten",
+  "slug": "clean-fuel-protocol",
+  "subtitle": "Hoe een consortium een manier ontwierp om de duurzaamheidsclaim van een hernieuwbare brandstof verifieerbaar te houden tot aan de afnemer, in plaats van die te verliezen zodra de brandstof van eigenaar wisselt — nu een bijlage bij de Kamerbrief over de afronding van de RED-III-implementatie.",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Digitale Productpaspoorten & traceerbaarheid"
+  },
+  "date": "2026-05-16",
+  "categories": [
+    "Client Projects",
+    "Digital Product Passport",
+    "Energy Transition"
+  ],
+  "tags": [
+    "clean-fuel-protocol",
+    "digital-product-passport",
+    "untp",
+    "renewable-fuels",
+    "red-iii",
+    "biofuels",
+    "traceability",
+    "tno",
+    "rvo",
+    "fides",
+    "coe-dpp",
+    "eu-business-wallet",
+    "voluntary-dpp",
+    "sustainability-claims",
+    "trupass-hydrogen"
+  ],
+  "featuredImage": "hero.webp",
+  "featuredImageAlt": "Waardeketen van hernieuwbare brandstof, van opwekking via productie, opslag en multimodale levering — waar een verifieerbare duurzaamheidsclaim downstream overeind moet blijven.",
+  "excerpt": "Voorbij het punt waar een hernieuwbare brandstof voor nationale RED-III-naleving is geregistreerd, kan een bedrijf nauwelijks meer claimen dan een marktgemiddelde reductie. Dit is het verhaal van het Clean Fuel Protocol: een vrijwillig, op UNTP gebaseerd Digitaal Productpaspoort voor hernieuwbare brandstoffen, opgezet door een consortium van het Centre of Excellence Digital Product Passports, TNO, Regen Studio en Fides in opdracht van RVO, en nu een bijlage bij de Kamerbrief over de afronding van de RED-III-implementatie (Tweede Kamer).",
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
+}

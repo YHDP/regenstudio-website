@@ -1,0 +1,40 @@
+{
+  "title": "Clean Fuel Protocol: como projetamos a rastreabilidade de combustíveis renováveis no mercado neerlandês com Passaportes Digitais do Produto",
+  "slug": "clean-fuel-protocol",
+  "subtitle": "Como um consórcio projetou uma forma de manter verificável a alegação de sustentabilidade de um combustível renovável até o comprador, em vez de perdê-la no momento em que o combustível troca de mãos — agora um anexo à carta do governo ao Parlamento sobre a conclusão da implementação da RED-III.",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Passaportes Digitais do Produto e rastreabilidade"
+  },
+  "date": "2026-05-16",
+  "categories": [
+    "Client Projects",
+    "Digital Product Passport",
+    "Energy Transition"
+  ],
+  "tags": [
+    "clean-fuel-protocol",
+    "digital-product-passport",
+    "untp",
+    "renewable-fuels",
+    "red-iii",
+    "biofuels",
+    "traceability",
+    "tno",
+    "rvo",
+    "fides",
+    "coe-dpp",
+    "eu-business-wallet",
+    "voluntary-dpp",
+    "sustainability-claims",
+    "trupass-hydrogen"
+  ],
+  "featuredImage": "hero.webp",
+  "featuredImageAlt": "Cadeia de valor de combustível renovável, da geração à produção, armazenamento e entrega multimodal — onde uma alegação de sustentabilidade verificável precisa sobreviver a jusante.",
+  "excerpt": "Depois do ponto em que um combustível renovável é registrado para conformidade nacional com a RED-III, uma empresa mal consegue alegar mais do que uma redução média de mercado. Esta é a história do Clean Fuel Protocol: um Passaporte Digital do Produto voluntário, baseado no UNTP, para combustíveis renováveis, definido por um consórcio do Centre of Excellence Digital Product Passports, TNO, Regen Studio e Fides para a RVO, e agora um anexo à carta do governo neerlandês ao Parlamento sobre a conclusão da implementação da RED-III (Tweede Kamer).",
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
+}

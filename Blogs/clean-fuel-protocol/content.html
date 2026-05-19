@@ -1,0 +1,116 @@
+<!-- ASSETS-REVIEW. Banner: all logos self-hosted, none hotlinked — TNO=client-logos/OIP-1.svg, Regen=Logo-Text-on-the-sideAtivo 2.svg, Fides=client-logos/OIP-7.png (official FIDES asset, cropped from FIDES_LOGO_BLACK_03 + perf-trimmed to 480px/41KB; white-on-dark colourway so shown on a #1a1a1a chip — old OIP-7.svg blue-box placeholder removed), CoE-DPP=client-logos/coe-dpp.svg (cropped to the CoE DPP mark; the source coedsccoedpp2.svg was a CoE DSC + CoE DPP twin lockup — left DSC group removed, viewBox retightened), RVO=client-logos/rvo.png (EN; rvo-nl.png stored for the future NL variant). Body consortium links resolved: RVO=rvo.nl, CoE-DPP=coe-dpp.nl, TNO=tno.nl, Regen=regenstudio.world, Fides=fides-labs.io. RVO logo enlarged to 96px for tagline legibility (rvo.png is 3571x1537 so it scales clean; if it still reads soft, source an official RVO SVG / tighter EN lockup). TODO before publish: perf-trim hero.webp/og.webp/rvo.png (over the 50KB ideal). NL/PT not yet propagated (EN-only publish per Yvo 2026-05-19; NL later swaps rvo.png→rvo-nl.png). PUBLISHED 2026-05-19 — review.text/assets approved, published:true (RVO approved; Yvo explicitly authorised; momentum). -->
+
+<div style="text-align:center;background:#F0FAF4;border:1px solid #D1FAE5;border-radius:12px;padding:30px 30px;margin-bottom:40px;">
+  <p style="margin:0 0 22px;color:#007B40;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">A consortium of</p>
+  <div style="display:flex;align-items:center;justify-content:center;gap:54px;flex-wrap:wrap;margin-bottom:26px;">
+    <img loading="lazy" src="Images/client-logos/OIP-1.svg" alt="TNO" style="height:44px;width:auto;">
+    <img loading="lazy" src="Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" style="height:38px;width:auto;">
+  </div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:54px;flex-wrap:wrap;">
+    <img loading="lazy" src="Images/client-logos/OIP-7.png" alt="Fides — Accelerating Digital Trust" style="height:46px;width:auto;background:#1a1a1a;padding:10px 16px;border-radius:10px;">
+    <img loading="lazy" src="Images/client-logos/coe-dpp.svg" alt="Centre of Excellence Digital Product Passports" style="height:62px;width:auto;">
+  </div>
+  <p style="margin:28px 0 16px;color:#6B7280;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">Commissioned by</p>
+  <img loading="lazy" src="Images/client-logos/rvo.png" alt="RVO — Netherlands Enterprise Agency" style="height:96px;width:auto;display:inline-block;">
+</div>
+
+<p>In February 2026, our consortium published a public report, the <em>Eindrapportage Clean Fuel Protocol</em>. On 7 May 2026 it went to the Dutch House of Representatives (the Tweede Kamer, the directly-elected chamber of the Dutch parliament) as an annex to the government's letter on completing the RED-III implementation, and it is now on the agenda of the parliamentary committee for Infrastructure and Water Management. Now that the report is public, we can write about the work.</p>
+
+<p>This is the story of how a question about trust in the renewable-fuel market became a concrete proposal that is now in front of Dutch policymakers.</p>
+
+<h2>Where it started</h2>
+
+<p>Regen Studio was first invited to a market feedback session on traceability for renewable fuels. The suggestion we brought there was straightforward: keep framing this as a Digital Product Passport problem, and build on the technical systems already being standardised around EU regulations rather than inventing something parallel. That idea stuck. By joining hands with the Centre of Excellence Digital Product Passports, TNO and Fides we could take it much further than any of us could alone, and a consortium formed to do exactly that, with TNO taking the assignment formally.</p>
+
+<h2>The problem</h2>
+
+<p>In the Netherlands, the verifiable trail of a renewable fuel effectively stops the moment a batch is registered with the national emissions authority. Past that point, a company that used the fuel cannot say much more than "this was confirmed to be registered for national RED-III compliance". In practice that leaves it with only an average reduction claimed across the entire Dutch fuel market, unless the batch was explicitly registered as not taking part in that regulatory scheme. The existing solutions are fragmented and cannot reliably rule out the same sustainability being counted twice, let alone give a company clarity on what it can actually claim under regulations such as CSRD and ESPR.</p>
+
+<h2>The reframe</h2>
+
+<p>The contribution that set the direction was an argument, not a piece of software: treat downstream renewable-fuel traceability as a Digital Product Passport, and use the United Nations Transparency Protocol (UNTP) as its architecture. Once you see it that way, a large body of European work and an emerging international standard become things to build on instead of things to reinvent. You can read more about the underlying idea on our <a href="/digital-product-passports/">Digital Product Passport page</a>, and the trust model that makes such a passport credible is set out in our <a href="/blog/trusted-dpps/">position paper on Trusted Digital Product Passports</a>.</p>
+
+<h2>What the project set out</h2>
+
+<p>The result is the Clean Fuel Protocol: a sector-specific implementation of UNTP that lets verifiable sustainability data travel with a fuel batch, past the point where the national trail currently ends. It uses Digital Product Passport and EU Business Wallet concepts so that a claim can be checked by a third party without a direct line into government systems.</p>
+
+<p>The report also explored what a next phase could look like, using a concrete case from the dairy sector: calculating the emissions of milk from verified fuel data carried through the protocol. That case walks the design through end to end on paper. We have not started the milk case itself yet; it is the kind of pilot a next phase would run.</p>
+
+<figure style="margin:36px 0;">
+  <img loading="lazy" src="Blogs/clean-fuel-protocol/mid.webp" alt="From renewable generation through fuel production and storage to road, rail, truck and ship delivery, the path a verifiable fuel claim has to survive." style="width:100%;display:block;border-radius:10px;">
+  <figcaption style="font-size:0.8rem;color:#6B7280;margin-top:10px;text-align:center;">From renewable generation to multimodal delivery: every handover is a point where a sustainability claim can be lost. The Clean Fuel Protocol is designed to carry it the whole way.</figcaption>
+</figure>
+
+<h2>Alongside the report</h2>
+
+<p>The consortium also coordinated with NEN, the Dutch standardisation body, for information exchange and to explain the Clean Fuel Protocol, which fed into a parallel report. That report is likewise an annex to the same letter to the House of Representatives, so the protocol proposal and the route to standardise it reached parliament together.</p>
+
+<div style="margin:36px 0;padding:24px 28px;background:#fff;border:1px solid #E5E7EB;border-left:4px solid #009BBB;border-radius:10px;">
+  <p style="font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#00728b;margin:0 0 8px;">Public document</p>
+  <p style="margin:0 0 12px;color:#1A2533;">The full report, the <em>Eindrapportage Clean Fuel Protocol</em>, is an annex to the Dutch government's letter on completing the RED-III implementation (Kamerstuk&nbsp;32813&#8209;1560).</p>
+  <p style="margin:0;"><a href="https://www.tweedekamer.nl/kamerstukken/brieven_regering/detail?id=2026Z09358&amp;did=2026D21045" target="_blank" rel="noopener" style="color:#00728b;font-weight:600;text-decoration:none;">Read the parliamentary letter and report on tweedekamer.nl &rarr;</a></p>
+</div>
+
+<h2>What is still ahead</h2>
+
+<p>We think the direction is right, and we are clear that the direction is not yet the destination. At this point the consortium is also waiting for the next steps to be taken. In Regen Studio's view the essential thing now is that the government helps move the market toward a sustainable fuel market: trusted fuel products, with incentives that point toward sustainable-fuel adoption. The standardisation committee and the pilot project need to start.</p>
+
+<p>And if you genuinely want to set out a new vision for information standards in the fuel market, more energy carriers have to be tried. Soon we start a research project with TU Eindhoven's TruPASS consortium on a hydrogen case. It takes on nearly the same architectural challenge, on a different part of the supply chain: customs clearing for import. We see these two projects as two sides of the same coin. A hydrogen passport could be a fork of this biodiesel-focused setup.</p>
+
+<h2>The consortium</h2>
+
+<p>The work was commissioned by <a href="https://www.rvo.nl" target="_blank" rel="noopener">RVO</a> and delivered by a collaboration between the <a href="https://coe-dpp.nl/" target="_blank" rel="noopener">Centre of Excellence Digital Product Passports</a>, <a href="https://www.tno.nl" target="_blank" rel="noopener">TNO</a>, <a href="https://www.regenstudio.world" target="_blank" rel="noopener">Regen Studio</a> and <a href="https://fides-labs.io/" target="_blank" rel="noopener">Fides</a>, with TNO taking the assignment formally as contracting party. Regen Studio led the ecosystem coordination, the regulatory analysis and the stakeholder requirements, and brought the reframe toward Digital Product Passports and UNTP. Fides did the solution architecture. None of us could have produced this alone, and the result is better for it.</p>
+<h2>Why this matters beyond fuel</h2>
+
+<p>A Digital Product Passport does not have to be a legal obligation. The Clean Fuel Protocol is a voluntary passport, built by a sector because the traceability is worth having, not because a law forces it. As mandatory passports arrive across more product groups, the voluntary ones may end up mattering just as much. That is why this work sits next to the regulated categories on our <a href="/digital-product-passports/">Digital Product Passport page</a>.</p>
+
+<figure style="margin:36px 0;">
+  <img loading="lazy" src="Blogs/clean-fuel-protocol/final.webp" alt="A renewable energy and fuel landscape: wind, solar, production, storage and transport, the system the Clean Fuel Protocol is built to make legible." style="width:100%;display:block;border-radius:10px;">
+</figure>
+
+<p>If you are working on a traceability or product-passport question, mandatory or voluntary, this is the kind of problem Regen Studio likes to be in the room for.</p>
+
+<p>Learn more about how we work on our <a href="index.html#services">Innovation Services</a> page.</p>
+
+<blockquote><p>Have a supply chain where a sustainability claim has to survive downstream? <a href="mailto:info@regenstudio.world">Get in touch</a> and let's look at it together.</p></blockquote>
+
+<div style="background:linear-gradient(135deg,#006d38 0%,#009BBB 100%);border-radius:16px;padding:32px;text-align:center;margin:40px 0;">
+  <p style="color:#AFF9D7;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px;font-weight:600;">Try the demo</p>
+  <p style="color:#FFFFFF;font-size:1.2rem;font-weight:700;margin:0 0 8px;">See a Digital Product Passport in action</p>
+  <p style="color:#D1FAE5;font-size:0.95rem;margin:0 0 20px;">Our interactive DPP system demo traces a product end to end — the same UNTP-based architecture the Clean Fuel Protocol builds on.</p>
+  <a href="/blog/demo-dpp-system/" style="display:inline-block;background:#FFFFFF;color:#006d38;font-weight:700;padding:12px 28px;border-radius:8px;text-decoration:none;">Open the demo &rarr;</a>
+</div>
+
+<h2>Related reading</h2>
+
+<a href="/blog/trusted-dpps/" style="text-decoration:none;display:block;max-width:520px;margin:0 auto 18px;">
+  <article style="display:flex;flex-direction:row;background:#fff;border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;">
+    <div style="width:160px;min-width:160px;overflow:hidden;">
+      <img loading="lazy" src="Blogs/trusted-dpps/Header trusted DPPsAtivo 48.webp" alt="Trusted Digital Product Passports position paper" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div style="padding:18px 20px;flex:1;display:flex;flex-direction:column;justify-content:center;">
+      <div style="display:flex;gap:6px;margin-bottom:10px;">
+        <span class="blog-card__category blog-card__category--emerald">Digital Product Passport</span>
+        <span class="blog-card__category blog-card__category--gray">Vision &amp; Strategy</span>
+      </div>
+      <p style="font-size:0.95rem;font-weight:600;color:#1A2533;line-height:1.35;margin:0 0 6px;">Position Paper: Trusted Digital Product Passports</p>
+      <p style="font-size:0.8rem;color:#6B7280;line-height:1.5;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">The trust model behind a credible passport — what makes a downstream sustainability claim actually verifiable.</p>
+    </div>
+  </article>
+</a>
+
+<a href="/blog/dpp-regenerative-economies/" style="text-decoration:none;display:block;max-width:520px;margin:0 auto 18px;">
+  <article style="display:flex;flex-direction:row;background:#fff;border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;">
+    <div style="width:160px;min-width:160px;overflow:hidden;">
+      <img loading="lazy" src="Blogs/dpp-regenerative-economies/header.png" alt="Digital Product Passports for Regenerative Economies" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div style="padding:18px 20px;flex:1;display:flex;flex-direction:column;justify-content:center;">
+      <div style="display:flex;gap:6px;margin-bottom:10px;">
+        <span class="blog-card__category blog-card__category--emerald">Digital Product Passport</span>
+        <span class="blog-card__category blog-card__category--gray">Innovation Services</span>
+      </div>
+      <p style="font-size:0.95rem;font-weight:600;color:#1A2533;line-height:1.35;margin:0 0 6px;">Digital Product Passports for Regenerative Economies</p>
+      <p style="font-size:0.8rem;color:#6B7280;line-height:1.5;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">Why product passports matter beyond compliance — the bigger picture this work sits inside.</p>
+    </div>
+  </article>
+</a>

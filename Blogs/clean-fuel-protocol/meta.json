@@ -1,0 +1,40 @@
+{
+  "title": "Clean Fuel Protocol: How we designed for traceability of renewable fuels in the Dutch market with Digital Product Passports",
+  "slug": "clean-fuel-protocol",
+  "subtitle": "How a consortium designed a way to keep a renewable fuel's sustainability claim verifiable all the way to the buyer, instead of losing it the moment the fuel changes hands — now an annex to the Dutch government's RED-III completion letter to parliament.",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Digital Product Passports & Traceability"
+  },
+  "date": "2026-05-16",
+  "categories": [
+    "Client Projects",
+    "Digital Product Passport",
+    "Energy Transition"
+  ],
+  "tags": [
+    "clean-fuel-protocol",
+    "digital-product-passport",
+    "untp",
+    "renewable-fuels",
+    "red-iii",
+    "biofuels",
+    "traceability",
+    "tno",
+    "rvo",
+    "fides",
+    "coe-dpp",
+    "eu-business-wallet",
+    "voluntary-dpp",
+    "sustainability-claims",
+    "trupass-hydrogen"
+  ],
+  "featuredImage": "hero.webp",
+  "featuredImageAlt": "Renewable-fuel value chain from generation through production, storage and multimodal delivery, illustrating where a verifiable sustainability claim must survive downstream.",
+  "excerpt": "Past the point where a renewable fuel is registered for national RED-III compliance, a company can barely claim more than a market-average reduction. This is the story of the Clean Fuel Protocol: a UNTP-based, voluntary Digital Product Passport for renewable fuels, set out by a consortium of the Centre of Excellence Digital Product Passports, TNO, Regen Studio and Fides for RVO, and now an annex to the government's RED-III completion letter to the Dutch House of Representatives (Tweede Kamer).",
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
+}
