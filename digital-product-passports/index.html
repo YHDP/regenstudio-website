@@ -555,8 +555,8 @@
 
         <!-- VOLUNTARY — sector-led DPP (Clean Fuel Protocol), no EU mandate. Links to /blog/clean-fuel-protocol/ — do NOT push this card before that project post is live (ship together). -->
         <a href="/blog/clean-fuel-protocol/" class="dpp-product dpp-product--linked"
-           data-regulation-name="Voluntary — Clean Fuel Protocol (sector initiative)"
-           data-citation="The Clean Fuel Protocol is a voluntary, sector-led traceability standard for renewable fuels — a UNTP-based Digital Product Passport, not mandated by EU law. It is referenced in the Dutch RED-III implementation completion letter to the Tweede Kamer. — &lt;a href='https://www.tweedekamer.nl/kamerstukken/brieven_regering/detail?id=2026Z09358&amp;did=2026D21045' target='_blank' rel='noopener'&gt;Kamerstuk 32813-1560&lt;/a&gt;&lt;br&gt;&lt;br&gt;Read the project story: &lt;a href='/blog/clean-fuel-protocol/'&gt;The Clean Fuel Protocol&lt;/a&gt;">
+           data-link-label="Read the project story &rarr;"
+           data-citation="The Clean Fuel Protocol is a voluntary, sector-led Digital Product Passport for renewable fuels (UNTP-based) — not an EU mandate. TNO, Regen Studio, Fides and the Centre of Excellence DPP set it out for RVO, and it is referenced in the Dutch government&#39;s RED-III completion letter to the Tweede Kamer. &lt;a href='/blog/clean-fuel-protocol/'&gt;Read the full project story &rarr;&lt;/a&gt;">
           <span class="dpp-info-btn" role="button" tabindex="0" aria-label="View Clean Fuel Protocol context"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg></span>
           <span class="dpp-status dpp-status--voluntary" title="Voluntary — sector-led standard, no EU mandate"></span>
           <img src="../Images/Focus Areas/Digital Product Passports/Product groups/Fuels.svg" alt="Renewable fuels — voluntary Clean Fuel Protocol, a UNTP-based Digital Product Passport (no EU mandate)" loading="lazy" width="72" height="72">
@@ -609,7 +609,7 @@
               <input type="email" name="email" placeholder="Your work email" class="dpp-gate__input" required aria-label="Work email address">
               <button type="submit" class="btn btn--primary dpp-gate__btn">Unlock</button>
             </div>
-            <label class="regen-form__checkbox regen-form__checkbox--light">
+            <label class="regen-form__checkbox">
               <input type="checkbox" name="newsletter_opt_in" value="1">
               <span>Keep me updated on DPP regulation changes</span>
             </label>
@@ -624,7 +624,7 @@
     </section>
 
     <!-- DPP Info Modal (shared) -->
-    <div class="dpp-info-modal" id="dppInfoModal" role="dialog" aria-modal="true" aria-label="Product regulation details">
+    <div class="dpp-info-modal" id="dppInfoModal" role="dialog" aria-modal="true" aria-label="Product details">
       <div class="dpp-info-modal__backdrop"></div>
       <div class="dpp-info-modal__card">
         <button class="dpp-info-modal__close" aria-label="Close">&times;</button>
@@ -1178,6 +1178,7 @@
 
         modalCitation.innerHTML = citation || 'No citation available.';
         modalLink.href = href || '#';
+        modalLink.textContent = card.getAttribute('data-link-label') || 'View regulation →';
         modal.classList.add('open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
