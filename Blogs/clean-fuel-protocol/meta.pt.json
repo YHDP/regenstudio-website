@@ -27,7 +27,10 @@
     "eu-business-wallet",
     "voluntary-dpp",
     "sustainability-claims",
-    "trupass-hydrogen"
+    "trupass-hydrogen",
+    "csrd",
+    "espr",
+    "esg"
   ],
   "featuredImage": "hero.webp",
   "featuredImageAlt": "Cadeia de valor de combustível renovável, da geração à produção, armazenamento e entrega multimodal — onde uma alegação de sustentabilidade verificável precisa sobreviver a jusante.",

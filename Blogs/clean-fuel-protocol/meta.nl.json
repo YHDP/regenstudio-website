@@ -27,7 +27,10 @@
     "eu-business-wallet",
     "voluntary-dpp",
     "sustainability-claims",
-    "trupass-hydrogen"
+    "trupass-hydrogen",
+    "csrd",
+    "espr",
+    "esg"
   ],
   "featuredImage": "hero.webp",
   "featuredImageAlt": "Waardeketen van hernieuwbare brandstof, van opwekking via productie, opslag en multimodale levering — waar een verifieerbare duurzaamheidsclaim downstream overeind moet blijven.",

@@ -27,7 +27,10 @@
     "eu-business-wallet",
     "voluntary-dpp",
     "sustainability-claims",
-    "trupass-hydrogen"
+    "trupass-hydrogen",
+    "csrd",
+    "espr",
+    "esg"
   ],
   "featuredImage": "hero.webp",
   "featuredImageAlt": "Renewable-fuel value chain from generation through production, storage and multimodal delivery, illustrating where a verifiable sustainability claim must survive downstream.",
