@@ -316,6 +316,43 @@ else: print(f'published={pub} review.text={r.get(\"text\")} review.assets={r.get
     done < <(echo "$CHECK_PAIRS" | sort -u | grep -v '^$')
   fi
 
+  # 8. Lang-completeness gate for top-level static pages.
+  #    Every top-level <slug>/index.html added or modified must have matching
+  #    nl/<slug>/index.html AND pt/<slug>/index.html in the tree at the push SHA.
+  #    Exempt slugs list at scripts/hooks/en-only-pages.txt (one slug per line,
+  #    # comments + blank lines OK).
+  #    Codified 2026-05-20 after the 8-page NL/PT trilingualisation sweep —
+  #    new public-facing pages were repeatedly authored EN-only and shipped
+  #    without translations, breaking the runtime language switcher.
+  ALLOWLIST_FILE="scripts/hooks/en-only-pages.txt"
+  ALLOWLIST=""
+  if [ -f "$ALLOWLIST_FILE" ]; then
+    ALLOWLIST=$(grep -vE '^\s*(#|$)' "$ALLOWLIST_FILE" 2>/dev/null || true)
+  fi
+
+  TOP_LEVEL_NEW=$(git diff --name-only --diff-filter=AM "$range" 2>/dev/null \
+    | grep -E '^[a-z0-9][a-z0-9-]*/index\.html$' || true)
+
+  if [ -n "$TOP_LEVEL_NEW" ]; then
+    while IFS= read -r file; do
+      [ -z "$file" ] && continue
+      slug=$(echo "$file" | cut -d/ -f1)
+      if [ -n "$ALLOWLIST" ] && echo "$ALLOWLIST" | grep -Fxq "$slug"; then
+        continue
+      fi
+      missing=""
+      git cat-file -e "$local_sha:nl/$slug/index.html" 2>/dev/null || missing="$missing nl"
+      git cat-file -e "$local_sha:pt/$slug/index.html" 2>/dev/null || missing="$missing pt"
+      if [ -n "$missing" ]; then
+        echo -e "${RED}BLOCKED: lang-completeness — $slug exists in EN but missing in:$missing${NC}"
+        echo -e "${YELLOW}  Add the missing variant(s) (nl/$slug/index.html, pt/$slug/index.html)${NC}"
+        echo -e "${YELLOW}  or add '$slug' on its own line in scripts/hooks/en-only-pages.txt${NC}"
+        echo -e "${YELLOW}  to opt out (e.g. for internal admin/operator pages).${NC}"
+        ISSUES=$((ISSUES + 1))
+      fi
+    done <<< "$TOP_LEVEL_NEW"
+  fi
+
 done
 
 if [ "$ISSUES" -gt 0 ]; then

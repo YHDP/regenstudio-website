@@ -1,0 +1,14 @@
+# Slugs deliberately staying English-only (skip lang-completeness gate).
+# Format: one slug per line (the top-level directory name, no slashes).
+# Lines starting with # are comments. Blank lines ignored.
+#
+# Codified 2026-05-20 after the trilingualisation sweep.
+# When in doubt, prefer translating over allowlisting — public pages should
+# be trilingual (EN/NL/PT). Allowlist only for internal admin/operator UIs
+# that have no public audience and carry noindex,nofollow.
+
+# Internal admin / operator UIs (noindex, gated by admin-secret)
+admin
+dpa-signed
+scope-signed
+review
