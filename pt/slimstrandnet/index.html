@@ -1,20 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow">
-  <title>Slim Strandnet Scheveningen &mdash; Knowledge Platform</title>
-  <meta name="description" content="Interactive knowledge platform on Slim Strandnet Scheveningen: how a smart microgrid solves grid congestion and enables an energy community.">
+  <title>Slim Strandnet Scheveningen — Plataforma de Conhecimento</title>
+  <meta name="description" content="Plataforma interativa de conhecimento sobre Slim Strandnet Scheveningen: como uma microrrede inteligente resolve o congestionamento da rede e viabiliza uma comunidade de energia.">
+
+  <link rel="canonical" href="https://www.regenstudio.world/pt/slimstrandnet/">
+  <link rel="alternate" hreflang="en" href="https://www.regenstudio.world/slimstrandnet/">
+  <link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/slimstrandnet/">
+  <link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/slimstrandnet/">
+  <link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/slimstrandnet/">
 
   <!-- Fonts (self-hosted from regenstudio) -->
-  <link rel="preload" href="../assets/fonts/koho-logo-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../assets/fonts/koho.css">
-  <link rel="stylesheet" href="../assets/fonts/inter.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="../assets/fonts/inter.css"></noscript>
-  <link rel="stylesheet" href="../assets/fonts/playfair-display.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="../assets/fonts/playfair-display.css"></noscript>
-  <link rel="icon" type="image/png" href="../Images/favicon.png">
+  <link rel="preload" href="../../assets/fonts/koho-logo-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/fonts/koho.css">
+  <link rel="stylesheet" href="../../assets/fonts/inter.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="../../assets/fonts/inter.css"></noscript>
+  <link rel="stylesheet" href="../../assets/fonts/playfair-display.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="../../assets/fonts/playfair-display.css"></noscript>
+  <link rel="icon" type="image/png" href="../../Images/favicon.png">
 
   <style>
     /* ============================================
@@ -99,6 +105,27 @@
       display: flex;
       align-items: center;
       gap: 12px;
+    }
+    .ssn-lang-toggle {
+      display: flex;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .ssn-lang-toggle button {
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .ssn-lang-toggle button.active {
+      background: var(--color-navy);
+      color: #fff;
     }
     .ssn-print-btn {
       padding: 6px 14px;
@@ -562,6 +589,32 @@
       font-size: 1rem;
     }
 
+    /* --- Bilingual toggle --- */
+    [data-en] { display: none; }
+    html[lang="en"] [data-pt] { display: none; }
+    html[lang="en"] [data-en] { display: unset; }
+    /* Block-level elements need display:block not unset */
+    html[lang="en"] p[data-en],
+    html[lang="en"] div[data-en],
+    html[lang="en"] li[data-en],
+    html[lang="en"] h1[data-en],
+    html[lang="en"] h2[data-en],
+    html[lang="en"] h3[data-en] { display: block; }
+    html[lang="en"] span[data-en] { display: inline; }
+    html[lang="en"] .ssn-result-card[data-en],
+    html[lang="en"] .ssn-steps li[data-en] { display: flex; }
+    p[data-pt], div[data-pt], li[data-pt],
+    h1[data-pt], h2[data-pt], h3[data-pt] { display: block; }
+    .ssn-result-card[data-pt], .ssn-steps li[data-pt] { display: flex; }
+    html[lang="en"] p[data-pt],
+    html[lang="en"] div[data-pt],
+    html[lang="en"] li[data-pt],
+    html[lang="en"] h1[data-pt],
+    html[lang="en"] h2[data-pt],
+    html[lang="en"] h3[data-pt],
+    html[lang="en"] .ssn-result-card[data-pt],
+    html[lang="en"] .ssn-steps li[data-pt] { display: none; }
+
     /* --- Result cards --- */
     .ssn-result-grid {
       display: grid;
@@ -782,7 +835,7 @@
 
     /* --- Print --- */
     @media print {
-      .ssn-topbar, .ssn-toc, .ssn-print-btn, .ssn-divider { display: none !important; }
+      .ssn-topbar, .ssn-toc, .ssn-print-btn, .ssn-lang-toggle, .ssn-divider { display: none !important; }
       .ssn-layout { display: block; }
       .ssn-main { padding: 0; max-width: 100%; }
       .ssn-section { page-break-inside: avoid; }
@@ -845,12 +898,6 @@
     body.ssn-locked { overflow: hidden; }
     @media print { .ssn-gate { display: none; } }
   </style>
-
-  <link rel="canonical" href="https://www.regenstudio.world/slimstrandnet/">
-  <link rel="alternate" hreflang="en" href="https://www.regenstudio.world/slimstrandnet/">
-  <link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/slimstrandnet/">
-  <link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/slimstrandnet/">
-  <link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/slimstrandnet/">
 </head>
 <body class="ssn-locked">
 
@@ -858,10 +905,10 @@
 <div class="ssn-gate" id="ssnGate">
   <div class="ssn-gate__box">
     <h2>Slim Strandnet</h2>
-    <p>Enter the password to gain access.</p>
+    <p>Digite a senha para acessar.</p>
     <form id="ssnGateForm" onsubmit="return false;">
-      <input type="password" class="ssn-gate__input" id="ssnGateInput" placeholder="Password" autocomplete="off" autofocus>
-      <button type="submit" class="ssn-gate__btn">Access</button>
+      <input type="password" class="ssn-gate__input" id="ssnGateInput" placeholder="Senha" autocomplete="off" autofocus>
+      <button type="submit" class="ssn-gate__btn">Acessar</button>
     </form>
   </div>
 </div>
@@ -895,10 +942,14 @@
 
 <!-- ===== Top Bar ===== -->
 <div class="ssn-topbar">
-  <a href="../" class="ssn-topbar__brand">Regen Studio</a>
+  <a href="../../" class="ssn-topbar__brand">Regen Studio</a>
   <div class="ssn-topbar__actions">
-    <button class="ssn-print-btn" onclick="window.print()" aria-label="Print">
-      Print
+    <div class="ssn-lang-toggle" role="group" aria-label="Idioma / Language">
+      <button class="active" data-lang-btn="pt" aria-pressed="true">PT</button>
+      <button data-lang-btn="en" aria-pressed="false">EN</button>
+    </div>
+    <button class="ssn-print-btn" onclick="window.print()" aria-label="Imprimir / Print">
+      <span data-pt>Imprimir</span><span data-en>Print</span>
     </button>
   </div>
 </div>
@@ -907,18 +958,20 @@
 <div class="ssn-layout">
 
   <!-- Sidebar TOC -->
-  <nav class="ssn-toc" aria-label="Table of contents">
-    <div class="ssn-toc__title">Contents</div>
+  <nav class="ssn-toc" aria-label="Sumário">
+    <div class="ssn-toc__title">
+      <span data-pt>Sumário</span><span data-en>Contents</span>
+    </div>
     <ol class="ssn-toc__list">
-      <li><a href="#samenvatting">Summary</a></li>
-      <li><a href="#context">Context: Grid Congestion</a></li>
-      <li><a href="#verhaal">The story</a></li>
-      <li><a href="#model">The model</a></li>
-      <li><a href="#resultaten">Results &amp; lessons</a></li>
-      <li><a href="#toepassen">Apply it</a></li>
-      <li><a href="#vergelijking">Comparison</a></li>
-      <li><a href="#partners">Partners</a></li>
-      <li><a href="#bronnen">Sources</a></li>
+      <li><a href="#samenvatting"><span data-pt>Resumo</span><span data-en>Summary</span></a></li>
+      <li><a href="#context"><span data-pt>Contexto: Congestionamento da rede</span><span data-en>Context: Grid Congestion</span></a></li>
+      <li><a href="#verhaal"><span data-pt>A história</span><span data-en>The story</span></a></li>
+      <li><a href="#model"><span data-pt>O modelo</span><span data-en>The model</span></a></li>
+      <li><a href="#resultaten"><span data-pt>Resultados e aprendizados</span><span data-en>Results &amp; lessons</span></a></li>
+      <li><a href="#toepassen"><span data-pt>Aplicação</span><span data-en>Apply it</span></a></li>
+      <li><a href="#vergelijking"><span data-pt>Comparação</span><span data-en>Comparison</span></a></li>
+      <li><a href="#partners"><span data-pt>Parceiros</span><span data-en>Partners</span></a></li>
+      <li><a href="#bronnen"><span data-pt>Fontes</span><span data-en>Sources</span></a></li>
     </ol>
   </nav>
 
@@ -927,9 +980,16 @@
 
     <!-- ===== Hero ===== -->
     <header class="ssn-hero">
-      <div class="ssn-hero__badge">Knowledge Platform</div>
-      <h1>Slim Strandnet Scheveningen</h1>
-      <p class="ssn-hero__subtitle">
+      <div class="ssn-hero__badge">
+        <span data-pt>Plataforma de Conhecimento</span><span data-en>Knowledge Platform</span>
+      </div>
+      <h1 data-pt>Slim Strandnet Scheveningen</h1>
+      <h1 data-en>Smart Beach Grid Scheveningen</h1>
+      <p class="ssn-hero__subtitle" data-pt>
+        Como uma comunidade de energia público-privada na praia de Scheveningen resolve o congestionamento da rede,
+        compartilha energia sustentável e oferece um modelo replicável para todo o país.
+      </p>
+      <p class="ssn-hero__subtitle" data-en>
         How a public-private energy community on Scheveningen beach solves grid congestion,
         shares renewable energy and provides a blueprint for the Netherlands.
       </p>
@@ -939,22 +999,22 @@
         <div class="ssn-metric">
           <div class="ssn-metric__icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
           <div class="ssn-metric__value">1 MW</div>
-          <div class="ssn-metric__label">Microgrid capacity</div>
+          <div class="ssn-metric__label"><span data-pt>Capacidade da microrrede</span><span data-en>Microgrid capacity</span></div>
         </div>
         <div class="ssn-metric">
           <div class="ssn-metric__icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="7" width="12" height="14" rx="2"/><path d="M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/><path d="M12 12v4"/><path d="M10 14h4"/></svg></div>
           <div class="ssn-metric__value">360 kWh</div>
-          <div class="ssn-metric__label">Beach battery (2nd-life EV)</div>
+          <div class="ssn-metric__label"><span data-pt>Bateria da praia (2&ordf; vida de VE)</span><span data-en>Beach battery (2nd-life EV)</span></div>
         </div>
         <div class="ssn-metric">
           <div class="ssn-metric__icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
           <div class="ssn-metric__value">100%</div>
-          <div class="ssn-metric__label">Evening peak eliminated</div>
+          <div class="ssn-metric__label"><span data-pt>Pico noturno eliminado</span><span data-en>Evening peak eliminated</span></div>
         </div>
         <div class="ssn-metric">
           <div class="ssn-metric__icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
           <div class="ssn-metric__value">Top 3</div>
-          <div class="ssn-metric__label">Government Innovation 2025</div>
+          <div class="ssn-metric__label"><span data-pt>Inovação Pública 2025</span><span data-en>Government Innovation 2025</span></div>
         </div>
       </div>
 
@@ -1006,11 +1066,16 @@
       </svg>
     </header>
 
-    <!-- ===== 1. Summary ===== -->
+    <!-- ===== 1. Resumo ===== -->
     <section class="ssn-section" id="samenvatting">
-      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>About this document</h2>
+      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><span data-pt>Sobre este documento</span><span data-en>About this document</span></h2>
 
-      <p>
+      <p data-pt>
+        Este documento de conhecimento é dirigido a <strong>profissionais do setor público, formuladores de políticas e iniciadores</strong>
+        que trabalham com iniciativas locais de energia, comunidades de energia ou soluções para o congestionamento da rede.
+        Ele reúne o conhecimento acumulado e a experiência prática do Slim Strandnet Scheveningen em um formato acessível.
+      </p>
+      <p data-en>
         This knowledge document is intended for <strong>government professionals, policymakers and initiators</strong>
         working on local energy initiatives, energy communities or grid congestion solutions.
         It brings together the accumulated knowledge and practical experience of Slim Strandnet Scheveningen in an accessible format.
@@ -1019,14 +1084,22 @@
       <div class="ssn-callout ssn-callout--emerald ssn-callout--with-icon">
         <div class="ssn-callout__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
         <div class="ssn-callout__content">
-          <p>
+          <p data-pt>
+            <strong>Aproveite o que for relevante.</strong> O modelo é composto por cinco blocos que você pode aplicar
+            de forma independente em seu próprio contexto. Não é preciso adotar tudo &mdash; pegue o que funciona.
+          </p>
+          <p data-en>
             <strong>Cherry-pick what's relevant.</strong> The model consists of five building blocks that you can apply
             independently in your own context. You don't have to adopt everything &mdash; take what works.
           </p>
         </div>
       </div>
 
-      <p>
+      <p data-pt>
+        <strong>Objetivo:</strong> Acelerar o surgimento de iniciativas locais de energia semelhantes,
+        mostrando concretamente o que funciona, o que não funciona e em que condições.
+      </p>
+      <p data-en>
         <strong>Goal:</strong> Help similar local energy initiatives get off the ground faster,
         by concretely showing what works, what doesn't, and under what conditions.
       </p>
@@ -1036,9 +1109,14 @@
 
     <!-- ===== 2. Context ===== -->
     <section class="ssn-section" id="context">
-      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>Context: Grid Congestion in the Netherlands</h2>
+      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span><span data-pt>Contexto: Congestionamento da rede nos Países Baixos</span><span data-en>Context: Grid Congestion in the Netherlands</span></h2>
 
-      <p>
+      <p data-pt>
+        A rede elétrica holandesa está saturada. O rápido crescimento de painéis solares, bombas de calor, eletropostos
+        e a eletrificação da indústria supera a capacidade da rede. Em muitas regiões, é impossível
+        conectar novos grandes consumidores e empresas enfrentam filas de espera de anos.
+      </p>
+      <p data-en>
         The Dutch electricity grid is full. The rapid growth of solar panels, heat pumps, EV charging stations
         and electrification of industry exceeds network capacity. In many areas, connecting new large consumers
         is impossible and businesses face years-long waiting lists.
@@ -1048,21 +1126,38 @@
         <div class="ssn-callout__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
         <div class="ssn-callout__content">
         <p>
-          <strong>The distribution station at De Constant Rebecqueplein</strong>
-          &mdash; which feeds The Hague city centre, Duindorp and Scheveningen &mdash;
-          has reached maximum capacity. Expansion costs approx. <strong>&euro;100 million</strong>
-          and won't be complete until <strong>mid-2033</strong>.
+          <strong data-pt>A subestação de De Constant Rebecqueplein</strong>
+          <strong data-en>The distribution station at De Constant Rebecqueplein</strong>
+          <span data-pt>
+            &mdash; que alimenta o centro de Haia, Duindorp e Scheveningen &mdash;
+            chegou à capacidade máxima. A ampliação custa cerca de <strong>&euro;100 milhões</strong>
+            e só ficará pronta em <strong>meados de 2033</strong>.
+          </span>
+          <span data-en>
+            &mdash; which feeds The Hague city centre, Duindorp and Scheveningen &mdash;
+            has reached maximum capacity. Expansion costs approx. <strong>&euro;100 million</strong>
+            and won't be complete until <strong>mid-2033</strong>.
+          </span>
         </p>
         </div>
       </div>
 
-      <h3>Why we can't wait</h3>
-      <p>
+      <h3><span data-pt>Por que não podemos esperar</span><span data-en>Why we can't wait</span></h3>
+      <p data-pt>
+        Em fevereiro de 2026, a TenneT alertou que em Flevoland, Gelderland e Utrecht a rede atingiu seu limite absoluto.
+        Sem intervenções drásticas, há risco de <strong>suspensão de novas conexões para pequenos consumidores</strong> a partir do verão de 2026.
+        Capacidade estrutural adicional só é esperada entre 2033 e 2035.
+      </p>
+      <p data-en>
         In February 2026, TenneT warned that in Flevoland, Gelderland and Utrecht the grid has reached its absolute limit.
         Without drastic interventions, a <strong>connection stop for small consumers</strong> threatens from summer 2026.
         Structural extra capacity is not expected until 2033&ndash;2035.
       </p>
-      <p>
+      <p data-pt>
+        Slim Strandnet mostra que <strong>já é possível fazer diferente agora</strong>: a gestão local inteligente de energia
+        pode liberar capacidade dentro da infraestrutura existente, sem esperar por reforços da rede.
+      </p>
+      <p data-en>
         Slim Strandnet demonstrates that <strong>it can be done differently now</strong>: smart local energy management
         can free up capacity within existing infrastructure, without waiting for grid reinforcement.
       </p>
@@ -1072,10 +1167,18 @@
         <svg viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg" aria-label="Microgrid concept diagram">
           <!-- Problem side -->
           <rect x="10" y="20" width="180" height="120" rx="12" fill="#FFF5F5" stroke="#E71846" stroke-width="1.5" opacity="0.8"/>
-          <text x="100" y="55" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#E71846">PROBLEM</text>
-          <text x="100" y="78" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#243644">Grid at max capacity</text>
-          <text x="100" y="96" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#243644">Waitlist until 2033</text>
-          <text x="100" y="114" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#243644">Cost: &euro;100M+</text>
+          <text x="100" y="55" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#E71846">
+            <tspan data-pt>PROBLEMA</tspan><tspan data-en>PROBLEM</tspan>
+          </text>
+          <text x="100" y="78" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#243644">
+            <tspan data-pt>Rede no limite</tspan><tspan data-en>Grid at max capacity</tspan>
+          </text>
+          <text x="100" y="96" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#243644">
+            <tspan data-pt>Fila de espera até 2033</tspan><tspan data-en>Waitlist until 2033</tspan>
+          </text>
+          <text x="100" y="114" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#243644">
+            <tspan data-pt>Custo: &euro;100M+</tspan><tspan data-en>Cost: &euro;100M+</tspan>
+          </text>
 
           <!-- Arrow -->
           <path d="M210 80 L270 80" stroke="#C4D3DE" stroke-width="2" stroke-dasharray="6 4"/>
@@ -1083,7 +1186,9 @@
 
           <!-- Solution center -->
           <rect x="290" y="10" width="180" height="140" rx="12" fill="#EEF6F1" stroke="#008545" stroke-width="2"/>
-          <text x="380" y="42" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#008545">SOLUTION</text>
+          <text x="380" y="42" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#008545">
+            <tspan data-pt>SOLUÇÃO</tspan><tspan data-en>SOLUTION</tspan>
+          </text>
           <!-- Icons row -->
           <g transform="translate(315, 55)">
             <!-- Solar -->
@@ -1100,9 +1205,15 @@
             <circle cx="102" cy="10" r="3" fill="#243644" opacity="0.4"/>
             <line x1="93" y1="10" x2="99" y2="10" stroke="#243644" stroke-width="1"/>
           </g>
-          <text x="380" y="105" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#243644">Smart local microgrid</text>
-          <text x="380" y="122" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#243644">Solar + Battery + EMS</text>
-          <text x="380" y="139" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#008545">Open source &amp; replicable</text>
+          <text x="380" y="105" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#243644">
+            <tspan data-pt>Microrrede local inteligente</tspan><tspan data-en>Smart local microgrid</tspan>
+          </text>
+          <text x="380" y="122" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#243644">
+            <tspan data-pt>Solar + Bateria + EMS</tspan><tspan data-en>Solar + Battery + EMS</tspan>
+          </text>
+          <text x="380" y="139" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" font-weight="600" fill="#008545">
+            <tspan data-pt>Código aberto e replicável</tspan><tspan data-en>Open source &amp; replicable</tspan>
+          </text>
 
           <!-- Arrow -->
           <path d="M490 80 L550 80" stroke="#C4D3DE" stroke-width="2" stroke-dasharray="6 4"/>
@@ -1110,16 +1221,31 @@
 
           <!-- Result side -->
           <rect x="570" y="20" width="120" height="120" rx="12" fill="#EEF6F1" stroke="#008545" stroke-width="1.5" opacity="0.8"/>
-          <text x="630" y="55" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#008545">RESULT</text>
+          <text x="630" y="55" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#008545">
+            <tspan data-pt>RESULTADO</tspan><tspan data-en>RESULT</tspan>
+          </text>
           <text x="630" y="78" text-anchor="middle" font-family="Inter, sans-serif" font-size="24" font-weight="700" fill="#008545">100%</text>
-          <text x="630" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#243644">peak eliminated</text>
-          <text x="630" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#008545" font-weight="600">+ new connections</text>
+          <text x="630" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#243644">
+            <tspan data-pt>pico eliminado</tspan><tspan data-en>peak eliminated</tspan>
+          </text>
+          <text x="630" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#008545" font-weight="600">
+            <tspan data-pt>+ novas conexões</tspan><tspan data-en>+ new connections</tspan>
+          </text>
         </svg>
-        <div class="ssn-infographic__caption">From grid congestion to smart local energy management</div>
+        <div class="ssn-infographic__caption">
+          <span data-pt>Do congestionamento da rede à gestão local inteligente de energia</span>
+          <span data-en>From grid congestion to smart local energy management</span>
+        </div>
       </div>
 
-      <h3>New Energy Act 2026</h3>
-      <p>
+      <h3><span data-pt>Nova Lei de Energia 2026</span><span data-en>New Energy Act 2026</span></h3>
+      <p data-pt>
+        Em 1&ordm; de janeiro de 2026 entrou em vigor a nova Lei de Energia (Energiewet). Essa lei reconhece
+        formalmente as <strong>comunidades de energia</strong> e torna legalmente possível o <strong>compartilhamento de energia</strong>
+        dentro da rede elétrica pública. Os Países Baixos têm cerca de 700 cooperativas de energia &mdash; a Lei de Energia
+        passa a oferecer-lhes uma base jurídica mais sólida.
+      </p>
+      <p data-en>
         On 1 January 2026, the new Energy Act came into force. It formally recognises
         <strong>energy communities</strong> and makes <strong>energy sharing</strong> within the public
         electricity grid legally possible. The Netherlands has approx. 700 energy cooperatives &mdash; the Energy Act
@@ -1131,51 +1257,63 @@
 
     <!-- ===== 3. The Story ===== -->
     <section class="ssn-section" id="verhaal">
-      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></span>The Slim Strandnet Story</h2>
+      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></span><span data-pt>A história do Slim Strandnet</span><span data-en>The Slim Strandnet Story</span></h2>
 
-      <p>
+      <p data-pt>
+        O Slim Strandnet ("Rede de Praia Inteligente") é uma microrrede autônoma de baixa tensão localizada no
+        Píer Norte de Scheveningen. Trata-se de uma rede elétrica privada, gerida por uma cooperativa de energia
+        público-privada, que conecta instalações municipais, quiosques de praia, painéis solares,
+        eletropostos, bombas de calor e uma grande bateria.
+      </p>
+      <p data-en>
         Slim Strandnet ("Smart Beach Grid") is an autonomous low-voltage microgrid at the
         Northern Harbour Head of Scheveningen. It is a private electricity network managed by a
         public-private energy cooperative, connecting municipal facilities, beach pavilions, solar panels,
         EV charging stations, heat pumps and a large battery.
       </p>
 
-      <h3>Timeline</h3>
+      <h3><span data-pt>Linha do tempo</span><span data-en>Timeline</span></h3>
       <div class="ssn-timeline">
         <div class="ssn-timeline__item">
           <div class="ssn-timeline__year">2017</div>
           <div class="ssn-timeline__text">
-            Living Lab Scheveningen established (partnership Municipality of The Hague &amp; Eneco) as testbed for smart city solutions
+            <span data-pt>Living Lab Scheveningen é criado (parceria entre o município de Haia e a Eneco) como campo de testes para soluções de cidade inteligente</span>
+            <span data-en>Living Lab Scheveningen established (partnership Municipality of The Hague &amp; Eneco) as testbed for smart city solutions</span>
           </div>
         </div>
         <div class="ssn-timeline__item">
           <div class="ssn-timeline__year">2022</div>
           <div class="ssn-timeline__text">
-            Port operations centre connected as first user &mdash; the smart grid is operational
+            <span data-pt>A central de operações portuárias é conectada como primeiro usuário &mdash; a smart grid entra em operação</span>
+            <span data-en>Port operations centre connected as first user &mdash; the smart grid is operational</span>
           </div>
         </div>
         <div class="ssn-timeline__item">
           <div class="ssn-timeline__year">2023</div>
           <div class="ssn-timeline__text">
-            TU Delft publishes autonomous control research. Tender for digital infrastructure (&euro;450,000). Partners Kersten Techniek and OpenRemote selected
+            <span data-pt>A TU Delft publica pesquisa sobre controle autônomo. Licitação da infraestrutura digital (&euro;450.000). Parceiros Kersten Techniek e OpenRemote são selecionados</span>
+            <span data-en>TU Delft publishes autonomous control research. Tender for digital infrastructure (&euro;450,000). Partners Kersten Techniek and OpenRemote selected</span>
           </div>
         </div>
         <div class="ssn-timeline__item ssn-timeline__item--active">
           <div class="ssn-timeline__year">2024</div>
           <div class="ssn-timeline__text">
-            Beach battery (360 kWh, second-life EV batteries) installed. Beach pavilions Aloha and The Shore connected. First proceeds donated to food bank. Events run on sustainable power instead of diesel
+            <span data-pt>Bateria da praia (360 kWh, baterias de segunda vida de VE) é instalada. Quiosques Aloha e The Shore conectados. Primeira receita doada ao banco de alimentos. Eventos passam a operar com energia sustentável em vez de diesel</span>
+            <span data-en>Beach battery (360 kWh, second-life EV batteries) installed. Beach pavilions Aloha and The Shore connected. First proceeds donated to food bank. Events run on sustainable power instead of diesel</span>
           </div>
         </div>
         <div class="ssn-timeline__item ssn-timeline__item--active">
           <div class="ssn-timeline__year">2025</div>
           <div class="ssn-timeline__text">
-            Beach pavilion HITO connected despite full public grid. Finalist Best Government Innovation of the Year (top 3 of 60 entries). Open Energy Day for the public. Energy cooperative formally being established
+            <span data-pt>Quiosque HITO é conectado apesar da rede pública cheia. Finalista do prêmio Melhor Inovação Pública do Ano (top 3 entre 60 inscrições). Dia Aberto da Energia para o público. Cooperativa de energia formalmente em constituição</span>
+            <span data-en>Beach pavilion HITO connected despite full public grid. Finalist Best Government Innovation of the Year (top 3 of 60 entries). Open Energy Day for the public. Energy cooperative formally being established</span>
           </div>
         </div>
         <div class="ssn-timeline__item ssn-timeline__item--active">
           <div class="ssn-timeline__year">2026</div>
           <div class="ssn-timeline__text">
-            Energy Act enters into force: energy communities legally recognised. Slim Strandnet as testbed for energy sharing via the public grid
+            <span data-pt>A Lei de Energia entra em vigor: comunidades de energia são legalmente reconhecidas. Slim Strandnet como campo de testes para o compartilhamento de energia via rede pública</span>
+            <span data-en>Energy Act enters into force: energy communities legally recognised. Slim Strandnet as testbed for energy sharing via the public grid</span>
           </div>
         </div>
       </div>
@@ -1185,9 +1323,13 @@
 
     <!-- ===== 4. The Model: 5 Building Blocks ===== -->
     <section class="ssn-section" id="model">
-      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>The model: five building blocks</h2>
+      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span><span data-pt>O modelo: cinco blocos</span><span data-en>The model: five building blocks</span></h2>
 
-      <p>
+      <p data-pt>
+        O modelo Slim Strandnet é composto por cinco blocos que você pode adotar ou adaptar
+        de forma independente ao seu próprio contexto. Clique em um bloco para ver os detalhes.
+      </p>
+      <p data-en>
         The Slim Strandnet model consists of five building blocks that you can independently adopt
         or adapt for your own context. Click a building block to open the details.
       </p>
@@ -1196,21 +1338,36 @@
       <div class="ssn-module" id="mod-tech">
         <button class="ssn-module__header" aria-expanded="false" aria-controls="mod-tech-body">
           <div class="ssn-module__icon ssn-module__icon--tech">&#9889;</div>
-          <div class="ssn-module__title">A. Technical Infrastructure</div>
+          <div class="ssn-module__title">
+            <span data-pt>A. Infraestrutura técnica</span><span data-en>A. Technical Infrastructure</span>
+          </div>
           <svg class="ssn-module__chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
         </button>
         <div class="ssn-module__body" id="mod-tech-body">
           <div class="ssn-module__content">
-            <h3>Microgrid architecture</h3>
-            <p>
+            <h3><span data-pt>Arquitetura da microrrede</span><span data-en>Microgrid architecture</span></h3>
+            <p data-pt>
+              O Slim Strandnet é uma rede completa de baixa tensão em escala reduzida, com capacidade de cerca de <strong>1 megawatt</strong>
+              (suficiente para aproximadamente 1.000 residências). Fica atrás de uma única conexão na subestação local
+              e cria assim uma rede privada na qual os participantes conectados trocam eletricidade localmente &mdash;
+              sem sobrecarregar a rede pública da Stedin.
+            </p>
+            <p data-en>
               Slim Strandnet is a complete low-voltage network in miniature, with a capacity of approximately <strong>1 megawatt</strong>
               (enough for ~1,000 households). It sits behind a single connection at the local transformer station,
               creating a private network through which connected participants exchange electricity locally &mdash;
               without additional burden on Stedin's public grid.
             </p>
 
-            <h3>Beach battery (circular)</h3>
-            <p>
+            <h3><span data-pt>Bateria da praia (circular)</span><span data-en>Beach battery (circular)</span></h3>
+            <p data-pt>
+              A bateria tem capacidade de <strong>360 kWh / 100&ndash;160 kW</strong> e é construída com
+              baterias de segunda vida de veículos elétricos (Accu't B.V., modelo TS1 360/160).
+              Ela é capaz de alimentar um quiosque de praia por aproximadamente 2 dias. Armazena durante o dia
+              o excedente de energia solar e fornece à noite e nos horários de pico &mdash; uma solução circular
+              que ataca dois problemas ao mesmo tempo.
+            </p>
+            <p data-en>
               The battery has a capacity of <strong>360 kWh / 100&ndash;160 kW</strong> and is built from
               second-life electric vehicle batteries (Accu't B.V., model TS1 360/160).
               The battery can power a beach pavilion for approximately 2 days. It stores excess
@@ -1218,20 +1375,33 @@
               that addresses two problems simultaneously.
             </p>
 
-            <h3>Energy Management System (EMS)</h3>
-            <p>
+            <h3><span data-pt>Sistema de Gestão de Energia (EMS)</span><span data-en>Energy Management System (EMS)</span></h3>
+            <p data-pt>
+              O EMS roda sobre <strong>OpenRemote</strong> (plataforma IoT de código aberto), complementado pelo
+              <strong>Motus EMS</strong> da Kersten Techniek. O sistema:
+            </p>
+            <p data-en>
               The EMS runs on <strong>OpenRemote</strong> (open-source IoT platform) supplemented with
               <strong>Motus EMS</strong> by Kersten Techniek. The system:
             </p>
             <ul>
-              <li>Forecasts production and consumption based on historical data and weather predictions</li>
-              <li>Automatically optimises devices (freezers, heat pumps, chargers) to flatten peaks</li>
-              <li>Enables "island mode": the microgrid can function independently during public grid outages</li>
-              <li>Is fully <strong>open source</strong> and freely available for other municipalities, housing corporations or installation companies</li>
+              <li data-pt>Prevê produção e consumo com base em dados históricos e previsões meteorológicas</li>
+              <li data-en>Forecasts production and consumption based on historical data and weather predictions</li>
+              <li data-pt>Otimiza automaticamente equipamentos (freezers, bombas de calor, eletropostos) para suavizar picos</li>
+              <li data-en>Automatically optimises devices (freezers, heat pumps, chargers) to flatten peaks</li>
+              <li data-pt>Possibilita o "modo ilha": a microrrede pode operar de forma independente em caso de falha na rede pública</li>
+              <li data-en>Enables "island mode": the microgrid can function independently during public grid outages</li>
+              <li data-pt>É totalmente <strong>código aberto</strong> e gratuitamente disponível para outros municípios, cooperativas habitacionais ou empresas instaladoras</li>
+              <li data-en>Is fully <strong>open source</strong> and freely available for other municipalities, housing corporations or installation companies</li>
             </ul>
 
             <div class="ssn-callout ssn-callout--emerald">
-              <p>
+              <p data-pt>
+                <strong>Exemplo prático:</strong> Um VE que precisa estar totalmente carregado às 7h é recarregado durante a madrugada,
+                quando a rede está descongestionada. O EMS faz automaticamente a negociação entre a necessidade do veículo
+                e a capacidade da rede.
+              </p>
+              <p data-en>
                 <strong>Practical example:</strong> An EV that needs to be fully charged by 7:00 AM is charged overnight
                 when the grid is quiet. The EMS automatically negotiates between the car's needs
                 and the grid's capacity.
@@ -1245,29 +1415,46 @@
       <div class="ssn-module" id="mod-gov">
         <button class="ssn-module__header" aria-expanded="false" aria-controls="mod-gov-body">
           <div class="ssn-module__icon ssn-module__icon--gov">&#127969;</div>
-          <div class="ssn-module__title">B. Governance &amp; Collaboration</div>
+          <div class="ssn-module__title">
+            <span data-pt>B. Governança e cooperação</span><span data-en>B. Governance &amp; Collaboration</span>
+          </div>
           <svg class="ssn-module__chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
         </button>
         <div class="ssn-module__body" id="mod-gov-body">
           <div class="ssn-module__content">
-            <h3>Public-private energy cooperative</h3>
-            <p>
+            <h3><span data-pt>Cooperativa de energia público-privada</span><span data-en>Public-private energy cooperative</span></h3>
+            <p data-pt>
+              O coração do modelo é uma <strong>cooperativa de energia sem fins lucrativos</strong> na qual o município
+              de Haia e os operadores dos quiosques de praia participam em pé de igualdade. Algo singular nos Países Baixos:
+              um município como membro de uma cooperativa de energia ao lado de empresários comerciais.
+            </p>
+            <p data-en>
               The heart of the model is a <strong>non-profit energy cooperative</strong> in which the municipality
               of The Hague and beach pavilion operators participate as equal members. This is unique in the Netherlands:
               a municipality as co-member of an energy cooperative alongside commercial entrepreneurs.
             </p>
 
-            <h3>Collective decision-making</h3>
-            <p>The cooperative jointly decides on:</p>
+            <h3><span data-pt>Tomada de decisão coletiva</span><span data-en>Collective decision-making</span></h3>
+            <p data-pt>A cooperativa decide em conjunto sobre:</p>
+            <p data-en>The cooperative jointly decides on:</p>
             <ul>
-              <li><strong>Priorities:</strong> which devices get priority when capacity is limited</li>
-              <li><strong>Tariffs:</strong> internal energy pricing between members</li>
-              <li><strong>Profit allocation:</strong> how financial returns are used (lower tariffs or social purpose)</li>
-              <li><strong>Algorithm parameters:</strong> the frameworks within which the EMS optimises</li>
+              <li data-pt><strong>Prioridades:</strong> quais equipamentos têm preferência quando a capacidade é limitada</li>
+              <li data-en><strong>Priorities:</strong> which devices get priority when capacity is limited</li>
+              <li data-pt><strong>Tarifas:</strong> preço interno da energia entre os membros</li>
+              <li data-en><strong>Tariffs:</strong> internal energy pricing between members</li>
+              <li data-pt><strong>Destinação dos resultados:</strong> como o retorno financeiro é aplicado (tarifas menores ou objetivo social)</li>
+              <li data-en><strong>Profit allocation:</strong> how financial returns are used (lower tariffs or social purpose)</li>
+              <li data-pt><strong>Parâmetros do algoritmo:</strong> os limites dentro dos quais o EMS otimiza</li>
+              <li data-en><strong>Algorithm parameters:</strong> the frameworks within which the EMS optimises</li>
             </ul>
 
-            <h3>Transparency as prerequisite</h3>
-            <p>
+            <h3><span data-pt>Transparência como pré-condição</span><span data-en>Transparency as prerequisite</span></h3>
+            <p data-pt>
+              Um aprendizado crucial: os participantes precisam entender <strong>como</strong> o algoritmo toma decisões
+              e dentro de quais parâmetros. Sem transparência não há confiança; sem confiança não há adesão.
+              Esse é um desafio organizacional, não técnico.
+            </p>
+            <p data-en>
               A crucial lesson: participants must understand <strong>how</strong> the algorithm makes decisions
               and within what frameworks. Without transparency no trust, without trust no support.
               This is an organisational challenge, not a technical one.
@@ -1280,35 +1467,60 @@
       <div class="ssn-module" id="mod-legal">
         <button class="ssn-module__header" aria-expanded="false" aria-controls="mod-legal-body">
           <div class="ssn-module__icon ssn-module__icon--legal">&#9878;</div>
-          <div class="ssn-module__title">C. Legal Framework</div>
+          <div class="ssn-module__title">
+            <span data-pt>C. Marco jurídico</span><span data-en>C. Legal Framework</span>
+          </div>
           <svg class="ssn-module__chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
         </button>
         <div class="ssn-module__body" id="mod-legal-body">
           <div class="ssn-module__content">
-            <h3>Current basis: "movable property"</h3>
-            <p>
+            <h3><span data-pt>Base atual: "bem móvel"</span><span data-en>Current basis: "movable property"</span></h3>
+            <p data-pt>
+              Um facilitador jurídico crucial: pela Lei de Eletricidade de 1998, os quiosques de praia são classificados como
+              <strong>bens móveis</strong> (propriedade transportável). Por isso, a rede está sujeita a uma regulamentação diferente
+              da aplicável a redes entre edifícios fixos, o que dá ao Slim Strandnet espaço para operar uma rede elétrica privada.
+            </p>
+            <p data-en>
               A crucial legal enabler: beach pavilions are classified as <strong>movable property</strong> under the
               Electricity Act 1998. This means the network falls under different regulations than networks between fixed buildings,
               giving Slim Strandnet the room to operate a private electricity network.
             </p>
 
-            <h3>Energy Act 2026: new possibilities</h3>
-            <p>
+            <h3><span data-pt>Lei de Energia 2026: novas possibilidades</span><span data-en>Energy Act 2026: new possibilities</span></h3>
+            <p data-pt>
+              Com a nova Lei de Energia (a partir de 1&ordm; de janeiro de 2026), o <strong>compartilhamento de energia</strong>
+              através da rede pública passa a ser legalmente possível. As comunidades de energia ganham uma base jurídica formal.
+              Isso abre caminho para a aplicação do modelo em edifícios fixos e em bairros já consolidados.
+            </p>
+            <p data-en>
               With the new Energy Act (as of 1 January 2026), <strong>energy sharing</strong> via the public grid
               is legally possible. Energy communities receive a formal legal basis. This opens the door
               for applying the model to fixed buildings and existing neighbourhoods.
             </p>
 
-            <h3>EU framework</h3>
-            <p>
+            <h3><span data-pt>Marco da UE</span><span data-en>EU framework</span></h3>
+            <p data-pt>
+              O projeto dá concretude a duas diretivas europeias: a
+              <strong>Diretiva de Energias Renováveis (RED II)</strong>, que define as Comunidades de Energia Renovável,
+              e a <strong>Diretiva do Mercado Interno da Eletricidade (IMED)</strong>, que define as Comunidades de Energia de Cidadãos.
+              Ambas exigem: participação voluntária, controle democrático e propósito primordialmente comunitário.
+            </p>
+            <p data-en>
               The project gives practical substance to two EU directives: the
               <strong>Renewable Energy Directive (RED II)</strong> defining Renewable Energy Communities,
               and the <strong>Internal Electricity Market Directive (IMED)</strong> defining Citizen Energy Communities.
               Both require: voluntary participation, democratic control, and primary community purpose.
             </p>
 
-            <h3>Lessons from the regulatory sandbox</h3>
-            <p>
+            <h3><span data-pt>Lições do sandbox regulatório</span><span data-en>Lessons from the regulatory sandbox</span></h3>
+            <p data-pt>
+              Entre 2015 e 2018 existiu o <strong>regime experimental</strong>, que concedia isenções da Lei de Eletricidade
+              a projetos inovadores. Das 19 isenções concedidas, apenas 5 experimentos chegaram efetivamente a se realizar
+              (entre eles o Schoonschip Amsterdam).
+              O Slim Strandnet escolhe deliberadamente um caminho diferente: atuar dentro do marco legal existente,
+              e não fora dele.
+            </p>
+            <p data-en>
               Between 2015 and 2018, the <strong>regulatory sandbox</strong> allowed innovative projects
               exemptions from the Electricity Act. Of 19 granted exemptions, only 5 experiments actually
               materialised (including Schoonschip Amsterdam).
@@ -1323,28 +1535,47 @@
       <div class="ssn-module" id="mod-finance">
         <button class="ssn-module__header" aria-expanded="false" aria-controls="mod-finance-body">
           <div class="ssn-module__icon ssn-module__icon--finance">&#128176;</div>
-          <div class="ssn-module__title">D. Financial Model</div>
+          <div class="ssn-module__title">
+            <span data-pt>D. Modelo financeiro</span><span data-en>D. Financial Model</span>
+          </div>
           <svg class="ssn-module__chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
         </button>
         <div class="ssn-module__body" id="mod-finance-body">
           <div class="ssn-module__content">
-            <h3>Funding: Kansen voor West III</h3>
-            <p>
+            <h3><span data-pt>Financiamento: Kansen voor West III</span><span data-en>Funding: Kansen voor West III</span></h3>
+            <p data-pt>
+              O Slim Strandnet é cofinanciado pelo <strong>Kansen voor West III</strong>, um programa europeu
+              de subsídios (FEDER) para as províncias da Randstad, com um orçamento total de &euro;237 milhões
+              (2022&ndash;2029). O programa foca na transição para uma economia circular e climaticamente neutra,
+              com pelo menos 55% de redução de CO&#8322; até 2030.
+            </p>
+            <p data-en>
               Slim Strandnet is co-funded by <strong>Kansen voor West III</strong>, a European
               subsidy programme (ERDF) for the Randstad provinces with a total budget of &euro;237 million
               (2022&ndash;2029). The programme targets the transition to a circular, climate-neutral
               economy with at least 55% CO&#8322; reduction by 2030.
             </p>
 
-            <h3>Cooperative economics</h3>
-            <p>
+            <h3><span data-pt>Economia cooperativa</span><span data-en>Cooperative economics</span></h3>
+            <p data-pt>
+              A cooperativa é sem fins lucrativos: o superávit financeiro se converte em <strong>tarifas de energia
+              mais baixas para os membros</strong>, não em lucros para acionistas. Os participantes compartilham
+              energia gerada localmente a preços mais vantajosos do que os oferecidos pela rede pública.
+            </p>
+            <p data-en>
               The cooperative is non-profit: financial surplus results in <strong>lower energy tariffs
               for members</strong>, not profits for shareholders. Participants share locally generated
               energy at more favourable rates than the public grid offers.
             </p>
 
-            <h3>Social returns</h3>
-            <p>
+            <h3><span data-pt>Retorno social</span><span data-en>Social returns</span></h3>
+            <p data-pt>
+              No final de 2024, as primeiras receitas financeiras foram doadas ao <strong>banco de alimentos</strong>
+              como piloto do modelo de community benefit. De forma estrutural, parte da receita solar
+              será destinada à <strong>Welzijn Scheveningen</strong>. O modelo demonstra que as comunidades de energia
+              não funcionam apenas no plano técnico e financeiro, mas também geram <strong>valor social local</strong>.
+            </p>
+            <p data-en>
               At the end of 2024, the first financial proceeds were donated to the <strong>food bank</strong>
               as a pilot of the community benefit model. Structurally, part of the solar revenues
               goes to <strong>Welzijn Scheveningen</strong>. The model shows that energy communities
@@ -1358,29 +1589,46 @@
       <div class="ssn-module" id="mod-social">
         <button class="ssn-module__header" aria-expanded="false" aria-controls="mod-social-body">
           <div class="ssn-module__icon ssn-module__icon--social">&#10084;</div>
-          <div class="ssn-module__title">E. Social Impact &amp; Justice</div>
+          <div class="ssn-module__title">
+            <span data-pt>E. Impacto social e justiça</span><span data-en>E. Social Impact &amp; Justice</span>
+          </div>
           <svg class="ssn-module__chevron" viewBox="0 0 20 20" fill="currentColor"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>
         </button>
         <div class="ssn-module__body" id="mod-social-body">
           <div class="ssn-module__content">
-            <h3>Energy justice</h3>
-            <p>
+            <h3><span data-pt>Justiça energética</span><span data-en>Energy justice</span></h3>
+            <p data-pt>
+              A transição energética não atinge a todos da mesma forma. As comunidades de energia podem
+              promover justiça energética ao viabilizar a participação de famílias que não conseguiriam,
+              individualmente, arcar com painéis solares ou bombas de calor. O modelo Slim Strandnet
+              cria <strong>benefícios compartilhados</strong> e <strong>poder de decisão local</strong>.
+            </p>
+            <p data-en>
               The energy transition does not affect everyone equally. Energy communities can
               promote energy justice by enabling participation from households that cannot individually
               afford solar panels or heat pumps. The Slim Strandnet model
               creates <strong>shared benefits</strong> and <strong>local decision-making power</strong>.
             </p>
 
-            <h3>Four pillars of energy justice</h3>
+            <h3><span data-pt>Quatro pilares da justiça energética</span><span data-en>Four pillars of energy justice</span></h3>
             <ul>
-              <li><strong>Distributive justice:</strong> equitable distribution of benefits and burdens</li>
-              <li><strong>Recognition:</strong> identifying the interests of all stakeholders</li>
-              <li><strong>Procedural justice:</strong> fair decision-making processes (the cooperative!)</li>
-              <li><strong>Restorative justice:</strong> rectifying historical inequalities</li>
+              <li data-pt><strong>Justiça distributiva:</strong> distribuição equitativa de ônus e benefícios</li>
+              <li data-en><strong>Distributive justice:</strong> equitable distribution of benefits and burdens</li>
+              <li data-pt><strong>Reconhecimento:</strong> identificação dos interesses de todos os envolvidos</li>
+              <li data-en><strong>Recognition:</strong> identifying the interests of all stakeholders</li>
+              <li data-pt><strong>Justiça procedimental:</strong> tomada de decisão justa (a cooperativa!)</li>
+              <li data-en><strong>Procedural justice:</strong> fair decision-making processes (the cooperative!)</li>
+              <li data-pt><strong>Justiça reparadora:</strong> correção de desigualdades históricas</li>
+              <li data-en><strong>Restorative justice:</strong> rectifying historical inequalities</li>
             </ul>
 
-            <h3>Neighbourhood as beneficiary</h3>
-            <p>
+            <h3><span data-pt>O bairro como beneficiário</span><span data-en>Neighbourhood as beneficiary</span></h3>
+            <p data-pt>
+              O modelo Slim Strandnet articula retorno econômico e objetivos sociais.
+              As receitas vão para organizações do bairro e grupos vulneráveis. A ambição é também
+              envolver futuramente os moradores do entorno como membros da cooperativa.
+            </p>
+            <p data-en>
               The Slim Strandnet model links economic returns to social goals.
               Proceeds go to neighbourhood organisations and vulnerable groups. The ambition is to
               involve surrounding residents as cooperative members in the future.
@@ -1394,55 +1642,99 @@
 
     <!-- ===== 5. Results & Lessons ===== -->
     <section class="ssn-section" id="resultaten">
-      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>Results &amp; lessons learned</h2>
+      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span data-pt>Resultados e aprendizados</span><span data-en>Results &amp; lessons learned</span></h2>
 
-      <h3>What works</h3>
+      <h3><span data-pt>O que funciona</span><span data-en>What works</span></h3>
       <div class="ssn-result-grid">
-        <div class="ssn-result-card">
+        <div class="ssn-result-card" data-pt>
+          <div class="ssn-result-card__icon ssn-result-card__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="ssn-result-card__text">O balanceamento local de energia <strong>elimina por completo o pico noturno</strong> de consumo</div>
+        </div>
+        <div class="ssn-result-card" data-en>
           <div class="ssn-result-card__icon ssn-result-card__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
           <div class="ssn-result-card__text">Local energy balancing <strong>completely eliminates the evening consumption peak</strong></div>
         </div>
-        <div class="ssn-result-card">
+        <div class="ssn-result-card" data-pt>
+          <div class="ssn-result-card__icon ssn-result-card__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="ssn-result-card__text">No horário mais movimentado do dia, a rede regular ficou pouco solicitada, enquanto os quiosques de praia puderam operar normalmente</div>
+        </div>
+        <div class="ssn-result-card" data-en>
           <div class="ssn-result-card__icon ssn-result-card__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
           <div class="ssn-result-card__text">During the busiest moment of the day, the regular grid was barely loaded while beach pavilions could continue normal operations</div>
         </div>
-        <div class="ssn-result-card">
+        <div class="ssn-result-card" data-pt>
+          <div class="ssn-result-card__icon ssn-result-card__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="ssn-result-card__text">Nova conexão (HITO) viabilizada apesar da rede pública lotada &mdash; a gestão coletiva de energia libera capacidade</div>
+        </div>
+        <div class="ssn-result-card" data-en>
           <div class="ssn-result-card__icon ssn-result-card__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
           <div class="ssn-result-card__text">New connection (HITO) possible despite full public grid &mdash; collective energy management frees up capacity</div>
         </div>
-        <div class="ssn-result-card">
+        <div class="ssn-result-card" data-pt>
+          <div class="ssn-result-card__icon ssn-result-card__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="ssn-result-card__text">Eventos (Live on the Beach) operam com energia sustentável: <strong>geradores a diesel deixaram de ser necessários</strong></div>
+        </div>
+        <div class="ssn-result-card" data-en>
           <div class="ssn-result-card__icon ssn-result-card__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
           <div class="ssn-result-card__text">Events (Live on the Beach) run on sustainable power: <strong>no more diesel generators needed</strong></div>
         </div>
-        <div class="ssn-result-card">
+        <div class="ssn-result-card" data-pt>
+          <div class="ssn-result-card__icon ssn-result-card__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="ssn-result-card__text">Software de código aberto permite replicação a baixo custo</div>
+        </div>
+        <div class="ssn-result-card" data-en>
           <div class="ssn-result-card__icon ssn-result-card__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
           <div class="ssn-result-card__text">Open-source software enables replication at low cost</div>
         </div>
-        <div class="ssn-result-card">
+        <div class="ssn-result-card" data-pt>
+          <div class="ssn-result-card__icon ssn-result-card__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="ssn-result-card__text">Transformadores existentes podem ser solicitados mais intensamente do que prescreve a prática usual</div>
+        </div>
+        <div class="ssn-result-card" data-en>
           <div class="ssn-result-card__icon ssn-result-card__icon--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
           <div class="ssn-result-card__text">Existing transformers can be loaded more heavily than conventional practice prescribes</div>
         </div>
       </div>
 
-      <h3>Challenges</h3>
+      <h3><span data-pt>Desafios</span><span data-en>Challenges</span></h3>
       <div class="ssn-result-grid">
-        <div class="ssn-result-card">
+        <div class="ssn-result-card" data-pt>
+          <div class="ssn-result-card__icon ssn-result-card__icon--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div class="ssn-result-card__text"><strong>Escalabilidade:</strong> dar o salto de um grupo homogêneo de quiosques de praia para contextos urbanos complexos, com participantes diversos</div>
+        </div>
+        <div class="ssn-result-card" data-en>
           <div class="ssn-result-card__icon ssn-result-card__icon--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
           <div class="ssn-result-card__text"><strong>Scaling:</strong> the step from a homogeneous group of beach pavilions to complex urban contexts with diverse participants</div>
         </div>
-        <div class="ssn-result-card">
+        <div class="ssn-result-card" data-pt>
+          <div class="ssn-result-card__icon ssn-result-card__icon--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div class="ssn-result-card__text"><strong>Transparência:</strong> os participantes precisam entender como os algoritmos decidem &mdash; sem isso, não há confiança nem adesão</div>
+        </div>
+        <div class="ssn-result-card" data-en>
           <div class="ssn-result-card__icon ssn-result-card__icon--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
           <div class="ssn-result-card__text"><strong>Transparency:</strong> participants need to understand how algorithms decide &mdash; without that trust, no support</div>
         </div>
-        <div class="ssn-result-card">
+        <div class="ssn-result-card" data-pt>
+          <div class="ssn-result-card__icon ssn-result-card__icon--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div class="ssn-result-card__text"><strong>Cooperação:</strong> o desafio organizacional de fazer moradores, empresas e operadores de rede colaborarem é maior do que o técnico</div>
+        </div>
+        <div class="ssn-result-card" data-en>
           <div class="ssn-result-card__icon ssn-result-card__icon--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
           <div class="ssn-result-card__text"><strong>Collaboration:</strong> the organisational challenge of getting residents, businesses and grid operators to cooperate is greater than the technical one</div>
         </div>
-        <div class="ssn-result-card">
+        <div class="ssn-result-card" data-pt>
+          <div class="ssn-result-card__icon ssn-result-card__icon--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div class="ssn-result-card__text"><strong>Complexidade jurídica:</strong> o modelo funciona em parte graças à exceção do "bem móvel"; a aplicação a edifícios fixos depende da Lei de Energia 2026</div>
+        </div>
+        <div class="ssn-result-card" data-en>
           <div class="ssn-result-card__icon ssn-result-card__icon--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
           <div class="ssn-result-card__text"><strong>Legal complexity:</strong> the model works partly due to the "movable property" exception; application to fixed buildings requires the Energy Act 2026</div>
         </div>
-        <div class="ssn-result-card">
+        <div class="ssn-result-card" data-pt>
+          <div class="ssn-result-card__icon ssn-result-card__icon--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div class="ssn-result-card__text"><strong>Mudança de comportamento:</strong> os usuários precisam aceitar que seus equipamentos sejam controlados de forma inteligente e confiar no sistema</div>
+        </div>
+        <div class="ssn-result-card" data-en>
           <div class="ssn-result-card__icon ssn-result-card__icon--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
           <div class="ssn-result-card__text"><strong>Behaviour change:</strong> users need to accept smart control of their devices and trust the system</div>
         </div>
@@ -1451,7 +1743,11 @@
       <div class="ssn-callout ssn-callout--with-icon">
         <div class="ssn-callout__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
         <div class="ssn-callout__content">
-        <p>
+        <p data-pt>
+          <strong>Insight central:</strong> A tecnologia funciona. O verdadeiro desafio está em organização, cooperação e confiança.
+          Invista pelo menos tanto no processo social e organizacional quanto na infraestrutura técnica.
+        </p>
+        <p data-en>
           <strong>Core insight:</strong> The technology works. The real challenge is in organisation, collaboration and trust.
           Invest at least as much in the social and organisational process as in the technical infrastructure.
         </p>
@@ -1461,52 +1757,79 @@
 
     <div class="ssn-divider" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/></svg></div>
 
-    <!-- ===== 6. Apply it ===== -->
+    <!-- ===== 6. Apply ===== -->
     <section class="ssn-section" id="toepassen">
-      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></span>Apply it in your context</h2>
+      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></span><span data-pt>Aplicação no seu contexto</span><span data-en>Apply it in your context</span></h2>
 
-      <p>
+      <p data-pt>
+        Este guia passo a passo ajuda você a traduzir elementos do modelo Slim Strandnet para a sua própria realidade.
+        Não é preciso adotar todos os componentes &mdash; escolha o que se ajusta ao seu contexto e nível de ambição.
+      </p>
+      <p data-en>
         This step-by-step guide helps you translate elements of the Slim Strandnet model to your own situation.
         Not every component needs to be adopted &mdash; choose what fits your context and ambition level.
       </p>
 
-      <h3>Checklist: prerequisites</h3>
+      <h3><span data-pt>Checklist: pré-condições</span><span data-en>Checklist: prerequisites</span></h3>
       <ul class="ssn-checklist">
-        <li>Willing grid operator open to alternative solutions for congestion</li>
-        <li>Municipality willing to participate as equal partner (not just as permit issuer)</li>
-        <li>Local entrepreneurs or residents with interest in collective energy management</li>
-        <li>Available funding (ERDF, SDE++, municipal budget, or combination)</li>
-        <li>Physical proximity of participants (behind the same transformer or in the same neighbourhood)</li>
-        <li>Technical partner for EMS implementation (or use open-source OpenRemote)</li>
-        <li>Legal advice on the possibilities within the Energy Act 2026</li>
+        <li data-pt>Operadora de rede disposta a discutir soluções alternativas para o congestionamento</li>
+        <li data-en>Willing grid operator open to alternative solutions for congestion</li>
+        <li data-pt>Município disposto a participar como parceiro em pé de igualdade (não apenas como emissor de licenças)</li>
+        <li data-en>Municipality willing to participate as equal partner (not just as permit issuer)</li>
+        <li data-pt>Empresários ou moradores locais com interesse em gestão coletiva de energia</li>
+        <li data-en>Local entrepreneurs or residents with interest in collective energy management</li>
+        <li data-pt>Financiamento disponível (FEDER, SDE++, orçamento municipal ou combinação)</li>
+        <li data-en>Available funding (ERDF, SDE++, municipal budget, or combination)</li>
+        <li data-pt>Proximidade física entre participantes (atrás do mesmo transformador ou no mesmo bairro)</li>
+        <li data-en>Physical proximity of participants (behind the same transformer or in the same neighbourhood)</li>
+        <li data-pt>Parceiro técnico para implementação do EMS (ou uso do OpenRemote de código aberto)</li>
+        <li data-en>Technical partner for EMS implementation (or use open-source OpenRemote)</li>
+        <li data-pt>Aconselhamento jurídico sobre as possibilidades dentro da Lei de Energia 2026</li>
+        <li data-en>Legal advice on the possibilities within the Energy Act 2026</li>
       </ul>
 
-      <h3>Steps</h3>
+      <h3><span data-pt>Etapas</span><span data-en>Steps</span></h3>
       <ol class="ssn-steps">
-        <li><span><strong>Explore the local situation:</strong> map grid congestion, existing generation, consumption patterns and potential participants</span></li>
-        <li><span><strong>Build a coalition:</strong> bring together municipality, grid operator, entrepreneurs and residents. Start small with a core group of motivated partners</span></li>
-        <li><span><strong>Choose a governance model:</strong> cooperative, foundation or other legal form that fits the Energy Act requirements (open, democratic, non-profit)</span></li>
-        <li><span><strong>Design the technical system:</strong> inventory assets (solar panels, battery, heat pumps, chargers), select an EMS platform</span></li>
-        <li><span><strong>Arrange financing:</strong> combine subsidies (ERDF, SDE++, municipal funds) with energy cost savings</span></li>
-        <li><span><strong>Start a pilot:</strong> begin with a limited number of participants to test the system and build trust</span></li>
-        <li><span><strong>Evaluate and scale up:</strong> measure results, document lessons, expand gradually</span></li>
+        <li data-pt><span><strong>Mapeie a situação local:</strong> identifique o congestionamento da rede, a geração existente, os padrões de consumo e os potenciais participantes</span></li>
+        <li data-en><span><strong>Explore the local situation:</strong> map grid congestion, existing generation, consumption patterns and potential participants</span></li>
+        <li data-pt><span><strong>Construa uma coalizão:</strong> reúna município, operadora de rede, empresários e moradores. Comece pequeno, com um núcleo de parceiros motivados</span></li>
+        <li data-en><span><strong>Build a coalition:</strong> bring together municipality, grid operator, entrepreneurs and residents. Start small with a core group of motivated partners</span></li>
+        <li data-pt><span><strong>Escolha um modelo de governança:</strong> cooperativa, associação ou outra forma jurídica que atenda aos requisitos da Lei de Energia (aberta, democrática, sem fins lucrativos)</span></li>
+        <li data-en><span><strong>Choose a governance model:</strong> cooperative, foundation or other legal form that fits the Energy Act requirements (open, democratic, non-profit)</span></li>
+        <li data-pt><span><strong>Projete o sistema técnico:</strong> inventarie os ativos (painéis solares, bateria, bombas de calor, eletropostos) e selecione uma plataforma EMS</span></li>
+        <li data-en><span><strong>Design the technical system:</strong> inventory assets (solar panels, battery, heat pumps, chargers), select an EMS platform</span></li>
+        <li data-pt><span><strong>Organize o financiamento:</strong> combine subsídios (FEDER, SDE++, recursos municipais) com economias de custos de energia</span></li>
+        <li data-en><span><strong>Arrange financing:</strong> combine subsidies (ERDF, SDE++, municipal funds) with energy cost savings</span></li>
+        <li data-pt><span><strong>Inicie um piloto:</strong> comece com um número limitado de participantes para testar o sistema e construir confiança</span></li>
+        <li data-en><span><strong>Start a pilot:</strong> begin with a limited number of participants to test the system and build trust</span></li>
+        <li data-pt><span><strong>Avalie e escale:</strong> meça resultados, documente aprendizados e expanda gradualmente</span></li>
+        <li data-en><span><strong>Evaluate and scale up:</strong> measure results, document lessons, expand gradually</span></li>
       </ol>
 
-      <h3>Common mistakes</h3>
+      <h3><span data-pt>Erros comuns</span><span data-en>Common mistakes</span></h3>
       <ul>
-        <li>Too much focus on technology, too little on organisation and support</li>
-        <li>Starting too big &mdash; start small, prove the concept, expand</li>
-        <li>Involving the grid operator only after the plan is finished (involve them from day 1)</li>
-        <li>No attention to transparency of algorithms and decision-making</li>
-        <li>Working outside the legal framework instead of leveraging possibilities within it</li>
+        <li data-pt>Foco excessivo na tecnologia e pouco na organização e na adesão</li>
+        <li data-en>Too much focus on technology, too little on organisation and support</li>
+        <li data-pt>Começar grande demais &mdash; comece pequeno, prove o conceito, depois expanda</li>
+        <li data-en>Starting too big &mdash; start small, prove the concept, expand</li>
+        <li data-pt>Envolver a operadora de rede apenas quando o plano já está pronto (envolva-a desde o primeiro dia)</li>
+        <li data-en>Involving the grid operator only after the plan is finished (involve them from day 1)</li>
+        <li data-pt>Desatenção à transparência de algoritmos e decisões</li>
+        <li data-en>No attention to transparency of algorithms and decision-making</li>
+        <li data-pt>Trabalhar fora do marco legal em vez de explorar as possibilidades dentro dele</li>
+        <li data-en>Working outside the legal framework instead of leveraging possibilities within it</li>
       </ul>
     </section>
 
     <!-- ===== 7. Comparison ===== -->
     <section class="ssn-section" id="vergelijking">
-      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>Comparable initiatives</h2>
+      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span><span data-pt>Iniciativas comparáveis</span><span data-en>Comparable initiatives</span></h2>
 
-      <p>
+      <p data-pt>
+        O Slim Strandnet não está sozinho. Diversas iniciativas nos Países Baixos exploram
+        modelos semelhantes. A tabela abaixo mostra as principais semelhanças e diferenças.
+      </p>
+      <p data-en>
         Slim Strandnet does not stand alone. Several initiatives in the Netherlands explore similar
         models. The table below shows the main similarities and differences.
       </p>
@@ -1515,11 +1838,11 @@
         <table class="ssn-table">
           <thead>
             <tr>
-              <th>Project</th>
-              <th>Location</th>
-              <th>Scale</th>
-              <th>Type</th>
-              <th>Result</th>
+              <th><span data-pt>Projeto</span><span data-en>Project</span></th>
+              <th><span data-pt>Localização</span><span data-en>Location</span></th>
+              <th><span data-pt>Escala</span><span data-en>Scale</span></th>
+              <th><span data-pt>Tipo</span><span data-en>Type</span></th>
+              <th><span data-pt>Resultado</span><span data-en>Result</span></th>
             </tr>
           </thead>
           <tbody>
@@ -1527,49 +1850,54 @@
               <td><strong>Slim Strandnet</strong></td>
               <td>Scheveningen</td>
               <td>1 MW</td>
-              <td>Microgrid + cooperative</td>
-              <td>Evening peak fully eliminated</td>
+              <td><span data-pt>Microrrede + cooperativa</span><span data-en>Microgrid + cooperative</span></td>
+              <td><span data-pt>Pico noturno totalmente eliminado</span><span data-en>Evening peak fully eliminated</span></td>
             </tr>
             <tr>
               <td>GridFlex Heeten</td>
               <td>Heeten (Overijssel)</td>
-              <td>100 households</td>
-              <td>Neighbourhood grid</td>
-              <td>25&ndash;35% peak reduction</td>
+              <td><span data-pt>100 residências</span><span data-en>100 households</span></td>
+              <td><span data-pt>Rede de bairro</span><span data-en>Neighbourhood grid</span></td>
+              <td><span data-pt>Redução de pico de 25&ndash;35%</span><span data-en>25&ndash;35% peak reduction</span></td>
             </tr>
             <tr>
               <td>Couperus Smart Grid</td>
-              <td>The Hague</td>
-              <td>300 apartments</td>
+              <td>Haia</td>
+              <td><span data-pt>300 apartamentos</span><span data-en>300 apartments</span></td>
               <td>Smart Grid</td>
-              <td>21% flexible power</td>
+              <td><span data-pt>21% de potência flexível</span><span data-en>21% flexible power</span></td>
             </tr>
             <tr>
               <td>Sporenburg FlexCitizen</td>
-              <td>Amsterdam</td>
-              <td>500 households</td>
-              <td>Flex market via app</td>
-              <td>125 active participants</td>
+              <td>Amsterdã</td>
+              <td><span data-pt>500 residências</span><span data-en>500 households</span></td>
+              <td><span data-pt>Mercado de flexibilidade via aplicativo</span><span data-en>Flex market via app</span></td>
+              <td><span data-pt>125 participantes ativos</span><span data-en>125 active participants</span></td>
             </tr>
             <tr>
               <td>Schoonschip</td>
-              <td>Amsterdam</td>
-              <td>46 households</td>
-              <td>Autonomous residential</td>
-              <td>Own grid management &amp; supply</td>
+              <td>Amsterdã</td>
+              <td><span data-pt>46 residências</span><span data-en>46 households</span></td>
+              <td><span data-pt>Projeto residencial autônomo</span><span data-en>Autonomous residential</span></td>
+              <td><span data-pt>Gestão e fornecimento próprios de rede</span><span data-en>Own grid management &amp; supply</span></td>
             </tr>
             <tr>
               <td>ATELIER Buiksloterham</td>
-              <td>Amsterdam</td>
+              <td>Amsterdã</td>
               <td>1+ MWp</td>
-              <td>Positive Energy District</td>
-              <td>More generation than consumption</td>
+              <td><span data-pt>Bairro de Energia Positiva</span><span data-en>Positive Energy District</span></td>
+              <td><span data-pt>Mais geração do que consumo</span><span data-en>More generation than consumption</span></td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <p>
+      <p data-pt>
+        <strong>O que diferencia o Slim Strandnet:</strong> a combinação de uma microrrede em operação, uma cooperativa
+        público-privada com o município como membro em pé de igualdade, tecnologia de código aberto e a articulação
+        deliberada com justiça energética e bem-estar do bairro.
+      </p>
+      <p data-en>
         <strong>What distinguishes Slim Strandnet:</strong> the combination of an operational microgrid, a public-private
         cooperative with the municipality as equal member, open-source technology, and a deliberate link to
         energy justice and neighbourhood welfare.
@@ -1578,55 +1906,63 @@
 
     <!-- ===== 8. Partners ===== -->
     <section class="ssn-section" id="partners">
-      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span>Partners &amp; ecosystem</h2>
+      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span><span data-pt>Parceiros e ecossistema</span><span data-en>Partners &amp; ecosystem</span></h2>
 
       <div class="ssn-partners">
         <div class="ssn-partner">
-          <div class="ssn-partner__name">Municipality of The Hague</div>
+          <div class="ssn-partner__name">Município de Haia</div>
           <div class="ssn-partner__role">
-            Project owner, initiator, operator of municipal assets. Smart City programme, system architect: Patrick Segeren
+            <span data-pt>Proprietário do projeto, iniciador e gestor dos ativos municipais. Programa Smart City, arquiteto do sistema: Patrick Segeren</span>
+            <span data-en>Project owner, initiator, operator of municipal assets. Smart City programme, system architect: Patrick Segeren</span>
           </div>
         </div>
         <div class="ssn-partner">
           <div class="ssn-partner__name">Stedin</div>
           <div class="ssn-partner__role">
-            Regional grid operator. Provides grid connection, collaborates on scaling to other low-voltage networks nationwide
+            <span data-pt>Operadora regional de rede. Fornece a conexão e contribui para o escalonamento a outras redes de baixa tensão no país</span>
+            <span data-en>Regional grid operator. Provides grid connection, collaborates on scaling to other low-voltage networks nationwide</span>
           </div>
         </div>
         <div class="ssn-partner">
           <div class="ssn-partner__name">Kersten Techniek</div>
           <div class="ssn-partner__role">
-            Technical implementation partner. Design &amp; build of physical and digital infrastructure. Developer of Motus EMS
+            <span data-pt>Parceira técnica de implementação. Projeto e construção da infraestrutura física e digital. Desenvolvedora do Motus EMS</span>
+            <span data-en>Technical implementation partner. Design &amp; build of physical and digital infrastructure. Developer of Motus EMS</span>
           </div>
         </div>
         <div class="ssn-partner">
           <div class="ssn-partner__name">OpenRemote</div>
           <div class="ssn-partner__role">
-            Open-source IoT &amp; EMS platform. Forecasting, optimisation and control of energy flows
+            <span data-pt>Plataforma IoT e EMS de código aberto. Previsão, otimização e controle de fluxos de energia</span>
+            <span data-en>Open-source IoT &amp; EMS platform. Forecasting, optimisation and control of energy flows</span>
           </div>
         </div>
         <div class="ssn-partner">
-          <div class="ssn-partner__name">Beach Pavilions</div>
+          <div class="ssn-partner__name"><span data-pt>Quiosques de praia</span><span data-en>Beach Pavilions</span></div>
           <div class="ssn-partner__role">
-            Aloha, The Shore, HITO &mdash; producers &amp; consumers of local energy
+            <span data-pt>Aloha, The Shore, HITO &mdash; produtores e consumidores de energia local</span>
+            <span data-en>Aloha, The Shore, HITO &mdash; producers &amp; consumers of local energy</span>
           </div>
         </div>
         <div class="ssn-partner">
           <div class="ssn-partner__name">Accu't B.V.</div>
           <div class="ssn-partner__role">
-            Beach battery supplier (second-life EV batteries, TS1 360/160)
+            <span data-pt>Fornecedora da bateria da praia (baterias de segunda vida de VE, TS1 360/160)</span>
+            <span data-en>Beach battery supplier (second-life EV batteries, TS1 360/160)</span>
           </div>
         </div>
         <div class="ssn-partner">
           <div class="ssn-partner__name">TU Delft</div>
           <div class="ssn-partner__role">
-            Academic research on autonomous control of the smart grid
+            <span data-pt>Pesquisa acadêmica sobre controle autônomo da smart grid</span>
+            <span data-en>Academic research on autonomous control of the smart grid</span>
           </div>
         </div>
         <div class="ssn-partner">
           <div class="ssn-partner__name">Kansen voor West III</div>
           <div class="ssn-partner__role">
-            ERDF funding from the European Union for regional development
+            <span data-pt>Financiamento FEDER da União Europeia para desenvolvimento regional</span>
+            <span data-en>ERDF funding from the European Union for regional development</span>
           </div>
         </div>
       </div>
@@ -1634,41 +1970,41 @@
 
     <!-- ===== 9. Sources ===== -->
     <section class="ssn-section" id="bronnen">
-      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span>Sources &amp; references</h2>
+      <h2><span class="ssn-h2-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span><span data-pt>Fontes e referências</span><span data-en>Sources &amp; references</span></h2>
 
       <div class="ssn-sources">
-        <h3>Official project pages</h3>
+        <h3><span data-pt>Páginas oficiais do projeto</span><span data-en>Official project pages</span></h3>
         <ol>
           <li>Smart City Den Haag &mdash; <a href="https://smartcity.denhaag.nl/en/use-cases/smart-energy-grid-at-the-northern-harbour-head/" target="_blank" rel="noopener">Smart Energy Grid at the Northern Harbour Head</a></li>
           <li>Kansen voor West III &mdash; <a href="https://kvw3.kansenvoorwest.nl/projecten/projecten-kansen-voor-west-iii/slim-strandnet/" target="_blank" rel="noopener">Slim Strandnet project page</a></li>
-          <li>RVO Knowledge Community Grid Congestion &mdash; <a href="https://kennisdelen.rvo.nl/groups/view/10375a08-9b48-4144-8b60-43a9ebe965d0/kenniscommunity-netcongestie/blog/view/14f60e33-2dad-49c1-904f-a6907d9ff6c8/slim-strandnet-het-elektriciteitsnet-van-de-toekomst" target="_blank" rel="noopener">Slim Strandnet: the electricity grid of the future</a></li>
+          <li>RVO Kenniscommunity Netcongestie &mdash; <a href="https://kennisdelen.rvo.nl/groups/view/10375a08-9b48-4144-8b60-43a9ebe965d0/kenniscommunity-netcongestie/blog/view/14f60e33-2dad-49c1-904f-a6907d9ff6c8/slim-strandnet-het-elektriciteitsnet-van-de-toekomst" target="_blank" rel="noopener">Slim Strandnet: het elektriciteitsnet van de toekomst</a></li>
           <li>Transform &mdash; <a href="https://forthefutureofenergy.nl/project/9705/slim-strandnet---living-lab-scheveningen" target="_blank" rel="noopener">Slim Strandnet &mdash; Living Lab Scheveningen</a></li>
         </ol>
 
-        <h3>Partners &amp; technology</h3>
+        <h3><span data-pt>Parceiros e tecnologia</span><span data-en>Partners &amp; technology</span></h3>
         <ol start="5">
-          <li>Stedin &mdash; <a href="https://www.stedin.net/over-stedin/pers-en-media/persberichten/stedin-en-den-haag-experimenteren-op-scheveningen-met-elektriciteitsnet-van-de-toekomst" target="_blank" rel="noopener">Stedin and The Hague experiment with the electricity grid of the future</a></li>
+          <li>Stedin &mdash; <a href="https://www.stedin.net/over-stedin/pers-en-media/persberichten/stedin-en-den-haag-experimenteren-op-scheveningen-met-elektriciteitsnet-van-de-toekomst" target="_blank" rel="noopener">Stedin en Den Haag experimenteren met elektriciteitsnet van de toekomst</a></li>
           <li>OpenRemote &mdash; <a href="https://openremote.io/slim-strandnet-scheveningen-local-energy-management-becomes-reality/" target="_blank" rel="noopener">Local energy management becomes reality</a></li>
-          <li>Kersten Techniek &mdash; <a href="https://kerstentechniek.nl/nieuws/artikelen/slim-strandnet-scheveningen-lokaal-energiebeheer-wordt-realiteit/" target="_blank" rel="noopener">Local energy management becomes reality</a></li>
-          <li>NVDE Podcast &mdash; <a href="https://www.nvde.nl/nvde-podcast-een-slim-strandnet-als-oplossing-voor-netcongestie/" target="_blank" rel="noopener">A smart beach grid as solution for grid congestion</a></li>
+          <li>Kersten Techniek &mdash; <a href="https://kerstentechniek.nl/nieuws/artikelen/slim-strandnet-scheveningen-lokaal-energiebeheer-wordt-realiteit/" target="_blank" rel="noopener">Lokaal energiebeheer wordt realiteit</a></li>
+          <li>NVDE Podcast &mdash; <a href="https://www.nvde.nl/nvde-podcast-een-slim-strandnet-als-oplossing-voor-netcongestie/" target="_blank" rel="noopener">Een slim strandnet als oplossing voor netcongestie</a></li>
         </ol>
 
-        <h3>Knowledge platforms &amp; media</h3>
+        <h3><span data-pt>Plataformas de conhecimento e mídia</span><span data-en>Knowledge platforms &amp; media</span></h3>
         <ol start="9">
-          <li>VNG &mdash; <a href="https://vng.nl/praktijkvoorbeelden/slim-strandnet-het-elektriciteitsnet-van-de-toekomst" target="_blank" rel="noopener">Slim Strandnet: the electricity grid of the future</a></li>
-          <li>Platform31 &mdash; <a href="https://www.platform31.nl/artikelen/ondernemers-en-gemeente-den-haag-omzeilen-netcongestie-met-slim-strandnet/" target="_blank" rel="noopener">Entrepreneurs and Municipality of The Hague bypass grid congestion</a></li>
-          <li>Gebiedsontwikkeling.nu &mdash; <a href="https://www.gebiedsontwikkeling.nu/artikelen/energiedelen-om-netcongestie-te-bestrijden-en-te-omzeilen/" target="_blank" rel="noopener">Energy sharing to combat grid congestion</a></li>
+          <li>VNG &mdash; <a href="https://vng.nl/praktijkvoorbeelden/slim-strandnet-het-elektriciteitsnet-van-de-toekomst" target="_blank" rel="noopener">Slim Strandnet: het elektriciteitsnet van de toekomst</a></li>
+          <li>Platform31 &mdash; <a href="https://www.platform31.nl/artikelen/ondernemers-en-gemeente-den-haag-omzeilen-netcongestie-met-slim-strandnet/" target="_blank" rel="noopener">Ondernemers en gemeente Den Haag omzeilen netcongestie</a></li>
+          <li>Gebiedsontwikkeling.nu &mdash; <a href="https://www.gebiedsontwikkeling.nu/artikelen/energiedelen-om-netcongestie-te-bestrijden-en-te-omzeilen/" target="_blank" rel="noopener">Energiedelen om netcongestie te bestrijden</a></li>
           <li>Smart Energy International &mdash; <a href="https://www.smart-energy.com/industry-sectors/smart-grid/beach-battery-powers-dutch-coast-smart-grid-project/" target="_blank" rel="noopener">Beach battery powers Dutch coast smart grid project</a></li>
         </ol>
 
-        <h3>Policy documents</h3>
+        <h3><span data-pt>Documentos de política pública</span><span data-en>Policy documents</span></h3>
         <ol start="13">
-          <li>Dutch government &mdash; <a href="https://www.rijksoverheid.nl/documenten/rapporten/2024/11/26/ministerie-van-klimaat-en-groene-groei-rapportage-slim-met-stroom" target="_blank" rel="noopener">Smart with Electricity for Green Growth</a> (November 2024)</li>
-          <li>Municipality of The Hague &mdash; <a href="https://denhaag.raadsinformatie.nl/document/14903538/1/RIS320679+Netcongestie" target="_blank" rel="noopener">RIS320679 Grid Congestion</a></li>
-          <li>Stedin &mdash; <a href="https://www.stedin.net/over-stedin/pers-en-media/persberichten/elektriciteitsnet-in-den-haag-bereikt-op-meerdere-plekken-maximale-capaciteit" target="_blank" rel="noopener">Electricity grid in The Hague reaches maximum capacity</a></li>
+          <li>Rijksoverheid &mdash; <a href="https://www.rijksoverheid.nl/documenten/rapporten/2024/11/26/ministerie-van-klimaat-en-groene-groei-rapportage-slim-met-stroom" target="_blank" rel="noopener">Slim met Stroom voor Groene Groei</a> (<span data-pt>novembro de 2024</span><span data-en>November 2024</span>)</li>
+          <li>Município de Haia &mdash; <a href="https://denhaag.raadsinformatie.nl/document/14903538/1/RIS320679+Netcongestie" target="_blank" rel="noopener">RIS320679 Netcongestie</a></li>
+          <li>Stedin &mdash; <a href="https://www.stedin.net/over-stedin/pers-en-media/persberichten/elektriciteitsnet-in-den-haag-bereikt-op-meerdere-plekken-maximale-capaciteit" target="_blank" rel="noopener">Elektriciteitsnet in Den Haag bereikt maximale capaciteit</a></li>
         </ol>
 
-        <h3>Comparable initiatives</h3>
+        <h3><span data-pt>Iniciativas comparáveis</span><span data-en>Comparable initiatives</span></h3>
         <ol start="16">
           <li>GridFlex Heeten &mdash; <a href="https://gridflex.nl/" target="_blank" rel="noopener">gridflex.nl</a></li>
           <li>Schoonschip Amsterdam &mdash; <a href="https://schoonschipamsterdam.org/en/" target="_blank" rel="noopener">schoonschipamsterdam.org</a></li>
@@ -1676,12 +2012,12 @@
 
         </ol>
 
-        <h3>Legislation</h3>
+        <h3><span data-pt>Legislação e regulamentação</span><span data-en>Legislation</span></h3>
         <ol start="20">
-          <li>VNG &mdash; <a href="https://vng.nl/artikelen/energiewet" target="_blank" rel="noopener">Energy Act</a></li>
-          <li>RVO &mdash; <a href="https://www.rvo.nl/onderwerpen/lokale-energie-initiatieven" target="_blank" rel="noopener">Local energy initiatives</a></li>
-          <li>ACM &mdash; <a href="https://www.acm.nl/nl/publicaties/codebesluit-congestiemanagement" target="_blank" rel="noopener">Code decision on congestion management</a></li>
-          <li>Energy.nl &mdash; <a href="https://energy.nl/publications/implementatie-van-energiedelen/" target="_blank" rel="noopener">Implementation of energy sharing</a></li>
+          <li>VNG &mdash; <a href="https://vng.nl/artikelen/energiewet" target="_blank" rel="noopener">Energiewet</a></li>
+          <li>RVO &mdash; <a href="https://www.rvo.nl/onderwerpen/lokale-energie-initiatieven" target="_blank" rel="noopener">Lokale energie-initiatieven</a></li>
+          <li>ACM &mdash; <a href="https://www.acm.nl/nl/publicaties/codebesluit-congestiemanagement" target="_blank" rel="noopener">Codebesluit congestiemanagement</a></li>
+          <li>Energy.nl &mdash; <a href="https://energy.nl/publications/implementatie-van-energiedelen/" target="_blank" rel="noopener">Implementatie van energiedelen</a></li>
         </ol>
       </div>
     </section>
@@ -1693,20 +2029,41 @@
 <footer class="ssn-footer">
   <div class="ssn-footer__brand">Regen Studio</div>
   <p style="margin-top: 8px;">
-    This knowledge platform was developed by <a href="https://www.regenstudio.world">Regen Studio</a>
-    in collaboration with the Slim Strandnet Scheveningen project partners.
+    <span data-pt>Esta plataforma de conhecimento foi desenvolvida pela <a href="https://www.regenstudio.world">Regen Studio</a>
+    em colaboração com os parceiros do projeto Slim Strandnet Scheveningen.</span>
+    <span data-en>This knowledge platform was developed by <a href="https://www.regenstudio.world">Regen Studio</a>
+    in collaboration with the Slim Strandnet Scheveningen project partners.</span>
   </p>
   <p style="margin-top: 8px;">
-    Questions or feedback? <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>
+    <span data-pt>Dúvidas ou comentários? <a href="mailto:info@regenstudio.world">info@regenstudio.world</a></span>
+    <span data-en>Questions or feedback? <a href="mailto:info@regenstudio.world">info@regenstudio.world</a></span>
   </p>
   <p style="margin-top: 16px; font-size: 0.75rem; color: var(--color-text-muted);">
-    Version 1.0 &mdash; March 2026. This is a working document, content is being supplemented and refined.
+    <span data-pt>Versão 1.0 &mdash; março de 2026. Este é um documento de trabalho, cujo conteúdo ainda será complementado e refinado.</span>
+    <span data-en>Version 1.0 &mdash; March 2026. This is a working document, content is being supplemented and refined.</span>
   </p>
 </footer>
 
 <script>
 (function () {
   'use strict';
+
+  // --- Language toggle ---
+  var langBtns = document.querySelectorAll('[data-lang-btn]');
+  langBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var lang = btn.getAttribute('data-lang-btn');
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+      document.title = lang === 'pt'
+        ? 'Slim Strandnet Scheveningen — Plataforma de Conhecimento'
+        : 'Smart Beach Grid Scheveningen — Knowledge Platform';
+      langBtns.forEach(function (b) {
+        var isActive = b.getAttribute('data-lang-btn') === lang;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+    });
+  });
 
   // --- Module accordion ---
   var modules = document.querySelectorAll('.ssn-module');

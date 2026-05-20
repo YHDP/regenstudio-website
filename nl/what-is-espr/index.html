@@ -178,21 +178,22 @@
       <a href="../index.html" class="nav__logo">
         <img src="../../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img" width="180" height="48" fetchpriority="high">
       </a>
+      <!-- Mobile slide-in menu -->
       <ul class="nav__links" id="navLinks">
         <li><a href="../about.html" data-i18n="nav.about">Over Ons</a></li>
         <li><a href="../vision.html" data-i18n="nav.vision">Visie</a></li>
         <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demo's</a></li>
         <li><a href="../innovation-services.html" data-i18n="nav.services">Diensten</a></li>
-        <li><a href="../../digital-product-passports/" data-i18n="nav.product_passports">Productpaspoorten</a></li>
-        <li><a href="../../digital-identities/" data-i18n="nav.digital_identity">Digitale Identiteit</a></li>
+        <li><a href="../digital-product-passports/" data-i18n="nav.product_passports">Productpaspoorten</a></li>
+        <li><a href="../digital-identities/" data-i18n="nav.digital_identity">Digitale Identiteit</a></li>
         <li><a href="../client-projects.html" data-i18n="nav.client_projects">Client Projects</a></li>
         <li><a href="../blog.html" data-i18n="nav.blog">Blog</a></li>
-        <li class="nav__contact-wrap">
+          <li class="nav__contact-wrap">
           <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtn">Contact</button>
           <div class="nav__contact-popover" id="navContactPopover">
             <div class="nav__contact-popover-inner">
               <p class="nav__contact-popover-text">Stuur ons een bericht &mdash; we horen graag van je.</p>
-              <a href="../../digital-product-passports/#dpp-contact" class="nav__contact-popover-link">
+              <a href="../digital-product-passports/#dpp-contact" class="nav__contact-popover-link">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 Stuur ons een bericht
               </a>
@@ -209,9 +210,46 @@
           </div>
         </li>
       </ul>
-      <button class="nav__toggle" id="navToggle" aria-label="Menu openen">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__actions">
+        <!-- Desktop dropdown menu -->
+        <button class="nav__menu-btn" aria-expanded="false" aria-controls="navDropdown">
+          Menu <span class="nav__menu-btn__arrow">&#9662;</span>
+        </button>
+        <div class="nav__dropdown" id="navDropdown">
+          <a href="../vision.html" data-i18n="nav.vision">Visie</a>
+          <a href="../innovation-services.html" data-i18n="nav.services">Diensten</a>
+          <a href="../problem-analysis/" data-i18n="nav.problem_analysis">Probleemanalyse</a>
+          <a href="../client-projects.html" data-i18n="nav.client_projects">Client Projects</a>
+          <a href="../blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demo's <span class="sr-only">(opent in nieuw tabblad)</span></a>
+          <a href="../about.html" data-i18n="nav.about">Over Ons</a>
+          <a href="../faq.html" data-i18n="nav.faq">FAQ</a>
+        </div>
+        <div class="nav__contact-wrap nav__contact-wrap--desktop">
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtnDesktop">Contact</button>
+          <div class="nav__contact-popover" id="navContactPopoverDesktop">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Stuur ons een bericht &mdash; we horen graag van je.</p>
+              <a href="../digital-product-passports/#dpp-contact" class="nav__contact-popover-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Stuur ons een bericht
+              </a>
+              <div class="nav__contact-popover-divider">of mail ons direct</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="E-mailadres kopi&euml;ren">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Kopieer</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="nav__toggle" id="navToggle" aria-label="Menu openen" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -220,8 +258,8 @@
     <!-- Breadcrumb -->
     <nav class="dpp-breadcrumb" aria-label="Breadcrumb">
       <ol class="dpp-breadcrumb__list">
-        <li><a href="../../nl/index.html">Startpagina</a></li>
-        <li><a href="../../digital-product-passports/">Digitale Productpaspoorten</a></li>
+        <li><a href="../index.html">Startpagina</a></li>
+        <li><a href="../digital-product-passports/">Digitale Productpaspoorten</a></li>
         <li aria-current="page">Wat is de ESPR?</li>
       </ol>
     </nav>
@@ -360,8 +398,8 @@
         <h2>Hulp nodig bij de voorbereiding op de ESPR?</h2>
         <p>Regen Studio biedt onafhankelijk advies over ESPR-compliance en digitale productpaspoorten &mdash; geen software te verkopen, alleen helder strategisch advies.</p>
         <a href="../../nl/innovation-services.html" class="btn btn--primary">Ontdek Onze Diensten</a>
-        <a href="../../digital-product-passports/#dpp-contact" class="btn btn--outline" style="margin-left: 12px;">Neem Contact Op</a>
-        <p style="margin-top: 16px; font-size: 0.95rem;">Lees meer over het <a href="../../digital-product-passports/">landschap van digitale productpaspoorten</a> of bekijk onze <a href="../../nl/blog/espr-textile-delegated-act/">analyse van de verwachte gedelegeerde handeling voor textiel</a>.</p>
+        <a href="../digital-product-passports/#dpp-contact" class="btn btn--outline" style="margin-left: 12px;">Neem Contact Op</a>
+        <p style="margin-top: 16px; font-size: 0.95rem;">Lees meer over het <a href="../digital-product-passports/">landschap van digitale productpaspoorten</a> of bekijk onze <a href="../../nl/blog/espr-textile-delegated-act/">analyse van de verwachte gedelegeerde handeling voor textiel</a>.</p>
       </div>
     </article>
 
@@ -419,8 +457,8 @@
             <li><a href="../about.html" data-i18n="footer.about">Over Ons</a></li>
             <li><a href="../vision.html" data-i18n="footer.vision">Visie</a></li>
             <li><a href="../innovation-services.html" data-i18n="footer.services">Diensten</a></li>
-            <li><a href="../../digital-product-passports/" data-i18n="footer.product_passports">Productpaspoorten</a></li>
-            <li><a href="../../digital-identities/" data-i18n="footer.digital_identity">Digitale Identiteit</a></li>
+            <li><a href="../digital-product-passports/" data-i18n="footer.product_passports">Productpaspoorten</a></li>
+            <li><a href="../digital-identities/" data-i18n="footer.digital_identity">Digitale Identiteit</a></li>
             <li><a href="../client-projects.html" data-i18n="footer.client_projects">Client Projects</a></li>
             <li><a href="../blog.html" data-i18n="footer.blog">Blog</a></li>
             <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demo's</a></li>

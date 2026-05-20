@@ -169,21 +169,22 @@
       <a href="../index.html" class="nav__logo">
         <img src="../../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img" width="180" height="48" fetchpriority="high">
       </a>
+      <!-- Mobile slide-in menu -->
       <ul class="nav__links" id="navLinks">
-        <li><a href="../about.html" data-i18n="nav.about">Sobre Nós</a></li>
-        <li><a href="../vision.html" data-i18n="nav.vision">Visão</a></li>
+        <li><a href="../about.html" data-i18n="nav.about">Sobre N&oacute;s</a></li>
+        <li><a href="../vision.html" data-i18n="nav.vision">Vis&atilde;o</a></li>
         <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
-        <li><a href="../innovation-services.html" data-i18n="nav.services">Serviços</a></li>
-        <li><a href="../../digital-product-passports/" data-i18n="nav.product_passports">Passaporte do Produto</a></li>
-        <li><a href="../../digital-identities/" data-i18n="nav.digital_identity">Identidade Digital</a></li>
+        <li><a href="../innovation-services.html" data-i18n="nav.services">Servi&ccedil;os</a></li>
+        <li><a href="../digital-product-passports/" data-i18n="nav.product_passports">Passaporte do Produto</a></li>
+        <li><a href="../digital-identities/" data-i18n="nav.digital_identity">Identidade Digital</a></li>
         <li><a href="../client-projects.html" data-i18n="nav.client_projects">Client Projects</a></li>
         <li><a href="../blog.html" data-i18n="nav.blog">Blog</a></li>
-        <li class="nav__contact-wrap">
+          <li class="nav__contact-wrap">
           <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtn">Contato</button>
           <div class="nav__contact-popover" id="navContactPopover">
             <div class="nav__contact-popover-inner">
-              <p class="nav__contact-popover-text">Envie uma mensagem — adorar&iacute;amos ouvir de voc&ecirc;.</p>
-              <a href="../../digital-product-passports/#dpp-contact" class="nav__contact-popover-link">
+              <p class="nav__contact-popover-text">Envie uma mensagem &mdash; adorar&iacute;amos ouvir de voc&ecirc;.</p>
+              <a href="#dpp-contact" class="nav__contact-popover-link">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 Envie uma mensagem
               </a>
@@ -200,9 +201,46 @@
           </div>
         </li>
       </ul>
-      <button class="nav__toggle" id="navToggle" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav__actions">
+        <!-- Desktop dropdown menu -->
+        <button class="nav__menu-btn" aria-expanded="false" aria-controls="navDropdown">
+          Menu <span class="nav__menu-btn__arrow">&#9662;</span>
+        </button>
+        <div class="nav__dropdown" id="navDropdown">
+          <a href="../vision.html" data-i18n="nav.vision">Vis&atilde;o</a>
+          <a href="../innovation-services.html" data-i18n="nav.services">Servi&ccedil;os</a>
+          <a href="../problem-analysis/" data-i18n="nav.problem_analysis">An&aacute;lise de Problemas</a>
+          <a href="../client-projects.html" data-i18n="nav.client_projects">Client Projects</a>
+          <a href="../blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos <span class="sr-only">(abre em nova aba)</span></a>
+          <a href="../about.html" data-i18n="nav.about">Sobre N&oacute;s</a>
+          <a href="../faq.html" data-i18n="nav.faq">FAQ</a>
+        </div>
+        <div class="nav__contact-wrap nav__contact-wrap--desktop">
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtnDesktop">Contato</button>
+          <div class="nav__contact-popover" id="navContactPopoverDesktop">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Envie uma mensagem &mdash; adorar&iacute;amos ouvir de voc&ecirc;.</p>
+              <a href="#dpp-contact" class="nav__contact-popover-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Envie uma mensagem
+              </a>
+              <div class="nav__contact-popover-divider">ou envie um e-mail diretamente</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copiar endere&ccedil;o de e-mail">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copiar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -212,7 +250,7 @@
     <nav class="dpp-breadcrumb" aria-label="Breadcrumb">
       <ol class="dpp-breadcrumb__list">
         <li><a href="../index.html">In&iacute;cio</a></li>
-        <li><a href="../../digital-product-passports/">Passaportes Digitais de Produto</a></li>
+        <li><a href="../digital-product-passports/">Passaportes Digitais de Produto</a></li>
         <li aria-current="page">O que &eacute; um DPP?</li>
       </ol>
     </nav>
@@ -276,7 +314,7 @@
         </ul>
         <p>Atos delegados est&atilde;o em prepara&ccedil;&atilde;o para v&aacute;rios outros grupos de produtos — incluindo <strong>t&ecirc;xteis, ferro &amp; a&ccedil;o, produtos de constru&ccedil;&atilde;o, m&aacute;quinas de lavar, lava-lou&ccedil;as, alum&iacute;nio, pneus, displays eletr&ocirc;nicos e detergentes</strong>. Esses atos delegados devem incluir requisitos de DPP aplic&aacute;veis por volta de <time datetime="2028">2028</time>–<time datetime="2029">2029</time>, mas as datas s&oacute; ser&atilde;o confirmadas ap&oacute;s a ado&ccedil;&atilde;o.</p>
         <p>O plano de trabalho do <abbr title="Regulamento de Ecodesign para Produtos Sustent&aacute;veis">ESPR</abbr> (COM/2025/187) identifica mais produtos para futuros atos delegados — incluindo m&oacute;veis, motores el&eacute;tricos, carregadores de VE, geladeiras, equipamentos de refrigera&ccedil;&atilde;o, colch&otilde;es, fontes de luz, secadoras, telefones celulares &amp; tablets e equipamentos de soldagem. Nenhum ato delegado foi iniciado para esses produtos ainda.</p>
-        <p>Adicionalmente, <strong>19 grupos de produtos</strong> est&atilde;o em transi&ccedil;&atilde;o da antiga Diretiva de Ecodesign (2009/125/CE) para o ESPR sob o Artigo 79. As medidas existentes permanecem em vigor at&eacute; <time datetime="2026-12-31">31 de dezembro de 2026</time>, com novos atos delegados do ESPR incluindo requisitos de DPP esperados em seguida. Consulte nossa <a href="../../digital-product-passports/">p&aacute;gina completa de consultoria em DPP</a> para uma vis&atilde;o geral por grupo de produtos.</p>
+        <p>Adicionalmente, <strong>19 grupos de produtos</strong> est&atilde;o em transi&ccedil;&atilde;o da antiga Diretiva de Ecodesign (2009/125/CE) para o ESPR sob o Artigo 79. As medidas existentes permanecem em vigor at&eacute; <time datetime="2026-12-31">31 de dezembro de 2026</time>, com novos atos delegados do ESPR incluindo requisitos de DPP esperados em seguida. Consulte nossa <a href="../digital-product-passports/">p&aacute;gina completa de consultoria em DPP</a> para uma vis&atilde;o geral por grupo de produtos.</p>
       </section>
 
       <section id="dpp-timeline">
@@ -326,7 +364,7 @@
         <h2>Precisa de ajuda com a conformidade do Passaporte Digital de Produto?</h2>
         <p>A Regen Studio oferece consultoria independente em DPP — sem software para vender, apenas orienta&ccedil;&atilde;o clara. Explore nossos servi&ccedil;os ou entre em contato para discutir sua situa&ccedil;&atilde;o.</p>
         <a href="../../pt/innovation-services.html" class="btn btn--primary">Explore Nossos Servi&ccedil;os</a>
-        <a href="../../digital-product-passports/#dpp-contact" class="btn btn--outline" style="margin-left: 12px;">Entre em Contato</a>
+        <a href="../digital-product-passports/#dpp-contact" class="btn btn--outline" style="margin-left: 12px;">Entre em Contato</a>
         <p style="margin-top: 16px; font-size: 0.95rem;">Ou consulte nosso <a href="../../pt/faq.html">FAQ</a> para mais respostas.</p>
       </div>
     </article>
@@ -403,8 +441,8 @@
             <li><a href="../about.html" data-i18n="footer.about">Sobre Nós</a></li>
             <li><a href="../vision.html" data-i18n="footer.vision">Visão</a></li>
             <li><a href="../innovation-services.html" data-i18n="footer.services">Serviços</a></li>
-            <li><a href="../../digital-product-passports/" data-i18n="footer.product_passports">Passaporte do Produto</a></li>
-            <li><a href="../../digital-identities/" data-i18n="footer.digital_identity">Identidade Digital</a></li>
+            <li><a href="../digital-product-passports/" data-i18n="footer.product_passports">Passaporte do Produto</a></li>
+            <li><a href="../digital-identities/" data-i18n="footer.digital_identity">Identidade Digital</a></li>
             <li><a href="../client-projects.html" data-i18n="footer.client_projects">Client Projects</a></li>
             <li><a href="../blog.html" data-i18n="footer.blog">Blog</a></li>
             <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
