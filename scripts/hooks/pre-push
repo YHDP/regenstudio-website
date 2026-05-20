@@ -169,9 +169,21 @@ while read local_ref local_sha remote_ref remote_sha; do
   # the underlying engagement (e.g. specific project-end / bewaarplicht /
   # beschikking dates). These come from the engagement profile at runtime;
   # should never be in static markup.
+  #
+  # 2026-05-20 exemption: PUBLIC EU regulation milestone dates (ESPR Art 79
+  # transition, PPWR / CPR / Battery / Toy DPP cutoff dates) are not engagement
+  # leaks — they appear verbatim across the public trilingual DPP pages and
+  # are sourced from eur-lex. The grep -v below excludes lines that also
+  # contain unambiguous EU-regulation-context markers (regulation number,
+  # eur-lex URL, named regulation acronym in a regulatory phrase). Engagement
+  # leaks would normally cite a beschikking number or voucher code (KvW3-...)
+  # — those are caught by the CLIENT_IDENTIFIERS_RE check above and are NOT
+  # whitelisted here.
   DATE_LEAK_RE='\b(1|2|3|31)\s+(jan|feb|mrt|apr|mei|jun|jul|aug|sep|okt|nov|dec)(uari|ruari|aart|il|i|ni|li|ustus|tember|tober|ember)?\s+(202[6-9]|203[0-9])'
+  DATE_LEAK_PUBLIC_CONTEXT_RE='eur-lex\.europa\.eu|Ecodesign-richtlijn|ESPR(\s|-)|PPWR|CPR\s+2024/3110|Batterijenverordening|Battery\s+Regulation|Speelgoedveiligheidsverordening|Toy\s+Safety|Artikel\s+(18|25|79|9|10|11|12|13|14)\b|Article\s+(18|25|79|9|10|11|12|13|14)\b|Verordening\s+\(EU\)\s+202[0-9]/[0-9]+|Regulation\s+\(EU\)\s+202[0-9]/[0-9]+|Energiewet|Elektriciteitswet|Gaswet|nieuwe\s+Energiewet'
   DATE_LEAKS=$(echo "$PUBLIC_DIFF" | grep -E '^\+' | grep -vE '^\+\+\+' | \
-    grep -nE "$DATE_LEAK_RE" || true)
+    grep -nE "$DATE_LEAK_RE" | \
+    grep -vE "$DATE_LEAK_PUBLIC_CONTEXT_RE" || true)
   if [ -n "$DATE_LEAKS" ]; then
     echo -e "${RED}BLOCKED: Hardcoded contract-engagement date in public-facing file(s):${NC}"
     echo "$DATE_LEAKS" | head -20
