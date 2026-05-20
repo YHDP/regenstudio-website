@@ -52,7 +52,20 @@ while read local_ref local_sha remote_ref remote_sha; do
   #    the publicly-credited Clean Fuel Protocol consortium partner domains
   #    (rvo.nl, tno.nl, coe-dpp.nl, fides-labs.io) — sanctioned editorial links
   #    in a government-referenced retrospective; added 2026-05-19 (Yvo approved).
-  EXTERNAL_TAGS=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(src|href)="https?://' | grep -viE '(supabase\.co|regenstudio\.(world|space)|player\.vimeo\.com|w\.soundcloud\.com|linkedin\.com|bsky\.app|mastodon\.social|schema\.org|ogp\.me|github\.com/YHDP/regenstudio-website|tweedekamer\.nl|rvo\.nl|tno\.nl|coe-dpp\.nl|fides-labs\.io)' || true)
+  #
+  #    2026-05-20: extended for the trilingualisation sweep:
+  #    - eur-lex.europa.eu — official EU regulation citations (ESPR/PPWR/CPR/
+  #      Battery/Toy/Detergents; ubiquitous across trilingual public DPP pages).
+  #    - Slimstrandnet case-study sanctioned editorial sources (denhaag.nl,
+  #      vng.nl, rijksoverheid.nl, acm.nl, platform31.nl, stedin.net,
+  #      amsterdamsmartcity.com, energy.nl, forthefutureofenergy.nl, gridflex.nl,
+  #      gebiedsontwikkeling.nu, nvde.nl, openremote.io, smart-energy.com,
+  #      schoonschipamsterdam.org, kerstentechniek.nl, kansenvoorwest.nl) —
+  #      noindex client knowledge-platform references public news + municipal
+  #      documents about the Scheveningen smart-microgrid project.
+  #    User-clicked <a href> hyperlinks are not exfil vectors, but the regex
+  #    matches them anyway; allowlisting sanctioned domains is the targeted fix.
+  EXTERNAL_TAGS=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(src|href)="https?://' | grep -viE '(supabase\.co|regenstudio\.(world|space)|player\.vimeo\.com|w\.soundcloud\.com|linkedin\.com|bsky\.app|mastodon\.social|schema\.org|ogp\.me|github\.com/YHDP/regenstudio-website|tweedekamer\.nl|rvo\.nl|tno\.nl|coe-dpp\.nl|fides-labs\.io|eur-lex\.europa\.eu|denhaag\.nl|smartcity\.denhaag\.nl|denhaag\.raadsinformatie\.nl|vng\.nl|rijksoverheid\.nl|acm\.nl|platform31\.nl|stedin\.net|amsterdamsmartcity\.com|energy\.nl|forthefutureofenergy\.nl|gridflex\.nl|gebiedsontwikkeling\.nu|nvde\.nl|openremote\.io|smart-energy\.com|schoonschipamsterdam\.org|kerstentechniek\.nl|kansenvoorwest\.nl)' || true)
   if [ -n "$EXTERNAL_TAGS" ]; then
     echo -e "${RED}BLOCKED: External URL(s) found in added lines:${NC}"
     echo "$EXTERNAL_TAGS" | head -10
@@ -69,7 +82,10 @@ while read local_ref local_sha remote_ref remote_sha; do
   #    and allows string-concat continuation (no longer requires `)`
   #    immediately after the close quote — so `fetch('/foo' + lang + '.json')`
   #    is also recognized as same-origin via its literal prefix.
-  EXFIL=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(fetch\(|XMLHttpRequest|navigator\.sendBeacon|new Image\(\)\.src)' | grep -viE 'supabase\.co|regenstudio\.(world|space)|same-origin|fetch\(['"'"'"][/a-zA-Z][a-zA-Z0-9_/.-]*['"'"'"]' || true)
+  #    2026-05-20: char class extended to allow leading `.` so dot-relative
+  #    paths from /nl/ or /pt/ depth (e.g. `fetch('../../Blogs/blogs.json')`
+  #    on the NL/PT digital-identities blog grid) count as same-origin.
+  EXFIL=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(fetch\(|XMLHttpRequest|navigator\.sendBeacon|new Image\(\)\.src)' | grep -viE 'supabase\.co|regenstudio\.(world|space)|same-origin|fetch\(['"'"'"][/.a-zA-Z][a-zA-Z0-9_/.-]*['"'"'"]' || true)
   if [ -n "$EXFIL" ]; then
     echo -e "${YELLOW}WARNING: Potential data exfiltration pattern:${NC}"
     echo "$EXFIL" | head -10
