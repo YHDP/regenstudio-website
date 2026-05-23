@@ -272,7 +272,50 @@
       "nav_title": "Categorias de dados",
       "kicker": "Por categoria de dado",
       "title": "O que a IA pode fazer com isso?",
-      "subtitle": "Escolha uma opção por linha. Os padrões estão pré-selecionados; ajuste o que preferir diferente. Granular, auditável, RGPD Art. 4(11) \"específico\". <em>Atenção:</em> as escolhas por categoria são registradas no DPA e no registro de consentimento como trilha de auditoria; a aplicação automatizada em nível de linha pelas nossas AI gates será lançada no T3-2026. Até então, a escolha agregada (IA pode vs. somente operador/excluído) é aplicada, e o operador aplica as escolhas mais finas manualmente."
+      "subtitle": "Escolha uma opção por linha. Os padrões estão pré-selecionados; ajuste o que preferir diferente. Granular, auditável, RGPD Art. 4(11) \"específico\". <em>Atenção:</em> as escolhas por categoria são registradas no DPA e no registro de consentimento como trilha de auditoria; a aplicação automatizada em nível de linha pelas nossas AI gates será lançada no T3-2026. Até então, a escolha agregada (IA pode vs. somente operador/excluído) é aplicada, e o operador aplica as escolhas mais finas manualmente.",
+      "intro": "Para cada categoria de dados: o que a IA pode fazer se você der acesso, e qual é a sua escolha. Granular, revogável, auditável.",
+      "choice_ai": "IA pode processar",
+      "choice_operator": "Somente operador",
+      "choice_excluded": "Não processar",
+      "locked_excluded_help": "Sem isso realmente não conseguimos trabalhar juntos.",
+      "footnote": "As escolhas por categoria são registradas no DPA e no registro de consentimento como trilha de auditoria; a aplicação automatizada em nível de linha pelas AI gates da Regen Studio será lançada no T3-2026. Até então, o operador aplica as escolhas mais finas manualmente.",
+      "cards_partnership": {
+        "contact_info": {
+          "title": "Dados de contato",
+          "sub": "Nome, endereço de e-mail, perfil da empresa",
+          "benefit": "<strong>Se a IA puder processar:</strong> Briefings bilaterais e preparação de reuniões pré-preenchidos — sem copiar-colar nomes e papéis entre ferramentas."
+        },
+        "acquisition_data": {
+          "title": "Aquisição",
+          "sub": "Leads, materiais de comunicação, propostas de financiamento, contratação",
+          "benefit": "<strong>Se a IA puder processar:</strong> Propostas conjuntas elaboradas em horas em vez de dias; análise de listas de leads revela padrões que perderíamos manualmente."
+        },
+        "ecosystem_data": {
+          "title": "Dados do ecossistema",
+          "sub": "Membros da comunidade, preparação de eventos, plataforma online",
+          "benefit": "<strong>Se a IA puder processar:</strong> Engajamento da comunidade em escala — reconhecimento de padrões entre muitas introduções sem perder o toque pessoal. (Dumps em massa do diretório permanecem excluídos por Schedule §B.)"
+        },
+        "bilateral_records": {
+          "title": "Reuniões bilaterais & transcrições",
+          "sub": "Gravações bilaterais semanais, transcrições, atas",
+          "benefit": "<strong>Se a IA puder processar:</strong> Atas + itens de ação em minutos após cada chamada — sem 30 minutos de transcrição manual por reunião. (Transcrições com terceiros sem consentimento permanecem excluídas por Schedule §B.)"
+        },
+        "joint_deliverables": {
+          "title": "Entregáveis conjuntos",
+          "sub": "Textos conjuntos, position papers, materiais de evento",
+          "benefit": "<strong>Se a IA puder processar:</strong> Verificação cruzada de afirmações com regulamentos da UE em uma única passagem; iteração mais rápida em documentos compartilhados; terminologia consistente entre os entregáveis conjuntos."
+        },
+        "commercial_intel": {
+          "title": "Inteligência comercial sensível",
+          "sub": "Pricing conjunto, receita da parceria, termos comerciais confidenciais com terceiros",
+          "benefit": "<strong>Excluído por padrão:</strong> A maior parte da inteligência comercial não precisa de acesso amplo da IA. Substituir caso a caso pelo caminho do operador se uma análise específica justificar."
+        },
+        "metadata": {
+          "title": "Metadados",
+          "sub": "Carimbos de tempo, IPs, contagens agregadas de uso",
+          "benefit": "<strong>Se a IA puder processar:</strong> Trilha de auditoria construída automaticamente por decisão; sem reconstrução posterior."
+        }
+      }
     }
   },
   "contract": {

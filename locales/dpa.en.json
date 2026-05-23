@@ -272,7 +272,50 @@
       "nav_title": "Data categories",
       "kicker": "Per data category",
       "title": "What may AI do with it?",
-      "subtitle": "Pick one option per row. Sensible defaults are pre-selected; override anything you'd rather see different. Granular, auditable, GDPR Art 4(11) \"specific\". <em>Note:</em> per-category choices are recorded in the DPA and consent registry as an audit trail; automated row-level enforcement by our AI gates rolls out in Q3-2026. Until then the aggregate choice (AI may vs operator-only/excluded) is enforced, and the operator applies finer choices manually."
+      "subtitle": "Pick one option per row. Sensible defaults are pre-selected; override anything you'd rather see different. Granular, auditable, GDPR Art 4(11) \"specific\". <em>Note:</em> per-category choices are recorded in the DPA and consent registry as an audit trail; automated row-level enforcement by our AI gates rolls out in Q3-2026. Until then the aggregate choice (AI may vs operator-only/excluded) is enforced, and the operator applies finer choices manually.",
+      "intro": "For each data category: what AI can do with it if you grant access, and what your choice is. Granular, revocable, auditable.",
+      "choice_ai": "AI may process",
+      "choice_operator": "Operator only",
+      "choice_excluded": "Not processed",
+      "locked_excluded_help": "Without this we really can't work together.",
+      "footnote": "Per-category choices are recorded in the DPA and consent registry as an audit trail; automated row-level enforcement by Regen Studio's AI gates rolls out in Q3-2026. Until then the operator enforces the finer choices manually.",
+      "cards_partnership": {
+        "contact_info": {
+          "title": "Contact details",
+          "sub": "Name, email address, company profile",
+          "benefit": "<strong>If AI may process this:</strong> Pre-populated bilateral briefings + meeting prep — no copy-paste of names and roles between tools."
+        },
+        "acquisition_data": {
+          "title": "Acquisition",
+          "sub": "Leads, communication materials, funding proposals, contracting",
+          "benefit": "<strong>If AI may process this:</strong> Joint proposals drafted in hours instead of days; lead-list analysis surfaces patterns we'd miss manually."
+        },
+        "ecosystem_data": {
+          "title": "Ecosystem data",
+          "sub": "Community members, event preparation, online platform",
+          "benefit": "<strong>If AI may process this:</strong> Community engagement at scale — pattern-match across many introductions without losing the personal touch. (Bulk directory dumps stay excluded per Schedule §B.)"
+        },
+        "bilateral_records": {
+          "title": "Bilateral meetings & transcripts",
+          "sub": "Weekly bilateral recordings, transcripts, minutes",
+          "benefit": "<strong>If AI may process this:</strong> Minutes + action items within minutes of every call — no 30-min manual transcription per meeting. (Transcripts with non-consenting third parties stay excluded per Schedule §B.)"
+        },
+        "joint_deliverables": {
+          "title": "Joint deliverables",
+          "sub": "Joint write-ups, position papers, event materials",
+          "benefit": "<strong>If AI may process this:</strong> Cross-check claims against EU regulations in one pass; iterate faster on shared documents; consistent terminology across joint outputs."
+        },
+        "commercial_intel": {
+          "title": "Sensitive commercial intel",
+          "sub": "Joint pricing, partnership revenue, third-party commercial terms shared in confidence",
+          "benefit": "<strong>Default excluded:</strong> Most commercial intel doesn't need broad AI access. Override per case via the operator path if a specific analysis warrants it."
+        },
+        "metadata": {
+          "title": "Metadata",
+          "sub": "Timestamps, IPs, aggregated usage counts",
+          "benefit": "<strong>If AI may process this:</strong> Audit trail built automatically per decision; no reconstruction after the fact."
+        }
+      }
     }
   },
   "contract": {

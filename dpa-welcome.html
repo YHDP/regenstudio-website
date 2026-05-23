@@ -723,6 +723,13 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 14px; margin-top: 18px;
   }
+  /* Engagement-scoped card sets: hide all by default; show only the matching scope.
+     The active scope is set by JS on <body data-engagement-scope="voucher|partnership">
+     based on engagement_key prefix (see dpa-welcome.html init flow). */
+  .consent-matrix__scope { display: contents; }
+  .consent-matrix__scope[data-scope] { display: none; }
+  body[data-engagement-scope="voucher"]      .consent-matrix__scope[data-scope="voucher"]      { display: contents; }
+  body[data-engagement-scope="partnership"]  .consent-matrix__scope[data-scope="partnership"]  { display: contents; }
   .consent-card {
     background: white; border: 1px solid var(--border);
     border-radius: 12px; padding: 14px 16px;
@@ -1189,6 +1196,9 @@
         <p class="slide__subtitle" data-i18n="welcome.slide_consent.intro">Voor elke data-categorie: wat AI ermee kan als je toegang geeft, en wat jouw keuze is. Granulair, intrekbaar, controleerbaar.</p>
         <div class="consent-matrix" id="consent-matrix">
 
+          <!-- Voucher scope: 8 cards for engagement_key prefix 'voucher/' -->
+          <div class="consent-matrix__scope" data-scope="voucher">
+
           <div class="consent-card" data-category="contact_info">
             <div class="consent-card__head">
               <span class="consent-card__icon" aria-hidden="true">📇</span>
@@ -1318,6 +1328,126 @@
               <label class="cc-radio"><input type="radio" name="cat_financial_data" value="excluded" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
             </fieldset>
           </div>
+
+          </div><!-- /.consent-matrix__scope[data-scope="voucher"] -->
+
+          <!-- Partnership scope: 7 cards for engagement_key prefix 'partnership/' (e.g. partnership/regen-ctf-master-2026) -->
+          <div class="consent-matrix__scope" data-scope="partnership">
+
+          <div class="consent-card" data-category="contact_info">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">📇</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_partnership.contact_info.title">Contact details</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_partnership.contact_info.sub">Name, email address, company profile</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_partnership.contact_info.benefit"><strong>If AI may process this:</strong> Pre-populated bilateral briefings + meeting prep — no copy-paste of names and roles between tools.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_contact_info" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI may process</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_contact_info" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Operator only</span></label>
+              <label class="cc-radio cc-radio--locked"><input type="radio" name="cat_contact_info" value="excluded" disabled><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Not processed</span></label>
+            </fieldset>
+            <p class="consent-card__locked-help" data-i18n="welcome.slide_consent.locked_excluded_help">Without this we really can't work together.</p>
+          </div>
+
+          <div class="consent-card" data-category="acquisition_data">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">🎯</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_partnership.acquisition_data.title">Acquisition</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_partnership.acquisition_data.sub">Leads, communication materials, funding proposals, contracting</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_partnership.acquisition_data.benefit"><strong>If AI may process this:</strong> Joint proposals drafted in hours instead of days; lead-list analysis surfaces patterns we'd miss manually.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_acquisition_data" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI may process</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_acquisition_data" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Operator only</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_acquisition_data" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Not processed</span></label>
+            </fieldset>
+          </div>
+
+          <div class="consent-card" data-category="ecosystem_data">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">🌐</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_partnership.ecosystem_data.title">Ecosystem data</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_partnership.ecosystem_data.sub">Community members, event preparation, online platform</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_partnership.ecosystem_data.benefit"><strong>If AI may process this:</strong> Community engagement at scale — pattern-match across many introductions without losing the personal touch. (Bulk directory dumps stay excluded per Schedule §B.)</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_ecosystem_data" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI may process</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_ecosystem_data" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Operator only</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_ecosystem_data" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Not processed</span></label>
+            </fieldset>
+          </div>
+
+          <div class="consent-card" data-category="bilateral_records">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">🎙️</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_partnership.bilateral_records.title">Bilateral meetings &amp; transcripts</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_partnership.bilateral_records.sub">Weekly bilateral recordings, transcripts, minutes</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_partnership.bilateral_records.benefit"><strong>If AI may process this:</strong> Minutes + action items within minutes of every call — no 30-min manual transcription per meeting. (Transcripts with non-consenting third parties stay excluded per Schedule §B.)</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_bilateral_records" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI may process</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_bilateral_records" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Operator only</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_bilateral_records" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Not processed</span></label>
+            </fieldset>
+          </div>
+
+          <div class="consent-card" data-category="joint_deliverables">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">📚</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_partnership.joint_deliverables.title">Joint deliverables</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_partnership.joint_deliverables.sub">Joint write-ups, position papers, event materials</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_partnership.joint_deliverables.benefit"><strong>If AI may process this:</strong> Cross-check claims against EU regulations in one pass; iterate faster on shared documents; consistent terminology across joint outputs.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_joint_deliverables" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI may process</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_joint_deliverables" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Operator only</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_joint_deliverables" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Not processed</span></label>
+            </fieldset>
+          </div>
+
+          <div class="consent-card consent-card--exclude" data-category="commercial_intel">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">🔒</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_partnership.commercial_intel.title">Sensitive commercial intel</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_partnership.commercial_intel.sub">Joint pricing, partnership revenue, third-party commercial terms shared in confidence</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit consent-card__benefit--exclude" data-i18n-html="welcome.slide_consent.cards_partnership.commercial_intel.benefit"><strong>Default excluded:</strong> Most commercial intel doesn't need broad AI access. Override per case via the operator path if a specific analysis warrants it.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_commercial_intel" value="ai_may_process"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI may process</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_commercial_intel" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Operator only</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_commercial_intel" value="excluded" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Not processed</span></label>
+            </fieldset>
+          </div>
+
+          <div class="consent-card" data-category="metadata">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">📊</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_partnership.metadata.title">Metadata</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_partnership.metadata.sub">Timestamps, IPs, aggregated usage counts</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_partnership.metadata.benefit"><strong>If AI may process this:</strong> Audit trail built automatically per decision; no reconstruction after the fact.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_metadata" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI may process</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_metadata" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Operator only</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_metadata" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Not processed</span></label>
+            </fieldset>
+          </div>
+
+          </div><!-- /.consent-matrix__scope[data-scope="partnership"] -->
 
         </div>
         <p class="consent-footnote" data-i18n-html="welcome.slide_consent.footnote">Per-categorie keuzes worden in de DPA en het consent-register vastgelegd als audit-trail; geautomatiseerde handhaving op rij-niveau door de AI-gates van Regen Studio rolt uit in Q3-2026. Tot dan handhaaft de operator de fijnere keuzes handmatig.</p>
@@ -1837,11 +1967,31 @@
 
   // ===== Form validation =====
   // Matrix categories: each must have exactly one radio checked.
-  const MATRIX_CATEGORIES = ['contact_info', 'project_content', 'production_data', 'transport_data', 'supplier_data', 'certification_audit_data', 'metadata', 'financial_data'];
+  // The active category set depends on engagement scope (set on body.dataset.engagementScope
+  // by the dpa-verify-token response handler). Voucher engagements get the DPP-voucher 8;
+  // partnership engagements get the CTF/partnership 7 (added 2026-05-23).
+  const MATRIX_CATEGORIES_BY_SCOPE = {
+    voucher:     ['contact_info', 'project_content', 'production_data', 'transport_data', 'supplier_data', 'certification_audit_data', 'metadata', 'financial_data'],
+    partnership: ['contact_info', 'acquisition_data', 'ecosystem_data', 'bilateral_records', 'joint_deliverables', 'commercial_intel', 'metadata'],
+  };
+  function activeMatrixCategories() {
+    const scope = (state.engagementScope || document.body.dataset.engagementScope || 'voucher');
+    return MATRIX_CATEGORIES_BY_SCOPE[scope] || MATRIX_CATEGORIES_BY_SCOPE.voucher;
+  }
+  // Back-compat alias — some legacy call sites still read MATRIX_CATEGORIES directly.
+  // Defined as a property getter so it always reflects the current scope.
+  Object.defineProperty(window, 'MATRIX_CATEGORIES', { get: activeMatrixCategories, configurable: true });
   function readConsentMatrix() {
     const result = {};
-    for (const cat of MATRIX_CATEGORIES) {
-      const checked = document.querySelector('input[name="cat_' + cat + '"]:checked');
+    const cats = activeMatrixCategories();
+    // Read only from the active engagement-scope wrapper to avoid picking up hidden
+    // (sibling-scope) radios that share the same name attribute (e.g. cat_contact_info
+    // exists in both voucher and partnership card sets).
+    const scope = (state.engagementScope || document.body.dataset.engagementScope || 'voucher');
+    const activeScopeEl = document.querySelector('.consent-matrix__scope[data-scope="' + scope + '"]');
+    const queryRoot = activeScopeEl || document;
+    for (const cat of cats) {
+      const checked = queryRoot.querySelector('input[name="cat_' + cat + '"]:checked');
       if (checked) result[cat] = checked.value;
     }
     return result;
@@ -2068,6 +2218,15 @@
         }
         state.body = body;
         state.profile = body.engagement_profile;
+
+        // Set engagement scope on <body> so the per-engagement consent-card matrix
+        // shows the right set (voucher | partnership). Derived from engagement_key
+        // prefix when engagement_type isn't on the profile (DB-path response gap).
+        const engKey = body.engagement_key || state.profile.engagement_key || '';
+        const engTypeRaw = state.profile.engagement_type || engKey.split('/')[0] || '';
+        const scope = engTypeRaw === 'partnership' ? 'partnership' : 'voucher';
+        document.body.dataset.engagementScope = scope;
+        state.engagementScope = scope;
 
         // i18n — load + apply the engagement's language before any prose renders.
         // Fallback to 'nl' if default_language is missing (voucher baseline).

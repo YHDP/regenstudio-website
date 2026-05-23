@@ -308,6 +308,43 @@
           "sub": "Facturen, budgetten, betalingsgegevens, fee-structuren",
           "benefit": "<strong>Standaard uitgesloten:</strong> Regen Studio heeft dit niet nodig — en hoeft het ook niet te zien. Geen reden om dit aan AI te tonen."
         }
+      },
+      "cards_partnership": {
+        "contact_info": {
+          "title": "Contactgegevens",
+          "sub": "Naam, e-mailadres, bedrijfsprofiel",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> Vooraf ingevulde bilateral-briefings + meeting-prep — geen copy-paste van namen en rollen tussen tools."
+        },
+        "acquisition_data": {
+          "title": "Acquisitie",
+          "sub": "Leads, communicatiemateriaal, fondsenwervingsvoorstellen, contractering",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> Gezamenlijke voorstellen opgesteld in uren in plaats van dagen; lead-list-analyses leggen patronen bloot die we handmatig zouden missen."
+        },
+        "ecosystem_data": {
+          "title": "Ecosysteemdata",
+          "sub": "Community-leden, evenement-voorbereiding, online platform",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> Community-engagement op schaal — patronen herkennen over vele introducties zonder de persoonlijke noot te verliezen. (Bulk directory-dumps blijven uitgesloten per Schedule §B.)"
+        },
+        "bilateral_records": {
+          "title": "Bilaterale gesprekken & transcripten",
+          "sub": "Wekelijkse bilateraal-opnamen, transcripten, notulen",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> Notulen + actiepunten binnen minuten na elk gesprek — geen 30 minuten handmatig uittypen per meeting. (Transcripten met niet-toestemmende derden blijven uitgesloten per Schedule §B.)"
+        },
+        "joint_deliverables": {
+          "title": "Gezamenlijke deliverables",
+          "sub": "Gezamenlijke teksten, position papers, event-materiaal",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> Claims in één doorloop getoetst aan EU-regelgeving; sneller itereren op gedeelde documenten; consistente terminologie over gezamenlijke output."
+        },
+        "commercial_intel": {
+          "title": "Gevoelige commerciële intel",
+          "sub": "Gezamenlijke pricing, partnership-omzet, vertrouwelijke commerciële voorwaarden met derden",
+          "benefit": "<strong>Standaard uitgesloten:</strong> De meeste commerciële intel heeft geen brede AI-toegang nodig. Per geval te overschrijven via de operator-route als een specifieke analyse dat rechtvaardigt."
+        },
+        "metadata": {
+          "title": "Metadata",
+          "sub": "Tijdstempels, IP's, geaggregeerde gebruikscijfers",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> Audit-trail automatisch opgebouwd per beslissing; geen reconstructie achteraf."
+        }
       }
     }
   },
