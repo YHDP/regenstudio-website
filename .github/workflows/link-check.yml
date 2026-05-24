@@ -24,6 +24,7 @@ jobs:
             --no-progress
             --timeout 30
             --max-retries 3
+            --user-agent 'Mozilla/5.0 (compatible; LycheeBot/0.x; +https://www.regenstudio.world) RegenStudioLinkCheck/1.0'
             --accept 200,202,204,301,302,307,308,403,415,429
             --exclude-path 'Blogs/'
             --exclude 'susproc.jrc.ec.europa.eu'

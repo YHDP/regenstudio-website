@@ -43,3 +43,6 @@ https?://(www\.)?cencenelec\.eu
 
 # acm.nl — gov site too slow for the 30s runner timeout (verified 200 OK in browser); only one acm.nl link site-wide
 https?://(www\.)?acm\.nl
+
+# goodreads.com — bot-defense returns 503/429 to lychee; valid in browsers (verified 2026-05-24)
+https?://(www\.)?goodreads\.com
