@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow">
   <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Cache-Control" content="no-store, private">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co; base-uri 'self'; object-src 'none'; frame-ancestors 'none';">
   <title>DPA Portal · Regen Studio</title>
   <link rel="icon" type="image/png" href="Images/favicon.png">
   <link rel="stylesheet" href="assets/fonts/inter.css">
@@ -402,8 +404,11 @@
       return (window.dpaI18n && window.dpaI18n.t) ? window.dpaI18n.t(key, fallback) : fallback;
     }
 
-    const params = new URLSearchParams(location.search);
-    const token = (params.get("token") || "").trim().toLowerCase();
+    // Audit F-04 fix (2026-05-24): read token from URL fragment first
+    // (#token=…), fall back to query string (?token=…) for in-flight links.
+    const hashParams = new URLSearchParams(location.hash.replace(/^#/, ''));
+    const queryParams = new URLSearchParams(location.search);
+    const token = (hashParams.get("token") || queryParams.get("token") || "").trim().toLowerCase();
     // Early language hint — dpa-request-link appends &lang= for non-NL engagements
     const urlLangHint = (params.get("lang") || "").toLowerCase();
     const SUPPORTED_LANGS = ["nl", "en", "pt"];
@@ -501,7 +506,8 @@
             alert(t("intake.errors.storage_blocked", "Uw browser blokkeert opslag. Schakel cookies/storage tijdelijk in voor regenstudio.world en probeer opnieuw."));
             return;
           }
-          window.location.href = "dpa-contract.html?token=" + encodeURIComponent(token);
+          // Audit F-04 fix (2026-05-24): token in URL fragment, not query.
+          window.location.href = "dpa-contract.html#token=" + encodeURIComponent(token);
         });
       })
       .catch(err => {

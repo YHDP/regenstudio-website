@@ -14,6 +14,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow">
   <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Cache-Control" content="no-store, private">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co; base-uri 'self'; object-src 'none'; frame-ancestors 'none';">
   <title>Signed Project Scope Agreement · Regen Studio</title>
   <link rel="stylesheet" href="../assets/fonts/inter.css">
   <link rel="stylesheet" href="../assets/fonts/koho.css">
@@ -171,16 +173,22 @@
 
     const TOKEN_RE = /^[0-9a-f]{64}$/;
 
+    // Audit F-09 fix (2026-05-24): post-lookup failure paths collapse to
+    // `verification_failed` for state-oracle closure. Specific cause is in
+    // Edge Function logs. Legacy keys retained as fallbacks for any in-flight
+    // response cached during the redeploy window.
+    const GENERIC = 'This download link is no longer valid (expired, used, or not recognised). Email info@regenstudio.world for a fresh link.';
     const REASON_MAP = {
       'malformed':              'The download link is incomplete or corrupted. Open the link directly from the email.',
-      'not_found':              'This download link is unknown.',
-      'expired':                'This download link has expired (30 days after signing).',
-      'expired_after_first_use':'This download link expired thirty (30) minutes after first opening.',
-      'snapshot_missing':       'The signed file could not be located in storage. Email Yvo to recover.',
-      'snapshot_path_missing':  'The internal pointer to the signed file is broken. Email Yvo to recover.',
+      'verification_failed':    GENERIC,
+      'not_found':              GENERIC,
+      'expired':                GENERIC,
+      'expired_after_first_use':GENERIC,
+      'snapshot_missing':       GENERIC,
+      'snapshot_path_missing':  GENERIC,
       'server_error':           'Temporary server issue. Try again in a few minutes.',
       'method_not_allowed':     'Wrong call method. Reload the page.',
-      'forbidden_origin':       'Request blocked by origin gate. Open the link directly from the email.',
+      'forbidden_origin':       GENERIC,
     };
     function translate(reason) {
       return REASON_MAP[reason] || ('Unknown error: ' + String(reason || '').slice(0, 80));
@@ -214,8 +222,11 @@
         (body.party || '—');
     }
 
-    const params = new URLSearchParams(location.search);
-    const token = (params.get("t") || "").trim().toLowerCase();
+    // Audit F-04 fix (2026-05-24): read access token from URL fragment first
+    // (#t=…), fall back to query (?t=…) for in-flight access links.
+    const hashParams = new URLSearchParams(location.hash.replace(/^#/, ''));
+    const queryParams = new URLSearchParams(location.search);
+    const token = (hashParams.get("t") || queryParams.get("t") || "").trim().toLowerCase();
 
     if (!TOKEN_RE.test(token)) {
       showError(translate('malformed'));

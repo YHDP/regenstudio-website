@@ -275,8 +275,11 @@
   }
 
   function init() {
-    var params = new URLSearchParams(window.location.search);
-    var token = params.get('token');
+    // Audit F-04 fix (2026-05-24): read token from URL fragment first
+    // (#token=…), fall back to query string (?token=…) for in-flight links.
+    var hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+    var queryParams = new URLSearchParams(window.location.search);
+    var token = hashParams.get('token') || queryParams.get('token');
     if (token && /^[a-f0-9]{64}$/i.test(token)) {
       initViewMode(token);
     } else {

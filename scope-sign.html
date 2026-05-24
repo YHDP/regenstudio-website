@@ -30,7 +30,8 @@
        hasn't arrived in time; preloading guarantees it has. -->
   <link rel="preload" href="assets/fonts/koho-logo-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/koho-logo-200.woff2" as="font" type="font/woff2" crossorigin>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://*.supabase.co; form-action 'self' https://*.supabase.co; base-uri 'self'; object-src 'none';">
+  <meta http-equiv="Cache-Control" content="no-store, private">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co; base-uri 'self'; object-src 'none'; frame-ancestors 'none';">
   <style>
     :root {
       --emerald: #006d38;
@@ -354,8 +355,11 @@
   }
 
   async function bootstrap() {
-    const params = new URLSearchParams(window.location.search);
-    TOKEN = (params.get('t') || params.get('token') || '').trim().toLowerCase();
+    // Audit F-04 fix (2026-05-24): read token from URL fragment first
+    // (#t=… / #token=…), fall back to query string for in-flight links.
+    const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+    const queryParams = new URLSearchParams(window.location.search);
+    TOKEN = (hashParams.get('t') || hashParams.get('token') || queryParams.get('t') || queryParams.get('token') || '').trim().toLowerCase();
     if (!TOKEN || !TOKEN_RE.test(TOKEN)) {
       showError('missing_or_malformed_token');
       return;
@@ -453,7 +457,8 @@
       status.textContent = 'Your browser is blocking storage. Enable cookies/storage for regenstudio.world and try again.';
       return;
     }
-    window.location.href = 'scope-contract.html?t=' + encodeURIComponent(TOKEN);
+    // Audit F-04 fix (2026-05-24): token in URL fragment, not query.
+    window.location.href = 'scope-contract.html#t=' + encodeURIComponent(TOKEN);
   }
 
   // Kick off

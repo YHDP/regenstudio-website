@@ -28,7 +28,8 @@
   <link rel="stylesheet" href="assets/fonts/koho.css">
   <link rel="preload" href="assets/fonts/koho-logo-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/koho-logo-200.woff2" as="font" type="font/woff2" crossorigin>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://*.supabase.co; form-action 'self' https://*.supabase.co; base-uri 'self'; object-src 'none';">
+  <meta http-equiv="Cache-Control" content="no-store, private">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co; base-uri 'self'; object-src 'none'; frame-ancestors 'none';">
   <style>
     /* ===== Visual register mirrors dpa-contract.html ===== */
     :root {
@@ -477,13 +478,16 @@
     document.getElementById('contractUI').style.display = 'none';
     document.getElementById('missingDataAlert').style.display = 'block';
     if (token && TOKEN_RE.test(token)) {
-      document.getElementById('backToWelcome').href = 'scope-sign.html?t=' + encodeURIComponent(token);
+      document.getElementById('backToWelcome').href = 'scope-sign.html#t=' + encodeURIComponent(token);
     }
   }
 
   function bootstrap() {
-    const params = new URLSearchParams(window.location.search);
-    const urlToken = (params.get('t') || params.get('token') || '').trim().toLowerCase();
+    // Audit F-04 fix (2026-05-24): read token from URL fragment first
+    // (#t=… / #token=…), fall back to query string for in-flight links.
+    const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+    const queryParams = new URLSearchParams(window.location.search);
+    const urlToken = (hashParams.get('t') || hashParams.get('token') || queryParams.get('t') || queryParams.get('token') || '').trim().toLowerCase();
     const sessionData = loadFromSession();
     if (!sessionData) {
       showMissing(urlToken);
@@ -549,7 +553,7 @@
     document.getElementById('whoRole').textContent = s.intake.rep_role || 'role not provided';
     document.getElementById('whoLegal').textContent = s.intake.legal_name || '—';
     document.getElementById('whoEmail').textContent = s.intake.rep_email || '—';
-    document.getElementById('editIntakeLink').href = 'scope-sign.html?t=' + encodeURIComponent(s.token);
+    document.getElementById('editIntakeLink').href = 'scope-sign.html#t=' + encodeURIComponent(s.token);
 
     // Render canonical agreement text
     const docBody = document.getElementById('docBody');

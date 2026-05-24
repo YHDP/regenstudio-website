@@ -339,15 +339,33 @@
   // CSS in dpa-contract.html keeps working without changes.
   // -------------------------------------------------------------------------
 
+  // Audit F-18 fix (2026-05-24): URL scheme whitelist. Markdown links of the
+  // form [text](javascript:alert(1)) survived prior runsToHtml unchanged —
+  // escapeHtml encodes <>&'" but doesn't touch the URL scheme. Mitigated by
+  // canonical markdown being authored (substituteVars sanitises user input),
+  // but defense-in-depth blocks the link even if untrusted markdown ever
+  // reaches the renderer. Rejected hrefs become `#`; original is preserved
+  // as data-blocked-href for debugging.
+  function isSafeUrl(href) {
+    try {
+      var u = new URL(String(href), (typeof window !== 'undefined' && window.location && window.location.origin) ? window.location.origin : 'https://www.regenstudio.world');
+      return u.protocol === 'http:' || u.protocol === 'https:' || u.protocol === 'mailto:';
+    } catch (_) { return false; }
+  }
+
   function runsToHtml(runs) {
     return runs.map(function (r) {
       if (r.type === 'link') {
-        let inner = escapeHtml(r.text);
+        var inner = escapeHtml(r.text);
         if (r.bold) inner = '<strong>' + inner + '</strong>';
         if (r.italic) inner = '<em>' + inner + '</em>';
-        return '<a href="' + escapeHtml(r.href) + '" target="_blank" rel="noopener noreferrer">' + inner + '</a>';
+        var safe = isSafeUrl(r.href);
+        var href = safe ? r.href : '#';
+        var attrs = ' target="_blank" rel="noopener noreferrer"';
+        if (!safe) attrs += ' data-blocked-href="' + escapeHtml(String(r.href).slice(0, 200)) + '"';
+        return '<a href="' + escapeHtml(href) + '"' + attrs + '>' + inner + '</a>';
       }
-      let html = escapeHtml(r.text);
+      var html = escapeHtml(r.text);
       if (r.code) return '<code>' + html + '</code>';
       if (r.bold) html = '<strong>' + html + '</strong>';
       if (r.italic) html = '<em>' + html + '</em>';

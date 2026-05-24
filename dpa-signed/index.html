@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow">
   <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Cache-Control" content="no-store, private">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co; base-uri 'self'; object-src 'none'; frame-ancestors 'none';">
   <title>Getekende DPA · Regen Studio</title>
   <script src="../assets/js/dpa-i18n.js"></script>
   <style>
@@ -144,13 +146,21 @@
     // Reason-code → translation via locale (NL fallback inline). Keys live under
     // signed.reasons.* in /locales/dpa.<lang>.json.
     function translate(reason) {
+      // Audit F-09 fix (2026-05-24): all post-lookup failure paths now return
+      // the generic `verification_failed` reason (state-oracle closure on the
+      // access-token endpoints, matching the signing-token oracle closure).
+      // Specific cause is captured server-side in Edge Function logs for ops.
+      // Legacy keys (not_found / expired / snapshot_missing / …) are retained
+      // as fallbacks so any in-flight Edge-Function-cached response still
+      // translates cleanly during the brief redeploy window.
       const fallbacks = {
         'malformed':               'De download-link is incompleet of beschadigd. Open de link rechtstreeks vanuit de e-mail.',
-        'not_found':               'Deze download-link is onbekend.',
-        'expired':                 'Deze download-link is verlopen (30 dagen na ondertekening).',
-        'expired_after_first_use': 'Deze download-link is dertig (30) minuten na de eerste opening verlopen.',
-        'snapshot_missing':        'Het bestand kon niet worden gevonden in de opslag. Mail Yvo voor herstel.',
-        'snapshot_path_missing':   'De interne verwijzing naar het bestand klopt niet. Mail Yvo voor herstel.',
+        'verification_failed':     'Deze download-link is niet meer geldig (verlopen, gebruikt of onbekend). Mail info@regenstudio.world voor een nieuwe link.',
+        'not_found':               'Deze download-link is niet meer geldig (verlopen, gebruikt of onbekend). Mail info@regenstudio.world voor een nieuwe link.',
+        'expired':                 'Deze download-link is niet meer geldig (verlopen, gebruikt of onbekend). Mail info@regenstudio.world voor een nieuwe link.',
+        'expired_after_first_use': 'Deze download-link is niet meer geldig (verlopen, gebruikt of onbekend). Mail info@regenstudio.world voor een nieuwe link.',
+        'snapshot_missing':        'Deze download-link is niet meer geldig (verlopen, gebruikt of onbekend). Mail info@regenstudio.world voor een nieuwe link.',
+        'snapshot_path_missing':   'Deze download-link is niet meer geldig (verlopen, gebruikt of onbekend). Mail info@regenstudio.world voor een nieuwe link.',
         'server_error':            'Tijdelijke server-storing. Probeer opnieuw over een paar minuten.',
         'method_not_allowed':      'Verkeerde aanroep-methode. Herlaad de pagina.',
       };
@@ -179,8 +189,13 @@
         (party || '—');
     }
 
-    // Read ?t=<token>
-    const params = new URLSearchParams(location.search);
+    // Audit F-04 fix (2026-05-24): read access token from URL fragment first
+    // (#t=…), fall back to query (?t=…) for in-flight access links.
+    const hashParams = new URLSearchParams(location.hash.replace(/^#/, ''));
+    const queryParams = new URLSearchParams(location.search);
+    const params = {
+      get(k) { return hashParams.get(k) || queryParams.get(k); },
+    };
     const token = (params.get("t") || "").trim().toLowerCase();
     // Early language hint from URL — dpa-submit-signature appends &lang= when
     // the engagement is non-NL so the page can pre-load locale in parallel

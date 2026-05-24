@@ -108,12 +108,55 @@ while read local_ref local_sha remote_ref remote_sha; do
     ISSUES=$((ISSUES + 1))
   fi
 
-  # 4. Check for CSP modifications (someone weakening security headers)
+  # 4. Check for CSP modifications (someone weakening security headers).
+  # Audit F-10 fix (2026-05-24): promoted from warning to hard block. CSP
+  # weakening must be deliberate; bypass via --no-verify if intentional.
   CSP_CHANGES=$(echo "$DIFF" | grep -n '^\+' | grep -i 'Content-Security-Policy' || true)
   if [ -n "$CSP_CHANGES" ]; then
-    echo -e "${YELLOW}NOTE: CSP header modified — please verify:${NC}"
+    echo -e "${RED}BLOCKED: CSP header modified — verify and re-push with --no-verify if intentional:${NC}"
     echo "$CSP_CHANGES" | head -5
     echo ""
+    echo -e "${YELLOW}  CSP changes are security-relevant. Review the diff line-by-line:${NC}"
+    echo -e "${YELLOW}    - Adding 'unsafe-eval' / 'unsafe-hashes' / wildcard sources is regression.${NC}"
+    echo -e "${YELLOW}    - Removing 'frame-ancestors' / 'object-src' / 'base-uri' weakens clickjacking + injection defense.${NC}"
+    echo -e "${YELLOW}    - Widening connect-src / form-action allowlists is data-exfil risk.${NC}"
+    ISSUES=$((ISSUES + 1))
+  fi
+
+  # Audit F-15 fix (2026-05-24): explicit named-secret pattern. Catches
+  # accidental commit of env-var values for: YVO_SIG_SECRET, CONSENT_FP_PEPPER,
+  # MANIFEST_EXPORT_SECRET, LETTERMINT_API_TOKEN, IP_HASH_PEPPER,
+  # DPA_ADMIN_SECRET, JPA_ADMIN_SECRET, LETTERMINT_WEBHOOK_SECRET,
+  # NEWSLETTER_SEND_SECRET. The generic _SECRET / _KEY pattern in check #3
+  # caught these IF assigned to that exact suffix, but not when assigned to a
+  # different name (`const yvoSig = "..."`) or embedded in JSON.
+  NAMED_SECRETS=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(YVO_SIG_SECRET|CONSENT_FP_PEPPER|MANIFEST_EXPORT_SECRET|LETTERMINT_API_TOKEN|IP_HASH_PEPPER|DPA_ADMIN_SECRET|JPA_ADMIN_SECRET|LETTERMINT_WEBHOOK_SECRET|NEWSLETTER_SEND_SECRET)[\"\x27]?\s*[:=]\s*[\"\x27]?[A-Za-z0-9_+/=.-]{20,}' || true)
+  if [ -n "$NAMED_SECRETS" ]; then
+    echo -e "${RED}BLOCKED: Named secret with value in added line:${NC}"
+    echo "$NAMED_SECRETS" | head -10
+    echo ""
+    echo -e "${YELLOW}  These env-var values must live ONLY in Supabase secrets,${NC}"
+    echo -e "${YELLOW}  never in repo source. Use \`supabase secrets set NAME=value\`.${NC}"
+    ISSUES=$((ISSUES + 1))
+  fi
+
+  # Audit F-21 fix (2026-05-24): base64-blob scanner. A YVO_SIG_SECRET PNG
+  # inlined as a string literal (or any other secret encoded base64) would slip
+  # past the named-pattern checks. Catch any added line with 300+ chars of
+  # contiguous base64 alphabet (plus optional trailing padding). 300 chars ≈
+  # 225 bytes — well under a real PNG but well above any innocent base64 in
+  # the repo (favicons + inline assets are size-bounded by their stylesheets,
+  # not inlined in JS / HTML diffs).
+  BASE64_BLOBS=$(echo "$DIFF" | grep -n '^\+' | grep -vE '^\+\+\+' | grep -E '[A-Za-z0-9+/]{300,}={0,2}' || true)
+  if [ -n "$BASE64_BLOBS" ]; then
+    echo -e "${RED}BLOCKED: Large base64 blob in added line:${NC}"
+    echo "$BASE64_BLOBS" | head -5
+    echo ""
+    echo -e "${YELLOW}  300+ char contiguous base64 looks like an inlined PNG, certificate,${NC}"
+    echo -e "${YELLOW}  or encoded secret. Move to assets/ as a binary file or to Supabase${NC}"
+    echo -e "${YELLOW}  secrets / Proton Drive. If it's legitimate (e.g. a vendor-shipped${NC}"
+    echo -e "${YELLOW}  data URI), bypass with --no-verify after operator review.${NC}"
+    ISSUES=$((ISSUES + 1))
   fi
 
   # 5. Check for .env files being committed

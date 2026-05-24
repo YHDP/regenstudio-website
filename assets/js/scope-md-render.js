@@ -321,13 +321,25 @@
   // CSS in dpa-contract.html keeps working without changes.
   // -------------------------------------------------------------------------
 
+  // Audit F-18 fix (2026-05-24): URL scheme whitelist mirrors dpa-md-render.js.
+  function isSafeUrl(href) {
+    try {
+      var u = new URL(String(href), (typeof window !== 'undefined' && window.location && window.location.origin) ? window.location.origin : 'https://www.regenstudio.world');
+      return u.protocol === 'http:' || u.protocol === 'https:' || u.protocol === 'mailto:';
+    } catch (_) { return false; }
+  }
+
   function runsToHtml(runs) {
     return runs.map(function (r) {
       if (r.type === 'link') {
         let inner = escapeHtml(r.text);
         if (r.bold) inner = '<strong>' + inner + '</strong>';
         if (r.italic) inner = '<em>' + inner + '</em>';
-        return '<a href="' + escapeHtml(r.href) + '" target="_blank" rel="noopener noreferrer">' + inner + '</a>';
+        var safe = isSafeUrl(r.href);
+        var href = safe ? r.href : '#';
+        var attrs = ' target="_blank" rel="noopener noreferrer"';
+        if (!safe) attrs += ' data-blocked-href="' + escapeHtml(String(r.href).slice(0, 200)) + '"';
+        return '<a href="' + escapeHtml(href) + '"' + attrs + '>' + inner + '</a>';
       }
       let html = escapeHtml(r.text);
       if (r.code) return '<code>' + html + '</code>';

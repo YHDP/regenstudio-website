@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
 <meta name="referrer" content="no-referrer">
+<meta http-equiv="Cache-Control" content="no-store, private">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co; base-uri 'self'; object-src 'none'; frame-ancestors 'none';">
 <title>Welkom — Verwerkersovereenkomst — Regen Studio</title>
 <link rel="icon" href="Images/logo-icon.svg" type="image/svg+xml">
 <script src="assets/js/dpa-i18n.js"></script>
@@ -1702,14 +1704,28 @@
     if (els.leakEmail) els.leakEmail.textContent = 'jan@bedrijf.nl';
   }
 
+  // Audit F-22 fix (2026-05-24): proper HTML-entity encoding instead of
+  // character-deletion. `String.replace(/[<>&]/g, '')` silently mangled
+  // legitimate `&` in legal entity names ("Foo & Bar B.V." → "Foo  Bar B.V.")
+  // and was a fragile defense vs an attribute-context attack. escAttr emits
+  // proper entities, identical to the helpers used by the markdown renderer
+  // and by escapeHtml in the Edge Functions.
+  function escAttr(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
   function buildEngagementNarrative(profile) {
     const org = profile.legal_name || profile.cp_legal_name || t('welcome.slide_engagement.org_fallback', 'jouw organisatie');
     const regLabel = profile.regulatory_label || t('welcome.slide_engagement.regulatory_fallback', 'het toepasselijke regulatoire kader');
     const einddatum = fmtDate(profile.project_einddatum);
     const uren = profile.expert_uren || null;
     const subsidie = profile.subsidie_bedrag_eur || null;
-    const orgEsc = String(org).replace(/[<>&]/g, '');
-    const regEsc = String(regLabel).replace(/[<>&]/g, '');
+    const orgEsc = escAttr(org);
+    const regEsc = escAttr(regLabel);
     const n = 'welcome.slide_engagement.narrative.';
     // engagement_type is missing from the DB-path response (only in engagements.json bundle);
     // derive from engagement_key prefix so partnership / voucher engagements pick the right
@@ -1742,7 +1758,7 @@
       // the narrative around master_agreement_ref instead of the missing fields.
       const masterRef = profile.master_agreement_ref;
       if (masterRef) {
-        const masterEsc = String(masterRef).replace(/[<>&]/g, '');
+        const masterEsc = escAttr(masterRef);
         return t(n + 'partnership_master_intro', 'A partnership between') + ' <strong>' + orgEsc + '</strong> ' +
                t(n + 'partnership_master_body', 'and Regen Studio under') + ' <strong>' + masterEsc + '</strong>' +
                t(n + 'partnership_master_concrete', '. The Data Processing Agreement governs how personal data is processed within this collaboration; term is coterminous with the Master Agreement.');
@@ -2173,7 +2189,9 @@
       alert(t('welcome.error.storage_blocked', 'Uw browser blokkeert opslag. Schakel cookies/storage tijdelijk in voor regenstudio.world en probeer opnieuw.'));
       return;
     }
-    window.location.href = 'dpa-contract.html?token=' + encodeURIComponent(state.token);
+    // Audit F-04 fix (2026-05-24): pass token via URL fragment so it stays
+    // out of HTTP cache / server logs / Referer header on the navigation.
+    window.location.href = 'dpa-contract.html#token=' + encodeURIComponent(state.token);
   }
 
   // i18n helper — short alias so inline strings stay readable
@@ -2183,10 +2201,18 @@
 
   // ===== Bootstrap =====
   function init() {
-    const params = new URLSearchParams(location.search);
+    // Audit F-04 fix (2026-05-24): read token from URL FRAGMENT first
+    // (#token=… — never sent to server, never cached, never logged, never
+    // sent as Referer). Falls back to query string (?token=… legacy format)
+    // for in-flight magic links issued before the fragment migration.
+    const hashParams = new URLSearchParams(location.hash.replace(/^#/, ''));
+    const queryParams = new URLSearchParams(location.search);
+    const params = {
+      get(k) { return hashParams.get(k) || queryParams.get(k); },
+    };
     state.token = (params.get('token') || '').trim().toLowerCase();
 
-    // Early language hint from URL param (?lang=en|pt). dpa-request-link
+    // Early language hint from URL (hash or query). dpa-request-link
     // appends this when the engagement language is non-NL so the welcome
     // lander can pre-load the locale in parallel with verify-token —
     // eliminates the NL-flicker on the loading state for EN/PT engagements.
