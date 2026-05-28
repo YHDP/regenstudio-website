@@ -1,0 +1,240 @@
+<style>
+  .ask-cluster {
+    background: linear-gradient(180deg, #F1F7F2 0%, #F8FAFC 100%);
+    padding: 22px 24px 14px 24px;
+    margin: 28px 0;
+    border-radius: 14px;
+    border: 1px solid #E5EDE7;
+  }
+  .ask-cluster__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 16px 0;
+  }
+  .ask-cluster__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; height: 30px;
+    background: #008545;
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .ask-cluster__title {
+    color: #006d38;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.1px;
+  }
+  .ask-cluster__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: ask;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ask-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 16px 14px 56px;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(36,54,68,0.06);
+    border: 1px solid #ECEFF1;
+    line-height: 1.55;
+    counter-increment: ask;
+  }
+  .ask-card::before {
+    content: counter(ask);
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    width: 28px; height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #F1F7F2;
+    color: #006d38;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    border: 1px solid #D7E6DA;
+  }
+  .ask-card strong:first-child {
+    color: #243644;
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+  .regime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 24px 0 16px 0;
+  }
+  .regime-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background: #FFFFFF;
+    border-left: 5px solid var(--regime-color, #008545);
+    box-shadow: 0 1px 3px rgba(36,54,68,0.06);
+  }
+  .regime-card__icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .regime-card__icon img {
+    width: 100%; height: 100%; object-fit: contain; display: block;
+  }
+  .regime-card__body { display: flex; flex-direction: column; line-height: 1.25; }
+  .regime-card__name { font-weight: 700; color: #243644; font-size: 0.95rem; }
+  .regime-card__note { font-size: 0.78rem; color: #6b7280; margin-top: 1px; }
+  .regime-card--espr     { --regime-color: #008545; }
+  .regime-card--battery  { --regime-color: #E71846; }
+  .regime-card--cpr      { --regime-color: #009BBB; }
+  .regime-card--toys     { --regime-color: #93093F; }
+  .regime-card--dsr      { --regime-color: #FFA92D; }
+</style>
+
+<p>On <strong>27 May 2026</strong>, the European Commission closed the public consultation on the draft <strong>Implementing Regulation for the EU Digital Product Passport Registry</strong> (Ares(2026)4424976). The Registry is the operational spine of every Digital Product Passport — the verification, lookup, and log infrastructure that holds together Europe's emerging product-data regime across <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202401781" target="_blank" rel="noopener">ESPR</a> delegated acts, batteries, construction products, toys, and detergents. <strong>Regen Studio</strong> and <a href="https://circulartechforum.de/" target="_blank" rel="noopener"><strong>CircularTech Forum</strong></a> filed a joint submission with eleven sharpening asks. Here is what the Registry is, and what we asked the Commission to clarify before adoption.</p>
+
+<h2 id="what-is-the-registry">What is the DPP Registry?</h2>
+
+<p>Under <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202401781" target="_blank" rel="noopener">Article 13 of the Ecodesign for Sustainable Products Regulation (ESPR, Reg (EU) 2024/1781)</a>, the European Commission must establish a digital registry holding the unique identifier of every Digital Product Passport (DPP) placed on the EU market. The <a href="https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives/16052-Digital-Product-Passport-Registry_en" target="_blank" rel="noopener">draft Implementing Regulation</a> (Ares(2026)4424976) spells out how the Registry will actually work.</p>
+
+<p>The Registry is <strong>horizontal infrastructure</strong>. One shared platform serves five distinct product-regulation regimes:</p>
+
+<div class="regime-grid">
+  <div class="regime-card regime-card--espr">
+    <span class="regime-card__icon"><img src="Images/Focus Areas/Digital Product Passports/Product groups/Textiles for Apparel.svg" alt="" loading="lazy" width="40" height="40"></span>
+    <span class="regime-card__body">
+      <span class="regime-card__name">ESPR</span>
+      <span class="regime-card__note">+ sectoral DAs (textile, furniture, EV-charger)</span>
+    </span>
+  </div>
+  <div class="regime-card regime-card--battery">
+    <span class="regime-card__icon"><img src="Images/Focus Areas/Digital Product Passports/Product groups/Batteries.svg" alt="" loading="lazy" width="40" height="40"></span>
+    <span class="regime-card__body">
+      <span class="regime-card__name">Batteries</span>
+      <span class="regime-card__note">First DPP regime to apply</span>
+    </span>
+  </div>
+  <div class="regime-card regime-card--cpr">
+    <span class="regime-card__icon"><img src="Images/Focus Areas/Digital Product Passports/Product groups/Construction Materials.svg" alt="" loading="lazy" width="40" height="40"></span>
+    <span class="regime-card__body">
+      <span class="regime-card__name">Construction Products</span>
+      <span class="regime-card__note">DPP via CPR</span>
+    </span>
+  </div>
+  <div class="regime-card regime-card--toys">
+    <span class="regime-card__icon"><img src="Images/Focus Areas/Digital Product Passports/Product groups/Toys.svg" alt="" loading="lazy" width="40" height="40"></span>
+    <span class="regime-card__body">
+      <span class="regime-card__name">Toys</span>
+      <span class="regime-card__note">DPP via TSR</span>
+    </span>
+  </div>
+  <div class="regime-card regime-card--dsr">
+    <span class="regime-card__icon"><img src="Images/Focus Areas/Digital Product Passports/Product groups/Detergents.svg" alt="" loading="lazy" width="40" height="40"></span>
+    <span class="regime-card__body">
+      <span class="regime-card__name">Detergents</span>
+      <span class="regime-card__note">DPP via DSR</span>
+    </span>
+  </div>
+</div>
+
+<p>For more on what a DPP is and how each of these regimes fits together, see our <a href="/digital-product-passports/">Digital Product Passports overview</a>.</p>
+
+<p>Plus a residual clause: any future EU regulation that mandates a DPP will plug into the same Registry. The architecture is deliberately <strong>decentralised</strong> — the Registry stores unique identifiers, verifications, semantic definitions, and audit logs, but the <em>content</em> of each DPP lives with the operator (or its DPP service provider), not on Commission servers. The Registry is the verification + lookup + log spine. It is not the storage of DPP content itself.</p>
+
+<h2 id="nine-components">The Registry's nine components</h2>
+
+<p>Article 3 of the draft Implementing Regulation lists what the Registry consists of:</p>
+
+<ol>
+  <li>A secure user interface (website)</li>
+  <li>A registration API</li>
+  <li>A verification platform</li>
+  <li>A unique-identifier scheme</li>
+  <li>A commodity-code store for customs release</li>
+  <li>A reference list of DPP service providers</li>
+  <li>A semantic repository (data models, vocabularies)</li>
+  <li>A log system (audit trail)</li>
+  <li>An identification and authorisation scheme for users</li>
+</ol>
+
+<p>Together these nine components let an operator register a DPP, link it to a verified identity, expose it for customs and market-surveillance lookups, and leave a full audit trail of every change. The Registry is engineered to go live <strong>later in 2026</strong>, ahead of the first Battery Regulation DPP obligations on <strong>18 February 2027</strong>, and ready to receive sectoral DPPs as Delegated Acts come into force progressively through 2030.</p>
+
+<h2 id="our-asks">What we asked the Commission to sharpen</h2>
+
+<p>The architecture is sound. The asks below — eleven in total — are operational clarifications, all aimed at locking in specificity that downstream operators, particularly SMEs and non-EU producers, would otherwise pay for in administrative drag. We grouped them into four themes.</p>
+
+<div class="ask-cluster">
+  <div class="ask-cluster__header">
+    <span class="ask-cluster__num">1</span>
+    <h3 class="ask-cluster__title">SME &amp; non-EU friction reduction</h3>
+  </div>
+  <ol class="ask-cluster__list">
+    <li class="ask-card"><strong>Make the registration API explicitly free of charge.</strong> The semantic repository is free under Art 12(7); the registration API is silent. SMEs and non-EU operators need cost-certainty.</li>
+    <li class="ask-card"><strong>Extend the helpdesk envelope for customs and security incidents.</strong> Customs release-for-free-circulation runs continuously; the helpdesk's working-days-only scope leaves gaps an out-of-hours escalation channel would fix.</li>
+    <li class="ask-card"><strong>Align verified-status validity with the underlying eIDAS instrument.</strong> A fixed 3-year cap forces re-verification disproportionate to security gain when the eID itself remains valid.</li>
+  </ol>
+</div>
+
+<div class="ask-cluster">
+  <div class="ask-cluster__header">
+    <span class="ask-cluster__num">2</span>
+    <h3 class="ask-cluster__title">Access governance — a minimum horizontal role taxonomy</h3>
+  </div>
+  <ol class="ask-cluster__list">
+    <li class="ask-card"><strong>Formalise the implicit role taxonomy in Art 3(i) and make it extendable.</strong> The IR already names actor categories across Articles 4–7 (verified operator, value-chain actor, competent authority, customs) and lists value-chain-actor sub-types in Recitals 4 and 8 (repairer, recycler, refurbisher, remanufacturer, service provider, authorised representative). What is missing is the canonical schema binding them, plus explicit extensibility so sectoral Delegated Acts can add product-specific roles within a stable horizontal vocabulary. Without this, the operator landscape fragments as each sectoral act invents its own roles.</li>
+  </ol>
+</div>
+
+<div class="ask-cluster">
+  <div class="ask-cluster__header">
+    <span class="ask-cluster__num">3</span>
+    <h3 class="ask-cluster__title">Identity &amp; cross-registry interoperability</h3>
+  </div>
+  <ol class="ask-cluster__list">
+    <li class="ask-card"><strong>Clarify the EPREL credential-reuse model</strong>, and over time migrate both <a href="https://eprel.ec.europa.eu/" target="_blank" rel="noopener">EPREL</a> and the DPP Registry to a single <a href="https://digital-strategy.ec.europa.eu/en/policies/eudi-wallet-implementation" target="_blank" rel="noopener">eIDAS 2.0 Wallet</a> attribute-attestation backbone. Recital 9's commitment to "double-verification avoidance" is welcome but operationally ambiguous.</li>
+    <li class="ask-card"><strong>Broaden the cross-registry interoperability principle to ECHA's submission ecosystem.</strong> ECHA's <a href="https://reach-it.echa.europa.eu/" target="_blank" rel="noopener">REACH-IT</a> infrastructure — single sign-on — already holds substance and substance-in-article data (REACH, CLP, <a href="https://echa.europa.eu/scip-database" target="_blank" rel="noopener">SCIP</a>) that overlaps directly with DPP substance-of-concern fields under textile, battery, and EV-charger DAs. Extending Recital 9's principle from EPREL to REACH-IT keeps the same operator from submitting the same data twice across two credentialed Commission-side systems. We scoped this ask deliberately: EU-level credentialed registries only — not 27 Member-State systems, not lookup-only systems, not role-mismatched alert systems. Speed of registry go-live matters.</li>
+  </ol>
+</div>
+
+<div class="ask-cluster">
+  <div class="ask-cluster__header">
+    <span class="ask-cluster__num">4</span>
+    <h3 class="ask-cluster__title">Future-proofing the Registry's operational envelope</h3>
+  </div>
+  <ol class="ask-cluster__list">
+    <li class="ask-card"><strong>Unbracket and design the user-notification duty (Art 17 / Recital 27).</strong> The duty sits in square brackets in the draft, signalling open Commission debate. Extend it to all users (not only operators), with a published notification channel, defined acknowledgement window, and clear consequences for failure to notify.</li>
+    <li class="ask-card"><strong>Set a concrete milestone for the Cloud Sovereignty Framework.</strong> Recital 26 anchors the Registry's IT-Security Plan to the CSF "as soon as the relevant services become available" — operationally unenforceable. A defined target (e.g. CSF-compliant infrastructure within 24 months of CSF availability) plus quarterly readiness reporting would make this enforceable. Material for digital sovereignty and national security.</li>
+    <li class="ask-card"><strong>Add a "unique item" checkbox to the registration UX.</strong> Recital 12 acknowledges that unique products (handmade goods, bespoke furniture) need no batch or model identifier. The Registry UI/API should support this directly, with random-audit governance to prevent abuse.</li>
+    <li class="ask-card"><strong>Add a procedural fallback and dispute-resolution route for Member State non-compliance.</strong> Article 22 distributes responsibilities to Member States but the IR is silent on what happens when an MS fails to designate a national administrator, or when an MS-Commission processing dispute arises.</li>
+    <li class="ask-card"><strong>Clarify how voluntary schemes can access the DPP system facilities.</strong> ESPR enables voluntary self-regulation alongside the mandatory regime, and voluntary schemes increasingly converge on DPP-style data structures. The Registry IR should offer read access to controlled vocabularies, an opt-in voluntary-DPP track that uses the registry infrastructure without triggering mandatory status, and typed cross-reference fields so voluntary attestations can be linked from within mandatory DPPs.</li>
+  </ol>
+</div>
+
+<h2 id="why-now">Why this matters now</h2>
+
+<p>The Registry is planned to go live <strong>later this year</strong>, in time for the <strong>Battery Regulation DPP obligations that kick in on 18 February 2027</strong>. From there, every sectoral Delegated Act that comes into force progressively through 2030 — textile, furniture, EV-charger, and more — will register its DPPs through this same infrastructure. The operational specifics being locked into the Implementing Regulation now will shape the daily friction every European product operator carries for the rest of the decade.</p>
+
+<p>The architectural choices in the draft are good. The operational specificity is unfinished. The consultation window is the moment to lock in clarifications — not after operators have already started paying for the gaps.</p>
+
+<div style="background: linear-gradient(135deg, #243644 0%, #1B2833 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">See it in action</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Want to see what a DPP system actually looks like?</p>
+  <p style="color: #8CA9BF; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">Explore our interactive demo — tracking sustainable furniture from Brazilian forests through manufacturing, with UNTP verifiable credentials and ESPR-aligned compliance data threaded all the way through.</p>
+  <a href="https://demos.regenstudio.world/dpp-system/gate.html" style="display: inline-block; background: #007B40; color: #FFFFFF; font-weight: 600; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none; transition: background 0.2s;">Explore the DPP System Demo &rarr;</a>
+</div>
+
+<p style="font-size: 0.9rem; color: #6b7280; margin-top: 40px; padding-top: 24px; border-top: 1px solid #e5e7eb;"><strong>Submission reference</strong>: Ares(2026)4424976 / ISC/2026/02442 — joint submission by Regen Studio B.V. (NL) and <a href="https://circulartechforum.de/" target="_blank" rel="noopener">CircularTech Forum</a> (DE) to Have-your-say initiative #16052, which closed on 27 May 2026 23:59 Brussels.</p>

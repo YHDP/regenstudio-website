@@ -1,0 +1,240 @@
+<style>
+  .ask-cluster {
+    background: linear-gradient(180deg, #F1F7F2 0%, #F8FAFC 100%);
+    padding: 22px 24px 14px 24px;
+    margin: 28px 0;
+    border-radius: 14px;
+    border: 1px solid #E5EDE7;
+  }
+  .ask-cluster__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 16px 0;
+  }
+  .ask-cluster__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; height: 30px;
+    background: #008545;
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .ask-cluster__title {
+    color: #006d38;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.1px;
+  }
+  .ask-cluster__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: ask;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ask-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 16px 14px 56px;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(36,54,68,0.06);
+    border: 1px solid #ECEFF1;
+    line-height: 1.55;
+    counter-increment: ask;
+  }
+  .ask-card::before {
+    content: counter(ask);
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    width: 28px; height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #F1F7F2;
+    color: #006d38;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    border: 1px solid #D7E6DA;
+  }
+  .ask-card strong:first-child {
+    color: #243644;
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+  .regime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 24px 0 16px 0;
+  }
+  .regime-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background: #FFFFFF;
+    border-left: 5px solid var(--regime-color, #008545);
+    box-shadow: 0 1px 3px rgba(36,54,68,0.06);
+  }
+  .regime-card__icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .regime-card__icon img {
+    width: 100%; height: 100%; object-fit: contain; display: block;
+  }
+  .regime-card__body { display: flex; flex-direction: column; line-height: 1.25; }
+  .regime-card__name { font-weight: 700; color: #243644; font-size: 0.95rem; }
+  .regime-card__note { font-size: 0.78rem; color: #6b7280; margin-top: 1px; }
+  .regime-card--espr     { --regime-color: #008545; }
+  .regime-card--battery  { --regime-color: #E71846; }
+  .regime-card--cpr      { --regime-color: #009BBB; }
+  .regime-card--toys     { --regime-color: #93093F; }
+  .regime-card--dsr      { --regime-color: #FFA92D; }
+</style>
+
+<p>Op <strong>27 mei 2026</strong> sloot de Europese Commissie de openbare consultatie over de concept-<strong>uitvoeringsverordening voor het EU Digitaal Productpaspoort-register</strong> (Ares(2026)4424976). Het register is de operationele ruggengraat van ieder Digitaal Productpaspoort — de verificatie-, opzoek- en log-infrastructuur die Europa's opkomende productdata-regime samenhoudt over <a href="https://eur-lex.europa.eu/legal-content/NL/TXT/?uri=OJ:L_202401781" target="_blank" rel="noopener">ESPR</a>-gedelegeerde handelingen, batterijen, bouwproducten, speelgoed en wasmiddelen. <strong>Regen Studio</strong> en <a href="https://circulartechforum.de/" target="_blank" rel="noopener"><strong>CircularTech Forum</strong></a> hebben een gezamenlijke inzending ingediend met elf aanscherpingsvoorstellen. Hier is wat het register is, en wat wij de Commissie hebben gevraagd te verduidelijken vóór aanname.</p>
+
+<h2 id="what-is-the-registry">Wat is het DPP-register?</h2>
+
+<p>Op grond van <a href="https://eur-lex.europa.eu/legal-content/NL/TXT/?uri=OJ:L_202401781" target="_blank" rel="noopener">artikel 13 van de Verordening ecologisch ontwerp voor duurzame producten (ESPR, Verordening (EU) 2024/1781)</a> moet de Europese Commissie een digitaal register oprichten dat de unieke identificatie van ieder Digitaal Productpaspoort (DPP) op de EU-markt bevat. De <a href="https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives/16052-Digital-Product-Passport-Registry_en" target="_blank" rel="noopener">concept-uitvoeringsverordening</a> (Ares(2026)4424976) legt vast hoe het register daadwerkelijk zal werken.</p>
+
+<p>Het register is <strong>horizontale infrastructuur</strong>. Eén gedeeld platform bedient vijf verschillende productregelgevingsregimes:</p>
+
+<div class="regime-grid">
+  <div class="regime-card regime-card--espr">
+    <span class="regime-card__icon"><img src="Images/Focus Areas/Digital Product Passports/Product groups/Textiles for Apparel.svg" alt="" loading="lazy" width="40" height="40"></span>
+    <span class="regime-card__body">
+      <span class="regime-card__name">ESPR</span>
+      <span class="regime-card__note">+ sectorale DA's (textiel, meubels, EV-laders)</span>
+    </span>
+  </div>
+  <div class="regime-card regime-card--battery">
+    <span class="regime-card__icon"><img src="Images/Focus Areas/Digital Product Passports/Product groups/Batteries.svg" alt="" loading="lazy" width="40" height="40"></span>
+    <span class="regime-card__body">
+      <span class="regime-card__name">Batterijen</span>
+      <span class="regime-card__note">Eerste DPP-regime in werking</span>
+    </span>
+  </div>
+  <div class="regime-card regime-card--cpr">
+    <span class="regime-card__icon"><img src="Images/Focus Areas/Digital Product Passports/Product groups/Construction Materials.svg" alt="" loading="lazy" width="40" height="40"></span>
+    <span class="regime-card__body">
+      <span class="regime-card__name">Bouwproducten</span>
+      <span class="regime-card__note">DPP via CPR</span>
+    </span>
+  </div>
+  <div class="regime-card regime-card--toys">
+    <span class="regime-card__icon"><img src="Images/Focus Areas/Digital Product Passports/Product groups/Toys.svg" alt="" loading="lazy" width="40" height="40"></span>
+    <span class="regime-card__body">
+      <span class="regime-card__name">Speelgoed</span>
+      <span class="regime-card__note">DPP via TSR</span>
+    </span>
+  </div>
+  <div class="regime-card regime-card--dsr">
+    <span class="regime-card__icon"><img src="Images/Focus Areas/Digital Product Passports/Product groups/Detergents.svg" alt="" loading="lazy" width="40" height="40"></span>
+    <span class="regime-card__body">
+      <span class="regime-card__name">Wasmiddelen</span>
+      <span class="regime-card__note">DPP via DSR</span>
+    </span>
+  </div>
+</div>
+
+<p>Voor meer over wat een DPP is en hoe elk van deze regimes in elkaar past, zie ons <a href="/nl/digital-product-passports/">Digitaal Productpaspoort-overzicht</a>.</p>
+
+<p>Plus een restbepaling: iedere toekomstige EU-verordening die een DPP voorschrijft, sluit aan op hetzelfde register. De architectuur is doelbewust <strong>gedecentraliseerd</strong> — het register bevat unieke identificaties, verificaties, semantische definities en audit-logs, maar de <em>inhoud</em> van ieder DPP blijft bij de marktdeelnemer (of zijn DPP-dienstverlener), niet op Commissie-servers. Het register is de verificatie- + opzoek- + log-ruggengraat. Het is niet de opslag van DPP-inhoud zelf.</p>
+
+<h2 id="nine-components">De negen componenten van het register</h2>
+
+<p>Artikel 3 van de concept-uitvoeringsverordening somt op waaruit het register bestaat:</p>
+
+<ol>
+  <li>Een beveiligde gebruikersinterface (website)</li>
+  <li>Een registratie-API</li>
+  <li>Een verificatieplatform</li>
+  <li>Een schema voor unieke identificaties</li>
+  <li>Een opslag van goederencodes voor douaneafhandeling</li>
+  <li>Een referentielijst van DPP-dienstverleners</li>
+  <li>Een semantische repository (datamodellen, woordenschat)</li>
+  <li>Een log-systeem (audit-trail)</li>
+  <li>Een identificatie- en autorisatieschema voor gebruikers</li>
+</ol>
+
+<p>Samen stellen deze negen componenten een marktdeelnemer in staat een DPP te registreren, het te koppelen aan een geverifieerde identiteit, het toegankelijk te maken voor douane- en markttoezichts-opzoekingen, en een volledig audit-spoor van iedere wijziging na te laten. Het register staat gepland om <strong>later in 2026</strong> live te gaan, op tijd voor de <strong>DPP-verplichtingen onder de Batterijenverordening die op 18 februari 2027 ingaan</strong>, en klaar om sectorale DPP's te ontvangen terwijl gedelegeerde handelingen geleidelijk in werking treden tot 2030.</p>
+
+<h2 id="our-asks">Wat wij de Commissie hebben gevraagd aan te scherpen</h2>
+
+<p>De architectuur is degelijk. De voorstellen hieronder — elf in totaal — zijn operationele verduidelijkingen, allemaal gericht op het vastleggen van precieze details die downstream-marktdeelnemers — vooral mkb-bedrijven en niet-EU-producenten — anders zouden betalen in administratieve frictie. We hebben ze gegroepeerd in vier thema's.</p>
+
+<div class="ask-cluster">
+  <div class="ask-cluster__header">
+    <span class="ask-cluster__num">1</span>
+    <h3 class="ask-cluster__title">Frictievermindering voor mkb en niet-EU-operators</h3>
+  </div>
+  <ol class="ask-cluster__list">
+    <li class="ask-card"><strong>Maak de registratie-API uitdrukkelijk kosteloos.</strong> De semantische repository is kosteloos onder artikel 12(7); over de registratie-API zwijgt het ontwerp. Mkb-bedrijven en niet-EU-operators hebben kostenzekerheid nodig.</li>
+    <li class="ask-card"><strong>Verruim de helpdesk-omhulling voor douane- en beveiligingsincidenten.</strong> Douaneafhandeling onder artikel 8(6)(c) loopt continu door; de werkdagen-en-normale-uren-scope van de helpdesk laat gaten achter die een buiten-kantoor-escalatiekanaal kan dichten.</li>
+    <li class="ask-card"><strong>Laat de geldigheid van de geverifieerde status aansluiten op het onderliggende eIDAS-instrument.</strong> Een vaste 3-jaars-cap dwingt herverificatie af die niet in verhouding staat tot de veiligheidswinst wanneer de onderliggende eID nog geldig is.</li>
+  </ol>
+</div>
+
+<div class="ask-cluster">
+  <div class="ask-cluster__header">
+    <span class="ask-cluster__num">2</span>
+    <h3 class="ask-cluster__title">Toegangsgovernance — een minimale horizontale rolindeling</h3>
+  </div>
+  <ol class="ask-cluster__list">
+    <li class="ask-card"><strong>Formaliseer de impliciete rolindeling in artikel 3(i) en maak die uitbreidbaar.</strong> De uitvoeringsverordening benoemt al actor-categorieën over artikelen 4–7 (geverifieerde marktdeelnemer, waardeketen-actor, bevoegde autoriteit, douane) en somt waardeketen-actor-subtypen op in overwegingen 4 en 8 (hersteller, recycler, refurbisher, remanufacturer, dienstverlener, gemachtigde vertegenwoordiger). Wat ontbreekt is een canoniek schema dat dit samenbindt, plús expliciete uitbreidbaarheid zodat sectorale gedelegeerde handelingen productspecifieke rollen kunnen toevoegen binnen een stabiele horizontale woordenschat. Zonder deze stap fragmenteert het operator-landschap terwijl iedere sectorale handeling eigen rollen verzint.</li>
+  </ol>
+</div>
+
+<div class="ask-cluster">
+  <div class="ask-cluster__header">
+    <span class="ask-cluster__num">3</span>
+    <h3 class="ask-cluster__title">Identiteit en kruisregister-interoperabiliteit</h3>
+  </div>
+  <ol class="ask-cluster__list">
+    <li class="ask-card"><strong>Verduidelijk het EPREL-inlogmodel</strong>, en migreer op termijn zowel <a href="https://eprel.ec.europa.eu/" target="_blank" rel="noopener">EPREL</a> als het DPP-register naar één gedeelde <a href="https://digital-strategy.ec.europa.eu/en/policies/eudi-wallet-implementation" target="_blank" rel="noopener">eIDAS 2.0-wallet</a>-attribuut-attestatie-ruggengraat. De toezegging in overweging 9 om "dubbele verificatie te vermijden" is welkom, maar operationeel onduidelijk.</li>
+    <li class="ask-card"><strong>Verbreed het kruisregister-interoperabiliteitsprincipe naar het indieningsecosysteem van ECHA.</strong> ECHA's <a href="https://reach-it.echa.europa.eu/" target="_blank" rel="noopener">REACH-IT</a>-infrastructuur — single sign-on — bevat al stof- en stof-in-artikel-data (REACH, CLP, <a href="https://echa.europa.eu/scip-database" target="_blank" rel="noopener">SCIP</a>) die direct overlapt met DPP-velden over stoffen van zeer ernstige zorg onder textiel-, batterij- en EV-lader-DA's. Het principe uit overweging 9 uitbreiden van EPREL naar REACH-IT voorkomt dat dezelfde operator dezelfde gegevens tweemaal indient over twee credentialed Commissie-systemen. We hebben dit voorstel bewust afgebakend: alleen EU-niveau credentialed registers — niet de 27 lidstaten-systemen, geen alleen-opzoek-systemen, geen rol-onverenigbare waarschuwingssystemen. Snelheid van registerlancering doet ertoe.</li>
+  </ol>
+</div>
+
+<div class="ask-cluster">
+  <div class="ask-cluster__header">
+    <span class="ask-cluster__num">4</span>
+    <h3 class="ask-cluster__title">Toekomstbestendig maken van het register</h3>
+  </div>
+  <ol class="ask-cluster__list">
+    <li class="ask-card"><strong>Verwijder de vierkante haken rond de gebruikersmeldingsplicht en ontwerp die uit (artikel 17 / overweging 27).</strong> De plicht staat tussen vierkante haken in het ontwerp, een teken van een onafgesloten interne Commissie-discussie. Breid de plicht uit naar alle gebruikers (niet alleen marktdeelnemers), met een gepubliceerd meldingskanaal, een vastgelegd bevestigingsvenster en duidelijke gevolgen bij niet-melden.</li>
+    <li class="ask-card"><strong>Stel een concrete mijlpaal voor het Cloud Sovereignty Framework.</strong> Overweging 26 verankert het IT-Security Plan aan het CSF "zodra de relevante diensten beschikbaar komen" — operationeel niet afdwingbaar. Een vastgelegd doel (bijvoorbeeld: het register draait op CSF-conforme infrastructuur binnen 24 maanden na CSF-marktbeschikbaarheid) plus kwartaalrapportage zou dit afdwingbaar maken. Materieel voor digitale soevereiniteit en nationale veiligheid.</li>
+    <li class="ask-card"><strong>Voeg een "uniek item"-aanvinkvak toe aan de registratie-UX.</strong> Overweging 12 erkent dat unieke producten (handgemaakte goederen, maatmeubels) geen batch- of modelidentificatie nodig hebben. De register-UI/API moet dit direct ondersteunen, met steekproefcontrole-governance om misbruik te voorkomen.</li>
+    <li class="ask-card"><strong>Voeg een procedurele terugvaloptie en een geschillen­oplossingsroute toe voor niet-naleving door lidstaten.</strong> Artikel 22 verdeelt verantwoordelijkheden over de lidstaten, maar zwijgt over wat er gebeurt als een lidstaat geen nationale beheerder aanwijst, of als een geschil tussen de Commissie en een lidstaat ontstaat over gegevensverwerking.</li>
+    <li class="ask-card"><strong>Verduidelijk hoe vrijwillige schema's toegang krijgen tot de DPP-systeemvoorzieningen.</strong> De ESPR maakt vrijwillige zelfregulering naast het verplichte regime mogelijk, en vrijwillige schema's convergeren steeds meer op DPP-achtige datastructuren. De uitvoeringsverordening zou leestoegang tot gecontroleerde woordenschat moeten bieden, een opt-in vrijwillig-DPP-traject dat de registerinfrastructuur gebruikt zonder verplichte status uit te lokken, en getypte kruisverwijzingsvelden zodat vrijwillige attestaties vanuit verplichte DPP's kunnen worden gekoppeld.</li>
+  </ol>
+</div>
+
+<h2 id="why-now">Waarom dit nu telt</h2>
+
+<p>Het register staat gepland om <strong>later dit jaar</strong> live te gaan, op tijd voor de <strong>DPP-verplichtingen onder de Batterijenverordening die op 18 februari 2027 ingaan</strong>. Vanaf daar zal iedere sectorale gedelegeerde handeling die geleidelijk in werking treedt tot 2030 — textiel, meubels, EV-laders en meer — zijn DPP's via dezelfde infrastructuur registreren. De operationele bijzonderheden die nu in de uitvoeringsverordening worden vastgezet, bepalen de dagelijkse frictie die iedere Europese productoperator de rest van het decennium draagt.</p>
+
+<p>De architecturale keuzes in het ontwerp zijn goed. De operationele precisie is onaf. De consultatieperiode is het moment om verduidelijkingen vast te leggen — niet nadat operators al beginnen te betalen voor de gaten.</p>
+
+<div style="background: linear-gradient(135deg, #243644 0%, #1B2833 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Zie het in actie</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Hoe ziet een echt DPP-systeem eruit?</p>
+  <p style="color: #8CA9BF; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">Verken onze interactieve demo — duurzame meubels gevolgd van Braziliaanse bossen tot productie, met UNTP-verifieerbare credentials en ESPR-conforme nalevingsdata die de hele keten doorlopen.</p>
+  <a href="https://demos.regenstudio.world/dpp-system/gate.html" style="display: inline-block; background: #007B40; color: #FFFFFF; font-weight: 600; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none; transition: background 0.2s;">Verken de DPP-systeemdemo &rarr;</a>
+</div>
+
+<p style="font-size: 0.9rem; color: #6b7280; margin-top: 40px; padding-top: 24px; border-top: 1px solid #e5e7eb;"><strong>Inzendreferentie</strong>: Ares(2026)4424976 / ISC/2026/02442 — gezamenlijke inzending door Regen Studio B.V. (NL) en <a href="https://circulartechforum.de/" target="_blank" rel="noopener">CircularTech Forum</a> (DE) bij Have-your-say-initiatief #16052, dat sloot op 27 mei 2026 23:59 Brussel.</p>

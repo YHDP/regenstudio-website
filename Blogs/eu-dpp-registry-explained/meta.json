@@ -1,0 +1,35 @@
+{
+  "title": "The EU DPP Registry — what it is, and the 11 things we asked the Commission to sharpen",
+  "slug": "eu-dpp-registry-explained",
+  "subtitle": "Inside the draft Implementing Regulation that will hold every EU Digital Product Passport — and a joint Regen × CircularTech Forum submission to sharpen it before adoption.",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regen Studio"
+  },
+  "date": "2026-05-27",
+  "categories": [
+    "Digital Product Passport",
+    "Digital Identity",
+    "Vision & Strategy"
+  ],
+  "tags": [
+    "DPP",
+    "DPP-Registry",
+    "ESPR",
+    "EU-regulation",
+    "implementing-regulation",
+    "have-your-say",
+    "CircularTech-Forum",
+    "eIDAS",
+    "REACH-IT",
+    "SCIP"
+  ],
+  "featuredImage": "header.png",
+  "featuredImageAlt": "The EU DPP Registry as a central node — verification, lookup and log infrastructure connecting five product-regulation regimes",
+  "excerpt": "The EU's DPP Registry is the operational spine of every Digital Product Passport — spanning ESPR, batteries, construction products, toys and detergents. Today the consultation closes; here is what we asked the Commission to sharpen.",
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
+}
