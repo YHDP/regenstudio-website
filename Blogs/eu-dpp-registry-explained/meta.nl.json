@@ -9,6 +9,7 @@
   "date": "2026-05-27",
   "categories": [
     "Digital Product Passport",
+    "Circular Economy",
     "Digital Identity",
     "Vision & Strategy"
   ],
@@ -27,9 +28,9 @@
   "featuredImage": "header.png",
   "featuredImageAlt": "Het EU DPP-register als centrale knooppunt — verificatie-, opzoek- en log-infrastructuur die vijf productregelgevingsregimes verbindt",
   "excerpt": "Het EU DPP-register is de operationele ruggengraat van ieder Digitaal Productpaspoort — over ESPR, batterijen, bouwproducten, speelgoed en wasmiddelen. Vandaag sluit de consultatie; dit is wat wij de Commissie hebben gevraagd aan te scherpen.",
-  "published": false,
+  "published": true,
   "review": {
-    "text": "draft",
-    "assets": "draft"
+    "text": "approved",
+    "assets": "approved"
   }
 }

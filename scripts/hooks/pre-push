@@ -63,9 +63,16 @@ while read local_ref local_sha remote_ref remote_sha; do
   #      schoonschipamsterdam.org, kerstentechniek.nl, kansenvoorwest.nl) —
   #      noindex client knowledge-platform references public news + municipal
   #      documents about the Scheveningen smart-microgrid project.
+  #    2026-05-28: extended for the EU DPP Registry IR consultation post:
+  #    - eprel.ec.europa.eu — official EU energy-labelling product registry.
+  #    - digital-strategy.ec.europa.eu — DG CONNECT policy pages (EUDI Wallet).
+  #    - reach-it.echa.europa.eu — ECHA REACH-IT submission portal.
+  #    - echa.europa.eu — ECHA broader (SCIP database, etc.).
+  #    - circulartechforum.de — CircularTech Forum partner site, joint-submission
+  #      co-author credited in the DPP Registry IR consultation post.
   #    User-clicked <a href> hyperlinks are not exfil vectors, but the regex
   #    matches them anyway; allowlisting sanctioned domains is the targeted fix.
-  EXTERNAL_TAGS=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(src|href)="https?://' | grep -viE '(supabase\.co|regenstudio\.(world|space)|player\.vimeo\.com|w\.soundcloud\.com|linkedin\.com|bsky\.app|mastodon\.social|schema\.org|ogp\.me|github\.com/YHDP/regenstudio-website|tweedekamer\.nl|rvo\.nl|tno\.nl|coe-dpp\.nl|fides-labs\.io|eur-lex\.europa\.eu|denhaag\.nl|smartcity\.denhaag\.nl|denhaag\.raadsinformatie\.nl|vng\.nl|rijksoverheid\.nl|acm\.nl|platform31\.nl|stedin\.net|amsterdamsmartcity\.com|energy\.nl|forthefutureofenergy\.nl|gridflex\.nl|gebiedsontwikkeling\.nu|nvde\.nl|openremote\.io|smart-energy\.com|schoonschipamsterdam\.org|kerstentechniek\.nl|kansenvoorwest\.nl)' || true)
+  EXTERNAL_TAGS=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(src|href)="https?://' | grep -viE '(supabase\.co|regenstudio\.(world|space)|player\.vimeo\.com|w\.soundcloud\.com|linkedin\.com|bsky\.app|mastodon\.social|schema\.org|ogp\.me|github\.com/YHDP/regenstudio-website|tweedekamer\.nl|rvo\.nl|tno\.nl|coe-dpp\.nl|fides-labs\.io|eur-lex\.europa\.eu|denhaag\.nl|smartcity\.denhaag\.nl|denhaag\.raadsinformatie\.nl|vng\.nl|rijksoverheid\.nl|acm\.nl|platform31\.nl|stedin\.net|amsterdamsmartcity\.com|energy\.nl|forthefutureofenergy\.nl|gridflex\.nl|gebiedsontwikkeling\.nu|nvde\.nl|openremote\.io|smart-energy\.com|schoonschipamsterdam\.org|kerstentechniek\.nl|kansenvoorwest\.nl|eprel\.ec\.europa\.eu|digital-strategy\.ec\.europa\.eu|reach-it\.echa\.europa\.eu|echa\.europa\.eu|circulartechforum\.de)' || true)
   if [ -n "$EXTERNAL_TAGS" ]; then
     echo -e "${RED}BLOCKED: External URL(s) found in added lines:${NC}"
     echo "$EXTERNAL_TAGS" | head -10
@@ -111,16 +118,28 @@ while read local_ref local_sha remote_ref remote_sha; do
   # 4. Check for CSP modifications (someone weakening security headers).
   # Audit F-10 fix (2026-05-24): promoted from warning to hard block. CSP
   # weakening must be deliberate; bypass via --no-verify if intentional.
-  CSP_CHANGES=$(echo "$DIFF" | grep -n '^\+' | grep -i 'Content-Security-Policy' || true)
-  if [ -n "$CSP_CHANGES" ]; then
-    echo -e "${RED}BLOCKED: CSP header modified — verify and re-push with --no-verify if intentional:${NC}"
-    echo "$CSP_CHANGES" | head -5
-    echo ""
-    echo -e "${YELLOW}  CSP changes are security-relevant. Review the diff line-by-line:${NC}"
-    echo -e "${YELLOW}    - Adding 'unsafe-eval' / 'unsafe-hashes' / wildcard sources is regression.${NC}"
-    echo -e "${YELLOW}    - Removing 'frame-ancestors' / 'object-src' / 'base-uri' weakens clickjacking + injection defense.${NC}"
-    echo -e "${YELLOW}    - Widening connect-src / form-action allowlists is data-exfil risk.${NC}"
-    ISSUES=$((ISSUES + 1))
+  #
+  # 2026-05-28: scope the check to *modified* files only. New files (e.g.
+  # build.ts emitting a new /blog/<slug>/index.html) embed the standard
+  # site-wide CSP by construction — every line of a brand-new file is a
+  # "+" line, so the original check false-positives on every blog post add.
+  # Genuine CSP weakening only happens via modifications to existing files
+  # (changing the existing CSP string) or via build.ts itself, both of which
+  # produce M-status, not A-status, diffs against the previous tip.
+  MODIFIED_HTML=$(git diff --name-only --diff-filter=M "$range" -- '*.html' 2>/dev/null)
+  if [ -n "$MODIFIED_HTML" ]; then
+    CSP_DIFF=$(git diff "$range" -- $MODIFIED_HTML 2>/dev/null)
+    CSP_CHANGES=$(echo "$CSP_DIFF" | grep -n '^\+' | grep -i 'Content-Security-Policy' || true)
+    if [ -n "$CSP_CHANGES" ]; then
+      echo -e "${RED}BLOCKED: CSP header modified — verify and re-push with --no-verify if intentional:${NC}"
+      echo "$CSP_CHANGES" | head -5
+      echo ""
+      echo -e "${YELLOW}  CSP changes are security-relevant. Review the diff line-by-line:${NC}"
+      echo -e "${YELLOW}    - Adding 'unsafe-eval' / 'unsafe-hashes' / wildcard sources is regression.${NC}"
+      echo -e "${YELLOW}    - Removing 'frame-ancestors' / 'object-src' / 'base-uri' weakens clickjacking + injection defense.${NC}"
+      echo -e "${YELLOW}    - Widening connect-src / form-action allowlists is data-exfil risk.${NC}"
+      ISSUES=$((ISSUES + 1))
+    fi
   fi
 
   # Audit F-15 fix (2026-05-24): explicit named-secret pattern. Catches

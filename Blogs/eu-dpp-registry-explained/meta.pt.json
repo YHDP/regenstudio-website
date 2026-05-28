@@ -9,6 +9,7 @@
   "date": "2026-05-27",
   "categories": [
     "Digital Product Passport",
+    "Circular Economy",
     "Digital Identity",
     "Vision & Strategy"
   ],
@@ -27,9 +28,9 @@
   "featuredImage": "header.png",
   "featuredImageAlt": "O Registro DPP da UE como nó central — infraestrutura de verificação, consulta e log conectando cinco regimes regulatórios de produto",
   "excerpt": "O Registro DPP da UE é a espinha operacional de cada Passaporte Digital do Produto — abrangendo ESPR, baterias, produtos de construção, brinquedos e detergentes. Hoje a consulta encerra; aqui está o que pedimos à Comissão.",
-  "published": false,
+  "published": true,
   "review": {
-    "text": "draft",
-    "assets": "draft"
+    "text": "approved",
+    "assets": "approved"
   }
 }
