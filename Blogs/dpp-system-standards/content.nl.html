@@ -1,0 +1,192 @@
+<style>
+  .dss-table-wrap { overflow-x: auto; margin: 24px 0; }
+  table.dss-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 640px; }
+  table.dss-table th, table.dss-table td { text-align: left; padding: 11px 14px; border-bottom: 1px solid #E5EDE7; vertical-align: top; }
+  table.dss-table thead th { background: #F1F7F2; color: #006d38; font-weight: 700; border-bottom: 2px solid #D7E6DA; white-space: nowrap; }
+  table.dss-table td:first-child { font-weight: 800; color: #1A2B36; white-space: nowrap; }
+  table.dss-table .dss-wg { font-size: 0.78rem; font-weight: 700; white-space: nowrap; }
+  table.dss-table .dss-wg--id { color: #00728b; }
+  table.dss-table .dss-wg--io { color: #006d38; }
+  table.dss-table .dss-wg--sec { color: #93093F; }
+  .dss-group { margin: 30px 0 8px 0; padding: 8px 0 8px 16px; border-left: 4px solid #008545; }
+  .dss-group--id { border-left-color: #009BBB; }
+  .dss-group--io { border-left-color: #008545; }
+  .dss-group--sec { border-left-color: #93093F; }
+  .dss-group h3 { margin: 0; font-size: 1.15rem; color: #1A2B36; }
+  .dss-group p.dss-group__sub { margin: 4px 0 0 0; font-size: 0.85rem; color: #6b7280; }
+  .dss-std { margin: 16px 0; }
+  .dss-std__num { display: inline-block; background: #1A2B36; color: #fff; font-weight: 700; font-size: 0.8rem; padding: 2px 9px; border-radius: 6px; margin-right: 6px; vertical-align: 1px; }
+  .dss-faq { margin: 18px 0; }
+  .dss-faq h3 { font-size: 1.05rem; color: #1A2B36; margin: 22px 0 6px 0; }
+</style>
+
+<p>Het Digitaal Productpaspoort heeft nu een regelboek voor hóé het werkt. In 2026 rondde de Europese normalisatie-instelling <strong>CEN/CENELEC</strong> acht <strong>Europese normen (EN)</strong> af — de <strong>EN&nbsp;1821x-reeks</strong> — die de gemeenschappelijke machinerie achter elk <a href="/blog/espr-digital-product-passports/" target="_blank" rel="noopener">Digitaal Productpaspoort (DPP)</a> op de EU-markt vastleggen. Ze zijn opgesteld door <a href="https://www.cencenelec.eu/areas-of-work/cen-cenelec-topics/digital-product-passport/" target="_blank" rel="noopener">CEN/CLC Joint Technical Committee 24</a> ("Digital Product Passport — Framework and System"), en ze gaan over het deel van het DPP dat de meeste berichtgeving overslaat: niet <em>wat</em> een batterij of een T-shirt moet vermelden, maar <em>hoe</em> elk paspoort wordt geïdentificeerd, gedragen, uitgewisseld, opgeslagen, beveiligd en vertrouwd.</p>
+
+<p>Dit is een veldgids bij die acht normen — wat elke norm regelt, hoe ze samen één systeem vormen, en wat ze betekenen als u producten op de Europese markt brengt. Regen Studio zat ín dit werk, in de JTC 24-werkgroepen voor beveiliging en interoperabiliteit en in de Nederlandse <a href="https://www.nen.nl/" target="_blank" rel="noopener">NEN</a>-normcommissie, dus de lezing hieronder is geworteld in de normontwerpen zelf.</p>
+
+<figure>
+  <img src="Blogs/dpp-system-standards/system-map.svg" alt="Systeemkaart: vijf sectorale productregelingen (ESPR, batterijen, textiel, wasmiddelen, bouw) staan boven op de acht systeemnormen van CEN/CENELEC JTC 24 — EN 18219 en EN 18220 voor identiteit en gegevensdragers (WG2), EN 18216, 18221, 18222 en 18223 voor interoperabiliteit (WG4), en EN 18239 en 18246 voor beveiliging (WG3) — die op hun beurt de QR- of RFID-gegevensdrager van een product verbinden met het centrale EU DPP-register, dat identificatoren en metadata bewaart terwijl de paspoortinhoud gedecentraliseerd blijft." loading="lazy">
+  <figcaption class="sr-only">
+    <p>Het Digitaal Productpaspoort kent drie lagen. Sectorale handelingen (ESPR, batterijen, textiel, wasmiddelen, bouw) bepalen wát elk product moet vermelden. De acht JTC 24-systeemnormen bepalen hóé elk paspoort wordt gebouwd, verplaatst, opgeslagen en vertrouwd. Een fysiek product draagt een unieke identificator op een QR- of RFID-gegevensdrager, die wordt opgelost tegen het centrale EU DPP-register; het register bewaart identificatoren en metadata terwijl de paspoortinhoud zelf gedecentraliseerd blijft bij de marktdeelnemer of een DPP-dienstverlener.</p>
+  </figcaption>
+</figure>
+
+<h2 id="wat-er-gebeurde">Wat er net gebeurde</h2>
+
+<p>De acht DPP-systeemnormen doorliepen medio 2025 de openbare commentaarronde van CEN/CENELEC, kwamen begin 2026 in formele stemming, en zijn nu <strong>geratificeerd en komen beschikbaar als Europese normen</strong> via de nationale normalisatie-instellingen (in Nederland als NEN-EN). Eén belangrijke nuance voor compliance-teams: <strong>"beschikbaar" is niet hetzelfde als "geharmoniseerd."</strong> Een beschikbare EN kan vandaag worden gekocht en toegepast, maar verleent pas een <em>vermoeden van conformiteit</em> met de wet zodra zij als geharmoniseerde norm wordt vermeld in het <em>Publicatieblad van de Europese Unie</em> onder het betreffende mandaat. Die vermeldingsstap ligt voor de DPP-normen nog vóór ons. De juiste houding nu is dus: bouw volgens deze normen, maar volg de harmonisatiestatus voordat u erop vertrouwt voor een juridisch vermoeden.</p>
+
+<p>De acht normen zijn <strong>horizontaal</strong>. Ze zijn bewust productneutraal, zodat hetzelfde identificatieschema, dezelfde QR-code, dezelfde API en dezelfde handtekening werken of het product nu een batterij, een kledingstuk, een wasmiddel of een bouwproduct is. Dat is precies het punt: schrijf het leidingwerk één keer, en laat elke <a href="https://eur-lex.europa.eu/legal-content/NL/TXT/?uri=OJ:L_202401781" target="_blank" rel="noopener">ESPR</a>-gedelegeerde handeling en sectorale verordening het hergebruiken.</p>
+
+<h2 id="in-een-oogopslag">De acht normen in één oogopslag</h2>
+
+<div class="dss-table-wrap">
+<table class="dss-table">
+  <thead>
+    <tr><th>Norm</th><th>Officiële titel</th><th>Wat zij regelt</th><th>Groep</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>EN 18219</td><td>Digital product passport — Unique identifiers</td><td>Hoe producten en marktdeelnemers uniek en persistent worden geïdentificeerd</td><td><span class="dss-wg dss-wg--id">WG2 · Identiteit</span></td></tr>
+    <tr><td>EN 18220</td><td>Digital product passport — Data carriers</td><td>Hoe de identificator fysiek op het product wordt gedragen (QR, Data Matrix, RFID)</td><td><span class="dss-wg dss-wg--id">WG2 · Identiteit</span></td></tr>
+    <tr><td>EN 18216</td><td>Digital product passport — Data exchange protocols</td><td>De transportlaag voor het verplaatsen van paspoortgegevens tussen systemen</td><td><span class="dss-wg dss-wg--io">WG4 · Interop</span></td></tr>
+    <tr><td>EN 18222</td><td>Digital Product Passport — Application Programming Interfaces (APIs) for the product passport lifecycle management and searchability</td><td>De precieze API-methoden om paspoorten te lezen, aan te maken, bij te werken en te doorzoeken</td><td><span class="dss-wg dss-wg--io">WG4 · Interop</span></td></tr>
+    <tr><td>EN 18223</td><td>Digital Product Passport — System interoperability</td><td>Het gedeelde datamodel en de semantiek waaraan elk paspoort voldoet</td><td><span class="dss-wg dss-wg--io">WG4 · Interop</span></td></tr>
+    <tr><td>EN 18221</td><td>Digital product passport — Data storage, archiving, and data persistence</td><td>Het paspoort beschikbaar — en geversioneerd — houden gedurende de hele levensduur</td><td><span class="dss-wg dss-wg--io">WG4 · Interop</span></td></tr>
+    <tr><td>EN 18239</td><td>Digital Product Passport — Access rights management, information system security, and business confidentiality</td><td>Wie wat mag lezen of schrijven, en hoe bedrijfsgeheimen worden beschermd</td><td><span class="dss-wg dss-wg--sec">WG3 · Beveiliging</span></td></tr>
+    <tr><td>EN 18246</td><td>Digital product passport — Data authentication, reliability and integrity</td><td>Bewijzen dat een paspoort echt is en niet is gemanipuleerd</td><td><span class="dss-wg dss-wg--sec">WG3 · Beveiliging</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>JTC 24 organiseerde het werk in vier werkgroepen: een strategische adviesgroep (WG1), unieke identificatoren en gegevensdragers (WG2), beveiliging (WG3) en het interoperabiliteitskader (WG4). De acht normen hierboven vallen onder WG2, WG3 en WG4.</p>
+
+<h2 id="wat-elke-norm-doet">Wat elke norm doet</h2>
+
+<div class="dss-group dss-group--id">
+  <h3>Identificeren &amp; dragen</h3>
+  <p class="dss-group__sub">EN 18219 · EN 18220 — de brug van een fysiek product naar zijn digitale paspoort (WG2)</p>
+</div>
+
+<p class="dss-std"><span class="dss-std__num">EN 18219</span><strong>Unieke identificatoren.</strong> Voor al het andere heeft een paspoort een naam nodig die wereldwijd uniek is, nooit wordt hergebruikt, en stabiel blijft gedurende de levensduur van het product. EN 18219 legt vijf toegestane productidentificatieschema's vast — web-gebaseerde gestructureerde paden (zoals een GS1 Digital Link-URI), zelf-uitgegeven Identification Links (IEC 61406), Decentralized Identifiers (W3C DIDs), RFID/2D-productidentificatie, en Digital Object Identifiers (DOIs) — plus vier identificatieschema's voor marktdeelnemers, waaronder de GLEIF Legal Entity Identifier. De bewuste ontwerpkeuze is <em>keuze</em>: een multinational behoudt zijn GS1-bestand, terwijl een coöperatie een DID kan zelf-uitgeven, en beide vallen in hetzelfde systeem op te lossen.</p>
+
+<p class="dss-std"><span class="dss-std__num">EN 18220</span><strong>Gegevensdragers.</strong> De identificator moet fysiek een telefoon bereiken — in het schap, op de reparatiebank of aan de recyclinglijn. EN 18220 regelt hoe hij op het product wordt gecodeerd: 2D-symbolen (QR Code, Data Matrix) en RFID (HF, NFC en UHF/RAIN), met regels voor plaatsing, markering en kwaliteit. De basisgarantie die voor een koper telt: ten minste één drager moet gratis te gebruiken zijn en leesbaar met een gewone smartphone, zonder app-download.</p>
+
+<div class="dss-group dss-group--io">
+  <h3>Verplaatsen, structureren &amp; opslaan</h3>
+  <p class="dss-group__sub">EN 18216 · EN 18222 · EN 18223 · EN 18221 — het interoperabiliteitskader (WG4)</p>
+</div>
+
+<p class="dss-std"><span class="dss-std__num">EN 18216</span><strong>Protocollen voor gegevensuitwisseling.</strong> Elk paspoort moet verplaatst worden — van het systeem van de fabrikant naar een dienstverlener, naar een recycler, naar een toezichthouder. EN 18216 legt de transportlaag vast: RESTful API's over HTTPS met TLS, gestructureerde berichtformaten, en geauthenticeerde, vertrouwelijke, manipulatiebestendige uitwisseling. Het is de kleinste gemene deler waarmee twee systemen die elkaar nooit hebben ontmoet, met elkaar kunnen praten.</p>
+
+<p class="dss-std"><span class="dss-std__num">EN 18222</span><strong>Levenscyclus-API's.</strong> Waar EN 18216 zegt "gebruik REST," zegt EN 18222 <em>precies welke aanroepen</em>. Zij specificeert de API-methoden om paspoorten aan te maken, te lezen, bij te werken en te doorzoeken — bewerkingen op elementniveau, batchophaling, versiequery's en registerindiening — zodat een refurbisher een paspoort kan lezen, een reparatieregistratie kan toevoegen en het kan terugschrijven zonder een maatwerkkoppeling voor elke partner.</p>
+
+<p class="dss-std"><span class="dss-std__num">EN 18223</span><strong>Systeeminteroperabiliteit.</strong> Een batterijpaspoort en een textielpaspoort dragen verschillende feiten maar delen een structuur. EN 18223 definieert dat gedeelde datamodel — de container, de metadata, en hoe elk gegevenselement koppelt aan een machineleesbare definitie in een semantisch register — zodat douanesystemen, herstellers en in toenemende mate AI-agents elk paspoort kunnen interpreteren zonder handmatige mapping. Dit is de norm die de gegevens <em>betekenisvol</em> maakt, niet alleen transporteerbaar.</p>
+
+<p class="dss-std"><span class="dss-std__num">EN 18221</span><strong>Opslag, archivering &amp; persistentie.</strong> Een paspoort moet bereikbaar blijven gedurende de levensduur van het product — mogelijk tien jaar of meer — en zijn geschiedenis behouden. EN 18221 maakt de marktdeelnemer verantwoordelijk voor blijvende beschikbaarheid, vereist een back-up via een DPP-dienstverlener, en verplicht gearchiveerde versies zodat een toezichthouder kan zien wat er in 2027 werd beweerd ten opzichte van vandaag. Zij is bewust opslagtechnologie-neutraal, wat de kosten bereikbaar houdt voor kleine marktdeelnemers.</p>
+
+<div class="dss-group dss-group--sec">
+  <h3>Beveiligen &amp; vertrouwen</h3>
+  <p class="dss-group__sub">EN 18239 · EN 18246 — toegangsbeheer en herkomst (WG3)</p>
+</div>
+
+<p class="dss-std"><span class="dss-std__num">EN 18239</span><strong>Toegangsrechten, beveiliging &amp; bedrijfsvertrouwelijkheid.</strong> Niet alle paspoortgegevens zijn openbaar. EN 18239 scheidt open gegevens (recyclebaarheid, reparatie-instructies) die iedereen mag lezen van gecontroleerde gegevens (herkomst, bedrijfsgeheimen) die geauthenticeerde, rolgebaseerde toegang vereisen, afgestemd op eIDAS-betrouwbaarheidsniveaus — en kadert dit binnen erkende informatiebeveiligingspraktijk. Het is de norm waarmee een fabrikant transparant kan zijn <em>én</em> kan beschermen wat werkelijk vertrouwelijk is.</p>
+
+<p class="dss-std"><span class="dss-std__num">EN 18246</span><strong>Gegevensauthenticatie, betrouwbaarheid &amp; integriteit.</strong> Een nagemaakte batterij is een veiligheidsrisico; een vervalste herkomstclaim is fraude. EN 18246 zorgt dat een paspoort echt en manipulatie-evident kan worden bewezen via een elektronisch ondertekende gegevensconstructie, te implementeren met W3C Verifiable Credentials, een Electronic Attestation of Attributes (EAA) onder eIDAS, een Visible Digital Seal (ISO 22376) of een Digital Signature-gegevensstructuur (ISO/IEC 20248). Met volledige audit-logging van elke wijziging kan manipulatie zowel worden gedetecteerd als toegeschreven. Hier wordt het "vertrouwd" in een vertrouwd DPP daadwerkelijk verdiend.</p>
+
+<h2 id="hoe-het-samenhangt">Hoe het systeem samenhangt</h2>
+
+<p>De helderste manier om het DPP te lezen, is als drie lagen. <strong>Sectorale handelingen bepalen de inhoud</strong> — de Batterijenverordening zegt wat een batterijpaspoort moet bevatten, een ESPR-gedelegeerde handeling zegt hetzelfde voor textiel of meubels, enzovoort. <strong>De acht JTC 24-normen bepalen het systeem</strong> — identiteit, dragers, uitwisseling, structuur, opslag, toegang en authenticatie, één keer, voor iedereen. En <strong>het centrale EU DPP-register is het coördinatiepunt</strong> — het bewaart de identificator en metadata van elk paspoort, terwijl de paspoortinhoud zelf gedecentraliseerd blijft bij de marktdeelnemer of een dienstverlener.</p>
+
+<p>Dat gedecentraliseerde-maar-gecoördineerde ontwerp is de stille genialiteit van de architectuur. De Commissie beheert geen gigantische database van de gegevens van elk product; zij beheert een register van <em>verwijzingen</em>, en de JTC 24-normen zorgen dat wat er achter elke verwijzing zit identificeerbaar, bereikbaar, interoperabel en verifieerbaar is. We ontleden de registerkant in ons begeleidende artikel, <a href="/nl/blog/eu-dpp-registry-explained/" target="_blank" rel="noopener">Het EU DPP-register uitgelegd</a>, en u ziet de inhoudkant in actie over regelingen heen: <a href="/blog/eu-battery-regulation-dpp/" target="_blank" rel="noopener">batterijen</a>, <a href="/nl/blog/espr-textile-delegated-act/" target="_blank" rel="noopener">textiel</a>, <a href="/blog/dsr-digital-product-passport/" target="_blank" rel="noopener">wasmiddelen</a> en <a href="/nl/blog/cpr-digital-product-passport/" target="_blank" rel="noopener">bouwproducten</a>.</p>
+
+<h2 id="regen-studio-rol">Waar Regen Studio in dit verhaal staat</h2>
+
+<p>Onze betrokkenheid bij de DPP-normen begon enkele jaren geleden en via een specifieke deur: het positiepaper <a href="/nl/blog/trusted-dpps/" target="_blank" rel="noopener">Trusted Digital Product Passports</a> dat Regen Studio leidde voor <strong>FIDES</strong>, in opdracht van de <strong>Dutch Blockchain Coalition</strong>. Dat werk — over hoe vertrouwen, identiteit en verifieerbare credentials een circulaire economie kunnen onderbouwen — is precies het terrein dat de JTC 24-werkgroepen voor beveiliging (WG3) en interoperabiliteit (WG4) vervolgens formaliseerden — wat ons ertoe bracht om, in naam van Yvo Hunink de Paiva, deel te nemen aan die JTC 24-werkgroepen, naast een zetel in de NEN-normcommissie die de Nederlandse positie in de Europese ontwerpen inbrengt.</p>
+
+<p>Onze betrokkenheid bij het commissiewerk is het <strong>afgelopen jaar aanzienlijk afgebouwd</strong>, naarmate de normen van open ontwerp naar formele stemming verschoven en onze focus verschoof naar het helpen van marktdeelnemers om DPP's daadwerkelijk te implementeren. We schrijven dit niet als de auteurs van de normen, maar als praktijkmensen die in de kamer waren terwijl ze vorm kregen, en die ze nu dagelijks lezen namens de bedrijven die moeten voldoen. Dat perspectief — normgeletterd, maar gericht op de marktdeelnemer — is het perspectief dat volgens ons het nuttigst is om te delen.</p>
+
+<p>Die praktijkhouding is ook waarom we al een <strong>requirements-registry bovenop de JTC 24-normen</strong> hebben gebouwd — een clausule-voor-clausule kaart van wat elk van de acht normen daadwerkelijk vereist. Hiermee kunnen DPP-systeembouwers per vereiste volgen waar hun systeem al voldoet en waar de gaten nog zitten. De normen zijn het regelboek; de registry is hoe je een implementatie eraan toetst.</p>
+
+<h2 id="wat-het-betekent">Wat het betekent als u producten op de EU-markt brengt</h2>
+
+<p>Eerst het kalme deel: <strong>een DPP is vandaag niet voor iedereen verplicht.</strong> Deze acht normen zijn infrastructuur; de verplichting om een paspoort te publiceren komt uit de sectorale handelingen, op hun eigen tijdlijnen. De eerste harde deadlines zijn de <strong>Batterijenverordening, met paspoortverplichtingen vanaf 18 februari 2027</strong>, en de <strong>Wasmiddelenverordening, vanaf 23 september 2029</strong> — vooralsnog de enige twee productgroepen met een vaste DPP-datum. Voor textiel, meubels en de rest is de timing van de ESPR-gedelegeerde handelingen nog indicatief.</p>
+
+<p>Dan het nuttige deel: omdat de systeemlaag nu stabiel is, kunt u zich voorbereiden op een vast doel in plaats van een bewegend doel. Praktisch betekent dat: weten welk identificatieschema bij uw product en toeleveringsketen past (EN 18219), welke drager uw verpakking en materialen toelaten (EN 18220), of u het paspoort zelf host of een dienstverlener gebruikt (EN 18221), en hoe u het ondertekent en beschermt (EN 18246 en EN 18239). Vooral voor kleinere marktdeelnemers zijn de normen geschreven om die keuzes proportioneel te houden — het goedkoopste conforme pad is meestal een gewone QR-code, een gehost paspoort en een kant-en-klare handtekening, geen maatwerkplatform.</p>
+
+<div style="background: linear-gradient(135deg, #243644 0%, #1B2833 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Zie het in actie</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Wilt u deze acht normen samen zien werken?</p>
+  <p style="color: #8CA9BF; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">Onze interactieve demo volgt duurzaam meubilair van Braziliaanse bossen door de productie heen — met unieke identificatoren, een QR-gegevensdrager, verifieerbare credentials en ESPR-conforme data van begin tot eind.</p>
+  <a href="https://demos.regenstudio.world/dpp-system/gate.html" style="display: inline-block; background: #007B40; color: #FFFFFF; font-weight: 600; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none;">Bekijk de DPP-systeemdemo &rarr;</a>
+</div>
+
+<!--FAQ-FOOTNOTE-->
+<h2 id="faq">Veelgestelde vragen</h2>
+
+<div class="dss-faq">
+  <h3>Wat zijn de DPP-systeemnormen?</h3>
+  <p>Het zijn acht Europese normen — EN 18216, 18219, 18220, 18221, 18222, 18223, 18239 en 18246 — ontwikkeld door CEN/CENELEC Joint Technical Committee 24. Samen bepalen zij hoe elk Digitaal Productpaspoort wordt geïdentificeerd, op het product gedragen, tussen systemen uitgewisseld, gestructureerd, opgeslagen, toegangsgecontroleerd en geauthenticeerd, onafhankelijk van het producttype.</p>
+
+  <h3>Is een Digitaal Productpaspoort nu verplicht?</h3>
+  <p>Niet voor iedereen. De acht normen zijn horizontale infrastructuur. De wettelijke verplichting om een paspoort te publiceren komt uit sectorale regels. Vooralsnog hebben slechts twee productgroepen een vaste DPP-datum — de EU-Batterijenverordening (vanaf 18 februari 2027) en de Wasmiddelenverordening (vanaf 23 september 2029); voor textiel, meubels en andere ESPR-groepen is de timing nog indicatief.</p>
+
+  <h3>Heb ik een speciale app nodig om een DPP te lezen?</h3>
+  <p>Nee. EN 18220 vereist ten minste één gegevensdrager die gratis te gebruiken en leesbaar is met een gewone smartphone. In de praktijk is dat meestal een QR-code die het paspoort in een normale webbrowser oplost.</p>
+
+  <h3>Waar worden de paspoortgegevens eigenlijk opgeslagen?</h3>
+  <p>Gedecentraliseerd. Het centrale EU DPP-register bewaart de unieke identificator en metadata van elk paspoort, maar de paspoortinhoud blijft bij de economische operator of een DPP-dienstverlener. EN 18221 maakt die operator verantwoordelijk om het beschikbaar en geversioneerd te houden gedurende de levensduur van het product, met een back-updienstverlener.</p>
+
+  <h3>Zijn dit al geharmoniseerde normen?</h3>
+  <p>Ze zijn beschikbaar als Europese normen, maar beschikbaarheid is niet hetzelfde als harmonisatie. Een norm verleent pas een vermoeden van conformiteit zodra zij als geharmoniseerd wordt vermeld in het Publicatieblad van de EU onder het betreffende mandaat — een stap die voor de DPP-normen nog vóór ons ligt. U kunt er nu volgens bouwen; volg de harmonisatiestatus voordat u erop vertrouwt voor een juridisch vermoeden.</p>
+
+  <h3>Hoe verhouden de systeemnormen zich tot het EU DPP-register?</h3>
+  <p>Ze zijn complementair. De acht JTC 24-normen bepalen hoe een paspoort werkt; het centrale EU DPP-register, opgezet onder artikel 13 van de ESPR, is het opzoek- en verificatiepunt dat identificatoren en metadata bewaart. We behandelen het register uitgebreid in <a href="/nl/blog/eu-dpp-registry-explained/" target="_blank" rel="noopener">een apart artikel</a>.</p>
+</div>
+
+<!--/FAQ-FOOTNOTE-->
+
+<h2 id="bronnen">Bronnen &amp; verder lezen</h2>
+
+<ul>
+  <li><a href="https://www.cencenelec.eu/areas-of-work/cen-cenelec-topics/digital-product-passport/" target="_blank" rel="noopener">CEN/CENELEC — themapagina Digital Product Passport</a> (overzicht van JTC 24 en de normen)</li>
+  <li><a href="https://standards.cencenelec.eu/dyn/www/f?p=205%3A7%3A0%3A%3A%3A%3AFSP_ORG_ID%3A3342699" target="_blank" rel="noopener">CEN/CLC/JTC 24 — normencatalogus</a> (de EN 1821x-reeks en hun status)</li>
+  <li><a href="https://www.cencenelec.eu/news-events/news/" target="_blank" rel="noopener">CEN/CENELEC — Nieuws</a> (aankondigingen over DPP-normalisatie)</li>
+  <li><a href="https://eur-lex.europa.eu/legal-content/NL/TXT/?uri=OJ:L_202401781" target="_blank" rel="noopener">Verordening ecologisch ontwerp voor duurzame producten (ESPR), Verord. (EU) 2024/1781</a> — de moederverordening</li>
+  <li><a href="https://www.nen.nl/" target="_blank" rel="noopener">NEN</a> — de Nederlandse normalisatie-instelling, waar de EN 1821x-teksten beschikbaar zijn als NEN-EN-normen</li>
+</ul>
+
+<p style="font-size: 0.9rem; color: #6b7280; margin-top: 40px; padding-top: 24px; border-top: 1px solid #e5e7eb;">Regen Studio droeg bij aan de CEN/CLC JTC 24-werkgroepen voor beveiliging en interoperabiliteit en aan de NEN-normcommissie voor het Digitaal Productpaspoort, met wortels in het FIDES-werk "Trusted DPP" in opdracht van de Dutch Blockchain Coalition. Normtitels en clausuleverwijzingen weerspiegelen de EN 1821x-ontwerpen zoals in stemming gebracht; controleer altijd de gepubliceerde EN en de harmonisatiestatus voordat u erop vertrouwt voor compliance.</p>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "nl",
+  "mainEntity": [
+    {"@type": "Question", "name": "Wat zijn de DPP-systeemnormen?", "acceptedAnswer": {"@type": "Answer", "text": "Het zijn acht Europese normen — EN 18216, 18219, 18220, 18221, 18222, 18223, 18239 en 18246 — ontwikkeld door CEN/CENELEC Joint Technical Committee 24. Samen bepalen zij hoe elk Digitaal Productpaspoort wordt geïdentificeerd, op het product gedragen, tussen systemen uitgewisseld, gestructureerd, opgeslagen, toegangsgecontroleerd en geauthenticeerd, onafhankelijk van het producttype."}},
+    {"@type": "Question", "name": "Is een Digitaal Productpaspoort nu verplicht?", "acceptedAnswer": {"@type": "Answer", "text": "Niet voor iedereen. De acht normen zijn horizontale infrastructuur. De wettelijke verplichting om een paspoort te publiceren komt uit sectorale regels. Vooralsnog hebben slechts twee productgroepen een vaste DPP-datum — de EU-Batterijenverordening (vanaf 18 februari 2027) en de Wasmiddelenverordening (vanaf 23 september 2029); voor textiel, meubels en andere ESPR-groepen is de timing nog indicatief."}},
+    {"@type": "Question", "name": "Heb ik een speciale app nodig om een Digitaal Productpaspoort te lezen?", "acceptedAnswer": {"@type": "Answer", "text": "Nee. EN 18220 vereist ten minste één gegevensdrager die gratis te gebruiken en leesbaar is met een gewone smartphone. In de praktijk is dat meestal een QR-code die het paspoort in een normale webbrowser oplost."}},
+    {"@type": "Question", "name": "Waar worden de paspoortgegevens eigenlijk opgeslagen?", "acceptedAnswer": {"@type": "Answer", "text": "Gedecentraliseerd. Het centrale EU DPP-register bewaart de unieke identificator en metadata van elk paspoort, maar de paspoortinhoud blijft bij de economische operator of een DPP-dienstverlener. EN 18221 maakt die operator verantwoordelijk om het beschikbaar en geversioneerd te houden gedurende de levensduur van het product, met een back-updienstverlener."}},
+    {"@type": "Question", "name": "Zijn dit al geharmoniseerde normen?", "acceptedAnswer": {"@type": "Answer", "text": "Ze zijn beschikbaar als Europese normen, maar beschikbaarheid is niet hetzelfde als harmonisatie. Een norm verleent pas een vermoeden van conformiteit zodra zij als geharmoniseerd wordt vermeld in het Publicatieblad van de EU onder het betreffende mandaat — een stap die voor de DPP-normen nog vóór ons ligt."}},
+    {"@type": "Question", "name": "Hoe verhouden de systeemnormen zich tot het EU DPP-register?", "acceptedAnswer": {"@type": "Answer", "text": "Ze zijn complementair. De acht JTC 24-normen bepalen hoe een paspoort werkt; het centrale EU DPP-register, opgezet onder artikel 13 van de ESPR, is het opzoek- en verificatiepunt dat identificatoren en metadata bewaart."}}
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "name": "Systeemnormen Digitaal Productpaspoort van CEN/CENELEC JTC 24 (EN 1821x-reeks)",
+  "description": "De acht horizontale Europese normen ontwikkeld door CEN/CLC Joint Technical Committee 24 die bepalen hoe elk EU Digitaal Productpaspoort wordt geïdentificeerd, gedragen, uitgewisseld, gestructureerd, opgeslagen, beveiligd en geauthenticeerd.",
+  "hasDefinedTerm": [
+    {"@type": "DefinedTerm", "name": "EN 18219", "description": "Digital product passport — Unique identifiers: wereldwijd unieke, persistente identificatieschema's voor producten en marktdeelnemers."},
+    {"@type": "DefinedTerm", "name": "EN 18220", "description": "Digital product passport — Data carriers: codering van de identificator op het product via 2D-symbolen (QR, Data Matrix) en RFID."},
+    {"@type": "DefinedTerm", "name": "EN 18216", "description": "Digital product passport — Data exchange protocols: RESTful uitwisseling over HTTPS/TLS tussen systemen."},
+    {"@type": "DefinedTerm", "name": "EN 18222", "description": "Digital Product Passport — API's voor levenscyclusbeheer en doorzoekbaarheid van het paspoort: de methoden om paspoorten te lezen, aan te maken, bij te werken en te doorzoeken."},
+    {"@type": "DefinedTerm", "name": "EN 18223", "description": "Digital Product Passport — System interoperability: het gedeelde datamodel en de semantiek waaraan elk paspoort voldoet."},
+    {"@type": "DefinedTerm", "name": "EN 18221", "description": "Digital product passport — Data storage, archiving and data persistence: het paspoort beschikbaar en geversioneerd houden gedurende de levensduur van het product."},
+    {"@type": "DefinedTerm", "name": "EN 18239", "description": "Digital Product Passport — Access rights management, information system security and business confidentiality: rolgebaseerde toegang en bescherming van bedrijfsgeheimen."},
+    {"@type": "DefinedTerm", "name": "EN 18246", "description": "Digital product passport — Data authentication, reliability and integrity: bewijzen dat een paspoort echt en manipulatie-evident is via elektronisch ondertekende gegevensconstructies."}
+  ]
+}
+</script>

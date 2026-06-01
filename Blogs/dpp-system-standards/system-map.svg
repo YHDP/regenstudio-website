@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 772" font-family="'Inter', 'Segoe UI', system-ui, sans-serif" role="img" aria-label="Systems map of the eight CEN/CENELEC JTC 24 Digital Product Passport standards as the horizontal layer between sectoral product regulations and the central EU DPP Registry">
+  <defs>
+    <linearGradient id="hero-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F1F7F2"/>
+      <stop offset="100%" stop-color="#F8FAFC"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9AAAB4"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="772" rx="18" fill="#FFFFFF" stroke="#E2E8ED" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="480" y="40" text-anchor="middle" fill="#008545" font-size="12" font-weight="700" letter-spacing="1.6">CEN/CENELEC JTC 24 · THE DIGITAL PRODUCT PASSPORT SYSTEM</text>
+  <text x="480" y="66" text-anchor="middle" fill="#1A2B36" font-size="20" font-weight="700">One horizontal system. Every product regime. Eight EN standards.</text>
+
+  <!-- ===== TOP BAND: SECTORAL ACTS (WHAT) ===== -->
+  <rect x="40" y="92" width="880" height="98" rx="12" fill="#F5F7F9" stroke="#E2E8ED"/>
+  <text x="60" y="118" fill="#6b7280" font-size="11" font-weight="700" letter-spacing="1.2">SECTORAL ACTS · WHAT EACH PRODUCT MUST DISCLOSE</text>
+  <!-- chips -->
+  <g font-size="13" font-weight="600" text-anchor="middle">
+    <rect x="60"  y="134" width="150" height="40" rx="10" fill="#FFFFFF" stroke="#D7E6DA"/><text x="135" y="159" fill="#243644">ESPR ecodesign</text>
+    <rect x="226" y="134" width="150" height="40" rx="10" fill="#FFFFFF" stroke="#F3D2D8"/><text x="301" y="159" fill="#243644">Batteries</text>
+    <rect x="392" y="134" width="150" height="40" rx="10" fill="#FFFFFF" stroke="#CFEAF1"/><text x="467" y="159" fill="#243644">Textiles</text>
+    <rect x="558" y="134" width="150" height="40" rx="10" fill="#FFFFFF" stroke="#FBE4C4"/><text x="633" y="159" fill="#243644">Detergents</text>
+    <rect x="724" y="134" width="146" height="40" rx="10" fill="#FFFFFF" stroke="#E7CDDB"/><text x="797" y="159" fill="#243644">Construction</text>
+  </g>
+
+  <!-- connector down -->
+  <line x1="480" y1="190" x2="480" y2="214" stroke="#9AAAB4" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ===== HERO BAND: THE 8 SYSTEM STANDARDS (HOW) ===== -->
+  <rect x="40" y="222" width="880" height="362" rx="14" fill="url(#hero-grad)" stroke="#D7E6DA"/>
+  <text x="60" y="250" fill="#006d38" font-size="11" font-weight="700" letter-spacing="1.2">THE EIGHT SYSTEM STANDARDS · HOW ANY PASSPORT IS BUILT, MOVED, STORED &amp; TRUSTED</text>
+
+  <!-- card template: left border colour = working group -->
+  <!-- Row 1 -->
+  <g font-size="13">
+    <!-- 18219 -->
+    <rect x="60" y="266" width="200" height="92" rx="11" fill="#FFFFFF" stroke="#ECEFF1"/>
+    <rect x="60" y="266" width="6" height="92" rx="3" fill="#009BBB"/>
+    <text x="78" y="292" fill="#1A2B36" font-size="15" font-weight="800">EN 18219</text>
+    <text x="78" y="314" fill="#243644" font-weight="600">Unique identifiers</text>
+    <text x="78" y="333" fill="#6b7280" font-size="11">Globally unique, persistent</text>
+    <text x="78" y="349" fill="#00728b" font-size="10" font-weight="700">WG2 · IDENTITY</text>
+
+    <!-- 18220 -->
+    <rect x="278" y="266" width="200" height="92" rx="11" fill="#FFFFFF" stroke="#ECEFF1"/>
+    <rect x="278" y="266" width="6" height="92" rx="3" fill="#009BBB"/>
+    <text x="296" y="292" fill="#1A2B36" font-size="15" font-weight="800">EN 18220</text>
+    <text x="296" y="314" fill="#243644" font-weight="600">Data carriers</text>
+    <text x="296" y="333" fill="#6b7280" font-size="11">QR, Data Matrix, RFID</text>
+    <text x="296" y="349" fill="#00728b" font-size="10" font-weight="700">WG2 · IDENTITY</text>
+
+    <!-- 18216 -->
+    <rect x="496" y="266" width="200" height="92" rx="11" fill="#FFFFFF" stroke="#ECEFF1"/>
+    <rect x="496" y="266" width="6" height="92" rx="3" fill="#008545"/>
+    <text x="514" y="292" fill="#1A2B36" font-size="15" font-weight="800">EN 18216</text>
+    <text x="514" y="314" fill="#243644" font-weight="600">Data exchange protocols</text>
+    <text x="514" y="333" fill="#6b7280" font-size="11">REST over HTTPS/TLS</text>
+    <text x="514" y="349" fill="#006d38" font-size="10" font-weight="700">WG4 · INTEROPERABILITY</text>
+
+    <!-- 18222 -->
+    <rect x="714" y="266" width="186" height="92" rx="11" fill="#FFFFFF" stroke="#ECEFF1"/>
+    <rect x="714" y="266" width="6" height="92" rx="3" fill="#008545"/>
+    <text x="732" y="292" fill="#1A2B36" font-size="15" font-weight="800">EN 18222</text>
+    <text x="732" y="314" fill="#243644" font-weight="600">Lifecycle APIs</text>
+    <text x="732" y="333" fill="#6b7280" font-size="11">Read / update / search</text>
+    <text x="732" y="349" fill="#006d38" font-size="10" font-weight="700">WG4 · INTEROPERABILITY</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g font-size="13">
+    <!-- 18223 -->
+    <rect x="60" y="370" width="200" height="92" rx="11" fill="#FFFFFF" stroke="#ECEFF1"/>
+    <rect x="60" y="370" width="6" height="92" rx="3" fill="#008545"/>
+    <text x="78" y="396" fill="#1A2B36" font-size="15" font-weight="800">EN 18223</text>
+    <text x="78" y="418" fill="#243644" font-weight="600">System interoperability</text>
+    <text x="78" y="437" fill="#6b7280" font-size="11">Shared data model + semantics</text>
+    <text x="78" y="453" fill="#006d38" font-size="10" font-weight="700">WG4 · INTEROPERABILITY</text>
+
+    <!-- 18221 -->
+    <rect x="278" y="370" width="200" height="92" rx="11" fill="#FFFFFF" stroke="#ECEFF1"/>
+    <rect x="278" y="370" width="6" height="92" rx="3" fill="#008545"/>
+    <text x="296" y="396" fill="#1A2B36" font-size="15" font-weight="800">EN 18221</text>
+    <text x="296" y="418" fill="#243644" font-weight="600">Storage &amp; persistence</text>
+    <text x="296" y="437" fill="#6b7280" font-size="11">Available for the product's life</text>
+    <text x="296" y="453" fill="#006d38" font-size="10" font-weight="700">WG4 · INTEROPERABILITY</text>
+
+    <!-- 18239 -->
+    <rect x="496" y="370" width="200" height="92" rx="11" fill="#FFFFFF" stroke="#ECEFF1"/>
+    <rect x="496" y="370" width="6" height="92" rx="3" fill="#93093F"/>
+    <text x="514" y="396" fill="#1A2B36" font-size="15" font-weight="800">EN 18239</text>
+    <text x="514" y="418" fill="#243644" font-weight="600">Access &amp; security</text>
+    <text x="514" y="437" fill="#6b7280" font-size="11">Roles, confidentiality</text>
+    <text x="514" y="453" fill="#93093F" font-size="10" font-weight="700">WG3 · SECURITY</text>
+
+    <!-- 18246 -->
+    <rect x="714" y="370" width="186" height="92" rx="11" fill="#FFFFFF" stroke="#ECEFF1"/>
+    <rect x="714" y="370" width="6" height="92" rx="3" fill="#93093F"/>
+    <text x="732" y="396" fill="#1A2B36" font-size="15" font-weight="800">EN 18246</text>
+    <text x="732" y="418" fill="#243644" font-weight="600">Authentication</text>
+    <text x="732" y="437" fill="#6b7280" font-size="11">Signed, tamper-evident</text>
+    <text x="732" y="453" fill="#93093F" font-size="10" font-weight="700">WG3 · SECURITY</text>
+  </g>
+
+  <!-- WG legend -->
+  <g font-size="11" font-weight="600">
+    <rect x="60" y="492" width="14" height="14" rx="3" fill="#009BBB"/><text x="82" y="503" fill="#6b7280">WG2 — Unique identifiers &amp; data carriers</text>
+    <rect x="350" y="492" width="14" height="14" rx="3" fill="#008545"/><text x="372" y="503" fill="#6b7280">WG4 — Interoperability framework</text>
+    <rect x="612" y="492" width="14" height="14" rx="3" fill="#93093F"/><text x="634" y="503" fill="#6b7280">WG3 — Security</text>
+  </g>
+  <text x="60" y="540" fill="#243644" font-size="12.5" font-weight="600">Sectoral acts say <tspan fill="#008545" font-weight="700">what</tspan> to disclose. These eight standards say <tspan fill="#008545" font-weight="700">how</tspan> — once, for every product group.</text>
+  <text x="60" y="562" fill="#6b7280" font-size="11.5">No vendor lock-in · scan with a plain smartphone · the same passport works across batteries, textiles, detergents and beyond.</text>
+
+  <!-- connector down -->
+  <line x1="480" y1="584" x2="480" y2="608" stroke="#9AAAB4" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ===== BOTTOM BAND: PRODUCT <-> REGISTRY (WHERE) ===== -->
+  <!-- Physical product -->
+  <rect x="40" y="616" width="300" height="120" rx="12" fill="#F5F7F9" stroke="#E2E8ED"/>
+  <text x="60" y="642" fill="#6b7280" font-size="11" font-weight="700" letter-spacing="1.1">PHYSICAL PRODUCT</text>
+  <!-- mini QR glyph -->
+  <g fill="#1A2B36">
+    <rect x="60" y="654" width="58" height="58" rx="6" fill="#FFFFFF" stroke="#D7E6DA"/>
+    <rect x="68" y="662" width="14" height="14"/><rect x="96" y="662" width="14" height="14"/><rect x="68" y="690" width="14" height="14"/>
+    <rect x="88" y="682" width="8" height="8"/><rect x="100" y="694" width="10" height="10"/>
+  </g>
+  <text x="132" y="678" fill="#243644" font-size="13" font-weight="600">Data carrier (QR / RFID)</text>
+  <text x="132" y="697" fill="#6b7280" font-size="11">carries the unique identifier,</text>
+  <text x="132" y="713" fill="#6b7280" font-size="11">resolvable on any smartphone</text>
+
+  <!-- arrow -->
+  <line x1="346" y1="676" x2="612" y2="676" stroke="#9AAAB4" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="479" y="668" text-anchor="middle" fill="#6b7280" font-size="10.5" font-weight="600">register &amp; resolve</text>
+
+  <!-- Registry -->
+  <rect x="620" y="616" width="300" height="120" rx="12" fill="#0F2A22" stroke="#0F2A22"/>
+  <text x="640" y="642" fill="#AFF9D7" font-size="11" font-weight="700" letter-spacing="1.1">CENTRAL EU DPP REGISTRY</text>
+  <text x="640" y="672" fill="#FFFFFF" font-size="14" font-weight="700">Holds identifiers + metadata</text>
+  <text x="640" y="697" fill="#9DC9B8" font-size="11.5">Passport content stays decentralised —</text>
+  <text x="640" y="714" fill="#9DC9B8" font-size="11.5">with the operator or a DPP service provider.</text>
+</svg>

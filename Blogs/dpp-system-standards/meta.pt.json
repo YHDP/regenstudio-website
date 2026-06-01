@@ -1,0 +1,43 @@
+{
+  "title": "As Normas de Sistema do DPP chegaram: um guia das oito normas do CEN/CENELEC JTC 24",
+  "slug": "dpp-system-standards",
+  "subtitle": "O que a EN 18216 até a EN 18246 realmente regem — a camada horizontal de identidade, interoperabilidade e segurança sob cada Passaporte Digital do Produto da UE.",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regen Studio"
+  },
+  "date": "2026-06-01",
+  "categories": [
+    "Digital Product Passport",
+    "Vision & Strategy",
+    "Digital Identity"
+  ],
+  "tags": [
+    "DPP",
+    "normas-DPP",
+    "EN-18219",
+    "EN-18220",
+    "EN-18216",
+    "EN-18221",
+    "EN-18222",
+    "EN-18223",
+    "EN-18239",
+    "EN-18246",
+    "CEN-CENELEC",
+    "JTC-24",
+    "ESPR",
+    "interoperabilidade",
+    "identificador-unico",
+    "portador-de-dados",
+    "NEN",
+    "normas-harmonizadas"
+  ],
+  "featuredImage": "header.png",
+  "featuredImageAlt": "Uma ilustração colorida low-poly de vários octaedros flutuantes de tamanhos variados conectados em uma rede sobre um céu claro, no estilo de polígonos triangulares da Regen Studio — as normas de sistema do Passaporte Digital do Produto como um ecossistema compartilhado e interoperável",
+  "excerpt": "Em 2026, o CEN/CENELEC concluiu oito Normas Europeias — a série EN 1821x — que definem como cada Passaporte Digital do Produto da UE é identificado, transportado, trocado, armazenado, protegido e autenticado. Veja o que cada norma faz, como se encaixam e o que significam se você coloca produtos no mercado da UE.",
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
+}

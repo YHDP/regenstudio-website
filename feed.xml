@@ -5,8 +5,20 @@
     <link>https://www.regenstudio.world/blog.html</link>
     <description>Innovations that regenerate Humans, Cities and Nature.</description>
     <language>en</language>
-    <pubDate>Wed, 27 May 2026 00:00:00 GMT</pubDate>
+    <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
     <atom:link href="https://www.regenstudio.world/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The DPP System Standards Are Here: A Field Guide to CEN/CENELEC JTC 24&apos;s Eight Standards</title>
+      <link>https://www.regenstudio.world/blog/dpp-system-standards/</link>
+      <guid isPermaLink="true">https://www.regenstudio.world/blog/dpp-system-standards/</guid>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+      <description>In 2026, CEN/CENELEC finalised eight European Standards — the EN 1821x series — that define how every EU Digital Product Passport is identified, carried, exchanged, stored, secured and authenticated. Here is what each standard does, how they fit together, and what they mean if you place products on the EU market.</description>
+      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
+      <category>Digital Product Passport</category>
+      <category>Vision &amp; Strategy</category>
+      <category>Digital Identity</category>
+      <enclosure url="https://www.regenstudio.world/Blogs/dpp-system-standards/header.png" type="image/png" length="1460908" />
+    </item>
     <item>
       <title>The EU DPP Registry — what it is, and the 11 things we asked the Commission to sharpen</title>
       <link>https://www.regenstudio.world/blog/eu-dpp-registry-explained/</link>
@@ -228,18 +240,6 @@
       <category>Out-of-the-Box Ideas</category>
       <category>Innovation Services</category>
       <enclosure url="https://www.regenstudio.world/Blogs/antifragile/HeaderAtivo%2012.webp" type="image/webp" length="361244" />
-    </item>
-    <item>
-      <title>A Custom Digital Innovation Process for The Hague&apos;s Living Lab Scheveningen</title>
-      <link>https://www.regenstudio.world/blog/a-custom-digital-innovation-process-for-the-hague/</link>
-      <guid isPermaLink="true">https://www.regenstudio.world/blog/a-custom-digital-innovation-process-for-the-hague/</guid>
-      <pubDate>Wed, 19 Feb 2025 00:00:00 GMT</pubDate>
-      <description>Municipal digital innovation requires a process built for government — one that accounts for procurement rules, GDPR obligations, political cycles, and the need to transfer ownership to a team that will maintain and scale what was built. Regen Studio designed exactly that for The Hague&apos;s EC-DISC. The CIO of the Information &amp; Automation department formally adopted it as departmental policy. Here is how it works — and how to engage it.</description>
-      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
-      <category>Client Projects</category>
-      <category>Innovation Services</category>
-      <category>Living Labs</category>
-      <enclosure url="https://www.regenstudio.world/Blogs/a-custom-digital-innovation-process-for-the-hague/City%20Innovation%20Process%20HeaderAtivo%2056.webp" type="image/webp" length="174308" />
     </item>
   </channel>
 </rss>

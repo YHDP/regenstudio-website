@@ -505,20 +505,44 @@ function buildPreRenderedFeaturedImage(post: BlogPost, lang: Lang = "en"): strin
       </div>`;
 }
 
+const FAQ_FOOTNOTE_RE = /<!--FAQ-FOOTNOTE-->([\s\S]*?)<!--\/FAQ-FOOTNOTE-->/;
+
+/** Pull an optional FAQ block (wrapped in <!--FAQ-FOOTNOTE-->\u2026<!--/FAQ-FOOTNOTE--> markers)
+ *  out of the body so generatePage can render it at the very end of the post \u2014
+ *  after related posts + CTA \u2014 as a footnote. Posts without the marker are untouched. */
+function splitFaqFootnote(content: string): { body: string; faq: string } {
+  const m = content.match(FAQ_FOOTNOTE_RE);
+  if (!m) return { body: content, faq: "" };
+  return { body: content.replace(FAQ_FOOTNOTE_RE, ""), faq: m[1].trim() };
+}
+
 function buildPreRenderedContent(post: BlogPost, lang: Lang = "en"): string {
   // Answer capsule: visible excerpt summary at top of content for AI citation
   const capsule = post.excerpt
     ? `<p class="post-answer-capsule"><strong>${escapeHtml(stripHtml(post.excerpt).replace(/&mdash;/g, "\u2014").replace(/&rsquo;/g, "\u2019").replace(/&amp;/g, "&"))}</strong></p>`
     : "";
 
-  // Adjust content image paths for the page depth
+  // Adjust content image paths for the page depth; the FAQ footnote (if present) is
+  // rendered separately at the very end of the post, after related posts.
   const ap = assetPrefix(lang);
-  const adjustedContent = adjustContentPaths(post.content, ap);
+  const { body } = splitFaqFootnote(post.content);
+  const adjustedContent = adjustContentPaths(body, ap);
 
   return `
       <div class="post-content__inner">
         ${capsule}
         <div class="post-content__body" id="post-content">${adjustedContent}</div>
+      </div>`;
+}
+
+/** FAQ rendered as a footnote at the very end of the post (after related posts + CTA). */
+function buildFaqFootnote(post: BlogPost, lang: Lang = "en"): string {
+  const { faq } = splitFaqFootnote(post.content);
+  if (!faq) return "";
+  const ap = assetPrefix(lang);
+  return `
+      <div class="container">
+        <div class="post-faq__inner">${adjustContentPaths(faq, ap)}</div>
       </div>`;
 }
 
@@ -619,6 +643,7 @@ function generatePage(
   const ap = assetPrefix(lang);
   const nav = extractNav(template);
   const footer = extractFooter(template);
+  const faqFootnote = buildFaqFootnote(post, lang);
 
   const adjustedNav = localizePageLinks(adjustTemplatePaths(nav, ap), lang, ap);
   const adjustedFooter = adjustTemplatePaths(footer, ap);
@@ -661,6 +686,9 @@ ${buildHead(post, lang, availableLangs)}
 
     <!-- Related Posts (rendered by JS) -->
     <section class="related-posts" id="relatedPosts"></section>
+
+    <!-- FAQ footnote: after related posts + CTA, at the very end of the post -->
+    ${faqFootnote ? `<section class="post-faq" id="postFaq">${faqFootnote}</section>` : ""}
   </main>
 
   ${fixedFooter}
