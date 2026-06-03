@@ -218,10 +218,43 @@
     }
     .contact-box a.cta:hover { background: var(--color-primary-hover); color: white; }
 
+    /* PDF embed (primary content) */
+    .pdf-embed-wrapper {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto 16px;
+      background: #FBFAF6;
+      border-radius: 12px;
+      border: 1px solid var(--color-border);
+      box-shadow: 0 12px 40px rgba(36,54,68,0.12);
+      overflow: hidden;
+      height: min(1200px, 85vh);
+    }
+    .pdf-embed-wrapper iframe {
+      width: 100%; height: 100%;
+      border: 0; display: block; background: #FBFAF6;
+    }
+    .pdf-embed__actions {
+      display: flex; justify-content: center; gap: 12px;
+      margin: 0 auto 40px; max-width: 900px;
+      font-size: 0.85rem;
+    }
+    .pdf-embed__actions a {
+      color: var(--color-primary, #008545);
+      text-decoration: none;
+      padding: 6px 14px; border-radius: 99px;
+      border: 1px solid var(--color-border);
+      transition: all 0.2s;
+    }
+    .pdf-embed__actions a:hover {
+      background: var(--color-primary, #008545); color: white; border-color: var(--color-primary, #008545);
+    }
+
     @media (max-width: 640px) {
       .terms-hero { padding: 100px 16px 40px; }
       .tldr-card ul { grid-template-columns: 1fr; }
       .tldr-card { margin: -24px 16px 0; padding: 20px; }
+      .pdf-embed-wrapper { height: 70vh; margin: 0 16px 16px; border-radius: 8px; }
     }
   </style>
 </head>
@@ -344,68 +377,24 @@
 
   <main class="privacy-page" id="main-content">
 
-    <!-- Module overview -->
-    <section class="priv-section">
-      <div class="priv-section__header">
-        <div class="priv-section__icon priv-section__icon--indigo">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-        </div>
-        <h2>&Eacute;&eacute;n document, drie modules</h2>
-      </div>
-      <p>Deze Algemene Voorwaarden zijn van toepassing op alle Voorstellen, Opdrachten en Overeenkomsten van <strong>Regen Studio B.V.</strong> (KvK 90337948, gevestigd te Stollenbergweg 43, 6571 AB Berg en Dal). Het document is opgebouwd uit drie modules met heldere triggers:</p>
-      <ul>
-        <li><strong>Module A &mdash; Universele Bepalingen.</strong> Definities, toepasselijkheid, overmacht, toepasselijk recht, mededelingen, AI-tooling en verwerkersovereenkomst-pointer. <em>&Aacute;ltijd leidend.</em></li>
-        <li><strong>Module B &mdash; Commerci&euml;le Default.</strong> IE-rechten, aansprakelijkheid (&euro;100k/&euro;250k cap met uncapped carve-outs voor opzet/AVG/IE-inbreuk), betaling 30 dagen + wettelijke handelsrente, geheimhouding 3-tier, be&euml;indiging. <em>Default voor private opdrachtgevers.</em></li>
-        <li><strong>Module C &mdash; Publieke-Sector Variant.</strong> IE-overdracht via akte van overdracht (art 2 Auteurswet), uitgebreide uncapped aansprakelijkheid, WOO-erkenning, Open-Publication addendum. <em>Voor publiekrechtelijke opdrachtgevers; prevaleert in dat geval boven Module B.</em></li>
-      </ul>
+    <!-- Brief intro voor SEO + context -->
+    <section class="priv-section" style="margin-bottom:24px;">
+      <p style="text-align:center; max-width:760px; margin:0 auto; color:var(--color-text-secondary, #5781A1);">
+        Het volledige document hieronder. <strong>Regen Studio B.V.</strong> (KvK 90337948, Stollenbergweg 43, 6571 AB Berg en Dal) hanteert &eacute;&eacute;n modulaire set Algemene Voorwaarden voor alle Voorstellen en Opdrachten: <strong>Module A</strong> (universele bepalingen) altijd leidend; <strong>Module B</strong> (commerci&euml;le default) voor private opdrachtgevers; <strong>Module C</strong> (publieke-sector variant) prevaleert bij publiekrechtelijke opdrachtgevers.
+      </p>
     </section>
 
-    <!-- Download -->
-    <section class="priv-section">
-      <div class="priv-section__header">
-        <div class="priv-section__icon priv-section__icon--emerald">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        </div>
-        <h2>Download het volledige document</h2>
-      </div>
-      <p>Het volledige juridische document &mdash; alle modules en bijlagen, 7 pagina's &mdash; is hier downloadbaar als PDF:</p>
-      <div class="contact-box">
-        <p><strong>Algemene Voorwaarden Regen Studio &middot; v2.0 &middot; NL</strong><br>Vastgesteld 3 juni 2026 &middot; 7 pagina's &middot; ~440 KB</p>
-        <a href="../assets/pdf/regen-tob-v2.0-nl.pdf" class="cta" download>Download PDF (NL)</a>
-      </div>
-    </section>
+    <!-- PDF embed (primary content) -->
+    <div class="pdf-embed-wrapper">
+      <iframe src="../assets/pdf/regen-tob-v2.0-nl.pdf#view=FitH&toolbar=1&navpanes=0"
+              title="Algemene Voorwaarden Regen Studio v2.0 NL"
+              loading="lazy"></iframe>
+    </div>
 
-    <div class="priv-divider"><span></span><span></span><span></span><span></span><span></span></div>
-
-    <!-- Samenhang -->
-    <section class="priv-section">
-      <div class="priv-section__header">
-        <div class="priv-section__icon priv-section__icon--teal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-        </div>
-        <h2>Samenhang met andere documenten</h2>
-      </div>
-      <p>Deze Algemene Voorwaarden zijn &eacute;&eacute;n van vier samenhangende documenten in de Regen Studio-contracteringsstack:</p>
-      <ul>
-        <li><strong>Voorstel / Offerte</strong> &mdash; het commerci&euml;le aanbod (partijen, scope-samenvatting, vergoeding, betalingsschema, handtekening).</li>
-        <li><strong>Algemene Voorwaarden v2.0</strong> (dit document) &mdash; juridisch kader, modules A/B/C.</li>
-        <li><strong>Projectplan</strong> &mdash; inhoudelijke beschrijving van de Diensten en deliverables.</li>
-        <li><strong>Verwerkersovereenkomst (DPA)</strong> &mdash; separate overeenkomst conform art 28 AVG, indien Persoonsgegevens worden verwerkt.</li>
-      </ul>
-      <p>Bij conflict tussen Voorstel en Algemene Voorwaarden over commerci&euml;le afspraken prevaleert het Voorstel (&sect;A2.5). Bij conflict over juridische onderwerpen prevaleren deze Algemene Voorwaarden. Bij conflict over personal-data onderwerpen prevaleert de Verwerkersovereenkomst (&sect;A6).</p>
-    </section>
-
-    <!-- AI-disclosure -->
-    <section class="priv-section">
-      <div class="priv-section__header">
-        <div class="priv-section__icon priv-section__icon--crimson">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        </div>
-        <h2>AI-tooling &amp; data-verwerking</h2>
-      </div>
-      <p>Regen Studio gebruikt generatieve AI-tooling (large-language-modellen, beeldgeneratie, code-assistentie) in de uitvoering van Diensten. <strong>Client-data en persoonsgegevens worden niet gebruikt voor training of fine-tuning van AI-modellen van derden.</strong> Elk AI-ondersteund Eindproduct wordt v&oacute;&oacute;r oplevering inhoudelijk gereviewd en goedgekeurd door een Regen Studio-consulent (art 50 lid 4 AI-Verordening).</p>
-      <p>Indien Diensten verwerking van persoonsgegevens omvatten, sluiten Partijen v&oacute;&oacute;r aanvang een separate <strong>Verwerkersovereenkomst (DPA)</strong> conform art 28 AVG, welke apart wordt opgestuurd en getekend. Bij conflict prevaleert de DPA.</p>
-    </section>
+    <div class="pdf-embed__actions">
+      <a href="../assets/pdf/regen-tob-v2.0-nl.pdf" target="_blank" rel="noopener">Open in nieuw tabblad</a>
+      <a href="../assets/pdf/regen-tob-v2.0-nl.pdf" download>Download PDF</a>
+    </div>
 
     <div class="priv-divider"><span></span><span></span><span></span><span></span><span></span></div>
 
