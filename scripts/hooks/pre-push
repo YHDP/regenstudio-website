@@ -166,7 +166,12 @@ while read local_ref local_sha remote_ref remote_sha; do
   # 225 bytes — well under a real PNG but well above any innocent base64 in
   # the repo (favicons + inline assets are size-bounded by their stylesheets,
   # not inlined in JS / HTML diffs).
-  BASE64_BLOBS=$(echo "$DIFF" | grep -n '^\+' | grep -vE '^\+\+\+' | grep -E '[A-Za-z0-9+/]{300,}={0,2}' || true)
+  # NB: the count is split {200}{100,} rather than {300,} because BSD grep
+  # (macOS) caps a single interval at 255 (RE_DUP_MAX) and errors out on
+  # {300,} — which silently disabled this whole scanner on macOS until the
+  # 2026-06-10 audit caught it. Both sub-counts are ≤255; the 300-char floor
+  # is preserved.
+  BASE64_BLOBS=$(echo "$DIFF" | grep -n '^\+' | grep -vE '^\+\+\+' | grep -E '[A-Za-z0-9+/]{200}[A-Za-z0-9+/]{100,}={0,2}' || true)
   if [ -n "$BASE64_BLOBS" ]; then
     echo -e "${RED}BLOCKED: Large base64 blob in added line:${NC}"
     echo "$BASE64_BLOBS" | head -5
