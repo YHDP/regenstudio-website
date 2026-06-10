@@ -374,9 +374,21 @@
       }
 
       function renderActivePills() {
-        activeContainer.innerHTML = [...activeTags].map(tag =>
-          `<span class="tag-search__pill" data-tag="${tag}">${tag}<button class="tag-search__pill-remove" data-tag="${tag}">&times;</button></span>`
-        ).join('');
+        // Built via DOM APIs, not innerHTML: tag values can arrive from the
+        // URL hash, so they must never be parsed as markup.
+        activeContainer.textContent = '';
+        activeTags.forEach(tag => {
+          const pill = document.createElement('span');
+          pill.className = 'tag-search__pill';
+          pill.dataset.tag = tag;
+          pill.appendChild(document.createTextNode(tag));
+          const removeBtn = document.createElement('button');
+          removeBtn.className = 'tag-search__pill-remove';
+          removeBtn.dataset.tag = tag;
+          removeBtn.innerHTML = '&times;';
+          pill.appendChild(removeBtn);
+          activeContainer.appendChild(pill);
+        });
         countBadge.textContent = activeTags.size > 0 ? activeTags.size : '';
         countBadge.style.display = activeTags.size > 0 ? 'inline-flex' : 'none';
       }
@@ -433,6 +445,17 @@
     let activeCategories = new Set();
     let activeTags = new Set();
 
+    // Allow-lists for hash-supplied filter values: the hash is
+    // attacker-controllable (any link can set it), so only values that
+    // actually exist as tags/categories are ever accepted into state.
+    const knownTags = new Set(Object.keys(tagCounts));
+    const knownCategories = new Set();
+    blogs.forEach(b => b._expandedCategories.forEach(c => knownCategories.add(c)));
+    categoryColumns.forEach(col => {
+      knownCategories.add(col.name);
+      col.subs.forEach(sub => knownCategories.add(sub));
+    });
+
     function readHashState() {
       var raw = window.location.hash.slice(1);
       activeCategories.clear();
@@ -449,8 +472,12 @@
         params = new URLSearchParams(decodeURIComponent(raw));
         cat = params.get('cat');
       }
-      (cat || '').split(',').filter(Boolean).forEach(function(c) { activeCategories.add(c); });
-      ((params.get('tag') || '')).split(',').filter(Boolean).forEach(function(t) { activeTags.add(t); });
+      (cat || '').split(',').filter(Boolean).forEach(function(c) {
+        if (knownCategories.has(c)) activeCategories.add(c);
+      });
+      ((params.get('tag') || '')).split(',').filter(Boolean).forEach(function(t) {
+        if (knownTags.has(t)) activeTags.add(t);
+      });
     }
 
     function writeHashState() {
