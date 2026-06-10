@@ -443,6 +443,29 @@ else: print(f'published={pub} review.text={r.get(\"text\")} review.assets={r.get
     done <<< "$TOP_LEVEL_NEW"
   fi
 
+  # 9. SKILL.md supply-chain scan (global skills.md rule).
+  #    Any added/modified **/SKILL.md must be scanned for the three "scary
+  #    agent skills" vectors: hidden Unicode (zero-width / bidi / RTL-override),
+  #    inline downloaders/executors in fenced code, and secret-shaped strings.
+  #    The mandated scan was absent from this hook until the 2026-06-10 audit.
+  SKILL_SCANNER="$(git rev-parse --show-toplevel)/scripts/hooks/skill-scan.py"
+  SKILL_FILES=$(git diff --name-only --diff-filter=AM "$range" 2>/dev/null | grep -E '(^|/)SKILL\.md$' || true)
+  if [ -n "$SKILL_FILES" ] && [ -f "$SKILL_SCANNER" ]; then
+    while IFS= read -r skill_file; do
+      [ -z "$skill_file" ] && continue
+      SCAN_OUT=$(git show "$local_sha:$skill_file" 2>/dev/null | python3 "$SKILL_SCANNER" 2>/dev/null || true)
+      if [ -n "$SCAN_OUT" ]; then
+        echo -e "${RED}BLOCKED: SKILL.md supply-chain scan flagged $skill_file:${NC}"
+        echo "$SCAN_OUT" | sed 's/^/    /' | head -10
+        echo ""
+        echo -e "${YELLOW}  Per skills.md: SKILL.md must not carry hidden Unicode,${NC}"
+        echo -e "${YELLOW}  inline downloaders, or secret-shaped strings. Investigate${NC}"
+        echo -e "${YELLOW}  the source before pushing — do NOT bypass with --no-verify.${NC}"
+        ISSUES=$((ISSUES + 1))
+      fi
+    done <<< "$SKILL_FILES"
+  fi
+
 done
 
 if [ "$ISSUES" -gt 0 ]; then
