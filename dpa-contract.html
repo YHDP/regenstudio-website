@@ -7,6 +7,13 @@
   <meta name="referrer" content="no-referrer">
   <meta http-equiv="Cache-Control" content="no-store, private">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co; base-uri 'self'; object-src 'none'; frame-ancestors 'none';">
+<!-- Clickjacking guard: browsers IGNORE frame-ancestors in a <meta> CSP, so
+     on GitHub Pages (no custom HTTP headers) this JS is the real frame defense.
+     Page stays display:none until confirmed top-level; if framed, it breaks out
+     or — when a sandboxed frame blocks that — stays hidden. (Audit 2026-06-10.) -->
+<style id="antiframe-guard">html{display:none !important}</style>
+<script>(function(){try{if(self===top){var s=document.getElementById('antiframe-guard');if(s)s.remove();}else{top.location=self.location;}}catch(e){/* sandboxed frame blocked breakout — leave page hidden */}})();</script>
+<noscript><style>html{display:block !important}</style></noscript>
   <title>Verwerkersovereenkomst &middot; Regen Studio</title>
   <link rel="stylesheet" href="assets/fonts/inter.css">
   <link rel="stylesheet" href="assets/fonts/koho.css">
