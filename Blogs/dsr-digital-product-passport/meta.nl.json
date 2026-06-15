@@ -24,9 +24,9 @@
   "featuredImage": "Header.webp",
   "featuredImageAlt": "Een gefacetteerde, low-poly detergentfles die uiteenvalt in digitale datafragmenten — een illustratie van het digitaal productpaspoort onder de EU-verordening detergentia en oppervlakteactieve stoffen",
   "excerpt": "Aangenomen in februari 2026 en van toepassing vanaf 23 september 2029 vervangt de verordening detergentia en oppervlakteactieve stoffen (DSR) een 22 jaar oud kader en maakt zij het digitaal productpaspoort verplicht voor elk detergent en elke oppervlakteactieve stof voor eindgebruikers die in de handel wordt gebracht op de EU-markt. Hier lees je wat er verandert, wat hetzelfde blijft en wat fabrikanten nu zouden moeten doen.",
-  "published": false,
+  "published": true,
   "review": {
-    "text": "draft",
-    "assets": "draft"
+    "text": "approved",
+    "assets": "approved"
   }
 }

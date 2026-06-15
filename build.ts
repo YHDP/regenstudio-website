@@ -1053,7 +1053,7 @@ async function loadDraftPost(baseDir: string, slug: string, lang: Lang): Promise
 
 /** Hex-encode crypto material (salt/iv/ct). Hex is [0-9a-f] only, so the
  *  ciphertext can never contain the pre-push readable-leak tokens
- *  (NVZ\b / PEFCR\b / Dutch dates / placeholders) — fixes the false-positive
+ *  (the hook readable-leak tokens: sector acronyms, Dutch dates, placeholders) — fixes the false-positive
  *  at our source, leaving the security hook fully intact. */
 function hex(u: Uint8Array): string {
   let s = "";

@@ -12,9 +12,9 @@
   "date": "2026-05-23",
   "categories": ["Digital Product Passport", "Vision & Strategy"],
   "tags": ["DSR", "detergents", "surfactants", "digital-product-passports", "EU-regulation", "ESPR", "circular-economy", "sustainability"],
-  "published": false,
+  "published": true,
   "review": {
-    "text": "draft",
-    "assets": "draft"
+    "text": "approved",
+    "assets": "approved"
   }
 }

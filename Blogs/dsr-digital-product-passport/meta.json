@@ -24,9 +24,9 @@
   "featuredImage": "Header.webp",
   "featuredImageAlt": "A faceted, low-poly detergent bottle dissolving into digital data fragments — illustrating the Digital Product Passport under the EU Detergents and Surfactants Regulation",
   "excerpt": "Adopted in February 2026 and applicable from 23 September 2029, the Detergents and Surfactants Regulation (DSR) replaces a 22-year-old framework and makes the Digital Product Passport mandatory for every detergent and end-user surfactant placed on the EU market. Here is what changes, what stays the same, and what manufacturers should be doing now.",
-  "published": false,
+  "published": true,
   "review": {
-    "text": "draft",
-    "assets": "draft"
+    "text": "approved",
+    "assets": "approved"
   }
 }
