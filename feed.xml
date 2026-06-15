@@ -5,8 +5,19 @@
     <link>https://www.regenstudio.world/blog.html</link>
     <description>Innovations that regenerate Humans, Cities and Nature.</description>
     <language>en</language>
-    <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+    <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
     <atom:link href="https://www.regenstudio.world/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Detergents and Surfactants Regulation: A Digital Product Passport for Every Bottle on the Shelf</title>
+      <link>https://www.regenstudio.world/blog/dsr-digital-product-passport/</link>
+      <guid isPermaLink="true">https://www.regenstudio.world/blog/dsr-digital-product-passport/</guid>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Adopted in February 2026 and applicable from 23 September 2029, the Detergents and Surfactants Regulation (DSR) replaces a 22-year-old framework and makes the Digital Product Passport mandatory for every detergent and end-user surfactant placed on the EU market. Here is what changes, what stays the same, and what manufacturers should be doing now.</description>
+      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
+      <category>Digital Product Passport</category>
+      <category>Vision &amp; Strategy</category>
+      <enclosure url="https://www.regenstudio.world/Blogs/dsr-digital-product-passport/Header.webp" type="image/webp" length="121760" />
+    </item>
     <item>
       <title>The DPP System Standards Are Here: A Field Guide to CEN/CENELEC JTC 24&apos;s Eight Standards</title>
       <link>https://www.regenstudio.world/blog/dpp-system-standards/</link>
@@ -31,17 +42,6 @@
       <category>Digital Identity</category>
       <category>Vision &amp; Strategy</category>
       <enclosure url="https://www.regenstudio.world/Blogs/eu-dpp-registry-explained/header.png" type="image/png" length="1560947" />
-    </item>
-    <item>
-      <title>The Detergents and Surfactants Regulation: A Digital Product Passport for Every Bottle on the Shelf</title>
-      <link>https://www.regenstudio.world/blog/dsr-digital-product-passport/</link>
-      <guid isPermaLink="true">https://www.regenstudio.world/blog/dsr-digital-product-passport/</guid>
-      <pubDate>Sat, 23 May 2026 00:00:00 GMT</pubDate>
-      <description>Adopted in February 2026 and applicable from 23 September 2029, the Detergents and Surfactants Regulation (DSR) replaces a 22-year-old framework and makes the Digital Product Passport mandatory for every detergent and end-user surfactant placed on the EU market. Here is what changes, what stays the same, and what manufacturers should be doing now.</description>
-      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
-      <category>Digital Product Passport</category>
-      <category>Vision &amp; Strategy</category>
-      <enclosure url="https://www.regenstudio.world/Blogs/dsr-digital-product-passport/Header.webp" type="image/webp" length="121760" />
     </item>
     <item>
       <title>Clean Fuel Protocol: How we designed for traceability of renewable fuels in the Dutch market with Digital Product Passports</title>
