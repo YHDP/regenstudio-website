@@ -263,7 +263,7 @@ while read local_ref local_sha remote_ref remote_sha; do
   # — those are caught by the CLIENT_IDENTIFIERS_RE check above and are NOT
   # whitelisted here.
   DATE_LEAK_RE='\b(1|2|3|31)\s+(jan|feb|mrt|apr|mei|jun|jul|aug|sep|okt|nov|dec)(uari|ruari|aart|il|i|ni|li|ustus|tember|tober|ember)?\s+(202[6-9]|203[0-9])'
-  DATE_LEAK_PUBLIC_CONTEXT_RE='eur-lex\.europa\.eu|Ecodesign-richtlijn|ESPR(\s|-)|PPWR|CPR\s+2024/3110|Batterijenverordening|Battery\s+Regulation|Speelgoedveiligheidsverordening|Toy\s+Safety|Artikel\s+(18|25|79|9|10|11|12|13|14)\b|Article\s+(18|25|79|9|10|11|12|13|14)\b|Verordening\s+\(EU\)\s+202[0-9]/[0-9]+|Regulation\s+\(EU\)\s+202[0-9]/[0-9]+|Energiewet|Elektriciteitswet|Gaswet|nieuwe\s+Energiewet|Algemene\s+Voorwaarden|Versie\s+[0-9][0-9]*\.[0-9][0-9]*|v[0-9][0-9]*\.[0-9][0-9]*\s+(NL|EN|PT)'
+  DATE_LEAK_PUBLIC_CONTEXT_RE='eur-lex\.europa\.eu|Ecodesign-richtlijn|ESPR(\s|-)|PPWR|CPR\s+2024/3110|Batterijenverordening|Battery\s+Regulation|Speelgoedveiligheidsverordening|Toy\s+Safety|Artikel\s+(18|25|79|9|10|11|12|13|14)\b|Article\s+(18|25|79|9|10|11|12|13|14)\b|art\.\s+(8|21|22|24|25|30|34|36|37)\b|Verordening\s+\(EU\)\s+202[0-9]/[0-9]+|Regulation\s+\(EU\)\s+202[0-9]/[0-9]+|Energiewet|Elektriciteitswet|Gaswet|nieuwe\s+Energiewet|Algemene\s+Voorwaarden|Versie\s+[0-9][0-9]*\.[0-9][0-9]*|v[0-9][0-9]*\.[0-9][0-9]*\s+(NL|EN|PT)'
   DATE_LEAKS=$(echo "$PUBLIC_DIFF" | grep -E '^\+' | grep -vE '^\+\+\+' | \
     grep -nE "$DATE_LEAK_RE" | \
     grep -vE "$DATE_LEAK_PUBLIC_CONTEXT_RE" || true)

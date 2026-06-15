@@ -1,0 +1,587 @@
+<style>
+  @media (max-width: 768px) {
+    figure { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  }
+
+  /* ===== Table of contents ===== */
+  .dsr-toc { margin: 32px 0 40px; padding: 20px 24px; background: #f8f9fa; border-radius: 12px; border: 1px solid #e0e0e0; }
+  .dsr-toc__title { font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: #5A6B73; margin-bottom: 12px; }
+  .dsr-toc__list { margin: 0; padding-left: 20px; }
+  .dsr-toc__list li { margin-bottom: 6px; }
+  .dsr-toc__link { color: #006838; text-decoration: none; font-size: 0.88rem; }
+  .dsr-toc__link:hover { text-decoration: underline; }
+  .dsr-toc__link:focus-visible { outline: 2px solid #007B40; outline-offset: 2px; border-radius: 4px; }
+
+  /* ===== Shared figure frame ===== */
+  .dsr-figure { border: 1px solid #C9D2D5; border-radius: 12px; padding: 22px 22px 24px; margin: 28px 0 32px; }
+  .dsr-figcap { font-size: 0.9rem; color: #5A6B73; margin: 0 0 14px; line-height: 1.4; }
+  .dsr-figcap strong { color: #1B2833; }
+
+  /* ===== DPP highlight callout ===== */
+  .dsr-highlight { border: 1px solid #008545; border-left: 6px solid #008545; background: #E6F2EC; border-radius: 0 12px 12px 0; padding: 18px 22px; margin: 24px 0; }
+  .dsr-highlight .k { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: #006838; font-weight: 700; }
+  .dsr-highlight p { margin: 6px 0 0; font-size: 1.02rem; line-height: 1.55; color: #1a1a1a; }
+
+  /* ===== Category grid (sub-categories) ===== */
+  .dsr-cat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin: 14px 0 4px; }
+  .dsr-cat-card { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 18px 10px 14px; background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; cursor: pointer; transition: border-color .2s, box-shadow .2s; font: inherit; }
+  .dsr-cat-card:hover, .dsr-cat-card:focus-visible { border-color: #007B40; box-shadow: 0 2px 12px rgba(0,133,69,.1); outline: none; }
+  .dsr-cat-card img { width: 52px; height: 52px; margin-bottom: 9px; }
+  .dsr-cat-card__name { font-size: 0.8rem; font-weight: 600; line-height: 1.3; color: #1B2833; }
+  .dsr-cat-card[data-new="true"] { border-color: #FFA92D; background: #FFFBF4; }
+  .dsr-cat-card[data-new="true"]::before { content: "NEW"; position: absolute; top: 7px; right: 7px; background: #935D0D; color: #fff; font-size: 0.55rem; font-weight: 700; letter-spacing: .04em; padding: 2px 6px; border-radius: 5px; }
+  .dsr-cat-legend { font-size: 0.82rem; color: #5A6B73; margin: 14px 0 0; }
+  .dsr-cat-legend b { color: #935D0D; }
+  .dsr-cat-modal { position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; }
+  .dsr-cat-modal[aria-hidden="false"] { display: flex; }
+  .dsr-cat-modal__backdrop { position: absolute; inset: 0; background: rgba(20,30,40,.55); }
+  .dsr-cat-modal__card { position: relative; background: #fff; border-radius: 14px; max-width: 460px; width: 100%; padding: 26px 26px 24px; box-shadow: 0 12px 40px rgba(0,0,0,.25); }
+  .dsr-cat-modal__close { position: absolute; top: 10px; right: 14px; border: none; background: none; font-size: 1.7rem; line-height: 1; color: #5A6B73; cursor: pointer; }
+  .dsr-cat-modal__head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .dsr-cat-modal__head img { width: 48px; height: 48px; flex-shrink: 0; }
+  .dsr-cat-modal__title { margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; color: #1B2833; }
+  .dsr-cat-modal__badge { display: inline-block; margin-top: 5px; font-size: 0.62rem; font-weight: 700; padding: 2px 7px; border-radius: 5px; text-transform: uppercase; letter-spacing: .03em; }
+  .dsr-cat-modal__badge.new { background: #FFF1DC; color: #935D0D; }
+  .dsr-cat-modal__badge.kept { background: #E1F2F6; color: #00728b; }
+  .dsr-cat-modal__scope { font-size: 0.95rem; line-height: 1.55; color: #1a1a1a; margin: 0 0 12px; }
+  .dsr-cat-modal__cite { font-size: 0.8rem; color: #5A6B73; }
+
+  /* ===== Timeline (D1) ===== */
+  .dsr-tracklegend { font-size: 0.8rem; color: #5A6B73; margin: 0 0 16px; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+  .dsr-tracklegend span { display: inline-flex; align-items: center; }
+  .dsr-tracklegend i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; border: 3px solid; margin-right: 7px; }
+  .dsr-tl { position: relative; }
+  .dsr-tl-rail { position: absolute; left: 116px; top: 4px; bottom: 4px; width: 3px; background: #C9D2D5; }
+  .dsr-tl-row { display: grid; grid-template-columns: 104px 24px 1fr; align-items: start; margin: 0 0 14px; }
+  .dsr-tl-date { text-align: right; font-weight: 700; font-size: 0.86rem; color: #1B2833; padding-right: 8px; padding-top: 1px; }
+  .dsr-tl-dot { width: 13px; height: 13px; border-radius: 50%; background: #fff; border: 3px solid #243644; margin: 2px auto 0; }
+  .dsr-tl-dot.dot-dsr { border-color: #243644; }
+  .dsr-tl-dot.dot-act { border-color: #009BBB; }
+  .dsr-tl-dot.dot-sys { border-color: #FFA92D; }
+  .dsr-tl-row.key .dsr-tl-dot { border-color: #008545; background: #008545; width: 16px; height: 16px; margin-top: 1px; }
+  .dsr-tl-body { padding-left: 8px; }
+  .dsr-tl-what { font-size: 0.9rem; line-height: 1.4; color: #1a1a1a; }
+  .dsr-tl-row.key .dsr-tl-what { font-weight: 600; }
+  .dsr-tl-leg { font-size: 0.75rem; color: #00728b; font-variant: small-caps; }
+  .dsr-trk { display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 1px 6px; border-radius: 4px; margin-left: 6px; vertical-align: 1px; }
+  .dsr-trk.dsr { background: #243644; color: #fff; }
+  .dsr-trk.act { background: #E1F2F6; color: #00728b; }
+  .dsr-trk.sys { background: #FFF1DC; color: #935D0D; }
+
+  /* ===== Cheat-sheet (flagship) ===== */
+  /* ===== Cheat-sheet email gate ===== */
+  .dsr-gate { margin: 24px 0 8px; border: 1px solid #e3e6e8; border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 4px 22px rgba(20,30,40,.07); }
+  .dsr-gate__preview { position: relative; overflow: hidden; }
+  /* locked: the form sits in normal flow and sets the card height; the blurred sheet is a cover background behind it */
+  .dsr-gate:not(.is-open) .dsr-gate__preview { display: flex; align-items: center; justify-content: center; min-height: 320px; padding: 26px 16px; }
+  .dsr-gate__bg { display: block; width: 100%; }
+  .dsr-gate:not(.is-open) .dsr-gate__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .dsr-gate__veil { position: absolute; inset: 0; background: rgba(248,250,248,.55); }
+  @supports (backdrop-filter: blur(2px)) { .dsr-gate__veil { background: rgba(248,250,248,.32); backdrop-filter: blur(2px); } }
+  .dsr-gate__form { position: relative; z-index: 2; width: 100%; max-width: 366px; background: #fff; border-radius: 16px; padding: 24px 24px 20px; box-shadow: 0 14px 44px rgba(20,30,40,.2); text-align: left; }
+  .dsr-gate__ic { width: 36px; height: 36px; border-radius: 10px; background: #E6F2EC; display: flex; align-items: center; justify-content: center; margin-bottom: 13px; }
+  .dsr-gate__title { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.22rem; color: #1B2833; margin: 0 0 5px; line-height: 1.18; }
+  .dsr-gate__sub { font-size: 0.82rem; color: #5A6B73; margin: 0 0 15px; line-height: 1.5; }
+  .dsr-gate__form input[type=email] { width: 100%; padding: 11px 13px; border: 1px solid #d3dbe2; border-radius: 10px; font: inherit; font-size: 0.92rem; }
+  .dsr-gate__form input[type=email]:focus { outline: none; border-color: #007B40; box-shadow: 0 0 0 3px rgba(0,123,64,.13); }
+  .dsr-gate__btn { width: 100%; background: #007B40; color: #fff; border: none; border-radius: 10px; padding: 12px 16px; font-weight: 600; font-size: 0.92rem; cursor: pointer; margin-top: 4px; transition: background .2s; }
+  .dsr-gate__btn:hover { background: #006838; }
+  .dsr-gate__btn:disabled { opacity: .6; cursor: default; }
+  .dsr-gate__check { display: flex; align-items: flex-start; gap: 8px; font-size: 0.72rem; color: #6b7785; margin-top: 11px; line-height: 1.45; }
+  .dsr-gate__check:first-of-type { margin-top: 14px; }
+  .dsr-gate__check input { margin-top: 1px; flex-shrink: 0; accent-color: #007B40; }
+  .dsr-gate__check a { color: #006838; }
+  .dsr-gate__err { color: #D51641; font-size: 0.78rem; margin: 9px 0 0; }
+  /* compact the antibot captcha inside the gate */
+  .dsr-gate__form .antibot-captcha { margin: 13px 0 4px; padding: 11px; border-radius: 11px; background: #f6f8f9; border-color: #e6eaec; }
+  .dsr-gate__form .antibot-captcha__label { font-size: 11.5px; margin-bottom: 3px; }
+  .dsr-gate__form .antibot-captcha__hint { font-size: 10.5px; margin-bottom: 7px; }
+  .dsr-gate__form .antibot-captcha__canvas { width: 84px !important; height: 84px !important; }
+  .dsr-gate__form .antibot-captcha__status { font-size: 11.5px; min-height: 15px; }
+  .dsr-gate__cap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 0.85rem; color: #5A6B73; padding: 13px 18px; }
+  .dsr-gate__cap a { color: #006838; font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .dsr-gate__cap a:hover { text-decoration: underline; }
+  .dsr-hide { display: none !important; }
+  /* early CTA banner */
+  .dsr-early { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin: 22px 0; padding: 14px 18px; background: linear-gradient(135deg, #E6F2EC 0%, #E1F2F6 100%); border: 1px solid #cfe5da; border-radius: 12px; }
+  .dsr-early span { font-size: 0.92rem; color: #1B2833; line-height: 1.4; flex: 1 1 240px; }
+  .dsr-early__btn { background: #007B40; color: #fff; border: none; border-radius: 9px; padding: 10px 18px; font-weight: 600; font-size: 0.9rem; cursor: pointer; white-space: nowrap; transition: background .2s; }
+  .dsr-early__btn:hover { background: #006838; }
+  /* download modal (early gate) */
+  .dsr-modal { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .dsr-modal__backdrop { position: absolute; inset: 0; background: rgba(20,30,40,.55); }
+  @supports (backdrop-filter: blur(3px)) { .dsr-modal__backdrop { backdrop-filter: blur(3px); } }
+  .dsr-modal__card { position: relative; width: 100%; max-width: 400px; background: #fff; border-radius: 18px; padding: 26px 26px 22px; box-shadow: 0 24px 60px rgba(0,0,0,.3); }
+  .dsr-modal__close { position: absolute; top: 9px; right: 14px; border: none; background: none; font-size: 1.7rem; line-height: 1; color: #94a3b8; cursor: pointer; }
+  .dsr-gateform--modal { max-width: none; padding: 0; box-shadow: none; }
+
+  /* ===== Three-phase flow (D3) ===== */
+  .dsr-flow { display: grid; grid-template-columns: 1fr 28px 1fr 28px 1fr; align-items: stretch; gap: 0; }
+  .dsr-fbox { border: 1px solid #008545; border-top: 8px solid #008545; border-radius: 10px; padding: 14px 16px 16px; background: #fff; }
+  .dsr-fbox .dsr-ph { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: #006838; font-weight: 700; }
+  .dsr-fbox h4 { margin: 3px 0 9px; font-size: 1.02rem; color: #1B2833; font-family: 'Playfair Display', Georgia, serif; }
+  .dsr-fbox ul { margin: 0; padding-left: 18px; font-size: 0.86rem; line-height: 1.4; }
+  .dsr-fbox li { margin: 4px 0; }
+  .dsr-farrow { display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: #008545; font-weight: 700; }
+  .dsr-fgate { margin-top: 14px; font-size: 0.88rem; line-height: 1.45; background: #FFF1DC; border-left: 6px solid #FFA92D; padding: 12px 16px; border-radius: 0 8px 8px 0; }
+  .dsr-fpar { margin-top: 14px; border: 1px dashed #009BBB; background: #E1F2F6; border-radius: 10px; padding: 12px 16px; font-size: 0.9rem; line-height: 1.45; }
+  .dsr-fpar b { color: #00728b; }
+
+  /* ===== In-progress card (still being written) ===== */
+  .dsr-progress { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 20px; margin: 12px 0 4px; }
+  .dsr-progress .item { border-left: 3px solid #FFA92D; background: #FFFBF4; border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 0.86rem; line-height: 1.4; }
+  .dsr-progress .item b { color: #1B2833; }
+
+  /* ===== FAQ ===== */
+  .dsr-faq { margin: 8px 0 0; }
+  .dsr-faq details { border-bottom: 1px solid #e5e7eb; padding: 4px 0; }
+  .dsr-faq summary { cursor: pointer; font-weight: 600; font-size: 1.02rem; padding: 12px 0; color: #1B2833; list-style-position: outside; }
+  .dsr-faq summary:focus-visible { outline: 2px solid #007B40; outline-offset: 2px; border-radius: 4px; }
+  .dsr-faq details[open] summary { color: #006838; }
+  .dsr-faq p { margin: 0 0 12px; line-height: 1.6; }
+
+  /* ===== Funding acknowledgement strip ===== */
+  .dsr-fund { margin: 40px 0 8px; padding: 22px 24px; border: 1px solid #e0e0e0; border-radius: 12px; background: #fafbfc; }
+  .dsr-fund__label { font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: #475259; margin: 0 0 8px; }
+  .dsr-fund__text { font-size: 0.88rem; line-height: 1.55; color: #475259; margin: 0 0 18px; max-width: 64ch; }
+  .dsr-fund__logos { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 30px; }
+  .dsr-fund__eu { display: inline-flex; align-items: center; gap: 12px; }
+  .dsr-fund__eu img { height: 56px; width: auto; display: block; }
+  .dsr-fund__eu-text { font-size: 0.82rem; line-height: 1.2; color: #1B2833; font-weight: 600; }
+  .dsr-fund__logo { height: 44px; width: auto; display: block; }
+
+  @media (max-width: 768px) {
+    .dsr-cat-grid { grid-template-columns: repeat(3, 1fr); }
+    .dsr-flow { grid-template-columns: 1fr; }
+    .dsr-farrow { transform: rotate(90deg); padding: 6px 0; }
+    .dsr-tl-rail { left: 104px; }
+    .dsr-progress { grid-template-columns: 1fr; }
+    .dsr-fund__logos { gap: 16px 22px; }
+    .dsr-fund__eu img { height: 48px; }
+    .dsr-fund__logo { height: 38px; }
+  }
+  @media (max-width: 480px) {
+    .dsr-cat-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<p>Op 11 februari 2026 hebben het Europees Parlement en de Raad <a href="https://eur-lex.europa.eu/eli/reg/2026/405/oj" target="_blank" rel="noopener">Verordening (EU) 2026/405</a> aangenomen — de verordening detergentia en oppervlakteactieve stoffen (DSR). Gepubliceerd in het Publicatieblad van 2 maart 2026, vervangt de DSR de 22 jaar oude <a href="https://eur-lex.europa.eu/eli/reg/2004/648/oj" target="_blank" rel="noopener">Verordening (EG) 648/2004</a> en introduceert zij een verplicht <a href="/nl/what-is-a-digital-product-passport/" target="_blank" rel="noopener">digitaal productpaspoort (DPP)</a> voor elk detergent en elke oppervlakteactieve stof voor eindgebruikers die vanaf <strong>23 september 2029</strong> in de handel wordt gebracht op de EU-markt.</p>
+
+<p>Voor een sector die sinds het jaar waarin de iPod en Facebook voor het eerst verschenen stilletjes door hetzelfde kader werd geregeld, is dit een ingrijpende reset. Net als de batterijenverordening, de herziene <a href="/blog/cpr-digital-product-passport/" target="_blank" rel="noopener">verordening bouwproducten</a> en de aanstaande <a href="/blog/espr-textile-delegated-act/" target="_blank" rel="noopener">ESPR-gedelegeerde handeling voor textiel</a> verankert de DSR productinformatie in een persistente, machineleesbare drager die voor consumenten zichtbaar is vóór aankoop. Hier lees je wat er verandert, wat hetzelfde blijft en wat fabrikanten nu zouden moeten doen.</p>
+
+<div class="dsr-early">
+  <span>📄 Weinig tijd? Vraag de <b>1-pagina spiekbrief met detergent-DPP-vereisten</b> aan — elk veld, elke eigenschap &amp; elke regel die een detergentpaspoort moet bevatten, op één afdrukbare pagina.</span>
+  <button type="button" class="dsr-early-cta dsr-early__btn">Mail mij de spiekbrief &darr;</button>
+</div>
+
+<nav class="dsr-toc" aria-label="Inhoudsopgave">
+  <p class="dsr-toc__title">Inhoud</p>
+  <ol class="dsr-toc__list">
+    <li><a href="#what-changes" class="dsr-toc__link">Wat verandert er ten opzichte van de oude Detergentenverordening</a></li>
+    <li><a href="#in-scope" class="dsr-toc__link">Welke producten nu binnen het toepassingsgebied vallen</a></li>
+    <li><a href="#timeline" class="dsr-toc__link">De nalevingstijdlijn (2026–2034)</a></li>
+    <li><a href="#dpp-at-the-core" class="dsr-toc__link">Het digitaal productpaspoort als kern</a></li>
+    <li><a href="#path-to-a-compliant-dpp" class="dsr-toc__link">De weg naar een conform DPP</a></li>
+    <li><a href="#what-stays-the-same" class="dsr-toc__link">Wat hetzelfde blijft</a></li>
+    <li><a href="#refill-distance-customs" class="dsr-toc__link">Navulstations, verkoop op afstand, douane</a></li>
+    <li><a href="#still-being-written" class="dsr-toc__link">Wat nog wordt geschreven</a></li>
+    <li><a href="#what-to-do-now" class="dsr-toc__link">Wat fabrikanten nu zouden moeten doen</a></li>
+    <li><a href="#faq" class="dsr-toc__link">Veelgestelde vragen</a></li>
+  </ol>
+</nav>
+
+<h2 id="what-changes">Wat verandert er ten opzichte van de oude Detergentenverordening</h2>
+
+<p>Verordening 648/2004 telde 19 artikelen; de DSR heeft 37 artikelen en 8 bijlagen, met geheel nieuwe hoofdstukken over conformiteitsbeoordeling, digitale etikettering, navuloperaties, douanecontrole — en, als kern, het digitaal productpaspoort. De belangrijkste verschuivingen: een <strong>verbod op dierproeven</strong> (van kracht sinds 22 maart 2026); een veel <strong>ruimer toepassingsgebied</strong> dat vier productgroepen omvat die de oude wet grotendeels negeerde; een specifiek regime voor detergenten die <strong>micro-organismen</strong> bevatten; en een stapsgewijze aanscherping van de regels voor <strong>biologische afbreekbaarheid</strong> tot 2034. De drempelwaarden voor de biologische afbreekbaarheid van oppervlakteactieve stoffen en de fosfaatlimieten zelf worden ongewijzigd overgenomen. De vijfde — en veruit de grootste — verandering is die waar de rest van dit artikel over gaat: het digitaal productpaspoort.</p>
+
+<div class="dsr-highlight">
+  <span class="k">De verandering die het meeste uitmaakt</span>
+  <p>Het digitaal productpaspoort. Vanaf <strong>23 september 2029</strong> heeft elk detergent en elke oppervlakteactieve stof voor eindgebruikers op de EU-markt een DPP nodig — een machineleesbaar register, bereikbaar via een QR-code op de verpakking en zichtbaar <em>vóór</em> aankoop, geregistreerd in een centraal EU-register. Het is het onderwerp van de rest van dit artikel.</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #243644 0%, #1B2833 100%); border-radius: 16px; padding: 36px; text-align: center; margin: 28px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Zie het in actie</p>
+  <p style="color: #FFFFFF; font-size: 1.35rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Wil je zien hoe een DPP-systeem er in de praktijk uitziet?</p>
+  <p style="color: #8CA9BF; font-size: 1rem; margin-bottom: 22px; line-height: 1.6;">Verken onze interactieve demo van een werkend DPP-<em>systeem</em> — het hulpmiddel dat paspoorten aanmaakt en invult, niet een paspoort zelf. Het is gebouwd voor meubelmakers en gemakkelijk aan te passen aan detergenten, met UNTP-verifieerbare credentials en rolgebaseerde toegang. Een detergentspecifieke demo is op aanvraag beschikbaar.</p>
+  <a href="https://demos.regenstudio.world/dpp-system/gate.html" target="_blank" rel="noopener" style="display: inline-block; background: #007B40; color: #FFFFFF; font-weight: 600; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none;">Verken de DPP-systeemdemo &rarr;</a>
+</div>
+
+<h2 id="in-scope">Welke producten nu binnen het toepassingsgebied vallen</h2>
+
+<p>De DSR-definitie van "detergent" is breder dan de oude. Zes vertrouwde categorieën worden overgenomen; <strong>vier zijn nieuw opgenomen</strong> — merken die deze verkochten, vielen grotendeels buiten Verordening 648/2004 en vallen er nu volledig onder. Selecteer een kaart voor de rechtsgrond.</p>
+
+<div class="dsr-cat-grid" role="list">
+  <button type="button" class="dsr-cat-card" role="listitem" data-name="Wasmiddelen" data-badge="kept" data-scope="Producten voor het wassen van textiel, voor niet-professioneel gebruik, met inbegrip van openbare wasserettes. Fosfaatlimieten (bijlage III) en biologische afbreekbaarheid van oppervlakteactieve stoffen (bijlage I) zijn van toepassing." data-cite="art. 2 (definitie van detergent); bijlage I + III">
+    <img src="Images/Focus Areas/Digital Product Passports/Product groups/detergent-laundry.svg" alt="Wasmiddelen"><span class="dsr-cat-card__name">Wasmiddelen</span>
+  </button>
+  <button type="button" class="dsr-cat-card" role="listitem" data-name="Vaatwasmiddelen (machine)" data-badge="kept" data-scope="Detergenten voor gebruik in vaatwasmachines — tabletten, poeders en gels. Fosfaatlimieten (bijlage III) en biologische afbreekbaarheid van oppervlakteactieve stoffen (bijlage I) zijn van toepassing." data-cite="art. 2 (definitie); bijlage I + III">
+    <img src="Images/Focus Areas/Digital Product Passports/Product groups/detergent-dishwasher-auto.svg" alt="Vaatwasmiddeltablet voor machines"><span class="dsr-cat-card__name">Vaatwasmiddelen</span>
+  </button>
+  <button type="button" class="dsr-cat-card" role="listitem" data-name="Afwasmiddel" data-badge="kept" data-scope="Handafwasmiddel voor borden, bestek en glaswerk (te onderscheiden van handzeep, die een cosmetisch product is)." data-cite="art. 2 (definitie van detergent)">
+    <img src="Images/Focus Areas/Digital Product Passports/Product groups/detergent-dishwashing-hand.svg" alt="Afwasmiddel"><span class="dsr-cat-card__name">Afwasmiddel</span>
+  </button>
+  <button type="button" class="dsr-cat-card" role="listitem" data-name="Harde-oppervlakreinigers" data-badge="kept" data-scope="Allesreinigers, keuken- en badkamerreinigers — producten voor het reinigen van oppervlakken in plaats van textiel." data-cite="art. 2 (definitie van detergent)">
+    <img src="Images/Focus Areas/Digital Product Passports/Product groups/detergent-hard-surface.svg" alt="Harde-oppervlakreinigers"><span class="dsr-cat-card__name">Harde-oppervlakreinigers</span>
+  </button>
+  <button type="button" class="dsr-cat-card" role="listitem" data-name="Detergenten voor industrieel &amp; institutioneel gebruik" data-badge="kept" data-scope="Detergenten voor niet-huishoudelijk gebruik door gespecialiseerd personeel (professionele wasserij, catering, gezondheidszorg). Sommige DPP- en etiketteringsverplichtingen verschillen van consumentenproducten." data-cite="Verordening (EU) 2026/405 — bepalingen voor industrieel/institutioneel gebruik">
+    <img src="Images/Focus Areas/Digital Product Passports/Product groups/detergent-industrial.svg" alt="Detergenten voor industrieel en institutioneel gebruik"><span class="dsr-cat-card__name">Industrieel &amp; institutioneel</span>
+  </button>
+  <button type="button" class="dsr-cat-card" role="listitem" data-name="Oppervlakteactieve stoffen voor eindgebruikers" data-badge="kept" data-scope="Oppervlakteactieve stoffen die als zodanig voor eindgebruikers in de handel worden gebracht (niet verwerkt in een afgewerkt detergent). Genoemd in de titel van de verordening zelf en onderworpen aan de regels voor biologische afbreekbaarheid." data-cite="Verordening (EU) 2026/405 (titel); bijlage I">
+    <img src="Images/Focus Areas/Digital Product Passports/Product groups/detergent-surfactant.svg" alt="Oppervlakteactieve stoffen voor eindgebruikers"><span class="dsr-cat-card__name">Oppervlakteactieve stoffen voor eindgebruikers</span>
+  </button>
+  <button type="button" class="dsr-cat-card" role="listitem" data-new="true" data-name="Detergenten met micro-organismen" data-badge="new" data-scope="Probiotische en enzymatische reinigingsproducten met opzettelijk toegevoegde micro-organismen krijgen een specifiek tienpuntenregime: stamdepot, volledige-genoomsequencing, uitsluiting van pathogenen, geen GMM's, screening op antibioticaresistentie en een houdbaarheid van 18 maanden. Een risicobeoordelingsmethodologie van de Commissie wordt uiterlijk 23 september 2028 verwacht — tot dan kunnen dergelijke producten niet rechtmatig in de handel worden gebracht." data-cite="art. 5 + bijlage II; methodologie verschuldigd art. 30(6)">
+    <img src="Images/Focus Areas/Digital Product Passports/Product groups/detergent-microorganism.svg" alt="Detergenten met micro-organismen"><span class="dsr-cat-card__name">Detergenten met micro-organismen</span>
+  </button>
+  <button type="button" class="dsr-cat-card" role="listitem" data-new="true" data-name="Reinigingshulpmiddelen" data-badge="new" data-scope="Producten die het reinigingsproces ondersteunen wanneer ze samen met een wasmiddel of vaatwasmiddel worden gebruikt — glansspoelmiddelen, voorbehandelingsproducten en geurversterkers. Nieuw binnen de definitie van detergent." data-cite="overweging 6, art. 2(1)">
+    <img src="Images/Focus Areas/Digital Product Passports/Product groups/detergent-supplement.svg" alt="Reinigingshulpmiddelen: glansspoelmiddelen, voorbehandeling, geurversterkers"><span class="dsr-cat-card__name">Reinigingshulpmiddelen</span>
+  </button>
+  <button type="button" class="dsr-cat-card" role="listitem" data-new="true" data-name="Textielverfrissers" data-badge="new" data-scope="Producten die het gevoel of de geur van textiel veranderen in processen die het wassen aanvullen — spuitbare textielverfrissers en geurneutralisatoren. Nieuw binnen het toepassingsgebied." data-cite="overweging 6, art. 2(1)">
+    <img src="Images/Focus Areas/Digital Product Passports/Product groups/detergent-fabric-refresher.svg" alt="Textielverfrissers"><span class="dsr-cat-card__name">Textielverfrissers</span>
+  </button>
+  <button type="button" class="dsr-cat-card" role="listitem" data-new="true" data-name="Reinigingsmiddelen voor groenten &amp; fruit" data-badge="new" data-scope="Producten voor het reinigen van de oppervlakken van groenten en fruit vóór consumptie. Nieuw binnen het toepassingsgebied gebracht door de verbrede definitie van 'oppervlakken'." data-cite="overweging 6, art. 2(1)">
+    <img src="Images/Focus Areas/Digital Product Passports/Product groups/detergent-fruit-veg.svg" alt="Reinigingsmiddelen voor de oppervlakken van groenten en fruit"><span class="dsr-cat-card__name">Reinigingsmiddelen voor groenten &amp; fruit</span>
+  </button>
+</div>
+<p class="dsr-cat-legend"><b>NEW</b> markeert de vier categorieën die de DSR binnen het toepassingsgebied brengt en die grotendeels buiten Verordening 648/2004 vielen. Elk product, elke formulering en elke variant in een van deze categorieën heeft vanaf 23 september 2029 een eigen DPP nodig.</p>
+
+<div class="dsr-cat-modal" id="dsr-cat-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="dsr-cat-modal-title">
+  <div class="dsr-cat-modal__backdrop" data-close></div>
+  <div class="dsr-cat-modal__card">
+    <button class="dsr-cat-modal__close" type="button" aria-label="Sluiten" data-close>&times;</button>
+    <div class="dsr-cat-modal__head">
+      <img id="dsr-cat-modal-icon" src="" alt="Categoriepictogram">
+      <div>
+        <h3 class="dsr-cat-modal__title" id="dsr-cat-modal-title"></h3>
+        <span class="dsr-cat-modal__badge" id="dsr-cat-modal-badge"></span>
+      </div>
+    </div>
+    <p class="dsr-cat-modal__scope" id="dsr-cat-modal-scope"></p>
+    <p class="dsr-cat-modal__cite" id="dsr-cat-modal-cite"></p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var modal = document.getElementById('dsr-cat-modal');
+  if (!modal) return;
+  var iconEl = document.getElementById('dsr-cat-modal-icon');
+  var titleEl = document.getElementById('dsr-cat-modal-title');
+  var badgeEl = document.getElementById('dsr-cat-modal-badge');
+  var scopeEl = document.getElementById('dsr-cat-modal-scope');
+  var citeEl = document.getElementById('dsr-cat-modal-cite');
+  function open(card) {
+    var img = card.querySelector('img');
+    iconEl.src = img ? img.getAttribute('src') : '';
+    iconEl.alt = card.getAttribute('data-name') || 'Categoriepictogram';
+    titleEl.textContent = card.getAttribute('data-name') || '';
+    var badge = card.getAttribute('data-badge');
+    if (badge === 'new') { badgeEl.textContent = 'Nieuw in de DSR'; badgeEl.className = 'dsr-cat-modal__badge new'; }
+    else { badgeEl.textContent = 'Overgenomen uit 648/2004'; badgeEl.className = 'dsr-cat-modal__badge kept'; }
+    scopeEl.textContent = card.getAttribute('data-scope') || '';
+    citeEl.textContent = 'Rechtsgrond: ' + (card.getAttribute('data-cite') || '');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+  function close() { modal.setAttribute('aria-hidden', 'true'); }
+  document.querySelectorAll('.dsr-cat-card').forEach(function (c) {
+    c.addEventListener('click', function () { open(c); });
+  });
+  modal.querySelectorAll('[data-close]').forEach(function (el) {
+    el.addEventListener('click', close);
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+})();
+</script>
+
+<h2 id="timeline">De nalevingstijdlijn (2026–2034)</h2>
+
+<p>De DSR is aangenomen op 11 februari 2026 en gepubliceerd in het Publicatieblad L van 2 maart 2026. De onderstaande routekaart bundelt elke gedateerde mijlpaal over drie sporen — de <strong>DSR-kernverordening</strong>, de <strong>gedelegeerde en uitvoeringshandelingen</strong> die de Commissie nog moet vaststellen, en het <strong>DPP-systeem en de infrastructuur</strong>.</p>
+
+<div class="dsr-figure">
+  <p class="dsr-figcap"><strong>DSR-routekaart 2026–2034.</strong> Eén tijdlijn; de kleur markeert het spoor.</p>
+  <p class="dsr-tracklegend">
+    <span><i style="border-color:#243644"></i>DSR-kern</span>
+    <span><i style="border-color:#009BBB"></i>gedelegeerde handeling</span>
+    <span><i style="border-color:#FFA92D"></i>DPP-systeem</span>
+    <span><i style="border-color:#008545;background:#008545"></i>hoofdtoepassing</span>
+  </p>
+  <div class="dsr-tl">
+    <div class="dsr-tl-rail"></div>
+    <div class="dsr-tl-row"><div class="dsr-tl-date">22 mrt 2026</div><div><div class="dsr-tl-dot dot-dsr"></div></div><div class="dsr-tl-body"><div class="dsr-tl-what">Inwerkingtreding — geen dierproeven meer om aan DSR-vereisten te voldoen; bestaande gegevens blijven geldig.<span class="dsr-trk dsr">DSR</span></div><div class="dsr-tl-leg">art. 37 + 7(3)</div></div></div>
+    <div class="dsr-tl-row"><div class="dsr-tl-date">28 mei 2026</div><div><div class="dsr-tl-dot dot-sys"></div></div><div class="dsr-tl-body"><div class="dsr-tl-what">Publicatie van de DPP-systeemstandaard (met inbegrip van productidentificatiecodes).<span class="dsr-trk sys">systeem</span></div><div class="dsr-tl-leg">JTC24</div></div></div>
+    <div class="dsr-tl-row"><div class="dsr-tl-date">~eind 2026/2027</div><div><div class="dsr-tl-dot dot-sys"></div></div><div class="dsr-tl-body"><div class="dsr-tl-what">Centraal EU-DPP-register live — toegangspoort voor onboarding van marktdeelnemeridentificatiecodes (datum onzeker).<span class="dsr-trk sys">systeem</span></div><div class="dsr-tl-leg">ESPR art. 12/13</div></div></div>
+    <div class="dsr-tl-row"><div class="dsr-tl-date">23 mrt 2028</div><div><div class="dsr-tl-dot dot-act"></div></div><div class="dsr-tl-body"><div class="dsr-tl-what">Verslag van de Commissie over de haalbaarheid inzake fosfaat.<span class="dsr-trk act">handeling</span></div><div class="dsr-tl-leg">art. 34(2)</div></div></div>
+    <div class="dsr-tl-row"><div class="dsr-tl-date">23 sep 2028</div><div><div class="dsr-tl-dot dot-act"></div></div><div class="dsr-tl-body"><div class="dsr-tl-what">Risicobeoordelingsmethodologie voor detergenten met micro-organismen vastgesteld.<span class="dsr-trk act">handeling</span></div><div class="dsr-tl-leg">art. 30(6)</div></div></div>
+    <div class="dsr-tl-row"><div class="dsr-tl-date">1 okt 2028</div><div><div class="dsr-tl-dot dot-act"></div></div><div class="dsr-tl-body"><div class="dsr-tl-what">Gedelegeerde handeling over specificaties voor digitale etiketten vastgesteld.<span class="dsr-trk act">handeling</span></div><div class="dsr-tl-leg">art. 30(10)</div></div></div>
+    <div class="dsr-tl-row"><div class="dsr-tl-date">23 mrt 2029</div><div><div class="dsr-tl-dot dot-act"></div></div><div class="dsr-tl-body"><div class="dsr-tl-what">Gedelegeerde handeling over criteria voor biologische afbreekbaarheid van folies en polymeren vastgesteld.<span class="dsr-trk act">handeling</span></div><div class="dsr-tl-leg">art. 30(4)</div></div></div>
+    <div class="dsr-tl-row key"><div class="dsr-tl-date">23 sep 2029</div><div><div class="dsr-tl-dot"></div></div><div class="dsr-tl-body"><div class="dsr-tl-what"><strong>Belangrijkste toepassingsdatum.</strong> DPP + digitaal etiket + douanecontrole gaan live; 648/2004 ingetrokken (mits het douane-éénloketsysteem van de EU operationeel is, art. 25(4)).<span class="dsr-trk dsr">DSR</span></div><div class="dsr-tl-leg">art. 37(2) + 35 + 25(4)</div></div></div>
+    <div class="dsr-tl-row"><div class="dsr-tl-date">23 sep 2030</div><div><div class="dsr-tl-dot dot-dsr"></div></div><div class="dsr-tl-body"><div class="dsr-tl-what">Einde van de overgangsperiode voor 648/2004-voorraad die tussen 22 sep 2029 en 23 sep 2030 in de handel is gebracht.<span class="dsr-trk dsr">DSR</span></div><div class="dsr-tl-leg">art. 36(2)</div></div></div>
+    <div class="dsr-tl-row"><div class="dsr-tl-date">23 mrt 2031</div><div><div class="dsr-tl-dot dot-act"></div></div><div class="dsr-tl-body"><div class="dsr-tl-what">Gedelegeerde handeling over criteria voor biologische afbreekbaarheid van organische stoffen ≥10% vastgesteld.<span class="dsr-trk act">handeling</span></div><div class="dsr-tl-leg">art. 30(4)</div></div></div>
+    <div class="dsr-tl-row"><div class="dsr-tl-date">23 mrt 2032</div><div><div class="dsr-tl-dot dot-dsr"></div></div><div class="dsr-tl-body"><div class="dsr-tl-what">Biologische afbreekbaarheid van folies + polymeren wordt bindend.<span class="dsr-trk dsr">DSR</span></div><div class="dsr-tl-leg">art. 4(3)</div></div></div>
+    <div class="dsr-tl-row"><div class="dsr-tl-date">23 mrt 2033</div><div><div class="dsr-tl-dot dot-dsr"></div></div><div class="dsr-tl-body"><div class="dsr-tl-what">Verslag van de Commissie aan het Parlement en de Raad over de toepassing van de DSR; mogelijke voorstellen tot uitbreiding.<span class="dsr-trk dsr">DSR</span></div><div class="dsr-tl-leg">art. 34(1)</div></div></div>
+    <div class="dsr-tl-row"><div class="dsr-tl-date">23 mrt 2034</div><div><div class="dsr-tl-dot dot-dsr"></div></div><div class="dsr-tl-body"><div class="dsr-tl-what">Biologische afbreekbaarheid van organische stoffen ≥10% gewichtsprocent wordt bindend.<span class="dsr-trk dsr">DSR</span></div><div class="dsr-tl-leg">art. 4(4)</div></div></div>
+  </div>
+</div>
+
+<p>De implicatie is ondubbelzinnig: hoewel de uitvoeringshandeling van artikel 21(10) die de fundamentele technische vereisten van het DPP vastlegt nog niet is vastgesteld — en de toepassing ervan niet eerder dan 18 maanden na inwerkingtreding is bepaald, met het standaardisatiewerk van <a href="/blog/dpp-system-standards/" target="_blank" rel="noopener">CEN-CENELEC JTC24</a> als voorwaarde — ligt er meer dan genoeg vast in de verordening om nu te beginnen. Plan voor 2029, en houd de consultatietijdlijn in de gaten voor het geval de effectieve DPP-datum naar later verschuift.</p>
+
+<h2 id="dpp-at-the-core">Het digitaal productpaspoort als kern</h2>
+
+<p>Het DPP van de DSR deelt zijn architectuur met de regimes die al vorm krijgen onder de batterijenverordening, de <a href="/blog/cpr-digital-product-passport/" target="_blank" rel="noopener">verordening bouwproducten</a> en de ESPR: een persistente gegevensdrager op het product koppelt — via een unieke productidentificatiecode — aan een gestructureerd register dat wordt gehost door de marktdeelnemer of een aanbieder van digitaal-productpaspoortdiensten (DPP-SP), en geregistreerd in het <a href="/blog/eu-dpp-registry-explained/" target="_blank" rel="noopener">centraal EU-DPP-register</a>. Wat het detergent-DPP concreet maakt, is de exacte set velden die het moet bevatten en de regels waaraan het moet voldoen — hieronder samengebracht in één spiekbrief.</p>
+
+<div class="dsr-gate" id="dsrGate">
+  <div class="dsr-gate__preview">
+    <img id="dsrGateImg" class="dsr-gate__bg" src="/Blogs/dsr-digital-product-passport/dpp-cheatsheet-preview.webp" alt="Vervaagde voorvertoning van de spiekbrief met de vereisten voor het digitaal productpaspoort van detergenten — voer je e-mailadres in om hem volledig te bekijken.">
+    <div class="dsr-gate__veil"></div>
+    <form class="dsr-gate__form dsr-gateform" data-dl="0" novalidate>
+        <div class="dsr-gate__ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#007B40" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        <p class="dsr-gate__title">Ontvang de spiekbrief</p>
+        <p class="dsr-gate__sub">Een afdrukklare overzichtskaart op één pagina van elke vereiste waaraan een detergent-DPP moet voldoen. Voer je e-mailadres in om hem te bekijken en te downloaden.</p>
+        <input type="email" name="email" placeholder="jij@bedrijf.com" required autocomplete="email" aria-label="Jouw e-mailadres">
+        <button type="submit" class="dsr-gate__btn">Ontgrendelen &amp; downloaden</button>
+        <label class="dsr-gate__check"><input type="checkbox" name="privacy_policy_accepted" required> <span>Ik heb het <a href="/privacy.html" target="_blank" rel="noopener">privacybeleid</a> gelezen en ga ermee akkoord dat Regen Studio mijn e-mailadres verwerkt om mij de download toe te sturen.</span></label>
+        <label class="dsr-gate__check"><input type="checkbox" name="newsletter_opt_in"> <span>Optioneel — af en toe updates over DPP &amp; circulaire economie.</span></label>
+        <p class="dsr-gate__err dsr-hide" role="alert"></p>
+      </form>
+  </div>
+  <p class="dsr-gate__cap dsr-hide" id="dsrGateCap"><span>Elke vereiste waaraan een detergent-DPP moet voldoen — op één pagina.</span><a id="dsrGateDl" href="#" target="_blank" rel="noopener">Download de spiekbrief (PNG) &darr;</a></p>
+</div>
+
+<div class="dsr-modal dsr-hide" id="dsrModal" role="dialog" aria-modal="true" aria-label="Download de DPP-spiekbrief">
+  <div class="dsr-modal__backdrop" data-close></div>
+  <div class="dsr-modal__card">
+    <button class="dsr-modal__close" type="button" data-close aria-label="Sluiten">&times;</button>
+    <form class="dsr-gate__form dsr-gateform dsr-gateform--modal" data-dl="1" novalidate>
+      <div class="dsr-gate__ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#007B40" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+      <p class="dsr-gate__title">Download de detergent-DPP-spiekbrief</p>
+      <p class="dsr-gate__sub">Elke vereiste waaraan een detergent-DPP moet voldoen, op één afdrukbare pagina. Voer je e-mailadres in en we sturen hem op.</p>
+      <input type="email" name="email" placeholder="jij@bedrijf.com" required autocomplete="email" aria-label="Jouw e-mailadres">
+      <button type="submit" class="dsr-gate__btn">Mail mij de spiekbrief</button>
+      <label class="dsr-gate__check"><input type="checkbox" name="privacy_policy_accepted" required> <span>Ik heb het <a href="/privacy.html" target="_blank" rel="noopener">privacybeleid</a> gelezen en ga ermee akkoord dat Regen Studio mijn e-mailadres verwerkt om mij de download toe te sturen.</span></label>
+      <label class="dsr-gate__check"><input type="checkbox" name="newsletter_opt_in"> <span>Optioneel — af en toe updates over DPP &amp; circulaire economie.</span></label>
+      <p class="dsr-gate__err dsr-hide" role="alert"></p>
+    </form>
+  </div>
+</div>
+
+<script>
+(function () {
+  function init() {
+    var KEY = 'dsr_cheatsheet_unlocked';
+    var FN = 'https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form';
+    var CLEAN = '/Blogs/dsr-digital-product-passport/dpp-cheatsheet.webp?v=3';
+    var DL = '/Blogs/dsr-digital-product-passport/dpp-cheatsheet.png?v=3';
+    var gate = document.getElementById('dsrGate'); if (!gate) return;
+    var img = document.getElementById('dsrGateImg');
+    var cap = document.getElementById('dsrGateCap'), dl = document.getElementById('dsrGateDl');
+    var modal = document.getElementById('dsrModal');
+    var unlocked = !!localStorage.getItem(KEY);
+    function revealSheet() {
+      img.src = CLEAN; img.alt = 'Spiekbrief met de vereisten voor het digitaal productpaspoort van detergenten — volledige versie: wat het moet bevatten, waaraan het moet voldoen, de gegevensdrager en hoe het moet worden gebouwd.';
+      gate.classList.add('is-open');
+      var veil = gate.querySelector('.dsr-gate__veil'); if (veil) veil.classList.add('dsr-hide');
+      var f = gate.querySelector('.dsr-gate__form'); if (f) f.classList.add('dsr-hide');
+      dl.href = DL; cap.classList.remove('dsr-hide');
+    }
+    function triggerDownload() { var a = document.createElement('a'); a.href = DL; a.download = 'detergent-dpp-cheat-sheet.png'; a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); }
+    function closeModal() { modal.classList.add('dsr-hide'); document.body.style.overflow = ''; }
+    function openModal() { if (unlocked) { triggerDownload(); return; } modal.classList.remove('dsr-hide'); document.body.style.overflow = 'hidden'; var em = modal.querySelector('input[name="email"]'); if (em) em.focus(); }
+    if (unlocked) revealSheet();
+    [].forEach.call(document.querySelectorAll('.dsr-early-cta'), function (b) { b.addEventListener('click', openModal); });
+    if (modal) { [].forEach.call(modal.querySelectorAll('[data-close]'), function (el) { el.addEventListener('click', closeModal); }); document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); }); }
+
+    [].forEach.call(document.querySelectorAll('.dsr-gateform'), function (form) {
+      if (window.Antibot) window.Antibot.protect(form);
+      var err = form.querySelector('.dsr-gate__err');
+      var wantDl = form.getAttribute('data-dl') === '1';
+      function showErr(m) { err.textContent = m; err.classList.remove('dsr-hide'); }
+      form.addEventListener('submit', function (e) {
+        e.preventDefault(); err.classList.add('dsr-hide');
+        var email = (form.querySelector('input[name="email"]').value || '').trim();
+        var pp = form.querySelector('input[name="privacy_policy_accepted"]');
+        var nlb = form.querySelector('input[name="newsletter_opt_in"]');
+        var btn = form.querySelector('.dsr-gate__btn');
+        if (!email || email.indexOf('@') < 1) { showErr('Voer een geldig e-mailadres in.'); return; }
+        if (!pp.checked) { showErr('Bevestig dat je het privacybeleid hebt gelezen.'); return; }
+        btn.disabled = true; var label = btn.textContent; btn.textContent = 'Verzenden…';
+        function send(antibot) {
+          var payload = { name: '', email: email, message: 'DSR detergent DPP cheat-sheet download',
+            source: 'dsr-cheatsheet-download', page_url: window.location.href,
+            newsletter_opt_in: nlb.checked, ai_processing_opt_in: false,
+            privacy_policy_accepted: true, consent_version: '2026-04-24' };
+          if (antibot) for (var k in antibot) if (antibot.hasOwnProperty(k)) payload[k] = antibot[k];
+          fetch(FN, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+            .then(function (r) { if (!r.ok) return r.json().catch(function(){return{};}).then(function(d){ throw new Error(d.error || 'Er ging iets mis'); }); })
+            .then(function () { localStorage.setItem(KEY, Date.now().toString()); unlocked = true; revealSheet(); if (wantDl) { closeModal(); triggerDownload(); } })
+            .catch(function (e2) { showErr(e2.message || 'Mislukt — probeer het opnieuw.'); btn.disabled = false; btn.textContent = label; });
+        }
+        if (window.Antibot) window.Antibot.validate(form).then(send).catch(function (m) { showErr(m); btn.disabled = false; btn.textContent = label; });
+        else send(null);
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+
+<h2 id="path-to-a-compliant-dpp">De weg naar een conform DPP</h2>
+
+<p>Artikel 8(2) verwoordt de kernverplichting in één zin: voordat een product in de handel wordt gebracht, stelt de fabrikant de technische documentatie op en voert hij de conformiteitsbeoordeling uit, waarna hij het DPP aanmaakt, de gegevensdrager beschikbaar stelt en het DPP in het centraal register vermeldt. Operationeel zijn dat drie fasen die elk product moet doorlopen vóór 23 september 2029 — met één verplichting die de hele tijd parallel loopt.</p>
+
+<div class="dsr-figure">
+  <p class="dsr-figcap">De drie-fasenstroom, chronologisch — afgerond vóór het eerste op de markt aanbieden van elk product vanaf 23 september 2029 (art. 8(2) + art. 21(1) + art. 24(1)), met één verplichting die de hele tijd parallel loopt.</p>
+  <div class="dsr-flow">
+    <div class="dsr-fbox"><div class="dsr-ph">Fase 1</div><h4>Technische documentatie + conformiteit</h4><ul><li>Stel de technische documentatie op (bijlage IV 2.2)</li><li>Vul de Module A-zelfverklaring in</li></ul></div>
+    <div class="dsr-farrow">→</div>
+    <div class="dsr-fbox"><div class="dsr-ph">Fase 2</div><h4>Maak het DPP aan &amp; stel het online beschikbaar</h4><ul><li>Maak het DPP aan (art. 21) — 9 verplichte rubrieken (bijlage VI deel A)</li><li>Plaats de gegevensdrager (QR): fysiek + online + navulcontext (art. 21(4))</li><li>Regel de DPP-SP-back-up (art. 21(12)(c))</li></ul></div>
+    <div class="dsr-farrow">→</div>
+    <div class="dsr-fbox"><div class="dsr-ph">Fase 3</div><h4>Registeropload</h4><ul><li>Upload de UPI + UOI naar het ESPR-register (art. 24(1))</li><li>Het register retourneert een unieke identificatiecode voor registratie (art. 24(2))</li><li>Voor het in het vrije verkeer brengen via de douane: bewaar de goederencode</li></ul></div>
+  </div>
+  <div class="dsr-fgate">⚠ Poort tussen fase 2 en de markt: het DPP moet <strong>online en live zijn voordat het product op de markt wordt aangeboden</strong> — een QR die naar een lege of niet-gerouteerde URL leidt, is niet-conform (art. 21(4)).</div>
+  <div class="dsr-fpar"><strong>Parallel en continu (vanaf het moment van in de handel brengen):</strong> houd de technische documentatie en het DPP <strong>samen 10 jaar beschikbaar</strong> (bijlage IV pt 4 + art. 8(3) + art. 21(2)(g)).</div>
+</div>
+
+<p>De conformiteitsbeoordeling is "interne productiecontrole" — Module A (bijlage IV). Geen aangemelde instantie, geen certificering door derden: fabrikanten stellen de technische documentatie op en verklaren zelf. De administratieve eenvoud is reëel, maar de last om de technische documentatie correct te krijgen ligt volledig bij de fabrikant, en kan niet worden gedelegeerd aan een gemachtigde (art. 9(5)).</p>
+
+<h2 id="what-stays-the-same">Wat hetzelfde blijft</h2>
+
+<p><strong>De drempelwaarden voor de biologische afbreekbaarheid van oppervlakteactieve stoffen zijn ongewijzigd.</strong> De criteria van bijlage I, deel A — ≥60% mineralisatie binnen 28 dagen, of ≥70% via DOC-die-away — worden woordelijk overgenomen uit 648/2004, met dezelfde OECD-testmethoden, zodat bestaande leverancierscertificaten geldig blijven.</p>
+
+<p><strong>De fosfaatlimieten zijn ongewijzigd.</strong> Artikel 6 en bijlage III behouden de drempelwaarden van 648/2004 (0,5 g P per standaarddosering voor consumentenwasmiddelen; 0,3 g P voor consumentenwasmiddelen voor vaatwasmachines). Een verslag van de Commissie dat in 2028 verschuldigd is, kan strengere limieten voorstellen, maar de huidige getallen blijven gelden.</p>
+
+<p><strong>REACH, CLP en BPR blijven van toepassing.</strong> Artikel 1(2) is expliciet: de DSR doet <em>geen afbreuk</em> aan <a href="https://echa.europa.eu/regulations/reach/understanding-reach" target="_blank" rel="noopener">REACH</a>, <a href="https://echa.europa.eu/regulations/clp/understanding-clp" target="_blank" rel="noopener">CLP</a> en de <a href="https://echa.europa.eu/regulations/biocidal-products-regulation/understanding-bpr" target="_blank" rel="noopener">BPR</a>. DSR-verplichtingen stapelen bovenop, niet in plaats van, het bestaande chemicaliënregime — IUCLID blijft het REACH-kanaal, het <a href="https://poisoncentres.echa.europa.eu/" target="_blank" rel="noopener">ECHA-vergiftigingencentraportaal (PCN)</a> de route naar nationale vergiftigingencentra, en de SDS het downstreamdocument.</p>
+
+<h2 id="refill-distance-customs">Navulstations, verkoop op afstand, douane</h2>
+
+<p>Drie operationele kenmerken zullen de distributie hervormen. <strong>Navulverkoop</strong> krijgt expliciete aanmoediging als afvalpreventiemaatregel (art. 12, art. 17(2)) — het fysieke etiket en de gegevensdrager moeten bij elke navulling worden overhandigd, met ruimere details toegestaan in de digitaal-etiketlaag. <strong>Verkoop op afstand</strong> valt binnen het toepassingsgebied (art. 20): elke online vermelding — eigen winkel of marktplaats — moet de etiketinformatie van artikel 17 en een kopie van de gegevensdrager of UPI tonen <em>vóór</em> aankoop, waarbij de fabrikant verantwoordelijk is, zelfs wanneer een marktplaats de gebruikersinterface beheert. En vanaf 23 september 2029 verifieert de <strong>douane</strong> de unieke identificatiecode voor registratie aan de grens tegen het centraal register via het douane-éénloketsysteem van de EU (art. 25), zodat importeurs de registervermelding bij invoer op orde moeten hebben — niet later.</p>
+
+<h2 id="still-being-written">Wat nog wordt geschreven</h2>
+
+<p>De DSR is een kader: een aanzienlijke hoeveelheid detail zit nog in uitvoerings- en gedelegeerde handelingen die de Commissie nog moet vaststellen — <strong>zaken die nog niet op de tijdlijn staan, maar wachten op een datum</strong>. Bouw daarom <strong>schemaflexibel</strong>. De actieve monitoringlijst:</p>
+
+<div class="dsr-progress">
+  <div class="item"><b>Uitvoeringshandeling art. 21(10)</b> — de <b>doorslaggevende</b>: definitieve technische DPP-specificaties (drager, opmaak, toegangsrechten), zal naar verwachting voortbouwen op het ESPR-DPP-register, de JTC24-DPP-standaard en de aanstaande handeling inzake aanbieders van digitaal-productpaspoortdiensten. Van toepassing ≥18 maanden na vaststelling.</div>
+  <div class="item"><b>Gedelegeerde handeling art. 30(2)</b> — wijzigingen van de DPP-inhoud in bijlage VI; kunnen extra verplichte DPP-velden toevoegen.</div>
+  <div class="item"><b>Gedelegeerde handelingen art. 30(4)</b> — biologische afbreekbaarheid voor folies (verschuldigd mrt 2029) en organische stoffen ≥10% (verschuldigd mrt 2031).</div>
+  <div class="item"><b>Gedelegeerde handeling art. 30(6)</b> — risicomethodologie voor detergenten met micro-organismen (verschuldigd sep 2028).</div>
+  <div class="item"><b>Gedelegeerde handeling art. 30(10)</b> — specificaties voor digitale etiketten (verschuldigd okt 2028).</div>
+  <div class="item"><b>Gedelegeerde handeling art. 30(7)</b> — bestanddeelgegevensbladformaat voor vergiftigingencentra.</div>
+  <div class="item"><b>Verslag art. 34(2)</b> — haalbaarheidsbeoordeling inzake fosfaat (verschuldigd mrt 2028).</div>
+  <div class="item"><b>Nationale sancties (art. 33)</b> — per lidstaat vastgesteld; NL naar verwachting via de Warenwet / een Detergentenbesluit ~2028.</div>
+  <div class="item"><b>CEN-CENELEC <a href="/blog/dpp-system-standards/" target="_blank" rel="noopener">JTC24-standaarden</a></b> — horizontale DPP-technologiestandaarden nog in ontwikkeling.</div>
+  <div class="item"><b>ESPR-uitbreiding</b> — overweging 47 anticipeert dat de ESPR detergenten binnen haar toepassingsgebied zou kunnen brengen, met bovenop ecodesignvereisten. Ontwerp schemaflexibel.</div>
+</div>
+
+<h2 id="what-to-do-now">Wat fabrikanten nu zouden moeten doen</h2>
+
+<p>Zelfs met de uitvoeringshandeling in afwachting is er meer dan genoeg duidelijkheid om te beginnen. De les van de uitrol van de batterijenverordening is ondubbelzinnig: organisaties die de voorbereiding tot de laatste twaalf maanden uitstelden, liepen aan tegen een schaarste aan DPP-dienstverleners, prijsstijgingen en wachtlijsten. Enkele pragmatische interventies die fabrikanten nu al kunnen doen:</p>
+
+<p><strong>Toets het portfolio aan het nieuwe toepassingsgebied.</strong> Elke textielverfrisser, elk glansspoelmiddel, elk voorbehandelingsproduct, elke geurversterker en elk reinigingsmiddel voor groenten en fruit dat voorheen buiten 648/2004 viel, valt nu binnen het toepassingsgebied — net als elke variant van elk was-, afwas- en oppervlaktedetergent. Elk heeft een eigen DPP nodig.</p>
+
+<p><strong>Breng de leveranciersdatastroom in kaart.</strong> Als je toeleveringsketen de gegevens die het DPP nodig heeft niet kan leveren — volledige bestanddeellijsten, carry-over-conserveermiddelen, declaraties van allergene geurstoffen, testrapporten over biologische afbreekbaarheid — dan is dat een blokkade, geen administratief detail (art. 8(7)). Begin het leveranciersgesprek uiterlijk in 2027.</p>
+
+<p><strong>Kies een DPP-architectuur die standhoudt.</strong> Bouwen versus kopen is werkelijk een tweesprong: volledige uitbesteding aan een DPP-dienstverlener, of een zelfgehoste back-end met een verplichte back-up bij een dienstverlener. De tienjarige beschikbaarheidsvereiste — die een faillissement overleeft — maakt de back-up niet-onderhandelbaar. De hostingkeuze hangt af van de vraag of het DPP een nalevingslast is of een merkcontactpunt.</p>
+
+<p><strong>Ontwerp schemaflexibel.</strong> Het DSR-DPP is in 2029 een minimumset; toekomstige gedelegeerde handelingen (art. 30(2)) en de verwachte ESPR-uitbreiding (overweging 47) zullen velden toevoegen. Een modulair, geversioneerd schema kost nu weinig en voorkomt een herbouw later.</p>
+
+<p>De DSR is, in de eigen bewoordingen van de wetgever (overweging 2), een <em>vereenvoudiging</em>: één DPP dat verspreide informatievereisten over REACH, CLP, BPR en 648/2004 vervangt. Of het als vereenvoudiging of als last uitpakt, hangt af van de uitvoering. Merken die het DPP als merkkanaal behandelen in plaats van als nalevingsheffing komen doorgaans beter uit.</p>
+
+<h2 id="faq">Veelgestelde vragen</h2>
+
+<div class="dsr-faq">
+  <details>
+    <summary>Wanneer wordt het digitaal productpaspoort verplicht voor detergenten?</summary>
+    <p>Vanaf <strong>23 september 2029</strong>, de belangrijkste toepassingsdatum van Verordening (EU) 2026/405. Vanaf die datum moet elk detergent en elke oppervlakteactieve stof voor eindgebruikers die in de handel wordt gebracht op de EU-markt een DPP, een machineleesbare gegevensdrager en een vermelding in het centraal EU-register hebben. Het verbod op dierproeven geldt al vanaf 22 maart 2026, en de uitbreidingen voor biologische afbreekbaarheid volgen in 2032 en 2034. De uitvoeringshandeling van artikel 21(10) die de technische specificaties van het DPP vastlegt, is nog in afwachting en zou de effectieve DPP-datum naar later kunnen verschuiven.</p>
+  </details>
+  <details>
+    <summary>Welke producten vallen nieuw binnen het toepassingsgebied ten opzichte van de oude Detergentenverordening?</summary>
+    <p>Verordening (EU) 2026/405 breidt de definitie van "detergent" uit tot vier categorieën die grotendeels buiten Verordening (EG) 648/2004 vielen: detergenten met opzettelijk toegevoegde micro-organismen; producten die het reinigen ondersteunen wanneer ze met een wasmiddel of vaatwasmiddel worden gebruikt (glansspoelmiddelen, voorbehandelingsproducten, geurversterkers); producten die het gevoel of de geur van textiel veranderen (textielverfrissers); en producten voor de oppervlakken van groenten en fruit. Vlekkenverwijderaars, geurversterkers en reinigingsmiddelen voor groenten en fruit vallen nu volledig binnen het toepassingsgebied.</p>
+  </details>
+  <details>
+    <summary>Wat moet een detergent-DPP eigenlijk bevatten?</summary>
+    <p>Minimaal negen rubrieken uit bijlage VI deel A: productidentificatie (handelsnaam, unieke productidentificatiecode, verpakkingsafbeelding); contactgegevens van de fabrikant plus de unieke marktdeelnemeridentificatiecode; de verwijzing naar de aanbieder van digitaal-productpaspoortdiensten; een traceerbaarheidsidentificatiecode; een verklaring van enige verantwoordelijkheid; de HS/CN-goederencodes; een conformiteitsverklaring met kruisverwijzingen; de lijst van opzettelijk toegevoegde bestanddelen (volgens de CLP-identificatieregels); en de taxonomie van micro-organismen waar aanwezig. Het bevat <em>niet</em> de volledige formulering, het productieproces of de testrapporten over biologische afbreekbaarheid — die staan in de technische documentatie.</p>
+  </details>
+  <details>
+    <summary>Kan een fabrikant het DPP zelf hosten, of is een dienstverlener vereist?</summary>
+    <p>Zelf hosten is toegestaan (art. 22(e)), maar alleen naast een back-up die wordt gehost door een aanbieder van digitaal-productpaspoortdiensten (DPP-SP). De reden is artikel 21(2)(g): het DPP moet tien jaar vanaf het in de handel brengen beschikbaar blijven — ook als de fabrikant in faillissement, liquidatie of beëindiging belandt. De DPP-SP-back-up is daarom niet-onderhandelbaar, ongeacht de hostingkeuze.</p>
+  </details>
+  <details>
+    <summary>Wat blijft hetzelfde onder de nieuwe verordening?</summary>
+    <p>De drempelwaarden voor de biologische afbreekbaarheid van oppervlakteactieve stoffen (≥60% mineralisatie in 28 dagen, of ≥70% via DOC-die-away) worden woordelijk overgenomen met dezelfde OECD-testmethoden, zodat bestaande leverancierscertificaten geldig blijven. De fosfaatlimieten zijn ongewijzigd. En REACH, CLP en BPR blijven volledig van toepassing — de DSR stapelt bovenop het bestaande chemicaliënregime in plaats van het te vervangen.</p>
+  </details>
+  <details>
+    <summary>Zal de ESPR detergenten ook bovenop de DSR bestrijken?</summary>
+    <p>Mogelijk. Overweging 47 van de DSR anticipeert expliciet dat de verordening ecologisch ontwerp voor duurzame producten (ESPR) detergenten op middellange termijn binnen haar toepassingsgebied zou kunnen brengen, met bovenop de DSR-basislijn ecodesignvereisten. Beide regimes delen dezelfde gegevensdrager- en registerarchitectuur, zodat een schemaflexibel DPP-ontwerp vandaag het ESPR-uitbreidingsscenario dekt zonder herbouw.</p>
+  </details>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wanneer wordt het digitaal productpaspoort verplicht voor detergenten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vanaf 23 september 2029, de belangrijkste toepassingsdatum van Verordening (EU) 2026/405. Vanaf die datum moet elk detergent en elke oppervlakteactieve stof voor eindgebruikers die in de handel wordt gebracht op de EU-markt een digitaal productpaspoort, een machineleesbare gegevensdrager en een vermelding in het centraal EU-register hebben. Het verbod op dierproeven geldt al vanaf 22 maart 2026, en de uitbreidingen voor biologische afbreekbaarheid volgen in 2032 en 2034. De uitvoeringshandeling van artikel 21(10) die de technische specificaties van het DPP vastlegt, is nog in afwachting en zou de effectieve DPP-datum naar later kunnen verschuiven."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welke producten vallen nieuw binnen het toepassingsgebied ten opzichte van de oude Detergentenverordening?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Verordening (EU) 2026/405 breidt de definitie van detergent uit tot vier categorieën die grotendeels buiten Verordening (EG) 648/2004 vielen: detergenten met opzettelijk toegevoegde micro-organismen; producten die het reinigen ondersteunen wanneer ze met een wasmiddel of vaatwasmiddel worden gebruikt (glansspoelmiddelen, voorbehandelingsproducten, geurversterkers); producten die het gevoel of de geur van textiel veranderen (textielverfrissers); en producten voor de oppervlakken van groenten en fruit. Vlekkenverwijderaars, geurversterkers en reinigingsmiddelen voor groenten en fruit vallen nu volledig binnen het toepassingsgebied."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wat moet een detergent-DPP eigenlijk bevatten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Minimaal negen rubrieken uit bijlage VI deel A: productidentificatie (handelsnaam, unieke productidentificatiecode, verpakkingsafbeelding); contactgegevens van de fabrikant plus de unieke marktdeelnemeridentificatiecode; de verwijzing naar de aanbieder van digitaal-productpaspoortdiensten; een traceerbaarheidsidentificatiecode; een verklaring van enige verantwoordelijkheid; de HS/CN-goederencodes; een conformiteitsverklaring met kruisverwijzingen; de lijst van opzettelijk toegevoegde bestanddelen (volgens de CLP-identificatieregels); en de taxonomie van micro-organismen waar aanwezig. Het bevat niet de volledige formulering, het productieproces of de testrapporten over biologische afbreekbaarheid — die staan in de technische documentatie."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kan een fabrikant het DPP zelf hosten, of is een dienstverlener vereist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zelf hosten is toegestaan (art. 22(e)), maar alleen naast een back-up die wordt gehost door een aanbieder van digitaal-productpaspoortdiensten (DPP-SP). De reden is artikel 21(2)(g): het DPP moet tien jaar vanaf het in de handel brengen beschikbaar blijven — ook als de fabrikant in faillissement, liquidatie of beëindiging belandt. De DPP-SP-back-up is daarom niet-onderhandelbaar, ongeacht de hostingkeuze."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wat blijft hetzelfde onder de nieuwe verordening?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De drempelwaarden voor de biologische afbreekbaarheid van oppervlakteactieve stoffen (ten minste 60% mineralisatie in 28 dagen, of ten minste 70% via DOC-die-away) worden woordelijk overgenomen met dezelfde OECD-testmethoden, zodat bestaande leverancierscertificaten geldig blijven. De fosfaatlimieten zijn ongewijzigd. En REACH, CLP en BPR blijven volledig van toepassing — de DSR stapelt bovenop het bestaande chemicaliënregime in plaats van het te vervangen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Zal de ESPR detergenten ook bovenop de DSR bestrijken?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mogelijk. Overweging 47 van de DSR anticipeert expliciet dat de verordening ecologisch ontwerp voor duurzame producten (ESPR) detergenten op middellange termijn binnen haar toepassingsgebied zou kunnen brengen, met bovenop de DSR-basislijn ecodesignvereisten. Beide regimes delen dezelfde gegevensdrager- en registerarchitectuur, zodat een schemaflexibel DPP-ontwerp vandaag het ESPR-uitbreidingsscenario dekt zonder herbouw."
+      }
+    }
+  ]
+}
+</script>
+
+<aside class="dsr-fund" aria-label="Financieringsverantwoording">
+  <p class="dsr-fund__label">Financiering</p>
+  <p class="dsr-fund__text">Het onderzoek dat aan dit artikel ten grondslag ligt, werd medegefinancierd door de Europese Unie via het Europees Fonds voor Regionale Ontwikkeling (EFRO), de provincie Zuid-Holland en het programma Kansen voor West III.</p>
+  <div class="dsr-fund__logos">
+    <span class="dsr-fund__eu">
+      <img src="Images/Funding/eu-emblem.svg" alt="Europese Unie" width="84" height="56">
+      <span class="dsr-fund__eu-text">Medegefinancierd door de<br>Europese Unie</span>
+    </span>
+    <img class="dsr-fund__logo" src="Images/Funding/kansen-voor-west-iii.png" alt="Kansen voor West III" width="126" height="44" loading="lazy">
+    <img class="dsr-fund__logo" src="Images/Funding/provincie-zuid-holland.png" alt="Provincie Zuid-Holland" width="84" height="44" loading="lazy">
+  </div>
+</aside>
+
+<p style="text-align: center; margin-top: 24px;">Werk je aan DSR-gereedheid voor je portfolio van detergenten of oppervlakteactieve stoffen? Neem contact op via <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>

@@ -91,3 +91,19 @@ package*.json
 scope/
 scope-test-content/
 scope-test-*.html
+
+# Blog comment-stage: drafts rendered with the production template + the
+# review widget. _comment-stage/ is the LOCAL plaintext preview — NEVER push
+# (also hard-blocked by the pre-push INTERNAL_PATHS_RE). _review/ is the
+# password-ENCRYPTED deploy artifact: gitignored by default; deploying it is a
+# deliberate `git add -f` + explicit-authorisation push (it is ciphertext, no
+# readable draft). The widget partial is dev tooling, never served raw.
+_comment-stage/
+_review/
+scripts/comment-stage-widget.html
+
+# ui-screenshot artifacts (binary diffs — never commit)
+.screenshots/
+
+# Internal logo-placement lab (not for publish)
+_logo-placer/

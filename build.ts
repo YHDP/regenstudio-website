@@ -1039,10 +1039,189 @@ ${items.join("\n")}
 `;
 }
 
+// --- Comment stage (draft render + review widget, isolated, never published) ---
+
+/** Load ONE post by slug WITHOUT the published/review filter. Draft-capable. */
+async function loadDraftPost(baseDir: string, slug: string, lang: Lang): Promise<BlogPost> {
+  const sfx = lang === "en" ? "" : `.${lang}`;
+  const meta: BlogMeta = JSON.parse(
+    await Deno.readTextFile(`${baseDir}/Blogs/${slug}/meta${sfx}.json`)
+  );
+  const content = await Deno.readTextFile(`${baseDir}/Blogs/${slug}/content${sfx}.html`);
+  return { ...meta, slug, content, readingTime: calcReadingTime(content) };
+}
+
+/** Hex-encode crypto material (salt/iv/ct). Hex is [0-9a-f] only, so the
+ *  ciphertext can never contain the pre-push readable-leak tokens
+ *  (NVZ\b / PEFCR\b / Dutch dates / placeholders) — fixes the false-positive
+ *  at our source, leaving the security hook fully intact. */
+function hex(u: Uint8Array): string {
+  let s = "";
+  for (let i = 0; i < u.length; i++) s += u[i].toString(16).padStart(2, "0");
+  return s;
+}
+function b64(u: Uint8Array): string {
+  let s = "";
+  const C = 0x8000;
+  for (let i = 0; i < u.length; i += C) s += String.fromCharCode(...u.subarray(i, i + C));
+  return btoa(s);
+}
+
+/** Password-encrypt (PBKDF2 → AES-GCM, WebCrypto) so the deployed artifact is
+ *  ciphertext, not a readable draft. Password never persisted; only salt/iv/ct ship. */
+const MIME: Record<string, string> = {
+  webp: "image/webp", png: "image/png", svg: "image/svg+xml",
+  jpg: "image/jpeg", jpeg: "image/jpeg", gif: "image/gif",
+};
+async function dataUri(path: string): Promise<string | null> {
+  try {
+    const bytes = await Deno.readFile(path);
+    const ext = (path.split(".").pop() || "").toLowerCase();
+    const m = MIME[ext];
+    return m ? `data:${m};base64,${b64(bytes)}` : null;
+  } catch { return null; }
+}
+
+/** Inline the confidential/not-yet-live assets into the HTML as data URIs so
+ *  the encrypted artifact is fully self-contained: the draft's own images
+ *  (Blogs/<slug>/*) and the two new client logos that aren't on the live site
+ *  yet. Public, already-deployed site assets (CSS/JS, existing carousel logos)
+ *  stay as live-site refs — they are not confidential and reduce blob size. */
+async function inlineAssets(html: string, baseDir: string, slug: string, lang: Lang): Promise<string> {
+  const prefix = assetPrefix(lang);
+  const targets: string[] = ["Images/client-logos/coe-dpp.svg", "Images/client-logos/rvo.png"];
+  try {
+    for await (const e of Deno.readDir(`${baseDir}/Blogs/${slug}`)) {
+      if (e.isFile && /\.(webp|png|jpe?g|svg|gif)$/i.test(e.name)) targets.push(`Blogs/${slug}/${e.name}`);
+    }
+  } catch { /* no post dir */ }
+  let out = html;
+  for (const rel of targets) {
+    const uri = await dataUri(`${baseDir}/${rel}`);
+    if (uri) out = out.split(`${prefix}${rel}`).join(uri);
+  }
+  return out;
+}
+
+async function encryptHtml(html: string, password: string) {
+  const enc = new TextEncoder();
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const km = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey(
+    { name: "PBKDF2", salt, iterations: 250000, hash: "SHA-256" },
+    km, { name: "AES-GCM", length: 256 }, false, ["encrypt"],
+  );
+  const ct = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, enc.encode(html)));
+  return { salt: hex(salt), iv: hex(iv), ct: hex(ct) };
+}
+
+function decryptorShell(d: { salt: string; iv: string; ct: string }): string {
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Protected review</title>
+<style>body{font:16px/1.5 -apple-system,system-ui,sans-serif;background:#1a1a2e;color:#fff;display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0}.c{background:#fff;color:#1a1a2e;max-width:400px;width:90%;padding:30px;border-radius:14px}h1{font-size:18px;margin:0 0 6px}p{font-size:14px;color:#4a5568}input{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;font:inherit;margin:14px 0}button{width:100%;padding:11px;border:0;border-radius:999px;background:#008545;color:#fff;font:700 15px/1 inherit;cursor:pointer}.e{color:#93093F;font-size:13px;min-height:18px;margin-top:8px}</style></head>
+<body><div class="c"><h1>Protected review</h1><p>This is a confidential pre-publication draft. Enter the review password to continue.</p><input id="pw" type="password" placeholder="Review password" autocomplete="off"><button id="go">Unlock</button><div class="e" id="err"></div></div>
+<script>
+var D={salt:"${d.salt}",iv:"${d.iv}",ct:"${d.ct}"};
+function u8(h){var a=new Uint8Array(h.length/2);for(var i=0;i<a.length;i++)a[i]=parseInt(h.substr(i*2,2),16);return a;}
+async function go(){var pw=document.getElementById('pw').value;if(!pw)return;document.getElementById('err').textContent='Decrypting…';
+try{var enc=new TextEncoder();var km=await crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveKey']);
+var key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:u8(D.salt),iterations:250000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
+var pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:u8(D.iv)},key,u8(D.ct));
+var html=new TextDecoder().decode(pt);document.open();document.write(html);document.close();
+}catch(e){document.getElementById('err').textContent='Wrong password. Try again.';}}
+document.getElementById('go').addEventListener('click',go);
+document.getElementById('pw').addEventListener('keydown',function(e){if(e.key==='Enter')go();});
+</script></body></html>
+`;
+}
+
+async function buildCommentStage(
+  baseDir: string, slug: string, langArg: Lang | null, password: string | null,
+): Promise<void> {
+  // Detect available languages for this slug (EN always; nl/pt if present).
+  let langs: Lang[] = ["en"];
+  for (const lng of SUPPORTED_LANGS) {
+    if (lng === "en") continue;
+    try {
+      await Deno.stat(`${baseDir}/Blogs/${slug}/meta.${lng}.json`);
+      await Deno.stat(`${baseDir}/Blogs/${slug}/content.${lng}.html`);
+      langs.push(lng);
+    } catch { /* no translation */ }
+  }
+  if (langArg) langs = langs.filter((l) => l === langArg);
+  if (langs.length === 0) { console.error(`No ${langArg} draft for ${slug}.`); Deno.exit(2); }
+
+  const template = await readTemplate(baseDir);
+  const widget = await Deno.readTextFile(`${baseDir}/scripts/comment-stage-widget.html`);
+  const cut = (a: string, b?: string) => {
+    const i = widget.indexOf(a) + a.length;
+    const j = b ? widget.indexOf(b) : widget.length;
+    return widget.slice(i, j).trim();
+  };
+  const wHead = cut("<!-- ==WIDGET-HEAD== -->", "<!-- ==WIDGET-BODY== -->");
+  const wBody = cut("<!-- ==WIDGET-BODY== -->", "<!-- ==WIDGET-SCRIPT== -->");
+  const wScript = cut("<!-- ==WIDGET-SCRIPT== -->");
+
+  // Stable per-slug path (no random suffix) so a shared partner URL stays
+  // durable across re-deploys; confidentiality rests on the password, not path
+  // obscurity (artifact is encrypted + noindex + robots-disallowed).
+  for (const lang of langs) {
+    const post = await loadDraftPost(baseDir, slug, lang);
+    let html = generatePage(post, template, lang, langs);
+    // Strip first-party analytics from a confidential review artifact (privacy minimisation).
+    html = html.replace(/\s*<script src="[^"]*assets\/js\/tracker\.js" defer><\/script>/, "");
+    // Overlay the review widget (Stage-2 unified pattern: @media screen only).
+    html = html.replace("</head>", `${wHead}\n</head>`)
+               .replace("<body>", `<body>\n${wBody}`)
+               .replace("</body>", `${wScript}\n</body>`);
+
+    const sub = lang === "en" ? "" : `/${lang}`;
+    const localDir = `${baseDir}/_comment-stage/${slug}${sub}`;
+    await Deno.mkdir(localDir, { recursive: true });
+    await Deno.writeTextFile(`${localDir}/index.html`, html);
+    console.log(`  _comment-stage/${slug}${sub}/index.html`);
+
+    if (password) {
+      const deployDir = `${baseDir}/_review/${slug}${sub}`;
+      await Deno.mkdir(deployDir, { recursive: true });
+      const enc = await encryptHtml(await inlineAssets(html, baseDir, slug, lang), password);
+      await Deno.writeTextFile(`${deployDir}/index.html`, decryptorShell(enc));
+      console.log(`  _review/${slug}${sub}/index.html  (encrypted)`);
+    }
+  }
+
+  console.log(`\nComment stage built for "${slug}" (${langs.join(", ")}).`);
+  console.log(`Local preview: serve repo root, open http://localhost:8000/_comment-stage/${slug}/`);
+  if (password) {
+    console.log(`Encrypted deploy artifact: /_review/${slug}/  (password set at build time, not stored)`);
+    console.log(`Deploying it is a git push = explicit per-push authorisation.`);
+  } else {
+    console.log(`No --password given: only the local plaintext was written (gitignored, never push).`);
+  }
+}
+
 // --- Main ---
 
 async function main() {
   const baseDir = ".";
+
+  // Comment-stage mode: render a DRAFT through the real pipeline + overlay the
+  // review widget. Isolated; returns BEFORE any blog/sitemap/feed write.
+  const args = Deno.args;
+  const csIdx = args.indexOf("--comment-stage");
+  if (csIdx !== -1) {
+    const slug = args[csIdx + 1];
+    if (!slug || slug.startsWith("--")) { console.error("--comment-stage requires a <slug>"); Deno.exit(2); }
+    const lIdx = args.indexOf("--lang");
+    const langArg = (lIdx !== -1 ? args[lIdx + 1] : null) as Lang | null;
+    let password: string | null = null;
+    const pIdx = args.indexOf("--password");
+    if (pIdx !== -1) password = args[pIdx + 1];
+    else { try { password = Deno.env.get("COMMENT_STAGE_PW") || null; } catch { /* --allow-env not granted */ } }
+    await buildCommentStage(baseDir, slug, langArg, password);
+    return;
+  }
+
   console.log("Loading blog posts...");
 
   const posts = await loadPosts(baseDir);

@@ -482,13 +482,13 @@
       </div>
       <p>We only collect personal data when you actively provide it, or when strictly necessary to deliver a service you requested.</p>
 
-      <p><strong>Contact forms and newsletter subscriptions</strong> (regenstudio.world)</p>
+      <p><strong>Contact forms, gated content downloads, and newsletter subscriptions</strong> (regenstudio.world)</p>
       <ul>
-        <li>Your name and email address</li>
-        <li>Your message (if provided)</li>
+        <li>Your name (if provided) and email address</li>
+        <li>Your message, or the identifier of the download you requested (e.g. a cheat-sheet or guide)</li>
         <li>The page URL you submitted from</li>
       </ul>
-      <p>Purpose: to respond to your inquiry, send newsletters, and notify our team. Legal basis: <strong>legitimate interest</strong> (GDPR Art. 6(1)(f) / LGPD Art. 10) and <strong>consent</strong> (GDPR Art. 6(1)(a) / LGPD Art. 7(I)).</p>
+      <p>Purpose: to respond to your inquiry, deliver any cheat-sheet, guide or other download you request, send newsletters (only if you opt in), and notify our team. Requesting a gated download does not subscribe you to anything &mdash; the newsletter checkbox is separate and optional. Legal basis: <strong>consent</strong> (GDPR Art. 6(1)(a) / LGPD Art. 7(I)) for delivering the download and for the newsletter, and <strong>legitimate interest</strong> (GDPR Art. 6(1)(f) / LGPD Art. 10) for responding to inquiries.</p>
       <p>To prevent abuse, contact form submissions are rate-limited. A one-way hash of your IP address (combined with the current date) is temporarily stored for up to 24 hours to count submissions per time window. The raw IP is never stored. Legal basis: <strong>legitimate interest</strong> (GDPR Art. 6(1)(f) / LGPD Art. 10).</p>
       <p>Our forms also use client-side anti-spam measures, including a hidden field to detect automated submissions, a minimum time threshold, a visual challenge, and a computational proof-of-work check. These measures generate technical metadata (timestamps, challenge results) that is sent alongside your form submission and used solely to distinguish genuine visitors from bots. This data is not linked to your identity and is not retained beyond the submission request. No personal data is collected by these measures.</p>
 
@@ -581,7 +581,7 @@
       <p>We use your browser&rsquo;s <code>localStorage</code> in the following cases:</p>
       <ul>
         <li><strong>Demo access tokens</strong> &mdash; when you access a demo using a magic link or password, we store a session token containing only the demo identifier and an expiry timestamp. This keeps you logged in so you don&rsquo;t have to re-authenticate on each page load.</li>
-        <li><strong>Content unlock tokens</strong> &mdash; when you provide your email to access gated content (e.g., product family details), we store a timestamp recording when you unlocked access.</li>
+        <li><strong>Content unlock tokens</strong> &mdash; when you provide your email to access gated content (e.g., a downloadable cheat-sheet or guide, or product family details), we store a timestamp in your browser recording when you unlocked access.</li>
         <li><strong>Pre-publication review tool</strong> &mdash; when you are invited to comment on a draft article via a private review link, the name (or alias) and optional email or role you enter, your comments, and your consent timestamp are stored in your own browser&rsquo;s <code>localStorage</code> only. This is never transmitted to our servers automatically &mdash; it stays on your device until you choose to email the exported report to us.</li>
       </ul>
       <p>In the first two cases, the stored value contains <strong>no personal data</strong> (no email, no name). All tokens are programmatically enforced to expire after 24 hours: the code checks the stored timestamp against the current time and removes expired tokens automatically.</p>
