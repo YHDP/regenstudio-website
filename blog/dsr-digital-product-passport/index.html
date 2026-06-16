@@ -506,16 +506,14 @@
     <form class="dsr-gate__form dsr-gateform" data-dl="0" novalidate>
         <div class="dsr-gate__ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#007B40" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
         <p class="dsr-gate__title">Get the cheat sheet</p>
-        <p class="dsr-gate__sub">A one-page, print-ready map of every requirement a detergent DPP must satisfy. Enter your email to view and download it.</p>
+        <p class="dsr-gate__sub">A one-page, print-ready map of every requirement a detergent DPP must satisfy. Enter your email and we'll send it to your inbox.</p>
         <input type="email" name="email" placeholder="you@company.com" required autocomplete="email" aria-label="Your email">
-        <button type="submit" class="dsr-gate__btn">Unlock &amp; download</button>
+        <button type="submit" class="dsr-gate__btn">Email me the cheat sheet</button>
         <label class="dsr-gate__check"><input type="checkbox" name="privacy_policy_accepted" required> <span>I've read the <a href="/privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and agree to Regen Studio handling my email to send me the download.</span></label>
         <label class="dsr-gate__check"><input type="checkbox" name="newsletter_opt_in"> <span>Optional — occasional DPP &amp; circular-economy updates.</span></label>
         <p class="dsr-gate__err dsr-hide" role="alert"></p>
       </form>
-  </div>
-  <p class="dsr-gate__cap dsr-hide" id="dsrGateCap"><span>Every requirement a detergent DPP must satisfy — on one page.</span><a id="dsrGateDl" href="#" target="_blank" rel="noopener">Download the cheat sheet (PNG) &darr;</a></p>
-</div>
+  </div></div>
 
 <div class="dsr-modal dsr-hide" id="dsrModal" role="dialog" aria-modal="true" aria-label="Download the DPP cheat sheet">
   <div class="dsr-modal__backdrop" data-close></div>
@@ -539,32 +537,27 @@
   function init() {
     var KEY = 'dsr_cheatsheet_unlocked';
     var FN = 'https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form';
-    var CLEAN = '/Blogs/dsr-digital-product-passport/dpp-cheatsheet.webp?v=3';
-    var DL = '/Blogs/dsr-digital-product-passport/dpp-cheatsheet.png?v=3';
+    var SENT_LABEL = '✓ Check your inbox';
+    var SENT_MSG = "We've emailed you the cheat sheet — check your inbox (and spam).";
     var gate = document.getElementById('dsrGate'); if (!gate) return;
-    var img = document.getElementById('dsrGateImg');
-    var cap = document.getElementById('dsrGateCap'), dl = document.getElementById('dsrGateDl');
     var modal = document.getElementById('dsrModal');
     var unlocked = !!localStorage.getItem(KEY);
-    function revealSheet() {
-      img.src = CLEAN; img.alt = 'Detergent Digital Product Passport requirements cheat sheet — full version: what it must contain, what it must be, the data carrier, and how it must be built.';
-      gate.classList.add('is-open');
-      var veil = gate.querySelector('.dsr-gate__veil'); if (veil) veil.classList.add('dsr-hide');
-      var f = gate.querySelector('.dsr-gate__form'); if (f) f.classList.add('dsr-hide');
-      dl.href = DL; cap.classList.remove('dsr-hide');
+    function markSent(form) {
+      var btn = form.querySelector('.dsr-gate__btn'); if (btn) { btn.disabled = true; btn.textContent = SENT_LABEL; }
+      var em = form.querySelector('input[name="email"]'); if (em) em.style.display = 'none';
+      [].forEach.call(form.querySelectorAll('.dsr-gate__check'), function (l) { l.style.display = 'none'; });
+      var msg = form.querySelector('.dsr-gate__err'); if (msg) { msg.textContent = SENT_MSG; msg.style.color = '#007B40'; msg.classList.remove('dsr-hide'); }
     }
-    function triggerDownload() { var a = document.createElement('a'); a.href = DL; a.download = 'detergent-dpp-cheat-sheet.png'; a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); }
     function closeModal() { modal.classList.add('dsr-hide'); document.body.style.overflow = ''; }
-    function openModal() { if (unlocked) { triggerDownload(); return; } modal.classList.remove('dsr-hide'); document.body.style.overflow = 'hidden'; var em = modal.querySelector('input[name="email"]'); if (em) em.focus(); }
-    if (unlocked) revealSheet();
+    function openModal() { modal.classList.remove('dsr-hide'); document.body.style.overflow = 'hidden'; var em = modal.querySelector('input[name="email"]'); if (em && em.style.display !== 'none') em.focus(); }
+    if (unlocked) [].forEach.call(document.querySelectorAll('.dsr-gateform'), markSent);
     [].forEach.call(document.querySelectorAll('.dsr-early-cta'), function (b) { b.addEventListener('click', openModal); });
     if (modal) { [].forEach.call(modal.querySelectorAll('[data-close]'), function (el) { el.addEventListener('click', closeModal); }); document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); }); }
 
     [].forEach.call(document.querySelectorAll('.dsr-gateform'), function (form) {
       if (window.Antibot) window.Antibot.protect(form);
       var err = form.querySelector('.dsr-gate__err');
-      var wantDl = form.getAttribute('data-dl') === '1';
-      function showErr(m) { err.textContent = m; err.classList.remove('dsr-hide'); }
+      function showErr(m) { err.textContent = m; err.style.color = ''; err.classList.remove('dsr-hide'); }
       form.addEventListener('submit', function (e) {
         e.preventDefault(); err.classList.add('dsr-hide');
         var email = (form.querySelector('input[name="email"]').value || '').trim();
@@ -582,7 +575,7 @@
           if (antibot) for (var k in antibot) if (antibot.hasOwnProperty(k)) payload[k] = antibot[k];
           fetch(FN, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }) // supabase.co edge function
             .then(function (r) { if (!r.ok) return r.json().catch(function(){return{};}).then(function(d){ throw new Error(d.error || 'Something went wrong'); }); })
-            .then(function () { localStorage.setItem(KEY, Date.now().toString()); unlocked = true; revealSheet(); if (wantDl) { closeModal(); triggerDownload(); } })
+            .then(function () { localStorage.setItem(KEY, Date.now().toString()); unlocked = true; markSent(form); })
             .catch(function (e2) { showErr(e2.message || 'Failed — please try again.'); btn.disabled = false; btn.textContent = label; });
         }
         if (window.Antibot) window.Antibot.validate(form).then(send).catch(function (m) { showErr(m); btn.disabled = false; btn.textContent = label; });
