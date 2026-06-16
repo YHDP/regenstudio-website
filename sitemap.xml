@@ -363,6 +363,16 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-espr/" />
   </url>
   <url>
+    <loc>https://www.regenstudio.world/blog/eu-brazil-digital-partnership/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/eu-brazil-digital-partnership/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/eu-brazil-digital-partnership/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/eu-brazil-digital-partnership/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/eu-brazil-digital-partnership/" />
+  </url>
+  <url>
     <loc>https://www.regenstudio.world/blog/dsr-digital-product-passport/</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
@@ -721,6 +731,26 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/Blog%201/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/Blog%201/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/Blog%201/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/blog/eu-brazil-digital-partnership/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/eu-brazil-digital-partnership/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/eu-brazil-digital-partnership/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/eu-brazil-digital-partnership/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/eu-brazil-digital-partnership/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/blog/eu-brazil-digital-partnership/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/eu-brazil-digital-partnership/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/eu-brazil-digital-partnership/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/eu-brazil-digital-partnership/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/eu-brazil-digital-partnership/" />
   </url>
   <url>
     <loc>https://www.regenstudio.world/nl/blog/dsr-digital-product-passport/</loc>

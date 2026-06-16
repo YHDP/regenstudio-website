@@ -1,0 +1,33 @@
+{
+  "title": "The EU–Brazil Digital Partnership: what's actually in it, and why it matters",
+  "slug": "eu-brazil-digital-partnership",
+  "subtitle": "On 12 June 2026, Brussels and Brasília drew a digital bridge across the Atlantic, a Digital Partnership built on a January adequacy decision that quietly created the world's largest free-data-flow zone, covering 670 million people. Here's what's actually in it, and why it matters to Regen Studio, with one foot in EU regulation and one in Brazil.",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regenerative Innovation Design"
+  },
+  "date": "2026-06-15",
+  "categories": [
+    "Digital Society",
+    "Vision & Strategy"
+  ],
+  "tags": [
+    "EU-Brazil",
+    "digital-partnership",
+    "data-adequacy",
+    "GDPR",
+    "LGPD",
+    "digital-identity",
+    "eIDAS",
+    "digital-product-passports",
+    "tech-sovereignty"
+  ],
+  "featuredImage": "hero.webp",
+  "featuredImageAlt": "A faceted, low-poly bridge of colourful triangular polygons spanning between the EU and Brazilian flags' colours, illustrating the EU–Brazil Digital Partnership and the free flow of data across the Atlantic",
+  "excerpt": "On 12 June 2026 the EU and Brazil signed a Digital Partnership in Brasília, easy to file under 'diplomatic communiqué' and move on. But underneath the framing sit concrete workstreams on data, identity, chips and connectivity, built on a January 2026 adequacy decision that created the world's largest free-data-flow zone, covering 670 million people. Here's what was actually signed, the piece most coverage buried, and why it's directly relevant to the unglamorous engineering of trustworthy cross-border digital systems.",
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
+}

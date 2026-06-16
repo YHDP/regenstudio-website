@@ -1,0 +1,33 @@
+{
+  "title": "A Parceria Digital UE–Brasil: o que realmente está nela, e por que importa",
+  "slug": "eu-brazil-digital-partnership",
+  "subtitle": "Em 12 de junho de 2026, Bruxelas e Brasília ergueram uma ponte digital sobre o Atlântico: uma Parceria Digital, construída sobre uma decisão de adequação de janeiro que, em silêncio, criou a maior zona de livre fluxo de dados do mundo, cobrindo 670 milhões de pessoas. Veja o que há nela, e por que importa para a Regen Studio, com um pé na regulação da UE e outro no Brasil.",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Design de Inovação Regenerativa"
+  },
+  "date": "2026-06-15",
+  "categories": [
+    "Digital Society",
+    "Vision & Strategy"
+  ],
+  "tags": [
+    "UE-Brasil",
+    "parceria-digital",
+    "adequação-de-dados",
+    "GDPR",
+    "LGPD",
+    "identidade-digital",
+    "eIDAS",
+    "passaportes-digitais-de-produto",
+    "soberania-tecnológica"
+  ],
+  "featuredImage": "hero.webp",
+  "featuredImageAlt": "Uma ponte facetada, em low-poly, feita de polígonos triangulares coloridos entre as cores das bandeiras da UE e do Brasil, ilustrando a Parceria Digital UE–Brasil e o livre fluxo de dados pelo Atlântico.",
+  "excerpt": "Em 12 de junho de 2026, a UE e o Brasil assinaram uma Parceria Digital em Brasília, fácil de arquivar como comunicado diplomático. Mas sob o enquadramento estão frentes de trabalho concretas sobre dados, identidade, chips e conectividade, construídas sobre uma decisão de adequação de janeiro de 2026 que criou a maior zona de livre fluxo de dados do mundo, cobrindo 670 milhões de pessoas. Veja o que foi de fato assinado, a parte que a maioria da cobertura ignorou, e por que é diretamente relevante para a engenharia pouco glamourosa de sistemas digitais transfronteiriços confiáveis.",
+  "published": true,
+  "review": {
+    "text": "approved",
+    "assets": "approved"
+  }
+}
