@@ -70,9 +70,14 @@ while read local_ref local_sha remote_ref remote_sha; do
   #    - echa.europa.eu — ECHA broader (SCIP database, etc.).
   #    - circulartechforum.de — CircularTech Forum partner site, joint-submission
   #      co-author credited in the DPP Registry IR consultation post.
+  #    2026-06-16: extended for the EU–Brazil Digital Partnership post:
+  #    - ec.europa.eu — official European Commission domain (press corner / IP-
+  #      releases: the EU–Brazil Digital Partnership IP/26/1350 and the mutual
+  #      data-adequacy decision IP/26/229). Same provenance as the already-
+  #      allowlisted digital-strategy.ec.europa.eu (DG CONNECT).
   #    User-clicked <a href> hyperlinks are not exfil vectors, but the regex
   #    matches them anyway; allowlisting sanctioned domains is the targeted fix.
-  EXTERNAL_TAGS=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(src|href)="https?://' | grep -viE '(supabase\.co|regenstudio\.(world|space)|player\.vimeo\.com|w\.soundcloud\.com|linkedin\.com|bsky\.app|mastodon\.social|schema\.org|ogp\.me|github\.com/YHDP/regenstudio-website|tweedekamer\.nl|rvo\.nl|tno\.nl|coe-dpp\.nl|fides-labs\.io|eur-lex\.europa\.eu|denhaag\.nl|smartcity\.denhaag\.nl|denhaag\.raadsinformatie\.nl|vng\.nl|rijksoverheid\.nl|acm\.nl|platform31\.nl|stedin\.net|amsterdamsmartcity\.com|energy\.nl|forthefutureofenergy\.nl|gridflex\.nl|gebiedsontwikkeling\.nu|nvde\.nl|openremote\.io|smart-energy\.com|schoonschipamsterdam\.org|kerstentechniek\.nl|kansenvoorwest\.nl|eprel\.ec\.europa\.eu|digital-strategy\.ec\.europa\.eu|reach-it\.echa\.europa\.eu|echa\.europa\.eu|circulartechforum\.de)' || true)
+  EXTERNAL_TAGS=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(src|href)="https?://' | grep -viE '(supabase\.co|regenstudio\.(world|space)|player\.vimeo\.com|w\.soundcloud\.com|linkedin\.com|bsky\.app|mastodon\.social|schema\.org|ogp\.me|github\.com/YHDP/regenstudio-website|tweedekamer\.nl|rvo\.nl|tno\.nl|coe-dpp\.nl|fides-labs\.io|eur-lex\.europa\.eu|denhaag\.nl|smartcity\.denhaag\.nl|denhaag\.raadsinformatie\.nl|vng\.nl|rijksoverheid\.nl|acm\.nl|platform31\.nl|stedin\.net|amsterdamsmartcity\.com|energy\.nl|forthefutureofenergy\.nl|gridflex\.nl|gebiedsontwikkeling\.nu|nvde\.nl|openremote\.io|smart-energy\.com|schoonschipamsterdam\.org|kerstentechniek\.nl|kansenvoorwest\.nl|eprel\.ec\.europa\.eu|digital-strategy\.ec\.europa\.eu|ec\.europa\.eu|reach-it\.echa\.europa\.eu|echa\.europa\.eu|circulartechforum\.de)' || true)
   if [ -n "$EXTERNAL_TAGS" ]; then
     echo -e "${RED}BLOCKED: External URL(s) found in added lines:${NC}"
     echo "$EXTERNAL_TAGS" | head -10
