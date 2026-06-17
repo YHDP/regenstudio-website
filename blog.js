@@ -78,9 +78,18 @@
     return results.filter(b => b && b.published).sort((a, b) => new Date(b.date) - new Date(a.date));
   }
 
-  // --- Related posts (weighted scoring) ---
+  // --- Related posts (manual pin, else weighted scoring) ---
   function getRelatedPosts(current, allPosts, max) {
     max = max || 3;
+    // Manual override: meta.relatedPosts = ["slug", ...] pins those posts in order.
+    if (Array.isArray(current.relatedPosts) && current.relatedPosts.length) {
+      const bySlug = {};
+      allPosts.forEach(p => { bySlug[p.slug] = p; });
+      const pinned = current.relatedPosts
+        .map(s => bySlug[s])
+        .filter(p => p && p.slug !== current.slug);
+      if (pinned.length) return pinned.slice(0, max);
+    }
     const scored = allPosts
       .filter(p => p.slug !== current.slug)
       .map(p => {

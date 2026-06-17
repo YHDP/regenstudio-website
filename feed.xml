@@ -5,8 +5,19 @@
     <link>https://www.regenstudio.world/blog.html</link>
     <description>Innovations that regenerate Humans, Cities and Nature.</description>
     <language>en</language>
-    <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
+    <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
     <atom:link href="https://www.regenstudio.world/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dutch law adopts the Electronic Bill of Lading</title>
+      <link>https://www.regenstudio.world/blog/electronic-bill-of-lading-eu-brazil/</link>
+      <guid isPermaLink="true">https://www.regenstudio.world/blog/electronic-bill-of-lading-eu-brazil/</guid>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
+      <description>From 1 July 2026 the electronic bill of lading is legally binding in the Netherlands, given the same force as the centuries-old paper document. It is the first binding Dutch instance of a legally authoritative electronic transferable record, with a trust model (integrity, authenticity, control-as-possession, singularity) that maps almost line by line onto what a trustworthy Digital Product Passport needs, and it feeds directly into the trusted-DPP work we do in the TruPASS consortium and across our Brazil-Netherlands projects.</description>
+      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
+      <category>Digital Product Passport</category>
+      <category>Vision &amp; Strategy</category>
+      <enclosure url="https://www.regenstudio.world/Blogs/electronic-bill-of-lading-eu-brazil/hero.webp" type="image/webp" length="203012" />
+    </item>
     <item>
       <title>The EU–Brazil Digital Partnership: what&apos;s actually in it, and why it matters</title>
       <link>https://www.regenstudio.world/blog/eu-brazil-digital-partnership/</link>
@@ -227,17 +238,6 @@
       <category>Digital Product Passport</category>
       <category>Vision &amp; Strategy</category>
       <enclosure url="https://www.regenstudio.world/Blogs/ESPR/ESPRWorkingPlanBlogAtivo%201.webp" type="image/webp" length="92530" />
-    </item>
-    <item>
-      <title>Talk to AI as if it&apos;s Trump</title>
-      <link>https://www.regenstudio.world/blog/ai-trump/</link>
-      <guid isPermaLink="true">https://www.regenstudio.world/blog/ai-trump/</guid>
-      <pubDate>Thu, 22 May 2025 00:00:00 GMT</pubDate>
-      <description>Having a conversation with ChatGPT is the same as whispering it in Donald Trump’s ear. A personal story about AI, privacy, and why we need mental models for digital self-defense — co-written with ChatGPT.</description>
-      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
-      <category>AI</category>
-      <category>Vision &amp; Strategy</category>
-      <enclosure url="https://www.regenstudio.world/Blogs/ai-trump/HeaderTRUMPAtivo%2030.webp" type="image/webp" length="138438" />
     </item>
   </channel>
 </rss>
