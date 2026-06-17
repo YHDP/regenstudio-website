@@ -24,6 +24,7 @@ interface BlogMeta {
   subtitle: string;
   author: { name: string; role: string };
   date: string;
+  updated?: string;
   categories: string[];
   tags: string[];
   featuredImage: string;
@@ -303,6 +304,7 @@ async function readTemplate(baseDir: string): Promise<string> {
 function buildJsonLd(post: BlogPost, lang: Lang = "en"): string {
   const prefix = langPrefix(lang);
   const imageUrl = resolveImageUrl(post.slug, post.featuredImage);
+  const wordCount = post.content.replace(/<[^>]*>/g, " ").trim().split(/\s+/).filter(Boolean).length;
   const schema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -310,17 +312,22 @@ function buildJsonLd(post: BlogPost, lang: Lang = "en"): string {
     description: post.excerpt || post.subtitle,
     image: imageUrl,
     datePublished: post.date,
+    dateModified: post.updated || post.date,
     inLanguage: lang === "pt" ? "pt-BR" : lang,
+    wordCount,
+    timeRequired: `PT${post.readingTime}M`,
     author: post.author.name === "Regen Studio"
       ? {
           "@type": "Organization",
           "@id": `${SITE_URL}/#organization`,
           name: post.author.name,
+          url: SITE_URL,
         }
       : {
           "@type": "Person",
           "@id": `${SITE_URL}/#founder`,
           name: post.author.name,
+          url: `${SITE_URL}/about.html`,
         },
     publisher: {
       "@type": "Organization",
@@ -431,7 +438,7 @@ ${hreflangSection}
   <meta property="og:site_name" content="${SITE_NAME}">
   <meta property="og:locale" content="${lang === "nl" ? "nl_NL" : lang === "pt" ? "pt_BR" : "en_GB"}">
   <meta property="article:published_time" content="${post.date}">
-  <meta property="article:modified_time" content="${post.date}">
+  <meta property="article:modified_time" content="${post.updated || post.date}">
   <meta property="article:author" content="${escapeHtml(post.author.name)}">
 
   <!-- Twitter/X Card -->
