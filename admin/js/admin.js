@@ -86,6 +86,10 @@
     if (val === 'custom') {
       return { from: dateFrom.value, to: dateTo.value };
     }
+    if (val === 'all') {
+      // Analytics began Feb 2026; an early floor lets the function clamp to whatever exists.
+      return { from: '2025-01-01', to: new Date().toISOString().split('T')[0] };
+    }
     var days = parseInt(val);
     var to = new Date();
     var from = new Date(to.getTime() - days * 86400000);
@@ -537,6 +541,14 @@
     var humanValues = dates.map(function (dt) { return d.dailyViews[dt] || 0; });
     var uniqueValues = dates.map(function (dt) { return d.dailyUniques[dt] || 0; });
 
+    // 7-day trailing moving average of views — smooths daily noise so the overall
+    // direction (are we trending up?) is readable at a glance. Own `stack` id so it
+    // plots actual values even when the bot toggle turns the y-axis stacked.
+    var maValues = humanValues.map(function (_, i) {
+      var win = humanValues.slice(Math.max(0, i - 6), i + 1);
+      return +(win.reduce(function (a, b) { return a + b; }, 0) / win.length).toFixed(1);
+    });
+
     var datasets = [
       {
         label: 'Views',
@@ -558,6 +570,18 @@
         pointRadius: 2,
         borderDash: [4, 2],
         order: 1
+      },
+      {
+        label: '7-day avg',
+        data: maValues,
+        borderColor: COLORS[4],
+        backgroundColor: 'transparent',
+        fill: false,
+        tension: 0.4,
+        pointRadius: 0,
+        borderWidth: 2.5,
+        order: 0,
+        stack: 'movingAvg'
       }
     ];
 
