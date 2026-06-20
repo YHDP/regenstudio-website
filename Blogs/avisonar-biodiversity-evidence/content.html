@@ -1,0 +1,55 @@
+<h2>The half you can't yet quantify</h2>
+
+<p>Carbon accounting is settled. Tonnes of CO₂e, factor-versioned, range-bracketed, audit-traceable — the discipline is mature enough that an auditor knows what to ask for and a sustainability lead knows how to deliver it.</p>
+
+<p>Biodiversity impact is the harder half. ESG, CSRD, CSDDD and TNFD frameworks increasingly ask for <em>evidence</em> — not narrative — that operations and supply chains don't degrade the ecosystems they sit in. For building-materials value chains, that question lands hard: forestry sourcing, quarry footprints, site-development impact, post-construction recovery. And most current biodiversity disclosures fall into one of two categories — static <em>"is the site within X km of a Natura 2000 area?"</em> or narrative <em>"we work with local stakeholders to protect biodiversity."</em></p>
+
+<p>Neither produces measured, longitudinal, site-specific evidence. Neither tells you whether the site is becoming more or less biodiverse over time.</p>
+
+<h2>Birds as a recognised proxy</h2>
+
+<p>Avian species richness has been used as an ecosystem-health indicator across decades of conservation biology. Birds occupy multiple trophic levels, respond rapidly to land-use change, and are observable without invasive sampling. Standard diversity indices — Shannon, species accumulation, IUCN-weighted richness — are well understood by ecologists and increasingly by sustainability auditors.</p>
+
+<p>This isn't a novel methodology. It's a non-invasive, scalable application of established ecological monitoring.</p>
+
+<h2>How AviSonar works</h2>
+
+<p><strong>AviSonar</strong> listens for birds continuously, on-device. It identifies species via <a href="https://github.com/birdnet-team/BirdNET-Analyzer">BirdNET-Analyzer</a> — Cornell Lab's open species models — applies IUCN Red List status across 249 species, and surfaces site-level analytics: heatmaps, accumulation curves, frequency calendars, Shannon diversity, species comparison.</p>
+
+<p>Local-first by design: no account, no cloud, no data leaves the device. Crucially, AviSonar ships with extensive verification tooling — a human can confirm or reject each detection, turning raw audio recognition into validated, verifiable data. A laptop and a simple microphone become a bird sensor in minutes; planned Raspberry Pi support will let multiple sensors blanket large or hard-to-reach sites simultaneously.</p>
+
+<h2>Same discipline as your carbon numbers</h2>
+
+<p>AviSonar's records carry the same audit discipline the <a href="https://www.regenstudio.world/blog/calculating-our-own-footprint">Regen CO₂ Footprint Manager</a> applies to carbon:</p>
+
+<ul>
+  <li>Numbers come with <strong>confidence ranges</strong>, not false precision.</li>
+  <li>Calculations are <strong>reproducible</strong> — re-run them in three years and get the same answer.</li>
+  <li>Sites <strong>aggregate cleanly</strong> into portfolio totals.</li>
+  <li>The <strong>original audio sits attached</strong> to every record, so an auditor can verify any figure end-to-end.</li>
+</ul>
+
+<p>The biodiversity-disclosure field itself — TNFD, CSRD ESRS-E4, SBTN, EU-Taxonomy "do no significant harm" — is still maturing, and assurance methodology is being built in real time. AviSonar doesn't settle which framework you follow. It gives you measured, longitudinal, site-level data with the traceability discipline assurance providers expect of any ESG figure — so when your framework and your auditor ask for evidence, you have it.</p>
+
+<h2>Where it lands in a building-materials value chain</h2>
+
+<ul>
+  <li><strong>Forestry and timber sourcing</strong> — baseline biodiversity at and near concession boundaries, year-on-year delta.</li>
+  <li><strong>Quarries, aggregate and mining sites</strong> — pre-/during-/post-extraction monitoring.</li>
+  <li><strong>Production sites</strong> — perimeter and surrounding-land biodiversity as part of site-level disclosure.</li>
+  <li><strong>Construction-impact sites</strong> — pre-/post-construction comparison, recovery curve over years.</li>
+  <li><strong>Reference sites</strong> — undisturbed control points for like-for-like comparison.</li>
+  <li><strong>Effect of interventions</strong> — measure whether your planting, insect-hotel, or greenery-policy initiatives actually shift the species count over time.</li>
+</ul>
+
+<p>In each case, AviSonar produces the measured trend that the ESG framework asks for, and the auditor can verify.</p>
+
+<h2>Try AviSonar</h2>
+
+<p>AviSonar is currently in prototype mode for macOS. Species detection runs on BirdNET-Analyzer, released under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 — freely available for research and education. Commercial deployment will be preceded by a commercial-use agreement with the Cornell Lab of Ornithology's BirdNET team.</p>
+
+<p><strong>Pilot path</strong>: a typical pilot anchors on three site classes — operational (your construction site, quarry, or production area), sourcing-adjacent (near or at the supply origin), and reference (an undisturbed nearby site for like-for-like comparison). One unit per site, linked to a shared dashboard, with monthly delta reports and annual rollup aligned to your CSRD / VSME / annual-report calendar.</p>
+
+<p><strong>See it in action:</strong> <a href="https://demos.regenstudio.world/avisonar/">demos.regenstudio.world/avisonar/</a> — read-only demo built from a curated public-domain dataset (no personal recordings ever leave the device in the real version). Demo password: <code>Givebackmydata</code>.</p>
+
+<p>For early-access conversations or pilot scoping: <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>
