@@ -430,8 +430,13 @@ else: print(f'published={pub} review.text={r.get(\"text\")} review.assets={r.get
     ALLOWLIST=$(grep -vE '^\s*(#|$)' "$ALLOWLIST_FILE" 2>/dev/null || true)
   fi
 
+  #    NB: the nl/ and pt/ language roots are themselves matched by the slug
+  #    pattern (nl/index.html, pt/index.html are the translated homepages, not
+  #    new content slugs) — exclude them so editing a language homepage does
+  #    not spuriously demand nl/nl/ + pt/nl/ variants.
   TOP_LEVEL_NEW=$(git diff --name-only --diff-filter=AM "$range" 2>/dev/null \
-    | grep -E '^[a-z0-9][a-z0-9-]*/index\.html$' || true)
+    | grep -E '^[a-z0-9][a-z0-9-]*/index\.html$' \
+    | grep -vE '^(nl|pt)/index\.html$' || true)
 
   if [ -n "$TOP_LEVEL_NEW" ]; then
     while IFS= read -r file; do
