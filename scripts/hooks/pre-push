@@ -333,20 +333,86 @@ while read local_ref local_sha remote_ref remote_sha; do
   LEAK_HITS=$(echo "$PUBLIC_DIFF" | grep -E '^\+' | grep -vE '^\+\+\+' | \
     grep -niE "$CLIENT_IDENTIFIERS_RE" || true)
   if [ -n "$LEAK_HITS" ]; then
-    echo -e "${RED}BLOCKED: Client identifier(s) in public-facing file(s):${NC}"
-    echo "$LEAK_HITS" | head -20
-    echo ""
-    echo -e "${YELLOW}  Public DPA / contract / asset paths must be GENERIC TEMPLATES${NC}"
-    echo -e "${YELLOW}  that load client data at runtime from authenticated Edge${NC}"
-    echo -e "${YELLOW}  Functions (e.g. dpa-verify-token returns the engagement profile).${NC}"
-    echo -e "${YELLOW}  Client-specific content stays in dpa/ops/clients.json (covered${NC}"
-    echo -e "${YELLOW}  by check 6.5) or in Edge Function source (gitignored).${NC}"
-    echo ""
-    echo -e "${YELLOW}  This guard was added 2026-05-04 after a hardcoded-Seepje leak${NC}"
-    echo -e "${YELLOW}  reached origin/main. Do NOT bypass with --no-verify unless you${NC}"
-    echo -e "${YELLOW}  have confirmed the match is in a case-study / blog-post context${NC}"
-    echo -e "${YELLOW}  with documented naming_allowed consent for that subject.${NC}"
-    ISSUES=$((ISSUES + 1))
+    # Consent-aware clearance (2026-07-07): a client NAME may appear in a public
+    # file IFF the manifest records naming_allowed=true for that subject
+    # (documented CaseStudy/naming consent, recorded via
+    # consent-registry/record-operator-consent.sh -> regen-manifest.sh). Voucher
+    # NUMBERS (kvw3-#####) are pure leak vectors and NEVER clear.
+    # Fail-CLOSED: manifest unavailable / subject without naming consent -> block.
+    # The operator's local manifest path is NEVER hardcoded in this PUBLIC repo;
+    # it comes from $REGEN_CONSENT_MANIFEST or the gitignored
+    # scripts/hooks/.consent-manifest-path. Unset -> fail closed (block all).
+    HARD_ID_RE='kvw3-[0-9]{5}'
+    NAME_SLUG_TOKENS="seepje houtgoed evsmart engelvaart hollands"
+    MANIFEST_PATH="${REGEN_CONSENT_MANIFEST:-}"
+    if [ -z "$MANIFEST_PATH" ] && [ -f "scripts/hooks/.consent-manifest-path" ]; then
+      MANIFEST_PATH="$(cat scripts/hooks/.consent-manifest-path)"
+    fi
+
+    # Which consent-clearable name tokens actually appear in the added lines?
+    PRESENT_TOKENS=""
+    for tok in $NAME_SLUG_TOKENS; do
+      if echo "$LEAK_HITS" | grep -qiE "$tok"; then PRESENT_TOKENS="$PRESENT_TOKENS $tok"; fi
+    done
+
+    # Resolve which present tokens are NOT cleared by documented naming consent.
+    NOT_CLEARED=""
+    if [ -n "$PRESENT_TOKENS" ]; then
+      NOT_CLEARED=$(MANIFEST_PATH="$MANIFEST_PATH" python3 - $PRESENT_TOKENS <<'PYEOF'
+import json, os, sys
+tokens = sys.argv[1:]
+mp = os.environ.get("MANIFEST_PATH", "")
+try:
+    with open(mp) as fh:
+        d = json.load(fh)
+except Exception:
+    print("\n".join(tokens))  # fail closed: nothing cleared
+    sys.exit(0)
+subs = d.get("subjects", {})
+items = subs.items() if isinstance(subs, dict) else [(s.get("alias"), s) for s in subs]
+def cleared(tok):
+    t = tok.lower()
+    for _alias, s in items:
+        if not (s.get("permissions", {}) or {}).get("naming_allowed"):
+            continue
+        for e in (s.get("engagements", []) or []):
+            key = (e.get("engagement_key") or "").lower()
+            if ("/" + t) in key or key.split("/")[-1] == t:
+                return True
+    return False
+print("\n".join(tok for tok in tokens if not cleared(tok)))
+PYEOF
+)
+    fi
+
+    # Transparency: log every token cleared by documented consent (no silent allow).
+    for tok in $PRESENT_TOKENS; do
+      if ! printf '%s\n' "$NOT_CLEARED" | grep -qx "$tok"; then
+        echo -e "${YELLOW}  note: client name '${tok}' allowed publicly — manifest naming_allowed=true (documented consent).${NC}"
+      fi
+    done
+
+    HARD_HITS=$(echo "$LEAK_HITS" | grep -niE "$HARD_ID_RE" || true)
+    NOT_CLEARED_CLEAN=$(printf '%s\n' "$NOT_CLEARED" | grep -vE '^[[:space:]]*$' || true)
+
+    if [ -n "$HARD_HITS" ] || [ -n "$NOT_CLEARED_CLEAN" ]; then
+      echo -e "${RED}BLOCKED: Client identifier(s) without documented naming consent:${NC}"
+      if [ -n "$NOT_CLEARED_CLEAN" ]; then
+        printf '%s\n' "$NOT_CLEARED_CLEAN" | sed 's/^/  name (no naming_allowed): /'
+      fi
+      if [ -n "$HARD_HITS" ]; then
+        echo "  voucher-number hit(s) — never clear:"
+        echo "$HARD_HITS" | head -10
+      fi
+      echo ""
+      echo -e "${YELLOW}  Public paths must be GENERIC TEMPLATES that load client data at${NC}"
+      echo -e "${YELLOW}  runtime from authenticated Edge Functions. A client NAME may appear${NC}"
+      echo -e "${YELLOW}  publicly ONLY with naming_allowed=true — record it via${NC}"
+      echo -e "${YELLOW}  consent-registry/record-operator-consent.sh then regen-manifest.sh.${NC}"
+      echo -e "${YELLOW}  Voucher numbers never clear. Guard added 2026-05-04 (Seepje leak);${NC}"
+      echo -e "${YELLOW}  consent-aware since 2026-07-07.${NC}"
+      ISSUES=$((ISSUES + 1))
+    fi
   fi
 
   # 6. Block publishing unreviewed blog content.

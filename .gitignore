@@ -107,3 +107,10 @@ scripts/comment-stage-widget.html
 
 # Internal logo-placement lab (not for publish)
 _logo-placer/
+
+# Consent-aware pre-push guard: local pointer to the operator's consent manifest
+# (_index.json on Proton Drive). Gitignored so this PUBLIC repo never carries the
+# operator's local path/email. If absent, the client-identifier guard fails CLOSED
+# (blocks every client name, as before). Set via $REGEN_CONSENT_MANIFEST instead if
+# preferred.
+scripts/hooks/.consent-manifest-path
