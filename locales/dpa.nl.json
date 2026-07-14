@@ -16,7 +16,8 @@
       "invalid": "<strong>Uitnodiging niet geldig.</strong><br>De link in uw uitnodigings-mail is incompleet of beschadigd.",
       "unverifiable": "<strong>Uitnodiging niet verifieerbaar.</strong><br>Mogelijke oorzaken: link is verlopen (7 dagen geldig), link is al gebruikt, of de URL is incompleet.",
       "connection": "<strong>Verbindingsstoring.</strong><br>Probeer opnieuw of mail Regen Studio.",
-      "storage_blocked": "Uw browser blokkeert opslag. Schakel cookies/storage tijdelijk in voor regenstudio.world en probeer opnieuw."
+      "storage_blocked": "Uw browser blokkeert opslag. Schakel cookies/storage tijdelijk in voor regenstudio.world en probeer opnieuw.",
+      "unsupported_engagement": "<strong>Deze uitnodiging kan niet worden getoond.</strong><br>Neem contact op met Regen Studio — er is een configuratiefout in de opdracht."
     },
     "nav": {
       "next_aria": "Verder naar volgende slide",
@@ -344,6 +345,38 @@
           "title": "Metadata",
           "sub": "Tijdstempels, IP's, geaggregeerde gebruikscijfers",
           "benefit": "<strong>Als AI dit mag inzien:</strong> Audit-trail automatisch opgebouwd per beslissing; geen reconstructie achteraf."
+        }
+      },
+      "cards_client": {
+        "contact_info": {
+          "title": "Contactgegevens",
+          "sub": "Naam, functie, organisatie, zakelijk e-mailadres",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> stakeholder-overzichten en gespreksvoorbereidingen worden automatisch opgebouwd — geen handmatig overtypen van namen en rollen."
+        },
+        "project_documentation": {
+          "title": "Projectdocumentatie",
+          "sub": "Projectplannen, voortgangsrapportages, technische documentatie, interne communicatie",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> een dossier van honderden documenten wordt in dagen in plaats van weken ontsloten — en de feitelijke tijdlijn wordt aantoonbaar volledig in plaats van afhankelijk van wat toevallig opviel."
+        },
+        "decision_records": {
+          "title": "Besluitvorming &amp; juridische stukken",
+          "sub": "Besluiten, raadsstukken, vergunningen, statuten, contracten",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> besluiten worden precies gedateerd en aan elkaar geknoopt, zodat zichtbaar wordt wélk besluit welke afslag veroorzaakte — de kern van een bruikbare reconstructie."
+        },
+        "stakeholder_interviews": {
+          "title": "Interviews met betrokkenen",
+          "sub": "Opnames, transcripten, persoonlijke ervaringen en opvattingen",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> patronen over tientallen gesprekken heen worden zichtbaar — waar verhalen samenvallen én waar ze botsen. <em>Namen worden altijd door aliassen vervangen vóórdat er iets naar het AI-model gaat; de sleutel blijft bij Regen Studio (Annex B §B.6.2).</em>"
+        },
+        "energy_usage_data": {
+          "title": "Energie- en meetgegevens",
+          "sub": "Verbruik, opwek en aansluitgegevens op individueel niveau",
+          "benefit": "<strong>Standaard uitgesloten.</strong> Verbruiksgegevens per aansluiting verraden aanwezigheidspatronen van individuele ondernemers en huishoudens. Voor dit werk volstaan geaggregeerde cijfers — die zijn geen persoonsgegevens en vallen buiten deze overeenkomst."
+        },
+        "metadata": {
+          "title": "Metadata",
+          "sub": "Tijdstempels, bestandsnamen, versiehistorie",
+          "benefit": "<strong>Als AI dit mag inzien:</strong> documenten kunnen op datum en versie worden geordend zonder de inhoud te openen — vaak genoeg om de tijdlijn al te vullen."
         }
       }
     }

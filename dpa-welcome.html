@@ -733,12 +733,13 @@
     gap: 14px; margin-top: 18px;
   }
   /* Engagement-scoped card sets: hide all by default; show only the matching scope.
-     The active scope is set by JS on <body data-engagement-scope="voucher|partnership">
+     The active scope is set by JS on <body data-engagement-scope="voucher|partnership|client">
      based on engagement_key prefix (see dpa-welcome.html init flow). */
   .consent-matrix__scope { display: contents; }
   .consent-matrix__scope[data-scope] { display: none; }
   body[data-engagement-scope="voucher"]      .consent-matrix__scope[data-scope="voucher"]      { display: contents; }
   body[data-engagement-scope="partnership"]  .consent-matrix__scope[data-scope="partnership"]  { display: contents; }
+  body[data-engagement-scope="client"]       .consent-matrix__scope[data-scope="client"]       { display: contents; }
   .consent-card {
     background: white; border: 1px solid var(--border);
     border-radius: 12px; padding: 14px 16px;
@@ -1458,6 +1459,109 @@
 
           </div><!-- /.consent-matrix__scope[data-scope="partnership"] -->
 
+          <!-- Client scope: 6 cards for engagement_key prefix 'client/' (advisory / knowledge work).
+               Categories mirror Annex B §B.4 of schedule-client-NL.md — keep the two in sync. -->
+          <div class="consent-matrix__scope" data-scope="client">
+
+          <div class="consent-card" data-category="contact_info">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">📇</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_client.contact_info.title">Contactgegevens</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_client.contact_info.sub">Naam, functie, organisatie, zakelijk e-mailadres</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_client.contact_info.benefit"><strong>Als AI dit mag inzien:</strong> stakeholder-overzichten en gespreksvoorbereidingen worden automatisch opgebouwd — geen handmatig overtypen van namen en rollen.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_contact_info" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_contact_info" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio cc-radio--locked"><input type="radio" name="cat_contact_info" value="excluded" disabled><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+            </fieldset>
+            <p class="consent-card__locked-help" data-i18n="welcome.slide_consent.locked_excluded_help">Zonder dit kunnen we echt niet werken.</p>
+          </div>
+
+          <div class="consent-card" data-category="project_documentation">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">📁</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_client.project_documentation.title">Projectdocumentatie</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_client.project_documentation.sub">Projectplannen, voortgangsrapportages, technische documentatie, interne communicatie</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_client.project_documentation.benefit"><strong>Als AI dit mag inzien:</strong> een dossier van honderden documenten wordt in dagen in plaats van weken ontsloten — en de feitelijke tijdlijn wordt aantoonbaar volledig in plaats van afhankelijk van wat toevallig opviel.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_project_documentation" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_project_documentation" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_project_documentation" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+            </fieldset>
+          </div>
+
+          <div class="consent-card" data-category="decision_records">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">⚖️</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_client.decision_records.title">Besluitvorming &amp; juridische stukken</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_client.decision_records.sub">Besluiten, raadsstukken, vergunningen, statuten, contracten</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_client.decision_records.benefit"><strong>Als AI dit mag inzien:</strong> besluiten worden precies gedateerd en aan elkaar geknoopt, zodat zichtbaar wordt wélk besluit welke afslag veroorzaakte — de kern van een bruikbare reconstructie.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_decision_records" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_decision_records" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_decision_records" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+            </fieldset>
+          </div>
+
+          <div class="consent-card" data-category="stakeholder_interviews">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">🎙️</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_client.stakeholder_interviews.title">Interviews met betrokkenen</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_client.stakeholder_interviews.sub">Opnames, transcripten, persoonlijke ervaringen en opvattingen</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_client.stakeholder_interviews.benefit"><strong>Als AI dit mag inzien:</strong> patronen over tientallen gesprekken heen worden zichtbaar — waar verhalen samenvallen én waar ze botsen. <em>Namen worden altijd door aliassen vervangen vóórdat er iets naar het AI-model gaat; de sleutel blijft bij Regen Studio (Annex B §B.6.2).</em></p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_stakeholder_interviews" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_stakeholder_interviews" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_stakeholder_interviews" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+            </fieldset>
+          </div>
+
+          <div class="consent-card" data-category="energy_usage_data">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">⚡</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_client.energy_usage_data.title">Energie- en meetgegevens</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_client.energy_usage_data.sub">Verbruik, opwek en aansluitgegevens op individueel niveau</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_client.energy_usage_data.benefit"><strong>Standaard uitgesloten.</strong> Verbruiksgegevens per aansluiting verraden aanwezigheidspatronen van individuele ondernemers en huishoudens. Voor dit werk volstaan geaggregeerde cijfers — die zijn geen persoonsgegevens en vallen buiten deze overeenkomst.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_energy_usage_data" value="ai_may_process"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_energy_usage_data" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_energy_usage_data" value="excluded" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+            </fieldset>
+          </div>
+
+          <div class="consent-card" data-category="metadata">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">🗂️</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_client.metadata.title">Metadata</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_client.metadata.sub">Tijdstempels, bestandsnamen, versiehistorie</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_client.metadata.benefit"><strong>Als AI dit mag inzien:</strong> documenten kunnen op datum en versie worden geordend zonder de inhoud te openen — vaak genoeg om de tijdlijn al te vullen.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_metadata" value="ai_may_process" checked><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI mag verwerken</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_metadata" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Alleen operator</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_metadata" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Niet verwerken</span></label>
+            </fieldset>
+          </div>
+
+          </div><!-- /.consent-matrix__scope[data-scope="client"] -->
+
         </div>
         <p class="consent-footnote" data-i18n-html="welcome.slide_consent.footnote">Per-categorie keuzes worden in de DPA en het consent-register vastgelegd als audit-trail; geautomatiseerde handhaving op rij-niveau door de AI-gates van Regen Studio rolt uit in Q3-2026. Tot dan handhaaft de operator de fijnere keuzes handmatig.</p>
       </div>
@@ -1992,10 +2096,12 @@
   // Matrix categories: each must have exactly one radio checked.
   // The active category set depends on engagement scope (set on body.dataset.engagementScope
   // by the dpa-verify-token response handler). Voucher engagements get the DPP-voucher 8;
-  // partnership engagements get the CTF/partnership 7 (added 2026-05-23).
+  // partnership engagements get the CTF/partnership 7 (added 2026-05-23);
+  // client engagements get the advisory/knowledge-work 6 (added 2026-07-13).
   const MATRIX_CATEGORIES_BY_SCOPE = {
     voucher:     ['contact_info', 'project_content', 'production_data', 'transport_data', 'supplier_data', 'certification_audit_data', 'metadata', 'financial_data'],
     partnership: ['contact_info', 'acquisition_data', 'ecosystem_data', 'bilateral_records', 'joint_deliverables', 'commercial_intel', 'metadata'],
+    client:      ['contact_info', 'project_documentation', 'decision_records', 'stakeholder_interviews', 'energy_usage_data', 'metadata'],
   };
   function activeMatrixCategories() {
     const scope = (state.engagementScope || document.body.dataset.engagementScope || 'voucher');
@@ -2253,11 +2359,22 @@
         state.profile = body.engagement_profile;
 
         // Set engagement scope on <body> so the per-engagement consent-card matrix
-        // shows the right set (voucher | partnership). Derived from engagement_key
+        // shows the right set (voucher | partnership | client). Derived from engagement_key
         // prefix when engagement_type isn't on the profile (DB-path response gap).
+        //
+        // An unknown prefix must NOT silently fall through to the voucher cards: that
+        // would show a counterparty a consent matrix over production/transport/supplier
+        // data they never agreed to and that their Annex B doesn't describe. Fail loud
+        // instead — the signer sees an error rather than the wrong contract.
         const engKey = body.engagement_key || state.profile.engagement_key || '';
         const engTypeRaw = state.profile.engagement_type || engKey.split('/')[0] || '';
-        const scope = engTypeRaw === 'partnership' ? 'partnership' : 'voucher';
+        const SCOPE_BY_ENG_TYPE = { voucher: 'voucher', partnership: 'partnership', client: 'client' };
+        const scope = SCOPE_BY_ENG_TYPE[engTypeRaw];
+        if (!scope) {
+          console.error('[dpa-welcome] unknown engagement type "' + engTypeRaw + '" for key "' + engKey + '" — no consent-card set defined.');
+          showError(t('welcome.error.unsupported_engagement', '<strong>Deze uitnodiging kan niet worden getoond.</strong><br>Neem contact op met Regen Studio — er is een configuratiefout in de opdracht.'));
+          return;
+        }
         document.body.dataset.engagementScope = scope;
         state.engagementScope = scope;
 

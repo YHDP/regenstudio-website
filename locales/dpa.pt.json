@@ -16,7 +16,8 @@
       "invalid": "<strong>Convite inválido.</strong><br>O link no seu e-mail de convite está incompleto ou danificado.",
       "unverifiable": "<strong>Não foi possível verificar o convite.</strong><br>Possíveis causas: o link expirou (válido por 7 dias), o link já foi utilizado ou a URL está incompleta.",
       "connection": "<strong>Falha de conexão.</strong><br>Tente novamente ou envie um e-mail para a Regen Studio.",
-      "storage_blocked": "Seu navegador está bloqueando o armazenamento. Habilite cookies/storage temporariamente para regenstudio.world e tente novamente."
+      "storage_blocked": "Seu navegador está bloqueando o armazenamento. Habilite cookies/storage temporariamente para regenstudio.world e tente novamente.",
+      "unsupported_engagement": "<strong>Este convite não pode ser apresentado.</strong><br>Contacte a Regen Studio — existe um erro de configuração no contrato."
     },
     "nav": {
       "next_aria": "Continuar para o próximo slide",
@@ -314,6 +315,38 @@
           "title": "Metadados",
           "sub": "Carimbos de tempo, IPs, contagens agregadas de uso",
           "benefit": "<strong>Se a IA puder processar:</strong> Trilha de auditoria construída automaticamente por decisão; sem reconstrução posterior."
+        }
+      },
+      "cards_client": {
+        "contact_info": {
+          "title": "Dados de contacto",
+          "sub": "Nome, função, organização, e-mail profissional",
+          "benefit": "<strong>Se a IA puder processar isto:</strong> panorâmicas de stakeholders e preparação de reuniões constroem-se sozinhas — sem reescrever nomes e funções à mão."
+        },
+        "project_documentation": {
+          "title": "Documentação do projeto",
+          "sub": "Planos de projeto, relatórios de progresso, documentação técnica, comunicação interna",
+          "benefit": "<strong>Se a IA puder processar isto:</strong> um dossiê de centenas de documentos abre-se em dias em vez de semanas — e a cronologia factual torna-se comprovadamente completa."
+        },
+        "decision_records": {
+          "title": "Decisões e documentos jurídicos",
+          "sub": "Decisões, atas, licenças, estatutos, contratos",
+          "benefit": "<strong>Se a IA puder processar isto:</strong> as decisões ficam datadas com precisão e ligadas entre si, tornando visível qual decisão causou qual desvio."
+        },
+        "stakeholder_interviews": {
+          "title": "Entrevistas com participantes",
+          "sub": "Gravações, transcrições, experiências e opiniões pessoais",
+          "benefit": "<strong>Se a IA puder processar isto:</strong> padrões ao longo de dezenas de conversas tornam-se visíveis — onde os relatos convergem e onde colidem. <em>Os nomes são sempre substituídos por pseudónimos antes de qualquer envio ao modelo de IA; a chave permanece na Regen Studio (Anexo B §B.6.2).</em>"
+        },
+        "energy_usage_data": {
+          "title": "Dados de energia e medição",
+          "sub": "Consumo, produção e dados de ligação ao nível individual",
+          "benefit": "<strong>Excluído por defeito.</strong> Dados de consumo por ligação revelam padrões de presença de empresários e agregados familiares individuais. Para este trabalho bastam valores agregados — que não são dados pessoais e ficam fora deste acordo."
+        },
+        "metadata": {
+          "title": "Metadados",
+          "sub": "Carimbos temporais, nomes de ficheiro, histórico de versões",
+          "benefit": "<strong>Se a IA puder processar isto:</strong> os documentos podem ser ordenados por data e versão sem abrir o conteúdo."
         }
       }
     }
