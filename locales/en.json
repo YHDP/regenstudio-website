@@ -15,7 +15,7 @@
   "nav.blog": "Blog",
   "nav.demos": "Demos",
   "nav.contact": "Get in Touch",
-  "nav.popover.intro": "Drop us a line — we'd love to hear from you.",
+  "nav.popover.intro": "Drop us a line. We'd love to hear from you.",
   "nav.popover.send": "Send us a message",
   "nav.popover.or": "or email us directly",
   "nav.copy": "Copy",
@@ -46,7 +46,7 @@
   "form.message": "Tell us about your project...",
   "form.newsletter": "Also subscribe me to the Regen Studio newsletter",
   "form.ai_consent": "I approve of my data being used in AI-supported information systems at Regen Studio.",
-  "form.ai_consent_helper": "Without this, we still respond — but no AI tools read your message.",
+  "form.ai_consent_helper": "Without this, we still respond, but no AI tools read your message.",
   "form.privacy_policy_accept_intro": "I have read and agree to the",
   "form.privacy_policy_accept_link": "Privacy Policy",
   "form.privacy_policy_required_marker": "(required)",
@@ -147,5 +147,5 @@
   "antibot.error_captcha": "Please complete the triangle verification.",
   "antibot.pow_solving": "Verifying...",
   "antibot.error_generic": "Verification failed. Please try again.",
-  "form.newsletter_helper": "Counts as your consent to marketing use of your email — withdraw any time via the link in our emails."
+  "form.newsletter_helper": "Counts as your consent to marketing use of your email. Withdraw any time via the link in our emails."
 }
