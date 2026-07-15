@@ -1174,11 +1174,17 @@
           'cp.legal_form': data.cp_legal_form || '',
           'cp.address': data.cp_address || '',
           'cp.country': data.cp_country || 'Nederland',
-          'cp.registration_number': data.cp_registration_number || '',
+          // Optional identity fields: an empty value must degrade to readable
+          // prose, never to a raw {{token}}. The welcome flow (dpa-welcome.html)
+          // has no input for these — it fills them from the engagement profile —
+          // so a profile with a null registration_number printed the literal
+          // placeholder into the controller's contract (reported by the
+          // client/slim-strandnet controller, 2026-07-14).
+          'cp.registration_number': data.cp_registration_number || 'niet opgegeven',
           'cp.representative_name': data.cp_rep_name || '',
           'cp.representative_role': data.cp_rep_role || '',
           'cp.representative_email': data.cp_rep_email || '',
-          'cp.representative_phone': data.cp_rep_phone || '— niet opgegeven',  // reconciliation #2 — optional field: never render the raw {{token}} when empty
+          'cp.representative_phone': data.cp_rep_phone || 'niet opgegeven',
           // Engagement profile fields (from dpa-verify-token Edge Function).
           'engagement.key': (engagementMeta && engagementMeta.engagement_key) || '',
           'engagement.label': ep.label || (engagementMeta && engagementMeta.engagement_label) || '',
