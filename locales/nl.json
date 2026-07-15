@@ -15,7 +15,7 @@
   "nav.blog": "Blog",
   "nav.demos": "Demo's",
   "nav.contact": "Contact",
-  "nav.popover.intro": "Neem contact met ons op — we horen graag van je.",
+  "nav.popover.intro": "Neem contact met ons op. We horen graag van je.",
   "nav.popover.send": "Stuur ons een bericht",
   "nav.popover.or": "of mail ons direct",
   "nav.copy": "Kopieer",
@@ -46,7 +46,7 @@
   "form.message": "Vertel ons over je project...",
   "form.newsletter": "Schrijf me ook in voor de Regen Studio nieuwsbrief",
   "form.ai_consent": "Ik geef toestemming voor het gebruik van mijn gegevens in AI-ondersteunde informatiesystemen van Regen Studio.",
-  "form.ai_consent_helper": "Zonder vinkje reageren we nog steeds — maar geen AI-tools lezen je bericht.",
+  "form.ai_consent_helper": "Zonder vinkje reageren we nog steeds, maar geen AI-tools lezen je bericht.",
   "form.privacy_policy_accept_intro": "Ik heb de",
   "form.privacy_policy_accept_link": "Privacyverklaring",
   "form.privacy_policy_required_marker": "(vereist)",
@@ -147,5 +147,5 @@
   "antibot.error_captcha": "Voltooi de driehoekverificatie.",
   "antibot.pow_solving": "Verifiëren...",
   "antibot.error_generic": "Verificatie mislukt. Probeer het opnieuw.",
-  "form.newsletter_helper": "Geldt als toestemming voor marketinggebruik van je e-mailadres — op elk moment in te trekken via de link in onze e-mails."
+  "form.newsletter_helper": "Geldt als toestemming voor marketinggebruik van je e-mailadres, op elk moment in te trekken via de link in onze e-mails."
 }
