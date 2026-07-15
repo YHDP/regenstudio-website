@@ -105,10 +105,23 @@
     // dpa-verify-token Edge Function but treating them as untrusted here
     // mitigates the case where Edge Function code is later compromised
     // or the profile data is sourced from a less-trusted boundary.
+    //
+    // An unresolved token must never survive into a document a counterparty is
+    // asked to sign: returning `full` printed a literal {{cp.registration_number}}
+    // into the client/slim-strandnet contract (controller feedback 2026-07-14).
+    // Degrade to readable prose, and warn so the empty value gets fixed at its
+    // source (engagement profile / intake form) instead of being papered over.
     return md.replace(/\{\{([a-zA-Z_][a-zA-Z0-9_.]*)\}\}/g, function (full, key) {
-      if (vars[key] == null || vars[key] === '') return full;
+      if (vars[key] == null || vars[key] === '') {
+        console.warn('[dpa-md-render] unresolved token ' + full + ' → rendering "niet opgegeven"');
+        return 'niet opgegeven';
+      }
       const sanitised = sanitiseUserText(vars[key]);
-      return sanitised || full;
+      if (!sanitised) {
+        console.warn('[dpa-md-render] token ' + full + ' sanitised to empty → rendering "niet opgegeven"');
+        return 'niet opgegeven';
+      }
+      return sanitised;
     });
   }
 

@@ -40,7 +40,7 @@
   'use strict';
 
   // Loaded-version banner so we can verify cache freshness in DevTools console.
-  console.log('[pdf-rendering] renderer v2026-05-05h loaded — full-width justify (no cap) + 14pt paragraph spacing');
+  console.log('[pdf-rendering] renderer v2026-07-14a loaded — justify with capped space-stretch (0.6×) + 14pt paragraph spacing');
 
   // -------------------------------------------------------------------------
   // Layout constants — A4 portrait, points (1pt = 1/72 inch).
@@ -549,12 +549,22 @@
       // Number of inter-word spaces eligible for distribution
       const wsCount = line.tokens.filter(t => t.isWhitespace).length;
 
-      // Full-width justify (per Yvo's design preference): distribute all slack
-      // equally across word-spaces. No cap, no threshold — even loose lines
-      // stay full-width. Last-line of paragraph stays ragged (justifying a
-      // 2-word last line would spread the words to absurd distance).
+      // Justify toward full width, but CAP how far a single word-space may
+      // stretch. Distributing all slack unconditionally (the previous
+      // behaviour) produced visible rivers wherever a line broke before a long
+      // unbreakable compound — "Digitaal-Productpaspoort-veld",
+      // "gegevensbeschermingsverplichtingen" — which is exactly the dense-prose
+      // §4.1 the controller flagged as "grote spaties" (2026-07-14). A space may
+      // now grow to at most (1 + MAX_SPACE_STRETCH)× its natural width; any
+      // remaining slack is left as ragged right on that line. Lines with normal
+      // slack still reach the full measure, so the justified look is preserved.
+      // Last line of a paragraph stays ragged, as before.
+      const MAX_SPACE_STRETCH = 0.6;
       const doJustify = justify && !line.isLastLine && wsCount > 0 && slack > 0;
-      const extraPerSpace = doJustify ? slack / wsCount : 0;
+      const naturalSpaceW = wsCount > 0 ? line.spaceW / wsCount : 0;
+      const extraPerSpace = doJustify
+        ? Math.min(slack / wsCount, naturalSpaceW * MAX_SPACE_STRETCH)
+        : 0;
 
       let cursorX = lineLeft;
       for (let ti = 0; ti < line.tokens.length; ti++) {
