@@ -1580,6 +1580,24 @@
         <p class="slide__subtitle" data-i18n="welcome.slide_form.subtitle">
           Jouw contactgegevens als ondertekenaar — laatste stap voor het tekenen.
         </p>
+        <p class="form-group-head" style="font-weight:600;margin:18px 0 8px;font-size:0.95rem" data-i18n="welcome.slide_form.group_org">Gegevens van je organisatie (Verantwoordelijke)</p>
+        <div class="form-row">
+          <label for="cp_legal_form"><span data-i18n="welcome.slide_form.label_legal_form">Rechtsvorm</span> <span class="req">*</span></label>
+          <input type="text" id="cp_legal_form" data-i18n-placeholder="welcome.slide_form.placeholder_legal_form" placeholder="bv. Publiekrechtelijke rechtspersoon, B.V., Stichting" required>
+        </div>
+        <div class="form-row">
+          <label for="cp_address"><span data-i18n="welcome.slide_form.label_address">Adres</span> <span class="req">*</span></label>
+          <input type="text" id="cp_address" data-i18n-placeholder="welcome.slide_form.placeholder_address" placeholder="Straat huisnummer, postcode plaats" required autocomplete="street-address">
+        </div>
+        <div class="form-row">
+          <label for="cp_country"><span data-i18n="welcome.slide_form.label_country">Land van oprichting</span> <span class="req">*</span></label>
+          <input type="text" id="cp_country" data-i18n-placeholder="welcome.slide_form.placeholder_country" placeholder="Nederland" required autocomplete="country-name">
+        </div>
+        <div class="form-row">
+          <label for="cp_registration_number"><span data-i18n="welcome.slide_form.label_kvk">Registratienummer</span> <span class="help" data-i18n="welcome.slide_form.kvk_help">— KvK / Handelsregister / equivalent</span> <span class="req">*</span></label>
+          <input type="text" id="cp_registration_number" data-i18n-placeholder="welcome.slide_form.placeholder_kvk" placeholder="bv. 12345678" required inputmode="numeric" autocomplete="off">
+        </div>
+        <p class="form-group-head" style="font-weight:600;margin:22px 0 8px;font-size:0.95rem" data-i18n="welcome.slide_form.group_signer">Jij als ondertekenaar</p>
         <div class="form-row">
           <label for="cp_rep_name"><span data-i18n="welcome.slide_form.label_name">Volledige naam</span> <span class="req">*</span></label>
           <input type="text" id="cp_rep_name" data-i18n-placeholder="welcome.slide_form.placeholder_name" placeholder="Voornaam Achternaam" required autocomplete="name">
@@ -1702,6 +1720,10 @@
     leakName: $('#leak-name'),
     leakEmail: $('#leak-email'),
     leakCompany: $('#leak-company'),
+    legalForm: $('#cp_legal_form'),
+    address: $('#cp_address'),
+    country: $('#cp_country'),
+    regNumber: $('#cp_registration_number'),
     repName: $('#cp_rep_name'),
     repRole: $('#cp_rep_role'),
     repEmail: $('#cp_rep_email'),
@@ -2136,6 +2158,14 @@
       probs.push({ key: 'alias', el: els.aliasBlock, slide: 'slide-paste-alias' });
     if (!MATRIX_CATEGORIES.every(c => matrix[c]))
       probs.push({ key: 'matrix', el: els.consentGrid, slide: 'slide-consent' });
+    if (els.legalForm.value.trim().length < 2)
+      probs.push({ key: 'legalForm', el: els.legalForm, slide: 'slide-choices' });
+    if (els.address.value.trim().length < 4)
+      probs.push({ key: 'address', el: els.address, slide: 'slide-choices' });
+    if (els.country.value.trim().length < 2)
+      probs.push({ key: 'country', el: els.country, slide: 'slide-choices' });
+    if (els.regNumber.value.trim().length < 2)
+      probs.push({ key: 'regNumber', el: els.regNumber, slide: 'slide-choices' });
     if (els.repName.value.trim().length < 2)
       probs.push({ key: 'repName', el: els.repName, slide: 'slide-choices' });
     if (els.repRole.value.trim().length < 2)
@@ -2262,10 +2292,10 @@
     const anyAiMay = MATRIX_CATEGORIES.some(c => matrix[c] === 'ai_may_process');
     const formData = {
       cp_legal_name: state.profile.legal_name || state.profile.cp_legal_name || '',
-      cp_legal_form: state.profile.legal_form_default || '',
-      cp_address: state.profile.address_default || '',
-      cp_country: state.profile.country_default || '',
-      cp_registration_number: state.profile.registration_number_default || '',
+      cp_legal_form: els.legalForm.value.trim(),
+      cp_address: els.address.value.trim(),
+      cp_country: els.country.value.trim(),
+      cp_registration_number: els.regNumber.value.trim(),
       cp_rep_name: els.repName.value.trim(),
       cp_rep_role: els.repRole.value.trim(),
       cp_rep_email: els.repEmail.value.trim().toLowerCase(),
