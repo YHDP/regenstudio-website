@@ -232,7 +232,7 @@
       "nav_title": "Suas escolhas",
       "kicker": "Vamos registrar suas escolhas",
       "title": "Quem assina?",
-      "subtitle": "Seus dados de contato como signatário — última etapa antes de assinar.",
+      "subtitle": "Preencha os dados da sua organização e os seus como signatário — última etapa antes de assinar.",
       "label_name": "Nome completo",
       "placeholder_name": "Nome Sobrenome",
       "label_role": "Cargo",
@@ -267,7 +267,18 @@
       },
       "footnote": "Estas escolhas ficam registradas no DPA. A revogação completa é um clique via consent-dashboard. Alterações granulares — mudar uma única linha — requerem nova assinatura do DPA.",
       "cta": "Para o Contrato de Processamento de Dados",
-      "validation": "Preencha todos os campos obrigatórios para continuar."
+      "validation": "Preencha todos os campos obrigatórios para continuar.",
+      "group_org": "Dados da sua organização (Controladora)",
+      "group_signer": "Você como signatário",
+      "label_legal_form": "Forma jurídica",
+      "placeholder_legal_form": "ex. pessoa jurídica de direito público, Ltda, fundação",
+      "label_address": "Endereço",
+      "placeholder_address": "Rua número, CEP cidade",
+      "label_country": "País de constituição",
+      "placeholder_country": "Países Baixos",
+      "label_kvk": "Número de registro",
+      "kvk_help": "— Registro comercial / junta comercial / equivalente",
+      "placeholder_kvk": "ex. 12345678"
     },
     "slide_consent": {
       "nav_title": "Categorias de dados",

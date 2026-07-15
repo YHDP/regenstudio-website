@@ -232,7 +232,7 @@
       "nav_title": "Your choices",
       "kicker": "Lock in your choices",
       "title": "Who signs?",
-      "subtitle": "Your contact details as signatory — last step before signing.",
+      "subtitle": "Enter your organisation's details and your own as signer — the last step before signing.",
       "label_name": "Full name",
       "placeholder_name": "First Last",
       "label_role": "Role",
@@ -267,7 +267,18 @@
       },
       "footnote": "These choices are recorded in the DPA. Full revocation is one click via the consent dashboard. Granular changes — flipping a single row — require a new DPA signing.",
       "cta": "To the Data Processing Agreement",
-      "validation": "Fill in all required fields to continue."
+      "validation": "Fill in all required fields to continue.",
+      "group_org": "Your organisation (Controller)",
+      "group_signer": "You as the signer",
+      "label_legal_form": "Legal form",
+      "placeholder_legal_form": "e.g. public-law body, Ltd, foundation",
+      "label_address": "Address",
+      "placeholder_address": "Street number, postcode city",
+      "label_country": "Country of incorporation",
+      "placeholder_country": "Netherlands",
+      "label_kvk": "Registration number",
+      "kvk_help": "— Chamber of Commerce / trade register / equivalent",
+      "placeholder_kvk": "e.g. 12345678"
     },
     "slide_consent": {
       "nav_title": "Data categories",

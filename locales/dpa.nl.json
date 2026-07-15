@@ -221,7 +221,7 @@
       "nav_title": "Jouw keuzes",
       "kicker": "Even jouw keuzes vastleggen",
       "title": "Wie tekent?",
-      "subtitle": "Jouw contactgegevens als ondertekenaar — laatste stap voor het tekenen.",
+      "subtitle": "Vul de gegevens van je organisatie en jezelf als ondertekenaar in — laatste stap voor het tekenen.",
       "label_name": "Volledige naam",
       "placeholder_name": "Voornaam Achternaam",
       "label_role": "Functie",
@@ -256,7 +256,18 @@
       },
       "footnote": "Deze keuzes worden vastgelegd in de DPA. Volledig intrekken kan via de consent-dashboard (één klik). Voor granulair wijzigen — een specifieke rij omzetten — is een nieuwe DPA-ondertekening nodig.",
       "cta": "Naar de Verwerkersovereenkomst",
-      "validation": "Nog niet compleet — we hebben de rood-omkaderde onderdelen voor je gemarkeerd. Vul ze aan om door te gaan."
+      "validation": "Nog niet compleet — we hebben de rood-omkaderde onderdelen voor je gemarkeerd. Vul ze aan om door te gaan.",
+      "group_org": "Gegevens van je organisatie (Verantwoordelijke)",
+      "group_signer": "Jij als ondertekenaar",
+      "label_legal_form": "Rechtsvorm",
+      "placeholder_legal_form": "bv. Publiekrechtelijke rechtspersoon, B.V., Stichting",
+      "label_address": "Adres",
+      "placeholder_address": "Straat huisnummer, postcode plaats",
+      "label_country": "Land van oprichting",
+      "placeholder_country": "Nederland",
+      "label_kvk": "Registratienummer",
+      "kvk_help": "— KvK / Handelsregister / equivalent",
+      "placeholder_kvk": "bv. 12345678"
     },
     "slide_consent": {
       "nav_title": "Data-categorieën",
