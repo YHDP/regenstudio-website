@@ -740,6 +740,57 @@
   body[data-engagement-scope="voucher"]      .consent-matrix__scope[data-scope="voucher"]      { display: contents; }
   body[data-engagement-scope="partnership"]  .consent-matrix__scope[data-scope="partnership"]  { display: contents; }
   body[data-engagement-scope="client"]       .consent-matrix__scope[data-scope="client"]       { display: contents; }
+  body[data-engagement-scope="agency"]       .consent-matrix__scope[data-scope="agency"]       { display: contents; }
+  /* Agency scope: full-width notice above the cards (spans all grid columns). */
+  .consent-matrix__note {
+    grid-column: 1 / -1; margin: 0;
+    font-size: 12.5px; color: var(--ink-soft); line-height: 1.5;
+    background: rgba(255,169,45,0.07); border: 1px solid rgba(255,169,45,0.45);
+    border-radius: 8px; padding: 10px 14px;
+  }
+  /* Agency scope: Annex A.2 sub-processor capture + Annex C TOMs block on the
+     signer slide. Hidden for every other engagement scope. */
+  .agency-intake { display: none; }
+  body[data-engagement-scope="agency"] .agency-intake { display: block; }
+  .a2-block {
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px; margin-bottom: 18px; background: var(--paper);
+  }
+  .a2-choice {
+    display: flex; align-items: flex-start; gap: 10px; padding: 6px 0;
+    font-size: 13px; color: var(--ink-soft); cursor: pointer;
+  }
+  .a2-choice input { width: 15px; height: 15px; margin-top: 2px; accent-color: var(--emerald); cursor: pointer; flex-shrink: 0; }
+  .a2-providers { display: flex; flex-direction: column; gap: 8px; margin: 6px 0 10px 25px; }
+  .a2-provider-row { display: grid; grid-template-columns: 1.2fr 1fr 0.9fr 1.1fr auto; gap: 8px; align-items: center; }
+  .a2-provider-row input {
+    width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px;
+    font-family: inherit; font-size: 13px; color: var(--ink); background: white;
+    transition: border-color 0.15s;
+  }
+  .a2-provider-row input:focus { outline: none; border-color: var(--emerald); }
+  .a2-provider-row__remove {
+    padding: 6px 10px; background: white; border: 1px solid var(--border); border-radius: 6px;
+    cursor: pointer; font-family: inherit; font-size: 13px; color: var(--magenta);
+    transition: all 0.15s;
+  }
+  .a2-provider-row__remove:hover { background: var(--magenta); color: white; border-color: var(--magenta); }
+  .a2-add-provider {
+    align-self: flex-start; padding: 7px 14px; background: white; border: 1px solid var(--border);
+    border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 13px; color: var(--ink-soft);
+    transition: all 0.15s;
+  }
+  .a2-add-provider:hover { background: var(--emerald); color: white; border-color: var(--emerald); }
+  .agency-intake textarea {
+    width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px;
+    font-family: inherit; font-size: 14px; color: var(--ink); background: var(--paper);
+    min-height: 96px; resize: vertical; transition: border-color 0.15s;
+  }
+  .agency-intake textarea:focus { outline: none; border-color: var(--emerald); background: white; }
+  @media (max-width: 640px) {
+    .a2-provider-row { grid-template-columns: 1fr 1fr; }
+    .a2-provider-row__remove { grid-column: 1 / -1; }
+  }
   .consent-card {
     background: white; border: 1px solid var(--border);
     border-radius: 12px; padding: 14px 16px;
@@ -1562,6 +1613,113 @@
 
           </div><!-- /.consent-matrix__scope[data-scope="client"] -->
 
+          <!-- Agency scope: 6 cards for engagement_key prefix 'agency/' (sales-agency regime).
+               Categories mirror Annex A.1 of the agency Master Agreement — keep the two in sync.
+               English copy: this regime signs in English. NO card carries a default choice:
+               Master Agreement § 5.4 requires an explicit per-category election, so no radio
+               is pre-checked and none is disabled — the submit gate blocks until all 6 are set. -->
+          <div class="consent-matrix__scope" data-scope="agency">
+
+          <p class="consent-matrix__note">No default applies: an explicit choice per category is required (Master Agreement § 5.4). Note: submission of Brazilian-person personal data to the AI processor is suspended until an LGPD Art 33 transfer mechanism is in place (Annex A.1, row 2).</p>
+
+          <div class="consent-card" data-category="contact_info">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">📇</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_agency.contact_info.title">Contact details</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_agency.contact_info.sub">Names, roles, business e-mail and phone</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_agency.contact_info.benefit"><strong>What this covers:</strong> Names, roles, business e-mail and phone of the Parties' people and of prospect/customer representatives.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_contact_info" value="ai_may_process"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI may process</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_contact_info" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Operator only</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_contact_info" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Not processed</span></label>
+            </fieldset>
+          </div>
+
+          <div class="consent-card" data-category="lead_pipeline_data">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">📈</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_agency.lead_pipeline_data.title">Lead pipeline</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_agency.lead_pipeline_data.sub">Pipeline register, lead status, visit and call notes</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_agency.lead_pipeline_data.benefit"><strong>What this covers:</strong> The joint pipeline register: prospect names and contact details, lead status, visit and call notes, monthly activity reports.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_lead_pipeline_data" value="ai_may_process"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI may process</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_lead_pipeline_data" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Operator only</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_lead_pipeline_data" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Not processed</span></label>
+            </fieldset>
+          </div>
+
+          <div class="consent-card" data-category="commercial_terms">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">🧾</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_agency.commercial_terms.title">Commercial documents</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_agency.commercial_terms.sub">Offers, order confirmations, commission statements</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_agency.commercial_terms.benefit"><strong>What this covers:</strong> Names of signatories and customer contacts in offers, order confirmations and commission statements.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_commercial_terms" value="ai_may_process"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI may process</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_commercial_terms" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Operator only</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_commercial_terms" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Not processed</span></label>
+            </fieldset>
+          </div>
+
+          <div class="consent-card" data-category="bilateral_records">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">🎙️</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_agency.bilateral_records.title">Bilateral meetings &amp; transcripts</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_agency.bilateral_records.sub">Recordings, transcripts, minutes</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_agency.bilateral_records.benefit"><strong>What this covers:</strong> Recordings, transcripts and minutes of meetings between DFT and Regen Studio.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_bilateral_records" value="ai_may_process"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI may process</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_bilateral_records" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Operator only</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_bilateral_records" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Not processed</span></label>
+            </fieldset>
+          </div>
+
+          <div class="consent-card" data-category="joint_deliverables">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">📚</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_agency.joint_deliverables.title">Joint deliverables</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_agency.joint_deliverables.sub">Marketing materials, website content, presentations</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_agency.joint_deliverables.benefit"><strong>What this covers:</strong> Names and quotes appearing in jointly produced marketing materials, website content and presentations.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_joint_deliverables" value="ai_may_process"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI may process</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_joint_deliverables" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Operator only</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_joint_deliverables" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Not processed</span></label>
+            </fieldset>
+          </div>
+
+          <div class="consent-card" data-category="metadata">
+            <div class="consent-card__head">
+              <span class="consent-card__icon" aria-hidden="true">📊</span>
+              <div>
+                <h3 class="consent-card__title" data-i18n="welcome.slide_consent.cards_agency.metadata.title">Metadata</h3>
+                <p class="consent-card__sub" data-i18n="welcome.slide_consent.cards_agency.metadata.sub">Timestamps, file names, version history</p>
+              </div>
+            </div>
+            <p class="consent-card__benefit" data-i18n-html="welcome.slide_consent.cards_agency.metadata.benefit"><strong>What this covers:</strong> Timestamps, file names, version history, log lines without identifying content.</p>
+            <fieldset class="consent-card__choices">
+              <label class="cc-radio"><input type="radio" name="cat_metadata" value="ai_may_process"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_ai">AI may process</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_metadata" value="operator_only"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_operator">Operator only</span></label>
+              <label class="cc-radio"><input type="radio" name="cat_metadata" value="excluded"><span class="cc-dot" aria-hidden="true"></span><span class="cc-label" data-i18n="welcome.slide_consent.choice_excluded">Not processed</span></label>
+            </fieldset>
+          </div>
+
+          </div><!-- /.consent-matrix__scope[data-scope="agency"] -->
+
         </div>
         <p class="consent-footnote" data-i18n-html="welcome.slide_consent.footnote">Per-categorie keuzes worden in de DPA en het consent-register vastgelegd als audit-trail; geautomatiseerde handhaving op rij-niveau door de AI-gates van Regen Studio rolt uit in Q3-2026. Tot dan handhaaft de operator de fijnere keuzes handmatig.</p>
       </div>
@@ -1597,6 +1755,31 @@
           <label for="cp_registration_number"><span data-i18n="welcome.slide_form.label_kvk">Registratienummer</span> <span class="help" data-i18n="welcome.slide_form.kvk_help">— KvK / Handelsregister / equivalent</span> <span class="req">*</span></label>
           <input type="text" id="cp_registration_number" data-i18n-placeholder="welcome.slide_form.placeholder_kvk" placeholder="bv. 12345678" required inputmode="numeric" autocomplete="off">
         </div>
+        <!-- Agency scope only (hidden for voucher/partnership/client via CSS):
+             Annex A.2 sub-processor declaration + Annex C §C.11.2 TOMs capture.
+             English copy: the agency regime signs in English. -->
+        <div class="agency-intake" id="agency-intake">
+          <p class="form-group-head" style="font-weight:600;margin:22px 0 8px;font-size:0.95rem">Your sub-processors (Annex A.2) <span class="req">*</span></p>
+          <div class="a2-block" id="a2-block">
+            <label class="a2-choice"><input type="radio" name="a2_mode" value="declared"><span>We list our sub-processors below</span></label>
+            <div class="a2-providers" id="a2-providers" hidden>
+              <!-- provider rows injected by JS before the add-button -->
+              <button type="button" class="a2-add-provider" id="a2-add-provider">+ Add sub-processor</button>
+            </div>
+            <label class="a2-choice"><input type="radio" name="a2_mode" value="none"><span>We engage no sub-processors for data Regen Studio shares with us</span></label>
+            <label class="a2-choice"><input type="radio" name="a2_mode" value="pending"><span>We will complete the list within 10 business days (pending election)</span></label>
+          </div>
+          <div class="form-row">
+            <label for="a2_mail_hosting"><span>Receiving mail / hosting provider</span> <span class="req">*</span></label>
+            <input type="text" id="a2_mail_hosting" placeholder="e.g. Google Workspace (Singapore), Microsoft 365" autocomplete="off">
+          </div>
+          <div class="form-row">
+            <label for="agency_toms"><span>Your technical and organisational measures (Annex C § C.11.2)</span> <span class="help">(optional)</span></label>
+            <textarea id="agency_toms" rows="4" placeholder="Access control, encryption, device policy, backup and retention practice"></textarea>
+            <p class="form-footnote" style="margin-top:6px">Optional at signing: if left empty, the § C.11.1 baseline applies and you supply your description within 30 days.</p>
+          </div>
+        </div>
+
         <p class="form-group-head" style="font-weight:600;margin:22px 0 8px;font-size:0.95rem" data-i18n="welcome.slide_form.group_signer">Jij als ondertekenaar</p>
         <div class="form-row">
           <label for="cp_rep_name"><span data-i18n="welcome.slide_form.label_name">Volledige naam</span> <span class="req">*</span></label>
@@ -1729,6 +1912,12 @@
     repEmail: $('#cp_rep_email'),
     repPhone: $('#cp_rep_phone'),
     aiPermission: $('#ai-permission'),
+    agencyIntake: $('#agency-intake'),
+    a2Block: $('#a2-block'),
+    a2Providers: $('#a2-providers'),
+    a2AddProvider: $('#a2-add-provider'),
+    a2MailHosting: $('#a2_mail_hosting'),
+    agencyToms: $('#agency_toms'),
     readyCta: $('#ready-cta'),
     readyValidation: $('#ready-validation'),
     choicesForm: $('#choices-form'),
@@ -2119,11 +2308,14 @@
   // The active category set depends on engagement scope (set on body.dataset.engagementScope
   // by the dpa-verify-token response handler). Voucher engagements get the DPP-voucher 8;
   // partnership engagements get the CTF/partnership 7 (added 2026-05-23);
-  // client engagements get the advisory/knowledge-work 6 (added 2026-07-13).
+  // client engagements get the advisory/knowledge-work 6 (added 2026-07-13);
+  // agency engagements get the sales-agency 6 (added 2026-07-16 — no defaults,
+  // Master Agreement § 5.4 requires an explicit election per category).
   const MATRIX_CATEGORIES_BY_SCOPE = {
     voucher:     ['contact_info', 'project_content', 'production_data', 'transport_data', 'supplier_data', 'certification_audit_data', 'metadata', 'financial_data'],
     partnership: ['contact_info', 'acquisition_data', 'ecosystem_data', 'bilateral_records', 'joint_deliverables', 'commercial_intel', 'metadata'],
     client:      ['contact_info', 'project_documentation', 'decision_records', 'stakeholder_interviews', 'energy_usage_data', 'metadata'],
+    agency:      ['contact_info', 'lead_pipeline_data', 'commercial_terms', 'bilateral_records', 'joint_deliverables', 'metadata'],
   };
   function activeMatrixCategories() {
     const scope = (state.engagementScope || document.body.dataset.engagementScope || 'voucher');
@@ -2166,6 +2358,26 @@
       probs.push({ key: 'country', el: els.country, slide: 'slide-choices' });
     if (els.regNumber.value.trim().length < 2)
       probs.push({ key: 'regNumber', el: els.regNumber, slide: 'slide-choices' });
+    // Agency-scope extras (document order: the agency-intake block sits between
+    // the org fields and the signer fields on slide-choices).
+    if ((state.engagementScope || document.body.dataset.engagementScope) === 'agency') {
+      const mode = a2Mode();
+      if (!mode) {
+        probs.push({ key: 'a2Mode', el: els.a2Block, slide: 'slide-choices' });
+      } else if (mode === 'declared') {
+        const rows = document.querySelectorAll('.a2-provider-row');
+        if (!rows.length)
+          probs.push({ key: 'a2Providers', el: els.a2Block, slide: 'slide-choices' });
+        rows.forEach(row => {
+          row.querySelectorAll('input[data-a2-field]').forEach(input => {
+            if (input.value.trim().length < 2)
+              probs.push({ key: 'a2Provider', el: input, slide: 'slide-choices' });
+          });
+        });
+      }
+      if (els.a2MailHosting && els.a2MailHosting.value.trim().length < 2)
+        probs.push({ key: 'a2MailHosting', el: els.a2MailHosting, slide: 'slide-choices' });
+    }
     if (els.repName.value.trim().length < 2)
       probs.push({ key: 'repName', el: els.repName, slide: 'slide-choices' });
     if (els.repRole.value.trim().length < 2)
@@ -2197,6 +2409,78 @@
   function bindAiPermission() {
     const radios = document.querySelectorAll('.consent-matrix input[type="radio"]');
     radios.forEach(r => r.addEventListener('change', checkFormValid));
+  }
+
+  // ===== Agency intake (Annex A.2 + TOMs) =====
+  // Agency-scope engagements capture the counterparty's sub-processor
+  // declaration (Annex A.2) and optionally their TOMs description (Annex C
+  // § C.11.2) at signing. The block is CSS-hidden for every other scope;
+  // validation only fires when the active engagement scope is 'agency'.
+  const A2_PROVIDER_FIELDS = [
+    { key: 'name',      placeholder: 'Name' },
+    { key: 'role',      placeholder: 'Role (e.g. CRM, e-mail)' },
+    { key: 'country',   placeholder: 'Country' },
+    { key: 'safeguard', placeholder: 'Safeguard (e.g. SCCs, adequacy)' },
+  ];
+  function a2Mode() {
+    const checked = document.querySelector('input[name="a2_mode"]:checked');
+    return checked ? checked.value : null;
+  }
+  function addProviderRow() {
+    const row = document.createElement('div');
+    row.className = 'a2-provider-row';
+    A2_PROVIDER_FIELDS.forEach(f => {
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.dataset.a2Field = f.key;
+      input.placeholder = f.placeholder;
+      input.autocomplete = 'off';
+      input.setAttribute('aria-label', 'Sub-processor ' + f.key);
+      row.appendChild(input);
+    });
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.className = 'a2-provider-row__remove';
+    remove.textContent = 'Remove';
+    remove.addEventListener('click', () => { row.remove(); checkFormValid(); });
+    row.appendChild(remove);
+    els.a2Providers.insertBefore(row, els.a2AddProvider);
+    return row;
+  }
+  function readA2Providers() {
+    return Array.from(document.querySelectorAll('.a2-provider-row')).map(row => {
+      const p = {};
+      A2_PROVIDER_FIELDS.forEach(f => {
+        const input = row.querySelector('input[data-a2-field="' + f.key + '"]');
+        p[f.key] = input ? input.value.trim() : '';
+      });
+      return p;
+    });
+  }
+  function bindAgencyIntake() {
+    if (!els.agencyIntake) return;
+    document.querySelectorAll('input[name="a2_mode"]').forEach(r => {
+      r.addEventListener('change', () => {
+        const declared = a2Mode() === 'declared';
+        els.a2Providers.hidden = !declared;
+        if (declared && !document.querySelector('.a2-provider-row')) addProviderRow();
+        checkFormValid();
+      });
+    });
+    els.a2AddProvider.addEventListener('click', () => { addProviderRow(); checkFormValid(); });
+  }
+  // Wire shape agreed with dpa-submit-signature server-side validation —
+  // do not rename fields without changing both ends in the same commit.
+  function readAgencyIntake() {
+    const mode = a2Mode();
+    return {
+      a2: {
+        mode: mode,
+        providers: mode === 'declared' ? readA2Providers() : [],
+        mail_hosting_provider: els.a2MailHosting ? els.a2MailHosting.value.trim() : '',
+      },
+      toms_description: (els.agencyToms && els.agencyToms.value.trim()) || null,
+    };
   }
 
   // ===== Nav dots =====
@@ -2306,6 +2590,12 @@
       doc_toggles_v2: matrix,  // Phase 1 granular consent (2026-05-13)
       _saved_at: new Date().toISOString(),
     };
+    // Agency engagements: Annex A.2 sub-processor declaration + optional TOMs
+    // description ride along in the signature POST body. Shape is validated
+    // server-side by dpa-submit-signature — keep the two in sync.
+    if ((state.engagementScope || document.body.dataset.engagementScope) === 'agency') {
+      formData.agency_intake = readAgencyIntake();
+    }
     const engagementMeta = {
       engagement_key: state.body.engagement_key,
       engagement_label: state.body.engagement_label,
@@ -2398,7 +2688,7 @@
         // instead — the signer sees an error rather than the wrong contract.
         const engKey = body.engagement_key || state.profile.engagement_key || '';
         const engTypeRaw = state.profile.engagement_type || engKey.split('/')[0] || '';
-        const SCOPE_BY_ENG_TYPE = { voucher: 'voucher', partnership: 'partnership', client: 'client' };
+        const SCOPE_BY_ENG_TYPE = { voucher: 'voucher', partnership: 'partnership', client: 'client', agency: 'agency' };
         const scope = SCOPE_BY_ENG_TYPE[engTypeRaw];
         if (!scope) {
           console.error('[dpa-welcome] unknown engagement type "' + engTypeRaw + '" for key "' + engKey + '" — no consent-card set defined.');
@@ -2435,6 +2725,7 @@
           // DPA contract body (Annex A + correspondence footer).
           setAlias('Skeptical Chameleon');
           bindAiPermission();
+          bindAgencyIntake();
           buildNavDots();
 
           // Bind welcome CTA — clicking the triangle scrolls to slide 2

@@ -1234,6 +1234,17 @@
           'system.controller_signature_evidence': '(wordt bij ondertekening server-side ingevuld)',
           'system.processor_signed_at': '(wordt bij ondertekening server-side ingevuld)',
           'system.controller_signed_at': '(wordt bij ondertekening server-side ingevuld)',
+          // Agency-regime (EN) tokens — agency-master-EN.md §11 names the
+          // parties Agent/Principal instead of Verwerker/Verantwoordelijke,
+          // and Annex B §B.1 carries an optional DPO/privacy contact. The
+          // dpo value comes from the welcome intake when provided; the
+          // documented fallback is the literal 'none designated' (Annex B
+          // §B.1: "If no privacy contact is provided at signing, the value
+          // 'none designated' is recorded.").
+          'cp.dpo_contact': data.cp_dpo_contact || 'none designated',
+          'system.agent_signed_at': '(completed server-side at signing)',
+          'system.principal_signed_at': '(completed server-side at signing)',
+          'system.principal_signature_evidence': '(completed server-side at signing)',
         };
 
         // Cache engagement profile on window so dpa-pdf-builder can read it
@@ -1767,6 +1778,10 @@
         ai_alias_name:   String(data.ai_alias_name || '').trim().slice(0, 80),
         doc_toggles:     docToggles,
         doc_toggles_v2:  docTogglesV2,
+        // Agency-regime intake (Annex A.2 sub-processor declaration + optional
+        // TOMs description). Null for every other regime; dpa-submit-signature
+        // validates the shape server-side for agency/ engagement keys.
+        agency_intake:   data.agency_intake || null,
         html_snapshot:   htmlSnapshot,
         pdf_b64:         pdfB64,
         schedule_sha:    scheduleSha,
