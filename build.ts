@@ -734,6 +734,9 @@ function generateSitemap(
     "/client-projects.html", "/innovation-services.html",
     "/vision.html", "/privacy.html", "/thank-you.html",
     "/what-is-a-digital-product-passport/", "/what-is-espr/",
+    "/what-is-energy-transition/", "/what-is-liveable-cities/",
+    "/what-is-resilient-nature/", "/what-is-regenerative-agriculture/",
+    "/what-is-smart-water-management/",
     "/for-ai/", "/ai-training/",
   ]);
 
@@ -870,6 +873,41 @@ function generateSitemap(
       lastmod: today,
       changefreq: "monthly",
       priority: "0.7",
+    },
+    {
+      loc: `${SITE_URL}/what-is-energy-transition/`,
+      lastmod: today,
+      changefreq: "monthly",
+      priority: "0.8",
+      alternates: staticAlternates("/what-is-energy-transition/"),
+    },
+    {
+      loc: `${SITE_URL}/what-is-liveable-cities/`,
+      lastmod: today,
+      changefreq: "monthly",
+      priority: "0.8",
+      alternates: staticAlternates("/what-is-liveable-cities/"),
+    },
+    {
+      loc: `${SITE_URL}/what-is-resilient-nature/`,
+      lastmod: today,
+      changefreq: "monthly",
+      priority: "0.8",
+      alternates: staticAlternates("/what-is-resilient-nature/"),
+    },
+    {
+      loc: `${SITE_URL}/what-is-regenerative-agriculture/`,
+      lastmod: today,
+      changefreq: "monthly",
+      priority: "0.8",
+      alternates: staticAlternates("/what-is-regenerative-agriculture/"),
+    },
+    {
+      loc: `${SITE_URL}/what-is-smart-water-management/`,
+      lastmod: today,
+      changefreq: "monthly",
+      priority: "0.8",
+      alternates: staticAlternates("/what-is-smart-water-management/"),
     },
     {
       loc: `${SITE_URL}/for-ai/`,

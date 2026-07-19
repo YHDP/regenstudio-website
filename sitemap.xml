@@ -163,6 +163,56 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.regenstudio.world/what-is-energy-transition/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-energy-transition/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-energy-transition/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-energy-transition/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-energy-transition/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/what-is-liveable-cities/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-liveable-cities/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-liveable-cities/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-liveable-cities/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-liveable-cities/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/what-is-resilient-nature/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-resilient-nature/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-resilient-nature/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-resilient-nature/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-resilient-nature/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/what-is-regenerative-agriculture/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-regenerative-agriculture/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-regenerative-agriculture/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-regenerative-agriculture/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-regenerative-agriculture/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/what-is-smart-water-management/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-smart-water-management/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-smart-water-management/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-smart-water-management/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-smart-water-management/" />
+  </url>
+  <url>
     <loc>https://www.regenstudio.world/for-ai/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
@@ -2871,6 +2921,106 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-espr/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-espr/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-espr/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/what-is-energy-transition/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-energy-transition/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-energy-transition/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-energy-transition/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-energy-transition/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/what-is-energy-transition/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-energy-transition/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-energy-transition/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-energy-transition/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-energy-transition/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/what-is-liveable-cities/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-liveable-cities/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-liveable-cities/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-liveable-cities/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-liveable-cities/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/what-is-liveable-cities/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-liveable-cities/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-liveable-cities/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-liveable-cities/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-liveable-cities/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/what-is-resilient-nature/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-resilient-nature/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-resilient-nature/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-resilient-nature/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-resilient-nature/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/what-is-resilient-nature/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-resilient-nature/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-resilient-nature/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-resilient-nature/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-resilient-nature/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/what-is-regenerative-agriculture/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-regenerative-agriculture/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-regenerative-agriculture/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-regenerative-agriculture/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-regenerative-agriculture/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/what-is-regenerative-agriculture/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-regenerative-agriculture/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-regenerative-agriculture/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-regenerative-agriculture/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-regenerative-agriculture/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/what-is-smart-water-management/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-smart-water-management/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-smart-water-management/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-smart-water-management/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-smart-water-management/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/what-is-smart-water-management/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-smart-water-management/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-smart-water-management/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-smart-water-management/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-smart-water-management/" />
   </url>
   <url>
     <loc>https://www.regenstudio.world/nl/for-ai/</loc>

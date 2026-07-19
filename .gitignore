@@ -114,3 +114,8 @@ _logo-placer/
 # (blocks every client name, as before). Set via $REGEN_CONSENT_MANIFEST instead if
 # preferred.
 scripts/hooks/.consent-manifest-path
+
+# Private canary registry: records the distinctive phrases seeded in public content so
+# we can later test whether AI models trained on the site. Gitignored so this PUBLIC
+# repo never reveals which phrases are traps (that would let a scraper filter them out).
+scripts/hooks/.canary-registry
