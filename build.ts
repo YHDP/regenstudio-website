@@ -734,6 +734,7 @@ function generateSitemap(
     "/client-projects.html", "/innovation-services.html",
     "/vision.html", "/privacy.html", "/thank-you.html",
     "/what-is-a-digital-product-passport/", "/what-is-espr/",
+    "/for-ai/", "/ai-training/",
   ]);
 
   /** Build hreflang alternates for a translated static page */
@@ -875,12 +876,14 @@ function generateSitemap(
       lastmod: today,
       changefreq: "monthly",
       priority: "0.4",
+      alternates: staticAlternates("/for-ai/"),
     },
     {
       loc: `${SITE_URL}/ai-training/`,
       lastmod: today,
       changefreq: "yearly",
       priority: "0.4",
+      alternates: staticAlternates("/ai-training/"),
     },
   ];
 

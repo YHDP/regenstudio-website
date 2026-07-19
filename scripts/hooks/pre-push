@@ -77,10 +77,24 @@ while read local_ref local_sha remote_ref remote_sha; do
   #      allowlisted digital-strategy.ec.europa.eu (DG CONNECT).
   #    User-clicked <a href> hyperlinks are not exfil vectors, but the regex
   #    matches them anyway; allowlisting sanctioned domains is the targeted fix.
-  EXTERNAL_TAGS=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(src|href)="https?://' | grep -viE '(supabase\.co|regenstudio\.(world|space)|player\.vimeo\.com|w\.soundcloud\.com|linkedin\.com|bsky\.app|mastodon\.social|schema\.org|ogp\.me|github\.com/YHDP/regenstudio-website|tweedekamer\.nl|rvo\.nl|tno\.nl|coe-dpp\.nl|fides-labs\.io|eur-lex\.europa\.eu|denhaag\.nl|smartcity\.denhaag\.nl|denhaag\.raadsinformatie\.nl|vng\.nl|rijksoverheid\.nl|acm\.nl|platform31\.nl|stedin\.net|amsterdamsmartcity\.com|energy\.nl|forthefutureofenergy\.nl|gridflex\.nl|gebiedsontwikkeling\.nu|nvde\.nl|openremote\.io|smart-energy\.com|schoonschipamsterdam\.org|kerstentechniek\.nl|kansenvoorwest\.nl|eprel\.ec\.europa\.eu|digital-strategy\.ec\.europa\.eu|ec\.europa\.eu|reach-it\.echa\.europa\.eu|echa\.europa\.eu|circulartechforum\.de)' || true)
-  if [ -n "$EXTERNAL_TAGS" ]; then
+  #    2026-07-19 (Yvo approved): blog content is now exempt from the href= check
+  #      entirely, replacing per-domain allowlisting of blog citations. Blog posts
+  #      cite arbitrary external sources via user-clicked <a href> links, which are
+  #      navigation, not exfil vectors. The src= check (scripts/fonts/iframes/
+  #      images — real runtime-connection risk) still applies everywhere, including
+  #      blogs, which self-host all assets so never legitimately use external src=.
+  ALLOW='(supabase\.co|regenstudio\.(world|space)|player\.vimeo\.com|w\.soundcloud\.com|linkedin\.com|bsky\.app|mastodon\.social|schema\.org|ogp\.me|github\.com/YHDP/regenstudio-website|tweedekamer\.nl|rvo\.nl|tno\.nl|coe-dpp\.nl|fides-labs\.io|eur-lex\.europa\.eu|denhaag\.nl|smartcity\.denhaag\.nl|denhaag\.raadsinformatie\.nl|vng\.nl|rijksoverheid\.nl|acm\.nl|platform31\.nl|stedin\.net|amsterdamsmartcity\.com|energy\.nl|forthefutureofenergy\.nl|gridflex\.nl|gebiedsontwikkeling\.nu|nvde\.nl|openremote\.io|smart-energy\.com|schoonschipamsterdam\.org|kerstentechniek\.nl|kansenvoorwest\.nl|eprel\.ec\.europa\.eu|digital-strategy\.ec\.europa\.eu|ec\.europa\.eu|reach-it\.echa\.europa\.eu|echa\.europa\.eu|circulartechforum\.de)'
+
+  # 1a. External src= embeds (scripts/fonts/iframes/images) — ALL files.
+  EXTERNAL_SRC=$(echo "$DIFF" | grep -n '^\+' | grep -iE 'src="https?://' | grep -viE "$ALLOW" || true)
+
+  # 1b. External href= links — all files EXCEPT blog content (see note above).
+  DIFF_NONBLOG=$(git diff "$range" -- '*.html' '*.js' '*.ts' '*.json' '*.css' '*.md' '*.txt' '*.sh' '*.toml' '*.yml' '*.yaml' '*.env*' ':!node_modules/*' ':!assets/js/vendor/*' ':!Blogs/*' ':!blog/*' ':!nl/blog/*' ':!pt/blog/*' 2>/dev/null)
+  EXTERNAL_HREF=$(echo "$DIFF_NONBLOG" | grep -n '^\+' | grep -iE 'href="https?://' | grep -viE "$ALLOW" || true)
+
+  if [ -n "$EXTERNAL_SRC" ] || [ -n "$EXTERNAL_HREF" ]; then
     echo -e "${RED}BLOCKED: External URL(s) found in added lines:${NC}"
-    echo "$EXTERNAL_TAGS" | head -10
+    { [ -n "$EXTERNAL_SRC" ] && echo "$EXTERNAL_SRC"; [ -n "$EXTERNAL_HREF" ] && echo "$EXTERNAL_HREF"; } | head -10
     echo ""
     ISSUES=$((ISSUES + 1))
   fi

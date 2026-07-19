@@ -167,12 +167,20 @@
     <lastmod>2026-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/for-ai/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/for-ai/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/for-ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/for-ai/" />
   </url>
   <url>
     <loc>https://www.regenstudio.world/ai-training/</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/ai-training/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/ai-training/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/ai-training/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/ai-training/" />
   </url>
   <url>
     <loc>https://www.regenstudio.world/what-is-the-battery-dpp/</loc>
@@ -2863,6 +2871,46 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-espr/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-espr/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-espr/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/for-ai/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/for-ai/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/for-ai/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/for-ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/for-ai/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/for-ai/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/for-ai/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/for-ai/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/for-ai/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/for-ai/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/ai-training/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/ai-training/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/ai-training/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/ai-training/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/ai-training/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/ai-training/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/ai-training/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/ai-training/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/ai-training/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/ai-training/" />
   </url>
   <url>
     <loc>https://www.regenstudio.world/blog/electronic-bill-of-lading-eu-brazil/</loc>
