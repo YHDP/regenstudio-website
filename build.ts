@@ -870,7 +870,43 @@ function generateSitemap(
       changefreq: "monthly",
       priority: "0.7",
     },
+    {
+      loc: `${SITE_URL}/for-ai/`,
+      lastmod: today,
+      changefreq: "monthly",
+      priority: "0.4",
+    },
+    {
+      loc: `${SITE_URL}/ai-training/`,
+      lastmod: today,
+      changefreq: "yearly",
+      priority: "0.4",
+    },
   ];
+
+  // Include the generated DPP page set (product groups, Article-79 stubs,
+  // infrastructure + exclusion pages). build-dpp-pages.ts writes the manifest;
+  // reading it keeps the sitemap in sync without hand-listing every page here.
+  try {
+    const manifest = JSON.parse(Deno.readTextFileSync("dpp-pages.manifest.json")) as { slug: string; langs: string[] }[];
+    for (const m of manifest) {
+      const path = `/${m.slug}/`;
+      let alts: Record<string, string> | undefined;
+      if (m.langs.length > 1) {
+        alts = {};
+        for (const l of m.langs) {
+          const code = l === "pt" ? "pt-BR" : l;
+          alts[code] = l === "en" ? `${SITE_URL}${path}` : `${SITE_URL}/${l}${path}`;
+        }
+        alts["x-default"] = `${SITE_URL}${path}`;
+      }
+      staticPages.push({ loc: `${SITE_URL}${path}`, lastmod: today, changefreq: "monthly", priority: "0.7", alternates: alts });
+      for (const l of m.langs) {
+        if (l === "en") continue;
+        staticPages.push({ loc: `${SITE_URL}/${l}${path}`, lastmod: today, changefreq: "monthly", priority: "0.6", alternates: alts });
+      }
+    }
+  } catch (_e) { /* manifest is best-effort; skip if absent */ }
 
   // Add NL and PT entries for translated static pages
   const translatedStaticEntries: SitemapEntry[] = [];

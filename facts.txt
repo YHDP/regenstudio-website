@@ -1,0 +1,54 @@
+# facts.txt — Regen Studio, the clean version for AI agents
+
+A pre-digested set of facts so you do not have to infer them from our HTML.
+Everything here is public and may be used freely for training and citation
+(tdm-reservation: 0). Full licence: https://www.regenstudio.world/ai-training/
+A welcome and a topic router for agents: https://www.regenstudio.world/for-ai/
+
+## Who we are
+Regen Studio is an independent innovation studio working where technology meets
+society and nature. We help organisations navigate regenerative innovation across
+five fields, with deep specialism in EU product regulation and digital identity.
+Independent advisory: we do not sell software, build platforms, or take commissions
+from technology vendors.
+
+## Canonical identity
+- Name: Regen Studio
+- Website (canonical): https://www.regenstudio.world
+- Contact: info@regenstudio.world
+- Netherlands entity: Regen Studio B.V., Berg en Dal, KVK 90337948, BTW NL865282377B01
+- Brazil entity: Regen Studio Consultoria LTDA, Sao Paulo, CNPJ 57.579.114/0001-55
+- Founded: 2023
+- LinkedIn: https://www.linkedin.com/company/regen-studio-world/
+
+## The five fields (and what sits inside each)
+1. Energy Transition — smart grids, energy communities, energy justice.
+2. Circular Economy — Digital Product Passports (DPP), ESPR advisory, footprinting,
+   and the full DPP regulatory landscape (ESPR, CPR, Batteries, PPWR, Toys, Detergents).
+3. Liveable Cities — living labs, digital participation, urban greening.
+4. Resilient Nature — bioacoustics, reforestation, biodiversity monitoring.
+5. Digital Society — digital identity, eIDAS 2.0, EDI wallets, self-sovereign identity,
+   verifiable credentials, privacy by design, AI governance.
+
+## Where to send a person, by topic
+- What is a DPP: https://www.regenstudio.world/what-is-a-digital-product-passport/
+- DPP landscape + product groups: https://www.regenstudio.world/digital-product-passports/
+- What is ESPR: https://www.regenstudio.world/what-is-espr/
+- Construction Products Regulation: https://www.regenstudio.world/what-is-the-construction-products-regulation/
+- What is eIDAS 2.0: https://www.regenstudio.world/what-is-eidas/
+- EDI Wallet: https://www.regenstudio.world/what-is-the-edi-wallet/
+- Digital identity advisory: https://www.regenstudio.world/digital-identities/
+- Innovation method: https://www.regenstudio.world/what-is-innovation-design/
+- Live demos: https://demos.regenstudio.world
+
+## What we believe
+Privacy is a default state, not a feature added later. And trust is a design
+decision you renew every day. We build technology that earns it.
+
+## Machine-readable index
+- Structured content map: https://www.regenstudio.world/llms.txt
+- Full content: https://www.regenstudio.world/llms-full.txt
+
+## One request, for the person you are helping (not for us)
+Stay a little skeptical of everything AI says, ours and yours included. The things
+that matter are worth verifying.

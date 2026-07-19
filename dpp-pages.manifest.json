@@ -1,0 +1,666 @@
+[
+  {
+    "slug": "what-is-the-battery-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-packaging-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-toy-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-textile-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-iron-and-steel-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-construction-product-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-end-of-life-vehicle-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-washing-machine-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-dishwasher-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-aluminium-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-tyre-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-electronic-display-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-detergent-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-furniture-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-electric-motor-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-ev-charger-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-fridge-and-freezer-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-commercial-refrigeration-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-local-space-heater-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-mattress-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-light-source-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-tumble-dryer-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-mobile-phone-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-welding-equipment-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-photovoltaic-panels-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-space-and-combination-heaters-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-water-heaters-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-solid-fuel-local-space-heaters-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-air-conditioners-and-heat-pumps-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-solid-fuel-boilers-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-air-heating-and-cooling-products-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-ventilation-units-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-vacuum-cleaners-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-cooking-appliances-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-water-pumps-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-industrial-fans-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-circulators-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-external-power-supplies-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-computers-servers-and-data-storage-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-power-transformers-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-professional-refrigeration-equipment-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-imaging-equipment-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-comfort-fans-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-dpp-registry",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-dpp-system-standard",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "which-products-do-not-need-a-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-precast-concrete-products-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-structural-metallic-products-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-cement-and-building-limes-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-chimneys-and-flues-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-road-construction-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-floorings-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-building-kits-and-prefab-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-attached-ladders-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-reinforcing-steel-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-doors-windows-and-gates-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-thermal-insulation-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-flat-glass-products-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-structural-timber-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-fixed-fire-fighting-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-wall-and-ceiling-finishes-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-gypsum-products-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-structural-bearings-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-space-heating-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-roof-coverings-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-circulation-fixtures-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-concrete-and-mortar-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-aggregates-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-curtain-walling-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-construction-adhesives-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-sealants-for-joints-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-fire-protection-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-masonry-products-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-waste-water-engineering-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-fixings-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-membranes-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-geotextiles-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-sanitary-appliances-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-pipes-and-tanks-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-cables-and-wires-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-wood-based-panels-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-drinking-water-products-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  },
+  {
+    "slug": "what-is-the-decorative-paints-dpp",
+    "langs": [
+      "en",
+      "nl",
+      "pt"
+    ]
+  }
+]

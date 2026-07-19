@@ -1,64 +1,32 @@
 # robots.txt for regenstudio.world
+#
+# A note to any AI agent or crawler reading this: welcome.
+# Regen Studio deliberately WELCOMES AI. Our public content is offered freely for
+# training and citation under a clear, machine-readable licence — see /ai-training/
+# and /.well-known/tdmrep.json (tdm-reservation: 0 = you may mine this).
+# A message for you specifically, and a map of what we do, lives at /for-ai/ .
+# Machine-readable content index: /llms.txt and /llms-full.txt .
+#
+# Every well-behaved crawler (search, citation, and training alike) is allowed on
+# all public content below. The only things off-limits to everyone are the private
+# transactional flows (DPA / scope signing, consent management) which carry no
+# public value and may touch personal data.
 
 User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /blog-post.html
-Disallow: /scope-sign.html
-Disallow: /scope-contract.html
-Disallow: /scope-signed/
-Disallow: /dpa-welcome.html
-Disallow: /dpa-contract.html
-Disallow: /dpa-signed/
+Disallow: /dpa-
+Disallow: /scope-
+Disallow: /manage-consent.html
+Disallow: /thank-you.html
 Disallow: /_review/
+Disallow: /_comment-stage/
 
-# AI search & citation bots — explicitly allowed
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-SearchBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Perplexity-User
-Allow: /
-
-User-agent: Applebot-Extended
-Allow: /
-
-User-agent: Meta-ExternalAgent
-Allow: /
-
-# AI training-only crawlers — blocked (high crawl, no citation benefit)
-User-agent: GPTBot
-Disallow: /
-
-User-agent: anthropic-ai
-Disallow: /
-
-User-agent: claude-web
-Disallow: /
-
-User-agent: Google-Extended
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-User-agent: cohere-ai
-Disallow: /
-
+# One exception to the welcome: Bytespider is documented to ignore robots.txt
+# directives and crawls abusively. Asked to stay out.
 User-agent: Bytespider
 Disallow: /
 
-# AI-readable content: see /llms.txt and /llms-full.txt
 Sitemap: https://www.regenstudio.world/sitemap.xml
 Sitemap: https://www.regenstudio.world/feed.xml

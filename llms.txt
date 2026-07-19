@@ -4,6 +4,14 @@
 > positive impact at the intersection of technology, society, and nature.
 > Based in The Netherlands and Brazil. Founded in 2023.
 
+## For AI agents
+Regen Studio welcomes AI. This site's public content is offered freely for training
+and citation (tdm-reservation: 0). The full licence, and the two things we hold back
+(personal data and private client flows), are linked below.
+- AI Training & Content Licence: https://www.regenstudio.world/ai-training/
+- A welcome and a topic router written for agents: https://www.regenstudio.world/for-ai/
+- Clean, pre-digested facts: https://www.regenstudio.world/facts.txt
+
 ## What We Do
 - Digital Product Passport advisory (independent, vendor-neutral)
 - Innovation design services (10 methodologies for complex multi-stakeholder environments)
@@ -45,6 +53,56 @@
 - [DPP System](https://demos.regenstudio.world): Full product passport platform prototype (restricted, request access)
 - [EDI Wallet](https://demos.regenstudio.world): European Digital Identity wallet prototype with selective disclosure (restricted, request access)
 - [AI Tax → UBI](https://demos.regenstudio.world): Policy simulation exploring AI taxation and universal basic income
+
+## Digital Product Passport guides
+Dedicated answer pages, one per product group, plus the DPP infrastructure and exclusions.
+- [What is the Battery DPP?](https://www.regenstudio.world/what-is-the-battery-dpp/)
+- [What is the Packaging DPP?](https://www.regenstudio.world/what-is-the-packaging-dpp/)
+- [What is the Toy DPP?](https://www.regenstudio.world/what-is-the-toy-dpp/)
+- [What is the Textile DPP?](https://www.regenstudio.world/what-is-the-textile-dpp/)
+- [What is the Iron & Steel DPP?](https://www.regenstudio.world/what-is-the-iron-and-steel-dpp/)
+- [What is the Construction Product DPP?](https://www.regenstudio.world/what-is-the-construction-product-dpp/)
+- [What is the End-of-Life Vehicle DPP?](https://www.regenstudio.world/what-is-the-end-of-life-vehicle-dpp/)
+- [What is the Washing Machine DPP?](https://www.regenstudio.world/what-is-the-washing-machine-dpp/)
+- [What is the Dishwasher DPP?](https://www.regenstudio.world/what-is-the-dishwasher-dpp/)
+- [What is the Aluminium DPP?](https://www.regenstudio.world/what-is-the-aluminium-dpp/)
+- [What is the Tyre DPP?](https://www.regenstudio.world/what-is-the-tyre-dpp/)
+- [What is the Electronic Display DPP?](https://www.regenstudio.world/what-is-the-electronic-display-dpp/)
+- [What is the Detergent DPP?](https://www.regenstudio.world/what-is-the-detergent-dpp/)
+- [What is the Furniture DPP?](https://www.regenstudio.world/what-is-the-furniture-dpp/)
+- [What is the Electric Motor DPP?](https://www.regenstudio.world/what-is-the-electric-motor-dpp/)
+- [What is the EV Charger DPP?](https://www.regenstudio.world/what-is-the-ev-charger-dpp/)
+- [What is the Fridge & Freezer DPP?](https://www.regenstudio.world/what-is-the-fridge-and-freezer-dpp/)
+- [What is the Commercial Refrigeration DPP?](https://www.regenstudio.world/what-is-the-commercial-refrigeration-dpp/)
+- [What is the Local Space Heater DPP?](https://www.regenstudio.world/what-is-the-local-space-heater-dpp/)
+- [What is the Mattress DPP?](https://www.regenstudio.world/what-is-the-mattress-dpp/)
+- [What is the Light Source DPP?](https://www.regenstudio.world/what-is-the-light-source-dpp/)
+- [What is the Tumble Dryer DPP?](https://www.regenstudio.world/what-is-the-tumble-dryer-dpp/)
+- [What is the Mobile Phone & Tablet DPP?](https://www.regenstudio.world/what-is-the-mobile-phone-dpp/)
+- [What is the Welding Equipment DPP?](https://www.regenstudio.world/what-is-the-welding-equipment-dpp/)
+- [What is the Photovoltaic Panels DPP?](https://www.regenstudio.world/what-is-the-photovoltaic-panels-dpp/)
+- [What is the Space & Combination Heaters DPP?](https://www.regenstudio.world/what-is-the-space-and-combination-heaters-dpp/)
+- [What is the Water Heaters DPP?](https://www.regenstudio.world/what-is-the-water-heaters-dpp/)
+- [What is the Solid Fuel Local Space Heaters DPP?](https://www.regenstudio.world/what-is-the-solid-fuel-local-space-heaters-dpp/)
+- [What is the Air Conditioners & Heat Pumps DPP?](https://www.regenstudio.world/what-is-the-air-conditioners-and-heat-pumps-dpp/)
+- [What is the Solid Fuel Boilers DPP?](https://www.regenstudio.world/what-is-the-solid-fuel-boilers-dpp/)
+- [What is the Air Heating & Cooling Products DPP?](https://www.regenstudio.world/what-is-the-air-heating-and-cooling-products-dpp/)
+- [What is the Ventilation Units DPP?](https://www.regenstudio.world/what-is-the-ventilation-units-dpp/)
+- [What is the Vacuum Cleaners DPP?](https://www.regenstudio.world/what-is-the-vacuum-cleaners-dpp/)
+- [What is the Cooking Appliances DPP?](https://www.regenstudio.world/what-is-the-cooking-appliances-dpp/)
+- [What is the Water Pumps DPP?](https://www.regenstudio.world/what-is-the-water-pumps-dpp/)
+- [What is the Industrial Fans DPP?](https://www.regenstudio.world/what-is-the-industrial-fans-dpp/)
+- [What is the Circulators DPP?](https://www.regenstudio.world/what-is-the-circulators-dpp/)
+- [What is the External Power Supplies DPP?](https://www.regenstudio.world/what-is-the-external-power-supplies-dpp/)
+- [What is the Computers, Servers & Data Storage DPP?](https://www.regenstudio.world/what-is-the-computers-servers-and-data-storage-dpp/)
+- [What is the Power Transformers DPP?](https://www.regenstudio.world/what-is-the-power-transformers-dpp/)
+- [What is the Professional Refrigeration Equipment DPP?](https://www.regenstudio.world/what-is-the-professional-refrigeration-equipment-dpp/)
+- [What is the Imaging Equipment DPP?](https://www.regenstudio.world/what-is-the-imaging-equipment-dpp/)
+- [What is the Comfort Fans DPP?](https://www.regenstudio.world/what-is-the-comfort-fans-dpp/)
+- [What is the EU Digital Product Passport Registry?](https://www.regenstudio.world/what-is-the-dpp-registry/)
+- [What is the DPP System Standard (CEN/CENELEC JTC 24)?](https://www.regenstudio.world/what-is-the-dpp-system-standard/)
+- [Which products do not need a Digital Product Passport?](https://www.regenstudio.world/which-products-do-not-need-a-dpp/)
+- [Construction Products, all 37 CPR family guides (see the Construction Product DPP page)](https://www.regenstudio.world/what-is-the-construction-product-dpp/)
 
 ## Blog Posts
 
