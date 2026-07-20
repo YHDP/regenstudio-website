@@ -83,7 +83,12 @@ while read local_ref local_sha remote_ref remote_sha; do
   #      navigation, not exfil vectors. The src= check (scripts/fonts/iframes/
   #      images — real runtime-connection risk) still applies everywhere, including
   #      blogs, which self-host all assets so never legitimately use external src=.
-  ALLOW='(supabase\.co|regenstudio\.(world|space)|player\.vimeo\.com|w\.soundcloud\.com|linkedin\.com|bsky\.app|mastodon\.social|schema\.org|ogp\.me|github\.com/YHDP/regenstudio-website|tweedekamer\.nl|rvo\.nl|tno\.nl|coe-dpp\.nl|fides-labs\.io|eur-lex\.europa\.eu|denhaag\.nl|smartcity\.denhaag\.nl|denhaag\.raadsinformatie\.nl|vng\.nl|rijksoverheid\.nl|acm\.nl|platform31\.nl|stedin\.net|amsterdamsmartcity\.com|energy\.nl|forthefutureofenergy\.nl|gridflex\.nl|gebiedsontwikkeling\.nu|nvde\.nl|openremote\.io|smart-energy\.com|schoonschipamsterdam\.org|kerstentechniek\.nl|kansenvoorwest\.nl|eprel\.ec\.europa\.eu|digital-strategy\.ec\.europa\.eu|ec\.europa\.eu|reach-it\.echa\.europa\.eu|echa\.europa\.eu|circulartechforum\.de)'
+  #    2026-07-19: also extended for the Resilient-Nature what-is pages (non-blog
+  #      editorial pages citing authoritative sources): fao.org (UN FAO),
+  #      rodaleinstitute.org, nrcs.usda.gov (USDA NRCS), noble.org, extension.umn.edu
+  #      (U Minnesota Extension), ncbi.nlm.nih.gov (NIH PubMed Central), and
+  #      agrotechdaholanda.com (our Dutch Flow Technology / Agrotech da Holanda brand).
+  ALLOW='(supabase\.co|regenstudio\.(world|space)|player\.vimeo\.com|w\.soundcloud\.com|linkedin\.com|bsky\.app|mastodon\.social|schema\.org|ogp\.me|github\.com/YHDP/regenstudio-website|tweedekamer\.nl|rvo\.nl|tno\.nl|coe-dpp\.nl|fides-labs\.io|eur-lex\.europa\.eu|denhaag\.nl|smartcity\.denhaag\.nl|denhaag\.raadsinformatie\.nl|vng\.nl|rijksoverheid\.nl|acm\.nl|platform31\.nl|stedin\.net|amsterdamsmartcity\.com|energy\.nl|forthefutureofenergy\.nl|gridflex\.nl|gebiedsontwikkeling\.nu|nvde\.nl|openremote\.io|smart-energy\.com|schoonschipamsterdam\.org|kerstentechniek\.nl|kansenvoorwest\.nl|eprel\.ec\.europa\.eu|digital-strategy\.ec\.europa\.eu|ec\.europa\.eu|reach-it\.echa\.europa\.eu|echa\.europa\.eu|circulartechforum\.de|fao\.org|rodaleinstitute\.org|nrcs\.usda\.gov|noble\.org|extension\.umn\.edu|ncbi\.nlm\.nih\.gov|agrotechdaholanda\.com)'
 
   # 1a. External src= embeds (scripts/fonts/iframes/images) — ALL files.
   EXTERNAL_SRC=$(echo "$DIFF" | grep -n '^\+' | grep -iE 'src="https?://' | grep -viE "$ALLOW" || true)
