@@ -70,6 +70,11 @@
       color:var(--gold);background:rgba(160,112,26,.12);padding:2px 7px;border-radius:5px}
     .lt__foot{text-align:center;margin-top:30px;font-size:13px;color:var(--dim)}
     .lt__foot a{color:var(--emerald);text-decoration:none}
+    .lt__mail{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);border:1px solid var(--line);border-left:3px solid var(--emerald);border-radius:12px;padding:11px 12px 11px 16px;margin:9px 0;box-shadow:0 1px 2px rgba(36,54,68,.04)}
+    .lt__mail-addr{flex:1;min-width:0;color:var(--ink);font-weight:600;font-size:15px;text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .lt__copy{flex:none;border:1px solid var(--line);background:#fff;color:var(--emerald);font-family:inherit;font-weight:700;font-size:13px;padding:8px 15px;border-radius:8px;cursor:pointer;transition:background .15s ease,color .15s ease}
+    .lt__copy:hover,.lt__copy:focus-visible{background:var(--emerald);color:#fff;outline:none}
+    .lt__copy.copied{background:var(--emerald);color:#fff}
     .lt__langs{display:flex;gap:14px;justify-content:center;margin-top:10px;font-size:13px}
     .lt__langs a{color:var(--dim);text-decoration:none}.lt__langs a[aria-current]{color:var(--ink);font-weight:600}
     /* ambient background triangles — tiny, full-bleed, faded, active, brand palette */
@@ -197,12 +202,26 @@
     <span class="lt__btn green" aria-disabled="true"><span class="lt__lbl">Yogaí <span class="lt__soon">coming soon</span><span class="lt__sub">(Re)generative Yoga &amp; Breathwork</span></span></span>
 
     <h2 class="lt__sec">Get in touch</h2>
-    <a class="lt__btn" href="mailto:info@regenstudio.world"><span class="lt__lbl">info@regenstudio.world</span></a>
+    <div class="lt__mail">
+      <a class="lt__mail-addr" href="mailto:info@regenstudio.world">info@regenstudio.world</a>
+      <button type="button" class="lt__copy" data-email="info@regenstudio.world" data-copied="Copied ✓" aria-label="Copy email address" aria-live="polite">Copy</button>
+    </div>
 
     <footer class="lt__foot">
       <a href="../">regenstudio.world</a>
       <div class="lt__langs"><a href="../linktree" aria-current="page">EN</a><a href="../nl/linktree">NL</a><a href="../pt/linktree">PT</a></div>
     </footer>
   </main>
+  <script>
+    document.querySelectorAll('.lt__copy').forEach(function(b){
+      var orig=b.textContent, msg=b.getAttribute('data-copied')||'Copied', email=b.getAttribute('data-email');
+      b.addEventListener('click',function(){
+        function done(){b.textContent=msg;b.classList.add('copied');setTimeout(function(){b.textContent=orig;b.classList.remove('copied');},1600);}
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(email).then(done,function(){fb(email);done();});}
+        else{fb(email);done();}
+      });
+    });
+    function fb(text){try{var ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}catch(e){}}
+  </script>
 </body>
 </html>
