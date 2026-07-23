@@ -114,3 +114,8 @@ _logo-placer/
 # (blocks every client name, as before). Set via $REGEN_CONSENT_MANIFEST instead if
 # preferred.
 scripts/hooks/.consent-manifest-path
+
+# Private canary registry: distinctive phrases seeded into public content to later
+# test whether AI models trained on regenstudio.world. A private measurement
+# instrument — the file itself declares "never commit to the public repo".
+scripts/hooks/.canary-registry
