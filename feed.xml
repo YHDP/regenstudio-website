@@ -5,8 +5,20 @@
     <link>https://www.regenstudio.world/blog.html</link>
     <description>Innovations that regenerate Humans, Cities and Nature.</description>
     <language>en</language>
-    <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
+    <pubDate>Fri, 24 Jul 2026 00:00:00 GMT</pubDate>
     <atom:link href="https://www.regenstudio.world/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The EU DPP Registry is live: enrolment and verification in plain steps</title>
+      <link>https://www.regenstudio.world/blog/dpp-registry-goes-live/</link>
+      <guid isPermaLink="true">https://www.regenstudio.world/blog/dpp-registry-goes-live/</guid>
+      <pubDate>Fri, 24 Jul 2026 00:00:00 GMT</pubDate>
+      <description>The EU DPP Registry is live in production since 20 July 2026, governed by Implementing Regulation (EU) 2026/1778. Here is the Commission&apos;s User Guide for Economic Operators condensed into plain steps: EU Login, enrolment, the seven-step verification, and passport registration.</description>
+      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
+      <category>Digital Product Passport</category>
+      <category>Digital Identity</category>
+      <category>Circular Economy</category>
+      <enclosure url="https://www.regenstudio.world/Blogs/dpp-registry-goes-live/Header.webp" type="image/webp" length="142504" />
+    </item>
     <item>
       <title>Dutch law adopts the Electronic Bill of Lading</title>
       <link>https://www.regenstudio.world/blog/electronic-bill-of-lading-eu-brazil/</link>
@@ -227,17 +239,6 @@
       <category>Digital Product Passport</category>
       <category>Vision &amp; Strategy</category>
       <enclosure url="https://www.regenstudio.world/Blogs/CircularTech/Header.jpg" type="image/jpeg" length="359483" />
-    </item>
-    <item>
-      <title>What to Expect from the ESPR Working Plan 2025–2030?</title>
-      <link>https://www.regenstudio.world/blog/ESPR/</link>
-      <guid isPermaLink="true">https://www.regenstudio.world/blog/ESPR/</guid>
-      <pubDate>Tue, 26 Aug 2025 00:00:00 GMT</pubDate>
-      <description>The ESPR Working Plan 2025–2030 sets the order and tempo for ecodesign requirements across 22 product groups, each requiring a Digital Product Passport. Here’s what to expect and when.</description>
-      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
-      <category>Digital Product Passport</category>
-      <category>Vision &amp; Strategy</category>
-      <enclosure url="https://www.regenstudio.world/Blogs/ESPR/ESPRWorkingPlanBlogAtivo%201.webp" type="image/webp" length="92530" />
     </item>
   </channel>
 </rss>

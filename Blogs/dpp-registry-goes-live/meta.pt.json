@@ -26,9 +26,9 @@
   "featuredImage": "Header.webp",
   "featuredImageAlt": "O Registro de DPP da UE, no ar em produção: a espinha de verificação, consulta e registro que conecta os regimes de regulação de produtos da Europa",
   "excerpt": "O Registro de DPP da UE está no ar em produção desde 20 de julho de 2026, regido pelo Regulamento de Execução (UE) 2026/1778. Aqui está o Guia do Usuário da Comissão para Operadores Econômicos condensado em passos simples: EU Login, inscrição, a verificação de sete passos e o registro do passaporte.",
-  "published": false,
+  "published": true,
   "review": {
-    "text": "draft",
-    "assets": "draft"
+    "text": "approved",
+    "assets": "approved"
   }
 }

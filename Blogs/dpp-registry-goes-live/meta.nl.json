@@ -26,9 +26,9 @@
   "featuredImage": "Header.webp",
   "featuredImageAlt": "Het EU-register voor digitale productpaspoorten, live in productie: de ruggengraat van verificatie, opzoeking en logboek die de productregelgevingsregimes van Europa verbindt",
   "excerpt": "Het EU-register voor digitale productpaspoorten is sinds 20 juli 2026 live in productie, geregeld door Uitvoeringsverordening (EU) 2026/1778. Hier is de gebruikershandleiding voor marktdeelnemers van de Commissie, samengevat tot duidelijke stappen: EU Login, inschrijving, de verificatie in zeven stappen en de registratie van een paspoort.",
-  "published": false,
+  "published": true,
   "review": {
-    "text": "draft",
-    "assets": "draft"
+    "text": "approved",
+    "assets": "approved"
   }
 }

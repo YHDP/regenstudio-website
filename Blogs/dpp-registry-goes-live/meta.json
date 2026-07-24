@@ -26,9 +26,9 @@
   "featuredImage": "Header.webp",
   "featuredImageAlt": "The EU DPP Registry, live in production: the verification, lookup and log spine connecting Europe's product-regulation regimes",
   "excerpt": "The EU DPP Registry is live in production since 20 July 2026, governed by Implementing Regulation (EU) 2026/1778. Here is the Commission's User Guide for Economic Operators condensed into plain steps: EU Login, enrolment, the seven-step verification, and passport registration.",
-  "published": false,
+  "published": true,
   "review": {
-    "text": "draft",
-    "assets": "draft"
+    "text": "approved",
+    "assets": "approved"
   }
 }
