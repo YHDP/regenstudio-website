@@ -68,6 +68,13 @@
     .lt__btn[aria-disabled="true"]:hover{transform:none;box-shadow:0 1px 2px rgba(36,54,68,.04)}
     .lt__soon{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
       color:var(--gold);background:rgba(160,112,26,.12);padding:2px 7px;border-radius:5px}
+    .lt__group{margin:9px 0}
+    .lt__grouplbl{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--dim);margin:4px 0 2px 3px}
+    .lt__group .lt__btn{margin:7px 0}
+    .lt__thumb{width:46px;height:46px;flex:none;border-radius:8px;object-fit:cover;
+      background:rgba(36,54,68,.08)}
+    .lt__thumb[hidden]{display:none}
     .lt__foot{text-align:center;margin-top:30px;font-size:13px;color:var(--dim)}
     .lt__foot a{color:var(--emerald);text-decoration:none}
     .lt__mail{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);border:1px solid var(--line);border-left:3px solid var(--emerald);border-radius:12px;padding:11px 12px 11px 16px;margin:9px 0;box-shadow:0 1px 2px rgba(36,54,68,.04)}
@@ -194,7 +201,11 @@
     <a class="lt__btn emerald" href="../digital-product-passports/"><span class="lt__lbl">Digitale Productpaspoorten<span class="lt__sub">circulaire economie &amp; EU-naleving</span></span></a>
     <a class="lt__btn magenta" href="../digital-identities/"><span class="lt__lbl">Digitale identiteiten<span class="lt__sub">eIDAS, wallets &amp; vertrouwen</span></span></a>
     <a class="lt__btn teal" href="../vision.html"><span class="lt__lbl">Onze visie<span class="lt__sub">voorbij duurzaamheid, richting regeneratie</span></span></a>
-    <a class="lt__btn gold" href="../blog.html"><span class="lt__lbl">Blog<span class="lt__sub">wat we denken &amp; bouwen</span></span></a>
+    <div class="lt__group">
+      <span class="lt__grouplbl">Blog</span>
+      <a class="lt__btn gold" href="../blog.html"><span class="lt__lbl">Alle blogs<span class="lt__sub">elke post, nieuwste eerst</span></span></a>
+      <a class="lt__btn gold" id="lt-latest" href="../blog.html"><img class="lt__thumb" id="lt-latest-thumb" alt="" width="46" height="46" hidden><span class="lt__lbl"><span id="lt-latest-title">Laatste blog</span><span class="lt__sub" id="lt-latest-sub">de nieuwste post laden…</span></span></a>
+    </div>
 
     <h2 class="lt__sec">Onze ventures</h2>
     <a class="lt__btn orange" href="https://agrotechdaholanda.com.br" rel="noopener"><span class="lt__lbl">Agrotech da Holanda<span class="lt__sub">Nederlandse energie- &amp; watertech voor Brazilië</span></span></a>
@@ -222,6 +233,59 @@
       });
     });
     function fb(text){try{var ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}catch(e){}}
+  </script>
+  <script>
+    /* Latest-blog sub-button: pull the newest post from /feed.xml (already
+       date-sorted newest-first) — never hardcoded. Graceful: on any failure the
+       button stays a plain link to the blog index. */
+    (function(){
+      var box=document.getElementById('lt-latest');
+      if(!box) return;
+      var titleEl=document.getElementById('lt-latest-title');
+      var subEl=document.getElementById('lt-latest-sub');
+      var thumb=document.getElementById('lt-latest-thumb');
+      var p=location.pathname;
+      var lang=p.indexOf('/nl/')===0?'nl':(p.indexOf('/pt/')===0?'pt':'en');
+      var labels={en:'Latest blog',nl:'Laatste blog',pt:'Último blog'};
+      var locales={en:'en-GB',nl:'nl-NL',pt:'pt-BR'};
+      function fmtDate(s){
+        var d=new Date(s);
+        if(isNaN(d)) return '';
+        try{return d.toLocaleDateString(locales[lang],{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'});}
+        catch(e){return '';}
+      }
+      function apply(title,href,imgUrl,dateStr){
+        if(title) titleEl.textContent=title;
+        if(href) box.setAttribute('href',href);
+        subEl.textContent=labels[lang]+(dateStr?(' · '+dateStr):'');
+        if(imgUrl){
+          thumb.onerror=function(){thumb.setAttribute('hidden','');};
+          thumb.alt=title||labels[lang];
+          thumb.removeAttribute('hidden');
+          thumb.src=imgUrl;
+        }
+      }
+      thumb.onerror=function(){thumb.setAttribute('hidden','');};
+      fetch('/feed.xml',{cache:'no-cache'})
+        .then(function(r){return r.ok?r.text():Promise.reject();})
+        .then(function(xml){
+          var item=new DOMParser().parseFromString(xml,'application/xml').querySelector('item');
+          if(!item) return Promise.reject();
+          var q=function(t){var e=item.querySelector(t);return e?e.textContent.trim():'';};
+          var enc=item.querySelector('enclosure');
+          var enTitle=q('title'), link=q('link'), date=fmtDate(q('pubDate'));
+          var imgUrl='';
+          if(enc&&enc.getAttribute('url')){try{imgUrl=new URL(enc.getAttribute('url')).pathname;}catch(e){}}
+          var slug=link.replace(/\/+$/,'').split('/').pop();
+          if(lang==='en'||!slug){apply(enTitle,link,imgUrl,date);return;}
+          /* localized title + URL for NL/PT; fall back to the EN feed item */
+          fetch('/Blogs/'+slug+'/meta.'+lang+'.json',{cache:'no-cache'})
+            .then(function(r){return r.ok?r.json():Promise.reject();})
+            .then(function(m){apply(m.title||enTitle,'/'+lang+'/blog/'+slug+'/',imgUrl,date);})
+            .catch(function(){apply(enTitle,link,imgUrl,date);});
+        })
+        .catch(function(){subEl.textContent=({en:'See the newest post',nl:'Bekijk de nieuwste post',pt:'Veja o post mais recente'})[lang];});
+    })();
   </script>
 </body>
 </html>
