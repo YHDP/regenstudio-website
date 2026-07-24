@@ -1,0 +1,34 @@
+{
+  "title": "Het EU-register voor digitale productpaspoorten is live: inschrijving en verificatie in duidelijke stappen",
+  "slug": "dpp-registry-goes-live",
+  "subtitle": "Het ontwerp dat we de Commissie vroegen aan te scherpen, is nu aangenomen als CIR (EU) 2026/1778, en het register is op 20 juli 2026 live gegaan. Hier is de officiële gebruikershandleiding, samengevat tot de stappen die een marktdeelnemer daadwerkelijk neemt.",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regen Studio"
+  },
+  "date": "2026-07-24",
+  "categories": [
+    "Digital Product Passport",
+    "Digital Identity",
+    "Circular Economy"
+  ],
+  "tags": [
+    "DPP",
+    "DPP-Registry",
+    "ESPR",
+    "implementing-regulation",
+    "2026-1778",
+    "eIDAS",
+    "QSeal",
+    "economic-operator",
+    "user-guide"
+  ],
+  "featuredImage": "Header.webp",
+  "featuredImageAlt": "Het EU-register voor digitale productpaspoorten, live in productie: de ruggengraat van verificatie, opzoeking en logboek die de productregelgevingsregimes van Europa verbindt",
+  "excerpt": "Het EU-register voor digitale productpaspoorten is sinds 20 juli 2026 live in productie, geregeld door Uitvoeringsverordening (EU) 2026/1778. Hier is de gebruikershandleiding voor marktdeelnemers van de Commissie, samengevat tot duidelijke stappen: EU Login, inschrijving, de verificatie in zeven stappen en de registratie van een paspoort.",
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
+}

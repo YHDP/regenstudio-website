@@ -1,0 +1,289 @@
+<style>
+  .dppreg-steps {
+    list-style: none;
+    margin: 20px 0;
+    padding: 0;
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .dppreg-step {
+    background: #FFFFFF;
+    border: 1px solid #ECEFF1;
+    border-radius: 10px;
+    padding: 14px 16px 14px 56px;
+    position: relative;
+    line-height: 1.55;
+    counter-increment: step;
+    box-shadow: 0 1px 3px rgba(36,54,68,0.06);
+  }
+  .dppreg-step::before {
+    content: counter(step);
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    width: 28px; height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #008545;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 6px;
+  }
+  .dppreg-step strong:first-child {
+    color: #243644;
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 2px;
+  }
+  .dppreg-note {
+    background: #F1F7F2;
+    border: 1px solid #D7E6DA;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 24px 0;
+  }
+  .dppreg-note h4 { margin: 0 0 8px 0; color: #006d38; font-size: 1rem; }
+  .dppreg-note ul { margin: 8px 0 0 0; padding-left: 20px; line-height: 1.6; }
+  .dppreg-warn {
+    background: #FFF6E9;
+    border: 1px solid #F3D9A8;
+    border-left: 5px solid #935D0D;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 24px 0;
+  }
+  .dppreg-warn h4 { margin: 0 0 8px 0; color: #935D0D; font-size: 1rem; }
+  .dppreg-warn p { margin: 0; line-height: 1.6; }
+  .dppreg-faq__item {
+    border: 1px solid #E5EDE7;
+    border-radius: 10px;
+    background: #FFFFFF;
+    margin: 10px 0;
+  }
+  .dppreg-faq__item summary {
+    cursor: pointer;
+    padding: 14px 18px;
+    font-weight: 700;
+    color: #243644;
+    font-size: 1.02rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .dppreg-faq__item summary::-webkit-details-marker { display: none; }
+  .dppreg-faq__item summary::after {
+    content: "+";
+    color: #008545;
+    font-weight: 700;
+    font-size: 1.35rem;
+    line-height: 1;
+  }
+  .dppreg-faq__item[open] summary::after { content: "\2212"; }
+  .dppreg-faq__item summary:hover { color: #006d38; }
+  .dppreg-faq__answer { padding: 0 18px 16px 18px; line-height: 1.65; color: #374151; }
+  .dppreg-faq__answer p { margin: 0; }
+</style>
+
+<p>Há dois meses escrevemos sobre um rascunho. Em <strong>27 de maio de 2026</strong>, a Regen Studio e o <a href="https://circulartechforum.de/" target="_blank" rel="noopener">CircularTech Forum</a> apresentaram uma submissão conjunta com onze pedidos para aprimorar o rascunho do Regulamento de Execução do Registro de Passaportes Digitais de Produto da UE (veja <a href="/pt/blog/eu-dpp-registry-explained/">nosso post anterior</a>). Esse rascunho agora é lei. A Comissão o adotou como <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R1778" target="_blank" rel="noopener">Regulamento de Execução (UE) 2026/1778</a> em 16 de julho, em vigor a partir de 6 de agosto de 2026, e em <strong>20 de julho de 2026</strong> o Registro <a href="https://single-market-economy.ec.europa.eu/news/digital-product-passport-registry-now-live-2026-07-20_en" target="_blank" rel="noopener">entrou no ar em produção</a> em <a href="https://registry.product-passport.ec.europa.eu/" target="_blank" rel="noopener">registry.product-passport.ec.europa.eu</a>.</p>
+
+<p>O <strong>Registro de Passaportes Digitais de Produto da UE</strong> é o registro central exigido pelo <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202401781" target="_blank" rel="noopener">Artigo 13 do Regulamento de Concepção Ecológica de Produtos Sustentáveis (ESPR)</a>. É uma infraestrutura horizontal: uma única plataforma que verifica operadores econômicos, emite identificadores de registro, mantém as definições semânticas compartilhadas e guarda o registro de auditoria de cada Passaporte Digital do Produto em baterias, atos delegados do ESPR, produtos de construção, brinquedos e detergentes. Ela indexa os passaportes. Não armazena o conteúdo deles, que continua hospedado pelo operador ou pelo seu prestador de serviços, que deve mantê-lo disponível, exato e resolvível.</p>
+
+<p>Junto com o Registro, a Comissão publicou um <strong>Guia do Usuário para Operadores Econômicos (v1.0)</strong>, com 51 páginas, datado de 17 de julho de 2026. Este post condensa esse guia nos passos que um operador efetivamente percorre: entrar, inscrever-se, ser verificado e registrar um passaporte. Tudo o que segue abaixo acompanha o guia oficial e o Regulamento. Onde uma regra é fácil de deixar passar, nós a sinalizamos.</p>
+
+<h2 id="getting-verified">Como ser verificado, em passos simples</h2>
+
+<p>Somente operadores econômicos <strong>verificados</strong> podem registrar ou gerenciar passaportes, então a verificação é a porta que você precisa atravessar primeiro. A interface e a declaração selada estão apenas em inglês, e não se espera taxa de assinatura. Existe um <strong>ambiente de teste</strong> separado em <a href="https://registry.acc.product-passport.ec.europa.eu/" target="_blank" rel="noopener">registry.acc.product-passport.ec.europa.eu</a> que precisa da própria conta EU Login e aplica o mesmo rigor de verificação da produção, então você precisa de selos qualificados reais mesmo para testar. Se você travar, a Comissão mantém um helpdesk em <a href="mailto:EC-HELPDESK-DPP@ec.europa.eu">EC-HELPDESK-DPP@ec.europa.eu</a> e +32 2 296 0431, de segunda a sexta, das 08:00 às 20:00 CET.</p>
+
+<p>A verificação prova que a sua organização é quem afirma ser, usando um selo eletrônico qualificado ou uma assinatura eletrônica qualificada sob o <a href="https://digital-strategy.ec.europa.eu/en/policies/discover-eidas" target="_blank" rel="noopener">eIDAS</a>. O caminho tem três partes: entrar, descrever a sua organização e então concluir a verificação em si.</p>
+
+<h3 id="step-signin">Entre e comece · EU Login</h3>
+
+<p>Ao acessar o registro, você é redirecionado para o EU Login, o serviço central de autenticação da Comissão, que exige login com múltiplos fatores. Uma vez dentro, escolha <strong>Enrol New Organisation</strong>. A pessoa que conclui uma verificação bem-sucedida torna-se o <strong>Administrador</strong> daquela organização no Registro.</p>
+
+<h3 id="step-orginfo">Descreva a sua organização</h3>
+
+<p>Você declara se o operador é uma <strong>pessoa jurídica</strong> (uma empresa) ou uma <strong>pessoa física</strong> atuando como empresário individual, e então informa o nome registrado, o endereço de registro, o país e um contato de conformidade. A escolha que mais importa é o identificador:</p>
+
+<ul>
+  <li><strong>Pessoa jurídica</strong>: prefere-se o número do Registro Comercial Nacional (<strong>NTR</strong>), que na Holanda é o seu número KvK. LEI, número de IVA, um identificador eID ou uma definição local são as alternativas.</li>
+  <li><strong>Pessoa física</strong>: prefere-se o Número de Identificação Fiscal (<strong>TIN</strong>), tendo número pessoal, eID, carteira de identidade nacional ou passaporte como alternativas.</li>
+</ul>
+
+<p>Acerte isso antes de prosseguir, porque editar os dados da sua organização depois reinicia o processo de verificação desde o começo.</p>
+
+<h3 id="step-verify">Conclua os sete passos de verificação</h3>
+
+<p>O guia divide a verificação em sete passos:</p>
+
+<ol class="dppreg-steps">
+  <li class="dppreg-step"><strong>Informe os dados do representante legal</strong>O nome e o e-mail da pessoa que pode representar legalmente a organização. Este é o signatário, e pode ser diferente do requerente que preenche o formulário.</li>
+  <li class="dppreg-step"><strong>Solicite a declaração em PDF selada</strong>O sistema gera uma declaração fixando os dados da sua organização, e a Comissão aplica seu selo institucional para autenticidade.</li>
+  <li class="dppreg-step"><strong>Baixe a declaração</strong>O PDF selado pela CE fica disponível para download.</li>
+  <li class="dppreg-step"><strong>Assine ou sele, fora do Registro</strong>Uma pessoa jurídica adiciona um <strong>selo eletrônico qualificado (QSeal)</strong>; um empresário individual adiciona uma <strong>assinatura eletrônica qualificada (QES)</strong>. Qualquer um dos dois deve vir de um prestador de serviços de confiança qualificado em uma lista de confiança da UE ou do EEE. Você pode encontrar um pelo <a href="https://eidas.ec.europa.eu/efda/trust-services/browse/eidas/tls" target="_blank" rel="noopener">Trusted List Browser</a>.</li>
+  <li class="dppreg-step"><strong>Faça upload do PDF contra-assinado</strong>Apenas PDF, até 1 GB.</li>
+  <li class="dppreg-step"><strong>Envie a solicitação</strong>Encaminhe-a para processamento.</li>
+  <li class="dppreg-step"><strong>Verifique o status</strong>O Activity Dashboard mostra o resultado: em processamento, sucesso ou falha.</li>
+</ol>
+
+<div class="dppreg-note">
+  <h4>As regras que fazem as pessoas tropeçarem</h4>
+  <p>As verificações são rigorosas, e a maioria das falhas se resume a um punhado de regras:</p>
+  <ul>
+    <li>O PDF finalizado deve carregar <strong>exatamente duas assinaturas</strong>: o selo institucional da Comissão, mais a sua contra-assinatura ou contra-selo.</li>
+    <li>Adicionar o seu selo é a <strong>única alteração que você pode fazer</strong> no PDF baixado. Qualquer outra edição quebra a verificação de integridade e invalida a declaração.</li>
+    <li>Ambos os selos devem estar em nível qualificado e conformes ao <strong>PAdES Baseline</strong> (B, T, LT ou LTA). A ausência de carimbos de tempo confiáveis ou de dados de validação de longo prazo são causas conhecidas de falha.</li>
+    <li>Os atributos do certificado devem <strong>coincidir com a declaração</strong>: o identificador da organização, o país de registro e o nome jurídico ou pessoal.</li>
+  </ul>
+  <p style="margin-top:10px;">Em caso de sucesso, o relatório traz o <strong>dia de expiração do seu selo</strong>. Quando o selo expira, a reverificação passa a ser devida.</p>
+</div>
+
+<h2 id="registering">Registrando um passaporte</h2>
+
+<p>Uma vez verificado, você registra passaportes no menu DPP Registration. Dois identificadores fazem o trabalho. Você fornece o <strong>Identificador Único do Produto (UPI)</strong>: uma URL que segue os padrões da JTC 24, com no máximo 50 caracteres, resolvendo para o local onde os dados do seu passaporte estão hospedados. Em troca, o Registro emite o <strong>Identificador Único de Registro (URI)</strong>, que identifica o registro central e o vincula ao seu passaporte por meio do UPI.</p>
+
+<p>Você pode registrar um passaporte de cada vez por um <strong>formulário online</strong>, ou enviar um lote por <strong>upload de arquivo</strong> em XML ou JSON. Um arquivo comporta no máximo 100 passaportes, até 1 GB, e é <strong>tudo ou nada</strong>: um único passaporte com falha rejeita a submissão inteira. O registro é oferecido no nível de modelo, lote ou item.</p>
+
+<div class="dppreg-note">
+  <h4>Ainda não há API para operadores</h4>
+  <p>Hoje você registra pela interface web segura. O Regulamento também prevê uma <strong>API</strong> como canal alternativo, tanto para registrar um passaporte quanto para receber informações de volta do registro (Artigo 3(b) e Artigo 8(6)). Na v1.0 o Guia do Usuário documenta apenas o caminho pela interface web, e a API máquina-a-máquina para operadores econômicos <strong>ainda não foi publicada</strong>. Espera-se que ela venha a seguir, e que importe mais para quem registra passaportes em volume ou integra o registro aos seus próprios sistemas.</p>
+</div>
+
+<div class="dppreg-warn">
+  <h4>As baterias vêm primeiro, mas o registro ainda não pode ser concluído</h4>
+  <p>As baterias são o primeiro grupo de produtos no Registro. Para elas o registro oferece apenas o nível de item, que o guia descreve como o nível acordado para esse grupo de produtos, coerente com o <a href="https://eur-lex.europa.eu/eli/reg/2023/1542/oj" target="_blank" rel="noopener">Regulamento de Baterias (UE) 2023/1542</a>, sob o qual cada bateria individual carrega o próprio passaporte. Na v1.0 do Guia do Usuário (17 de julho de 2026), a Comissão afirma sem rodeios que "o registro bem-sucedido de DPPs para baterias não está disponível no momento, pois o catálogo semântico para esse grupo de produtos ainda não foi definido." A Comissão enquadra o período atual como uma fase de testes antes das primeiras obrigações de passaporte de baterias em <strong>18 de fevereiro de 2027</strong>. Outros grupos de produtos seguem progressivamente sob o Plano de Trabalho do ESPR, com passaportes de detergentes a partir de 23 de setembro de 2029 e passaportes de brinquedos a partir de agosto de 2030.</p>
+</div>
+
+<h2 id="what-this-means">O que isso significa se você coloca produtos no mercado da UE</h2>
+
+<p>A manchete é que a infraestrutura deixou de ser um plano. Se você vai precisar de um passaporte nesta década, pode se inscrever e ser verificado agora, e há bons motivos para isso. A dependência que trava tudo é o <strong>selo qualificado</strong>. Adquirir um QSeal ou QES de um prestador em lista de confiança leva tempo, e nada no fluxo de verificação avança enquanto você não o tiver, então é esse o item para começar esta semana, e não na semana anterior ao seu prazo.</p>
+
+<p>A segunda coisa a internalizar é que a verificação é um status vivo, não algo de uma vez só. Ela está atrelada à vida do seu selo, e caduca quando o selo caduca. Coloque a renovação no seu calendário de conformidade da mesma forma que você faria com a rotação de um certificado.</p>
+
+<p>A lacuna aberta é o próprio registro. O relógio até 18 de fevereiro de 2027 está correndo, mas o catálogo semântico de baterias que permitiria a um registro realmente ter sucesso não está definido na v1.0 do guia, e a API para operadores não está publicada. Ser verificado está disponível hoje e vale a pena. Concluir um registro real de bateria não está, e esse catálogo é o marco a acompanhar. Estamos inscritos e acompanhando de perto, e daremos retorno quando os primeiros registros reais se tornarem possíveis.</p>
+
+<h2 id="how-regen-helps">Como a Regen Studio ajuda operadores econômicos a se prepararem</h2>
+
+<p>A Regen Studio ajuda empresas a se prepararem para a conformidade com o Passaporte Digital do Produto. Acompanhamos os desenvolvimentos regulatórios à medida que chegam, ao longo do ESPR, do Regulamento de Baterias e dos atos delegados setoriais, para que você não precise rastrear pessoalmente cada aviso do Jornal Oficial e cada revisão do Guia do Usuário.</p>
+
+<p>Para um dado produto, determinamos quais exigências de DPP se aplicam e quando, mapeamos os dados que você já tem contra o que um passaporte vai exigir, e trazemos à tona as lacunas. A partir daí construímos um roteiro para a conformidade com marcos concretos, de uma primeira avaliação de requisitos até um passaporte ativo e registrável. Se você fabrica baterias, têxteis, móveis, produtos de construção, detergentes ou outro grupo regulado, e quer saber onde está e o que fazer em seguida, é esse o trabalho que fazemos.</p>
+
+<div style="background: linear-gradient(135deg, #243644 0%, #1B2833 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Veja em ação</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Quer ver como um Sistema de DPP realmente funciona de ponta a ponta?</p>
+  <p style="color: #8CA9BF; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">Explore nossa demonstração interativa: móveis sustentáveis rastreados das florestas brasileiras até a fabricação, com credenciais verificáveis e dados de conformidade alinhados ao ESPR conectados por todo o percurso.</p>
+  <a href="https://demos.regenstudio.world/dpp-system/gate.html" style="display: inline-block; background: #007B40; color: #FFFFFF; font-weight: 600; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none;">Explore a Demonstração do Sistema de DPP &rarr;</a>
+</div>
+
+<p style="font-size: 0.9rem; color: #6b7280; margin-top: 40px; padding-top: 24px; border-top: 1px solid #e5e7eb;"><strong>Fontes</strong>: Regulamento de Execução da Comissão (UE) 2026/1778 (JO, 17 de julho de 2026); Guia do Usuário do Registro de DPP para Operadores Econômicos v1.0 (DG GROW, 17 de julho de 2026); notícia da Comissão Europeia, "The Digital Product Passport Registry is now live" (20 de julho de 2026). Este post condensa essas fontes; a introdução, a análise de fechamento e a seção de serviços são da própria Regen Studio.</p>
+
+<!--FAQ-FOOTNOTE-->
+<h2 id="faq">Perguntas frequentes</h2>
+
+<div class="dppreg-faq">
+  <details class="dppreg-faq__item">
+    <summary>O que é o Registro de DPP da UE?</summary>
+    <div class="dppreg-faq__answer"><p>É o registro digital central exigido pelo Artigo 13 do ESPR (Regulamento (UE) 2024/1781), operado pela Comissão Europeia e regido pelo Regulamento de Execução (UE) 2026/1778. Ele verifica operadores econômicos, emite identificadores de registro, mantém as definições semânticas compartilhadas e guarda o registro de auditoria de cada Passaporte Digital do Produto. Ele indexa os passaportes; o conteúdo do passaporte em si é hospedado pelo operador.</p></div>
+  </details>
+
+  <details class="dppreg-faq__item">
+    <summary>Quando o Registro de DPP entrou no ar?</summary>
+    <div class="dppreg-faq__answer"><p>O Registro entrou no ar em produção em 20 de julho de 2026 em registry.product-passport.ec.europa.eu. Seu Regulamento de Execução (UE) 2026/1778 foi adotado em 16 de julho de 2026 e entra em vigor em 6 de agosto de 2026.</p></div>
+  </details>
+
+  <details class="dppreg-faq__item">
+    <summary>Quem precisa se registrar no Registro de DPP?</summary>
+    <div class="dppreg-faq__answer"><p>Operadores econômicos verificados que colocam no mercado produtos com obrigação de DPP. As baterias são o primeiro grupo de produtos, com obrigações de passaporte de bateria a partir de 18 de fevereiro de 2027, seguidas por detergentes (23 de setembro de 2029), brinquedos (agosto de 2030) e grupos de produtos do ESPR conforme seus atos delegados se aplicarem.</p></div>
+  </details>
+
+  <details class="dppreg-faq__item">
+    <summary>Como você é verificado no Registro de DPP?</summary>
+    <div class="dppreg-faq__answer"><p>Entre com o EU Login, inscreva a sua organização e então conclua uma verificação de sete passos: informe o representante legal, solicite uma declaração em PDF selada pela CE, baixe-a, adicione o seu próprio selo eletrônico qualificado (QSeal para uma empresa) ou assinatura (QES para um empresário individual) de um prestador em lista de confiança da UE, faça o upload, envie e verifique o status. O selo deve ser PAdES Baseline e seus atributos devem coincidir com a declaração.</p></div>
+  </details>
+
+  <details class="dppreg-faq__item">
+    <summary>Já dá para registrar um passaporte de bateria?</summary>
+    <div class="dppreg-faq__answer"><p>Não. Na v1.0 do Guia do Usuário (17 de julho de 2026), o catálogo semântico de baterias ainda não foi definido, então os registros de baterias não podem ser concluídos. A Comissão enquadra isso como uma fase de testes antes do prazo de baterias de 18 de fevereiro de 2027.</p></div>
+  </details>
+
+  <details class="dppreg-faq__item">
+    <summary>O Registro de DPP tem uma API?</summary>
+    <div class="dppreg-faq__answer"><p>O Regulamento prevê uma API tanto para registro quanto para consulta (Artigo 3(b) e Artigo 8(6)), mas o Guia do Usuário v1.0 documenta apenas o caminho pela interface web. A API máquina-a-máquina para operadores econômicos ainda não foi publicada.</p></div>
+  </details>
+
+  <details class="dppreg-faq__item">
+    <summary>Quem pode ajudar operadores econômicos a se prepararem para a conformidade com o DPP?</summary>
+    <div class="dppreg-faq__answer"><p>A Regen Studio ajuda empresas a se prepararem para a conformidade com o Passaporte Digital do Produto. Acompanhamos os desenvolvimentos regulatórios ao longo do ESPR, do Regulamento de Baterias e dos atos delegados setoriais, determinamos quais requisitos se aplicam a um dado produto, mapeamos os dados existentes contra o que um passaporte exige, identificamos as lacunas e construímos um roteiro para a conformidade com marcos concretos.</p></div>
+  </details>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "O que é o Registro de DPP da UE?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O Registro de Passaportes Digitais de Produto da UE é o registro digital central exigido pelo Artigo 13 do ESPR (Regulamento (UE) 2024/1781), operado pela Comissão Europeia e regido pelo Regulamento de Execução (UE) 2026/1778. Ele verifica operadores econômicos, emite identificadores de registro, mantém as definições semânticas compartilhadas e guarda o registro de auditoria de cada Passaporte Digital do Produto. Ele indexa os passaportes; o conteúdo do passaporte em si é hospedado pelo operador."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quando o Registro de DPP entrou no ar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O Registro entrou no ar em produção em 20 de julho de 2026 em registry.product-passport.ec.europa.eu. Seu Regulamento de Execução (UE) 2026/1778 foi adotado em 16 de julho de 2026 e entra em vigor em 6 de agosto de 2026."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quem precisa se registrar no Registro de DPP?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Operadores econômicos verificados que colocam no mercado produtos com obrigação de DPP. As baterias são o primeiro grupo de produtos, com obrigações de passaporte de bateria a partir de 18 de fevereiro de 2027, seguidas por detergentes (23 de setembro de 2029), brinquedos (agosto de 2030) e grupos de produtos do ESPR conforme seus atos delegados se aplicarem."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Como você é verificado no Registro de DPP?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Entre com o EU Login, inscreva a sua organização e então conclua uma verificação de sete passos: informe o representante legal, solicite uma declaração em PDF selada pela CE, baixe-a, adicione o seu próprio selo eletrônico qualificado (QSeal para uma empresa) ou assinatura (QES para um empresário individual) de um prestador em lista de confiança da UE, faça o upload, envie e verifique o status. O selo deve ser PAdES Baseline e seus atributos devem coincidir com a declaração."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Já dá para registrar um passaporte de bateria?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não. Na v1.0 do Guia do Usuário (17 de julho de 2026), o catálogo semântico de baterias ainda não foi definido, então os registros de baterias não podem ser concluídos. A Comissão enquadra isso como uma fase de testes antes do prazo de baterias de 18 de fevereiro de 2027."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O Registro de DPP tem uma API?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O Regulamento prevê uma API tanto para registro quanto para consulta (Artigo 3(b) e Artigo 8(6)), mas o Guia do Usuário v1.0 documenta apenas o caminho pela interface web. A API máquina-a-máquina para operadores econômicos ainda não foi publicada."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quem pode ajudar operadores econômicos a se prepararem para a conformidade com o DPP?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Regen Studio ajuda empresas a se prepararem para a conformidade com o Passaporte Digital do Produto. Acompanhamos os desenvolvimentos regulatórios ao longo do ESPR, do Regulamento de Baterias e dos atos delegados setoriais, determinamos quais requisitos se aplicam a um dado produto, mapeamos os dados existentes contra o que um passaporte exige, identificamos as lacunas e construímos um roteiro para a conformidade com marcos concretos."
+      }
+    }
+  ]
+}
+</script>
+<!--/FAQ-FOOTNOTE-->

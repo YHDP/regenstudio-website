@@ -1,0 +1,34 @@
+{
+  "title": "The EU DPP Registry is live: enrolment and verification in plain steps",
+  "slug": "dpp-registry-goes-live",
+  "subtitle": "The draft we asked the Commission to sharpen is now adopted as CIR (EU) 2026/1778, and the Registry went live on 20 July 2026. Here is the official User Guide, condensed into the steps an economic operator actually takes.",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regen Studio"
+  },
+  "date": "2026-07-24",
+  "categories": [
+    "Digital Product Passport",
+    "Digital Identity",
+    "Circular Economy"
+  ],
+  "tags": [
+    "DPP",
+    "DPP-Registry",
+    "ESPR",
+    "implementing-regulation",
+    "2026-1778",
+    "eIDAS",
+    "QSeal",
+    "economic-operator",
+    "user-guide"
+  ],
+  "featuredImage": "Header.webp",
+  "featuredImageAlt": "The EU DPP Registry, live in production: the verification, lookup and log spine connecting Europe's product-regulation regimes",
+  "excerpt": "The EU DPP Registry is live in production since 20 July 2026, governed by Implementing Regulation (EU) 2026/1778. Here is the Commission's User Guide for Economic Operators condensed into plain steps: EU Login, enrolment, the seven-step verification, and passport registration.",
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
+}

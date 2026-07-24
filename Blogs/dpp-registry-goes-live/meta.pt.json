@@ -1,0 +1,34 @@
+{
+  "title": "O Registro de DPP da UE está no ar: inscrição e verificação em passos simples",
+  "slug": "dpp-registry-goes-live",
+  "subtitle": "O rascunho que pedimos à Comissão para aprimorar agora foi adotado como CIR (UE) 2026/1778, e o Registro entrou no ar em 20 de julho de 2026. Aqui está o Guia do Usuário oficial, condensado nos passos que um operador econômico efetivamente segue.",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regen Studio"
+  },
+  "date": "2026-07-24",
+  "categories": [
+    "Digital Product Passport",
+    "Digital Identity",
+    "Circular Economy"
+  ],
+  "tags": [
+    "DPP",
+    "DPP-Registry",
+    "ESPR",
+    "implementing-regulation",
+    "2026-1778",
+    "eIDAS",
+    "QSeal",
+    "economic-operator",
+    "user-guide"
+  ],
+  "featuredImage": "Header.webp",
+  "featuredImageAlt": "O Registro de DPP da UE, no ar em produção: a espinha de verificação, consulta e registro que conecta os regimes de regulação de produtos da Europa",
+  "excerpt": "O Registro de DPP da UE está no ar em produção desde 20 de julho de 2026, regido pelo Regulamento de Execução (UE) 2026/1778. Aqui está o Guia do Usuário da Comissão para Operadores Econômicos condensado em passos simples: EU Login, inscrição, a verificação de sete passos e o registro do passaporte.",
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
+}

@@ -1,0 +1,289 @@
+<style>
+  .dppreg-steps {
+    list-style: none;
+    margin: 20px 0;
+    padding: 0;
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .dppreg-step {
+    background: #FFFFFF;
+    border: 1px solid #ECEFF1;
+    border-radius: 10px;
+    padding: 14px 16px 14px 56px;
+    position: relative;
+    line-height: 1.55;
+    counter-increment: step;
+    box-shadow: 0 1px 3px rgba(36,54,68,0.06);
+  }
+  .dppreg-step::before {
+    content: counter(step);
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    width: 28px; height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #008545;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 6px;
+  }
+  .dppreg-step strong:first-child {
+    color: #243644;
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 2px;
+  }
+  .dppreg-note {
+    background: #F1F7F2;
+    border: 1px solid #D7E6DA;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 24px 0;
+  }
+  .dppreg-note h4 { margin: 0 0 8px 0; color: #006d38; font-size: 1rem; }
+  .dppreg-note ul { margin: 8px 0 0 0; padding-left: 20px; line-height: 1.6; }
+  .dppreg-warn {
+    background: #FFF6E9;
+    border: 1px solid #F3D9A8;
+    border-left: 5px solid #935D0D;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 24px 0;
+  }
+  .dppreg-warn h4 { margin: 0 0 8px 0; color: #935D0D; font-size: 1rem; }
+  .dppreg-warn p { margin: 0; line-height: 1.6; }
+  .dppreg-faq__item {
+    border: 1px solid #E5EDE7;
+    border-radius: 10px;
+    background: #FFFFFF;
+    margin: 10px 0;
+  }
+  .dppreg-faq__item summary {
+    cursor: pointer;
+    padding: 14px 18px;
+    font-weight: 700;
+    color: #243644;
+    font-size: 1.02rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .dppreg-faq__item summary::-webkit-details-marker { display: none; }
+  .dppreg-faq__item summary::after {
+    content: "+";
+    color: #008545;
+    font-weight: 700;
+    font-size: 1.35rem;
+    line-height: 1;
+  }
+  .dppreg-faq__item[open] summary::after { content: "\2212"; }
+  .dppreg-faq__item summary:hover { color: #006d38; }
+  .dppreg-faq__answer { padding: 0 18px 16px 18px; line-height: 1.65; color: #374151; }
+  .dppreg-faq__answer p { margin: 0; }
+</style>
+
+<p>Two months ago we wrote about a draft. On <strong>27 May 2026</strong>, Regen Studio and the <a href="https://circulartechforum.de/" target="_blank" rel="noopener">CircularTech Forum</a> filed a joint submission with eleven asks to sharpen the draft Implementing Regulation for the EU Digital Product Passport Registry (see <a href="/blog/eu-dpp-registry-explained/">our earlier post</a>). That draft is now law. The Commission adopted it as <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R1778" target="_blank" rel="noopener">Implementing Regulation (EU) 2026/1778</a> on 16 July, in force 6 August 2026, and on <strong>20 July 2026</strong> the Registry <a href="https://single-market-economy.ec.europa.eu/news/digital-product-passport-registry-now-live-2026-07-20_en" target="_blank" rel="noopener">went live in production</a> at <a href="https://registry.product-passport.ec.europa.eu/" target="_blank" rel="noopener">registry.product-passport.ec.europa.eu</a>.</p>
+
+<p>The <strong>EU Digital Product Passport Registry</strong> is the central registry required by <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202401781" target="_blank" rel="noopener">Article 13 of the Ecodesign for Sustainable Products Regulation (ESPR)</a>. It is horizontal infrastructure: one platform that verifies economic operators, issues registration identifiers, holds the shared semantic definitions, and keeps the audit log for every Digital Product Passport across batteries, ESPR delegated acts, construction products, toys, and detergents. It indexes passports. It does not store their content, which stays hosted by the operator or its service provider, who must keep it available, accurate, and resolvable.</p>
+
+<p>Alongside the Registry, the Commission published a <strong>User Guide for Economic Operators (v1.0)</strong>, 51 pages, dated 17 July 2026. This post condenses that guide into the steps an operator actually walks: sign in, enrol, get verified, and register a passport. Everything below follows the official guide and Regulation. Where a rule is easy to miss, we flag it.</p>
+
+<h2 id="getting-verified">Getting verified, in plain steps</h2>
+
+<p>Only <strong>verified</strong> economic operators may register or manage passports, so verification is the gate you clear first. The interface and the sealed declaration are in English only, and no subscription fee is expected. There is a separate <strong>test environment</strong> at <a href="https://registry.acc.product-passport.ec.europa.eu/" target="_blank" rel="noopener">registry.acc.product-passport.ec.europa.eu</a> that needs its own EU Login account and applies the same verification rigor as production, so you need real qualified seals even to test. If you get stuck, the Commission runs a helpdesk at <a href="mailto:EC-HELPDESK-DPP@ec.europa.eu">EC-HELPDESK-DPP@ec.europa.eu</a> and +32 2 296 0431, Monday to Friday, 08:00 to 20:00 CET.</p>
+
+<p>Verification proves your organisation is who it claims to be, using a qualified electronic seal or signature under <a href="https://digital-strategy.ec.europa.eu/en/policies/discover-eidas" target="_blank" rel="noopener">eIDAS</a>. The path has three parts: sign in, describe your organisation, then complete the verification itself.</p>
+
+<h3 id="step-signin">Sign in and start · EU Login</h3>
+
+<p>Visiting the registry redirects you to EU Login, the Commission's central authentication service, which enforces multi-factor sign-in. Once in, choose <strong>Enrol New Organisation</strong>. The person who completes a successful verification becomes the <strong>Administrator</strong> of that organisation in the Registry.</p>
+
+<h3 id="step-orginfo">Describe your organisation</h3>
+
+<p>You declare whether the operator is a <strong>legal person</strong> (a company) or a <strong>natural person</strong> acting as a sole trader, then give the registered name, registration address, country, and a compliance contact. The choice that matters most is the identifier:</p>
+
+<ul>
+  <li><strong>Legal person</strong>: the National Trade Register number (<strong>NTR</strong>) is preferred, which in the Netherlands is your KvK number. LEI, VAT, an eID identifier, or a local definition are the alternatives.</li>
+  <li><strong>Natural person</strong>: the Tax Identification Number (<strong>TIN</strong>) is preferred, with personal number, eID, national ID card, or passport as alternatives.</li>
+</ul>
+
+<p>Get this right before you proceed, because editing your organisation details later restarts the verification process from the top.</p>
+
+<h3 id="step-verify">Complete the seven verification steps</h3>
+
+<p>The guide breaks verification into seven steps:</p>
+
+<ol class="dppreg-steps">
+  <li class="dppreg-step"><strong>Provide the legal representative's information</strong>The name and email of the person who can legally represent the organisation. This is the signer, and it can differ from the applicant filling in the form.</li>
+  <li class="dppreg-step"><strong>Request the sealed PDF declaration</strong>The system generates a declaration locking in your organisation data, and the Commission applies its institutional seal for authenticity.</li>
+  <li class="dppreg-step"><strong>Download the declaration</strong>The EC-sealed PDF becomes available to download.</li>
+  <li class="dppreg-step"><strong>Sign or seal it, outside the Registry</strong>A legal person adds a <strong>qualified electronic seal (QSeal)</strong>; a sole trader adds a <strong>qualified electronic signature (QES)</strong>. Either must come from a qualified trust service provider on an EU or EEA trusted list. You can find one through the <a href="https://eidas.ec.europa.eu/efda/trust-services/browse/eidas/tls" target="_blank" rel="noopener">Trusted List Browser</a>.</li>
+  <li class="dppreg-step"><strong>Upload the countersigned PDF</strong>PDF only, up to 1 GB.</li>
+  <li class="dppreg-step"><strong>Submit the application</strong>Send it for processing.</li>
+  <li class="dppreg-step"><strong>Check the status</strong>The Activity Dashboard shows the outcome: processing, success, or failure.</li>
+</ol>
+
+<div class="dppreg-note">
+  <h4>The rules that trip people up</h4>
+  <p>The verification checks are strict, and most failures come down to a handful of rules:</p>
+  <ul>
+    <li>The finished PDF must carry <strong>exactly two signatures</strong>: the Commission's institutional seal, plus your countersignature or counterseal.</li>
+    <li>Adding your seal is the <strong>only change you may make</strong> to the downloaded PDF. Any other edit breaks the integrity check and invalidates the declaration.</li>
+    <li>Both seals must be at qualified level and conform to <strong>PAdES Baseline</strong> (B, T, LT, or LTA). Missing trusted timestamps or long-term validation data are named causes of failure.</li>
+    <li>The certificate attributes must <strong>match the declaration</strong>: the organisation identifier, the country of registration, and the legal or natural name.</li>
+  </ul>
+  <p style="margin-top:10px;">On success, the report carries the <strong>expiration day of your seal</strong>. When the seal expires, re-verification falls due.</p>
+</div>
+
+<h2 id="registering">Registering a passport</h2>
+
+<p>Once verified, you register passports from the DPP Registration menu. Two identifiers do the work. You supply the <strong>Unique Product Identifier (UPI)</strong>: a URL that conforms to the JTC 24 standards, at most 50 characters, resolving to where your passport data is hosted. In return the Registry issues the <strong>Unique Registration Identifier (URI)</strong>, which identifies the central registration record and binds it to your passport through the UPI.</p>
+
+<p>You can register one passport at a time through an <strong>online form</strong>, or submit a batch by <strong>file upload</strong> in XML or JSON. A file holds at most 100 passports, up to 1 GB, and it is <strong>all or nothing</strong>: one failing passport rejects the whole submission. Registration is offered at the level of model, batch, or item.</p>
+
+<div class="dppreg-note">
+  <h4>No API for operators yet</h4>
+  <p>Today you register through the secure web interface. The Regulation also provides for an <strong>API</strong> as an alternative channel, both for registering a passport and for receiving information back from the registry (Article 3(b) and Article 8(6)). At v1.0 the User Guide documents only the web-interface path, and the machine-to-machine API for economic operators is <strong>not yet published</strong>. Expect it to follow, and to matter most for anyone registering passports at volume or wiring the registry into their own systems.</p>
+</div>
+
+<div class="dppreg-warn">
+  <h4>Batteries come first, but registration cannot complete yet</h4>
+  <p>Batteries are the first product group in the Registry. For them the registry offers only the item level of registration, which the guide describes as the agreed level for that product group, consistent with the <a href="https://eur-lex.europa.eu/eli/reg/2023/1542/oj" target="_blank" rel="noopener">Battery Regulation (EU) 2023/1542</a> under which each individual battery carries its own passport. As of the User Guide v1.0 (17 July 2026), the Commission states plainly that "successful registration of DPPs for batteries is not currently available, as the semantic catalogue for this product group has not yet been defined." The Commission frames the current period as a testing phase ahead of the first battery passport obligations on <strong>18 February 2027</strong>. Further product groups follow progressively under the ESPR Working Plan, with detergent passports from 23 September 2029 and toy passports from August 2030.</p>
+</div>
+
+<h2 id="what-this-means">What this means if you place products on the EU market</h2>
+
+<p>The headline is that the infrastructure is no longer a plan. If you will need a passport this decade, you can enrol and get verified now, and there is good reason to. The gating dependency is the <strong>qualified seal</strong>. Procuring a QSeal or QES from a trusted-list provider takes time, and nothing in the verification flow moves until you have one, so that is the item to start on this week rather than the week before your deadline.</p>
+
+<p>The second thing to internalise is that verification is a living status, not a one-off. It is tied to the life of your seal, and it lapses when the seal does. Build the renewal into your compliance calendar the same way you would a certificate rotation.</p>
+
+<p>The open gap is registration itself. The clock to 18 February 2027 is running, yet the battery semantic catalogue that would let a registration actually succeed is not defined at v1.0 of the guide, and the operator API is not published. Getting verified is available today and worth doing. Completing a live battery registration is not, and that catalogue is the milestone to watch. We are enrolled and following it closely, and we will report back when the first real registrations become possible.</p>
+
+<h2 id="how-regen-helps">How Regen Studio helps economic operators prepare</h2>
+
+<p>Regen Studio helps companies prepare for Digital Product Passport compliance. We stay on top of the regulatory developments as they land, across the ESPR, the Battery Regulation, and the sectoral delegated acts, so you do not have to track every Official Journal notice and User Guide revision yourself.</p>
+
+<p>For a given product, we determine which DPP requirements apply and when, map the data you already hold against what a passport will demand, and surface the gaps. From there we build a roadmap to compliance with concrete milestones, from a first requirements assessment through to a live, registrable passport. If you make batteries, textiles, furniture, construction products, detergents, or another regulated group, and you want to know where you stand and what to do next, that is the work we do.</p>
+
+<div style="background: linear-gradient(135deg, #243644 0%, #1B2833 100%); border-radius: 16px; padding: 40px; text-align: center; margin: 40px 0;">
+  <p style="color: #AFF9D7; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">See it in action</p>
+  <p style="color: #FFFFFF; font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3;">Want to see what a DPP System actually looks like end to end?</p>
+  <p style="color: #8CA9BF; font-size: 1rem; margin-bottom: 24px; line-height: 1.6;">Explore our interactive demo: sustainable furniture traced from Brazilian forests through manufacturing, with verifiable credentials and ESPR-aligned compliance data threaded all the way through.</p>
+  <a href="https://demos.regenstudio.world/dpp-system/gate.html" style="display: inline-block; background: #007B40; color: #FFFFFF; font-weight: 600; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none;">Explore the DPP System Demo &rarr;</a>
+</div>
+
+<p style="font-size: 0.9rem; color: #6b7280; margin-top: 40px; padding-top: 24px; border-top: 1px solid #e5e7eb;"><strong>Sources</strong>: Commission Implementing Regulation (EU) 2026/1778 (OJ, 17 July 2026); DPP Registry User Guide for Economic Operators v1.0 (DG GROW, 17 July 2026); European Commission news, "The Digital Product Passport Registry is now live" (20 July 2026). This post condenses those sources; the intro, closing analysis, and services section are Regen Studio's own.</p>
+
+<!--FAQ-FOOTNOTE-->
+<h2 id="faq">Frequently asked questions</h2>
+
+<div class="dppreg-faq">
+  <details class="dppreg-faq__item">
+    <summary>What is the EU DPP Registry?</summary>
+    <div class="dppreg-faq__answer"><p>It is the central digital registry required by Article 13 of the ESPR (Regulation (EU) 2024/1781), operated by the European Commission and governed by Implementing Regulation (EU) 2026/1778. It verifies economic operators, issues registration identifiers, holds the shared semantic definitions, and keeps the audit log for every Digital Product Passport. It indexes passports; the passport content itself is hosted by the operator.</p></div>
+  </details>
+
+  <details class="dppreg-faq__item">
+    <summary>When did the DPP Registry go live?</summary>
+    <div class="dppreg-faq__answer"><p>The Registry went live in production on 20 July 2026 at registry.product-passport.ec.europa.eu. Its Implementing Regulation (EU) 2026/1778 was adopted on 16 July 2026 and enters into force on 6 August 2026.</p></div>
+  </details>
+
+  <details class="dppreg-faq__item">
+    <summary>Who has to register in the DPP Registry?</summary>
+    <div class="dppreg-faq__answer"><p>Verified economic operators placing products that carry a DPP obligation. Batteries are the first product group, with battery passport obligations from 18 February 2027, followed by detergents (23 September 2029), toys (August 2030), and ESPR product groups as their delegated acts apply.</p></div>
+  </details>
+
+  <details class="dppreg-faq__item">
+    <summary>How do you get verified in the DPP Registry?</summary>
+    <div class="dppreg-faq__answer"><p>Sign in with EU Login, enrol your organisation, then complete a seven-step verification: provide the legal representative, request an EC-sealed PDF declaration, download it, add your own qualified electronic seal (QSeal for a company) or signature (QES for a sole trader) from an EU trusted-list provider, upload it, submit, and check the status. The seal must be PAdES Baseline and its attributes must match the declaration.</p></div>
+  </details>
+
+  <details class="dppreg-faq__item">
+    <summary>Can you register a battery passport yet?</summary>
+    <div class="dppreg-faq__answer"><p>No. As of the User Guide v1.0 (17 July 2026), the batteries semantic catalogue has not yet been defined, so battery registrations cannot complete. The Commission frames this as a testing phase ahead of the 18 February 2027 battery deadline.</p></div>
+  </details>
+
+  <details class="dppreg-faq__item">
+    <summary>Does the DPP Registry have an API?</summary>
+    <div class="dppreg-faq__answer"><p>The Regulation provides for an API for both registration and retrieval (Article 3(b) and Article 8(6)), but the User Guide v1.0 documents only the web-interface path. The machine-to-machine API for economic operators is not yet published.</p></div>
+  </details>
+
+  <details class="dppreg-faq__item">
+    <summary>Who can help economic operators prepare for DPP compliance?</summary>
+    <div class="dppreg-faq__answer"><p>Regen Studio helps companies prepare for Digital Product Passport compliance. We track regulatory developments across the ESPR, the Battery Regulation, and the sectoral delegated acts, determine which requirements apply to a given product, map existing data against what a passport demands, identify the gaps, and build a roadmap to compliance with concrete milestones.</p></div>
+  </details>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the EU DPP Registry?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The EU Digital Product Passport Registry is the central digital registry required by Article 13 of the ESPR (Regulation (EU) 2024/1781), operated by the European Commission and governed by Implementing Regulation (EU) 2026/1778. It verifies economic operators, issues registration identifiers, holds the shared semantic definitions, and keeps the audit log for every Digital Product Passport. It indexes passports; the passport content itself is hosted by the operator."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When did the DPP Registry go live?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Registry went live in production on 20 July 2026 at registry.product-passport.ec.europa.eu. Its Implementing Regulation (EU) 2026/1778 was adopted on 16 July 2026 and enters into force on 6 August 2026."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who has to register in the DPP Registry?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Verified economic operators placing products that carry a DPP obligation. Batteries are the first product group, with battery passport obligations from 18 February 2027, followed by detergents (23 September 2029), toys (August 2030), and ESPR product groups as their delegated acts apply."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you get verified in the DPP Registry?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sign in with EU Login, enrol your organisation, then complete a seven-step verification: provide the legal representative, request an EC-sealed PDF declaration, download it, add your own qualified electronic seal (QSeal for a company) or signature (QES for a sole trader) from an EU trusted-list provider, upload it, submit, and check the status. The seal must be PAdES Baseline and its attributes must match the declaration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you register a battery passport yet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. As of the User Guide v1.0 (17 July 2026), the batteries semantic catalogue has not yet been defined, so battery registrations cannot complete. The Commission frames this as a testing phase ahead of the 18 February 2027 battery deadline."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the DPP Registry have an API?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Regulation provides for an API for both registration and retrieval (Article 3(b) and Article 8(6)), but the User Guide v1.0 documents only the web-interface path. The machine-to-machine API for economic operators is not yet published."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who can help economic operators prepare for DPP compliance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Regen Studio helps companies prepare for Digital Product Passport compliance. We track regulatory developments across the ESPR, the Battery Regulation, and the sectoral delegated acts, determine which requirements apply to a given product, map existing data against what a passport demands, identify the gaps, and build a roadmap to compliance with concrete milestones."
+      }
+    }
+  ]
+}
+</script>
+<!--/FAQ-FOOTNOTE-->
