@@ -659,6 +659,73 @@
   opacity: 0.5;
 }
 
+/* --- Client-project partner logos (Client Projects listing only) --- */
+/* Populated by fillPartnerSlot() in blog.js; absent from the main blog grid.
+   Full colour and full opacity, unlike the homepage marquee (style.css:2100)
+   which greys logos out — that one is decorative, these identify the client.
+   opacity on a container carrying wordmarks is also barred by our a11y rules. */
+.blog-card__partners {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  min-height: 44px;              /* reserves the row before logos decode → no CLS */
+  margin: 0 0 16px;
+  padding: 0 0 14px;
+  border-bottom: 1px solid var(--color-border);
+  list-style: none;
+}
+
+.blog-card__partner {
+  display: flex;
+  align-items: center;
+}
+
+.blog-card__partner-img {
+  height: 28px;
+  width: auto;
+  max-width: 108px;
+  object-fit: contain;
+  display: block;
+}
+
+/* FIDES (OIP-7) is a white-on-dark colourway — same dark chip the homepage
+   carousel uses at style.css .clients__logos-track img[src*="OIP-7"]. */
+.blog-card__partner--dark {
+  background: #1a1a1a;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+/* --- Client Projects: page-level Regen Studio credit (shown once, not per card) --- */
+.project-credit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  max-width: 760px;
+  margin: 0 auto 40px;
+  padding: 18px 28px;
+  background: #F0FAF4;           /* same pair the in-post credit banners use */
+  border: 1px solid #D1FAE5;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.project-credit__text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text);      /* on #F0FAF4 this clears AA comfortably */
+}
+
+.project-credit__logo {
+  height: 30px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
 /* --- No Results --- */
 .blog-no-results {
   text-align: center;
@@ -1574,6 +1641,17 @@
     font-size: 0.62rem;
     padding: 3px 8px;
   }
+
+  /* Client-project partner logos — narrower cards at 2 columns */
+  .blog-card__partners {
+    min-height: 38px;
+    gap: 8px 14px;
+    padding-bottom: 12px;
+  }
+  .blog-card__partner-img {
+    height: 24px;
+    max-width: 88px;
+  }
 }
 
 /* Client project banner — responsive */
@@ -1642,6 +1720,36 @@
     -webkit-line-clamp: 2;
   }
 
+  /* Compact cards keep their partner logos — with 8 client projects, hiding the
+     row would leave 5 of 8 showing no client at all on a phone, which is the
+     whole point of the feature. Move it below the title instead of above. */
+  .blog-grid .blog-card:nth-child(n+4) .blog-card__partners {
+    order: 2;
+    min-height: 0;
+    gap: 6px 10px;
+    margin: 6px 0 0;
+    padding: 0;
+    border-bottom: 0;
+  }
+  .blog-grid .blog-card:nth-child(n+4) .blog-card__categories {
+    order: 3;
+  }
+  .blog-grid .blog-card:nth-child(n+4) .blog-card__partner-img {
+    height: 18px;
+    max-width: 68px;
+  }
+  .blog-grid .blog-card:nth-child(n+4) .blog-card__partner--dark {
+    padding: 3px 6px;
+    border-radius: 4px;
+  }
+
+  .project-credit {
+    padding: 16px 18px;
+    margin-bottom: 28px;
+    gap: 4px 8px;
+  }
+  .project-credit__text { font-size: 0.82rem; }
+  .project-credit__logo { height: 26px; }
 }
 
 @media (max-width: 480px) {

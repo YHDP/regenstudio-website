@@ -251,8 +251,95 @@
     return localePrefix + '/blog/' + encodeURIComponent(slug) + '/';
   }
 
+  // --- Client-project partner logos ---
+  // Single source of truth is the credit banner each client-project post already
+  // opens with in Blogs/<slug>/content*.html. Reading it here means there is no
+  // second place to maintain, and NL/PT partner names come free from
+  // content.nl.html / content.pt.html.
+  //
+  // post.content is repo-authored, but it is still content flowing toward the
+  // DOM, so it is treated as untrusted: parsed inert, allow-listed, and rebuilt
+  // node-by-node. Never innerHTML, never interpolated into a template literal.
+  // See the DOM-XSS finding in the 2026-06-10 security audit.
+  var PARTNER_DIR = 'Images/client-logos/';
+  var PARTNER_FILE_RE = /^[A-Za-z0-9][A-Za-z0-9 ._-]*\.(svg|png|jpg|jpeg|webp)$/;
+  var REGEN_MARK_RE = /Logo-Text-on-the-side/i;    // shown once page-top, never per card
+  var DARK_CHIP_RE = /(^|\/)OIP-7\.(png|svg)$/i;   // FIDES is a white-on-dark colourway
+  var MAX_PARTNER_LOGOS = 6;
+
+  function extractPartnerLogos(post) {
+    var out = [];
+    var seen = {};
+    try {
+      // Inert document: no scripts run, no images fetch, no styles apply.
+      var doc = new DOMParser().parseFromString(post.content || '', 'text/html');
+      // The banner is the first element of every client-project post.
+      // firstElementChild (not firstChild) skips the leading comment that
+      // clean-fuel-protocol carries. Scoping to it keeps mid-article imagery out.
+      var banner = doc.body && doc.body.firstElementChild;
+      if (!banner || banner.tagName !== 'DIV') return out;
+
+      var imgs = banner.querySelectorAll('img');
+      for (var i = 0; i < imgs.length && out.length < MAX_PARTNER_LOGOS; i++) {
+        // getAttribute, not .src — the IDL property would resolve against the
+        // listing page and hand back an absolute URL, defeating prefix matching.
+        var src = imgs[i].getAttribute('src') || '';
+        var alt = (imgs[i].getAttribute('alt') || '').trim();
+
+        if (!alt) continue;                              // never emit a nameless logo
+        if (REGEN_MARK_RE.test(src)) continue;           // Regen mark lives page-top
+        if (/^[a-z][a-z0-9+.-]*:/i.test(src)) continue;  // any scheme, incl. data:/javascript:
+        if (src.charAt(0) === '/') continue;             // no root-absolute
+        if (src.indexOf('..') !== -1) continue;          // no traversal
+
+        // Allow-list the directory, then the bare filename separately. A
+        // surviving src cannot contain a quote, angle bracket, or whitespace.
+        var rel = '';
+        if (src.indexOf(PARTNER_DIR) === 0) {
+          rel = src.slice(PARTNER_DIR.length);
+        } else if (src.indexOf('Blogs/' + post.slug + '/') === 0) {
+          rel = src.slice(('Blogs/' + post.slug + '/').length);
+        } else {
+          continue;
+        }
+        if (!PARTNER_FILE_RE.test(rel)) continue;
+        if (seen[src]) continue;
+        seen[src] = 1;
+
+        out.push({ src: basePath + src, alt: alt, dark: DARK_CHIP_RE.test(src) });
+      }
+    } catch (e) {
+      // Malformed content: card still renders, just without a logo row.
+    }
+    return out;
+  }
+
+  // Fills the empty slot renderCard emitted. DOM APIs only — setAttribute never
+  // parses its value as markup, so an alt like "Embassy & Consulate" renders
+  // correctly and an alt containing tags renders as literal text.
+  function fillPartnerSlot(slot, list) {
+    if (!slot) return;
+    if (!list.length) { slot.remove(); return; }
+    slot.setAttribute('aria-label', t('client_projects.partners_label', 'Project partners'));
+    for (var i = 0; i < list.length; i++) {
+      var li = document.createElement('li');
+      li.className = 'blog-card__partner' + (list[i].dark ? ' blog-card__partner--dark' : '');
+      var img = document.createElement('img');
+      img.className = 'blog-card__partner-img';
+      img.setAttribute('src', list[i].src);
+      img.setAttribute('alt', list[i].alt);
+      img.setAttribute('loading', 'lazy');
+      img.setAttribute('decoding', 'async');
+      li.appendChild(img);
+      slot.appendChild(li);
+    }
+  }
+
   // --- Card renderer ---
-  function renderCard(post) {
+  // opts.showPartners opts a card into the client-project logo row. Default off,
+  // so the main blog grid and related-posts grid are byte-identical to before.
+  function renderCard(post, opts) {
+    opts = opts || {};
     var imgSrc = post.featuredImage
       ? (basePath + 'Blogs/' + post.slug + '/' + post.featuredImage)
       : '';
@@ -265,12 +352,19 @@
       return `<span class="blog-card__category blog-card__category--${color}">${tc(c)}</span>`;
     }).join('');
 
+    // Static, attacker-uninfluenced string. Nothing derived from post.content
+    // enters this template — fillPartnerSlot populates it afterwards.
+    const partnersHtml = opts.showPartners
+      ? '<ul class="blog-card__partners" role="list"></ul>'
+      : '';
+
     return `
       <article class="blog-card">
         <a href="${blogPostUrl(post.slug)}">
           ${imageHtml}
         </a>
         <div class="blog-card__body">
+          ${partnersHtml}
           <h2 class="blog-card__title">
             <a href="${blogPostUrl(post.slug)}">${post.title}</a>
           </h2>
@@ -528,7 +622,7 @@
           filterAndRender();
         });
       } else {
-        grid.innerHTML = filtered.map(renderCard).join('');
+        grid.innerHTML = filtered.map(function (p) { return renderCard(p); }).join('');
       }
 
       // Announce filter results to screen readers
@@ -593,7 +687,16 @@
       return;
     }
 
-    grid.innerHTML = clientBlogs.map(renderCard).join('');
+    // Extract before render so the two arrays stay index-aligned. Every client
+    // card is rendered with showPartners, so every card emits exactly one slot,
+    // in order — empty slots are removed inside fillPartnerSlot, after indexing.
+    const partners = clientBlogs.map(extractPartnerLogos);
+    grid.innerHTML = clientBlogs.map(function (p) {
+      return renderCard(p, { showPartners: true });
+    }).join('');
+
+    const slots = grid.querySelectorAll('.blog-card__partners');
+    for (let i = 0; i < slots.length; i++) fillPartnerSlot(slots[i], partners[i] || []);
   }
 
   // ========================================
@@ -861,7 +964,7 @@
         <div class="container">
           <h2 class="related-posts__title">${t("blog.related", "Related Articles")}</h2>
           <div class="related-posts__grid">
-            ${related.map(renderCard).join('')}
+            ${related.map(function (p) { return renderCard(p); }).join('')}
           </div>
           <div class="related-posts__cta">
             <a href="${pageUrl('blog.html')}${primaryCategory}" class="related-posts__cta-btn" data-track="related-view-all">${t("blog.view_related", "View all related blogs")}</a>
