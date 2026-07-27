@@ -102,6 +102,15 @@ _comment-stage/
 _review/
 scripts/comment-stage-widget.html
 
+# social/*.mp4 — social-media reels. Distribution assets: nothing on the site
+# links to them (verified 2026-07-27 — every `social/` grep hit is a
+# mastodon.social URL), so a visitor's browser never needs them. Per the
+# repo-hygiene rule they live in Proton Drive at
+# 6-projects/regenstudio-website/social/. The cover .jpg files stay tracked.
+# NB: open-web-reel.mp4 + instagram-launch-reel.mp4 were committed before this
+# rule; untracking them shrinks future clones but they remain in git history.
+social/*.mp4
+
 # review/ — the local launcher page for the comment stage. Internal process
 # tooling, never needed by a visitor's browser, and nothing on the site links
 # to it. Kept locally so `localhost:8000/review/` still works; the durable

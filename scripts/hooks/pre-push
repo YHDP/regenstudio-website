@@ -569,6 +569,34 @@ else: print(f'published={pub} review.text={r.get(\"text\")} review.assets={r.get
     done <<< "$SKILL_FILES"
   fi
 
+  # 10. Block internal-only paths from reaching the public repo.
+  #     CLAUDE.md has claimed since the comment-stage was built that
+  #     `_comment-stage/` is "gitignored AND in the pre-push INTERNAL_PATHS_RE".
+  #     It was not — .gitignore was the only protection, so a single `git add -f`
+  #     would have put a plaintext unpublished draft on the live site with no
+  #     mechanical objection. Added 2026-07-27 to make the documented claim true.
+  #
+  #     `review/` is the local comment-stage launcher (untracked 2026-07-27):
+  #     internal process tooling, nothing on the site links to it, and its
+  #     /_comment-stage/ links break the weekly link check.
+  #
+  #     `_review/` is deliberately NOT listed. That artifact is password-
+  #     ENCRYPTED (PBKDF2/AES-GCM ciphertext, noindex, robots-disallowed) and IS
+  #     meant to be deployable via a considered `git add -f` + authorised push.
+  #     Blocking it would break a documented workflow.
+  INTERNAL_PATHS_RE='^(_comment-stage|review)/'
+  INTERNAL_HITS=$(git diff --name-only --diff-filter=AM "$range" 2>/dev/null | grep -E "$INTERNAL_PATHS_RE" || true)
+  if [ -n "$INTERNAL_HITS" ]; then
+    echo -e "${RED}BLOCKED: internal-only path(s) staged for a public push:${NC}"
+    echo "$INTERNAL_HITS" | sed 's/^/    /' | head -10
+    echo ""
+    echo -e "${YELLOW}  _comment-stage/ is the LOCAL plaintext draft preview and review/ is${NC}"
+    echo -e "${YELLOW}  the local launcher. Neither belongs on the public site. If you meant${NC}"
+    echo -e "${YELLOW}  to share a draft externally, build it with --password and deploy the${NC}"
+    echo -e "${YELLOW}  ENCRYPTED _review/<slug>-<id>/ artifact instead.${NC}"
+    ISSUES=$((ISSUES + 1))
+  fi
+
 done
 
 if [ "$ISSUES" -gt 0 ]; then
