@@ -348,16 +348,18 @@
       img.setAttribute('loading', 'lazy');
       img.setAttribute('decoding', 'async');
       li.appendChild(img);
-      // Text fallback for viewports where a wordmark would be too small to read.
-      // aria-hidden because the img's alt already supplies the accessible name —
-      // CSS swaps which one is *visible*, never which one is announced.
-      var name = document.createElement('span');
-      name.className = 'blog-card__partner-name';
-      name.setAttribute('aria-hidden', 'true');
-      name.textContent = list[i].alt;
-      li.appendChild(name);
       slot.appendChild(li);
     }
+    // Client names in text alongside the marks. One line rather than a label per
+    // logo — with four partners on a card, per-logo labels turn into clutter.
+    // aria-hidden because each img's alt already supplies the accessible name;
+    // this is the visible affordance only, and it survives when a mark is too
+    // small to read (see the 540px block, where the logos themselves drop out).
+    var names = document.createElement('p');
+    names.className = 'blog-card__partner-names';
+    names.setAttribute('aria-hidden', 'true');
+    names.textContent = list.map(function (l) { return l.alt; }).join(' · ');
+    slot.parentNode.insertBefore(names, slot.nextSibling);
   }
 
   // --- Card renderer ---
@@ -372,7 +374,12 @@
       ? `<div class="blog-card__image"><img src="${imgSrc}" alt="${post.featuredImageAlt || ''}" loading="lazy"></div>`
       : `<div class="blog-card__image"><div class="blog-card__image-placeholder">${icons.image}</div></div>`;
 
-    const cats = post.categories.map(c => {
+    // On the Client Projects listing every card is a client project, so that
+    // pill carries no information — show only what distinguishes the projects.
+    const catList = opts.showPartners
+      ? post.categories.filter(c => c !== 'Client Projects')
+      : post.categories;
+    const cats = catList.map(c => {
       const color = CATEGORY_COLORS[c] || 'gray';
       return `<span class="blog-card__category blog-card__category--${color}">${tc(c)}</span>`;
     }).join('');
