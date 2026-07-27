@@ -834,6 +834,145 @@
   display: none;
 }
 
+/* --- Client Projects: ROW variant ---
+   Fixed-height bands. The grid variant goes ragged because logo count and title
+   length differ per project; here the thumbnail is a fixed block, the logos sit
+   in their own right-hand column, and the title clamps — so no project can push
+   its row taller than its neighbour. */
+#clientProjectsGrid.blog-grid--rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  grid-template-columns: none;
+  /* .blog-grid reserves 1200px for the two-column blog listing. In a filtered
+     row list that would leave most of the page empty below one result. */
+  min-height: 0;
+}
+
+.blog-grid--rows .blog-card {
+  display: grid;
+  grid-template-columns: 148px 1fr;
+  align-items: stretch;
+}
+
+.blog-grid--rows .blog-card > a {
+  display: block;
+  height: 100%;
+}
+
+.blog-grid--rows .blog-card__image {
+  aspect-ratio: auto;
+  height: 100%;
+  min-height: 92px;
+}
+
+/* Text stacked left, logos in their own column on the right and vertically
+   centred, so the band height is set by the text alone. */
+.blog-grid--rows .blog-card__body {
+  padding: 12px 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "title logos"
+    "names logos"
+    "cats  logos";
+  align-content: center;
+  align-items: center;
+  gap: 4px 22px;
+}
+
+#clientProjectsGrid.blog-grid--rows .blog-card__title {
+  grid-area: title;
+  font-size: 1rem;
+  line-height: 1.3;
+  margin: 0;
+  -webkit-line-clamp: 1;
+}
+
+#clientProjectsGrid.blog-grid--rows .blog-card__partner-names {
+  grid-area: names;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#clientProjectsGrid.blog-grid--rows .blog-card__categories {
+  grid-area: cats;
+  margin: 2px 0 0;
+}
+
+#clientProjectsGrid.blog-grid--rows .blog-card__partners {
+  grid-area: logos;
+  margin: 0;
+  padding: 0;
+  border-bottom: 0;
+  min-height: 0;
+  flex-wrap: nowrap;
+  gap: 14px;
+  justify-content: flex-end;
+}
+
+/* No size split in a row: the band is short, so the commissioner reads as
+   first rather than bigger. */
+.blog-grid--rows .blog-card__partners--ranked { min-height: 0; }
+.blog-grid--rows .blog-card__partner--lead { flex-basis: auto; }
+.blog-grid--rows .blog-card__partner-img,
+.blog-grid--rows .blog-card__partner--lead .blog-card__partner-img,
+.blog-grid--rows .blog-card__partners--ranked .blog-card__partner:not(.blog-card__partner--lead) .blog-card__partner-img {
+  height: 26px;
+  max-width: 86px;
+}
+
+@media (max-width: 860px) {
+  .blog-grid--rows .blog-card__partners { display: none; }
+}
+
+@media (max-width: 700px) {
+  .blog-grid--rows .blog-card { grid-template-columns: 92px 1fr; }
+  .blog-grid--rows .blog-card__image { min-height: 88px; }
+  .blog-grid--rows .blog-card__body { padding: 10px 14px; }
+  /* The #id prefix is required: the one-line clamp above is set on
+     #clientProjectsGrid.blog-grid--rows, which outranks a plain class selector
+     here — without it every title on a phone truncates after one line. */
+  #clientProjectsGrid.blog-grid--rows .blog-card__title {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 2;
+  }
+  /* Two chips maximum. A third wraps to its own line and the band stops being a
+     band — and the filter row above now carries the category navigation anyway. */
+  #clientProjectsGrid.blog-grid--rows .blog-card__category:nth-child(n+3) {
+    display: none;
+  }
+}
+
+/* --- Client Projects: category filter ---
+   A single downsized row, not the blog's two-level column grid. Reuses
+   .filter-pill and its colour variants; only the size is new. */
+.project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.filter-pill--flat {
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+@media (max-width: 700px) {
+  .project-filters {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .filter-pill--flat {
+    padding: 5px 10px;
+    font-size: 0.7rem;
+  }
+}
+
 /* --- Client Projects: page-level Regen Studio credit (shown once, not per card) --- */
 .project-credit {
   display: flex;
@@ -1821,38 +1960,41 @@
     grid-template-columns: 1fr;
   }
 
-  /* Compact card for posts 4+ on mobile */
-  .blog-grid .blog-card:nth-child(n+4) {
+  /* Compact card for posts 4+ on mobile.
+     Excluded on the row variant: that list is filterable, so which card is 4th
+     changes with the active pill — a project would visibly change shape
+     depending on how you arrived at it. Rows have their own 700px treatment. */
+  .blog-grid:not(.blog-grid--rows) .blog-card:nth-child(n+4) {
     display: grid;
     grid-template-columns: 72px 1fr;
     gap: 12px;
     padding: 12px;
     border-radius: 10px;
   }
-  .blog-grid .blog-card:nth-child(n+4) .blog-card__image {
+  .blog-grid:not(.blog-grid--rows) .blog-card:nth-child(n+4) .blog-card__image {
     width: 72px;
     height: 72px;
     border-radius: 8px;
     overflow: hidden;
   }
-  .blog-grid .blog-card:nth-child(n+4) .blog-card__image img {
+  .blog-grid:not(.blog-grid--rows) .blog-card:nth-child(n+4) .blog-card__image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  .blog-grid .blog-card:nth-child(n+4) .blog-card__excerpt {
+  .blog-grid:not(.blog-grid--rows) .blog-card:nth-child(n+4) .blog-card__excerpt {
     display: none;
   }
-  .blog-grid .blog-card:nth-child(n+4) .blog-card__meta {
+  .blog-grid:not(.blog-grid--rows) .blog-card:nth-child(n+4) .blog-card__meta {
     display: none;
   }
-  .blog-grid .blog-card:nth-child(n+4) .blog-card__categories {
+  .blog-grid:not(.blog-grid--rows) .blog-card:nth-child(n+4) .blog-card__categories {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
     margin-top: 4px;
   }
-  .blog-grid .blog-card:nth-child(n+4) .blog-card__title {
+  .blog-grid:not(.blog-grid--rows) .blog-card:nth-child(n+4) .blog-card__title {
     font-size: 0.9rem;
     line-height: 1.3;
     -webkit-line-clamp: 2;
@@ -1863,7 +2005,7 @@
      this width a wordmark would render ~18px tall and be unreadable, so the
      logo swaps for the client's NAME. The img stays in the accessibility tree
      (.sr-only, not display:none) so the announced name is unchanged. */
-  .blog-grid .blog-card:nth-child(n+4) .blog-card__partners {
+  .blog-grid:not(.blog-grid--rows) .blog-card:nth-child(n+4) .blog-card__partners {
     order: 2;
     min-height: 0;
     gap: 4px 8px;
@@ -1871,10 +2013,10 @@
     padding: 0;
     border-bottom: 0;
   }
-  .blog-grid .blog-card:nth-child(n+4) .blog-card__categories {
+  .blog-grid:not(.blog-grid--rows) .blog-card:nth-child(n+4) .blog-card__categories {
     order: 3;
   }
-  .blog-grid .blog-card:nth-child(n+4) .blog-card__partner-img {
+  .blog-grid:not(.blog-grid--rows) .blog-card:nth-child(n+4) .blog-card__partner-img {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -1885,10 +2027,10 @@
     white-space: nowrap;
     border: 0;
   }
-  .blog-grid .blog-card:nth-child(n+4) .blog-card__partners {
+  .blog-grid:not(.blog-grid--rows) .blog-card:nth-child(n+4) .blog-card__partners {
     display: none;              /* names line below carries the attribution */
   }
-  .blog-grid .blog-card:nth-child(n+4) .blog-card__partner-names {
+  .blog-grid:not(.blog-grid--rows) .blog-card:nth-child(n+4) .blog-card__partner-names {
     order: 2;
     margin: 6px 0 0;
     font-size: 0.68rem;

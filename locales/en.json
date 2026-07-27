@@ -95,6 +95,8 @@
   "blog.cta_floating_link": "or send us a message",
   "blog.no_client_projects": "No client projects found",
   "client_projects.partners_label": "Project partners",
+  "client_projects.count_one": "project",
+  "client_projects.count_other": "projects",
   "toast.email_copied": "Email copied to clipboard!",
   "toast.link_copied": "Link copied to clipboard!",
   "toast.linkedin_tag": "Type @Regen Studio in the post to tag us!",

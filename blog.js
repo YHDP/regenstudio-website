@@ -719,16 +719,109 @@
       return;
     }
 
-    // Extract before render so the two arrays stay index-aligned. Every client
-    // card is rendered with showPartners, so every card emits exactly one slot,
-    // in order — empty slots are removed inside fillPartnerSlot, after indexing.
-    const partners = clientBlogs.map(extractPartnerLogos);
-    grid.innerHTML = clientBlogs.map(function (p) {
-      return renderCard(p, { showPartners: true });
-    }).join('');
+    // Parse each post's banner once. extractPartnerLogos runs a DOMParser over the
+    // whole post body, so re-extracting on every pill click would be pure waste.
+    const partnerCache = {};
+    clientBlogs.forEach(function (p) { partnerCache[p.slug] = extractPartnerLogos(p); });
 
-    const slots = grid.querySelectorAll('.blog-card__partners');
-    for (let i = 0; i < slots.length; i++) fillPartnerSlot(slots[i], partners[i] || []);
+    // Filter state. One category at a time — at nine projects, AND-combining
+    // categories the way the blog does would mostly return nothing. null = all.
+    let activeCategory = null;
+
+    function visibleProjects() {
+      return activeCategory
+        ? clientBlogs.filter(function (p) { return p.categories.indexOf(activeCategory) !== -1; })
+        : clientBlogs;
+    }
+
+    let status = null;
+    function announce(count) {
+      if (!status) {
+        status = document.createElement('div');
+        status.id = 'clientFilterStatus';
+        status.className = 'sr-only';
+        status.setAttribute('aria-live', 'polite');
+        grid.parentNode.insertBefore(status, grid);
+      }
+      // t() does no interpolation, so the number is concatenated and only the
+      // noun is translated — otherwise NL/PT would be announced in English.
+      status.textContent = count + ' ' + (count === 1
+        ? t('client_projects.count_one', 'project')
+        : t('client_projects.count_other', 'projects'));
+    }
+
+    function renderProjects(list) {
+      // Extract before render so the two arrays stay index-aligned. Every client
+      // card is rendered with showPartners, so every card emits exactly one slot,
+      // in order — empty slots are removed inside fillPartnerSlot, after indexing.
+      grid.innerHTML = list.map(function (p) {
+        return renderCard(p, { showPartners: true });
+      }).join('');
+
+      const slots = grid.querySelectorAll('.blog-card__partners');
+      for (let i = 0; i < slots.length; i++) fillPartnerSlot(slots[i], partnerCache[list[i].slug] || []);
+      announce(list.length);
+    }
+
+    const filterBar = document.getElementById('clientProjectFilters');
+    if (filterBar) {
+      const counts = {};
+      clientBlogs.forEach(function (p) {
+        p.categories.forEach(function (c) {
+          // Every project carries "Client Projects", so it separates nothing.
+          if (c !== 'Client Projects') counts[c] = (counts[c] || 0) + 1;
+        });
+      });
+      // Heaviest first; the English name breaks ties so the row keeps the same
+      // order in all three languages.
+      const ordered = Object.keys(counts).sort(function (a, b) {
+        return counts[b] - counts[a] || a.localeCompare(b);
+      });
+
+      // DOM APIs rather than innerHTML: a category like "Vision & Strategy" then
+      // reaches an attribute and a text node with no escaping question at all.
+      function makePill(value, label, count, color) {
+        const btn = document.createElement('button');
+        btn.type = 'button';   // this page also carries a form; bare buttons submit
+        btn.className = 'filter-pill filter-pill--flat filter-pill--' + color;
+        btn.setAttribute('data-value', value);
+        btn.setAttribute('aria-pressed', 'false');
+        btn.appendChild(document.createTextNode(label + ' '));
+        const badge = document.createElement('span');
+        badge.className = 'filter-pill__count';
+        badge.textContent = count;
+        btn.appendChild(badge);
+        return btn;
+      }
+
+      filterBar.appendChild(makePill('', t('blog.all', 'All'), clientBlogs.length, 'gray'));
+      ordered.forEach(function (c) {
+        filterBar.appendChild(makePill(c, tc(c), counts[c], CATEGORY_COLORS[c] || 'gray'));
+      });
+
+      function updatePills() {
+        const pills = filterBar.querySelectorAll('.filter-pill');
+        for (let i = 0; i < pills.length; i++) {
+          const on = (pills[i].getAttribute('data-value') || null) === activeCategory;
+          pills[i].classList.toggle('active', on);
+          pills[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+        }
+      }
+
+      filterBar.addEventListener('click', function (e) {
+        const pill = e.target.closest('.filter-pill');
+        if (!pill) return;
+        // Assignment, not a toggle: re-clicking the active pill changes nothing,
+        // and "All" is the way back.
+        activeCategory = pill.getAttribute('data-value') || null;
+        updatePills();
+        renderProjects(visibleProjects());
+      });
+
+      updatePills();
+    }
+
+    renderProjects(clientBlogs);
   }
 
   // ========================================
