@@ -668,8 +668,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px 18px;
-  min-height: 44px;              /* reserves the row before logos decode → no CLS */
+  gap: 10px 16px;
+  min-height: 40px;              /* reserves the row before logos decode → no CLS */
   margin: 0 0 16px;
   padding: 0 0 14px;
   border-bottom: 1px solid var(--color-border);
@@ -682,11 +682,40 @@
 }
 
 .blog-card__partner-img {
-  height: 28px;
+  height: 34px;
   width: auto;
   max-width: 108px;
   object-fit: contain;
   display: block;
+}
+
+/* Text fallback. Hidden by default — shown only where a logo would be too
+   small to read (see the 540px block). The img keeps supplying the accessible
+   name in both states, so this never double-announces. */
+.blog-card__partner-name {
+  display: none;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-secondary);
+}
+
+/* A commissioning body (RVO on Clean Fuel Protocol) outranks the delivery
+   consortium: own row on top, larger. Detected from the banner's own
+   "Commissioned by" / "In opdracht van" / "Por encomenda de" label. */
+.blog-card__partner--lead {
+  flex-basis: 100%;
+}
+
+.blog-card__partner--lead .blog-card__partner-img {
+  height: 48px;
+  max-width: 180px;
+}
+
+/* Consortium partners sit a step down when the card has a lead logo. */
+.blog-card__partners--ranked .blog-card__partner:not(.blog-card__partner--lead) .blog-card__partner-img {
+  height: 30px;
+  max-width: 110px;
 }
 
 /* FIDES (OIP-7) is a white-on-dark colourway — same dark chip the homepage
@@ -697,30 +726,126 @@
   border-radius: 6px;
 }
 
+/* --- Compact hero (Client Projects) ---
+   The default blog hero is 140px of top padding plus a three-line subtitle,
+   which pushed the first row of cards almost entirely below the fold. This is a
+   listing you scan, not an article you land on, so it earns less vertical. */
+.blog-hero--compact {
+  padding-top: 88px;
+}
+
+/* The listing sits right under the hero divider; the default 60px on top of
+   that divider left a dead band before the first card. */
+.blog-listing--compact {
+  padding-top: 20px;
+}
+
+.blog-hero--compact .blog-hero__title {
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  margin-bottom: 10px;
+}
+
+.blog-hero--compact .blog-hero__subtitle {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  max-width: 660px;
+}
+
+.blog-hero--compact .blog-hero__label {
+  margin-bottom: 8px;
+}
+
+.blog-hero--compact .page-updated {
+  margin-top: 8px;
+}
+
+/* --- Client Projects: compact grid ---
+   Scoped to #clientProjectsGrid so the main blog listing is untouched. The
+   default 3-col / 16:10 / full-excerpt card put only three half-cards above the
+   fold once the hero and credit line were accounted for. Logos deliberately do
+   NOT shrink here — legibility of the client mark is the point of the page. */
+#clientProjectsGrid {
+  gap: 24px;
+  min-height: 0;                 /* the page-level reserve already covers CLS */
+}
+
+@media (min-width: 1800px) {
+  #clientProjectsGrid { grid-template-columns: repeat(4, 1fr); }
+}
+
+#clientProjectsGrid .blog-card__image {
+  aspect-ratio: 2 / 1;
+}
+
+#clientProjectsGrid .blog-card__body {
+  padding: 18px 18px 20px;
+}
+
+#clientProjectsGrid .blog-card__partners {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  align-content: center;
+}
+
+/* Consortium cards carry a lead row plus a partner row; single-client cards
+   carry one. Reserving both keeps the titles on a common baseline. */
+#clientProjectsGrid .blog-card__partners--ranked {
+  min-height: 92px;
+}
+
+#clientProjectsGrid .blog-card__title {
+  font-size: 1rem;
+  line-height: 1.3;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#clientProjectsGrid .blog-card__excerpt {
+  font-size: 0.84rem;
+  line-height: 1.55;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* style.css gives this flex:1 so it fills the card — which defeats the
+     clamp, because the box grows to fit rather than truncating at 2 lines. */
+  flex: 0 0 auto;
+}
+
+/* Author/date/reading-time is blog framing, not project framing. */
+#clientProjectsGrid .blog-card__meta {
+  display: none;
+}
+
 /* --- Client Projects: page-level Regen Studio credit (shown once, not per card) --- */
 .project-credit {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 6px 12px;
-  max-width: 760px;
-  margin: 0 auto 40px;
-  padding: 18px 28px;
+  gap: 4px 10px;
+  max-width: none;
+  width: fit-content;
+  margin: 0 auto 22px;
+  padding: 10px 20px;
   background: #F0FAF4;           /* same pair the in-post credit banners use */
   border: 1px solid #D1FAE5;
-  border-radius: 12px;
+  border-radius: 999px;
   text-align: center;
 }
 
 .project-credit__text {
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.82rem;
+  line-height: 1.5;
   color: var(--color-text);      /* on #F0FAF4 this clears AA comfortably */
 }
 
 .project-credit__logo {
-  height: 30px;
+  height: 22px;
   width: auto;
   display: block;
   flex-shrink: 0;
@@ -1720,13 +1845,15 @@
     -webkit-line-clamp: 2;
   }
 
-  /* Compact cards keep their partner logos — with 8 client projects, hiding the
-     row would leave 5 of 8 showing no client at all on a phone, which is the
-     whole point of the feature. Move it below the title instead of above. */
+  /* Compact cards still say who the client was — hiding the row would leave
+     most projects unattributed on a phone, which defeats the feature. But at
+     this width a wordmark would render ~18px tall and be unreadable, so the
+     logo swaps for the client's NAME. The img stays in the accessibility tree
+     (.sr-only, not display:none) so the announced name is unchanged. */
   .blog-grid .blog-card:nth-child(n+4) .blog-card__partners {
     order: 2;
     min-height: 0;
-    gap: 6px 10px;
+    gap: 4px 8px;
     margin: 6px 0 0;
     padding: 0;
     border-bottom: 0;
@@ -1735,12 +1862,32 @@
     order: 3;
   }
   .blog-grid .blog-card:nth-child(n+4) .blog-card__partner-img {
-    height: 18px;
-    max-width: 68px;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
-  .blog-grid .blog-card:nth-child(n+4) .blog-card__partner--dark {
-    padding: 3px 6px;
+  .blog-grid .blog-card:nth-child(n+4) .blog-card__partner-name {
+    display: block;
+  }
+  .blog-grid .blog-card:nth-child(n+4) .blog-card__partner {
+    background: var(--color-surface);
     border-radius: 4px;
+    padding: 2px 7px;
+  }
+  /* No chip styling to fight when the logo itself is not rendered. */
+  .blog-grid .blog-card:nth-child(n+4) .blog-card__partner--dark {
+    background: var(--color-surface);
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+  .blog-grid .blog-card:nth-child(n+4) .blog-card__partner--lead {
+    flex-basis: auto;
   }
 
   .project-credit {

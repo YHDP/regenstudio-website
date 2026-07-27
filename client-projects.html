@@ -154,7 +154,7 @@
 
   <!-- Hero -->
   <main id="main-content">
-  <section class="blog-hero">
+  <section class="blog-hero blog-hero--compact">
     <!-- Decorative triangles -->
     <div class="blog-hero__triangles" aria-hidden="true">
       <div class="blog-hero__tri blog-hero__tri--1"></div>
@@ -186,13 +186,13 @@
   </section>
 
   <!-- Blog Grid -->
-  <section class="blog-listing">
+  <section class="blog-listing blog-listing--compact">
     <div class="container">
       <p class="project-credit">
-        <span class="project-credit__text">Every project below was designed and delivered by</span>
+        <span class="project-credit__text">Delivered by</span>
         <img class="project-credit__logo" src="Images/Logo-Text-on-the-sideAtivo%202.svg"
              alt="Regen Studio" width="180" height="48" decoding="async">
-        <span class="project-credit__text">in collaboration with the clients and partners shown on each project.</span>
+        <span class="project-credit__text">with the clients and partners shown on each project.</span>
       </p>
       <div class="blog-grid" id="clientProjectsGrid"></div>
     </div>
@@ -219,11 +219,11 @@
           <textarea name="message" placeholder="What's on your mind?" class="regen-form__input regen-form__textarea" rows="2" aria-label="Message"></textarea>
           <label class="regen-form__checkbox regen-form__checkbox--ai" data-i18n-key="form.ai_consent">
             <input type="checkbox" name="ai_processing_opt_in" value="1">
-            <span>I approve of my data being used in AI-supported information systems at Regen Studio. <small style="display:block;font-size:0.85em;opacity:0.8;margin-top:4px">Without this, we still respond &mdash; but no AI tools read your message.</small></span>
+            <span>I approve of my data being used in AI-supported information systems at Regen Studio. <small style="display:block;font-size:0.85em;color:var(--color-text-muted);margin-top:4px">Without this, we still respond &mdash; but no AI tools read your message.</small></span>
           </label>
           <label class="regen-form__checkbox">
             <input type="checkbox" name="newsletter_opt_in" value="1">
-            <span>Also subscribe me to the Regen Studio newsletter <small style="display:block;font-size:0.85em;opacity:0.8;margin-top:4px">Counts as your consent to marketing use of your email &mdash; withdraw any time via the link in our emails.</small></span>
+            <span>Also subscribe me to the Regen Studio newsletter <small style="display:block;font-size:0.85em;color:var(--color-text-muted);margin-top:4px">Counts as your consent to marketing use of your email &mdash; withdraw any time via the link in our emails.</small></span>
           </label>
           <label class="regen-form__checkbox regen-form__checkbox--required" data-i18n-key="form.privacy_policy_accept">
             <input type="checkbox" name="privacy_policy_accepted" value="1" required>

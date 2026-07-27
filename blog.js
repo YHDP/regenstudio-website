@@ -266,6 +266,9 @@
   var REGEN_MARK_RE = /Logo-Text-on-the-side/i;    // shown once page-top, never per card
   var DARK_CHIP_RE = /(^|\/)OIP-7\.(png|svg)$/i;   // FIDES is a white-on-dark colourway
   var MAX_PARTNER_LOGOS = 6;
+  // A commissioning body outranks the delivery consortium, so it leads the row.
+  // Matches the labels the banners already use, in all three languages.
+  var COMMISSIONER_RE = /commissioned by|in opdracht van|por encomenda de|funded by|gefinancierd door|financiado por/i;
 
   function extractPartnerLogos(post) {
     var out = [];
@@ -279,12 +282,20 @@
       var banner = doc.body && doc.body.firstElementChild;
       if (!banner || banner.tagName !== 'DIV') return out;
 
-      var imgs = banner.querySelectorAll('img');
-      for (var i = 0; i < imgs.length && out.length < MAX_PARTNER_LOGOS; i++) {
+      // Walk labels and images together in document order: a label applies to
+      // every logo that follows it, until the next label.
+      var nodes = banner.querySelectorAll('p, span, img');
+      var lead = false;
+      for (var i = 0; i < nodes.length && out.length < MAX_PARTNER_LOGOS; i++) {
+        if (nodes[i].tagName !== 'IMG') {
+          var label = (nodes[i].textContent || '').trim();
+          if (label) lead = COMMISSIONER_RE.test(label);
+          continue;
+        }
         // getAttribute, not .src — the IDL property would resolve against the
         // listing page and hand back an absolute URL, defeating prefix matching.
-        var src = imgs[i].getAttribute('src') || '';
-        var alt = (imgs[i].getAttribute('alt') || '').trim();
+        var src = nodes[i].getAttribute('src') || '';
+        var alt = (nodes[i].getAttribute('alt') || '').trim();
 
         if (!alt) continue;                              // never emit a nameless logo
         if (REGEN_MARK_RE.test(src)) continue;           // Regen mark lives page-top
@@ -306,12 +317,14 @@
         if (seen[src]) continue;
         seen[src] = 1;
 
-        out.push({ src: basePath + src, alt: alt, dark: DARK_CHIP_RE.test(src) });
+        out.push({ src: basePath + src, alt: alt, dark: DARK_CHIP_RE.test(src), lead: lead });
       }
     } catch (e) {
       // Malformed content: card still renders, just without a logo row.
     }
-    return out;
+    // Commissioner first, then the consortium — stable within each group.
+    var leads = out.filter(function (l) { return l.lead; });
+    return leads.length ? leads.concat(out.filter(function (l) { return !l.lead; })) : out;
   }
 
   // Fills the empty slot renderCard emitted. DOM APIs only — setAttribute never
@@ -321,9 +334,13 @@
     if (!slot) return;
     if (!list.length) { slot.remove(); return; }
     slot.setAttribute('aria-label', t('client_projects.partners_label', 'Project partners'));
+    // Ranked = this card has a commissioning body, so partners size down.
+    if (list.some(function (l) { return l.lead; })) slot.classList.add('blog-card__partners--ranked');
     for (var i = 0; i < list.length; i++) {
       var li = document.createElement('li');
-      li.className = 'blog-card__partner' + (list[i].dark ? ' blog-card__partner--dark' : '');
+      li.className = 'blog-card__partner'
+        + (list[i].dark ? ' blog-card__partner--dark' : '')
+        + (list[i].lead ? ' blog-card__partner--lead' : '');
       var img = document.createElement('img');
       img.className = 'blog-card__partner-img';
       img.setAttribute('src', list[i].src);
@@ -331,6 +348,14 @@
       img.setAttribute('loading', 'lazy');
       img.setAttribute('decoding', 'async');
       li.appendChild(img);
+      // Text fallback for viewports where a wordmark would be too small to read.
+      // aria-hidden because the img's alt already supplies the accessible name —
+      // CSS swaps which one is *visible*, never which one is announced.
+      var name = document.createElement('span');
+      name.className = 'blog-card__partner-name';
+      name.setAttribute('aria-hidden', 'true');
+      name.textContent = list[i].alt;
+      li.appendChild(name);
       slot.appendChild(li);
     }
   }
