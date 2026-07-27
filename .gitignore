@@ -102,6 +102,15 @@ _comment-stage/
 _review/
 scripts/comment-stage-widget.html
 
+# review/ — the local launcher page for the comment stage. Internal process
+# tooling, never needed by a visitor's browser, and nothing on the site links
+# to it. Kept locally so `localhost:8000/review/` still works; the durable
+# copy lives in Proton Drive at
+# 6-projects/regenstudio-website/tooling/review-launcher.html.
+# (Untracked 2026-07-27 — it was in git despite its own header saying otherwise,
+# and its /_comment-stage/ links tripped the weekly link check.)
+review/
+
 # ui-screenshot artifacts (binary diffs — never commit)
 .screenshots/
 

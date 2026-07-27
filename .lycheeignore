@@ -46,3 +46,13 @@ https?://(www\.)?acm\.nl
 
 # goodreads.com — bot-defense returns 503/429 to lychee; valid in browsers (verified 2026-05-24)
 https?://(www\.)?goodreads\.com
+
+# _comment-stage/ — local-only draft previews from `build.ts --comment-stage`.
+# Gitignored by design, so links to them never resolve in the runner's checkout.
+# Defense in depth: the one page that linked there (review/index.html) was
+# untracked on 2026-07-27, but any future local launcher stays covered.
+_comment-stage
+
+# npr.org — lychee's HTTP/2 client errors on their CDN ("HTTP/2 protocol error");
+# the same URL returns 200 to a browser UA (verified 2026-07-27)
+https?://(www\.)?npr\.org
