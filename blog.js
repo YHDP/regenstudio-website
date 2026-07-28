@@ -216,6 +216,36 @@
     return key ? t(key, cat) : cat;
   }
 
+  // --- Category taxonomy ---
+  // Category columns with sub-categories and color mapping (matching index.html
+  // focus section). Module scope: the blog listing and the client-projects
+  // listing both render columns from this, so there is one taxonomy, not two.
+  var CATEGORY_COLUMNS = [
+    { name: 'Circular Economy', color: 'emerald', subs: ['Digital Product Passport', 'Circular Business Models'] },
+    { name: 'Energy Transition', color: 'orange', subs: ['Smart Grids', 'Energy Communities', 'Energy Justice'] },
+    { name: 'Liveable Cities', color: 'teal', subs: ['Living Labs', 'Digital Participation', 'Urban Greening'] },
+    { name: 'Digital Society', color: 'magenta', subs: ['Digital Identity', 'Privacy-by-Design', 'AI'] },
+    { name: 'Resilient Nature', color: 'green', subs: ['Reforestation', 'Biodiversity', 'Regenerative Agriculture'] },
+    { name: 'Services', color: 'gray', subs: ['Innovation Services', 'Out-of-the-Box Ideas', 'Vision & Strategy', 'Visual Storytelling'] },
+    { name: 'Client Projects', color: 'gold', subs: [] },
+  ];
+
+  // Build sub→parent lookup so sub-categories auto-inherit parent
+  var subToParent = {};
+  CATEGORY_COLUMNS.forEach(function (col) {
+    col.subs.forEach(function (sub) { subToParent[sub] = col.name; });
+  });
+
+  // Expand blog categories: sub-categories inherit their parent, so a post
+  // tagged "Smart Grids" is also matched by the "Energy Transition" pill.
+  function expandCategories(cats) {
+    var expanded = new Set(cats);
+    cats.forEach(function (c) {
+      if (subToParent[c]) expanded.add(subToParent[c]);
+    });
+    return [].concat(Array.from(expanded));
+  }
+
   // --- Resolve image paths from static pages ---
   function resolveImagePath(slug, featuredImage) {
     if (!featuredImage) return '';
@@ -429,32 +459,6 @@
       b.tags.forEach(t => { tagCounts[t] = (tagCounts[t] || 0) + 1; });
     });
 
-    // Category columns with sub-categories and color mapping (matching index.html focus section)
-    const categoryColumns = [
-      { name: 'Circular Economy', color: 'emerald', subs: ['Digital Product Passport', 'Circular Business Models'] },
-      { name: 'Energy Transition', color: 'orange', subs: ['Smart Grids', 'Energy Communities', 'Energy Justice'] },
-      { name: 'Liveable Cities', color: 'teal', subs: ['Living Labs', 'Digital Participation', 'Urban Greening'] },
-      { name: 'Digital Society', color: 'magenta', subs: ['Digital Identity', 'Privacy-by-Design', 'AI'] },
-      { name: 'Resilient Nature', color: 'green', subs: ['Reforestation', 'Biodiversity', 'Regenerative Agriculture'] },
-      { name: 'Services', color: 'gray', subs: ['Innovation Services', 'Out-of-the-Box Ideas', 'Vision & Strategy', 'Visual Storytelling'] },
-      { name: 'Client Projects', color: 'gold', subs: [] },
-    ];
-
-    // Build sub→parent lookup so sub-categories auto-inherit parent
-    const subToParent = {};
-    categoryColumns.forEach(col => {
-      col.subs.forEach(sub => { subToParent[sub] = col.name; });
-    });
-
-    // Expand blog categories: sub-categories inherit their parent
-    function expandCategories(cats) {
-      const expanded = new Set(cats);
-      cats.forEach(c => {
-        if (subToParent[c]) expanded.add(subToParent[c]);
-      });
-      return [...expanded];
-    }
-
     // Expand each blog's categories for filtering and counting
     blogs.forEach(b => {
       b._expandedCategories = expandCategories(b.categories);
@@ -467,7 +471,7 @@
     });
 
     // Render columns
-    columnsContainer.innerHTML = categoryColumns.map(col => {
+    columnsContainer.innerHTML = CATEGORY_COLUMNS.map(col => {
       const mainCount = expandedCatCounts[col.name] || 0;
       const subsHtml = col.subs.map(sub => {
         const count = expandedCatCounts[sub] || 0;
@@ -586,7 +590,7 @@
     const knownTags = new Set(Object.keys(tagCounts));
     const knownCategories = new Set();
     blogs.forEach(b => b._expandedCategories.forEach(c => knownCategories.add(c)));
-    categoryColumns.forEach(col => {
+    CATEGORY_COLUMNS.forEach(col => {
       knownCategories.add(col.name);
       col.subs.forEach(sub => knownCategories.add(sub));
     });
@@ -722,7 +726,12 @@
     // Parse each post's banner once. extractPartnerLogos runs a DOMParser over the
     // whole post body, so re-extracting on every pill click would be pure waste.
     const partnerCache = {};
-    clientBlogs.forEach(function (p) { partnerCache[p.slug] = extractPartnerLogos(p); });
+    clientBlogs.forEach(function (p) {
+      partnerCache[p.slug] = extractPartnerLogos(p);
+      // Same expansion the blog listing uses, so a family pill matches every
+      // project in that family — "Energy Transition" catches Smart Grids too.
+      p._expandedCategories = expandCategories(p.categories);
+    });
 
     // Filter state. One category at a time — at nine projects, AND-combining
     // categories the way the blog does would mostly return nothing. null = all.
@@ -730,11 +739,12 @@
 
     function visibleProjects() {
       return activeCategory
-        ? clientBlogs.filter(function (p) { return p.categories.indexOf(activeCategory) !== -1; })
+        ? clientBlogs.filter(function (p) { return p._expandedCategories.indexOf(activeCategory) !== -1; })
         : clientBlogs;
     }
 
     let status = null;
+
     function announce(count) {
       if (!status) {
         status = document.createElement('div');
@@ -765,25 +775,22 @@
 
     const filterBar = document.getElementById('clientProjectFilters');
     if (filterBar) {
+      // Count against the expanded categories, so a family pill's number is the
+      // number of projects that pill actually returns.
       const counts = {};
       clientBlogs.forEach(function (p) {
-        p.categories.forEach(function (c) {
+        p._expandedCategories.forEach(function (c) {
           // Every project carries "Client Projects", so it separates nothing.
           if (c !== 'Client Projects') counts[c] = (counts[c] || 0) + 1;
         });
       });
-      // Heaviest first; the English name breaks ties so the row keeps the same
-      // order in all three languages.
-      const ordered = Object.keys(counts).sort(function (a, b) {
-        return counts[b] - counts[a] || a.localeCompare(b);
-      });
 
       // DOM APIs rather than innerHTML: a category like "Vision & Strategy" then
       // reaches an attribute and a text node with no escaping question at all.
-      function makePill(value, label, count, color) {
+      function makePill(value, label, count, color, variant) {
         const btn = document.createElement('button');
         btn.type = 'button';   // this page also carries a form; bare buttons submit
-        btn.className = 'filter-pill filter-pill--flat filter-pill--' + color;
+        btn.className = 'filter-pill filter-pill--' + variant + ' filter-pill--' + color;
         btn.setAttribute('data-value', value);
         btn.setAttribute('aria-pressed', 'false');
         btn.appendChild(document.createTextNode(label + ' '));
@@ -794,10 +801,31 @@
         return btn;
       }
 
-      filterBar.appendChild(makePill('', t('blog.all', 'All'), clientBlogs.length, 'gray'));
-      ordered.forEach(function (c) {
-        filterBar.appendChild(makePill(c, tc(c), counts[c], CATEGORY_COLORS[c] || 'gray'));
+      // Same column structure, order and colours as the blog filter — the two
+      // pages are the same taxonomy seen from two angles, so they should read
+      // alike. Columns and sub-pills with nothing behind them are dropped: this
+      // page shows nine projects, not forty.
+      const allWrap = document.createElement('div');
+      allWrap.className = 'project-filters__all';
+      allWrap.appendChild(makePill('', t('blog.all', 'All'), clientBlogs.length, 'gray', 'main'));
+      filterBar.appendChild(allWrap);
+
+      const columns = document.createElement('div');
+      columns.className = 'project-filters__columns';
+      CATEGORY_COLUMNS.forEach(function (col) {
+        if (col.name === 'Client Projects') return;
+        const subs = col.subs.filter(function (s) { return counts[s]; });
+        if (!counts[col.name] && !subs.length) return;
+
+        const wrap = document.createElement('div');
+        wrap.className = 'project-filters__column';
+        wrap.appendChild(makePill(col.name, tc(col.name), counts[col.name] || 0, col.color, 'main'));
+        subs.forEach(function (s) {
+          wrap.appendChild(makePill(s, tc(s), counts[s], col.color, 'sub'));
+        });
+        columns.appendChild(wrap);
       });
+      filterBar.appendChild(columns);
 
       function updatePills() {
         const pills = filterBar.querySelectorAll('.filter-pill');

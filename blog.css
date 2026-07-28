@@ -947,30 +947,67 @@
 }
 
 /* --- Client Projects: category filter ---
-   A single downsized row, not the blog's two-level column grid. Reuses
-   .filter-pill and its colour variants; only the size is new. */
+   The blog's two-level column filter, compacted. Same structure, order, colours
+   and pill classes as .blog-filters — this page is the same taxonomy seen from
+   another angle, so it should read as a sibling, not a second system. What is
+   dropped: the "Categories" label, the tag search, the empty seventh column, and
+   roughly two-thirds of the height. */
 .project-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
   margin-bottom: 20px;
 }
 
-.filter-pill--flat {
-  padding: 6px 12px;
-  font-size: 0.75rem;
-  font-weight: 500;
+.project-filters__all {
+  margin-bottom: 10px;
+}
+
+.project-filters__columns {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.project-filters__column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+
+/* Scoped to .project-filters so blog.html keeps its roomier pills untouched.
+   Full-width pills inside a column right-align the counts into a readable
+   number column. */
+.project-filters .filter-pill--main,
+.project-filters .filter-pill--sub {
+  width: 100%;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.project-filters .filter-pill--main {
+  padding: 6px 11px;
+  font-size: 0.73rem;
+}
+
+.project-filters .filter-pill--sub {
+  padding: 4px 11px;
+  font-size: 0.67rem;
+  min-height: 0;
+}
+
+/* "All" is not part of a column and should not stretch across one. */
+.project-filters__all .filter-pill--main {
+  width: auto;
+}
+
+@media (max-width: 1024px) {
+  .project-filters__columns { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 700px) {
-  .project-filters {
-    gap: 6px;
-    margin-bottom: 16px;
-  }
-  .filter-pill--flat {
-    padding: 5px 10px;
-    font-size: 0.7rem;
-  }
+  .project-filters { margin-bottom: 16px; }
+  .project-filters__columns { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .project-filters .filter-pill--main { font-size: 0.7rem; padding: 5px 10px; }
+  .project-filters .filter-pill--sub { font-size: 0.64rem; padding: 4px 10px; }
 }
 
 /* --- Client Projects: page-level Regen Studio credit (shown once, not per card) --- */
