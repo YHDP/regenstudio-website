@@ -178,7 +178,7 @@
     'Liveable Cities': 'teal', 'Living Labs': 'teal', 'Digital Participation': 'teal', 'Urban Greening': 'teal',
     'Digital Society': 'magenta', 'Digital Identity': 'magenta', 'Privacy-by-Design': 'magenta', 'AI': 'magenta',
     'Resilient Nature': 'green', 'Reforestation': 'green', 'Biodiversity': 'green', 'Regenerative Agriculture': 'green',
-    'Innovation Services': 'gray', 'Out-of-the-Box Ideas': 'gray', 'Vision & Strategy': 'gray', 'Visual Storytelling': 'gray',
+    'Innovation Services': 'gray',
     'Client Projects': 'gold',
   };
 
@@ -199,16 +199,12 @@
     'Digital Identity': 'categories.digital_identity',
     'Privacy-by-Design': 'categories.privacy_by_design',
     'Innovation Services': 'categories.innovation_services',
-    'Vision & Strategy': 'categories.vision_strategy',
-    'Out-of-the-Box Ideas': 'categories.out_of_the_box',
     'Client Projects': 'categories.client_projects',
     'AI': 'categories.ai',
-    'Visual Storytelling': 'categories.visual_storytelling',
     'Biodiversity': 'categories.biodiversity',
     'Reforestation': 'categories.reforestation',
     'Regenerative Agriculture': 'categories.regenerative_agriculture',
-    'Resilient Nature': 'categories.resilient_nature',
-    'Services': 'categories.services'
+    'Resilient Nature': 'categories.resilient_nature'
   };
 
   function tc(cat) {
@@ -226,7 +222,10 @@
     { name: 'Liveable Cities', color: 'teal', subs: ['Living Labs', 'Digital Participation', 'Urban Greening'] },
     { name: 'Digital Society', color: 'magenta', subs: ['Digital Identity', 'Privacy-by-Design', 'AI'] },
     { name: 'Resilient Nature', color: 'green', subs: ['Reforestation', 'Biodiversity', 'Regenerative Agriculture'] },
-    { name: 'Services', color: 'gray', subs: ['Innovation Services', 'Out-of-the-Box Ideas', 'Vision & Strategy', 'Visual Storytelling'] },
+    // Vision & Strategy, Visual Storytelling and Out-of-the-Box Ideas were folded
+    // into Innovation Services (2026-07-28): they are part of the offering, not
+    // peers of it. No umbrella left to name, so the category IS the column.
+    { name: 'Innovation Services', color: 'gray', subs: [] },
     { name: 'Client Projects', color: 'gold', subs: [] },
   ];
 

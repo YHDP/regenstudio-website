@@ -35,16 +35,12 @@
     'Digital Identity': 'categories.digital_identity',
     'Privacy-by-Design': 'categories.privacy_by_design',
     'Innovation Services': 'categories.innovation_services',
-    'Vision & Strategy': 'categories.vision_strategy',
-    'Out-of-the-Box Ideas': 'categories.out_of_the_box',
     'Client Projects': 'categories.client_projects',
     'AI': 'categories.ai',
-    'Visual Storytelling': 'categories.visual_storytelling',
     'Biodiversity': 'categories.biodiversity',
     'Reforestation': 'categories.reforestation',
     'Regenerative Agriculture': 'categories.regenerative_agriculture',
-    'Resilient Nature': 'categories.resilient_nature',
-    'Services': 'categories.services'
+    'Resilient Nature': 'categories.resilient_nature'
   };
   function _translateCategory(cat) {
     var key = _CATEGORY_I18N[cat];
