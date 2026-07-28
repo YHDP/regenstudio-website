@@ -3684,22 +3684,28 @@ em:only-of-type {
 }
 
 /* Services grid — compact 5×2 on large desktop */
+/* Three columns, not five: each card now carries its own description instead of
+   deferring it to a shared panel, so it needs the width. */
 .inno-services__grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-top: 24px;
 }
 
 @media (max-width: 1199px) and (min-width: 641px) {
   .inno-services__grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 14px;
   }
 }
 
+/* A real <a>, so it is keyboard-reachable — as a click-handling <div> it never
+   was. The three services with no destination stay divs (--static). */
 .inno-service {
-  padding: 20px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 18px 18px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-bg-card);
@@ -3707,19 +3713,23 @@ em:only-of-type {
   transition: all var(--transition);
   position: relative;
   box-shadow: var(--shadow-sm);
-  cursor: pointer;
+  color: inherit;
 }
 
-.inno-service:hover,
-.inno-service.active {
+a.inno-service:hover {
   border-color: var(--color-border-hover);
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
 
-.inno-service.active {
-  border-color: var(--color-primary);
-  box-shadow: 0 4px 16px var(--color-primary-glow);
+a.inno-service:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* No destination, so nothing to promise: no lift, no pointer. */
+.inno-service--static {
+  cursor: default;
 }
 
 .inno-service__image {
@@ -3737,26 +3747,28 @@ em:only-of-type {
   transition: all var(--transition);
 }
 
-.inno-service:hover .inno-service__image img {
+a.inno-service:hover .inno-service__image img {
   transform: scale(1.05);
 }
 
 .inno-service__title {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   line-height: 1.3;
   color: var(--color-text);
 }
 
-.inno-service__teaser {
+/* The description the detail panel used to hold. It absorbs the card's spare
+   height (flex: 1) rather than the CTA claiming it with an auto margin — the
+   grid stretches cards to the tallest in the row, and this is what lines the
+   arrows up along the bottom edge across that row. */
+.inno-service__desc {
+  flex: 1 1 auto;
   color: var(--color-text-secondary);
-  font-size: 0.75rem;
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  margin-bottom: 14px;
 }
 
 .inno-service__subtitle {
@@ -3765,66 +3777,9 @@ em:only-of-type {
   line-height: 1.6;
 }
 
-/* Shared detail panel below service grid */
-.inno-services__detail {
-  margin-top: 24px;
-  padding: 32px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  background: var(--color-bg-card);
-  box-shadow: var(--shadow-md);
-  display: none;
-  animation: detailFadeIn 0.25s ease;
-}
-
-.inno-services__detail.open {
-  display: block;
-}
-
 @keyframes detailFadeIn {
   from { opacity: 0; transform: translateY(-8px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-.inno-services__detail-header {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 16px;
-}
-
-.inno-services__detail-img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-.inno-services__detail-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.inno-services__detail-body {
-  color: var(--color-text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.7;
-}
-
-.inno-services__detail-link {
-  display: inline-block;
-  margin-top: 12px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--color-primary);
-  transition: color var(--transition);
-}
-
-.inno-services__detail-link:hover {
-  color: var(--color-primary-hover);
-}
 
 /* Accent colors cycling across 10 cards: emerald, teal, orange, magenta, red */
 .inno-service:nth-child(5n+1) { border-top: 2px solid var(--color-emerald); }
@@ -3839,18 +3794,11 @@ em:only-of-type {
 .inno-service:nth-child(5n+4) .inno-service__image img { box-shadow: 0 0 20px rgba(147, 9, 63, 0.15); }
 .inno-service:nth-child(5n+5) .inno-service__image img { box-shadow: 0 0 20px rgba(231, 24, 70, 0.15); }
 
-/* Details/summary reset for desktop — hide markers, keep card appearance */
-.inno-service summary {
-  list-style: none;
-  cursor: default;
-}
-.inno-service summary::-webkit-details-marker { display: none; }
-.inno-service summary::marker { display: none; }
-
-/* Learn more link inside subtitle */
+/* Card CTA — the link the detail panel used to hold. margin-top:auto pins it to
+   the foot of the flex card so the arrows line up across a row. */
 .inno-service__link {
   display: inline-block;
-  margin-top: 6px;
+  margin-top: auto;
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-primary);
@@ -3919,45 +3867,8 @@ em:only-of-type {
   .inno-service__title {
     font-size: 0.78rem;
   }
-  .inno-service__teaser {
-    display: none;
-  }
-  .inno-service:hover {
+  a.inno-service:hover {
     transform: none;
-  }
-  .inno-services__detail {
-    padding: 20px;
-  }
-  .inno-services__detail-img {
-    width: 56px;
-    height: 56px;
-  }
-  .inno-services__detail-title {
-    font-size: 1.1rem;
-  }
-}
-
-/* Mobile popup overlay for service detail cards */
-@media (max-width: 768px) {
-  .inno-services__detail.active {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: rgba(15, 23, 30, 0.5);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-  .inno-services__detail.active .inno-services__detail-inner {
-    background: #fff;
-    border-radius: 16px;
-    max-height: 80vh;
-    overflow-y: auto;
-    padding: 24px;
-    position: relative;
   }
 }
 
