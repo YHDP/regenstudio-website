@@ -114,7 +114,7 @@ URL: [https://demos.regenstudio.world](https://demos.regenstudio.world)
 ### 2026
 
 - **[The Construction Innovator Paradox: Why Innovative Construction Products May Face Digital Product Passports First](https://www.regenstudio.world/blog/construction-products-innovation-dpp/)**: 2026-02-22
-  Categories: Digital Product Passport, Vision & Strategy
+  Categories: Digital Product Passport, Innovation Services
   Everyone assumes DPP obligations will roll out family by family. But the CPR's two-route CE marking system means innovative products using the EAD/ETA route could face Digital Product Passport requirements years before mainstream products covered by harmonised standards, and there is no way out.
 
 - **[Smart Charging in the Vruchtenbuurt: How a Residents' Initiative Is Redesigning Energy, Mobility, and Public Space](https://www.regenstudio.world/blog/slim-laadplein-vruchtenbuurt/)**: 2026-02-19
@@ -130,15 +130,15 @@ URL: [https://demos.regenstudio.world](https://demos.regenstudio.world)
   The Hague's smart microgrid at Scheveningen started in 2016, years before grid congestion became a national crisis. Today it runs on second-life EV batteries, circular solar panels, and an energy cooperative that puts energy justice at its core. Named top-3 government innovation in the Netherlands in 2025.
 
 - **[The Construction Products Regulation and Digital Product Passports: What the Industry Needs to Know](https://www.regenstudio.world/blog/cpr-digital-product-passport/)**: 2026-02-15
-  Categories: Digital Product Passport, Vision & Strategy
+  Categories: Digital Product Passport, Innovation Services
   The recast CPR (EU) 2024/3110 introduces a full Digital Product Passport framework in Chapter X. But when DPP obligations actually bite depends on harmonised standards and a delegated act that hasn't been adopted yet. Covers all 37 product families with an interactive tracker.
 
 - **[The Expected ESPR Delegated Act on Textiles: What We Know So Far](https://www.regenstudio.world/blog/espr-textile-delegated-act/)**: 2026-02-12
-  Categories: Digital Product Passport, Circular Business Models, Vision & Strategy
+  Categories: Digital Product Passport, Circular Business Models, Innovation Services
   The EU's Ecodesign for Sustainable Products Regulation is preparing its delegated act on textiles. With adoption expected around late 2026 or early 2027, what ecodesign requirements and DPP data should the industry prepare for?
 
 - **[Try the AI Tax to UBI Simulator](https://www.regenstudio.world/blog/demo-ai-tax-ubi/)**: 2026-02-11
-  Categories: Vision & Strategy, Innovation Services
+  Categories: Innovation Services
   What if taxing AI-driven automation could fund a universal basic income? An interactive simulator lets you set the policy parameters and see the numbers play out: revenue collected, monthly payments per citizen, and how it evolves year on year.
 
 - **[Try the EDI Wallet Demo: A Privacy-First Digital Identity Wallet](https://www.regenstudio.world/blog/demo-edi-wallet/)**: 2026-02-10
@@ -146,11 +146,11 @@ URL: [https://demos.regenstudio.world](https://demos.regenstudio.world)
   See a self-sovereign identity wallet in practice. The EDI Wallet demo lets you receive verifiable credentials, store them, and present them with selective disclosure, following the eIDAS 2.0 framework.
 
 - **[Try the Battery Passport Checker: Find Out if You Need a Battery Passport](https://www.regenstudio.world/blog/demo-battery-passport/)**: 2026-02-09
-  Categories: Digital Product Passport, Vision & Strategy
+  Categories: Digital Product Passport, Innovation Services
   Not sure if your company needs a Battery Passport under EU Regulation 2023/1542? The interactive checker walks you through the key questions and generates a downloadable PDF report with your obligation status.
 
 - **[The Art of Emergence: An Interactive Triangle Ecosystem](https://www.regenstudio.world/blog/emergent-triangles/)**: 2026-02-09
-  Categories: AI, Visual Storytelling, Out-of-the-Box Ideas
+  Categories: AI, Innovation Services
   On the homepage lives an interactive ecosystem of triangles. Hover, drag, cluster, freeze, and share your creation. How simple rules create complex beauty, and what it teaches about regenerative innovation.
 
 - **[Try the DPP System Demo: A Full Digital Product Passport in Action](https://www.regenstudio.world/blog/demo-dpp-system/)**: 2026-02-08
@@ -160,23 +160,23 @@ URL: [https://demos.regenstudio.world](https://demos.regenstudio.world)
 ### 2025
 
 - **[Insights from CircularTech Forum: The Global DPP Community Meets in Cologne](https://www.regenstudio.world/blog/CircularTech/)**: 2025-09-23
-  Categories: Digital Product Passport, Vision & Strategy
+  Categories: Digital Product Passport, Innovation Services
   5 key takeaways from the world's leading event on Digital Product Passports, from 90% of EU products requiring DPPs to why being early is a superpower.
 
 - **[What to Expect from the ESPR Working Plan 2025-2030?](https://www.regenstudio.world/blog/ESPR/)**: 2025-08-26
-  Categories: Digital Product Passport, Vision & Strategy
+  Categories: Digital Product Passport, Innovation Services
   The ESPR Working Plan 2025-2030 sets the order and tempo for ecodesign requirements across 22 product groups, each requiring a Digital Product Passport. What to expect and when.
 
 - **[Talk to AI as if it's Trump](https://www.regenstudio.world/blog/ai-trump/)**: 2025-05-22
-  Categories: AI, Vision & Strategy
+  Categories: AI, Innovation Services
   Having a conversation with ChatGPT is the same as whispering it in Donald Trump's ear. A personal story about AI, privacy, and why we need mental models for digital self-defense.
 
 - **[Position Paper: Trusted Digital Product Passports](https://www.regenstudio.world/blog/trusted-dpps/)**: 2025-05-22
-  Categories: Digital Product Passport, Digital Identity, Vision & Strategy, Client Projects
+  Categories: Digital Product Passport, Digital Identity, Innovation Services, Client Projects
   Regen Studio led the creation of a groundbreaking position paper on Trusted Digital Product Passports for FIDES, commissioned by the Dutch Blockchain Coalition, defining a shared vision for trust ecosystems in the circular economy.
 
 - **[10 Design Principles for Antifragile Regenerative Innovation Systems](https://www.regenstudio.world/blog/antifragile/)**: 2025-04-17
-  Categories: Out-of-the-Box Ideas, Innovation Services
+  Categories: Innovation Services
   Inspired by Nassim Nicholas Taleb's Antifragile, 10 design principles that shape the approach to regenerative innovation systems: systems that don't just withstand shocks, but grow stronger from them.
 
 - **[A Custom Digital Innovation Process for The Hague's Living Lab Scheveningen](https://www.regenstudio.world/blog/a-custom-digital-innovation-process-for-the-hague/)**: 2025-02-19
@@ -184,7 +184,7 @@ URL: [https://demos.regenstudio.world](https://demos.regenstudio.world)
   Regen Studio designed an eight-phase innovation framework for The Hague's EC-DISC and Living Lab Scheveningen. The CIO of the Information & Automation department formally adopted it as departmental policy.
 
 - **[Weaving Nature into Urban Design](https://www.regenstudio.world/blog/Blog%203/)**: 2025-01-18
-  Categories: Urban Greening, Biodiversity, Vision & Strategy
+  Categories: Urban Greening, Biodiversity, Innovation Services
   By learning from and working with natural ecosystems, cities can build resilience, restore biodiversity, and create spaces that regenerate rather than deplete.
 
 ### 2024
@@ -194,7 +194,7 @@ URL: [https://demos.regenstudio.world](https://demos.regenstudio.world)
   Ben Wilson's Urban Jungle challenges us to rethink our relationship with urban environments, presenting cities as dynamic ecosystems capable of fostering biodiversity and resilience.
 
 - **[Innovation Theatre: Playfully Building Capacity for Change](https://www.regenstudio.world/blog/Innovation-Theatre/)**: 2024-10-29
-  Categories: Out-of-the-Box Ideas, Liveable Cities
+  Categories: Innovation Services, Liveable Cities
   Innovation Theatre merges Regen's smart city innovation process with Brazilian Theatre of the Oppressed methodologies, empowering communities to design solutions to their own challenges.
 
 - **[Reimagining Urban Spaces: How Living Labs Drive City Regeneration](https://www.regenstudio.world/blog/Blog%202/)**: 2024-10-05
@@ -202,7 +202,7 @@ URL: [https://demos.regenstudio.world](https://demos.regenstudio.world)
   Living labs are transforming how cities approach urban regeneration. By combining smart city technology with participatory design, communities are co-creating solutions that truly serve their needs.
 
 - **[Designing for Privacy with Self-Sovereign Identity](https://www.regenstudio.world/blog/ssi-privacy/)**: 2024-09-24
-  Categories: Digital Identity, Privacy-by-Design, Vision & Strategy
+  Categories: Digital Identity, Privacy-by-Design, Innovation Services
   In an era where personal data is continuously harvested and monetized, Self-Sovereign Identity places the control over personal data back into the hands of individuals.
 
 - **[Exploring Bioacoustics With Iracambi](https://www.regenstudio.world/blog/bioacoustics-iracambi/)**: 2024-09-23
@@ -218,15 +218,15 @@ URL: [https://demos.regenstudio.world](https://demos.regenstudio.world)
   With the EU's Digital Product Passport regulation on the horizon, Brazil is uniquely positioned to lead in sustainable textiles. What a DPP-ready Brazilian textile ecosystem could look like.
 
 - **[Advising Entrepreneurs through Shell Startup Engine Brazil](https://www.regenstudio.world/blog/shell-startup-enginge-brazil/)**: 2024-09-09
-  Categories: Circular Business Models, Innovation Services, Out-of-the-Box Ideas
+  Categories: Circular Business Models, Innovation Services
   Regen Studio's founder has been mentoring regenerative startups through Shell Startup Engine Brazil: from fire detection software to mangrove protection and on-the-job learning for underserved communities.
 
 - **[Beyond Carbon: The Rise of Regenerative Finance](https://www.regenstudio.world/blog/Beyond-Carbon-Regenerative-Finance/)**: 2024-08-31
-  Categories: Energy Justice, Regenerative Agriculture, Vision & Strategy, Client Projects
+  Categories: Energy Justice, Regenerative Agriculture, Innovation Services, Client Projects
   Regen Studio developed a report for the Dutch Blockchain Coalition on how Web3 technologies can address the biggest challenges in carbon markets, and why we need to look beyond carbon alone.
 
 - **[Planting Regen Roots in Brazil](https://www.regenstudio.world/blog/planting-regen-roots-in-brazil/)**: 2024-08-13
-  Categories: Reforestation, Biodiversity, Urban Greening, Vision & Strategy
+  Categories: Reforestation, Biodiversity, Urban Greening, Innovation Services
   Brazil holds the key to the future of regeneration. With its immense biodiversity, unparalleled ecosystems, thriving cities, and unique culture, this country is the beating heart of our planet's regenerative potential.
 
 - **[Digital Product Passports for Regenerative Economies](https://www.regenstudio.world/blog/dpp-regenerative-economies/)**: 2024-08-09
@@ -234,7 +234,7 @@ URL: [https://demos.regenstudio.world](https://demos.regenstudio.world)
   Imagine a world where every product carries a digital story from creation to consumption and beyond. Digital Product Passports can be a blueprint for regeneration and a foundation for a circular economy.
 
 - **[Intentional Disruption as a Tool for Regenerative Innovation](https://www.regenstudio.world/blog/resilience-dividend/)**: 2024-05-20
-  Categories: Resilient Nature, Vision & Strategy, Out-of-the-Box Ideas
+  Categories: Resilient Nature, Innovation Services
   Judith Rodin's The Resilience Dividend explores how communities and organizations can transform disruptions into opportunities for growth. What can intentional disruption teach us about building regenerative innovation ecosystems?
 
 - **[Guiding the City of The Hague's Smart City team towards Impactful Digital Innovations](https://www.regenstudio.world/blog/Blog%201/)**: 2024-04-12

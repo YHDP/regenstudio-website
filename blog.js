@@ -784,8 +784,8 @@
         });
       });
 
-      // DOM APIs rather than innerHTML: a category like "Vision & Strategy" then
-      // reaches an attribute and a text node with no escaping question at all.
+      // DOM APIs rather than innerHTML: a category name reaches an attribute and
+      // a text node with no escaping question at all, whatever it contains.
       function makePill(value, label, count, color, variant) {
         const btn = document.createElement('button');
         btn.type = 'button';   // this page also carries a form; bare buttons submit

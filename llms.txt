@@ -48,36 +48,36 @@
 
 ## Blog Posts
 
-- [The Construction Innovator Paradox: Why Innovative Construction Products May Face Digital Product Passports First](https://www.regenstudio.world/blog/construction-products-innovation-dpp/), 2026-02-22, Digital Product Passport, Vision & Strategy
+- [The Construction Innovator Paradox: Why Innovative Construction Products May Face Digital Product Passports First](https://www.regenstudio.world/blog/construction-products-innovation-dpp/), 2026-02-22, Digital Product Passport, Innovation Services
 - [Smart Charging in the Vruchtenbuurt](https://www.regenstudio.world/blog/slim-laadplein-vruchtenbuurt/), 2026-02-19, Client Projects, Energy Communities, Smart Grids, Innovation Services
 - [Energy Justice by Design: How We Helped The Hague Design Energy Cooperatives That Changed Local Welfare Policies](https://www.regenstudio.world/blog/energy-justice-the-hague/), 2026-02-18, Client Projects, Energy Communities, Energy Justice, Innovation Services
 - [A Smart Energy Community on Scheveningen Beach](https://www.regenstudio.world/blog/slim-strandnet/), 2026-02-17, Client Projects, Energy Communities, Smart Grids, Living Labs
-- [The Construction Products Regulation and Digital Product Passports](https://www.regenstudio.world/blog/cpr-digital-product-passport/), 2026-02-15, Digital Product Passport, Vision & Strategy
-- [The Expected ESPR Delegated Act on Textiles](https://www.regenstudio.world/blog/espr-textile-delegated-act/), 2026-02-12, Digital Product Passport, Circular Business Models, Vision & Strategy
-- [Try the AI Tax → UBI Simulator](https://www.regenstudio.world/blog/demo-ai-tax-ubi/), 2026-02-11, Vision & Strategy, Innovation Services
+- [The Construction Products Regulation and Digital Product Passports](https://www.regenstudio.world/blog/cpr-digital-product-passport/), 2026-02-15, Digital Product Passport, Innovation Services
+- [The Expected ESPR Delegated Act on Textiles](https://www.regenstudio.world/blog/espr-textile-delegated-act/), 2026-02-12, Digital Product Passport, Circular Business Models, Innovation Services
+- [Try the AI Tax → UBI Simulator](https://www.regenstudio.world/blog/demo-ai-tax-ubi/), 2026-02-11, Innovation Services
 - [Try the EDI Wallet Demo](https://www.regenstudio.world/blog/demo-edi-wallet/), 2026-02-10, Digital Identity, Privacy-by-Design
-- [Try the Battery Passport Checker](https://www.regenstudio.world/blog/demo-battery-passport/), 2026-02-09, Digital Product Passport, Vision & Strategy
-- [The Art of Emergence: An Interactive Triangle Ecosystem](https://www.regenstudio.world/blog/emergent-triangles/), 2026-02-09, AI, Visual Storytelling, Out-of-the-Box Ideas
+- [Try the Battery Passport Checker](https://www.regenstudio.world/blog/demo-battery-passport/), 2026-02-09, Digital Product Passport, Innovation Services
+- [The Art of Emergence: An Interactive Triangle Ecosystem](https://www.regenstudio.world/blog/emergent-triangles/), 2026-02-09, AI, Innovation Services
 - [Try the DPP System Demo](https://www.regenstudio.world/blog/demo-dpp-system/), 2026-02-08, Digital Product Passport, Innovation Services
-- [Insights from CircularTech Forum](https://www.regenstudio.world/blog/CircularTech/), 2025-09-23, Digital Product Passport, Vision & Strategy
-- [What to Expect from the ESPR Working Plan 2025-2030?](https://www.regenstudio.world/blog/ESPR/), 2025-08-26, Digital Product Passport, Vision & Strategy
-- [Talk to AI as if it's Trump](https://www.regenstudio.world/blog/ai-trump/), 2025-05-22, AI, Vision & Strategy
-- [Position Paper: Trusted Digital Product Passports](https://www.regenstudio.world/blog/trusted-dpps/), 2025-05-22, Digital Product Passport, Digital Identity, Vision & Strategy, Client Projects
-- [10 Design Principles for Antifragile Regenerative Innovation Systems](https://www.regenstudio.world/blog/antifragile/), 2025-04-17, Out-of-the-Box Ideas, Innovation Services
+- [Insights from CircularTech Forum](https://www.regenstudio.world/blog/CircularTech/), 2025-09-23, Digital Product Passport, Innovation Services
+- [What to Expect from the ESPR Working Plan 2025-2030?](https://www.regenstudio.world/blog/ESPR/), 2025-08-26, Digital Product Passport, Innovation Services
+- [Talk to AI as if it's Trump](https://www.regenstudio.world/blog/ai-trump/), 2025-05-22, AI, Innovation Services
+- [Position Paper: Trusted Digital Product Passports](https://www.regenstudio.world/blog/trusted-dpps/), 2025-05-22, Digital Product Passport, Digital Identity, Innovation Services, Client Projects
+- [10 Design Principles for Antifragile Regenerative Innovation Systems](https://www.regenstudio.world/blog/antifragile/), 2025-04-17, Innovation Services
 - [A Custom Digital Innovation Process for The Hague](https://www.regenstudio.world/blog/a-custom-digital-innovation-process-for-the-hague/), 2025-02-19, Client Projects, Innovation Services, Living Labs
-- [Weaving Nature into Urban Design](https://www.regenstudio.world/blog/Blog%203/), 2025-01-18, Urban Greening, Biodiversity, Vision & Strategy
+- [Weaving Nature into Urban Design](https://www.regenstudio.world/blog/Blog%203/), 2025-01-18, Urban Greening, Biodiversity, Innovation Services
 - [Reimagining Cities as Regenerative Ecosystems](https://www.regenstudio.world/blog/urban-jungle/), 2024-11-24, Urban Greening, Biodiversity
-- [Innovation Theatre: Playfully Building Capacity for Change](https://www.regenstudio.world/blog/Innovation-Theatre/), 2024-10-29, Out-of-the-Box Ideas, Liveable Cities
+- [Innovation Theatre: Playfully Building Capacity for Change](https://www.regenstudio.world/blog/Innovation-Theatre/), 2024-10-29, Innovation Services, Liveable Cities
 - [Reimagining Urban Spaces: How Living Labs Drive City Regeneration](https://www.regenstudio.world/blog/Blog%202/), 2024-10-05, Living Labs, Digital Participation, Innovation Services
-- [Designing for Privacy with Self-Sovereign Identity](https://www.regenstudio.world/blog/ssi-privacy/), 2024-09-24, Digital Identity, Privacy-by-Design, Vision & Strategy
+- [Designing for Privacy with Self-Sovereign Identity](https://www.regenstudio.world/blog/ssi-privacy/), 2024-09-24, Digital Identity, Privacy-by-Design, Innovation Services
 - [Exploring Bioacoustics With Iracambi](https://www.regenstudio.world/blog/bioacoustics-iracambi/), 2024-09-23, Biodiversity, Reforestation, Innovation Services
 - [Energy Hubs: How We Design Them as Smart Energy Communities](https://www.regenstudio.world/blog/energy-hubs/), 2024-09-18, Energy Communities, Smart Grids, Innovation Services
 - [A Future-Ready Brazilian Textile Ecosystem with Digital Product Passports](https://www.regenstudio.world/blog/future-ready-textile-brazil/), 2024-09-16, Digital Product Passport, Circular Business Models, Innovation Services
-- [Advising Entrepreneurs through Shell Startup Engine Brazil](https://www.regenstudio.world/blog/shell-startup-enginge-brazil/), 2024-09-09, Circular Business Models, Innovation Services, Out-of-the-Box Ideas
-- [Beyond Carbon: The Rise of Regenerative Finance](https://www.regenstudio.world/blog/Beyond-Carbon-Regenerative-Finance/), 2024-08-31, Energy Justice, Regenerative Agriculture, Vision & Strategy, Client Projects
-- [Planting Regen Roots in Brazil](https://www.regenstudio.world/blog/planting-regen-roots-in-brazil/), 2024-08-13, Reforestation, Biodiversity, Urban Greening, Vision & Strategy
+- [Advising Entrepreneurs through Shell Startup Engine Brazil](https://www.regenstudio.world/blog/shell-startup-enginge-brazil/), 2024-09-09, Circular Business Models, Innovation Services
+- [Beyond Carbon: The Rise of Regenerative Finance](https://www.regenstudio.world/blog/Beyond-Carbon-Regenerative-Finance/), 2024-08-31, Energy Justice, Regenerative Agriculture, Innovation Services, Client Projects
+- [Planting Regen Roots in Brazil](https://www.regenstudio.world/blog/planting-regen-roots-in-brazil/), 2024-08-13, Reforestation, Biodiversity, Urban Greening, Innovation Services
 - [Digital Product Passports for Regenerative Economies](https://www.regenstudio.world/blog/dpp-regenerative-economies/), 2024-08-09, Digital Product Passport, Innovation Services
-- [Intentional Disruption as a Tool for Regenerative Innovation](https://www.regenstudio.world/blog/resilience-dividend/), 2024-05-20, Resilient Nature, Vision & Strategy, Out-of-the-Box Ideas
+- [Intentional Disruption as a Tool for Regenerative Innovation](https://www.regenstudio.world/blog/resilience-dividend/), 2024-05-20, Resilient Nature, Innovation Services
 - [Guiding the City of The Hague's Smart City team](https://www.regenstudio.world/blog/Blog%201/), 2024-04-12, Living Labs, Digital Participation, Innovation Services, Client Projects
 
 ## FAQ Topics
