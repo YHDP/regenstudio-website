@@ -289,8 +289,23 @@ while read local_ref local_sha remote_ref remote_sha; do
   # leaks would normally cite a beschikking number or voucher code (KvW3-...)
   # — those are caught by the CLIENT_IDENTIFIERS_RE check above and are NOT
   # whitelisted here.
-  DATE_LEAK_RE='\b(1|2|3|31)\s+(jan|feb|mrt|apr|mei|jun|jul|aug|sep|okt|nov|dec)(uari|ruari|aart|il|i|ni|li|ustus|tember|tober|ember)?\s+(202[6-9]|203[0-9])'
-  DATE_LEAK_PUBLIC_CONTEXT_RE='eur-lex\.europa\.eu|Ecodesign-richtlijn|ESPR(\s|-)|PPWR|CPR\s+2024/3110|Batterijenverordening|Battery\s+Regulation|Speelgoedveiligheidsverordening|Toy\s+Safety|Artikel\s+(18|25|79|9|10|11|12|13|14)\b|Article\s+(18|25|79|9|10|11|12|13|14)\b|art\.\s+(8|21|22|24|25|30|34|36|37)\b|Verordening\s+\(EU\)\s+202[0-9]/[0-9]+|Regulation\s+\(EU\)\s+202[0-9]/[0-9]+|Energiewet|Elektriciteitswet|Gaswet|nieuwe\s+Energiewet|Algemene\s+Voorwaarden|Versie\s+[0-9][0-9]*\.[0-9][0-9]*|v[0-9][0-9]*\.[0-9][0-9]*\s+(NL|EN|PT)'
+  #
+  # 2026-07-28 extension: the same reasoning covers Dutch NATIONAL legislative
+  # milestones, which the EU-only marker list missed. The e-cognossement post
+  # says "Vanaf 1 juli 2026 is het elektronisch cognossement juridisch bindend
+  # in Nederland" — a commencement date from Boek 8 BW, as public as an ESPR
+  # cutoff and already through the blog review gate. It blocked a push because
+  # an unrelated edit (a categories retag) rewrote the minified JSON-LD line the
+  # sentence sits on. Markers added below are legislative-context words that no
+  # voucher engagement would carry.
+  # 2026-07-28 correctness fix: the month pattern was a base list plus a flat
+  # optional-suffix list, which could not spell two months. "oktober" needs
+  # "ober" (only "tober" was listed) and "maart" never matched at all, since
+  # the base list had "mrt". So `31 oktober 2026` — the DPP voucher end date,
+  # the single most likely engagement date to leak — passed this check silently
+  # while `31 okt 2026` was caught. Per-month optional tails close both holes.
+  DATE_LEAK_RE='\b(1|2|3|31)\s+(jan(uari)?|feb(ruari)?|m(rt|aart)|apr(il)?|mei|jun(i)?|jul(i)?|aug(ustus)?|sep(tember)?|okt(ober)?|nov(ember)?|dec(ember)?)\s+(202[6-9]|203[0-9])'
+  DATE_LEAK_PUBLIC_CONTEXT_RE='eur-lex\.europa\.eu|Ecodesign-richtlijn|ESPR(\s|-)|PPWR|CPR\s+2024/3110|Batterijenverordening|Battery\s+Regulation|Speelgoedveiligheidsverordening|Toy\s+Safety|Artikel\s+(18|25|79|9|10|11|12|13|14)\b|Article\s+(18|25|79|9|10|11|12|13|14)\b|art\.\s+(8|21|22|24|25|30|34|36|37)\b|Verordening\s+\(EU\)\s+202[0-9]/[0-9]+|Regulation\s+\(EU\)\s+202[0-9]/[0-9]+|Energiewet|Elektriciteitswet|Gaswet|nieuwe\s+Energiewet|Algemene\s+Voorwaarden|Versie\s+[0-9][0-9]*\.[0-9][0-9]*|v[0-9][0-9]*\.[0-9][0-9]*\s+(NL|EN|PT)|cognossement|MLETR|Boek\s+8\s+BW|elektronisch\s+overdraagbaar|electronic\s+transferable\s+record|registro\s+eletr(o|ô)nico\s+transfer(i|í)vel'
   DATE_LEAKS=$(echo "$PUBLIC_DIFF" | grep -E '^\+' | grep -vE '^\+\+\+' | \
     grep -nE "$DATE_LEAK_RE" | \
     grep -vE "$DATE_LEAK_PUBLIC_CONTEXT_RE" || true)
