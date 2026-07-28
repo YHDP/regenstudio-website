@@ -10,7 +10,9 @@
     "role": "Design de Inovação Regenerativa"
   },
   "date": "2026-06-15",
-  "categories": ["Digital Product Passport", "Innovation Services"],
+  "categories": [
+    "Digital Product Passport"
+],
   "tags": ["DSR", "detergents", "surfactants", "digital-product-passports", "EU-regulation", "ESPR", "circular-economy", "sustainability"],
   "published": true,
   "review": {
