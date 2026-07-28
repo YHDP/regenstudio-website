@@ -274,7 +274,7 @@
         <!-- Populated by JS -->
       </div>
       <div style="text-align:center;margin-top:32px;">
-        <a href="blog.html#cat=Innovation%20Services" class="btn btn--outline btn--small">Todas as hist&oacute;rias de servi&ccedil;os de inova&ccedil;&atilde;o &rarr;</a>
+        <a href="client-projects.html" class="btn btn--outline btn--small">Todos os projetos de clientes &rarr;</a>
       </div>
     </section>
 
@@ -449,7 +449,8 @@
   <script>
     (function() {
       // Service card click-to-expand detail panel
-      // Load 3 random Innovation Services blog posts
+      // Load 3 random client projects — this is a services page, so it should
+      // show work delivered rather than any post that mentions the topic.
       var innoGrid = document.getElementById('innoBlogGrid');
       if (innoGrid) {
         fetch('../Blogs/blogs.json')
@@ -464,7 +465,7 @@
           })
           .then(function(blogs) {
             var innoBlogs = blogs
-              .filter(function(b) { return b.published && b.categories && b.categories.indexOf('Innovation Services') !== -1; });
+              .filter(function(b) { return b.published && b.categories && b.categories.indexOf('Client Projects') !== -1; });
 
             // Shuffle (Fisher-Yates)
             for (var i = innoBlogs.length - 1; i > 0; i--) {
