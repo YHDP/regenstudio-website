@@ -1944,6 +1944,14 @@ em:only-of-type {
   gap: 28px;
 }
 
+/* Vision & Strategy, Visual Storytelling and Out-of-the-Box Ideas were folded
+   into Innovation Services (2026-07-28), leaving one card. Without this it would
+   sit in the left half of a two-column grid with an empty gutter beside it. */
+.services__grid--single {
+  grid-template-columns: minmax(0, 560px);
+  justify-content: center;
+}
+
 .service {
   padding: 40px 32px 36px;
   border: 1px solid var(--color-border);
@@ -1977,21 +1985,12 @@ em:only-of-type {
   transition: all var(--transition);
 }
 
-/* Subtle colored accent line at top of each card */
-.service:nth-child(1) { border-top: 2px solid var(--color-emerald); }
-.service:nth-child(2) { border-top: 2px solid var(--color-teal); }
-.service:nth-child(3) { border-top: 2px solid var(--color-magenta); }
-.service:nth-child(4) { border-top: 2px solid var(--color-red); }
+/* Accent line + glow. One card since the merge, so the emerald pair is all that
+   can match; the teal/magenta/red variants for cards 2-4 went with them. */
+.service { border-top: 2px solid var(--color-emerald); }
 
-/* Soft colored glow on images/icons */
-.service:nth-child(1) .service__image img,
-.service:nth-child(1) .service__image svg { box-shadow: 0 0 20px rgba(0, 133, 69, 0.15); }
-.service:nth-child(2) .service__image img,
-.service:nth-child(2) .service__image svg { box-shadow: 0 0 20px rgba(0, 155, 187, 0.15); }
-.service:nth-child(3) .service__image img,
-.service:nth-child(3) .service__image svg { box-shadow: 0 0 20px rgba(147, 9, 63, 0.15); }
-.service:nth-child(4) .service__image img,
-.service:nth-child(4) .service__image svg { box-shadow: 0 0 20px rgba(231, 24, 70, 0.15); }
+.service .service__image img,
+.service .service__image svg { box-shadow: 0 0 20px rgba(0, 133, 69, 0.15); }
 
 .service:hover .service__image img,
 .service:hover .service__image svg {
