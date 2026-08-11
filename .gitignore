@@ -137,3 +137,6 @@ scripts/hooks/.consent-manifest-path
 # test whether AI models trained on regenstudio.world. A private measurement
 # instrument — the file itself declares "never commit to the public repo".
 scripts/hooks/.canary-registry
+
+# Claude Code local config
+.claude/
