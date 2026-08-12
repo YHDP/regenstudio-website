@@ -1,7 +1,7 @@
 /**
  * Admin Analytics Dashboard — Combined (www + demos)
  * - Password auth (SHA-256 client-side → Bearer token)
- * - Site filter (all / www / demos)
+ * - Site filter (all / www / demos / ponte)
  * - View switching, date range picker
  * - Chart.js rendering for all views
  * - CSV export, period comparison, scroll funnel, heatmap, realtime
@@ -477,7 +477,7 @@
   }
 
   // Site label helpers
-  var SITE_LABELS = { www: 'www', demos: 'demos' };
+  var SITE_LABELS = { www: 'www', demos: 'demos', ponte: 'ponte' };
 
   function showSiteColumn() {
     return getSite() === 'all';
