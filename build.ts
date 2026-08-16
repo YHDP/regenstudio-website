@@ -1176,7 +1176,11 @@ async function buildCommentStage(
   };
   const wHead = cut("<!-- ==WIDGET-HEAD== -->", "<!-- ==WIDGET-BODY== -->");
   const wBody = cut("<!-- ==WIDGET-BODY== -->", "<!-- ==WIDGET-SCRIPT== -->");
-  const wScript = cut("<!-- ==WIDGET-SCRIPT== -->");
+  // Stamp a fresh render id so each comment-stage build starts a clean
+  // commenting seed (localStorage is keyed on it). A reload within the same
+  // render still restores; a NEW render does not inherit applied comments.
+  const renderId = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+  const wScript = cut("<!-- ==WIDGET-SCRIPT== -->").replace(/__RENDER_ID__/g, renderId);
 
   // Stable per-slug path (no random suffix) so a shared partner URL stays
   // durable across re-deploys; confidentiality rests on the password, not path
