@@ -1,0 +1,365 @@
+<style>
+  @media (max-width: 768px) {
+    figure { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .ppwr-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  }
+
+  /* ===== Índice ===== */
+  .ppwr-toc { margin: 32px 0 40px; padding: 20px 24px; background: #f8f9fa; border-radius: 12px; border: 1px solid #e0e0e0; }
+  .ppwr-toc__title { font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: #5A6B73; margin-bottom: 12px; }
+  .ppwr-toc__list { margin: 0; padding-left: 20px; }
+  .ppwr-toc__list li { margin-bottom: 6px; }
+  .ppwr-toc__link { color: #006838; text-decoration: none; font-size: 0.88rem; }
+  .ppwr-toc__link:hover { text-decoration: underline; }
+  .ppwr-toc__link:focus-visible { outline: 2px solid #007B40; outline-offset: 2px; border-radius: 4px; }
+
+  /* ===== Mito / realidade ===== */
+  .ppwr-mr { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0 32px; }
+  .ppwr-mr__card { border-radius: 12px; padding: 20px 22px; border: 1px solid; }
+  .ppwr-mr__card--myth { border-color: #D51641; background: #FDF0F3; }
+  .ppwr-mr__card--real { border-color: #008545; background: #E6F2EC; }
+  .ppwr-mr__k { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.09em; font-weight: 700; margin-bottom: 8px; }
+  .ppwr-mr__card--myth .ppwr-mr__k { color: #D51641; }
+  .ppwr-mr__card--real .ppwr-mr__k { color: #006838; }
+  .ppwr-mr__card p { margin: 0; font-size: 1rem; line-height: 1.55; color: #1a1a1a; }
+  @media (max-width: 680px) { .ppwr-mr { grid-template-columns: 1fr; } }
+
+  /* ===== Citação do regulamento ===== */
+  .ppwr-quote { border-left: 6px solid #008545; background: #f8f9fa; border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 26px 0; }
+  .ppwr-quote p { margin: 0 0 10px; font-size: 1.05rem; line-height: 1.6; color: #1B2833; font-style: italic; }
+  .ppwr-quote cite { display: block; font-style: normal; font-size: 0.84rem; color: #5A6B73; letter-spacing: 0.02em; }
+
+  /* ===== Destaque ===== */
+  .ppwr-note { border: 1px solid #935D0D; border-left: 6px solid #935D0D; background: #FFFBF4; border-radius: 0 12px 12px 0; padding: 18px 22px; margin: 24px 0; }
+  .ppwr-note__k { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; color: #935D0D; font-weight: 700; }
+  .ppwr-note p { margin: 6px 0 0; font-size: 1rem; line-height: 1.55; color: #1a1a1a; }
+
+  /* ===== Tabelas ===== */
+  .ppwr-table-wrap { margin: 26px 0 30px; }
+  .ppwr-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .ppwr-table caption { text-align: left; font-size: 0.88rem; color: #5A6B73; margin-bottom: 10px; line-height: 1.45; }
+  .ppwr-table th, .ppwr-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  .ppwr-table th { background: #f8f9fa; font-weight: 600; color: #1B2833; border-bottom: 2px solid #C9D2D5; }
+  .ppwr-table td strong { color: #1B2833; }
+  .ppwr-table tr:last-child td { border-bottom: none; }
+
+  /* ===== Marcadores de data ===== */
+  .ppwr-cond { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #935D0D; background: #FFF3E0; border: 1px solid #E8C88F; border-radius: 5px; padding: 2px 7px; white-space: nowrap; }
+  .ppwr-hard { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #006838; background: #E6F2EC; border: 1px solid #9ACBB4; border-radius: 5px; padding: 2px 7px; white-space: nowrap; }
+
+  /* ===== Perguntas frequentes ===== */
+  .ppwr-faq details { border: 1px solid #e0e0e0; border-radius: 10px; padding: 14px 18px; margin-bottom: 12px; background: #fff; }
+  .ppwr-faq details[open] { border-color: #C9D2D5; background: #f8f9fa; }
+  .ppwr-faq summary { cursor: pointer; font-weight: 600; color: #1B2833; font-size: 1rem; line-height: 1.45; }
+  .ppwr-faq summary:focus-visible { outline: 2px solid #007B40; outline-offset: 3px; border-radius: 4px; }
+  .ppwr-faq details p { margin: 12px 0 0; font-size: 0.97rem; line-height: 1.6; }
+</style>
+
+<p><strong>O Regulamento relativo a Embalagens e Resíduos de Embalagens, Regulamento (UE) 2025/40, passou a ser aplicável em toda a União Europeia em 12 de agosto de 2026.</strong> Nos meses anteriores, quase toda a consultoria em embalagens convergiu para uma única instrução: coloque um QR code na sua embalagem antes de agosto. A instrução está errada. O artigo 12.º, n.º 1, diz que os operadores econômicos <em>podem</em> colocar um QR code na embalagem para facilitar a triagem pelo consumidor. Podem, não devem. O QR de triagem geral é voluntário, e nada no regulamento muda isso em 2026, 2028 ou 2030.</p>
+
+<p>Vale desfazer o mito com cuidado, porque a correção tem três partes e a maior parte da cobertura para na primeira. O QR de triagem é opcional. Uma outra marcação, um rótulo impresso com pictogramas, é de fato obrigatória, mas ainda não e não na data que todo mundo cita. E existem três situações específicas em que um portador de dados é mesmo obrigatório, o que significa que quem lê "o QR é voluntário" e fecha a aba ainda pode ter uma obrigação que não enxergou.</p>
+
+<div class="ppwr-mr">
+  <div class="ppwr-mr__card ppwr-mr__card--myth">
+    <div class="ppwr-mr__k">O mito</div>
+    <p>A PPWR se aplica a partir de 12 de agosto de 2026, então as embalagens precisam de um QR code até lá, ligado a um passaporte digital do produto no registro da UE.</p>
+  </div>
+  <div class="ppwr-mr__card ppwr-mr__card--real">
+    <div class="ppwr-mr__k">O texto</div>
+    <p>O QR de triagem é opcional segundo o artigo 12.º, n.º 1. O obrigatório é um rótulo impresso com pictogramas, em 2028 na melhor das hipóteses, e a especificação que o define ainda não existe. A PPWR não contém passaporte digital do produto algum.</p>
+  </div>
+</div>
+
+<div class="ppwr-toc">
+  <div class="ppwr-toc__title">O que este artigo cobre</div>
+  <ol class="ppwr-toc__list">
+    <li><a class="ppwr-toc__link" href="#a-clausula">A cláusula que resolve a questão</a></li>
+    <li><a class="ppwr-toc__link" href="#o-que-e-obrigatorio">O que o artigo 12.º torna obrigatório</a></li>
+    <li><a class="ppwr-toc__link" href="#ato-ausente">A especificação que ninguém tem</a></li>
+    <li><a class="ppwr-toc__link" href="#tres-casos">Três casos em que o portador é mesmo obrigatório</a></li>
+    <li><a class="ppwr-toc__link" href="#pisos">Por que quase toda data da PPWR é um piso</a></li>
+    <li><a class="ppwr-toc__link" href="#hoje">O que de fato passou a ser proibido em 12 de agosto de 2026</a></li>
+    <li><a class="ppwr-toc__link" href="#reciclabilidade">Classes de reciclabilidade A, B e C</a></li>
+    <li><a class="ppwr-toc__link" href="#teor-reciclado">Teor reciclado, e a taxa que segue a classe</a></li>
+    <li><a class="ppwr-toc__link" href="#nao-e-dpp">A PPWR não é um regime de passaporte</a></li>
+    <li><a class="ppwr-toc__link" href="#privacidade">A cláusula de privacidade que quase ninguém menciona</a></li>
+    <li><a class="ppwr-toc__link" href="#o-que-fazer">O que fazer com o tempo que isso lhe dá</a></li>
+    <li><a class="ppwr-toc__link" href="#faq">Perguntas frequentes</a></li>
+  </ol>
+</div>
+
+<h2 id="a-clausula">A cláusula que resolve a questão</h2>
+
+<p>O artigo 12.º se chama "Rotulagem das embalagens". O seu primeiro número tem quatro parágrafos, e o terceiro responde à pergunta sobre o QR:</p>
+
+<div class="ppwr-quote">
+  <p>"Para além do rótulo harmonizado referido no presente número, os operadores econômicos podem colocar na embalagem um QR code ou outro tipo de portador de dados digital normalizado e aberto que contenha informações sobre o destino de cada componente separado da embalagem, a fim de facilitar a triagem pelo consumidor."</p>
+  <cite>Regulamento (UE) 2025/40, artigo 12.º, n.º 1, terceiro parágrafo. Tradução do original inglês, cujo verbo operativo é "may place".</cite>
+</div>
+
+<p>Uma palavra carrega todo o sentido. "Podem" é redação permissiva. Onde o legislador da União quer uma obrigação, o mesmo artigo usa o imperativo: a embalagem "deve ostentar um rótulo harmonizado" no primeiro parágrafo, a embalagem que contém substâncias que suscitam preocupação "deve ser marcada" no segundo, a embalagem reutilizável "deve ostentar um rótulo" no n.º 2. O contraste é deliberado e aparece dentro de um único artigo. Ninguém que redigiu o artigo 12.º tinha dúvida sobre quais marcações estava tornando obrigatórias.</p>
+
+<p>A segunda expressão que importa é "para além do rótulo harmonizado". O QR voluntário é um complemento opcional a um rótulo impresso obrigatório, não um substituto dele nem uma obrigação autônoma. A empresa que acrescenta o QR continua devendo o rótulo. A empresa que dispensa o QR não deve nada a mais.</p>
+
+<h2 id="o-que-e-obrigatorio">O que o artigo 12.º torna obrigatório</h2>
+
+<p>A obrigação para a qual as empresas deveriam estar se preparando é física. A embalagem colocada no mercado precisa ostentar um rótulo harmonizado com informação sobre a sua composição material, para que o consumidor consiga fazer a triagem correta. O rótulo é baseado em pictogramas e precisa ser facilmente compreensível, inclusive por pessoas com deficiência. No caso de embalagens compostáveis do artigo 9.º, ele também precisa indicar que o material é compostável, que não serve para compostagem doméstica e que não deve ser descartado na natureza.</p>
+
+<p>Duas exclusões têm peso comercial. A obrigação não se aplica a embalagens de transporte nem a embalagens sujeitas a sistema de depósito e retorno. A embalagem de comércio eletrônico é expressamente trazida de volta ao escopo, então uma empresa que envia encomendas a consumidores não pode tratar suas caixas como embalagem de transporte isenta.</p>
+
+<p>Depois vem a data, e é aí que a cobertura costuma errar. O artigo 12.º, n.º 1, não diz 12 de agosto de 2028. Diz:</p>
+
+<div class="ppwr-quote">
+  <p>"A partir de 12 de agosto de 2028 ou 24 meses a contar da data de entrada em vigor dos atos de execução adotados nos termos dos n.os 6 ou 7 do presente artigo, consoante o que ocorrer mais tarde…"</p>
+  <cite>Regulamento (UE) 2025/40, artigo 12.º, n.º 1, primeiro parágrafo. Tradução do original inglês "whichever is the latest".</cite>
+</div>
+
+<p>"Consoante o que ocorrer mais tarde" transforma 2028 de prazo em piso. A obrigação recai sobre a data que chegar depois: a data fixa do calendário, ou dois anos após a Comissão publicar a especificação. Se a especificação atrasar, a obrigação anda junto. Ela não pode chegar antes de agosto de 2028, e não há teto para quanto mais tarde pode chegar.</p>
+
+<h2 id="ato-ausente">A especificação que ninguém tem</h2>
+
+<p>O artigo 12.º, n.º 6, obrigava a Comissão a adotar atos de execução estabelecendo o rótulo harmonizado e as especificações dos requisitos e formatos de rotulagem. O n.º 7 exigia um segundo ato de execução, este fixando a metodologia para identificar a composição material por meio de tecnologias de marcação digital normalizadas e abertas. Ambos tinham o mesmo prazo: 12 de agosto de 2026.</p>
+
+<p>Esse prazo caía no mesmo dia em que o regulamento passou a ser aplicável. Ele venceu sem os atos.</p>
+
+<div class="ppwr-note">
+  <div class="ppwr-note__k">Situação em 12 de agosto de 2026</div>
+  <p>Os atos de execução do artigo 12.º não foram adotados. A associação setorial EUROPEN e escritórios de advocacia como Latham &amp; Watkins, Hogan Lovells e Gleiss Lutz relatam que um projeto é esperado depois do verão europeu, seguido de discussão no Waste Expert Group da Comissão e de consulta pública, com adoção prevista para o quarto trimestre de 2026. Esse cronograma é relatado pela imprensa especializada e não constitui compromisso oficial. Confirme novamente antes de apoiar qualquer decisão de planejamento nele.</p>
+</div>
+
+<p>Faça a conta. Se o ato de execução entrar em vigor em dezembro de 2026, a obrigação de rotulagem cai 24 meses depois, em dezembro de 2028, e o piso de agosto de 2028 se torna irrelevante. Se o ato escorregar para meados de 2027, a obrigação cai em meados de 2029. O desenho dos pictogramas, a paleta de cores do rótulo para sistemas de depósito e as especificações do portador de dados continuam todos desconhecidos, o que significa que nenhuma gráfica na Europa consegue produzir hoje um rótulo de triagem conforme à PPWR, nem para uma empresa que queira um.</p>
+
+<p>O mesmo padrão se repete um artigo adiante. O artigo 13.º obriga os Estados-Membros a colocar rótulos harmonizados nos recipientes de resíduos, até 12 de agosto de 2028 ou 30 meses após os seus próprios atos de execução, consoante o que ocorrer mais tarde. Esses atos também venciam em 12 de agosto de 2026, e o artigo determina que a rotulagem dos recipientes corresponda à rotulagem das embalagens do artigo 12.º, n.º 6. A lixeira e a caixa deveriam conversar. Nenhuma das duas especificações existe.</p>
+
+<h2 id="tres-casos">Três casos em que o portador é mesmo obrigatório</h2>
+
+<p>É aqui que uma manchete simples como "o QR é voluntário" fica perigosa. O artigo 12.º exige um portador de dados digital em três situações distintas, e uma empresa pode cair em qualquer uma delas sem ter se planejado.</p>
+
+<h3>1. Embalagem reutilizável</h3>
+
+<p>A embalagem reutilizável precisa ostentar um rótulo informando aos usuários que ela é reutilizável. Informação adicional, incluindo a disponibilidade de um sistema de reutilização local, nacional ou de âmbito da União e a localização dos pontos de coleta, precisa ser disponibilizada por meio de um QR code ou outro portador de dados digital normalizado e aberto. Esse portador tem uma função concreta: precisa facilitar o rastreamento da embalagem e o cálculo de trajetos e rotações, ou uma estimativa média quando o cálculo não for viável.</p>
+
+<p>A data é 12 de fevereiro de 2029, ou 30 meses a contar da entrada em vigor do ato de execução do n.º 6, consoante o que ocorrer mais tarde. Condicional de novo, e ao mesmo ato ausente.</p>
+
+<p>O n.º 3 abre então uma derrogação fácil de perder: a exigência de rótulo e portador não se aplica a sistemas de circuito aberto que não tenham operador de sistema, nos termos do anexo VI. Se um determinado esquema de refil ou retorno se qualifica como sistema formal de reutilização, com ou sem operador, é isso que decide se a obrigação se aplica. Essa pergunta não se responde no abstrato. Precisa ser respondida contra um portfólio concreto de embalagens.</p>
+
+<h3>2. Embalagem que contém substâncias que suscitam preocupação</h3>
+
+<p>O segundo parágrafo do artigo 12.º, n.º 1, é curto e o seu verbo é imperativo:</p>
+
+<div class="ppwr-quote">
+  <p>"A embalagem colocada no mercado que contenha substâncias que suscitam preocupação deve ser marcada por meio de tecnologias de marcação digital normalizadas e abertas, de acordo com a metodologia referida no n.º 7, segundo parágrafo."</p>
+  <cite>Regulamento (UE) 2025/40, artigo 12.º, n.º 1, segundo parágrafo. Tradução do original inglês "shall be marked".</cite>
+</div>
+
+<p>Trata-se de uma marcação digital obrigatória, no mesmo artigo em que está a voluntária. A metodologia que a define vence em 1.º de janeiro de 2030 e precisa garantir que a marcação inclua ao menos o nome e a concentração de cada substância que suscita preocupação presente em cada material de uma unidade de embalagem. É um requisito de dados exigente, e aponta para a cadeia de fornecimento, não para a gráfica.</p>
+
+<p>Uma ressalva evita uma confusão comum: trata-se de substâncias na embalagem, na parede da garrafa, na tinta, no adesivo, na camada de barreira. Não se trata do produto que está dentro.</p>
+
+<h3>3. Identificação de responsabilidade alargada do produtor</h3>
+
+<p>O terceiro caso tem estrutura incomum. Até 12 de fevereiro de 2027, a embalagem abrangida por um regime de responsabilidade alargada do produtor pode ser identificada em todo o território onde esse regime se aplica. Identificar é opcional. Mas se o produtor optar por fazê-lo, o artigo 12.º, n.º 9, fecha qualquer outro método: essa identificação só pode ser obtida por meio de um símbolo correspondente num QR code ou noutra tecnologia de marcação digital normalizada e aberta.</p>
+
+<p>Opcional fazer, exclusivamente por marcação digital se fizer. O que a disposição descarta é identificar a adesão ao regime apenas com um símbolo impresso estático. Para qualquer produtor que hoje imprime um Ponto Verde ou um selo nacional de responsabilidade do produtor como símbolo estático, esta é a disposição a ler com atenção, e a data dela é fevereiro de 2027, não 2028 nem 2029.</p>
+
+<div class="ppwr-note">
+  <div class="ppwr-note__k">Um QR code nunca é de fato exigido</div>
+  <p>Vale para os três casos: a PPWR é neutra quanto à tecnologia e em nenhum momento exige especificamente um QR code. Cada uma das oito referências a QR code no artigo 12.º diz "um QR code <em>ou outro tipo de</em> portador de dados digital normalizado e aberto", ou, no n.º 9, "ou outra tecnologia de marcação digital normalizada e aberta". NFC, RFID e marca d'água digital cumprem o texto igualmente. A PPWR sequer define o termo: o artigo 3.º importa a definição de "portador de dados" do artigo 2.º, ponto 29, do Regulamento de Conceção Ecológica de Produtos Sustentáveis. A obrigação, onde existe, é carregar dados. O QR code é uma forma de fazer isso, e por acaso a que os redatores nomearam.</p>
+</div>
+
+<h2 id="pisos">Por que quase toda data da PPWR é um piso</h2>
+
+<p>O mito do QR é um sintoma. A condição de fundo é que as datas de manchete da PPWR são majoritariamente condicionais, e as condições não foram cumpridas.</p>
+
+<p>Procure no regulamento a expressão "consoante o que ocorrer mais tarde" e ela aparece treze vezes em sete artigos: artigo 6.º sobre reciclabilidade, artigo 7.º sobre teor reciclado, artigo 12.º sobre rotulagem, artigo 13.º sobre recipientes de resíduos, e os artigos 24.º, 55.º e 67.º. Cada ocorrência prende uma data fixa de calendário a um ato delegado ou de execução que a Comissão ainda precisa adotar, e fica com a mais tardia das duas.</p>
+
+<p>Isso tem consequência prática para quem monta um roteiro de conformidade. Um cronograma que apresenta 2028, 2030 e 2038 como prazos está apresentando a versão mais otimista possível de uma agenda como se fosse a real. Cada uma dessas datas pode deslizar para a direita, e várias já estão deslizando. Um roteiro que as trate como fixas vai programar gastos cedo demais e, pior, vai perder credibilidade interna na primeira vez que uma data escorregar de forma visível.</p>
+
+<div class="ppwr-table-wrap">
+<table class="ppwr-table">
+  <caption>Obrigações da PPWR e suas condições. "Condicional" significa que a data se move se o ato subjacente atrasar.</caption>
+  <thead>
+    <tr><th>Obrigação</th><th>Data mais cedo</th><th>Condição</th><th>Artigo</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Limites de PFAS, embalagem em contato com alimentos</strong></td><td>12 ago 2026</td><td><span class="ppwr-hard">Data firme</span> Nenhum ato necessário</td><td>5.º, n.º 5</td></tr>
+    <tr><td><strong>Metais pesados, soma de 100 mg/kg</strong></td><td>12 ago 2026</td><td><span class="ppwr-hard">Data firme</span> Nenhum ato necessário</td><td>5.º, n.º 4</td></tr>
+    <tr><td>Identificação de RAP, apenas por marcação digital</td><td>12 fev 2027</td><td><span class="ppwr-hard">Data firme</span> Aplicação opcional</td><td>12.º, n.º 9</td></tr>
+    <tr><td>Rótulo harmonizado de triagem, impresso</td><td>12 ago 2028</td><td><span class="ppwr-cond">Condicional</span> ou 24 meses após os atos dos n.os 6/7</td><td>12.º, n.º 1</td></tr>
+    <tr><td>Rótulos de recipientes, dever dos Estados-Membros</td><td>12 ago 2028</td><td><span class="ppwr-cond">Condicional</span> ou 30 meses após os atos do art. 13.º, n.º 2</td><td>13.º, n.º 1</td></tr>
+    <tr><td>Embalagem reutilizável, rótulo e portador de rastreio</td><td>12 fev 2029</td><td><span class="ppwr-cond">Condicional</span> ou 30 meses após o ato do n.º 6</td><td>12.º, n.º 2</td></tr>
+    <tr><td>Teor mínimo reciclado, partes plásticas</td><td>1 jan 2030</td><td><span class="ppwr-cond">Condicional</span> ou 3 anos após o ato do art. 7.º, n.º 8</td><td>7.º, n.º 1</td></tr>
+    <tr><td>Piso da classe C, abaixo dela sem acesso ao mercado</td><td>1 jan 2030</td><td><span class="ppwr-cond">Condicional</span> ou 24 meses após os atos do art. 6.º, n.º 4</td><td>6.º, n.º 3</td></tr>
+    <tr><td>Metodologia de marcação de substâncias preocupantes</td><td>1 jan 2030</td><td><span class="ppwr-hard">Data firme</span> Dever da Comissão</td><td>12.º, n.º 7</td></tr>
+    <tr><td>Somente classes A ou B</td><td>1 jan 2038</td><td><span class="ppwr-hard">Data firme</span> no texto</td><td>6.º, n.º 3</td></tr>
+    <tr><td>Teor reciclado, segunda faixa</td><td>1 jan 2040</td><td><span class="ppwr-hard">Data firme</span> no texto</td><td>7.º, n.º 2</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="hoje">O que de fato passou a ser proibido em 12 de agosto de 2026</h2>
+
+<p>Enquanto o setor de embalagens ensaiava uma obrigação de QR que não existe, uma proibição real entrou em vigor na mesma data, com uma fração da atenção.</p>
+
+<p>A partir de 12 de agosto de 2026, embalagens em contato com alimentos não podem ser colocadas no mercado da UE se contiverem substâncias per e polifluoroalquiladas acima de três valores-limite fixados no artigo 5.º, n.º 5:</p>
+
+<div class="ppwr-table-wrap">
+<table class="ppwr-table">
+  <caption>Limites de PFAS do artigo 5.º, n.º 5, para embalagem em contato com alimentos. Aplicáveis desde já, na medida em que a embalagem já não esteja proibida por outro ato da União.</caption>
+  <thead>
+    <tr><th>Medição</th><th>Limite</th><th>Observação</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Qualquer PFAS isolado, análise direcionada</td><td><strong>25 ppb</strong></td><td>PFAS poliméricos ficam fora da quantificação</td></tr>
+    <tr><td>Soma de PFAS, análise direcionada</td><td><strong>250 ppb</strong></td><td>Quando aplicável, com degradação prévia de precursores; poliméricos fora</td></tr>
+    <tr><td>PFAS incluindo os poliméricos</td><td><strong>50 ppm</strong></td><td>Se o flúor total ultrapassar 50 mg/kg, os fornecedores devem, mediante pedido, comprovar a quantidade de flúor</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Leia a terceira linha com atenção, porque ela é amplamente mal citada. Vários resumos de conformidade a transformam num limite de 50 ppm sobre flúor total. O regulamento fixa 50 ppm para PFAS incluindo os poliméricos, e usa flúor total acima de 50 mg/kg apenas como gatilho de um dever de informação que sobe pela cadeia, para que o fabricante ou importador consiga montar o processo técnico do anexo VII. A distinção muda qual resultado de ensaio coloca a empresa em infração.</p>
+
+<p>O artigo 5.º, n.º 4, fixa um segundo limite firme que também já vale: a soma de chumbo, cádmio, mercúrio e cromo hexavalente proveniente de substâncias presentes na embalagem ou nos seus componentes não pode ultrapassar 100 mg/kg. A conformidade com ambas as disposições precisa ser demonstrada na documentação técnica do anexo VII, nos termos do artigo 5.º, n.º 6.</p>
+
+<div class="ppwr-note">
+  <div class="ppwr-note__k">Por que essa assimetria importa</div>
+  <p>A restrição de PFAS não depende de ato de execução, não tem data condicional e não traz período de transição no próprio artigo. É a obrigação mais clara e imediatamente exigível do regulamento. O QR code, que absorveu a maior parte do esforço de preparação, é voluntário. A empresa que passou 2026 comprando software de portador de dados e não encomendou ensaios de PFAS nas suas linhas de contato com alimentos otimizou para o risco errado.</p>
+</div>
+
+<h2 id="reciclabilidade">Classes de reciclabilidade A, B e C</h2>
+
+<p>O artigo 6.º exige que os fabricantes avaliem a reciclabilidade da embalagem e exprimam o resultado numa classe de desempenho. São três classes, A, B e C, descritas no quadro 3 do anexo II. Resumos que descrevem uma escala de A a E estão descrevendo outra coisa.</p>
+
+<p>As classes ganham dentes em duas etapas. A partir de 1.º de janeiro de 2030, ou 24 meses após a entrada em vigor dos atos delegados do artigo 6.º, n.º 4, se isso for mais tarde, a embalagem não pode ser colocada no mercado a menos que seja reciclável dentro das classes A, B ou C. A partir de 1.º de janeiro de 2038 o piso sobe: só as classes A e B podem ser colocadas no mercado. Um formato de embalagem que fique na base da faixa tem, portanto, cerca de uma década de vida de mercado restante, presumindo que os atos delegados cheguem no prazo.</p>
+
+<p>As classes também mexem com dinheiro. Pelo artigo 6.º, n.º 8, as contribuições de responsabilidade alargada do produtor precisam ser moduladas conforme a classe de desempenho de reciclabilidade, a partir de 18 meses após a entrada em vigor dos atos delegados do n.º 4 e dos atos de execução do n.º 5. Classe melhor, contribuição menor. Para embalagens de alto volume, esse tende a se tornar o sinal comercial mais afiado, bem antes de qualquer proibição de acesso ao mercado, porque atinge a fatura anual em vez de uma data de conformidade distante.</p>
+
+<h2 id="teor-reciclado">Teor reciclado, e a taxa que segue a classe</h2>
+
+<p>O artigo 7.º se aplica a partes plásticas da embalagem, e apenas a plástico. Ele fixa percentuais mínimos de conteúdo reciclado pós-consumo, calculados como média por unidade fabril e por ano, e não por unidade de embalagem, o que dá aos fabricantes flexibilidade real ao longo de uma linha de produtos.</p>
+
+<p>A primeira faixa se aplica a partir de 1.º de janeiro de 2030, ou três anos após a entrada em vigor do ato de execução do artigo 7.º, n.º 8, se isso cair mais tarde. A segunda faixa se aplica a partir de 1.º de janeiro de 2040, sem condição no texto.</p>
+
+<div class="ppwr-table-wrap">
+<table class="ppwr-table">
+  <caption>Teor mínimo reciclado do artigo 7.º para partes plásticas de embalagens, recuperado de resíduos plásticos pós-consumo.</caption>
+  <thead>
+    <tr><th>Tipo de embalagem</th><th>A partir de 2030</th><th>A partir de 2040</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Sensível ao contato, PET como componente principal, exceto garrafas de bebida de uso único</td><td><strong>30%</strong></td><td><strong>50%</strong></td></tr>
+    <tr><td>Sensível ao contato, plásticos que não PET, exceto garrafas de bebida de uso único</td><td><strong>10%</strong></td><td><strong>25%</strong></td></tr>
+    <tr><td>Garrafas plásticas de bebida de uso único</td><td><strong>30%</strong></td><td><strong>65%</strong></td></tr>
+    <tr><td>Todas as demais embalagens plásticas</td><td><strong>35%</strong></td><td><strong>65%</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Uma parte plástica que represente menos de 5% do peso total da unidade de embalagem inteira fica fora do requisito. Embalagens de papel e papelão ficam inteiramente fora do artigo 7.º, o que surpreende empresas que supõem que as regras de conteúdo reciclado sejam neutras quanto ao material.</p>
+
+<p>Uma ressalva pertence a qualquer slide de planejamento para 2040. O artigo 7.º, n.º 14, obriga a Comissão a apresentar até 12 de fevereiro de 2032 um relatório sobre como os percentuais de 2030 funcionaram na prática e se os percentuais de 2040 são viáveis, e esse relatório pode vir acompanhado de uma proposta legislativa alterando os números de 2040. Os números de 2040 são lei, e são ao mesmo tempo explicitamente marcados para revisão.</p>
+
+<h2 id="nao-e-dpp">A PPWR não é um regime de passaporte</h2>
+
+<p>Este é o erro mais profundo por baixo do mito do QR, e ele produz decisões erradas de arquitetura, não apenas calendários errados.</p>
+
+<p>O artigo 12.º nunca usa o termo "passaporte digital do produto". A PPWR não cria passaporte, não define modelo de dados de passaporte e não contém ligação com o Registro de Passaportes Digitais de Produto da UE, que entrou em operação em julho de 2026. O que o artigo 12.º cria é um regime de rotulagem, com um portador de dados digital opcional acoplado para triagem pelo consumidor.</p>
+
+<p>Vale ser pedante com o vocabulário, porque a terminologia frouxa é provavelmente o que gerou o mito. A expressão "rótulo digital" não aparece em lugar nenhum da PPWR, considerandos incluídos. O regulamento usa "portador de dados digital" dez vezes e "tecnologias de marcação digital" seis vezes, e cada uma das vinte e nove ocorrências da palavra "rótulo" se refere a algo impresso, afixado ou gravado na embalagem. Comentários que descrevem o artigo 12.º como um "regime de rotulagem digital" fundem duas coisas separadas, e quem absorve essa expressão conclui, com razão, que o item obrigatório de 2028 é digital. Ele é um pictograma.</p>
+
+<div class="ppwr-table-wrap">
+<table class="ppwr-table">
+  <caption>As quatro construções que costumam ser confundidas, e como a PPWR de fato as chama.</caption>
+  <thead>
+    <tr><th>Construção</th><th>Situação na PPWR</th><th>O que de fato é</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Rótulo harmonizado</td><td>Obrigatório, 2028 na melhor das hipóteses</td><td>Pictograma impresso com a composição material. Físico.</td></tr>
+    <tr><td>Portador de dados digital</td><td>Opcional para triagem; obrigatório em três casos</td><td>QR, NFC, RFID ou marca d'água. O termo que a PPWR realmente usa.</td></tr>
+    <tr><td>Tecnologia de marcação digital</td><td>Obrigatória para substâncias preocupantes</td><td>Marcação legível por máquina, conforme metodologia devida em 1.º jan 2030.</td></tr>
+    <tr><td>"Rótulo digital"</td><td>Não existe no texto</td><td>Jargão de mercado que funde os dois primeiros.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Marcação digital e passaporte digital do produto são igualmente ideias aparentadas, construídas para tarefas diferentes.</p>
+
+<p>A distinção importa porque o produto embalado pode muito bem carregar um passaporte de verdade. Os detergentes carregarão, a partir de 23 de setembro de 2029, pelo <a href="/pt/blog/dsr-digital-product-passport/">Regulamento de Detergentes e Agentes Tensoativos</a>. As baterias já carregam. Os produtos de construção vêm a caminho pelo <a href="/pt/blog/cpr-digital-product-passport/">Regulamento de Produtos de Construção</a>, e a maquinaria horizontal fica sob o <a href="/pt/blog/ESPR/">ESPR</a>, com o <a href="/pt/blog/dpp-registry-goes-live/">registro</a> por baixo. Um frasco de xampu pode ser simultaneamente um produto com passaporte obrigatório e uma embalagem com rótulo de triagem opcional. São duas cargas diferentes com duas bases jurídicas diferentes.</p>
+
+<p>O artigo 12.º, n.º 5, antecipa exatamente essa colisão e a resolve numa frase:</p>
+
+<div class="ppwr-quote">
+  <p>"Sempre que o direito da União exigir que a informação sobre o produto embalado seja prestada por meio de um portador de dados, deve ser usado um único portador de dados para prestar a informação exigida quanto ao produto embalado e quanto à embalagem, devendo ambas ser facilmente distinguíveis."</p>
+  <cite>Regulamento (UE) 2025/40, artigo 12.º, n.º 5, último parágrafo. Tradução do original inglês.</cite>
+</div>
+
+<p>Um portador, as duas cargas, claramente separáveis. Para um fabricante de detergentes, esta é a frase mais útil do artigo 12.º: o portador do passaporte do DSR que se torna obrigatório em setembro de 2029 também pode carregar a informação de triagem da embalagem, e não há obrigação de imprimir dois códigos. Isso também resolve a questão da ordem. Para a maioria dos bens de consumo, é o regime de passaporte, não a PPWR, que de fato vai obrigar um QR na embalagem, e no cronograma do regime de passaporte.</p>
+
+<p>Já escrevemos sobre o que é preciso para que esses passaportes mereçam confiança, no nosso <a href="/pt/blog/trusted-dpps/">documento de posição sobre passaportes digitais de produto confiáveis</a>.</p>
+
+<h2 id="privacidade">A cláusula de privacidade que quase ninguém menciona</h2>
+
+<p>O artigo 12.º, n.º 5, prende duas condições a qualquer informação prestada por via eletrônica, e elas merecem mais atenção do que recebem, especialmente do lado de marketing de um projeto de embalagem.</p>
+
+<p>Primeiro, dados pessoais só podem ser recolhidos para a finalidade limitada de dar ao usuário acesso à informação de conformidade pertinente, com remissão expressa ao artigo 5.º, n.º 1, do RGPD. Segundo, e de forma mais direta: a informação não pode ser exibida junto com outra informação destinada a fins de venda ou de marketing.</p>
+
+<p>Isso encerra um modelo de negócio que muitos fornecedores vêm vendendo discretamente. Um QR de triagem que leva o consumidor a uma página de campanha da marca, colhe um endereço de e-mail ou joga o visitante num funil de fidelidade não é uma implementação conforme do artigo 12.º. O escaneamento tem que servir à triagem, e só a ela.</p>
+
+<p>O n.º 8 acrescenta uma proibição companheira do lado físico. Os operadores econômicos não podem exibir rótulos, marcas, símbolos ou inscrições suscetíveis de induzir o consumidor em erro quanto aos requisitos de sustentabilidade, a outras características da embalagem ou às opções de gestão de resíduos para as quais a PPWR estabelece rotulagem harmonizada. Assim que o rótulo harmonizado existir, inventar ao lado dele um selo de reciclabilidade de aparência mais simpática vira risco jurídico em vez de escolha de design.</p>
+
+<p>Há uma implicação de projeto que vale dizer com todas as letras. Um QR de embalagem construído agora como ativo de marketing terá de ser reconstruído depois como ativo de conformidade. Construir na ordem inversa, como uma camada limpa de conformidade que por acaso é bem desenhada, custa menos no total.</p>
+
+<h2 id="o-que-fazer">O que fazer com o tempo que isso lhe dá</h2>
+
+<p>A conclusão correta de tudo isso não é que a PPWR pode ser ignorada. É que o trabalho que vale a pena fazer em 2026 é diferente do trabalho que a maioria das empresas foi mandada fazer.</p>
+
+<p><strong>Ensaie suas embalagens de contato com alimentos para PFAS.</strong> Esta é a obrigação viva, vale hoje, e o artigo 5.º não traz período de transição para ela. Autodeclarações de fornecedores são base de prova frágil para um processo técnico do anexo VII. Certificados de análise por tipo de embalagem, emitidos por laboratório acreditado, são a versão defensável.</p>
+
+<p><strong>Verifique o total de metais pesados.</strong> O limite combinado de 100 mg/kg para chumbo, cádmio, mercúrio e cromo hexavalente também já vale, e também precisa aparecer na documentação técnica.</p>
+
+<p><strong>Descubra se você tem embalagem reutilizável no sentido jurídico.</strong> Se alguma parte do portfólio está num sistema formal de reutilização com operador de sistema, a obrigação de fevereiro de 2029 traz junto um portador de rastreio, e rastrear trajetos e rotações é projeto de sistemas, não de impressão. Se o esquema é de circuito aberto sem operador, o n.º 3 pode isentá-lo. Vale fazer essa determinação agora, enquanto é barata.</p>
+
+<p><strong>Mapeie as substâncias preocupantes na própria embalagem.</strong> Tintas, adesivos, camadas de barreira, pigmentos. A obrigação de marcação do n.º 1 é obrigatória quando elas estão presentes, e a metodologia que vence em 1.º de janeiro de 2030 vai exigir nome e concentração por material por unidade de embalagem. Dados de cadeia nesse nível de detalhe levam anos para reunir.</p>
+
+<p><strong>Decida a questão da identificação de RAP antes de fevereiro de 2027.</strong> Se quiser identificação do regime na embalagem, ela precisa ser um QR ou marcação digital equivalente. Se não quiser, nenhuma obrigação surge.</p>
+
+<p><strong>Classifique a reciclabilidade e modele a contribuição.</strong> A classe comanda a modulação da contribuição de RAP, e isso será sentido antes do piso de acesso ao mercado de 2030. Saber se um formato cai em A, B ou C muda decisões de embalagem que têm prazos longos de execução.</p>
+
+<p><strong>Projete um portador, não dois.</strong> Se um regime de passaporte já se aplica ao seu produto, ou vai se aplicar antes de 2030, o artigo 12.º, n.º 5, permite que um único portador sirva aos dois. Projete para isso agora e o rótulo da embalagem vira um incremento em vez de um segundo projeto.</p>
+
+<p>Uma disposição suaviza a transição final. Pelo n.º 12, a embalagem fabricada na União ou importada antes dos prazos de rotulagem que não cumpra os critérios ainda pode ser disponibilizada no mercado por três anos a contar da data em que esses requisitos de rotulagem entrarem em vigor. O estoque existente não vira pó de um dia para o outro. Repare na redação, porém: o prazo corre da entrada em vigor dos requisitos e cobre embalagem feita ou importada antes da data-limite, então compensa conhecer as suas datas de produção.</p>
+
+<p>A parte desconfortável desta análise é que o atraso não é boa notícia. Uma especificação que chegue no fim de 2026 deixa aos designers cerca de dois anos para refazer a arte de portfólios inteiros, e cada mês que a Comissão leva é um mês retirado dessa janela, não acrescentado a ela. A obrigação andar para a frente não a torna menor. Ela comprime a pista de decolagem enquanto parece esticá-la.</p>
+
+<h2 id="faq">Perguntas frequentes</h2>
+
+<div class="ppwr-faq">
+  <details>
+    <summary>A PPWR exige QR code na embalagem?</summary>
+    <p>Não como obrigação geral. O artigo 12.º, n.º 1, diz que os operadores econômicos <em>podem</em> colocar um QR code ou outro portador de dados digital normalizado e aberto na embalagem para ajudar os consumidores a fazer a triagem. É voluntário e adicional ao rótulo impresso obrigatório. Há três exceções em que o portador de dados é obrigatório: embalagem reutilizável a partir de 12 de fevereiro de 2029 na melhor das hipóteses, embalagem que contém substâncias que suscitam preocupação, e identificação de responsabilidade alargada do produtor a partir de 12 de fevereiro de 2027 quando o produtor opta por identificar. Mesmo nesses três casos um QR code não é especificamente exigido: o texto diz sempre "um QR code ou outro tipo de portador de dados digital normalizado e aberto", de modo que NFC, RFID ou marca d'água digital se qualificam igualmente.</p>
+  </details>
+  <details>
+    <summary>Quando o rótulo da PPWR se torna obrigatório?</summary>
+    <p>A partir de 12 de agosto de 2028, ou 24 meses a contar da entrada em vigor dos atos de execução dos n.os 6 ou 7 do artigo 12.º, consoante o que ocorrer mais tarde. Esses atos venciam em 12 de agosto de 2026 e não foram adotados, então a data efetiva está atualmente depois de agosto de 2028. Se o ato entrar em vigor no fim de 2026, a obrigação cai no fim de 2028. Se escorregar para 2027, cai em 2029.</p>
+  </details>
+  <details>
+    <summary>A PPWR cria um Passaporte Digital do Produto para embalagens?</summary>
+    <p>Não. O artigo 12.º institui um regime de rotulagem e nunca usa o termo. A PPWR não define modelo de dados de passaporte e não cria ligação com o Registro de Passaportes Digitais de Produto da UE. Os passaportes vêm de outros regulamentos: o ESPR como quadro horizontal, o Regulamento de Baterias, o Regulamento de Detergentes a partir de setembro de 2029, e o Regulamento de Produtos de Construção. Quando um produto carrega passaporte e a sua embalagem tem deveres de informação, o artigo 12.º, n.º 5, exige um único portador de dados para os dois, com as duas cargas facilmente distinguíveis.</p>
+  </details>
+  <details>
+    <summary>Quais obrigações da PPWR valem de fato desde 12 de agosto de 2026?</summary>
+    <p>A mais consequente é o artigo 5.º, n.º 5: embalagem em contato com alimentos não pode ser colocada no mercado contendo PFAS igual ou acima de 25 ppb para qualquer PFAS isolado, 250 ppb para a soma de PFAS, ou 50 ppm para PFAS incluindo os poliméricos. O artigo 5.º, n.º 4, limita a 100 mg/kg o total combinado de chumbo, cádmio, mercúrio e cromo hexavalente. Ambos precisam ser comprovados na documentação técnica do anexo VII, e nenhum depende de ato de execução.</p>
+  </details>
+  <details>
+    <summary>Quais são as classes de reciclabilidade da PPWR?</summary>
+    <p>A, B e C, definidas no quadro 3 do anexo II e avaliadas pelo fabricante nos termos do artigo 6.º, n.º 3. Resumos que descrevem uma escala de A a E estão incorretos. A partir de 1.º de janeiro de 2030, ou 24 meses após os atos delegados do artigo 6.º, n.º 4, se for mais tarde, embalagem abaixo da classe C não pode ser colocada no mercado. A partir de 1.º de janeiro de 2038 só as classes A e B qualificam. A classe também comanda a modulação das contribuições de responsabilidade alargada do produtor pelo n.º 8, que começa 18 meses após esses atos.</p>
+  </details>
+  <details>
+    <summary>Meu estoque atual de embalagens fica obsoleto assim que o rótulo passar a valer?</summary>
+    <p>Não de imediato. O artigo 12.º, n.º 12, permite que embalagem fabricada na União ou importada antes do prazo aplicável e que não cumpra os critérios de rotulagem seja disponibilizada no mercado por três anos a contar da data em que os requisitos de rotulagem entrarem em vigor.</p>
+  </details>
+</div>
+
+<p>A PPWR é um regulamento sério e com dentes de verdade, e as partes que mais mordem em 2026 são químicas, não digitais. O QR code que dominou a corrida até agosto é opcional, o rótulo que é obrigatório ainda não pode ser impresso porque a Comissão não publicou o desenho, e quase toda data do calendário de conformidade é um piso que se move quando o ato subjacente se move. Quem planeja contra a PPWR precisa ler as condições presas às datas, e não apenas as datas.</p>
+
+<p>Se você está avaliando o que isso significa para um portfólio específico de embalagens, ou como um rótulo de embalagem deve dividir um portador com um passaporte de produto que você já terá de construir, <a href="/pt/#contact">fale com a gente</a>.</p>

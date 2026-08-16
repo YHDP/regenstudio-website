@@ -1,30 +1,31 @@
 {
-  "title": "O Que o Regulamento de Embalagens e Resíduos de Embalagens Significa para os Passaportes Digitais de Produto",
+  "title": "A PPWR entrou em vigor, hora de enterrar o maior mito sobre ela",
   "slug": "ppwr-packaging-dpp",
-  "subtitle": "Como o PPWR 2025/40 introduz requisitos de DPP para embalagens em todos os setores — cronogramas, requisitos de dados e conexões com o ESPR",
+  "subtitle": "O Regulamento de Embalagens passou a ser aplicável em 12 de agosto de 2026. O QR code que mandaram a maioria das empresas imprimir é voluntário pelo artigo 12.º, n.º 1, o rótulo que é obrigatório ainda não pode ser impresso, e a obrigação que de fato entrou em vigor naquele dia é uma proibição de PFAS de que ninguém falava.",
   "author": {
     "name": "Yvo Hunink de Paiva",
-    "role": "Fundador, Regen Studio"
+    "role": "Regen Studio"
   },
-  "date": "2026-04-08",
+  "date": "2026-08-12",
   "categories": [
     "Digital Product Passport",
     "Circular Business Models"
   ],
   "tags": [
     "ppwr",
-    "packaging",
-    "dpp",
-    "eu-regulation",
-    "circular-economy",
-    "espr",
-    "waste",
-    "recycling",
-    "compliance"
+    "embalagens",
+    "artigo-12",
+    "rotulagem",
+    "qr-code",
+    "pfas",
+    "regulamentacao-ue",
+    "economia-circular",
+    "teor-reciclado",
+    "conformidade"
   ],
-  "featuredImage": "",
-  "featuredImageAlt": "",
-  "excerpt": "O Regulamento de Embalagens e Resíduos de Embalagens (PPWR) 2025/40 é um dos primeiros regulamentos da UE a exigir Passaportes Digitais de Produto para materiais de embalagem. Este guia aborda quais tipos de embalagens são afetados, quais dados o DPP deve conter, como o PPWR se conecta ao ESPR e o cronograma de conformidade que as empresas precisam planejar.",
+  "featuredImage": "Header.webp",
+  "featuredImageAlt": "Uma garrafa facetada em baixa poligonagem, em turquesa e coral, com uma fileira de formas poligonais triangulares recuando ao fundo e fios de luz percorrendo as facetas, ilustrando a embalagem física ligada aos seus dados digitais.",
+  "excerpt": "O Regulamento (UE) 2025/40 passou a ser aplicável em 12 de agosto de 2026, e a consultoria que o precedeu estava em boa parte errada. O artigo 12.º, n.º 1, diz que os operadores econômicos podem colocar um QR code na embalagem, não que devem. Este artigo separa o que a PPWR torna voluntário do que torna obrigatório: os três casos em que um portador de dados é mesmo exigido, por que o rótulo de pictogramas obrigatório ainda não tem especificação publicada, os limites de PFAS que entraram em vigor no mesmo dia, e as classes de reciclabilidade A, B e C que decidem o acesso ao mercado a partir de 2030.",
   "published": false,
   "review": {
     "text": "draft",

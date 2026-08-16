@@ -1,12 +1,12 @@
 {
-  "title": "What the Packaging and Packaging Waste Regulation Means for Digital Product Passports",
+  "title": "PPWR is in force, time to bury the three biggest myths around it",
   "slug": "ppwr-packaging-dpp",
-  "subtitle": "How PPWR 2025/40 introduces DPP requirements for packaging across all sectors — timelines, data requirements, and links to ESPR",
+  "subtitle": "Three myths are circulating about packaging and Digital Product Passports, and each has a precise answer in the text. The one obligation PPWR genuinely places on any passport is that a product carrier and packaging information must share a single data carrier.",
   "author": {
     "name": "Yvo Hunink de Paiva",
-    "role": "Founder, Regen Studio"
+    "role": "Regen Studio"
   },
-  "date": "2026-04-08",
+  "date": "2026-08-12",
   "categories": [
     "Digital Product Passport",
     "Circular Business Models"
@@ -14,17 +14,18 @@
   "tags": [
     "ppwr",
     "packaging",
-    "dpp",
+    "article-12",
+    "labelling",
+    "qr-code",
+    "pfas",
     "eu-regulation",
     "circular-economy",
-    "espr",
-    "waste",
-    "recycling",
+    "recycled-content",
     "compliance"
   ],
-  "featuredImage": "",
-  "featuredImageAlt": "",
-  "excerpt": "The Packaging and Packaging Waste Regulation (PPWR) 2025/40 is among the first EU regulations to mandate Digital Product Passports for packaging materials. This guide covers which packaging types are affected, what data the DPP must contain, how PPWR connects to ESPR, and the compliance timeline businesses need to plan for.",
+  "featuredImage": "Header.webp",
+  "featuredImageAlt": "A faceted low-poly bottle in teal and coral, with a receding row of triangular polygon forms behind it and threads of light running through the facets, illustrating physical packaging linked to its digital data.",
+  "excerpt": "Every product needs a QR code from 2026. Packaging needs a Digital Product Passport. Passports must carry packaging data. Three claims, all circulating since the Packaging Regulation became applicable on 12 August 2026, and none of them survives contact with the text. What PPWR does oblige is one shared data carrier where a product passport and packaging information meet.",
   "published": false,
   "review": {
     "text": "draft",
