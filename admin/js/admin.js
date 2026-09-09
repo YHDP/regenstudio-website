@@ -432,7 +432,7 @@
     var rows = buildViewCsv(lastViewData.view, lastViewData.data);
     if (rows.length === 0) return;
     var range = getDateRange();
-    downloadCsv(rows, 'analytics-' + lastViewData.view + '-' + range.from + '.csv');
+    downloadCsv(rows, exportSlug() + '-' + lastViewData.view + '-' + range.from + '.csv');
   }
 
   // ── CSV export (all views) ──
@@ -454,7 +454,7 @@
     })).then(function (results) {
       var allRows = [];
       var range = getDateRange();
-      allRows.push(['Regen Studio Analytics Export']);
+      allRows.push([exportTitle()]);
       allRows.push(['Date Range', range.from + ' to ' + range.to]);
       allRows.push(['Site', getSite()]);
       allRows.push(['Exported', new Date().toISOString()]);
@@ -468,7 +468,7 @@
         }
       });
 
-      downloadCsv(allRows, 'analytics-all-' + range.from + '.csv');
+      downloadCsv(allRows, exportSlug() + '-all-' + range.from + '.csv');
     }).catch(function () {
       showError('Failed to export all data.');
     }).finally(function () {
@@ -478,6 +478,29 @@
 
   // Site label helpers
   var SITE_LABELS = { www: 'www', demos: 'demos', ponte: 'ponte', agro: 'agro' };
+
+  // An export carries the name of the site it is about. Before this, every CSV was headed
+  // "Regen Studio Analytics Export" and filed as analytics-*.csv whatever the site filter said,
+  // so a Ponte or Agrotech export was indistinguishable from a Regen one once it left the browser.
+  var SITE_OWNERS = {
+    all: 'Regen Studio',
+    www: 'Regen Studio',
+    demos: 'Regen Studio',
+    ponte: 'Ponte em Cena',
+    agro: 'Agrotech da Holanda',
+  };
+  var SITE_SLUGS = {
+    all: 'analytics', www: 'analytics', demos: 'analytics',
+    ponte: 'ponte-analytics', agro: 'agrotech-analytics',
+  };
+
+  function exportTitle() {
+    return (SITE_OWNERS[getSite()] || 'Regen Studio') + ' Analytics Export';
+  }
+
+  function exportSlug() {
+    return SITE_SLUGS[getSite()] || 'analytics';
+  }
 
   function showSiteColumn() {
     return getSite() === 'all';
