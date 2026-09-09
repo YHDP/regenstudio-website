@@ -145,6 +145,42 @@
     document.addEventListener('click', onDocClick, false);
   }
 
+  // ── Video milestones ──
+  // The Agrotech homepage is built around a 25s film, so "did anyone watch it" is the one
+  // engagement question the page exists to answer. Milestones ride the same event pipeline as
+  // scroll depth: one event per threshold per page load, never repeated on a rewind.
+  //
+  // Bound per <video> element and keyed by the element's index, so a page with no video binds
+  // nothing at all. currentTime/duration are read from the element; no timer polls in the
+  // background, the browser's own timeupdate drives it.
+  var videoThresholds = [25, 50, 75];
+
+  function bindVideo(video, idx) {
+    var fired = {};
+
+    function fire(name) {
+      if (fired[name]) return;
+      fired[name] = true;
+      track('video_' + name, { target: video.getAttribute('data-track') || ('video_' + idx) });
+    }
+
+    video.addEventListener('play', function () { fire('play'); }, false);
+    video.addEventListener('ended', function () { fire('complete'); }, false);
+    video.addEventListener('timeupdate', function () {
+      var d = video.duration;
+      if (!d || !isFinite(d) || d <= 0) return;
+      var percent = (video.currentTime / d) * 100;
+      for (var i = 0; i < videoThresholds.length; i++) {
+        if (percent >= videoThresholds[i]) fire(String(videoThresholds[i]));
+      }
+    }, false);
+  }
+
+  if (document.addEventListener) {
+    var videos = document.getElementsByTagName('video');
+    for (var vi = 0; vi < videos.length; vi++) bindVideo(videos[vi], vi);
+  }
+
   // ── Page exit with time on page ──
   var exitFired = false;
 

@@ -437,21 +437,13 @@
 
   // ── CSV export (all views) ──
   function exportAllCsv() {
-    var range = getDateRange();
-    var site = getSite();
-    var headers = { 'Authorization': 'Bearer ' + token };
-    var base = API_URL + '?from=' + range.from + '&to=' + range.to + '&site=' + site;
     var views = ['overview', 'pages', 'navigation', 'engagement', 'acquisition', 'hourly', 'funnel', 'realtime'];
 
     showError('');
     var btn = document.getElementById('exportAll');
     if (btn) { btn.textContent = 'Exporting...'; btn.disabled = true; }
 
-    Promise.all(views.map(function (v) {
-      return fetch(base + '&view=' + v, { headers: headers })
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .catch(function () { return null; });
-    })).then(function (results) {
+    fetchViews(views).then(function (results) {
       var allRows = [];
       var range = getDateRange();
       allRows.push([exportTitle()]);
@@ -473,6 +465,47 @@
       showError('Failed to export all data.');
     }).finally(function () {
       if (btn) { btn.textContent = 'Export All'; btn.disabled = false; }
+    });
+  }
+
+  // One place that reads several views for the current site and date range. exportAllCsv and
+  // openReport both wanted it, and a second copy of the same request loop is a second place for
+  // the auth header and the query string to drift.
+  function fetchViews(views) {
+    var range = getDateRange();
+    var query = '?from=' + range.from + '&to=' + range.to + '&site=' + getSite();
+    var headers = { 'Authorization': 'Bearer ' + token };
+    return Promise.all(views.map(function (v) {
+      return fetch(API_URL + query + '&view=' + v, { headers: headers })  // API_URL: supabase.co/functions/v1/admin-analytics
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; });
+    }));
+  }
+
+  // ── Printable report ──
+  // The window is opened SYNCHRONOUSLY inside the click, before any fetch. Opened after the
+  // await, a popup blocker eats it and the button appears to do nothing.
+  function openReport() {
+    var range = getDateRange();
+    var site = getSite();
+    var win = window.open('', '_blank');
+    if (!win) { showError('Allow pop-ups for this site to open the report.'); return; }
+    win.document.write('<!doctype html><meta charset="utf-8"><title>...</title>' +
+      '<body style="font:14px system-ui;padding:40px;color:#55677D">Building report...</body>');
+    win.document.close();
+
+    fetchViews(['overview', 'pages', 'engagement', 'acquisition']).then(function (res) {
+      if (!res[0]) { showError('Failed to build the report.'); win.close(); return; }
+      var html = window.AnalyticsReport.render({
+        site: site, from: range.from, to: range.to,
+        overview: res[0], pages: res[1], engagement: res[2], acquisition: res[3],
+      });
+      win.document.open();
+      win.document.write(html);
+      win.document.close();
+    }).catch(function () {
+      showError('Failed to build the report.');
+      win.close();
     });
   }
 
@@ -1338,6 +1371,8 @@
   // ── Export All ──
   var exportAllBtn = document.getElementById('exportAll');
   if (exportAllBtn) exportAllBtn.addEventListener('click', exportAllCsv);
+  var reportBtn = document.getElementById('openReport');
+  if (reportBtn) reportBtn.addEventListener('click', openReport);
 
   // ── Bot toggle ──
   var botToggleBtn = document.getElementById('botToggle');

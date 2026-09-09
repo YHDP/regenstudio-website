@@ -42,6 +42,16 @@ This project includes the following third-party components:
 - **Location:** `assets/fonts/koho*`, `assets/fonts/KoHo-{Bold,Regular,Light}.ttf`, `assets/fonts/jspdf/koho-*.js`
 - **Wordmark convention:** "REGEN" rendered in KoHo Bold, "STUDIO" in KoHo Light — codified 2026-05-05 (see `~/Claude/.claude/skills/pdf-rendering/references/typography-system.md`).
 
+## Poppins (typeface)
+
+- **License:** SIL Open Font License 1.1
+- **Copyright:** (c) Indian Type Foundry, Jonny Pinhorn
+- **Source:** https://fonts.google.com/specimen/Poppins
+- **Location:** `admin/fonts/poppins-{400,600,700}.woff2`
+- **Used by:** `admin/js/report.js` only. Poppins is the Agrotech da Holanda brand face, not a
+  Regen Studio one; it is vendored here so a printable Agrotech report renders in that site's own
+  typography instead of borrowing Regen's. Latin-1 subset, 217 glyphs, which covers PT-BR.
+
 ## Lora (typeface)
 
 - **License:** SIL Open Font License 1.1
