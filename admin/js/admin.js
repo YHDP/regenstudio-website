@@ -477,7 +477,7 @@
   }
 
   // Site label helpers
-  var SITE_LABELS = { www: 'www', demos: 'demos', ponte: 'ponte' };
+  var SITE_LABELS = { www: 'www', demos: 'demos', ponte: 'ponte', agro: 'agro' };
 
   function showSiteColumn() {
     return getSite() === 'all';
