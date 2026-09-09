@@ -721,32 +721,30 @@ interface SitemapEntry {
   alternates?: Record<string, string>;
 }
 
-function generateSitemap(
-  posts: BlogPost[],
-  translationMap: Map<string, Set<Lang>> = new Map(),
-): string {
-  const today = new Date().toISOString().slice(0, 10);
-  const hasAlternates = translationMap.size > 0 || translatedPages.size > 0;
+/** Static pages that have NL/PT translations (path relative to site root). */
+const TRANSLATED_STATIC_PAGES = new Set([
+  "/", "/about.html", "/blog.html", "/faq.html",
+  "/client-projects.html", "/innovation-services.html",
+  "/vision.html", "/privacy.html", "/thank-you.html",
+  "/what-is-a-digital-product-passport/", "/what-is-espr/",
+]);
 
-  // Pages that have NL/PT translations (path relative to site root)
-  const translatedPages = new Set([
-    "/", "/about.html", "/blog.html", "/faq.html",
-    "/client-projects.html", "/innovation-services.html",
-    "/vision.html", "/privacy.html", "/thank-you.html",
-    "/what-is-a-digital-product-passport/", "/what-is-espr/",
-  ]);
+/** Build hreflang alternates for a translated static page */
+function staticAlternates(path: string): Record<string, string> {
+  return {
+    en: `${SITE_URL}${path}`,
+    nl: `${SITE_URL}/nl${path === "/" ? "/" : path}`,
+    "pt-BR": `${SITE_URL}/pt${path === "/" ? "/" : path}`,
+    "x-default": `${SITE_URL}${path}`,
+  };
+}
 
-  /** Build hreflang alternates for a translated static page */
-  function staticAlternates(path: string): Record<string, string> {
-    return {
-      en: `${SITE_URL}${path}`,
-      nl: `${SITE_URL}/nl${path === "/" ? "/" : path}`,
-      "pt-BR": `${SITE_URL}/pt${path === "/" ? "/" : path}`,
-      "x-default": `${SITE_URL}${path}`,
-    };
-  }
-
-  const staticPages: SitemapEntry[] = [
+/**
+ * Canonical list of static (non-blog) pages. Two consumers: generateSitemap() and
+ * generateSearchIndex(). Adding a page here adds it to both.
+ */
+function buildStaticPageEntries(today: string): SitemapEntry[] {
+  return [
     { loc: `${SITE_URL}/`, lastmod: today, changefreq: "monthly", priority: "1.0", alternates: staticAlternates("/") },
     {
       loc: `${SITE_URL}/about.html`,
@@ -871,6 +869,17 @@ function generateSitemap(
       priority: "0.7",
     },
   ];
+}
+
+function generateSitemap(
+  posts: BlogPost[],
+  translationMap: Map<string, Set<Lang>> = new Map(),
+): string {
+  const today = new Date().toISOString().slice(0, 10);
+  const translatedPages = TRANSLATED_STATIC_PAGES;
+  const hasAlternates = translationMap.size > 0 || translatedPages.size > 0;
+
+  const staticPages = buildStaticPageEntries(today);
 
   // Add NL and PT entries for translated static pages
   const translatedStaticEntries: SitemapEntry[] = [];
@@ -1207,6 +1216,264 @@ async function buildCommentStage(
   }
 }
 
+// --- Generate search-index.<lang>.json ---
+
+/**
+ * One retrievable, citable passage of the site.
+ *
+ * `id` is the handle the site assistant must cite and the server validates against,
+ * so it has to stay stable across rebuilds. It is derived from the source document
+ * and the chunk's ordinal within that document, never from its position in the
+ * whole index — otherwise adding one blog post would renumber every citation.
+ */
+interface IndexChunk {
+  id: string;
+  url: string;
+  title: string;
+  heading: string;
+  text: string;
+  lang: Lang;
+  type: "page" | "blog";
+  updated: string;
+}
+
+const CHUNK_WORDS = 180;
+const CHUNK_OVERLAP_WORDS = 30;
+const MIN_CHUNK_WORDS = 25;
+
+/**
+ * Named HTML entities used across the site.
+ *
+ * The accented-letter half is generated rather than listed: `&atilde;` is "a" plus a
+ * combining tilde, normalised to the precomposed character. The Portuguese pages lean
+ * on these heavily (586 `&atilde;`, 514 `&ccedil;` at the time of writing), and leaving
+ * them encoded would fill the PT index with "atilde" and "ccedil" tokens that no
+ * visitor will ever type.
+ */
+const NAMED_ENTITIES: Record<string, string> = (() => {
+  const map: Record<string, string> = {
+    amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ",
+    mdash: "—", ndash: "–", hellip: "…", shy: "",
+    lsquo: "‘", rsquo: "’", ldquo: "“", rdquo: "”",
+    bull: "•", middot: "·", sect: "§", times: "×",
+    ordm: "º", ordf: "ª", deg: "°", euro: "€",
+    pound: "£", copy: "©", reg: "®", trade: "™",
+    larr: "←", uarr: "↑", rarr: "→", darr: "↓", harr: "↔",
+  };
+  const accents: Record<string, string> = {
+    grave: "̀", acute: "́", circ: "̂", tilde: "̃",
+    uml: "̈", ring: "̊", cedil: "̧",
+  };
+  for (const letter of "aeiouyncAEIOUYNC") {
+    for (const [name, mark] of Object.entries(accents)) {
+      const composed = (letter + mark).normalize("NFC");
+      if (composed.length === 1) map[letter + name] = composed;
+    }
+  }
+  return map;
+})();
+
+/**
+ * Decode character references. Must run AFTER tag stripping: decoding first would turn
+ * an escaped `&lt;b&gt;` into a real tag that the stripper then eats.
+ */
+function decodeEntities(text: string): string {
+  return text.replace(
+    /&(#[xX][0-9a-fA-F]+|#\d+|[a-zA-Z][a-zA-Z0-9]*);/g,
+    (whole, body: string) => {
+      if (body[0] !== "#") return NAMED_ENTITIES[body] ?? whole;
+      const code = body[1] === "x" || body[1] === "X"
+        ? parseInt(body.slice(2), 16)
+        : parseInt(body.slice(1), 10);
+      // Reject out-of-range values and lone surrogates rather than throwing.
+      if (!Number.isFinite(code) || code <= 0 || code > 0x10FFFF) return whole;
+      if (code >= 0xD800 && code <= 0xDFFF) return whole;
+      return String.fromCodePoint(code);
+    },
+  );
+}
+
+/** Markup in, readable prose out. */
+function plainText(html: string): string {
+  return decodeEntities(stripHtml(html)).replace(/\s+/g, " ").trim();
+}
+
+/** Strip markup, chrome and code before chunking. */
+function contentText(html: string): string {
+  const cleaned = html
+    .replace(/<!--[\s\S]*?-->/g, " ")
+    .replace(/<(script|style|svg|noscript|template)\b[^>]*>[\s\S]*?<\/\1>/gi, " ");
+  return plainText(cleaned);
+}
+
+/** Body of <main> if the document has one, else the whole document. */
+function mainHtml(html: string): string {
+  const m = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i);
+  return m ? m[1] : html;
+}
+
+interface DocSection {
+  heading: string;
+  anchor: string;
+  html: string;
+}
+
+/**
+ * Split a document on h1-h3 boundaries, keeping each heading's `id` so a citation
+ * can deep-link to the passage rather than the top of the page.
+ */
+function splitSections(html: string): DocSection[] {
+  const re = /<h([1-3])\b([^>]*)>([\s\S]*?)<\/h\1>/gi;
+  const sections: DocSection[] = [];
+  let current: DocSection = { heading: "", anchor: "", html: "" };
+  let last = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(html)) !== null) {
+    current.html = html.slice(last, m.index);
+    sections.push(current);
+    const idMatch = m[2].match(/\bid=["']([^"']+)["']/i);
+    current = { heading: plainText(m[3]), anchor: idMatch ? idMatch[1] : "", html: "" };
+    last = re.lastIndex;
+  }
+  current.html = html.slice(last);
+  sections.push(current);
+  return sections;
+}
+
+/**
+ * Break a passage into overlapping word windows. The overlap matters: without it a
+ * sentence straddling a chunk boundary is retrievable by neither half.
+ */
+function windowWords(text: string): string[] {
+  const words = text.split(/\s+/).filter(Boolean);
+  if (words.length < MIN_CHUNK_WORDS) return [];
+  if (words.length <= CHUNK_WORDS) return [words.join(" ")];
+
+  const out: string[] = [];
+  const step = CHUNK_WORDS - CHUNK_OVERLAP_WORDS;
+  for (let i = 0; i < words.length; i += step) {
+    const slice = words.slice(i, i + CHUNK_WORDS);
+    // A trailing sliver is already carried by the previous window's overlap.
+    if (slice.length < MIN_CHUNK_WORDS) break;
+    out.push(slice.join(" "));
+    if (i + CHUNK_WORDS >= words.length) break;
+  }
+  return out;
+}
+
+function chunkDocument(opts: {
+  html: string;
+  sourceId: string;
+  url: string;
+  title: string;
+  lang: Lang;
+  type: "page" | "blog";
+  updated: string;
+}): IndexChunk[] {
+  const chunks: IndexChunk[] = [];
+  let ordinal = 0;
+  for (const section of splitSections(mainHtml(opts.html))) {
+    for (const passage of windowWords(contentText(section.html))) {
+      chunks.push({
+        id: `${opts.sourceId}#${ordinal}`,
+        url: section.anchor ? `${opts.url}#${section.anchor}` : opts.url,
+        title: opts.title,
+        heading: section.heading,
+        text: passage,
+        lang: opts.lang,
+        type: opts.type,
+        updated: opts.updated,
+      });
+      ordinal++;
+    }
+  }
+  return chunks;
+}
+
+/** Map a site path from the sitemap to the HTML file that serves it. */
+function staticPageFile(baseDir: string, path: string, lang: Lang): string | null {
+  // Non-HTML sitemap entries (llms.txt, carbon.txt) are not indexable documents.
+  if (!path.endsWith("/") && !path.endsWith(".html")) return null;
+  const prefix = lang === "en" ? "" : `${lang}/`;
+  const rel = path === "/"
+    ? "index.html"
+    : path.endsWith("/")
+    ? `${path.slice(1)}index.html`
+    : path.slice(1);
+  return `${baseDir}/${prefix}${rel}`;
+}
+
+/**
+ * Build the retrieval corpus for the site assistant, one file per language.
+ *
+ * Blog chunks come from the already-filtered post lists, so the two-gate review
+ * discipline (published + review.text + review.assets) is inherited: an unapproved
+ * draft cannot enter the index, therefore cannot be retrieved, therefore cannot be
+ * cited in an answer. That is the mechanism, not a promise.
+ */
+async function generateSearchIndex(
+  baseDir: string,
+  postsByLang: Map<Lang, BlogPost[]>,
+): Promise<Map<Lang, IndexChunk[]>> {
+  const today = new Date().toISOString().slice(0, 10);
+  const staticEntries = buildStaticPageEntries(today);
+  const byLang = new Map<Lang, IndexChunk[]>();
+
+  for (const lang of SUPPORTED_LANGS) {
+    const chunks: IndexChunk[] = [];
+
+    for (const entry of staticEntries) {
+      const path = entry.loc.replace(SITE_URL, "");
+      if (lang !== "en" && !TRANSLATED_STATIC_PAGES.has(path)) continue;
+      const file = staticPageFile(baseDir, path, lang);
+      if (!file) continue;
+
+      let html: string;
+      try {
+        html = await Deno.readTextFile(file);
+      } catch {
+        console.warn(`  [index] missing ${file}`);
+        continue;
+      }
+      if (!/<main\b/i.test(html)) {
+        console.warn(`  [index] ${file} has no <main> — nav and footer will be indexed`);
+      }
+
+      const titleMatch = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+      const urlPath = lang === "en" ? path : `/${lang}${path === "/" ? "/" : path}`;
+      chunks.push(...chunkDocument({
+        html,
+        sourceId: `page:${lang}${path}`,
+        url: `${SITE_URL}${urlPath}`,
+        title: titleMatch ? plainText(titleMatch[1]) : path,
+        lang,
+        type: "page",
+        updated: today,
+      }));
+    }
+
+    for (const post of postsByLang.get(lang) ?? []) {
+      const urlPath = lang === "en"
+        ? `/blog/${encodeURIComponent(post.slug)}/`
+        : `/${lang}/blog/${encodeURIComponent(post.slug)}/`;
+      chunks.push(...chunkDocument({
+        html: post.content,
+        sourceId: `blog:${lang}/${post.slug}`,
+        url: `${SITE_URL}${urlPath}`,
+        title: post.title,
+        lang,
+        type: "blog",
+        updated: post.updated || post.date,
+      }));
+    }
+
+    byLang.set(lang, chunks);
+  }
+
+  return byLang;
+}
+
+
 // --- Main ---
 
 async function main() {
@@ -1310,6 +1577,25 @@ async function main() {
   const feed = await generateRssFeed(baseDir, posts);
   await Deno.writeTextFile(`${baseDir}/feed.xml`, feed);
   console.log("  feed.xml");
+
+  // Generate search-index.<lang>.json — the retrieval corpus for the site assistant
+  const indexByLang = await generateSearchIndex(
+    baseDir,
+    new Map<Lang, BlogPost[]>([["en", posts], ...translatedPosts]),
+  );
+  for (const [lang, chunks] of indexByLang) {
+    const payload = {
+      generated: new Date().toISOString().slice(0, 10),
+      lang,
+      count: chunks.length,
+      chunks,
+    };
+    await Deno.writeTextFile(
+      `${baseDir}/search-index.${lang}.json`,
+      JSON.stringify(payload) + "\n",
+    );
+    console.log(`  search-index.${lang}.json (${chunks.length} chunks)`);
+  }
 
   // Verification
   const totalGenerated = generated + translatedGenerated;

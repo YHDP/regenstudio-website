@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <!-- No X-Frame-Options or frame-ancestors here: browsers ignore both in a <meta>
+       and log a console error for each, which trips the no-console-errors rule in
+       CLAUDE.md. Neither ever provided clickjacking protection. On GitHub Pages the
+       real control is an HTTP header, which we cannot set, so the honest position is
+       to not pretend. Other pages still carry the inert meta (see known-bugs R17). -->
+  <!-- Closed test. Not linked from the site, not indexed, not in the sitemap. -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Ask Regen Studio | Regen Studio</title>
+  <meta name="description" content="A closed test of the Regen Studio site assistant.">
+  <meta name="author" content="Regen Studio">
+  <link rel="icon" type="image/png" href="Images/favicon.png">
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts/inter.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="assets/fonts/playfair-display.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .chat-hero { text-align: center; padding: 120px 24px 32px; }
+    .chat-hero h1 { margin: 0 0 10px; }
+    .chat-hero__sub { color: var(--color-warm-gray-dark); max-width: 52ch; margin: 0 auto; }
+
+    .chat-page { max-width: 780px; margin: 0 auto; padding: 0 24px 96px; }
+
+    .chat-badge {
+      display: inline-block; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase;
+      color: #7a5814; background: var(--color-orange-bg); border: 1px solid var(--color-orange-mid);
+      border-radius: 999px; padding: 4px 12px; margin-bottom: 18px;
+    }
+
+    .chat-notice {
+      border: 1px solid var(--color-border); border-left: 3px solid var(--color-teal);
+      background: var(--color-bg-light); border-radius: 8px;
+      padding: 14px 18px; margin-bottom: 26px; font-size: .9rem; line-height: 1.6;
+    }
+    .chat-notice p { margin: 0 0 8px; }
+    .chat-notice p:last-child { margin: 0; }
+    .chat-notice strong { color: var(--color-navy); }
+
+    .chat-lock { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+    /* An author `display` rule outranks the UA style behind the `hidden` attribute,
+       so without this the passphrase form stays on screen after unlocking. */
+    [hidden] { display: none !important; }
+    .chat-lock input { flex: 1 1 240px; }
+
+    .chat-input-row { display: flex; gap: 10px; align-items: flex-end; }
+    .chat-input-row textarea {
+      flex: 1; resize: vertical; min-height: 62px; font: inherit; line-height: 1.5;
+      padding: 12px 14px; border: 1px solid var(--color-border);
+      border-radius: 8px; background: var(--color-bg-card); color: var(--color-navy);
+    }
+    .chat-lock input {
+      font: inherit; padding: 12px 14px; border: 1px solid var(--color-border);
+      border-radius: 8px; background: var(--color-bg-card); color: var(--color-navy);
+    }
+    .chat-input-row textarea:focus, .chat-lock input:focus {
+      outline: 2px solid var(--color-emerald); outline-offset: -1px;
+    }
+    .chat-btn {
+      font: inherit; font-weight: 600; cursor: pointer; white-space: nowrap;
+      padding: 12px 22px; border-radius: 8px; border: 1px solid var(--color-navy);
+      background: var(--color-navy); color: #fff;
+    }
+    .chat-btn:hover { background: var(--color-navy-dark); }
+    .chat-btn[disabled] { opacity: .5; cursor: not-allowed; }
+
+    .chat-log { margin-bottom: 22px; }
+    .chat-turn { margin-bottom: 26px; }
+    .chat-q {
+      font-weight: 600; color: var(--color-navy); margin: 0 0 10px;
+      padding-left: 14px; border-left: 3px solid var(--color-navy-bg);
+    }
+    .chat-a { margin: 0; line-height: 1.7; }
+    .chat-a p { margin: 0 0 .8em; }
+    .chat-a p:last-child { margin: 0; }
+
+    .chat-a--refused {
+      border-left: 3px solid var(--color-orange); padding-left: 14px;
+      color: var(--color-warm-gray-dark);
+    }
+
+    .chat-sources { margin: 12px 0 0; padding: 0; list-style: none; font-size: .85rem; }
+    .chat-sources li { margin-bottom: 4px; }
+    .chat-sources a { color: #006d38; }
+    .chat-sources__label {
+      font-size: .72rem; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--color-warm-gray-dark); margin: 14px 0 6px;
+    }
+
+    .chat-status { color: var(--color-warm-gray-dark); font-size: .9rem; min-height: 1.4em; }
+    .chat-error { color: #C21230; font-size: .9rem; min-height: 1.4em; }
+
+    @media (max-width: 560px) {
+      .chat-hero { padding-top: 96px; }
+      .chat-input-row { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- Real nav markup, copied from index.html. nav.js only wires behaviour to it;
+       it does not build it, despite what the comment on accessibility.html claims. -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__logo">
+        <img src="Images/logo-icon.svg" alt="" class="nav__logo-icon" width="54" height="48" fetchpriority="high">
+        <span class="nav__logo-text" aria-hidden="true"><span class="nav__logo-regen">REGEN</span> <span class="nav__logo-studio">STUDIO</span></span>
+        <span class="sr-only">Regen Studio</span>
+      </a>
+      <!-- Mobile slide-in menu -->
+      <ul class="nav__links" id="navLinks">
+        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="vision.html" data-i18n="nav.vision">Vision</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="innovation-services.html" data-i18n="nav.services">Services</a></li>
+        <li><a href="digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
+        <li><a href="digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
+        <li><a href="client-projects.html" data-i18n="nav.client_projects">Client Projects</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+          <li class="nav__contact-wrap">
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtn">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line. We'd love to hear from you.</p>
+              <a href="index.html#contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="nav__actions">
+        <!-- Desktop dropdown menu -->
+        <button class="nav__menu-btn" aria-expanded="false" aria-controls="navDropdown">
+          Menu <span class="nav__menu-btn__arrow">&#9662;</span>
+        </button>
+        <div class="nav__dropdown" id="navDropdown">
+          <a href="vision.html" data-i18n="nav.vision">Vision</a>
+          <a href="innovation-services.html" data-i18n="nav.services">Services</a>
+          <a href="problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
+          <a href="client-projects.html" data-i18n="nav.client_projects">Client Projects</a>
+          <a href="blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos <span class="sr-only">(opens in new tab)</span></a>
+          <a href="about.html" data-i18n="nav.about">About</a>
+          <a href="faq.html" data-i18n="nav.faq">FAQ</a>
+        </div>
+        <div class="nav__contact-wrap nav__contact-wrap--desktop">
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtnDesktop">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopoverDesktop">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line. We'd love to hear from you.</p>
+              <a href="index.html#contact" class="nav__contact-popover-link" onclick="this.closest('.nav__contact-popover').classList.remove('open')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="viewport-toggle" id="viewportToggle" aria-label="Toggle viewport">
+          <svg class="viewport-toggle__icon viewport-toggle__icon--desktop" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="16" height="11" rx="1.5"/><line x1="6" y1="17" x2="14" y2="17"/><line x1="10" y1="14" x2="10" y2="17"/></svg>
+          <svg class="viewport-toggle__icon viewport-toggle__icon--mobile" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="10" height="16" rx="2"/><line x1="8.5" y1="15" x2="11.5" y2="15"/></svg>
+        </button>
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="chat-hero">
+    <h1>Ask Regen Studio</h1>
+    <p class="chat-hero__sub">
+      A question-answering assistant that reads only this website and tells you which page
+      each answer came from.
+    </p>
+  </section>
+
+  <main class="chat-page" id="main-content">
+    <p class="chat-badge">Closed test</p>
+
+    <div class="chat-notice">
+      <p>
+        <strong>Please do not type personal details.</strong> No name, email address, phone
+        number or anything about an identifiable person. Your question is sent to Anthropic,
+        our AI sub-processor, to generate the answer.
+      </p>
+      <p>
+        Nothing else goes with it. Not your IP address, not a cookie, not who you are. There
+        are no cookies on this page, and during this test your questions are not stored.
+      </p>
+      <p>
+        The assistant answers only from published pages on this site. If something is not on
+        the site it will say so rather than guess, and it will not discuss fees, availability
+        or client names. For anything it cannot answer, please use the
+        <a href="index.html#contact">contact form</a>.
+      </p>
+    </div>
+
+    <!-- Passphrase gate -->
+    <form class="chat-lock" id="lockForm" autocomplete="off">
+      <label class="sr-only" for="passphrase">Passphrase</label>
+      <input type="password" id="passphrase" name="passphrase" placeholder="Passphrase"
+             autocomplete="current-password" required>
+      <button type="submit" class="chat-btn" id="unlockBtn">Unlock</button>
+    </form>
+    <p class="chat-error" id="lockError" role="alert"></p>
+
+    <!-- Chat -->
+    <div id="chatUi" hidden>
+      <div class="chat-log" id="chatLog" aria-live="polite" aria-atomic="false"></div>
+
+      <form class="chat-input-row" id="askForm">
+        <label class="sr-only" for="question">Your question</label>
+        <textarea id="question" name="question" maxlength="500" rows="2"
+                  placeholder="What does Regen Studio do?" required></textarea>
+        <button type="submit" class="chat-btn" id="askBtn">Ask</button>
+      </form>
+      <p class="chat-status" id="status" role="status"></p>
+      <p class="chat-error" id="askError" role="alert"></p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__bottom">
+        <p>&copy; 2024&ndash;2026 Regen Studio B.V. &middot; <a href="privacy.html">Privacy Policy</a>
+          &middot; <a href="terms.html">Terms of Use</a> &middot; <a href="accessibility.html">Accessibility</a>
+          &middot; <a href="index.html">Home</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/i18n.js" defer></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var ENDPOINT = 'https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/site-assistant';
+    var MAX_TURNS = 8;
+
+    var el = function (id) { return document.getElementById(id); };
+    var lockForm = el('lockForm'), askForm = el('askForm');
+    var token = null, history = [], busy = false;
+
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    /** Model output is untrusted text, never markup. Escape, then split on blank lines. */
+    function paragraphs(text) {
+      return String(text).split(/\n{2,}/).map(function (p) {
+        return '<p>' + esc(p).replace(/\n/g, '<br>') + '</p>';
+      }).join('');
+    }
+
+    function render(question, data) {
+      var turn = document.createElement('div');
+      turn.className = 'chat-turn';
+
+      var refused = data.refused;
+      var sources = data.sources || [];
+      var html = '<p class="chat-q">' + esc(question) + '</p>' +
+                 '<div class="chat-a' + (refused ? ' chat-a--refused' : '') + '">' +
+                 paragraphs(data.answer) + '</div>';
+
+      // Only on an answer. After a refusal the retrieved pages are, by definition, not
+      // about what was asked, and listing them reads as a broken suggestion rather than
+      // a helpful one. The fallback text already points at the contact form.
+      if (!refused && sources.length) {
+        html += '<p class="chat-sources__label">Sources</p><ul class="chat-sources">';
+        for (var i = 0; i < sources.length; i++) {
+          html += '<li><a href="' + esc(sources[i].url) + '">' +
+                  esc(sources[i].title) + '</a></li>';
+        }
+        html += '</ul>';
+      }
+
+      turn.innerHTML = html;
+      el('chatLog').appendChild(turn);
+      turn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function setBusy(on) {
+      busy = on;
+      el('askBtn').disabled = on;
+      el('status').textContent = on ? 'Reading the site…' : '';
+    }
+
+    lockForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var pass = el('passphrase').value;
+      el('lockError').textContent = '';
+      el('unlockBtn').disabled = true;
+
+      fetch(ENDPOINT, { // -> uemspezaqxmkhenimwuf.supabase.co, our own Edge Function
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'unlock', passphrase: pass })
+      }).then(function (r) {
+        return r.json().then(function (d) { return { ok: r.ok, d: d }; });
+      }).then(function (res) {
+        el('unlockBtn').disabled = false;
+        if (!res.ok) { el('lockError').textContent = res.d.error || 'Could not unlock.'; return; }
+        token = res.d.token;
+        el('passphrase').value = '';
+        lockForm.hidden = true;
+        el('chatUi').hidden = false;
+        el('question').focus();
+      }).catch(function () {
+        el('unlockBtn').disabled = false;
+        el('lockError').textContent = 'Network error. Please try again.';
+      });
+    });
+
+    askForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (busy) return;
+      var q = el('question').value.trim();
+      if (!q) return;
+
+      el('askError').textContent = '';
+      setBusy(true);
+
+      fetch(ENDPOINT, { // -> uemspezaqxmkhenimwuf.supabase.co, our own Edge Function
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'ask', token: token, question: q, history: history })
+      }).then(function (r) {
+        return r.json().then(function (d) { return { ok: r.ok, d: d }; });
+      }).then(function (res) {
+        setBusy(false);
+        if (!res.ok) {
+          if (res.d.relock) {
+            token = null;
+            el('chatUi').hidden = true;
+            lockForm.hidden = false;
+            el('lockError').textContent = 'Session expired. Please unlock again.';
+            return;
+          }
+          el('askError').textContent = res.d.error || 'Something went wrong.';
+          return;
+        }
+        el('question').value = '';
+        render(q, res.d);
+        history.push({ role: 'user', content: q });
+        history.push({ role: 'assistant', content: res.d.answer });
+        while (history.length > MAX_TURNS * 2) history.splice(0, 2);
+      }).catch(function () {
+        setBusy(false);
+        el('askError').textContent = 'Network error. Please try again.';
+      });
+    });
+
+    // Enter sends, Shift+Enter makes a new line.
+    el('question').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        askForm.requestSubmit();
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
