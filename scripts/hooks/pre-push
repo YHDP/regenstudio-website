@@ -134,7 +134,8 @@ while read local_ref local_sha remote_ref remote_sha; do
   #    - JWT-shaped tokens (Supabase service role / anon)
   #    - Assignments of *_KEY / *_SECRET / *_TOKEN / *_HASH to a long value
   #    - Inline quoted passwords
-  SECRETS=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(sk_(live|test)_[A-Za-z0-9]{20,}|pk_(live|test)_[A-Za-z0-9]{20,}|[^A-Za-z0-9_](live|test)_[A-Za-z0-9]{25,}|-----BEGIN|PRIVATE KEY|eyJ[A-Za-z0-9_-]{10,}\.eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}|(SERVICE_ROLE_KEY|API_KEY|API_TOKEN|_SECRET|AUTH_TOKEN|PASSWORD_HASH|WEBHOOK_SECRET)\s*[:=]\s*["\x27]?[A-Za-z0-9_+/=.-]{20,}|password\s*=\s*["\x27][^\x27"]+["\x27])' || true)
+  #    - Anthropic API keys (bare, not only as an assignment)
+  SECRETS=$(echo "$DIFF" | grep -n '^\+' | grep -iE '(sk-ant-[A-Za-z0-9_-]{20,}|sk_(live|test)_[A-Za-z0-9]{20,}|pk_(live|test)_[A-Za-z0-9]{20,}|[^A-Za-z0-9_](live|test)_[A-Za-z0-9]{25,}|-----BEGIN|PRIVATE KEY|eyJ[A-Za-z0-9_-]{10,}\.eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}|(SERVICE_ROLE_KEY|API_KEY|API_TOKEN|_SECRET|AUTH_TOKEN|PASSWORD_HASH|WEBHOOK_SECRET)\s*[:=]\s*["\x27]?[A-Za-z0-9_+/=.-]{20,}|password\s*=\s*["\x27][^\x27"]+["\x27])' || true)
   if [ -n "$SECRETS" ]; then
     echo -e "${RED}BLOCKED: Potential secret/key found:${NC}"
     echo "$SECRETS" | head -10
