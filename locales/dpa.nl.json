@@ -87,7 +87,7 @@
     "slide_dna": {
       "nav_title": "AI says no",
       "kicker": "Toestemming vs. stille inname",
-      "title": "Anderen doen het achter je rug — Regen Studio vraagt toestemming en blokkeert AI-gebruik bij de bron.",
+      "title": "Anderen doen het achter je rug. Regen Studio vraagt toestemming en blokkeert AI-gebruik bij de bron.",
       "anderen_label": "Anderen",
       "anderen_caption": "<strong>Geen toestemming. Geen blokkade. Geen audit-trail.</strong><br>Eenmaal getypt, voor altijd ergens.",
       "leak_filename": "jouw_notulen_2026-05-14.pdf",
@@ -98,7 +98,7 @@
       "leak_key_production": "Productie",
       "leak_cloud_more": "+ 47 anderen",
       "wij_label": "Wij",
-      "wij_caption": "Pre-tool hook weigert. Niets bereikt de AI.",
+      "wij_caption": "Pre-tool hook weigert. Uitgesloten categorieën bereiken de AI niet.",
       "chat_user_msg": "Kan je deze data analyseren en mappen naar DPP-velden?",
       "chat_claude_lede": "Sorry, ik kan dit bestand niet voor je openen.",
       "chat_claude_explain_a": "heeft",
@@ -109,12 +109,12 @@
       "nav_title": "Architectuur",
       "kicker": "Onder de motorkap",
       "title": "Hoe je data door onze systemen vloeit",
-      "subtitle": "De hoofd-flow loopt over jouw browser → Supabase Edge in Frankfurt → encrypted in EU. Operator-uitvoering (gesprekken, advies, AI-werk) loopt via een aparte, expliciet-toestemmings-route door de Regen-medewerker.",
+      "subtitle": "De hoofd-flow loopt over jouw browser → Supabase Edge in Stockholm → encrypted in EU. Operator-uitvoering (gesprekken, advies, AI-werk) loopt via een aparte, expliciet-toestemmings-route door de Regen-medewerker.",
       "nodes": {
         "user_title": "Jij — je browser",
         "user_sub": "magic-link, geen cookies",
         "edge_title": "Supabase",
-        "edge_sub": "Frankfurt, EU",
+        "edge_sub": "Stockholm, EU",
         "lettermint_title": "Lettermint",
         "lettermint_sub_full": "NL — outbound mail<br><small>magic-link, getekend-doc-bevestiging, project-mail</small>",
         "proton_title": "Proton BusinessMail Calendar Drive",
@@ -234,7 +234,7 @@
       "placeholder_phone": "+31 6 …",
       "continue": "Volgende — data-categorieën",
       "matrix_label": "Per data-categorie: wat mag AI ermee doen?",
-      "matrix_help": "Kies één optie per rij. Standaardinstellingen zijn ingevuld; pas aan wat je liever anders ziet. <em>Granulair en gehandhaafd:</em> elke rij wordt per-categorie afgedwongen door onze AI-gates (consent-gate.md), niet alleen vastgelegd. \"Alleen operator\" betekent: Yvo mag het handmatig verwerken, AI niet. \"Niet verwerken\" betekent: ook niet handmatig — buiten scope. AVG art. 4(11) \"specifiek\".",
+      "matrix_help": "Kies één optie per rij. Standaardinstellingen zijn ingevuld; pas aan wat je liever anders ziet. <em>Granulair vastgelegd:</em> elke rij wordt per categorie vastgelegd in het consent-register en door de operator bij elke verwerking gehanteerd. Geautomatiseerde handhaving op rij-niveau door onze AI-gates rolt uit in Q3-2026. \"Alleen operator\" betekent: Yvo mag het handmatig verwerken, AI niet. \"Niet verwerken\" betekent: ook niet handmatig, dus buiten scope. AVG art. 4(11) \"specifiek\".",
       "matrix": {
         "col_ai": "AI mag verwerken",
         "col_operator": "Alleen operator",
@@ -377,7 +377,7 @@
         "stakeholder_interviews": {
           "title": "Interviews met betrokkenen",
           "sub": "Opnames, transcripten, persoonlijke ervaringen en opvattingen",
-          "benefit": "<strong>Als AI dit mag inzien:</strong> patronen over tientallen gesprekken heen worden zichtbaar — waar verhalen samenvallen én waar ze botsen. <em>Namen worden altijd door aliassen vervangen vóórdat er iets naar het AI-model gaat; de sleutel blijft bij Regen Studio (Annex B §B.6.2).</em>"
+          "benefit": "<strong>Als AI dit mag inzien:</strong> patronen over tientallen gesprekken heen worden zichtbaar — waar verhalen samenvallen én waar ze botsen. <em>Namen worden door aliassen vervangen vóórdat er iets naar het AI-model gaat; de sleutel blijft bij Regen Studio (Annex B §B.6.2). Dat is pseudonimisering, geen anonimisering (Annex C §C.4).</em>"
         },
         "energy_usage_data": {
           "title": "Energie- en meetgegevens",
