@@ -103,12 +103,12 @@
       "nav_title": "Architecture",
       "kicker": "Under the hood",
       "title": "How your data flows through our systems",
-      "subtitle": "The main flow runs from your browser → Supabase Edge in Frankfurt → encrypted in the EU. Operator execution (conversations, advice, AI work) runs via a separate, explicit-consent route through the Regen team member.",
+      "subtitle": "The main flow runs from your browser → Supabase Edge in Stockholm → encrypted in the EU. Operator execution (conversations, advice, AI work) runs via a separate, explicit-consent route through the Regen team member.",
       "nodes": {
         "user_title": "You — your browser",
         "user_sub": "magic link, no cookies",
         "edge_title": "Supabase",
-        "edge_sub": "Frankfurt, EU",
+        "edge_sub": "Stockholm, EU",
         "lettermint_title": "Lettermint",
         "lettermint_sub_full": "NL — outbound mail<br><small>magic link, signed-doc receipt, project mail</small>",
         "proton_title": "Proton BusinessMail Calendar Drive",
@@ -245,7 +245,7 @@
       "placeholder_phone": "+1 …",
       "continue": "Next — data categories",
       "matrix_label": "Per data category: what may AI do with it?",
-      "matrix_help": "Pick one option per row. Sensible defaults are pre-selected; override anything you'd rather see different. <em>Granular and enforced:</em> each row is gated per-category by our AI gates (consent-gate.md), not just recorded. \"Operator only\" means: Yvo may process manually, AI may not. \"Do not process\" means: not even manually — out of scope. GDPR Art 4(11) \"specific\".",
+      "matrix_help": "Pick one option per row. Sensible defaults are pre-selected; override anything you'd rather see different. <em>Granular and recorded:</em> each row is recorded per category in the consent registry and applied by the operator at every processing step. Automated row-level enforcement by our AI gates rolls out in Q3-2026. \"Operator only\" means: Yvo may process manually, AI may not. \"Do not process\" means: not even manually, so out of scope. GDPR Art 4(11) \"specific\".",
       "matrix": {
         "col_ai": "AI may process",
         "col_operator": "Operator only",

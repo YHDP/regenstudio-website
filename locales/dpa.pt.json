@@ -103,12 +103,12 @@
       "nav_title": "Arquitetura",
       "kicker": "Sob o capô",
       "title": "Como seus dados fluem pelos nossos sistemas",
-      "subtitle": "O fluxo principal vai do seu navegador → Supabase Edge em Frankfurt → criptografado na UE. A execução pelo operador (conversas, consultoria, trabalho com IA) segue por uma rota separada com consentimento explícito, conduzida pelo colaborador da Regen.",
+      "subtitle": "O fluxo principal vai do seu navegador → Supabase Edge em Estocolmo → criptografado na UE. A execução pelo operador (conversas, consultoria, trabalho com IA) segue por uma rota separada com consentimento explícito, conduzida pelo colaborador da Regen.",
       "nodes": {
         "user_title": "Você — seu navegador",
         "user_sub": "magic link, sem cookies",
         "edge_title": "Supabase",
-        "edge_sub": "Frankfurt, UE",
+        "edge_sub": "Estocolmo, UE",
         "lettermint_title": "Lettermint",
         "lettermint_sub_full": "NL — e-mail de saída<br><small>magic link, comprovante de assinatura, e-mail de projeto</small>",
         "proton_title": "Proton BusinessMail Calendar Drive",
@@ -245,7 +245,7 @@
       "placeholder_phone": "+55 …",
       "continue": "Próximo — categorias de dados",
       "matrix_label": "Por categoria de dado: o que a IA pode fazer com ele?",
-      "matrix_help": "Escolha uma opção por linha. Os padrões estão pré-selecionados; ajuste o que preferir diferente. <em>Granular e aplicado:</em> cada linha é controlada por categoria pelas nossas AI gates (consent-gate.md), não apenas registrada. \"Somente operador\" significa: Yvo pode processar manualmente, a IA não. \"Não processar\" significa: nem mesmo manualmente — fora do escopo. RGPD Art. 4(11) \"específico\".",
+      "matrix_help": "Escolha uma opção por linha. Os padrões estão pré-selecionados; ajuste o que preferir diferente. <em>Granular e registrado:</em> cada linha é registrada por categoria no registro de consentimento e aplicada pelo operador em cada etapa de processamento. A aplicação automatizada em nível de linha pelas nossas AI gates será lançada no T3-2026. \"Somente operador\" significa: Yvo pode processar manualmente, a IA não. \"Não processar\" significa: nem mesmo manualmente, portanto fora do escopo. RGPD Art. 4(11) \"específico\".",
       "matrix": {
         "col_ai": "IA pode processar",
         "col_operator": "Somente operador",
