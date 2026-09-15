@@ -1043,7 +1043,7 @@
           };
           for (var k in antibot) if (Object.prototype.hasOwnProperty.call(antibot, k)) payload[k] = antibot[k];
 
-          return fetch(CONTACT_ENDPOINT, { // -> our own Edge Function
+          return fetch(CONTACT_ENDPOINT, { // -> our own contact-form Edge Function on supabase.co
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
