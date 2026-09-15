@@ -297,6 +297,17 @@
           <a href="#focus" class="btn btn--primary" data-track="hero-cta">Explore Our Work</a>
         </div>
 
+        <!-- Ask the site assistant. A plain GET form, so it works with no JavaScript and
+             lands on chat.html?q=… — chat.html owns the conversation and the guardrails;
+             the hero only captures the question. -->
+        <form class="hero__ask animate-in" action="chat.html" method="get" role="search">
+          <label class="sr-only" for="heroAskInput" data-i18n="hero.ask_label">Ask a question about our work</label>
+          <input class="hero__ask-input" type="text" id="heroAskInput" name="q" maxlength="500"
+                 autocomplete="off" placeholder="Ask us anything about our work"
+                 data-i18n-placeholder="hero.ask_placeholder">
+          <button class="hero__ask-btn" type="submit" data-i18n="hero.ask_button">Ask</button>
+        </form>
+
         <!-- Section nav: subtle inline pills -->
         <nav class="section-nav animate-in" aria-label="Page sections">
           <div class="section-nav__track">
@@ -436,7 +447,7 @@
               <h3 class="focus__card-title">Liveable Cities</h3>
               <p class="focus__card-text">Habitats where people and nature thrive together through responsible, human-centred technology.</p>
             </div>
-            <a class="focus__case" href="/blog/Blog%202/" data-track="case-cities">
+            <a class="focus__case" href="/blog/living-labs-city-regeneration/" data-track="case-cities">
               <div class="focus__case-accent"></div>
               <div class="focus__case-body">
                 <span class="focus__case-label">Featured Case</span>

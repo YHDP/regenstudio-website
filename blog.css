@@ -1719,133 +1719,9 @@
   line-height: 1.6;
 }
 
-/* --- Scroll-triggered Floating CTA (blog post) --- */
-.scroll-cta {
-  position: fixed;
-  z-index: 90;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-
-  /* Desktop: right side card */
-  right: clamp(20px, 3vw, 40px);
-  top: 50%;
-  transform: translateY(-50%) translateX(20px);
-  width: 220px;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-lg);
-}
-
-.scroll-cta--visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(-50%) translateX(0);
-}
-
-.scroll-cta__close {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background: none;
-  font-size: 1.1rem;
-  color: var(--color-text-muted);
-  cursor: pointer;
-  border-radius: 50%;
-  transition: all 0.2s;
-  line-height: 1;
-}
-
-.scroll-cta__close:hover {
-  color: var(--color-text);
-  background: var(--color-bg-light);
-}
-
-.scroll-cta__label {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-  margin-bottom: 4px;
-}
-
-.scroll-cta__text {
-  font-size: 0.88rem;
-  color: var(--color-text-secondary);
-  margin-bottom: 12px;
-  line-height: 1.4;
-}
-
-.scroll-cta__email-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.scroll-cta__address {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--color-primary);
-  user-select: all;
-  -webkit-user-select: all;
-}
-
 /* ========================================
    Responsive
    ======================================== */
-
-@media (max-width: 1100px) {
-  /* Hide desktop side CTA when it would overlap article */
-  .scroll-cta {
-    top: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    transform: translateY(100%);
-    border-radius: var(--radius) var(--radius) 0 0;
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .scroll-cta--visible {
-    transform: translateY(0);
-  }
-
-  .scroll-cta__label {
-    display: none;
-  }
-
-  .scroll-cta__text {
-    margin-bottom: 0;
-    flex: 1;
-    min-width: 140px;
-  }
-
-  .scroll-cta__close {
-    position: static;
-    order: -1;
-    flex-shrink: 0;
-  }
-
-  .scroll-cta {
-    padding-bottom: calc(16px + env(safe-area-inset-bottom));
-  }
-}
 
 @media (max-width: 1024px) {
   .blog-filters__columns {
@@ -2125,7 +2001,6 @@
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
-
 
 /* FAQ footnote — rendered at the very end of a post, after related posts + CTA */
 .post-faq {

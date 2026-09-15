@@ -1102,7 +1102,6 @@
     if (postInner) postInner.appendChild(followCard);
 
     // Scroll-triggered floating CTA
-    initScrollCTA();
 
     // Related posts
     const related = getRelatedPosts(post, blogs, 3);
@@ -1131,67 +1130,15 @@
     }
   }
 
-  // ========================================
-  // Scroll-triggered floating CTA (blog post)
-  // ========================================
-  function initScrollCTA() {
-    const postContent = document.getElementById('postContent');
-    if (!postContent) return;
-
-    let dismissed = false;
-    let visible = false;
-
-    // Create the floating CTA element
-    const floatingCTA = document.createElement('div');
-    floatingCTA.className = 'scroll-cta';
-    floatingCTA.innerHTML = `
-      <button class="scroll-cta__close" aria-label="Dismiss">&times;</button>
-      <p class="scroll-cta__label">${t("cta.get_in_touch", "Get in Touch")}</p>
-      <p class="scroll-cta__text">${t("blog.cta_floating_text", "Like what you're reading?")}</p>
-      <div class="scroll-cta__email-row">
-        <span class="scroll-cta__address">${COMPANY.email}</span>
-        <button class="copyable-email__btn copyable-email__btn--small" data-email="${COMPANY.email}" aria-label="Copy email">
-          <svg class="copyable-email__icon copyable-email__icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <svg class="copyable-email__icon copyable-email__icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-        </button>
-      </div>
-      <a href="#post-cta-banner" class="scroll-cta__form-link" data-track="scroll-cta">${t("blog.cta_floating_link", "or send us a message")} &darr;</a>
-    `;
-    document.body.appendChild(floatingCTA);
-
-    // Dismiss handler
-    floatingCTA.querySelector('.scroll-cta__close').addEventListener('click', () => {
-      dismissed = true;
-      floatingCTA.classList.remove('scroll-cta--visible');
-    });
-
-    // Scroll handler — show after 40% of article (rAF-batched)
-    let ctaScrollRafPending = false;
-    function onScroll() {
-      if (dismissed) return;
-      if (ctaScrollRafPending) return;
-      ctaScrollRafPending = true;
-      requestAnimationFrame(() => {
-        ctaScrollRafPending = false;
-        if (dismissed) return;
-
-        const rect = postContent.getBoundingClientRect();
-        const contentHeight = postContent.offsetHeight;
-        const scrolledInto = -rect.top;
-        const progress = scrolledInto / contentHeight;
-
-        if (progress > 0.4 && progress < 0.95 && !visible) {
-          visible = true;
-          floatingCTA.classList.add('scroll-cta--visible');
-        } else if ((progress <= 0.35 || progress >= 0.95) && visible) {
-          visible = false;
-          floatingCTA.classList.remove('scroll-cta--visible');
-        }
-      });
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-  }
+  // The scroll-triggered floating CTA was removed on 2026-09-11.
+  //
+  // The assistant launcher (assets/js/assistant-launcher.js) now carries its job and its
+  // content: the address, the copy button and the downward link to the form below. Keeping
+  // both would have put two floating calls to action on one page, and below 1100px this one
+  // became a full-width bottom bar sitting exactly where the launcher does.
+  //
+  // Nothing was lost. #post-cta-banner, injected above with a full contact form after the
+  // article, is untouched and remains every post's real call to action.
 
   // ========================================
   // Init
@@ -1251,18 +1198,15 @@
       if (postForm) window.Antibot.protect(postForm);
     }
 
-    // Smooth scroll for scroll-cta form link
+    // Smooth scroll for the launcher's "or send us a message" link. Delegated, because the
+    // launcher is injected after load and nav.js binds its anchor handler at load time.
+    // Inherited from the removed .scroll-cta, which had the same link to the same target.
     document.addEventListener('click', (e) => {
-      const link = e.target.closest('.scroll-cta__form-link');
+      const link = e.target.closest('.launcher__form-link');
       if (link) {
         e.preventDefault();
         const target = document.getElementById('post-cta-banner');
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          // Dismiss the floating CTA
-          const floatingCTA = document.querySelector('.scroll-cta');
-          if (floatingCTA) floatingCTA.classList.remove('scroll-cta--visible');
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
 

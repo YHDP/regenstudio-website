@@ -10,10 +10,11 @@
        CLAUDE.md. Neither ever provided clickjacking protection. On GitHub Pages the
        real control is an HTTP header, which we cannot set, so the honest position is
        to not pretend. Other pages still carry the inert meta (see known-bugs R17). -->
-  <!-- Closed test. Not linked from the site, not indexed, not in the sitemap. -->
-  <meta name="robots" content="noindex, nofollow">
-  <title>Ask Regen Studio | Regen Studio</title>
-  <meta name="description" content="A closed test of the Regen Studio site assistant.">
+  <!-- Indexable since 2026-09-11. The noindex was left over from the closed-passphrase
+       test and contradicted robots.txt, which already allowed crawling. The page is public,
+       linked from the homepage hero, and carries 332 words of its own content. -->
+  <title>Talk to our Digital Assistant | Regen Studio</title>
+  <meta name="description" content="Ask our digital assistant about Regen Studio and get an answer drawn only from this website, with the page it came from.">
   <meta name="author" content="Regen Studio">
   <link rel="icon" type="image/png" href="Images/favicon.png">
   <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -21,18 +22,22 @@
   <link rel="stylesheet" href="assets/fonts/inter.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="assets/fonts/playfair-display.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="style.css">
+  <!-- The send-conversation panel injects the antibot captcha and honeypot, and both
+       need this or the captcha renders unstyled and the honeypot is visible. -->
+  <link rel="stylesheet" href="assets/css/antibot.css" media="print" onload="this.media='all'">
   <style>
-    .chat-hero { text-align: center; padding: 120px 24px 32px; }
+    .chat-hero { text-align: center; padding: 104px 24px 32px; }
     .chat-hero h1 { margin: 0 0 10px; }
+    /* The mark at portrait size. alt="" because the h1 directly under it already names
+       what this is; an accessible name here would just say it twice. */
+    .chat-hero__avatar {
+      display: block; width: 104px; height: 104px; margin: 0 auto 18px;
+      border-radius: 26px;
+    }
     .chat-hero__sub { color: var(--color-warm-gray-dark); max-width: 52ch; margin: 0 auto; }
 
     .chat-page { max-width: 780px; margin: 0 auto; padding: 0 24px 96px; }
 
-    .chat-badge {
-      display: inline-block; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase;
-      color: #7a5814; background: var(--color-orange-bg); border: 1px solid var(--color-orange-mid);
-      border-radius: 999px; padding: 4px 12px; margin-bottom: 18px;
-    }
 
     .chat-notice {
       border: 1px solid var(--color-border); border-left: 3px solid var(--color-teal);
@@ -43,11 +48,9 @@
     .chat-notice p:last-child { margin: 0; }
     .chat-notice strong { color: var(--color-navy); }
 
-    .chat-lock { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
-    /* An author `display` rule outranks the UA style behind the `hidden` attribute,
-       so without this the passphrase form stays on screen after unlocking. */
+    /* An author `display` rule outranks the UA style behind the `hidden` attribute.
+       Kept because .chat-lock is gone but other toggled blocks still rely on it. */
     [hidden] { display: none !important; }
-    .chat-lock input { flex: 1 1 240px; }
 
     .chat-input-row { display: flex; gap: 10px; align-items: flex-end; }
     .chat-input-row textarea {
@@ -55,11 +58,7 @@
       padding: 12px 14px; border: 1px solid var(--color-border);
       border-radius: 8px; background: var(--color-bg-card); color: var(--color-navy);
     }
-    .chat-lock input {
-      font: inherit; padding: 12px 14px; border: 1px solid var(--color-border);
-      border-radius: 8px; background: var(--color-bg-card); color: var(--color-navy);
-    }
-    .chat-input-row textarea:focus, .chat-lock input:focus {
+    .chat-input-row textarea:focus {
       outline: 2px solid var(--color-emerald); outline-offset: -1px;
     }
     .chat-btn {
@@ -76,29 +75,312 @@
       font-weight: 600; color: var(--color-navy); margin: 0 0 10px;
       padding-left: 14px; border-left: 3px solid var(--color-navy-bg);
     }
+    /* Answer row: the mark beside what it said. align-items:flex-start keeps it level with
+       the first line rather than floating to the middle of a long answer. */
+    .chat-answer { display: flex; align-items: flex-start; gap: 13px; }
+    .chat-avatar {
+      width: 36px; height: 36px; flex-shrink: 0; border-radius: 10px;
+      margin-top: 1px;
+    }
+    .chat-answer > .chat-a,
+    .chat-answer > .chat-think { flex: 1; min-width: 0; }
+
     .chat-a { margin: 0; line-height: 1.7; }
     .chat-a p { margin: 0 0 .8em; }
     .chat-a p:last-child { margin: 0; }
+
+
+    /* ── Regen Studio motion, borrowed from the vision page ───────────────────
+       The reveal transition is vision.css:313 verbatim (0.7s, --ease-out, 32px rise) and
+       the six accent colours are the PALETTE in vision-anim.js. Nothing new is invented
+       here; the point is that the assistant reads as the same studio as the rest of the
+       site. Everything below is switched off under prefers-reduced-motion, exactly as
+       vision-anim.js returns early on it. */
+
+    :root {
+      --tri-magenta: #93093F; --tri-red: #E71846; --tri-orange: #FFA92D;
+      --tri-green: #65DD35;   --tri-emerald: #00914B; --tri-teal: #009BBB;
+    }
+
+    /* A turn arrives the way a vision section does. */
+    .chat-turn {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+    .chat-turn--in { opacity: 1; transform: translateY(0); }
+
+    /* The question marker cycles the brand palette down the conversation, so a long
+       thread carries the studio's colour family rather than one flat grey rule. */
+    .chat-turn:nth-child(6n+1) .chat-q { border-left-color: var(--tri-emerald); }
+    .chat-turn:nth-child(6n+2) .chat-q { border-left-color: var(--tri-teal); }
+    .chat-turn:nth-child(6n+3) .chat-q { border-left-color: var(--tri-orange); }
+    .chat-turn:nth-child(6n+4) .chat-q { border-left-color: var(--tri-magenta); }
+    .chat-turn:nth-child(6n+5) .chat-q { border-left-color: var(--tri-green); }
+    .chat-turn:nth-child(6n+6) .chat-q { border-left-color: var(--tri-red); }
+
+    /* Thinking: triangles gathering, the hero's own gesture. Pure scale and rise, no glow
+       and no scatter — both are catalogued rejections in animation-craft. */
+    .chat-think { display: flex; align-items: flex-end; gap: 7px; height: 22px; }
+    .chat-think__tri {
+      width: 11px; height: 10px;
+      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+      transform-origin: 50% 100%;
+      animation: chatTriGather 1.5s var(--ease-out) infinite;
+    }
+    .chat-think__tri:nth-child(1) { background: var(--tri-emerald); animation-delay: 0ms; }
+    .chat-think__tri:nth-child(2) { background: var(--tri-teal);    animation-delay: 120ms; }
+    .chat-think__tri:nth-child(3) { background: var(--tri-orange);  animation-delay: 240ms; }
+    .chat-think__tri:nth-child(4) { background: var(--tri-magenta); animation-delay: 360ms; }
+    .chat-think__tri:nth-child(5) { background: var(--tri-green);   animation-delay: 480ms; }
+
+    @keyframes chatTriGather {
+      0%, 70%, 100% { transform: scale(0.62) translateY(0); opacity: 0.35; }
+      35%           { transform: scale(1) translateY(-5px); opacity: 1; }
+    }
+
+    .chat-think__label {
+      margin-left: 4px; font-size: 0.88rem; font-style: italic;
+      color: var(--color-warm-gray-dark); align-self: center;
+    }
+
+    /* Empty state */
+    .chat-start { margin: 4px 0 26px; }
+    .chat-start__label {
+      margin: 0 0 10px; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-text-secondary);
+    }
+    .chat-start__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chat-chip {
+      font: inherit; font-size: 0.85rem; text-align: left; cursor: pointer;
+      padding: 9px 15px; border-radius: 100px;
+      color: var(--color-navy); background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-left-width: 3px;
+      transition: border-color 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+    }
+    .chat-chip:nth-child(1) { border-left-color: var(--tri-emerald); }
+    .chat-chip:nth-child(2) { border-left-color: var(--tri-teal); }
+    .chat-chip:nth-child(3) { border-left-color: var(--tri-orange); }
+    .chat-chip:hover { transform: translateY(-2px); border-color: var(--color-navy-lighter); }
+    .chat-chip:nth-child(1):hover { border-left-color: var(--tri-emerald); }
+    .chat-chip:nth-child(2):hover { border-left-color: var(--tri-teal); }
+    .chat-chip:nth-child(3):hover { border-left-color: var(--tri-orange); }
+
+    /* Sources fade up after the answer has landed, so the citation reads as a conclusion
+       rather than arriving with the prose. */
+    .chat-turn--in .chat-sources__label,
+    .chat-turn--in .chat-sources { animation: chatSourceUp 0.5s var(--ease-out) 0.25s both; }
+    @keyframes chatSourceUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .chat-turn { opacity: 1; transform: none; transition: none; }
+      .chat-think__tri { animation: none; opacity: 1; transform: none; }
+      .chat-turn--in .chat-sources__label,
+      .chat-turn--in .chat-sources { animation: none; }
+      .chat-chip { transition: none; }
+      .chat-chip:hover { transform: none; }
+    }
 
     .chat-a--refused {
       border-left: 3px solid var(--color-orange); padding-left: 14px;
       color: var(--color-warm-gray-dark);
     }
 
-    .chat-sources { margin: 12px 0 0; padding: 0; list-style: none; font-size: .85rem; }
-    .chat-sources li { margin-bottom: 4px; }
-    .chat-sources a { color: #006d38; }
+    /* Further reading, not a footnote.
+       These were a bulleted list under a "Sources" label, which read as provenance and
+       invited nobody to click. They are pills now, in the same vocabulary as the starter
+       chips above, because a visitor should see them as places worth going. They stay in
+       cited order: that order is evidence of what the answer leant on most. */
+    .chat-sources {
+      margin: 12px 0 0; padding: 0; list-style: none;
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .chat-sources li { margin: 0; }
+    .chat-sources a {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: .85rem; line-height: 1.35; text-decoration: none;
+      padding: 8px 14px; border-radius: 100px;
+      color: var(--color-navy); background: var(--color-bg-card);
+      border: 1px solid var(--color-border); border-left-width: 3px;
+      transition: border-color .25s var(--ease-out), transform .25s var(--ease-out),
+                  background .25s var(--ease-out);
+    }
+    /* The accent cycles like the starter chips, so the page reads as one system. The
+       trailing arrow is what separates the two: a chip asks, a pill leaves the page. */
+    .chat-sources li:nth-child(6n+1) a { border-left-color: var(--tri-emerald); }
+    .chat-sources li:nth-child(6n+2) a { border-left-color: var(--tri-teal); }
+    .chat-sources li:nth-child(6n+3) a { border-left-color: var(--tri-orange); }
+    .chat-sources li:nth-child(6n+4) a { border-left-color: var(--tri-magenta); }
+    .chat-sources li:nth-child(6n+5) a { border-left-color: var(--tri-green); }
+    .chat-sources li:nth-child(6n+6) a { border-left-color: var(--tri-red); }
+    .chat-sources a:hover {
+      background: #fff; border-color: #006d38; transform: translateY(-1px);
+    }
+    .chat-sources a::after {
+      content: "\2192"; font-size: .95em; color: #006d38; flex-shrink: 0;
+    }
     .chat-sources__label {
       font-size: .72rem; letter-spacing: .06em; text-transform: uppercase;
-      color: var(--color-warm-gray-dark); margin: 14px 0 6px;
+      color: var(--color-warm-gray-dark); margin: 16px 0 8px;
+    }
+    /* Line the pills up with the answer text, not with the avatar. 36px + 13px gap. */
+    .chat-sources, .chat-sources__label { margin-left: 49px; }
+    @media (max-width: 560px) {
+      .chat-sources, .chat-sources__label { margin-left: 0; }
+    }
+
+    @media (max-width: 560px) {
+      .chat-sources a { width: 100%; }
     }
 
     .chat-status { color: var(--color-warm-gray-dark); font-size: .9rem; min-height: 1.4em; }
     .chat-error { color: #C21230; font-size: .9rem; min-height: 1.4em; }
 
+    /* ── The route to a person ──────────────────────────────────────────────── */
+    .chat-cta {
+      margin-top: 38px; padding: 26px 26px 24px;
+      border: 1px solid var(--color-border); border-left: 4px solid #006d38;
+      border-radius: 12px; background: var(--color-bg-card);
+    }
+    .chat-cta__title {
+      margin: 0 0 8px; font-size: 1.22rem; font-weight: 700; color: var(--color-navy);
+    }
+    .chat-cta__text {
+      margin: 0 0 20px; line-height: 1.65; color: var(--color-warm-gray-dark);
+      max-width: 56ch;
+    }
+    .chat-cta__actions {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 14px 18px;
+    }
+    .chat-cta__primary {
+      font: inherit; font-weight: 600; font-size: 1rem; cursor: pointer;
+      padding: 13px 26px; border-radius: 8px; border: 1px solid #006d38;
+      background: #006d38; color: #fff;
+    }
+    .chat-cta__primary:hover { background: #005c2f; border-color: #005c2f; }
+    .chat-cta__direct {
+      margin: 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      color: var(--color-warm-gray-dark); font-size: .95rem;
+    }
+    .chat-cta__direct a { color: #006d38; font-weight: 600; }
+    /* The footer's copy button is white-on-transparent for the dark band, which is
+       invisible on this card. Colours only; size, icon swap and handler stay shared. */
+    .chat-cta__direct .footer__copy-btn {
+      background: #fff; border-color: var(--color-border); color: var(--color-warm-gray-dark);
+    }
+    .chat-cta__direct .footer__copy-btn:hover {
+      background: var(--color-bg); border-color: #006d38; color: #006d38;
+    }
+
+    /* The turn where the assistant hands over. The block is already on the page, so this
+       only raises it: the conversation is finished and this is the next thing to do. */
+    .chat-cta--handoff {
+      border-left-width: 4px; border-color: #006d38;
+      box-shadow: 0 6px 26px rgba(0, 109, 56, .13);
+    }
+    .chat-cta__handoff-note {
+      margin: 0 0 16px; padding: 11px 14px; border-radius: 8px;
+      background: rgba(0, 109, 56, .07); color: var(--color-navy);
+      font-size: .93rem; line-height: 1.55;
+    }
+
+    /* Retired after a hand-off: there is no further question to ask, so an empty box
+       sitting there invites one the assistant has already said it cannot take. */
+    .chat-resume {
+      margin-top: 14px; font: inherit; font-size: .9rem; cursor: pointer;
+      background: none; border: none; padding: 6px 0;
+      color: var(--color-warm-gray-dark); text-decoration: underline;
+    }
+    .chat-resume:hover { color: var(--color-navy); }
+
+    .chat-send__panel {
+      margin-top: 16px; text-align: left; padding: 22px;
+      border: 1px solid var(--color-border); border-radius: 10px;
+      background: var(--color-bg-card);
+    }
+    .chat-send__intro { margin: 0 0 18px; color: var(--color-warm-gray-dark); font-size: .92rem; }
+
+    .chat-send__label {
+      display: block; font-size: .8rem; font-weight: 600; color: var(--color-navy);
+      margin: 0 0 5px;
+    }
+    .chat-send__input {
+      width: 100%; box-sizing: border-box; font: inherit; margin-bottom: 14px;
+      padding: 10px 12px; border: 1px solid var(--color-border);
+      border-radius: 8px; background: #fff; color: var(--color-navy);
+    }
+    .chat-send__input:focus { outline: 2px solid var(--color-emerald); outline-offset: -1px; }
+    .chat-send__textarea { resize: vertical; line-height: 1.5; }
+
+    /* Said at the moment of sending, not only in the policy: whatever the visitor typed
+       into the conversation travels with it. */
+    .chat-send__warn {
+      margin: 4px 0 16px; padding: 10px 12px; font-size: .85rem; line-height: 1.55;
+      color: var(--color-warm-gray-dark);
+      border-left: 3px solid var(--color-orange); background: var(--color-bg);
+    }
+
+    .chat-send__check {
+      display: flex; gap: 9px; align-items: flex-start;
+      margin-bottom: 12px; font-size: .88rem; line-height: 1.5;
+      color: var(--color-warm-gray-dark); cursor: pointer;
+    }
+    .chat-send__check input { margin-top: 3px; flex-shrink: 0; }
+    .chat-send__check a { color: #006d38; }
+
+    .chat-send__actions {
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 6px;
+    }
+    .chat-send__cancel {
+      font: inherit; font-size: .9rem; cursor: pointer; background: none;
+      border: none; color: var(--color-warm-gray-dark); text-decoration: underline;
+      padding: 8px 4px;
+    }
+    .chat-send__cancel:hover { color: var(--color-navy); }
+    .chat-send__done { margin: 0; line-height: 1.7; color: var(--color-navy); }
+
+    /* ── Bond-mesh field beside the column (F-019) ──────────────────────────── */
+    .chat-anim { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+    /* Width follows the actual gutter rather than a fixed number. At 190px the field
+       stopped 60px short of the column on a 1280 viewport and read as a distant border.
+       (100vw - 780px) / 2 is exactly the space beside the 780px column, and the extra 14px
+       reaches into the column's own 24px padding, so the mesh comes right up to the text
+       without ever running under it.
+
+       height must be explicit: a canvas is a replaced element, so top:0/bottom:0 does not
+       stretch it and it falls back to its intrinsic 2:1 box (measured: 95px, not 1000px). */
+    .chat-anim__side {
+      position: absolute; top: 0; height: 100%;
+      width: calc((100vw - 780px) / 2 + 14px);
+      display: block; pointer-events: none;
+    }
+    .chat-anim__side--left  { left: 0; }
+    .chat-anim__side--right { right: 0; }
+
+    /* The column has to sit above the field, or the triangles read as noise behind text. */
+    .chat-hero, .chat-page { position: relative; z-index: 1; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .chat-anim { display: none !important; }
+    }
+
+    @media (max-width: 1099px) {
+      .chat-anim { display: none !important; }
+    }
+
     @media (max-width: 560px) {
       .chat-hero { padding-top: 96px; }
       .chat-input-row { flex-direction: column; align-items: stretch; }
+      .chat-hero__avatar { width: 84px; height: 84px; border-radius: 21px; }
+      .chat-avatar { width: 30px; height: 30px; border-radius: 9px; }
+      .chat-answer { gap: 10px; }
+      .chat-cta { padding: 20px 18px; }
+      .chat-cta__actions { flex-direction: column; align-items: stretch; }
+      .chat-cta__primary { width: 100%; }
     }
   </style>
 </head>
@@ -194,46 +476,66 @@
   </nav>
 
   <section class="chat-hero">
-    <h1>Ask Regen Studio</h1>
+    <img class="chat-hero__avatar" src="Images/assistant-avatar.svg" alt=""
+         width="104" height="104" decoding="async" fetchpriority="high">
+    <h1>Talk to our Digital Assistant</h1>
     <p class="chat-hero__sub">
       A question-answering assistant that reads only this website and tells you which page
       each answer came from.
     </p>
   </section>
 
-  <main class="chat-page" id="main-content">
-    <p class="chat-badge">Closed test</p>
+  <!-- Decorative only, and announced as such: aria-hidden plus pointer-events:none so it
+       never takes a click or a screen-reader stop. chat-anim.js removes it below 1100px
+       and under prefers-reduced-motion. -->
+  <div class="chat-anim" id="chatAnim" aria-hidden="true" hidden>
+    <canvas class="chat-anim__side chat-anim__side--left"></canvas>
+    <canvas class="chat-anim__side chat-anim__side--right"></canvas>
+  </div>
 
+  <main class="chat-page" id="main-content">
     <div class="chat-notice">
       <p>
         <strong>Please do not type personal details.</strong> No name, email address, phone
         number or anything about an identifiable person. Your question is sent to Anthropic,
-        our AI sub-processor, to generate the answer.
+        our AI sub-processor, to generate the answer. See our
+        <a href="privacy.html#ai-assistant">privacy policy</a>.
       </p>
       <p>
         Nothing else goes with it. Not your IP address, not a cookie, not who you are. There
-        are no cookies on this page, and during this test your questions are not stored.
+        are no cookies on this page, and your question is not stored after it is answered.
+        The one exception is yours to make: if you choose to send the conversation to our
+        team, it is stored and emailed to us so we can reply.
       </p>
       <p>
         The assistant answers only from published pages on this site. If something is not on
-        the site it will say so rather than guess, and it will not discuss fees, availability
-        or client names. For anything it cannot answer, please use the
-        <a href="index.html#contact">contact form</a>.
+        the site it will say so rather than guess. It names clients and partners only where we
+        have already published that work, and it will not discuss fees or availability. When
+        it cannot help, you can send the whole conversation to us and a person will reply.
       </p>
     </div>
 
-    <!-- Passphrase gate -->
-    <form class="chat-lock" id="lockForm" autocomplete="off">
-      <label class="sr-only" for="passphrase">Passphrase</label>
-      <input type="password" id="passphrase" name="passphrase" placeholder="Passphrase"
-             autocomplete="current-password" required>
-      <button type="submit" class="chat-btn" id="unlockBtn">Unlock</button>
-    </form>
+    <!-- Bots pay for a session with proof-of-work; people never see it. The honeypot is
+         the same field name contact-form uses, so one server-side check covers both. -->
+    <div class="sr-only" aria-hidden="true">
+      <label for="website_url">Leave this field empty</label>
+      <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
+    </div>
     <p class="chat-error" id="lockError" role="alert"></p>
 
-    <!-- Chat -->
-    <div id="chatUi" hidden>
+    <div id="chatUi">
       <div class="chat-log" id="chatLog" aria-live="polite" aria-atomic="false"></div>
+
+      <!-- Empty state. Carries the brand palette, and does a job: the three questions show
+           what this is for far faster than a sentence describing it would. -->
+      <div class="chat-start" id="chatStart">
+        <p class="chat-start__label" data-i18n="chat.try">Try one of these</p>
+        <div class="chat-start__chips">
+          <button class="chat-chip" type="button">Which products need a Digital Product Passport?</button>
+          <button class="chat-chip" type="button">What did you do for The Hague?</button>
+          <button class="chat-chip" type="button">When does ESPR apply to textiles?</button>
+        </div>
+      </div>
 
       <form class="chat-input-row" id="askForm">
         <label class="sr-only" for="question">Your question</label>
@@ -243,6 +545,88 @@
       </form>
       <p class="chat-status" id="status" role="status"></p>
       <p class="chat-error" id="askError" role="alert"></p>
+
+      <!-- The route to a person. This was a quiet grey line under the thread and it was
+           not doing the job: the assistant's best conversion moment is the turn where it
+           cannot answer, and the visitor has to see where to go. Sending the conversation
+           leads, because it carries the question and the answers with it; the direct
+           address is the second option for anyone who would rather write their own email.
+           The copy button reuses .footer__copy-btn, whose delegated handler already lives
+           in nav.js, so it needs no JavaScript here. -->
+      <section class="chat-cta" id="chatCta" aria-labelledby="chatCtaTitle">
+        <h2 class="chat-cta__title" id="chatCtaTitle">Send the conversation to our team</h2>
+        <p class="chat-cta__text">
+          We read the whole exchange, so you do not have to explain it again, and a person
+          replies to you by email.
+        </p>
+
+        <div class="chat-cta__actions">
+          <button class="chat-cta__primary" type="button" id="chatSendOpen"
+                  aria-expanded="false" aria-controls="chatSendPanel">
+            Send this conversation
+          </button>
+          <p class="chat-cta__direct">
+            or reach out directly at
+            <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>
+            <!-- Same class and same icon pair as the footer button, so nav.js's delegated
+                 handler and its .copied swap work here untouched. Only the colours are
+                 re-stated below, because the footer's are built for a dark band. -->
+            <button class="footer__copy-btn" type="button" data-email="info@regenstudio.world"
+                    aria-label="Copy info@regenstudio.world to clipboard">
+              <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </button>
+          </p>
+        </div>
+
+        <div class="chat-send__panel" id="chatSendPanel" hidden>
+          <p class="chat-send__intro">
+            We will receive this conversation along with your note, and reply to the address
+            you give us. You will get a copy of it too.
+          </p>
+
+          <form class="chat-send__form" id="chatSendForm" novalidate>
+            <label class="chat-send__label" for="sendEmail">Your email <span aria-hidden="true">*</span></label>
+            <input class="chat-send__input" type="email" id="sendEmail" name="email" required
+                   autocomplete="email" maxlength="200">
+
+            <label class="chat-send__label" for="sendName">Your name</label>
+            <input class="chat-send__input" type="text" id="sendName" name="name"
+                   autocomplete="name" maxlength="120">
+
+            <label class="chat-send__label" for="sendOrg">Organisation</label>
+            <input class="chat-send__input" type="text" id="sendOrg" name="organization"
+                   autocomplete="organization" maxlength="160">
+
+            <label class="chat-send__label" for="sendMessage">Anything you want to add</label>
+            <textarea class="chat-send__input chat-send__textarea" id="sendMessage" name="message"
+                      rows="3" maxlength="4000"></textarea>
+
+            <p class="chat-send__warn">
+              The conversation above travels with this message. If you typed anything personal
+              into it, that comes along too. You can read it back before sending.
+            </p>
+
+            <label class="chat-send__check">
+              <input type="checkbox" id="sendPrivacy" required>
+              <span>I accept the <a href="privacy.html" target="_blank" rel="noopener">privacy policy</a>. <span aria-hidden="true">*</span></span>
+            </label>
+
+            <label class="chat-send__check">
+              <input type="checkbox" id="sendAiConsent">
+              <span>Regen Studio may use AI tools when preparing a reply to me.</span>
+            </label>
+
+            <div class="chat-send__actions">
+              <button class="chat-btn" type="submit" id="chatSendBtn">Send conversation</button>
+              <button class="chat-send__cancel" type="button" id="chatSendCancel">Cancel</button>
+            </div>
+
+            <p class="chat-status" id="sendStatus" role="status"></p>
+            <p class="chat-error" id="sendError" role="alert"></p>
+          </form>
+        </div>
+      </section>
     </div>
   </main>
 
@@ -256,8 +640,10 @@
     </div>
   </footer>
 
+  <script src="assets/js/antibot.js" defer></script>
   <script src="assets/js/nav.js" defer></script>
   <script src="assets/js/i18n.js" defer></script>
+  <script src="assets/js/chat-anim.js" defer></script>
   <script>
   (function () {
     'use strict';
@@ -266,13 +652,44 @@
     var MAX_TURNS = 8;
 
     var el = function (id) { return document.getElementById(id); };
-    var lockForm = el('lockForm'), askForm = el('askForm');
+
+    /* i18n lookup resolved at call time, not at parse time: this inline script runs before
+       the deferred i18n.js, so capturing window.__i18n in a variable here would freeze the
+       English fallback in place on the Dutch and Portuguese pages. */
+    function t(key, fallback) {
+      return (window.__i18n && window.__i18n.t)
+        ? window.__i18n.t(key, fallback)
+        : (fallback || key);
+    }
+    var askForm = el('askForm');
     var token = null, history = [], busy = false;
+
+    // A question handed over from the homepage hero (chat.html?q=…), asked on arrival.
+    var handoff = '';
+    try {
+      handoff = (new URLSearchParams(window.location.search).get('q') || '').slice(0, 500).trim();
+    } catch (e) { handoff = ''; }
 
     function esc(s) {
       return String(s).replace(/[&<>"']/g, function (c) {
         return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
       });
+    }
+
+    /**
+     * Page titles are written for a browser tab, not for a pill.
+     *
+     * 17 of the 57 indexed pages end in "| Regen Studio", which is noise once you are
+     * already on the site, and the longest title on the site runs to 152 characters. Both
+     * make an unreadable pill. The full title stays on the anchor's title attribute, so
+     * nothing is lost to a screen reader or a hover.
+     */
+    function pillTitle(title) {
+      var t = String(title).replace(/\s*\|\s*Regen Studio\s*$/i, '').trim();
+      if (t.length <= 52) return t;
+      var cut = t.slice(0, 52);
+      var sp = cut.lastIndexOf(' ');
+      return (sp > 24 ? cut.slice(0, sp) : cut).replace(/[\s,;:.\u2013-]+$/, '') + '\u2026';
     }
 
     /** Model output is untrusted text, never markup. Escape, then split on blank lines. */
@@ -282,64 +699,118 @@
       }).join('');
     }
 
-    function render(question, data) {
+    /** Flip a turn into its revealed state on the next frame, so the transition has a
+        start value to animate from. Mirrors how vision-anim.js adds
+        .vision-reveal--visible via IntersectionObserver. */
+    function reveal(turn) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { turn.classList.add('chat-turn--in'); });
+      });
+    }
+
+    /** A turn rendered before the answer exists, so the visitor sees their question
+        echoed rather than a blank page while the model reads. */
+    function renderPending(question) {
       var turn = document.createElement('div');
+      turn.className = 'chat-turn';
+      turn.innerHTML = '<p class="chat-q">' + esc(question) + '</p>' +
+        '<div class="chat-answer">' +
+        '<img class="chat-avatar" src="Images/assistant-avatar.svg" alt="" aria-hidden="true" ' +
+        'width="36" height="36" decoding="async">' +
+        '<div class="chat-think" role="status" aria-live="polite">' +
+        '<span class="chat-think__tri"></span><span class="chat-think__tri"></span>' +
+        '<span class="chat-think__tri"></span><span class="chat-think__tri"></span>' +
+        '<span class="chat-think__tri"></span>' +
+        '<span class="chat-think__label">' + esc(t('chat.thinking', 'Reading the site\u2026')) + '</span>' +
+        '</div></div>';
+      el('chatLog').appendChild(turn);
+      reveal(turn);
+      turn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return turn;
+    }
+
+    function render(question, data, turn) {
+      turn = turn || document.createElement('div');
       turn.className = 'chat-turn';
 
       var refused = data.refused;
       var sources = data.sources || [];
+      // alt="" and aria-hidden: the mark is decorative. It says who is speaking, which the
+      // layout already says, so giving it an accessible name would add a screen-reader stop
+      // to every single answer for no information.
       var html = '<p class="chat-q">' + esc(question) + '</p>' +
+                 '<div class="chat-answer">' +
+                 '<img class="chat-avatar" src="Images/assistant-avatar.svg" alt="" ' +
+                 'aria-hidden="true" width="36" height="36" decoding="async">' +
                  '<div class="chat-a' + (refused ? ' chat-a--refused' : '') + '">' +
-                 paragraphs(data.answer) + '</div>';
+                 paragraphs(data.answer) + '</div></div>';
 
       // Only on an answer. After a refusal the retrieved pages are, by definition, not
       // about what was asked, and listing them reads as a broken suggestion rather than
       // a helpful one. The fallback text already points at the contact form.
       if (!refused && sources.length) {
-        html += '<p class="chat-sources__label">Sources</p><ul class="chat-sources">';
+        html += '<p class="chat-sources__label">Further reading</p><ul class="chat-sources">';
         for (var i = 0; i < sources.length; i++) {
-          html += '<li><a href="' + esc(sources[i].url) + '">' +
-                  esc(sources[i].title) + '</a></li>';
+          var full = sources[i].title;
+          html += '<li><a href="' + esc(sources[i].url) + '" title="' + esc(full) + '">' +
+                  esc(pillTitle(full)) + '</a></li>';
         }
         html += '</ul>';
       }
 
+      // Replacing innerHTML keeps the element, so the reveal class survives; re-adding it
+      // restarts the source fade for the answer that just landed.
+      turn.classList.remove('chat-turn--in');
       turn.innerHTML = html;
-      el('chatLog').appendChild(turn);
+      if (!turn.parentNode) el('chatLog').appendChild(turn);
+      reveal(turn);
       turn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     function setBusy(on) {
       busy = on;
       el('askBtn').disabled = on;
-      el('status').textContent = on ? 'Reading the site…' : '';
+      // The gathering triangles in the thread carry this now; a second copy under the
+      // input said the same thing twice.
+      el('status').textContent = '';
     }
 
-    lockForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var pass = el('passphrase').value;
-      el('lockError').textContent = '';
-      el('unlockBtn').disabled = true;
-
-      fetch(ENDPOINT, { // -> uemspezaqxmkhenimwuf.supabase.co, our own Edge Function
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'unlock', passphrase: pass })
+    /**
+     * Mint a session token by solving proof-of-work. Runs on the first question rather
+     * than on page load, so a visitor who never asks anything never burns CPU, and it is
+     * cached for the life of the token.
+     */
+    var tokenPromise = null;
+    function getToken() {
+      if (token) return Promise.resolve(token);
+      if (tokenPromise) return tokenPromise;
+      if (!window.Antibot || !window.Antibot.solveQuiet) {
+        return Promise.reject(new Error('Verification script did not load. Please reload the page.'));
+      }
+      tokenPromise = window.Antibot.solveQuiet().then(function (pow) {
+        return fetch(ENDPOINT, { // -> uemspezaqxmkhenimwuf.supabase.co, our own Edge Function
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'unlock',
+            website_url: el('website_url').value,
+            antibot_pow_nonce: pow.antibot_pow_nonce,
+            antibot_pow_solution: pow.antibot_pow_solution,
+            antibot_pow_hash: pow.antibot_pow_hash
+          })
+        });
       }).then(function (r) {
-        return r.json().then(function (d) { return { ok: r.ok, d: d }; });
-      }).then(function (res) {
-        el('unlockBtn').disabled = false;
-        if (!res.ok) { el('lockError').textContent = res.d.error || 'Could not unlock.'; return; }
-        token = res.d.token;
-        el('passphrase').value = '';
-        lockForm.hidden = true;
-        el('chatUi').hidden = false;
-        el('question').focus();
-      }).catch(function () {
-        el('unlockBtn').disabled = false;
-        el('lockError').textContent = 'Network error. Please try again.';
+        return r.json().then(function (d) {
+          if (!r.ok) throw new Error(d.error || 'Verification failed.');
+          token = d.token;
+          return token;
+        });
+      }).catch(function (err) {
+        tokenPromise = null;   // let the next attempt try again
+        throw err;
       });
-    });
+      return tokenPromise;
+    }
 
     askForm.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -349,36 +820,256 @@
 
       el('askError').textContent = '';
       setBusy(true);
+      var start = el('chatStart');
+      if (start) start.hidden = true;
+      var pending = renderPending(q);
+      el('question').value = '';
 
-      fetch(ENDPOINT, { // -> uemspezaqxmkhenimwuf.supabase.co, our own Edge Function
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'ask', token: token, question: q, history: history })
+      getToken().then(function (tok) {
+        return fetch(ENDPOINT, { // -> uemspezaqxmkhenimwuf.supabase.co, our own Edge Function
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'ask', token: tok, question: q, history: history })
+        });
       }).then(function (r) {
         return r.json().then(function (d) { return { ok: r.ok, d: d }; });
       }).then(function (res) {
         setBusy(false);
         if (!res.ok) {
+          if (pending && pending.parentNode) pending.parentNode.removeChild(pending);
           if (res.d.relock) {
-            token = null;
-            el('chatUi').hidden = true;
-            lockForm.hidden = false;
-            el('lockError').textContent = 'Session expired. Please unlock again.';
+            // The token aged out mid-conversation. Mint a new one silently and retry once,
+            // rather than making the visitor deal with our session bookkeeping.
+            token = null; tokenPromise = null;
+            el('question').value = q;
+            askForm.requestSubmit();
             return;
           }
           el('askError').textContent = res.d.error || 'Something went wrong.';
           return;
         }
-        el('question').value = '';
-        render(q, res.d);
+        render(q, res.d, pending);
         history.push({ role: 'user', content: q });
-        history.push({ role: 'assistant', content: res.d.answer });
+        // Carry the sources too: without them the assistant cannot answer "where did you
+        // get that?", which a nine-turn test conversation asked and it could not.
+        history.push({ role: 'assistant', content: res.d.answer, sources: res.d.sources || [] });
         while (history.length > MAX_TURNS * 2) history.splice(0, 2);
-      }).catch(function () {
+        if (res.d.handoff) handOff();
+      }).catch(function (err) {
         setBusy(false);
-        el('askError').textContent = 'Network error. Please try again.';
+        if (pending && pending.parentNode) pending.parentNode.removeChild(pending);
+        el('question').value = q;
+        el('askError').textContent = (err && err.message) || 'Network error. Please try again.';
       });
     });
+
+    // A question handed over from the homepage hero goes straight through — but only once
+    // the deferred antibot.js has run. This inline script executes during parsing, ahead of
+    // deferred scripts, so firing immediately would reach for window.Antibot before it
+    // exists. DOMContentLoaded is after every deferred script by definition.
+    document.addEventListener('DOMContentLoaded', function () {
+      // Start the handshake now rather than on the first question: its cost is a random
+      // hash search with a long tail (median ~0.9s, occasionally 3s), and this hides it
+      // behind page load and typing instead of putting it in front of the first answer.
+      getToken().catch(function () { /* surfaced on the first real ask */ });
+      if (handoff) {
+        el('question').value = handoff;
+        handoff = '';
+        askForm.requestSubmit();
+      } else {
+        el('question').focus();
+      }
+    });
+
+    // A chip asks its own question; the block retires once a conversation exists.
+    Array.prototype.forEach.call(document.querySelectorAll('.chat-chip'), function (chip) {
+      chip.addEventListener('click', function () {
+        el('question').value = chip.textContent.trim();
+        askForm.requestSubmit();
+      });
+    });
+
+    /* ------------------------------------------------------------------
+       Send the conversation to the team.
+
+       Posts to contact-form rather than a second email path, so this inherits
+       the five antibot layers, the consent capture and the 90-day retention
+       that endpoint already has, with `source` telling the team where it came
+       from.
+       ------------------------------------------------------------------ */
+
+    var CONTACT_ENDPOINT = 'https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form';
+    var CONSENT_VERSION = '2026-04-24';
+    // contact-form caps the transcript at 32k and trims the head. Trimming here first,
+    // on whole turns, means the team reads clean turns rather than a sentence cut in half.
+    var MAX_TRANSCRIPT = 30000;
+
+    var sendPanel  = el('chatSendPanel');
+    var sendOpen   = el('chatSendOpen');
+    var sendForm   = el('chatSendForm');
+    var sendBusy   = false;
+
+    /**
+     * The assistant has said a person needs to take over. Bring the block that does that
+     * to the front and retire the question field: leaving an empty box under a "the team
+     * can take this from here" invites a question it has just said it cannot answer.
+     */
+    function handOff() {
+      var cta = el('chatCta');
+      if (!cta || cta.classList.contains('chat-cta--handoff')) return;
+      cta.classList.add('chat-cta--handoff');
+
+      var note = document.createElement('p');
+      note.className = 'chat-cta__handoff-note';
+      note.textContent = 'That one needs a person. Send the conversation across and we will '
+        + 'pick it up from where it stopped.';
+      cta.insertBefore(note, cta.firstElementChild.nextSibling);
+
+      askForm.hidden = true;
+      var start = el('chatStart');
+      if (start) start.hidden = true;
+
+      // Not a trap. Someone who does have another question can get the box back.
+      if (!el('chatResume')) {
+        var resume = document.createElement('button');
+        resume.className = 'chat-resume';
+        resume.id = 'chatResume';
+        resume.type = 'button';
+        resume.textContent = 'Ask another question instead';
+        resume.addEventListener('click', function () {
+          askForm.hidden = false;
+          resume.remove();
+          el('question').focus();
+        });
+        askForm.parentNode.insertBefore(resume, askForm.nextSibling);
+      }
+
+      cta.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    /** The thread as plain text, newest last, with the sources the visitor was shown. */
+    function buildTranscript() {
+      var lines = [];
+      for (var i = 0; i < history.length; i++) {
+        var turn = history[i];
+        lines.push((turn.role === 'user' ? 'Visitor:' : 'Assistant:') + '\n' + turn.content);
+        var src = turn.sources || [];
+        if (src.length) {
+          var urls = [];
+          for (var j = 0; j < src.length; j++) urls.push('  - ' + src[j].title + ' (' + src[j].url + ')');
+          lines.push('Sources shown:\n' + urls.join('\n'));
+        }
+      }
+      var text = lines.join('\n\n');
+      // Drop whole turns off the front until it fits, so no turn arrives half-quoted.
+      while (text.length > MAX_TRANSCRIPT && lines.length > 1) {
+        lines.shift();
+        text = '[earlier turns trimmed]\n\n' + lines.join('\n\n');
+      }
+      return text;
+    }
+
+    if (sendOpen && sendPanel && sendForm) {
+      sendOpen.addEventListener('click', function () {
+        var opening = sendPanel.hidden;
+        sendPanel.hidden = !opening;
+        sendOpen.setAttribute('aria-expanded', opening ? 'true' : 'false');
+        if (!opening) return;
+
+        // The timing trap. contact-form rejects an antibot_ts older than five minutes,
+        // and protect() stamps it once, behind a guard that suppresses any re-stamp. A
+        // conversation worth emailing lasts longer than five minutes almost by
+        // definition, so stamping at page load would expire exactly the visitors who
+        // engaged most. Protect on first open, then re-stamp on every open after that.
+        if (window.Antibot && window.Antibot.protect) {
+          if (sendForm.dataset.antibotProtected) {
+            sendForm.dataset.antibotTs = String(Date.now());
+          } else {
+            window.Antibot.protect(sendForm);
+          }
+        }
+        el('sendEmail').focus();
+      });
+
+      el('chatSendCancel').addEventListener('click', function () {
+        sendPanel.hidden = true;
+        sendOpen.setAttribute('aria-expanded', 'false');
+        sendOpen.focus();
+      });
+
+      sendForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (sendBusy) return;
+
+        var errEl = el('sendError'), statusEl = el('sendStatus');
+        errEl.textContent = '';
+        statusEl.textContent = '';
+
+        if (!el('sendEmail').value.trim()) {
+          errEl.textContent = 'Please give us an email address so we can reply.';
+          el('sendEmail').focus();
+          return;
+        }
+        if (!el('sendPrivacy').checked) {
+          errEl.textContent = 'Please accept the privacy policy.';
+          el('sendPrivacy').focus();
+          return;
+        }
+        if (!history.length) {
+          errEl.textContent = 'There is no conversation to send yet.';
+          return;
+        }
+        if (!window.Antibot || !window.Antibot.validate) {
+          errEl.textContent = 'Verification script did not load. Please reload the page.';
+          return;
+        }
+
+        sendBusy = true;
+        el('chatSendBtn').disabled = true;
+        statusEl.textContent = 'Sending\u2026';
+
+        window.Antibot.validate(sendForm).then(function (antibot) {
+          var payload = {
+            source: 'site-assistant',
+            email: el('sendEmail').value.trim(),
+            name: el('sendName').value.trim() || null,
+            organization: el('sendOrg').value.trim() || null,
+            message: el('sendMessage').value.trim() || null,
+            transcript: buildTranscript(),
+            page_url: window.location.href,
+            privacy_policy_accepted: true,
+            ai_processing_opt_in: el('sendAiConsent').checked,
+            consent_version: CONSENT_VERSION
+          };
+          for (var k in antibot) if (Object.prototype.hasOwnProperty.call(antibot, k)) payload[k] = antibot[k];
+
+          return fetch(CONTACT_ENDPOINT, { // -> our own Edge Function
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        }).then(function (r) {
+          return r.json().then(function (d) { return { ok: r.ok, d: d }; });
+        }).then(function (res) {
+          sendBusy = false;
+          el('chatSendBtn').disabled = false;
+          if (!res.ok) {
+            statusEl.textContent = '';
+            errEl.textContent = res.d.error || 'Something went wrong. Please email info@regenstudio.world.';
+            return;
+          }
+          sendPanel.innerHTML = '<p class="chat-send__done">Sent. A person on our team will read ' +
+            'the conversation and reply to you by email. Check your inbox for your own copy.</p>';
+        }).catch(function (err) {
+          sendBusy = false;
+          el('chatSendBtn').disabled = false;
+          statusEl.textContent = '';
+          // Antibot.validate rejects with a plain string, fetch with an Error.
+          errEl.textContent = (typeof err === 'string' ? err : (err && err.message)) ||
+            'Network error. Please try again.';
+        });
+      });
+    }
 
     // Enter sends, Shift+Enter makes a new line.
     el('question').addEventListener('keydown', function (e) {

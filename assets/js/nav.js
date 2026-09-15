@@ -190,4 +190,20 @@
     revealEls.forEach(function (el) { revealObserver.observe(el); });
   }
 
+  /* The assistant launcher, loaded from here rather than from a script tag on each page.
+     Not only to avoid editing ~66 files: nav.js is absent from exactly the pages where a
+     marketing launcher would be wrong — the DPA contract and signing flows, manage-consent,
+     admin, linktree and the internal tools — so loading it here gets the scope right by
+     construction instead of by an exclusion list somebody has to keep updated.
+
+     Injected rather than declared so it inherits this file's own path prefix, which differs
+     between /, /nl/ and /blog/<slug>/. defer keeps it off the critical path. */
+  var navSrc = document.currentScript && document.currentScript.src;
+  if (navSrc) {
+    var launcher = document.createElement('script');
+    launcher.src = navSrc.replace(/nav\.js(\?.*)?$/, 'assistant-launcher.js');
+    launcher.defer = true;
+    document.head.appendChild(launcher);
+  }
+
 })();

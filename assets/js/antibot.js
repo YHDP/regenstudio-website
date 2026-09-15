@@ -446,9 +446,36 @@
     });
   }
 
+  /**
+   * Antibot.solveQuiet() -> Promise<{antibot_pow_nonce, antibot_pow_solution, antibot_pow_hash}>
+   *
+   * Proof-of-work only: no honeypot, no timing gate, no CAPTCHA, no DOM.
+   *
+   * The full validate() flow is right for the contact form, where a submission sends an
+   * email to a real person and a few seconds of friction is a fair price. It is wrong for
+   * the site assistant: a CAPTCHA before every conversation would cost more visitors than
+   * it would stop, and the endpoint it protects is read-only. It cannot send mail, write a
+   * record or spend without a ceiling. So the assistant pays for a session with PoW the
+   * visitor never sees, and leans on server-side rate limiting and a monthly spend cap for
+   * the rest.
+   *
+   * Same difficulty and same nonce format as validate(), so the server verifies both with
+   * one code path.
+   */
+  function solveQuiet() {
+    return solvePoW(generateNonce()).then(function (r) {
+      return {
+        antibot_pow_nonce: r.nonce,
+        antibot_pow_solution: r.solution,
+        antibot_pow_hash: r.hash
+      };
+    });
+  }
+
   window.Antibot = {
     protect: protect,
-    validate: validate
+    validate: validate,
+    solveQuiet: solveQuiet
   };
 
 })();

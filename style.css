@@ -1020,6 +1020,60 @@ em:only-of-type {
   pointer-events: auto;
 }
 
+/* Hero ask row — the site-assistant entry point.
+   Sits under the primary CTA rather than beside it: .hero__inner is capped at 520px and
+   will not hold a button, an input and a submit on one line. Must restore pointer-events,
+   because .hero__content disables them and only children opt back in. */
+.hero__ask {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+  max-width: 520px;
+  margin: -14px 0 28px;
+  pointer-events: auto;
+}
+
+.hero__ask-input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 18px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.hero__ask-input::placeholder { color: var(--color-text-secondary); }
+
+.hero__ask-input:focus-visible {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+.hero__ask-btn {
+  flex: none;
+  padding: 12px 26px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.9rem;
+  /* Darkened emerald: brand #008545 fails AA behind white text at this size. */
+  color: #FFFFFF;
+  background: #006d38;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  /* 44px is the minimum touch target the project uses for .btn--small; at 390px wide
+     the padding alone lands on 43. */
+  min-height: 44px;
+  transition: background var(--transition);
+}
+
+.hero__ask-btn:hover { background: #005c2f; }
+
 .hero__actions .btn {
   padding: 11px 26px;
   font-size: 0.85rem;
@@ -3480,6 +3534,13 @@ em:only-of-type {
 /* Sections */
 .about-section {
   margin-bottom: 56px;
+}
+
+.about-section__lead {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin: 0 0 22px;
+  max-width: 62ch;
 }
 
 .about-section__title {
@@ -6368,3 +6429,127 @@ a.dpp-product--linked {
   }
 }
 
+/* ==========================================================================
+   Assistant launcher — one floating surface, two routes, every public page.
+   Injected by assets/js/assistant-launcher.js, which nav.js loads.
+
+   Bottom-right is the only free corner on this site: .freeze-btn is top-right on the
+   homepage hero, .privacy-banner is full-width bottom at z-index 10000, .share-toast is
+   bottom-centre at 9999. z-index 95 sits above page content and below both of those,
+   which must stay on top.
+   ========================================================================== */
+.launcher {
+  position: fixed;
+  right: clamp(16px, 3vw, 28px);
+  bottom: clamp(16px, 3vw, 28px);
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* Clear of the privacy banner while it is showing. The height comes from the banner's own
+   box at runtime rather than a guessed constant, because it wraps to two and three lines at
+   narrow widths. */
+.launcher--banner {
+  bottom: calc(clamp(16px, 3vw, 28px) + var(--launcher-banner-h, 72px) + 12px);
+}
+
+.launcher__btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 18px 9px 9px;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  background: #006d38;
+  border: 1px solid #006d38;
+  border-radius: 999px;
+  box-shadow: 0 6px 22px rgba(36, 54, 68, 0.18);
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+}
+.launcher__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(36, 54, 68, 0.24);
+}
+.launcher__btn img {
+  display: block;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.launcher__panel {
+  width: min(330px, calc(100vw - 32px));
+  padding: 18px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(36, 54, 68, 0.20);
+}
+
+.launcher__head { display: flex; align-items: flex-start; gap: 11px; margin-bottom: 13px; }
+.launcher__face { flex-shrink: 0; width: 42px; height: 42px; border-radius: 12px; }
+.launcher__title {
+  margin: 0; font-size: 0.98rem; font-weight: 700; line-height: 1.3; color: var(--color-navy);
+}
+.launcher__sub {
+  margin: 3px 0 0; font-size: 0.79rem; line-height: 1.45; color: var(--color-warm-gray-dark);
+}
+.launcher__close {
+  margin-left: auto; padding: 2px 4px; font-size: 1.15rem; line-height: 1;
+  color: #9aa3ab; cursor: pointer; background: none; border: none;
+}
+.launcher__close:hover { color: var(--color-navy); }
+
+.launcher__form { display: flex; gap: 8px; }
+.launcher__input {
+  flex: 1; min-width: 0; padding: 10px 12px; font: inherit; font-size: 0.9rem;
+  color: var(--color-navy); background: #fff;
+  border: 1px solid var(--color-border); border-radius: 9px;
+}
+.launcher__input:focus { outline: 2px solid var(--color-emerald); outline-offset: -1px; }
+.launcher__send {
+  padding: 10px 16px; font: inherit; font-size: 0.9rem; font-weight: 600; color: #fff;
+  cursor: pointer; background: var(--color-navy);
+  border: 1px solid var(--color-navy); border-radius: 9px;
+}
+.launcher__send:hover { background: var(--color-navy-dark); }
+
+.launcher__note {
+  margin: 10px 0 0; font-size: 0.74rem; line-height: 1.45; color: var(--color-warm-gray-dark);
+}
+.launcher__note a { color: #006d38; }
+
+/* The second route. Separated by a rule so the two are read as alternatives rather than
+   as one block of small print. */
+.launcher__human {
+  margin-top: 14px; padding-top: 13px; border-top: 1px solid var(--color-border);
+}
+.launcher__human-label {
+  margin: 0 0 6px; font-size: 0.79rem; font-weight: 600; color: var(--color-navy);
+}
+.launcher__email-row { display: flex; align-items: center; gap: 8px; }
+.launcher__email-row a {
+  font-size: 0.84rem; font-weight: 600; color: #006d38; text-decoration: none;
+}
+.launcher__email-row a:hover { text-decoration: underline; }
+.launcher__form-link {
+  display: inline-block; margin-top: 8px; font-size: 0.79rem; color: var(--color-warm-gray-dark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .launcher__btn { transition: none; }
+  .launcher__btn:hover { transform: none; }
+}
+
+@media (max-width: 560px) {
+  /* Label out, mark only: at this width the pill would otherwise crowd the article. */
+  .launcher__btn-label { display: none; }
+  .launcher__btn { padding: 9px; }
+}
