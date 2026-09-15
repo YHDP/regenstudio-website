@@ -183,7 +183,7 @@ URL: [https://demos.regenstudio.world](https://demos.regenstudio.world)
   Categories: Client Projects, Innovation Services, Living Labs
   Regen Studio designed an eight-phase innovation framework for The Hague's EC-DISC and Living Lab Scheveningen. The CIO of the Information & Automation department formally adopted it as departmental policy.
 
-- **[Weaving Nature into Urban Design](https://www.regenstudio.world/blog/Blog%203/)**: 2025-01-18
+- **[Weaving Nature into Urban Design](https://www.regenstudio.world/blog/weaving-nature-into-urban-design/)**: 2025-01-18
   Categories: Urban Greening, Biodiversity, Innovation Services
   By learning from and working with natural ecosystems, cities can build resilience, restore biodiversity, and create spaces that regenerate rather than deplete.
 
@@ -197,7 +197,7 @@ URL: [https://demos.regenstudio.world](https://demos.regenstudio.world)
   Categories: Innovation Services, Liveable Cities
   Innovation Theatre merges Regen's smart city innovation process with Brazilian Theatre of the Oppressed methodologies, empowering communities to design solutions to their own challenges.
 
-- **[Reimagining Urban Spaces: How Living Labs Drive City Regeneration](https://www.regenstudio.world/blog/Blog%202/)**: 2024-10-05
+- **[Reimagining Urban Spaces: How Living Labs Drive City Regeneration](https://www.regenstudio.world/blog/living-labs-city-regeneration/)**: 2024-10-05
   Categories: Living Labs, Digital Participation, Innovation Services
   Living labs are transforming how cities approach urban regeneration. By combining smart city technology with participatory design, communities are co-creating solutions that truly serve their needs.
 
@@ -237,7 +237,7 @@ URL: [https://demos.regenstudio.world](https://demos.regenstudio.world)
   Categories: Resilient Nature, Innovation Services
   Judith Rodin's The Resilience Dividend explores how communities and organizations can transform disruptions into opportunities for growth. What can intentional disruption teach us about building regenerative innovation ecosystems?
 
-- **[Guiding the City of The Hague's Smart City team towards Impactful Digital Innovations](https://www.regenstudio.world/blog/Blog%201/)**: 2024-04-12
+- **[Guiding the City of The Hague's Smart City team towards Impactful Digital Innovations](https://www.regenstudio.world/blog/guiding-the-hague-smart-city-team/)**: 2024-04-12
   Categories: Living Labs, Digital Participation, Innovation Services, Client Projects
   The City of The Hague's Expertise Centre for Digital Innovation & Smart City requested Regen Studio's innovation consultant services to guide their team towards impactful digital innovations.
 

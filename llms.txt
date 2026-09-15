@@ -65,10 +65,10 @@
 - [Position Paper: Trusted Digital Product Passports](https://www.regenstudio.world/blog/trusted-dpps/), 2025-05-22, Digital Product Passport, Digital Identity, Innovation Services, Client Projects
 - [10 Design Principles for Antifragile Regenerative Innovation Systems](https://www.regenstudio.world/blog/antifragile/), 2025-04-17, Innovation Services
 - [A Custom Digital Innovation Process for The Hague](https://www.regenstudio.world/blog/a-custom-digital-innovation-process-for-the-hague/), 2025-02-19, Client Projects, Innovation Services, Living Labs
-- [Weaving Nature into Urban Design](https://www.regenstudio.world/blog/Blog%203/), 2025-01-18, Urban Greening, Biodiversity, Innovation Services
+- [Weaving Nature into Urban Design](https://www.regenstudio.world/blog/weaving-nature-into-urban-design/), 2025-01-18, Urban Greening, Biodiversity, Innovation Services
 - [Reimagining Cities as Regenerative Ecosystems](https://www.regenstudio.world/blog/urban-jungle/), 2024-11-24, Urban Greening, Biodiversity
 - [Innovation Theatre: Playfully Building Capacity for Change](https://www.regenstudio.world/blog/Innovation-Theatre/), 2024-10-29, Innovation Services, Liveable Cities
-- [Reimagining Urban Spaces: How Living Labs Drive City Regeneration](https://www.regenstudio.world/blog/Blog%202/), 2024-10-05, Living Labs, Digital Participation, Innovation Services
+- [Reimagining Urban Spaces: How Living Labs Drive City Regeneration](https://www.regenstudio.world/blog/living-labs-city-regeneration/), 2024-10-05, Living Labs, Digital Participation, Innovation Services
 - [Designing for Privacy with Self-Sovereign Identity](https://www.regenstudio.world/blog/ssi-privacy/), 2024-09-24, Digital Identity, Privacy-by-Design, Innovation Services
 - [Exploring Bioacoustics With Iracambi](https://www.regenstudio.world/blog/bioacoustics-iracambi/), 2024-09-23, Biodiversity, Reforestation, Innovation Services
 - [Energy Hubs: How We Design Them as Smart Energy Communities](https://www.regenstudio.world/blog/energy-hubs/), 2024-09-18, Energy Communities, Smart Grids, Innovation Services
@@ -78,7 +78,7 @@
 - [Planting Regen Roots in Brazil](https://www.regenstudio.world/blog/planting-regen-roots-in-brazil/), 2024-08-13, Reforestation, Biodiversity, Urban Greening, Innovation Services
 - [Digital Product Passports for Regenerative Economies](https://www.regenstudio.world/blog/dpp-regenerative-economies/), 2024-08-09, Digital Product Passport, Innovation Services
 - [Intentional Disruption as a Tool for Regenerative Innovation](https://www.regenstudio.world/blog/resilience-dividend/), 2024-05-20, Resilient Nature, Innovation Services
-- [Guiding the City of The Hague's Smart City team](https://www.regenstudio.world/blog/Blog%201/), 2024-04-12, Living Labs, Digital Participation, Innovation Services, Client Projects
+- [Guiding the City of The Hague's Smart City team](https://www.regenstudio.world/blog/guiding-the-hague-smart-city-team/), 2024-04-12, Living Labs, Digital Participation, Innovation Services, Client Projects
 
 ## FAQ Topics
 The FAQ page covers 47 questions across 8 topic areas:
