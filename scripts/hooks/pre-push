@@ -626,6 +626,46 @@ else: print(f'published={pub} review.text={r.get(\"text\")} review.assets={r.get
     ISSUES=$((ISSUES + 1))
   fi
 
+  # 12. Block stylesheets with unbalanced braces.
+  #     A single missing `}` does not fail loudly. The browser reads every rule after it as
+  #     part of the unclosed block and throws them away, so the page still loads, just
+  #     unstyled below some arbitrary point. 294c400 shipped exactly that on 2026-07-28
+  #     (`@keyframes detailFadeIn {` lost its closing brace) and roughly 40% of style.css
+  #     was dead on every page for seven weeks before anyone noticed. Counts braces outside
+  #     comments and strings in every pushed *.css file and every inline <style> block.
+  CSS_FILES=$(git diff --name-only --diff-filter=AM "$range" 2>/dev/null | grep -E '\.(css|html)$' || true)
+  if [ -n "$CSS_FILES" ]; then
+    CSS_BAD=$(printf '%s\n' "$CSS_FILES" | python3 -c '
+import re, subprocess, sys
+sha = sys.argv[1]
+def unbalanced(src):
+    src = re.sub(r"/\*.*?\*/", lambda m: "\n" * m.group(0).count("\n"), src, flags=re.S)
+    src = re.sub(r"\"(?:[^\"\\\n]|\\.)*\"|\x27(?:[^\x27\\\n]|\\.)*\x27", "\"\"", src)
+    stack = []
+    for n, line in enumerate(src.split("\n"), 1):
+        for ch in line:
+            if ch == "{": stack.append((n, line.strip()[:60]))
+            elif ch == "}":
+                if not stack: return "extra } at line %d" % n
+                stack.pop()
+    return "unclosed { at line %d: %s" % stack[-1] if stack else None
+for f in filter(None, sys.stdin.read().split("\n")):
+    body = subprocess.run(["git", "show", "%s:%s" % (sha, f)], capture_output=True, text=True).stdout
+    if f.endswith(".css"):
+        err = unbalanced(body)
+        if err: print("%s: %s" % (f, err))
+    else:
+        for m in re.finditer(r"<style[^>]*>(.*?)</style>", body, re.S):
+            err = unbalanced(m.group(1))
+            if err: print("%s <style> at line %d: %s" % (f, body[:m.start()].count("\n") + 1, err))
+' "$local_sha")
+    if [ -n "$CSS_BAD" ]; then
+      echo -e "${RED}BLOCKED: unbalanced braces in CSS (everything after this point is silently dropped):${NC}"
+      echo "$CSS_BAD" | sed 's/^/    /' | head -10
+      ISSUES=$((ISSUES + 1))
+    fi
+  fi
+
   # Remember the head being pushed; the assistant deploy below needs it, and it must
   # happen outside this loop so a multi-ref push does not deploy twice.
   PUSH_HEAD="$local_sha"
