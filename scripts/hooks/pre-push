@@ -461,6 +461,19 @@ PYEOF
   CHECK_PAIRS=""
   if [ -n "$PAGE_CHECKS" ]; then
     while IFS= read -r file; do
+      # A redirect stub is not a blog post. When a post moves to a better slug, a stub has
+      # to stay at the old URL, because GitHub Pages serves static files and cannot issue a
+      # 301, and the old URL is the one inbound links point at. Its source folder is gone by
+      # definition, so the review gate below would look for a meta.json that no longer
+      # exists and block the push for a file containing no prose to review. The test is the
+      # file's own content at the push sha, not a path allow-list, so a real post can never
+      # slip through by being named like a stub.
+      body=$(git show "$local_sha:$file" 2>/dev/null || true)
+      if printf '%s' "$body" | grep -q 'http-equiv="refresh"' &&
+         printf '%s' "$body" | grep -q '<link rel="canonical"' &&
+         ! printf '%s' "$body" | grep -q '<article'; then
+        continue
+      fi
       prefix=$(echo "$file" | cut -d/ -f1)
       if [ "$prefix" = "blog" ]; then
         lang="en"; slug=$(echo "$file" | cut -d/ -f2)
@@ -613,6 +626,10 @@ else: print(f'published={pub} review.text={r.get(\"text\")} review.assets={r.get
     ISSUES=$((ISSUES + 1))
   fi
 
+  # Remember the head being pushed; the assistant deploy below needs it, and it must
+  # happen outside this loop so a multi-ref push does not deploy twice.
+  PUSH_HEAD="$local_sha"
+
 done
 
 if [ "$ISSUES" -gt 0 ]; then
@@ -622,6 +639,34 @@ if [ "$ISSUES" -gt 0 ]; then
   exit 1
 fi
 
-echo -e "${GREEN}Security scan passed. Pushing...${NC}"
+echo -e "${GREEN}Security scan passed.${NC}"
+
+# 11. Keep the site assistant in step with the site.
+#
+#     Deliberately NOT one of the checks above. It runs only once they have all passed, so
+#     nothing is deployed for a push that is about to be refused for a leaked secret or an
+#     unreviewed draft.
+#
+#     This deploys rather than blocks. Yvo's call, and the better one: blocking would force
+#     deploy-then-push, which leaves the assistant briefly ahead of the site. Doing it here
+#     closes the gap to seconds, and GitHub Pages takes longer than that to publish.
+#
+#     It is a no-op, with no output and no delay, unless content that feeds the EN index has
+#     moved since the last deploy. The script owns that test and its own refusal conditions.
+if [ "${SKIP_ASSISTANT_DEPLOY:-}" = "1" ]; then
+  echo -e "${YELLOW}SKIP_ASSISTANT_DEPLOY=1 — the assistant will not learn anything in this push.${NC}"
+  echo -e "${YELLOW}Run scripts/deploy-assistant.sh when you are back online.${NC}"
+elif [ -x scripts/deploy-assistant.sh ]; then
+  if ! scripts/deploy-assistant.sh --if-stale "${PUSH_HEAD:-HEAD}"; then
+    echo ""
+    echo -e "${RED}Push blocked: the site assistant could not be brought up to date.${NC}"
+    echo -e "Pushing would put content live that the assistant cannot see."
+    echo ""
+    exit 1
+  fi
+fi
+
+echo ""
+echo -e "${GREEN}Pushing...${NC}"
 echo ""
 exit 0

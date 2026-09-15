@@ -719,6 +719,15 @@ interface SitemapEntry {
   priority: string;
   /** Map of hreflang → URL for language alternates */
   alternates?: Record<string, string>;
+  /**
+   * Belongs in the sitemap but NOT in the assistant's retrieval index.
+   *
+   * One list feeds both consumers, which is what keeps them from drifting, but they do not
+   * want identical membership. chat.html is the assistant's own page: real content for a
+   * search engine, and nothing but interface for the assistant itself, which would
+   * otherwise be able to cite its own privacy notice back at the visitor who just read it.
+   */
+  noIndexForAssistant?: boolean;
 }
 
 /** Static pages that have NL/PT translations (path relative to site root). */
@@ -761,6 +770,9 @@ function buildStaticPageEntries(today: string): SitemapEntry[] {
       alternates: staticAlternates("/blog.html"),
     },
     { loc: `${SITE_URL}/faq.html`, lastmod: today, changefreq: "monthly", priority: "0.8", alternates: staticAlternates("/faq.html") },
+    // English only: the assistant answers from the EN index, so there is no NL or PT page
+    // to offer as an alternate yet.
+    { loc: `${SITE_URL}/chat.html`, lastmod: today, changefreq: "monthly", priority: "0.7", noIndexForAssistant: true },
     {
       loc: `${SITE_URL}/privacy.html`,
       lastmod: today,
@@ -1238,6 +1250,12 @@ interface IndexChunk {
   text: string;
   lang: Lang;
   type: "page" | "blog";
+  /** True for a published post in the "Client Projects" category. The assistant reserves a
+   *  context slot for one of these when asked what the studio does, so "what do you do" is
+   *  answered with real work rather than a list of service names. */
+  clientProject?: boolean;
+  /** Conversion weight, multiplied into the BM25 score at retrieval. See PAGE_TIERS. */
+  tier: number;
   updated: string;
 }
 
@@ -1303,11 +1321,52 @@ function plainText(html: string): string {
 }
 
 /** Strip markup, chrome and code before chunking. */
-function contentText(html: string): string {
-  const cleaned = html
+/**
+ * Remove everything that is machinery rather than content, BEFORE the document is split
+ * into sections.
+ *
+ * The order is the whole point. This used to run per-section, after splitSections had
+ * already cut the document on h1-h3 boundaries, and the CPR blog exposed why that is
+ * wrong: its inline JavaScript builds HTML strings, one of which contains a literal `<h3`.
+ * splitSections saw that token inside a script body, treated it as a real heading, and cut
+ * the script in two. Neither half then carried a matching <script>...</script> pair, so the
+ * paired regex could not fire and raw JavaScript went into the retrieval index as prose,
+ * where the assistant could have quoted `document.getElementById('cprGateForm')` at a
+ * visitor. Stripping first means a heading token inside a script is gone before anything
+ * looks for headings.
+ */
+function stripNonContent(html: string): string {
+  return html
     .replace(/<!--[\s\S]*?-->/g, " ")
-    .replace(/<(script|style|svg|noscript|template)\b[^>]*>[\s\S]*?<\/\1>/gi, " ");
-  return plainText(cleaned);
+    .replace(/<(script|style|svg|noscript|template)\b[^>]*>[\s\S]*?<\/\1>/gi, " ")
+    // Interface, not content. The contact form sits inside <main> on the homepage, about,
+    // blog and FAQ, so its labels and consent copy were being chunked as though they were
+    // prose: 34 chunks carried strings like "Also subscribe me to the Regen Studio
+    // newsletter" and "Enter your email to access our complete CPR product family tracker".
+    // Those competed with real passages for retrieval and could be quoted back at a
+    // visitor as if the page said them. A form is something to fill in, not something the
+    // site states.
+    .replace(/<form\b[^>]*>[\s\S]*?<\/form>/gi, " ")
+    .replace(/<(button|select|textarea)\b[^>]*>[\s\S]*?<\/\1>/gi, " ")
+    .replace(/<label\b[^>]*>[\s\S]*?<\/label>/gi, " ")
+    .replace(/<input\b[^>]*\/?>/gi, " ")
+    // Overlay and gate blocks, which are interface wherever they appear. Matched by class
+    // rather than tag, so the opening tag's own class list is the test.
+    // BEM defeats \b: the underscore in `dpp-gate__overlay` is a word character, so a
+    // trailing \b never fires and the DPP email gate survived the first version of this.
+    // Match the class token at a token boundary instead, with an optional BEM suffix, which
+    // also keeps innocent words like "navigate" and "gateway" from being treated as gates.
+    // The optional prefix catches the per-page variants — dpp-gate__card, cpr-gate__overlay —
+    // without having to enumerate one for every page that ever adds a gate.
+    .replace(
+      /<(div|section|aside)\b[^>]*class="(?:[^"]*\s)?(?:[\w]+-)?(?:modal|popup|overlay|gate|antibot|cookie|banner|regen-form)(?:__[\w-]+|--[\w-]+)?(?=[\s"])[^"]*"[^>]*>[\s\S]*?<\/\1>/gi,
+      " ",
+    );
+}
+
+/** Plain text of a section that has already been through stripNonContent(). */
+function contentText(html: string): string {
+  return plainText(html);
 }
 
 /** Body of <main> if the document has one, else the whole document. */
@@ -1372,13 +1431,19 @@ function chunkDocument(opts: {
   title: string;
   lang: Lang;
   type: "page" | "blog";
+  /** True for a published post in the "Client Projects" category. The assistant reserves a
+   *  context slot for one of these when asked what the studio does, so "what do you do" is
+   *  answered with real work rather than a list of service names. */
+  clientProject?: boolean;
+  tier: number;
   updated: string;
 }): IndexChunk[] {
   const chunks: IndexChunk[] = [];
   let ordinal = 0;
-  for (const section of splitSections(mainHtml(opts.html))) {
+  for (const section of splitSections(stripNonContent(mainHtml(opts.html)))) {
     for (const passage of windowWords(contentText(section.html))) {
       chunks.push({
+        tier: opts.tier,
         id: `${opts.sourceId}#${ordinal}`,
         url: section.anchor ? `${opts.url}#${section.anchor}` : opts.url,
         title: opts.title,
@@ -1386,6 +1451,7 @@ function chunkDocument(opts: {
         text: passage,
         lang: opts.lang,
         type: opts.type,
+        ...(opts.clientProject ? { clientProject: true } : {}),
         updated: opts.updated,
       });
       ordinal++;
@@ -1415,6 +1481,46 @@ function staticPageFile(baseDir: string, path: string, lang: Lang): string | nul
  * draft cannot enter the index, therefore cannot be retrieved, therefore cannot be
  * cited in an answer. That is the mechanism, not a promise.
  */
+/**
+ * Conversion weight per source, multiplied into the BM25 score at retrieval.
+ *
+ * Yvo's rule: a source is only worth citing if a prospect who follows the link lands
+ * somewhere that can win the work. The FAQ answers the question and ends the visit; a
+ * client project answers it and shows the studio doing the thing. So the FAQ is demoted
+ * rather than removed, because it is still often the only page that states a fact plainly.
+ *
+ * Grid-searched against the 87-question eval on both metrics at once, because either one
+ * alone picks a bad point (`_bench/sweep-tiers.js`):
+ *
+ *     weights                    recall@8   FAQ/explainer as top source
+ *     none                          97.7%   21 of 87
+ *     0.60 / 0.90 / 1.30            94.3%    2 of 87
+ *     0.70 / 0.95 / 1.20            96.6%    4 of 87   <- chosen
+ *     0.80 / 1.00 / 1.10            96.6%    9 of 87
+ *
+ * The harder 0.60/0.90/1.30 spread was tried first and rejected on measurement: it drops
+ * recall under the 95% gate, and reading the misses showed why. A 1.44x swing between the
+ * bottom and top tier stops being a preference between comparable sources and starts
+ * overriding relevance, so "is the manufacturer or the importer responsible" left the page
+ * that answers it and landed on a blog about refill sales. The chosen spread buys almost
+ * all of the same effect for a third of the cost.
+ *
+ * Legal pages sit at 1.00 deliberately: a first pass demoted them and privacy questions
+ * started answering out of a battery blog.
+ */
+const PAGE_TIERS: Array<[RegExp, number]> = [
+  [/^\/faq\.html$/, 0.70],
+  [/^\/what-is-[^/]*\/?$/, 0.95],
+  [/^\/(digital-product-passports|digital-identities)\//, 1.25],
+  [/^\/(innovation-services|client-projects)\.html$/, 1.25],
+];
+
+/** Blogs are top tier as a class; static pages fall back to neutral. */
+function pageTier(path: string): number {
+  for (const [re, weight] of PAGE_TIERS) if (re.test(path)) return weight;
+  return 1.00;
+}
+
 async function generateSearchIndex(
   baseDir: string,
   postsByLang: Map<Lang, BlogPost[]>,
@@ -1427,6 +1533,7 @@ async function generateSearchIndex(
     const chunks: IndexChunk[] = [];
 
     for (const entry of staticEntries) {
+      if (entry.noIndexForAssistant) continue;
       const path = entry.loc.replace(SITE_URL, "");
       if (lang !== "en" && !TRANSLATED_STATIC_PAGES.has(path)) continue;
       const file = staticPageFile(baseDir, path, lang);
@@ -1452,6 +1559,7 @@ async function generateSearchIndex(
         title: titleMatch ? plainText(titleMatch[1]) : path,
         lang,
         type: "page",
+        tier: pageTier(path),
         updated: today,
       }));
     }
@@ -1467,6 +1575,8 @@ async function generateSearchIndex(
         title: post.title,
         lang,
         type: "blog",
+        tier: 1.20,
+        clientProject: (post.categories || []).includes("Client Projects"),
         updated: post.updated || post.date,
       }));
     }
@@ -1594,11 +1704,32 @@ async function main() {
       count: chunks.length,
       chunks,
     };
-    await Deno.writeTextFile(
-      `${baseDir}/search-index.${lang}.json`,
-      JSON.stringify(payload) + "\n",
-    );
+    const body = JSON.stringify(payload) + "\n";
+    await Deno.writeTextFile(`${baseDir}/search-index.${lang}.json`, body);
     console.log(`  search-index.${lang}.json (${chunks.length} chunks)`);
+
+    // The assistant does not read this file from the website. The Edge Function imports
+    // it at build time (`import INDEX from "./search-index.en.json"`), so the copy that
+    // decides what the assistant knows is the one sitting in the function directory, and
+    // the file here is gitignored and never published.
+    //
+    // Writing both from one place removes the failure that follows: publish a blog, see
+    // it live on the site, and have the assistant keep insisting the site does not cover
+    // it, because nobody remembered to copy the index across. That exact gap is what made
+    // the assistant deny a smart-charging case study it had a full write-up of.
+    //
+    // The deploy is still manual and still required. Nothing here reaches production
+    // until `supabase functions deploy site-assistant --no-verify-jwt` runs.
+    if (lang === "en") {
+      const fnCopy = `${baseDir}/supabase/functions/site-assistant/search-index.${lang}.json`;
+      try {
+        await Deno.writeTextFile(fnCopy, body);
+        console.log(`  -> bundled copy updated; deploy the function to publish it`);
+      } catch (err) {
+        // A clone without the Proton symlink is a normal state, not a build failure.
+        console.warn(`  [index] could not update the function's copy: ${(err as Error).message}`);
+      }
+    }
   }
 
   // Verification
