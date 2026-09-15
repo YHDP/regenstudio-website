@@ -3780,6 +3780,7 @@ a.inno-service:hover .inno-service__image img {
 @keyframes detailFadeIn {
   from { opacity: 0; transform: translateY(-8px); }
   to { opacity: 1; transform: translateY(0); }
+}
 
 /* Accent colors cycling across 10 cards: emerald, teal, orange, magenta, red */
 .inno-service:nth-child(5n+1) { border-top: 2px solid var(--color-emerald); }
