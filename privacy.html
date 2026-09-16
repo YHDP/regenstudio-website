@@ -172,11 +172,27 @@
     .tldr-card li {
       font-size: 0.88rem;
       color: var(--color-text-secondary, #5781A1);
+      line-height: 1.6;
+    }
+    /* The flex row and its triangle marker were written for the short two-column
+       bullet card above. Applied to a list item holding a paragraph of prose, flex
+       turns every <strong>, text node and link into its own flex child, which is how
+       the scenarios block came out as scattered columns. Scope it to the ul card and
+       let the scenarios <ol> lay out as ordinary numbered prose. */
+    .tldr-card ul li {
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      line-height: 1.6;
     }
+    .tldr-card ol {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+    .tldr-card ol li {
+      display: list-item;
+      margin-bottom: 14px;
+    }
+    .tldr-card ol li::before { content: none !important; }
     .tldr-card li::before {
       content: '' !important;
       flex-shrink: 0;
