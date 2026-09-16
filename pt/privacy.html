@@ -193,6 +193,52 @@
       margin-bottom: 14px;
     }
     .tldr-card ol li::before { content: none !important; }
+    /* ===== Scenario chooser =====
+       Progressive enhancement over the <ol> below: the full legal wording stays in the
+       DOM and renders as a plain numbered list when JavaScript is unavailable. The
+       script hides that list only once it has successfully built this in its place. */
+    .scenario-q { margin: 0; }
+    .scenario-q__lead { font-size: 0.95rem; font-weight: 600; color: var(--color-navy, #1B2833); margin: 0 0 14px; }
+    .scenario-q__opts { display: grid; gap: 8px; margin: 0 0 18px; }
+    .scenario-q__opt {
+      display: flex; align-items: flex-start; gap: 10px; width: 100%;
+      padding: 12px 14px; font: inherit; font-size: 0.9rem; line-height: 1.45; text-align: left;
+      color: var(--color-navy, #1B2833); background: #fff;
+      border: 1px solid var(--color-border, #e0e0e0); border-radius: 10px; cursor: pointer;
+      transition: border-color .15s, background .15s, box-shadow .15s;
+    }
+    .scenario-q__opt:hover { border-color: #9ACBB4; background: #F6FBF8; }
+    .scenario-q__opt:focus-visible { outline: 2px solid #007B40; outline-offset: 2px; }
+    .scenario-q__opt[aria-pressed="true"] { border-color: #008545; background: #E6F2EC; box-shadow: inset 3px 0 0 #008545; }
+    .scenario-q__mark {
+      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; margin-top: 1px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; font-weight: 700; color: #fff; background: #1B2833;
+    }
+    .scenario-q__opt[aria-pressed="true"] .scenario-q__mark { background: #008545; }
+    .scenario-q__answer {
+      border: 1px solid var(--color-border, #e0e0e0); border-left: 4px solid #008545;
+      border-radius: 0 12px 12px 0; background: #F8FAF9; padding: 18px 20px;
+    }
+    .scenario-q__answer[hidden] { display: none; }
+    .scenario-q__title { margin: 0 0 8px; font-size: 1rem; font-weight: 700; color: var(--color-navy, #1B2833); }
+    .scenario-q__sum { margin: 0 0 12px; font-size: 0.92rem; line-height: 1.6; color: #333; }
+    /* The card styles .tldr-card ul as a two-column grid and gives every li a triangle
+       ::before, both written for the bullet card above. This facts list is a ul of li
+       inside that same card, so it inherited both: the rows landed in ragged columns
+       with stray triangles in front of each label. */
+    .scenario-q__facts { list-style: none; margin: 0 0 12px; padding: 0; display: grid !important; grid-template-columns: 1fr !important; gap: 6px !important; }
+    .scenario-q__facts li::before { content: none !important; display: none !important; }
+    .scenario-q__facts li { display: flex; }
+    .scenario-q__facts li { display: flex; gap: 8px; font-size: 0.86rem; line-height: 1.5; color: #333; }
+    .scenario-q__facts b { flex-shrink: 0; min-width: 104px; color: var(--color-navy, #1B2833); font-weight: 600; }
+    .scenario-q__more { font-size: 0.86rem; }
+    .scenario-q__more summary { cursor: pointer; color: #006838; font-weight: 600; }
+    .scenario-q__more summary:focus-visible { outline: 2px solid #007B40; outline-offset: 3px; border-radius: 4px; }
+    .scenario-q__more > div { margin-top: 10px; font-size: 0.88rem; line-height: 1.6; color: #333; }
+    .scenario-q__refs { margin: 12px 0 0; font-size: 0.84rem; color: var(--color-text-secondary, #5781A1); }
+    .scenario-q__refs a { color: #006838; }
+    @media (max-width: 560px) { .scenario-q__facts li { flex-direction: column; gap: 2px; } .scenario-q__facts b { min-width: 0; } }
     .tldr-card li::before {
       content: '' !important;
       flex-shrink: 0;
@@ -455,7 +501,6 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       Quatro cen&aacute;rios &agrave; primeira vista
     </h2>
-    <p>Explica&ccedil;&otilde;es independentes &mdash; escolha o que se aplica a voc&ecirc;.</p>
     <ol>
       <li><strong>Se voc&ecirc; apenas visita nosso site</strong> &mdash; coletamos <strong>nada</strong> de identifica&ccedil;&atilde;o pessoal. Sem cookies, sem pixels de rastreamento, sem identificadores cross-site. An&aacute;lises preservadoras de privacidade agregam contagens de visitas usando hashes de IP salgados e rotacionados diariamente (cru deletado em 48 horas, agregados indefinidos). N&atilde;o h&aacute; registro individual de voc&ecirc; para solicitar, corrigir ou apagar &mdash; nada existe. Subprocessador: apenas Supabase EU.</li>
       <li><strong>Se voc&ecirc; nos contacta</strong> (envio de formul&aacute;rio <em>sem</em> marcar a caixa de processamento de IA) &mdash; coletamos apenas os campos que voc&ecirc; envia (nome, e-mail, mensagem, organiza&ccedil;&atilde;o opcional). Respondemos manualmente. <strong>Claude e outras ferramentas de IA em nosso fluxo de trabalho n&atilde;o leem sua submiss&atilde;o.</strong> Reten&ccedil;&atilde;o: 90 dias para envios de contato (auto-deletados), 30 dias ap&oacute;s descadastramento para newsletter, 7 anos para faturas (lei tribut&aacute;ria holandesa). Direitos completos do titular se aplicam &mdash; veja <a href="#exercise-rights">Como exercer seus direitos</a>. Subprocessadores: Supabase EU, Lettermint, Proton Mail, Mollie (apenas em pagamento).</li>
@@ -929,5 +974,66 @@
   <script src="../assets/js/nav.js" defer></script>
   <script src="../assets/js/i18n.js" defer></script>
   <script src="../assets/js/tracker.js" defer></script>
+
+<script type="application/json" id="scenarioData">{"lead": "Qual destes é você?", "hint": "Escolha um e resumimos o que acontece com seus dados. O texto completo de cada cenário continua nesta página.", "full": "Ler o cenário completo", "refs": "Mais detalhes:", "opts": [{"label": "Você apenas visita o site", "head": "Nada que identifique", "sum": "Não coletamos nada que identifique você. Sem cookies, sem pixels de rastreamento, sem identificadores cross-site. As visitas são agregadas com hashes de IP salgados e rotacionados diariamente.", "facts": [["Subprocessador", "apenas Supabase EU"], ["Retenção", "cru deletado em 48 horas, agregados indefinidos"], ["Seus direitos", "não há registro individual para solicitar, corrigir ou apagar"]], "refs": [["#analytics", "Como funciona a análise"], ["#sub-processors", "Subprocessadores"]]}, {"label": "Você envia um formulário, sem marcar a caixa de IA", "head": "Nós lemos, o Claude não", "sum": "Coletamos apenas os campos que você envia e respondemos manualmente. O Claude e as outras ferramentas de IA do nosso fluxo não leem sua submissão.", "facts": [["Subprocessadores", "Supabase EU, Lettermint, Proton Mail, Mollie em pagamento"], ["Retenção", "90 dias para envios de contato, 7 anos para faturas"], ["Seus direitos", "direitos completos do titular"]], "refs": [["#exercise-rights", "Como exercer seus direitos"], ["#sub-processors", "Subprocessadores"]]}, {"label": "Você marca a caixa de processamento de IA", "head": "O Claude pode ler, e você pode retirar", "sum": "Sua submissão se torna elegível para processamento pelo Claude e pelas outras ferramentas de IA que usamos, para os propósitos consentidos. Marcar a caixa é o único portão de um envio por formulário.", "facts": [["Acrescenta", "Anthropic, subprocessador americano"], ["Retenção", "como acima, mais exclusão em 72 horas se você retirar"], ["Retirar", "autosserviço, a qualquer momento"]], "refs": [["../manage-consent.html", "Retirar o consentimento de IA"], ["#sub-processors", "O que a Anthropic recebe"]]}, {"label": "Você usa o assistente do site", "head": "Sem caixa de consentimento, porque perguntar é o ato", "sum": "A pergunta que você digita vai para a Anthropic para gerar uma resposta, junto com trechos das nossas páginas publicadas. Nenhum endereço IP, cookie ou identificador de sessão vai junto. Guardamos a pergunta em si, limpa e apenas com a data, de modo que nada nela aponte de volta para você.", "facts": [["Acrescenta", "Anthropic, chamada do nosso próprio servidor"], ["Guardamos", "a pergunta, sem e-mails, telefones e endereços web"], ["Uma exceção", "se você nos enviar a conversa, ela vira uma solicitação de contato"]], "refs": [["#ai-assistant", "O cenário completo do assistente"], ["../chat.html", "A página do assistente"], ["#sub-processors", "Subprocessadores"]]}]}</script>
+<script>
+(function () {
+  var card = document.getElementById("three-scenarios");
+  var raw = document.getElementById("scenarioData");
+  if (!card || !raw) return;
+  var ol = card.querySelector("ol");
+  if (!ol) return;
+  var D;
+  try { D = JSON.parse(raw.textContent); } catch (e) { return; }
+  if (!D.opts || D.opts.length !== ol.children.length) return;   // never hide text we cannot replace
+
+  var full = [].map.call(ol.children, function (li) { return li.innerHTML; });
+  var q = document.createElement("div");
+  q.className = "scenario-q";
+  var opts = D.opts.map(function (o, i) {
+    return '<button type="button" class="scenario-q__opt" aria-pressed="false" aria-controls="scenarioAnswer" data-i="' + i + '">' +
+      '<span class="scenario-q__mark" aria-hidden="true">' + (i + 1) + '</span><span>' + o.label + '</span></button>';
+  }).join("");
+  q.innerHTML = '<p class="scenario-q__lead">' + D.lead + '</p>' +
+    '<div class="scenario-q__opts" role="group" aria-label="' + D.lead + '">' + opts + '</div>' +
+    '<div class="scenario-q__answer" id="scenarioAnswer" role="region" aria-live="polite" hidden></div>' +
+    '<p class="scenario-q__refs">' + D.hint + '</p>';
+  ol.parentNode.insertBefore(q, ol);
+  ol.hidden = true;
+
+  var box = q.querySelector("#scenarioAnswer");
+  var buttons = [].slice.call(q.querySelectorAll(".scenario-q__opt"));
+
+  function show(i) {
+    var o = D.opts[i];
+    buttons.forEach(function (b, n) { b.setAttribute("aria-pressed", n === i ? "true" : "false"); });
+    var facts = o.facts.map(function (f) { return "<li><b>" + f[0] + "</b><span>" + f[1] + "</span></li>"; }).join("");
+    var refs = o.refs.map(function (r) { return '<a href="' + r[0] + '">' + r[1] + "</a>"; }).join(" · ");
+    box.innerHTML = '<p class="scenario-q__title">' + o.head + "</p>" +
+      '<p class="scenario-q__sum">' + o.sum + "</p>" +
+      '<ul class="scenario-q__facts">' + facts + "</ul>" +
+      '<details class="scenario-q__more"><summary>' + D.full + "</summary><div>" + full[i] + "</div></details>" +
+      '<p class="scenario-q__refs">' + D.refs + " " + refs + "</p>";
+    box.hidden = false;
+  }
+
+  buttons.forEach(function (b, i) {
+    b.addEventListener("click", function () { show(i); });
+    b.addEventListener("keydown", function (e) {
+      var n = e.key === "ArrowDown" || e.key === "ArrowRight" ? i + 1
+            : e.key === "ArrowUp" || e.key === "ArrowLeft" ? i - 1 : null;
+      if (n === null) return;
+      e.preventDefault();
+      buttons[(n + buttons.length) % buttons.length].focus();
+    });
+  });
+
+  function openFromHash() {
+    if (location.hash === "#ai-assistant") { show(D.opts.length - 1); }
+  }
+  openFromHash();
+  window.addEventListener("hashchange", openFromHash);
+})();
+</script>
 </body>
 </html>

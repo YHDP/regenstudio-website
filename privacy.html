@@ -193,6 +193,52 @@
       margin-bottom: 14px;
     }
     .tldr-card ol li::before { content: none !important; }
+    /* ===== Scenario chooser =====
+       Progressive enhancement over the <ol> below: the full legal wording stays in the
+       DOM and renders as a plain numbered list when JavaScript is unavailable. The
+       script hides that list only once it has successfully built this in its place. */
+    .scenario-q { margin: 0; }
+    .scenario-q__lead { font-size: 0.95rem; font-weight: 600; color: var(--color-navy, #1B2833); margin: 0 0 14px; }
+    .scenario-q__opts { display: grid; gap: 8px; margin: 0 0 18px; }
+    .scenario-q__opt {
+      display: flex; align-items: flex-start; gap: 10px; width: 100%;
+      padding: 12px 14px; font: inherit; font-size: 0.9rem; line-height: 1.45; text-align: left;
+      color: var(--color-navy, #1B2833); background: #fff;
+      border: 1px solid var(--color-border, #e0e0e0); border-radius: 10px; cursor: pointer;
+      transition: border-color .15s, background .15s, box-shadow .15s;
+    }
+    .scenario-q__opt:hover { border-color: #9ACBB4; background: #F6FBF8; }
+    .scenario-q__opt:focus-visible { outline: 2px solid #007B40; outline-offset: 2px; }
+    .scenario-q__opt[aria-pressed="true"] { border-color: #008545; background: #E6F2EC; box-shadow: inset 3px 0 0 #008545; }
+    .scenario-q__mark {
+      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; margin-top: 1px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; font-weight: 700; color: #fff; background: #1B2833;
+    }
+    .scenario-q__opt[aria-pressed="true"] .scenario-q__mark { background: #008545; }
+    .scenario-q__answer {
+      border: 1px solid var(--color-border, #e0e0e0); border-left: 4px solid #008545;
+      border-radius: 0 12px 12px 0; background: #F8FAF9; padding: 18px 20px;
+    }
+    .scenario-q__answer[hidden] { display: none; }
+    .scenario-q__title { margin: 0 0 8px; font-size: 1rem; font-weight: 700; color: var(--color-navy, #1B2833); }
+    .scenario-q__sum { margin: 0 0 12px; font-size: 0.92rem; line-height: 1.6; color: #333; }
+    /* The card styles .tldr-card ul as a two-column grid and gives every li a triangle
+       ::before, both written for the bullet card above. This facts list is a ul of li
+       inside that same card, so it inherited both: the rows landed in ragged columns
+       with stray triangles in front of each label. */
+    .scenario-q__facts { list-style: none; margin: 0 0 12px; padding: 0; display: grid !important; grid-template-columns: 1fr !important; gap: 6px !important; }
+    .scenario-q__facts li::before { content: none !important; display: none !important; }
+    .scenario-q__facts li { display: flex; }
+    .scenario-q__facts li { display: flex; gap: 8px; font-size: 0.86rem; line-height: 1.5; color: #333; }
+    .scenario-q__facts b { flex-shrink: 0; min-width: 104px; color: var(--color-navy, #1B2833); font-weight: 600; }
+    .scenario-q__more { font-size: 0.86rem; }
+    .scenario-q__more summary { cursor: pointer; color: #006838; font-weight: 600; }
+    .scenario-q__more summary:focus-visible { outline: 2px solid #007B40; outline-offset: 3px; border-radius: 4px; }
+    .scenario-q__more > div { margin-top: 10px; font-size: 0.88rem; line-height: 1.6; color: #333; }
+    .scenario-q__refs { margin: 12px 0 0; font-size: 0.84rem; color: var(--color-text-secondary, #5781A1); }
+    .scenario-q__refs a { color: #006838; }
+    @media (max-width: 560px) { .scenario-q__facts li { flex-direction: column; gap: 2px; } .scenario-q__facts b { min-width: 0; } }
     .tldr-card li::before {
       content: '' !important;
       flex-shrink: 0;
@@ -457,7 +503,6 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       Four scenarios at a glance
     </h2>
-    <p>Self-contained explanations — pick the one that applies to you.</p>
     <ol>
       <li>
         <strong>If you only visit our site</strong> &mdash; we collect <strong>nothing</strong> personally identifying. No cookies, no tracking pixels, no cross-site identifiers. Privacy-preserving analytics aggregate visit counts using daily-rotated salted IP hashes (raw deleted within 48 hours, aggregates indefinite). There is no individual-level record of you to request, correct, or delete &mdash; nothing exists. Sub-processor: Supabase EU only.
@@ -949,5 +994,66 @@
   <script src="assets/js/nav.js" defer></script>
   <script src="assets/js/i18n.js" defer></script>
   <script src="assets/js/tracker.js" defer></script>
+
+<script type="application/json" id="scenarioData">{"lead": "Which of these is you?", "hint": "Pick one and we summarise exactly what happens to your data. The full wording for every scenario stays on this page.", "full": "Read the full scenario", "refs": "More detail:", "opts": [{"label": "You only visit the site", "head": "Nothing identifying", "sum": "We collect nothing that identifies you. No cookies, no tracking pixels, no cross-site identifiers. Visit counts are aggregated with daily-rotated salted IP hashes.", "facts": [["Sub-processor", "Supabase EU only"], ["Retention", "raw deleted within 48 hours, aggregates indefinite"], ["Your rights", "there is no individual record to request, correct or delete"]], "refs": [["#analytics", "How the analytics work"], ["#sub-processors", "Sub-processors"]]}, {"label": "You send us a form, without ticking the AI box", "head": "We read it, Claude does not", "sum": "We collect only the fields you submit and respond manually. Claude and the other AI tools in our workflow do not read your submission.", "facts": [["Sub-processors", "Supabase EU, Lettermint, Proton Mail, Mollie on payment"], ["Retention", "90 days for contact submissions, 7 years for invoices under Dutch tax law"], ["Your rights", "full data-subject rights apply"]], "refs": [["#exercise-rights", "How to exercise your rights"], ["#sub-processors", "Sub-processors"]]}, {"label": "You tick the AI-processing consent box", "head": "Claude may read it, and you can withdraw", "sum": "Your submission becomes eligible for processing by Claude and the other AI tools we use, for the purposes you consented to. Ticking the box is the one and only gate on a form submission.", "facts": [["Adds", "Anthropic, a US sub-processor"], ["Retention", "as above, plus deletion within 72 hours if you withdraw"], ["Withdraw", "self-service, at any time"]], "refs": [["manage-consent.html", "Withdraw AI-processing consent"], ["#sub-processors", "What Anthropic receives"]]}, {"label": "You use the site assistant", "head": "No consent box, because asking is the act", "sum": "The question you type goes to Anthropic to generate an answer, together with passages from our published pages. No IP address, cookie or session identifier travels with it. We keep the question itself, scrubbed and carrying only the date, so nothing in it points back to you.", "facts": [["Adds", "Anthropic, called from our own server"], ["We keep", "the question, stripped of emails, phone numbers and URLs"], ["One exception", "if you send us the conversation, it becomes a contact submission"]], "refs": [["#ai-assistant", "The full assistant scenario"], ["chat.html", "The assistant page"], ["#sub-processors", "Sub-processors"]]}]}</script>
+<script>
+(function () {
+  var card = document.getElementById("three-scenarios");
+  var raw = document.getElementById("scenarioData");
+  if (!card || !raw) return;
+  var ol = card.querySelector("ol");
+  if (!ol) return;
+  var D;
+  try { D = JSON.parse(raw.textContent); } catch (e) { return; }
+  if (!D.opts || D.opts.length !== ol.children.length) return;   // never hide text we cannot replace
+
+  var full = [].map.call(ol.children, function (li) { return li.innerHTML; });
+  var q = document.createElement("div");
+  q.className = "scenario-q";
+  var opts = D.opts.map(function (o, i) {
+    return '<button type="button" class="scenario-q__opt" aria-pressed="false" aria-controls="scenarioAnswer" data-i="' + i + '">' +
+      '<span class="scenario-q__mark" aria-hidden="true">' + (i + 1) + '</span><span>' + o.label + '</span></button>';
+  }).join("");
+  q.innerHTML = '<p class="scenario-q__lead">' + D.lead + '</p>' +
+    '<div class="scenario-q__opts" role="group" aria-label="' + D.lead + '">' + opts + '</div>' +
+    '<div class="scenario-q__answer" id="scenarioAnswer" role="region" aria-live="polite" hidden></div>' +
+    '<p class="scenario-q__refs">' + D.hint + '</p>';
+  ol.parentNode.insertBefore(q, ol);
+  ol.hidden = true;
+
+  var box = q.querySelector("#scenarioAnswer");
+  var buttons = [].slice.call(q.querySelectorAll(".scenario-q__opt"));
+
+  function show(i) {
+    var o = D.opts[i];
+    buttons.forEach(function (b, n) { b.setAttribute("aria-pressed", n === i ? "true" : "false"); });
+    var facts = o.facts.map(function (f) { return "<li><b>" + f[0] + "</b><span>" + f[1] + "</span></li>"; }).join("");
+    var refs = o.refs.map(function (r) { return '<a href="' + r[0] + '">' + r[1] + "</a>"; }).join(" · ");
+    box.innerHTML = '<p class="scenario-q__title">' + o.head + "</p>" +
+      '<p class="scenario-q__sum">' + o.sum + "</p>" +
+      '<ul class="scenario-q__facts">' + facts + "</ul>" +
+      '<details class="scenario-q__more"><summary>' + D.full + "</summary><div>" + full[i] + "</div></details>" +
+      '<p class="scenario-q__refs">' + D.refs + " " + refs + "</p>";
+    box.hidden = false;
+  }
+
+  buttons.forEach(function (b, i) {
+    b.addEventListener("click", function () { show(i); });
+    b.addEventListener("keydown", function (e) {
+      var n = e.key === "ArrowDown" || e.key === "ArrowRight" ? i + 1
+            : e.key === "ArrowUp" || e.key === "ArrowLeft" ? i - 1 : null;
+      if (n === null) return;
+      e.preventDefault();
+      buttons[(n + buttons.length) % buttons.length].focus();
+    });
+  });
+
+  function openFromHash() {
+    if (location.hash === "#ai-assistant") { show(D.opts.length - 1); }
+  }
+  openFromHash();
+  window.addEventListener("hashchange", openFromHash);
+})();
+</script>
 </body>
 </html>
