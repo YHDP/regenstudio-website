@@ -35,7 +35,7 @@
   <link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/">
   <link rel="icon" type="image/png" href="../Images/favicon.png">
 
-  <link rel="preload" href="../Images/Logo-Text-on-the-sideAtivo 2.svg" as="image" type="image/svg+xml">
+  <link rel="preload" href="../Images/Logo-Text-on-the-sideAtivo 2.svg" as="image" fetchpriority="high" type="image/svg+xml">
   <link rel="preload" href="../Images/WebsiteLander.svg" as="image" type="image/svg+xml">
   <link rel="preload" href="../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -291,6 +291,18 @@
         <div class="hero__actions animate-in">
           <a href="#focus" class="btn btn--primary" data-track="hero-cta">Explore Nosso Trabalho</a>
         </div>
+
+        <!-- Ask the site assistant. A plain GET form, so it works with no JavaScript and
+             lands on chat.html?q=… — chat.html owns the conversation and the guardrails;
+             the hero only captures the question. Relative action, so /nl/ and /pt/ each
+             reach their own chat page. -->
+        <form class="hero__ask animate-in" action="chat.html" method="get" role="search">
+          <label class="sr-only" for="heroAskInput" data-i18n="hero.ask_label">Faça uma pergunta sobre nosso trabalho</label>
+          <input class="hero__ask-input" type="text" id="heroAskInput" name="q" maxlength="500"
+                 autocomplete="off" placeholder="Pergunte o que quiser sobre nosso trabalho"
+                 data-i18n-placeholder="hero.ask_placeholder">
+          <button class="hero__ask-btn" type="submit" data-i18n="hero.ask_button">Perguntar</button>
+        </form>
 
         <!-- Section nav: subtle inline pills -->
         <nav class="section-nav animate-in" aria-label="Seções da página">

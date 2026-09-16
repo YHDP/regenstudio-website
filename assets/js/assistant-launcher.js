@@ -102,10 +102,17 @@
         '</div>' +
       '</div>' +
 
-      // aria-label because below 560px the text label is display:none and the avatar is
-      // decorative, which left phone screen-reader users an unnamed button.
+      // No aria-label. It was added when this button had no text at all below 560px, which
+      // did leave phone screen-reader users an unnamed button. The short label span below
+      // fixed that properly, and the leftover aria-label then BROKE it a different way: the
+      // accessible name stayed "Ask us anything" while the visible text on a phone read
+      // "Ask AI", and WCAG 2.5.3 requires the name to contain the visible label. Lighthouse
+      // scored label-content-name-mismatch 0 on the live homepage on 2026-09-16.
+      //
+      // Letting the content name the button is correct on both viewports, because the span
+      // CSS hides with display:none is removed from the accessibility tree along with it.
       '<button class="launcher__btn" type="button" id="launcherBtn" aria-expanded="false" ' +
-        'aria-controls="launcherPanel" aria-label="' + label + '">' +
+        'aria-controls="launcherPanel">' +
         '<img src="' + avatar + '" alt="" width="34" height="34" decoding="async" fetchpriority="low">' +
         // Both labels ship; CSS picks one. On a phone the pill used to collapse to the bare
         // chameleon mark, which reads as the logo rather than as an assistant you can talk to.
