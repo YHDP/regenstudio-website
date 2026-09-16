@@ -61,6 +61,23 @@
   .ppwr-cond { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #935D0D; background: #FFF3E0; border: 1px solid #E8C88F; border-radius: 5px; padding: 2px 7px; white-space: nowrap; }
   .ppwr-hard { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #006838; background: #E6F2EC; border: 1px solid #9ACBB4; border-radius: 5px; padding: 2px 7px; white-space: nowrap; }
 
+  /* ===== Email gate — same mechanism as the CPR product-family tracker ===== */
+  .ppwr-gate { position: relative; }
+  .ppwr-gate--locked .ppwr-gate__content { filter: blur(5px); pointer-events: none; user-select: none; }
+  .ppwr-gate__overlay { display: none; }
+  .ppwr-gate--locked .ppwr-gate__overlay { display: flex; position: absolute; inset: 0; align-items: flex-start; justify-content: center; padding: 28px 16px; z-index: 2; }
+  .ppwr-gate__card { max-width: 460px; width: 100%; background: #fff; border: 1px solid #e0e0e0; border-radius: 14px; box-shadow: 0 10px 34px rgba(27,40,51,0.14); padding: 24px 24px 20px; text-align: center; position: sticky; top: 90px; }
+  .ppwr-gate__title { margin: 0 0 8px; font-size: 1.18rem; line-height: 1.3; color: #1B2833; }
+  .ppwr-gate__text { margin: 0 0 14px; font-size: 0.95rem; line-height: 1.5; color: #333; }
+  .ppwr-gate__input-row { display: flex; gap: 8px; }
+  .ppwr-gate__input { flex: 1; min-width: 0; padding: 10px 12px; font: inherit; font-size: 1rem; color: #1B2833; border: 1px solid #C9D2D5; border-radius: 9px; }
+  .ppwr-gate__input:focus { outline: 2px solid #008545; outline-offset: -1px; }
+  .ppwr-gate__btn { padding: 10px 18px; font: inherit; font-size: 1rem; font-weight: 600; color: #fff; background: #006838; border: 0; border-radius: 9px; cursor: pointer; white-space: nowrap; }
+  .ppwr-gate__btn:disabled { opacity: 0.7; cursor: default; }
+  .ppwr-gate__disclaimer { margin: 10px 0 0; font-size: 0.78rem; line-height: 1.45; color: #5A6B73; }
+  .ppwr-gate__error { margin: 10px 0 0; font-size: 0.85rem; color: #D51641; }
+  @media (max-width: 560px) { .ppwr-gate__input-row { flex-direction: column; } .ppwr-gate__card { top: 76px; } }
+
   /* ===== FAQ ===== */
   .ppwr-faq details { border: 1px solid #e0e0e0; border-radius: 10px; padding: 14px 18px; margin-bottom: 12px; background: #fff; }
   .ppwr-faq details[open] { border-color: #C9D2D5; background: #f8f9fa; }
@@ -69,9 +86,9 @@
   .ppwr-faq details p { margin: 12px 0 0; font-size: 0.97rem; line-height: 1.6; }
 </style>
 
-<p>Start with what the European Commission itself says. Its <a href="https://single-market-economy.ec.europa.eu/document/download/8748f8dc-3d48-4862-8153-e1165fb6be99_en?filename=Digital%20Product%20Passport%20-%20Frequently%20Asked%20Questions%20%28FAQ%29.pdf" rel="noopener">Digital Product Passport FAQ</a> gives the Packaging and Packaging Waste Regulation a one-line status note: "Adopted. Labelling/data requirements apply from August 2028 or later, pending an implementing act."</p>
+<p>Start with what the European Commission itself says. Its <a href="https://single-market-economy.ec.europa.eu/document/download/8748f8dc-3d48-4862-8153-e1165fb6be99_en?filename=Digital%20Product%20Passport%20-%20Frequently%20Asked%20Questions%20%28FAQ%29.pdf" rel="noopener">Digital Product Passport FAQ</a> gives the Packaging Regulation a one-line status note: "Adopted. Labelling/data requirements apply from August 2028 or later, pending an implementing act."</p>
 
-<p>In <a href="/digital-product-passports/">our work on Digital Product Passports</a> we have heard a great deal of talk since then about the PPWR QR code becoming mandatory already in 2026. The QR code most companies are hearing about is voluntary. And while everyone falls over labels and data carriers, we are missing what this regulation has already achieved: an EU-wide ban on PFAS above three limit values in food-contact packaging, which took effect the same day, needs no implementing act, and has no transition period in the Article.</p>
+<p>In <a href="/digital-product-passports/">our work on Digital Product Passports</a> we keep hearing that the PPWR QR code became mandatory in 2026. The one most companies are hearing about is voluntary. And while everyone falls over labels and data carriers, we are missing what this regulation achieved on the same day: an EU-wide ban on PFAS at or above three limit values in food-contact packaging, which needs no implementing act.</p>
 
 <p>Three myths are doing the rounds. Each has a precise answer in the text.</p>
 
@@ -86,7 +103,7 @@
       </div>
       <div class="ppwr-half ppwr-half--real">
         <div class="ppwr-half__k">Reality</div>
-        <p>The sorting QR is permissive drafting and carries no compliance date of its own. Exactly one case makes a carrier unconditionally compulsory, reusable packaging, and even that is switched off for open-loop systems with no system operator. Substances of concern trigger a digital-marking technology, a different term. An electronic code is the mandatory fallback where no label can be affixed. Identifying an EPR scheme is optional.</p>
+        <p>The sorting QR is permissive drafting and carries no compliance date of its own. Four cases do compel a carrier, and none of their dates is unconditional: reusable packaging, substances of concern, the fallback where no label fits, and EPR identification if you identify at all.</p>
         <span class="ppwr-half__cite">Art 12(1) 3rd subpara · 12(2)–(3) · 12(1) 2nd subpara · 12(5) · 12(9)</span>
       </div>
     </div>
@@ -127,17 +144,17 @@
 <div class="ppwr-toc">
   <div class="ppwr-toc__title">What this article covers</div>
   <ol class="ppwr-toc__list">
-    <li><a class="ppwr-toc__link" href="#myth-1">Myth 1: all products need a QR code on their packaging from 2028</a></li>
+    <li><a class="ppwr-toc__link" href="#myth-1">Myth 1: all products need a QR code from 2028</a></li>
     <li><a class="ppwr-toc__link" href="#myth-2">Myth 2: packaging needs a passport</a></li>
     <li><a class="ppwr-toc__link" href="#myth-3">Myth 3: passports must carry packaging data</a></li>
     <li><a class="ppwr-toc__link" href="#one-qr">One QR to rule them all</a></li>
     <li><a class="ppwr-toc__link" href="#pfas">What PPWR actually achieved on 12 August 2026</a></li>
-    <li><a class="ppwr-toc__link" href="#rest">The rest of the Regulation, and why its dates keep moving</a></li>
+    <li><a class="ppwr-toc__link" href="#rest">Why its dates keep moving</a></li>
     <li><a class="ppwr-toc__link" href="#what-to-do">What to do with the time this buys you</a></li>
   </ol>
 </div>
 
-<h2 id="myth-1">Myth 1: all products need a QR code on their packaging from 2028</h2>
+<h2 id="myth-1">Myth 1: all products need a QR code from 2028</h2>
 
 <p>Article 12 is titled "Labelling of packaging". Its first paragraph has four subparagraphs, and the third one settles the question:</p>
 
@@ -146,125 +163,63 @@
   <cite>Regulation (EU) 2025/40, Article 12(1), third subparagraph</cite>
 </div>
 
-<p>Two words carry the meaning. "May place" is permissive drafting, and the contrast with the obligations elsewhere in the same article is deliberate.</p>
+<p>Two words carry the meaning. "May place" is permissive drafting, and "in addition to the harmonised label" makes the voluntary QR a supplement to a mandatory printed one. Add the QR and you still owe the label; skip it and you owe nothing extra.</p>
 
-<p>The second phrase that matters is "in addition to the harmonised label". The voluntary QR supplements a mandatory printed label. It does not replace it, and it is not a standalone obligation. A company that adds the QR still owes the label. A company that skips the QR owes nothing extra.</p>
-
-<p>So what is mandatory? Something physical. Packaging placed on the market must carry a harmonised label with information on its material composition, pictogram-based and easily understandable, including for persons with disabilities. Transport packaging and deposit-return packaging are excluded, though e-commerce packaging is carved explicitly back in, so a business shipping parcels cannot treat its boxes as exempt. Deposit-return packaging being outside the harmonised label does not make it label-free: the fourth subparagraph of Article 12(1) separately requires it to "be marked with a clear and unambiguous label", and Member States may additionally require a harmonised colour label on top of the national one.</p>
+<p>So what is mandatory? Something physical: a harmonised label showing material composition, pictogram-based. Transport and deposit-return packaging are excluded, e-commerce packaging is carved explicitly back in, so a parcel shipper cannot treat its boxes as exempt.</p>
 
 <div class="ppwr-note">
   <div class="ppwr-note__k">A QR code is never actually required</div>
-  <p>PPWR is technology-neutral and never mandates a QR specifically. Article 12 mentions a QR code eight times, and not one of those eight names it without an open alternative alongside it: mostly "or other type of standardised, open, digital data carrier", and in paragraph 9 "or other standardised, open, digital-marking technology". The obligation, where it exists, is to carry data. The QR code is one way to do that, and the one the drafters happened to name.</p>
+  <p>Article 12 mentions a QR code eight times, and not one of those eight names it without an open alternative beside it. The obligation, where it exists, is to carry data. The QR code is one way to do it, and the one the drafters happened to name.</p>
 </div>
 
-<p>Which raises the question the whole regime turns on: what counts as a "standardised, open, digital-marking technology"? PPWR does not say. Article 3 imports the definition of "data carrier" from Article 2, point (29), of the Ecodesign for Sustainable Products Regulation, but the marking-technology phrase is left undefined.</p>
+<p>And the date is not what people quote either. Article 12(1) reads "from 12 August 2028 or 24 months from the date of entry into force of the implementing acts adopted pursuant to paragraphs 6 or 7 of this Article, whichever is the latest". That conditional is doing real work, because the acts do not exist. They were due on 12 August 2026, the day the Regulation became applicable, and had not appeared as at that date, which is worth re-checking against the Official Journal. The arithmetic is what matters: an act in force in December 2026 pushes the label to December 2028, and a slip into 2027 pushes it into 2029. Until it exists, no printer in Europe could produce a compliant sorting label.</p>
 
-<p>The Commission's Joint Research Centre fills the gap in its <a href="https://circulareconomy.europa.eu/platform/sites/default/files/2026-01/JRC141706_01.pdf" rel="noopener">technical proposal on EU harmonised waste sorting labels</a>, the document written to inform the Article 12(6) implementing act. In practice "standardised" means a published ISO/IEC symbology, and the JRC names them: QR codes under ISO/IEC 18004, Data Matrix under ISO/IEC 16022, Aztec under ISO/IEC 24778, Micro QR as a subset of 18004, and NFC tags. Several of those need less space than a QR code, which matters on small packaging, though the JRC notes they suffer from weaker smartphone compatibility.</p>
+<p>None of which makes a flat "the QR is voluntary" headline safe. Article 12 compels a carrier in four places, and a company can fall into any of them without having planned for it. None of the four carries an unconditional date.</p>
 
-<p>More surprising is what the JRC left out. Digital watermarking, the invisible sorting marker developed through the HolyGrail 2.0 initiative and the technology most people assume the phrase points at, was raised by stakeholders and set aside:</p>
+<div class="ppwr-gate" id="ppwrGate">
+<div class="ppwr-gate__content">
+<figure style="margin:28px 0 30px">
+  <img src="Blogs/ppwr-packaging-dpp/four-carrier-cases.svg" alt="The four cases where PPWR Article 12 compels a data carrier. One, reusable packaging, from 12 February 2029 or 30 months after the Article 12(6) act, switched off for open-loop systems with no system operator. Two, packaging containing substances of concern, once the methodology due 1 January 2030 exists, with no threshold in the text. Three, packaging where no label fits, which applies now under Article 12(5) and is the only case where digital replaces physical. Four, EPR identification by 12 February 2027, optional to do but digital-marking only if done." width="400" height="930" loading="lazy" decoding="async" style="display:block;margin:0 auto;width:100%;max-width:400px;height:auto">
+  <figcaption style="font-size:0.86rem;color:#5A6B73;margin-top:10px;line-height:1.45">The four cases, with the condition that moves each date. Three of the four are easy to walk into without planning for them.</figcaption>
+</figure>
 
-<div class="ppwr-quote">
-  <p>"Technologies designed to automate sorting, such as digital watermarking (e.g. HolyGrail 2.0), were also discussed by stakeholders. While promising, these solutions are not yet mature for large-scale market implementation and therefore were not considered in the current proposal."</p>
-  <cite>JRC technical proposal on EU harmonised waste sorting labels under the PPWR, 2026</cite>
+<p><strong>Reusable packaging</strong> must bear a label saying so, and the reuse system and its collection points must be reachable through a carrier that can track trips and rotations. The date is 12 February 2029, or 30 months from the Article 12(6) act, whichever is the latest. Article 12(3) carves out a derogation that is easy to miss: it does not apply to open loop systems with no system operator, so whether a refill scheme counts as a formal reuse system decides whether the obligation applies at all.</p>
+
+<p><strong>Packaging containing substances of concern</strong> "shall be marked by means of standardised, open, digital-marking technologies", under a methodology due by 1 January 2030 that must carry at least the name and concentration of each such substance in each material. This is the provision to watch, and almost nobody is preparing for it. PPWR does not define the term: Article 3 imports it from the Ecodesign Regulation, whose second limb catches any substance with a harmonised CLP classification in a listed hazard class. Antimony trioxide, the catalyst behind most virgin PET, is one. So are benzophenone in UV-cured inks and formaldehyde in adhesives. Note what is missing from Article 12(1): a threshold. No de minimis, no percentage, so read literally this stops being a niche case and starts looking like a sector-wide default. Article 5(2) requires the Commission, assisted by ECHA, to report by 31 December 2026 on which substances of concern are actually in packaging, and that report will size it.</p>
+
+<p><strong>A fallback where no label fits.</strong> Article 12(5) is easily missed: where a label cannot be affixed to the packaging and cannot be affixed to the grouped packaging either, or where non-discriminatory access to information for vulnerable groups, particularly visually impaired persons, requires it, the information "shall be provided via a single electronically readable code or other type of data carrier". That is the one case where digital replaces physical rather than supplementing it.</p>
+
+<p><strong>EPR identification.</strong> By 12 February 2027, packaging covered by an extended producer responsibility scheme may be identified across the territory where it applies. Identifying is optional, but a producer who does it has no choice of method: identification "shall be achieved only by means of a corresponding symbol in a QR code or other standardised, open, digital-marking technology". That rules out a plain static printed symbol on its own, which is why anyone printing a Green Dot or a national EPR mark should read it closely.</p>
 </div>
 
-<p>Some stakeholders had gone further and proposed dropping consumer-facing labels altogether in favour of watermark-driven sorting with no consumer involvement at all. The JRC declined, pointing out that substituting digital for physical is permitted only in the exceptional circumstances set out in Article 12(5).</p>
-
-<p>One boundary is worth drawing precisely, because it is where commentary tends to overreach. The JRC report was written to inform the implementing acts under Article 12(6) and Article 13(2), the sorting label and the receptacle label. It was not written for the Article 12(7) methodology covering material composition and substances of concern, which is the provision where a watermark would most naturally sit. So watermarking is parked for labelling. It has not been ruled out of 12(7), and anyone asserting otherwise in either direction is guessing. The report also carries the standard disclaimer that its contents do not necessarily reflect the Commission's position.</p>
-
-<p>And the date is not what people quote either. Article 12(1) does not stop at 12 August 2028. It says:</p>
-
-<div class="ppwr-quote">
-  <p>"From 12 August 2028 or 24 months from the date of entry into force of the implementing acts adopted pursuant to paragraphs 6 or 7 of this Article, whichever is the latest…"</p>
-  <cite>Regulation (EU) 2025/40, Article 12(1), first subparagraph</cite>
+<div class="ppwr-gate__overlay" id="ppwrGateOverlay">
+  <div class="ppwr-gate__card">
+    <h3 class="ppwr-gate__title">See the four cases in full</h3>
+    <p class="ppwr-gate__text">Enter your email to open every case where Article 12 compels a data carrier, with the date and the condition that moves it.</p>
+    <form class="ppwr-gate__form" id="ppwrGateForm">
+      <div class="ppwr-gate__input-row">
+        <input type="email" name="email" placeholder="Your work email" aria-label="Your work email" class="ppwr-gate__input" required>
+        <button type="submit" class="btn btn--primary ppwr-gate__btn">Open</button>
+      </div>
+      <p class="ppwr-gate__disclaimer">By submitting you agree to our <a href="/privacy.html">Privacy Policy</a>.</p>
+    </form>
+  </div>
 </div>
-
-<p>That conditional is doing real work, because the acts it depends on do not exist. Article 12(6), and Article 12(7) in its first subparagraph, obliged the Commission to adopt them by 12 August 2026, the very day the Regulation became applicable. As at publication on 12 August 2026 they have not appeared. The Commission's own Digital Product Passport FAQ carries the same reading from the other direction, "from August 2028 or later, pending an implementing act", and the industry association EUROPEN together with Latham &amp; Watkins, Hogan Lovells and Gleiss Lutz each report a draft expected after the summer and adoption anticipated in the fourth quarter of 2026, following discussion in the Waste Expert Group and a public consultation. Treat that timing as reported rather than official. The arithmetic is what matters: an act entering into force in December 2026 pushes the label obligation to December 2028, and a slip into 2027 pushes it into 2029.</p>
-
-<p>One ambiguity deserves flagging, because most coverage resolves it silently. Article 12(1) keys off the acts adopted under "paragraphs 6 <em>or</em> 7", and paragraph 7 contains two separate mandates: the material-composition methodology due 12 August 2026, and a second methodology for substances of concern due by 1 January 2030. Read literally, the later of those could drag the harmonised-label date towards 2032. The reading assumed here, and the one the Commission's FAQ appears to share, is that the label clock runs off the 12(6) and 12(7) first-subparagraph acts, since those are the ones that actually specify the label. It is worth knowing the other reading exists before someone quotes it at you. The Commission's own FAQ puts it plainly, "from August 2028 or later, pending an implementing act", and until the act exists the pictogram design and the data-carrier specifications remain unknown, so no printer in Europe could produce a compliant sorting label today even for a company that wanted one.</p>
-
-<p>None of which makes a flat "the QR is voluntary" headline safe. Article 12 compels a carrier in four places, and a company can fall into any of them without having planned for it. Only the first is unconditional. A fourth, easily missed, sits inside Article 12(5): where a label cannot be affixed to the packaging and cannot be affixed to the grouped packaging either, or where non-discriminatory access for visually impaired users requires it, the information "shall be provided via a single electronically readable code or other type of data carrier". That is the one case where digital replaces physical rather than supplementing it.</p>
-
-<h3>1. Reusable packaging</h3>
-
-<p>Reusable packaging must bear a label saying it is reusable, and further information, including the availability of a reuse system and the location of collection points, must be made available through a QR code or other standardised, open, digital data carrier. That carrier has a functional job: it must facilitate tracking of the packaging and calculation of trips and rotations, or an average estimation where calculation is not feasible. The date is 12 February 2029, or 30 months from the Article 12(6) act, whichever is the latest.</p>
-
-<p>Article 12(3) then carves out a derogation that is easy to miss: the requirement does not apply to open loop systems that have no system operator under Annex VI. Whether a refill or return scheme qualifies as a formal reuse system, with or without an operator, decides whether the obligation applies at all. That question cannot be answered in the abstract.</p>
-
-<h3>2. Packaging containing substances of concern</h3>
-
-<p>The second subparagraph of Article 12(1) is short and its verb is "shall":</p>
-
-<div class="ppwr-quote">
-  <p>"The packaging placed on the market containing substances of concern shall be marked by means of standardised, open, digital-marking technologies in accordance with the methodology referred to in paragraph 7, second subparagraph."</p>
-  <cite>Regulation (EU) 2025/40, Article 12(1), second subparagraph</cite>
-</div>
-
-<p>A mandatory digital marking, sitting in the same paragraph as the voluntary one. The methodology is due by 1 January 2030 and must ensure the marking includes at least the name and concentration of each substance of concern in each material in a packaging unit. One clarification prevents a common confusion: this concerns substances in the packaging, in the bottle wall, the ink, the adhesive, the barrier layer. Not the product inside.</p>
-
-<p>This is the provision to watch, because its scope is far wider than the phrase "substances of concern" suggests, and almost nobody is preparing for it. PPWR does not define the term. Article 3 imports the definition from Article 2, point (27), of the Ecodesign for Sustainable Products Regulation, and the second limb of that definition catches any substance carrying a harmonised classification in Part 3 of Annex VI to the CLP Regulation in a listed hazard class. Those classes include carcinogenicity categories 1 and 2, reproductive toxicity 1 and 2, mutagenicity 1 and 2, respiratory and skin sensitisation category 1, specific target organ toxicity, and chronic aquatic hazards.</p>
-
-<p>Run ordinary packaging chemistry through that filter and the results are uncomfortable.</p>
-
-<div class="ppwr-table-wrap">
-<table class="ppwr-table">
-  <caption>Common packaging inputs and their harmonised CLP classification, from Annex VI Part 3 at ATP23. Each of these classes falls inside the ESPR Article 2(27)(b) limb that PPWR imports.</caption>
-  <thead>
-    <tr><th>Substance</th><th>Where it turns up</th><th>Harmonised classification</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Antimony trioxide</td><td>Polycondensation catalyst in most virgin PET</td><td><strong>Carc. 2</strong>, H351</td></tr>
-    <tr><td>Benzophenone</td><td>Photoinitiator in UV-cured printing inks</td><td><strong>Carc. 1B</strong>, H350</td></tr>
-    <tr><td>Formaldehyde</td><td>Adhesives, resins, coatings</td><td><strong>Carc. 1B, Muta. 2, Skin Sens. 1A</strong></td></tr>
-    <tr><td>Toluene</td><td>Solvent-based inks</td><td><strong>Repr. 2, STOT RE 2</strong></td></tr>
-    <tr><td>Bisphenol A</td><td>Can linings, polycarbonate</td><td><strong>Repr. 1B</strong>, Skin Sens. 1, Aquatic Chronic 1</td></tr>
-  </tbody>
-</table>
-</div>
-
-<p>Note what is missing from Article 12(1): a threshold. The text says packaging "containing substances of concern shall be marked", with no de minimis and no percentage. ESPR's familiar 0,1 % weight-by-weight floor attaches to a different limb of the definition and is an ESPR provision in any case, not one PPWR imports.</p>
-
-<p>Follow that literally and the marking obligation stops being a niche case for hazardous packaging and starts looking like a sector-wide default. Antimony trioxide is the catalyst behind the great majority of virgin PET produced worldwide, which would put a mandatory data carrier on the ordinary plastic bottle. Add printing inks and adhesives and very little printed packaging sits outside the definition.</p>
-
-<div class="ppwr-note">
-  <div class="ppwr-note__k">Two reasons not to over-read this yet</div>
-  <p>First, whether finished PET legally "contains" antimony trioxide after polymerisation, rather than antimony species derived from it, is a genuine question that the Article 12(7) methodology will have to answer. Second, the scoping is not settled: Article 5(2) requires the Commission, assisted by the European Chemicals Agency, to report by <strong>31 December 2026</strong> on which substances of concern are actually present in packaging, and that report is what will size this obligation. Worth noting too that assumptions here are unreliable in both directions. Titanium dioxide and carbon black, two inputs people routinely name in this conversation, carry no Annex VI entry at all and do not reach this limb.</p>
-</div>
-
-<h3>3. Extended producer responsibility identification</h3>
-
-<p>By 12 February 2027, packaging covered by an EPR scheme may be identified across the territory where that scheme applies. Identifying is optional. But if a producer chooses to do it, Article 12(9) closes off the alternatives: identification "shall be achieved only by means of a corresponding symbol in a QR code or other standardised, open, digital-marking technology". Optional to do, digital-marking-only if done. What it rules out is a plain static printed symbol on its own. For any producer currently printing a Green Dot or a national EPR mark as a static symbol, this is the provision to read closely, and its date is February 2027.</p>
+</div><!-- /.ppwr-gate -->
 
 <h2 id="myth-2">Myth 2: packaging needs a passport</h2>
 
-<p>Article 12 never uses the term "digital product passport". PPWR creates no passport, defines no passport data model, and contains no link to the EU Digital Product Passport Registry that went live in July 2026. What Article 12 creates is a labelling regime with an optional digital data carrier attached for consumer sorting.</p>
+<p>Article 12 never uses the term "digital product passport". PPWR creates no passport, defines no data model, and contains no link to the EU Digital Product Passport Registry that went live in July 2026. What it creates is a labelling regime with an optional digital data carrier attached for consumer sorting.</p>
 
-<p>The vocabulary is worth being pedantic about, because loose terminology is arguably what produced the myth. The phrase "digital label" does not appear anywhere in PPWR, recitals included. The Regulation uses "digital data carrier" ten times, and "digital-marking technolog(y/ies)" six times, of which only four sit in enacting articles. The label it makes mandatory in 2028 is a pictogram, affixed, printed or engraved. Digital delivery is the exception, not the rule: Article 12(5) allows it where affixing is not possible or not warranted, and Article 12(6) tells the Commission to specify formats "including where provided through digital means". Commentary that describes Article 12 as a "digital labelling regime" fuses two separate things, and a reader who absorbs that phrase reasonably concludes that the mandatory 2028 item is digital.</p>
-
-<div class="ppwr-table-wrap">
-<table class="ppwr-table">
-  <caption>The four constructs that get collapsed into one another, and what PPWR actually calls them.</caption>
-  <thead>
-    <tr><th>Construct</th><th>Status under PPWR</th><th>What it actually is</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Harmonised label</td><td>Mandatory, 2028 at the earliest</td><td>Printed pictogram showing material composition. Physical.</td></tr>
-    <tr><td>Digital data carrier</td><td>Optional for sorting; compulsory in specific cases</td><td>The term PPWR uses. It names only the QR code, always beside "or other type of standardised, open, digital data carrier". NFC and Data Matrix come from the JRC proposal, not the Regulation, and RFID appears once, in Annex I, listing RFID tags as <em>not</em> packaging.</td></tr>
-    <tr><td>Digital-marking technology</td><td>Mandatory for substances of concern</td><td>Machine-readable marking per a methodology due 1 Jan 2030.</td></tr>
-    <tr><td>"Digital label"</td><td>Does not exist in the text</td><td>Industry shorthand that merges the first two.</td></tr>
-  </tbody>
-</table>
-</div>
+<p>The vocabulary is worth being pedantic about, because loose terminology is arguably what produced the myth. "Digital label" appears nowhere in PPWR. The label it makes mandatory in 2028 is a pictogram, affixed, printed or engraved. Digital delivery is the exception under Article 12(5), though Article 12(7) goes further: the methodology for identifying material composition, the content that label carries, is itself to work "by means of standardised, open, digital-marking technologies". Commentary that calls Article 12 a "digital labelling regime" fuses two separate things.</p>
 
 <h2 id="myth-3">Myth 3: passports must carry packaging data</h2>
 
-<p>This one is the most consequential for anyone building a passport right now, because it changes the data model.</p>
+<p>This one is the most consequential for anyone building a passport, because it changes the data model.</p>
 
-<p>A sectoral Digital Product Passport carries what its own regulation tells it to carry. Nothing in PPWR reaches across and adds packaging data points to somebody else's passport. Take the regime furthest along: the Batteries Regulation (EU) 2023/1542 scopes its passport to the battery itself, covering model and individual identity, material composition including critical raw materials, carbon footprint, supply-chain due diligence, performance and durability, and circularity. Packaging is not a passport data category there. Where packaging appears in that regulation at all, it appears as a fallback surface: where direct marking is not possible given the nature and size of the battery, the labels and the QR code go on the packaging and the accompanying documents. The packaging is somewhere to put the carrier, not something the passport describes.</p>
+<p>A sectoral Digital Product Passport carries what its own regulation tells it to carry. Nothing in PPWR reaches across and adds packaging fields to somebody else's passport. The Batteries Regulation (EU) 2023/1542 scopes its passport to the battery: identity, material composition, carbon footprint, due diligence, performance, circularity. Packaging is not a data category there. It appears only as a fallback surface under Article 13(7), where the battery is too small to mark and the labels go on the packaging instead. Somewhere to put the carrier, not something the passport describes.</p>
 
-<p>The same logic holds for detergents under the <a href="/blog/dsr-digital-product-passport/">Detergents and Surfactants Regulation</a>, for construction products under the <a href="/blog/cpr-digital-product-passport/">Construction Products Regulation</a>, and for whatever the <a href="/blog/ESPR/">ESPR</a> delegated acts specify per product group. Each passport's contents come from its own act. If a sectoral rule wants packaging data in the passport, it has to say so itself.</p>
-
-<p>So a shampoo bottle can simultaneously be a product with a mandatory passport and packaging with an optional sorting label. Two payloads, two legal bases, two timetables. The practical consequence is that for most consumer goods it is the passport regime, not PPWR, that will actually force a data carrier onto the pack, and it will do so on the passport regime's schedule.</p>
+<p>The same holds for detergents under the <a href="/blog/dsr-digital-product-passport/">Detergents and Surfactants Regulation</a>, construction products under the <a href="/blog/cpr-digital-product-passport/">Construction Products Regulation</a>, and whatever the <a href="/blog/ESPR/">ESPR</a> delegated acts specify. If a sectoral rule wants packaging data in its passport, it has to say so itself. A shampoo bottle can therefore be a product with a mandatory passport and packaging with an optional sorting label at once. Two payloads on two timetables, and for most consumer goods it is the passport regime, not PPWR, that forces a carrier onto the pack.</p>
 
 <h2 id="one-qr">One QR to rule them all</h2>
 
@@ -280,13 +235,9 @@
   <span>Article 12(5) is the single point at which PPWR reaches across to another regime's data carrier.</span>
 </div>
 
-<p>There is a passage that appears to go further, and it deserves naming rather than avoiding. Recital 70 says that where the packaged product is covered by the Ecodesign Regulation or other Union law requiring a digital product passport, "that digital product passport should also be used for providing the relevant information under this Regulation". Read quickly, that sounds like an instruction to put packaging data inside the product passport. It is not, for a reason worth internalising before anyone quotes it at you: recitals explain a regulation's intent and create no obligation, and the verb is "should" throughout. The binding rule is Article 12(5), and it says something narrower.</p>
+<p>Note the verb: "shall", not "may". One code, both payloads, easily distinguishable. Recital 70 appears to go further, saying a product passport "should also be used" for this information, but recitals explain intent and create no obligation. The binding rule is Article 12(5), and it says something narrower.</p>
 
-<p>Note the verb there. This is "shall", not "may". Where a product carries a data carrier because other Union law requires one, and the packaging also has information to convey, you do not get two codes. You get one, carrying both, with the two payloads easily distinguishable from each other.</p>
-
-<p>For a detergent manufacturer this is the most useful sentence in Article 12. The passport carrier that becomes mandatory in September 2029 can also carry the packaging sorting information, and printing a second code alongside it runs against the text. The design decision worth making now is a carrier architecture that can hold a product payload and a packaging payload side by side, cleanly separated. Everything else in Article 12 is either optional or years away behind an act that has not been written.</p>
-
-<p>We have written elsewhere about what it takes for those passports to be worth trusting, in our <a href="/blog/trusted-dpps/">position paper on trusted digital product passports</a>, and about the <a href="/blog/dpp-registry-goes-live/">registry that sits underneath them</a>.</p>
+<p>For a detergent manufacturer this is the most useful sentence in Article 12. The passport carrier that becomes mandatory in September 2029 can carry the packaging sorting information too, so build one carrier with two cleanly separated payloads. We have written elsewhere about what makes those passports worth trusting, in our <a href="/blog/trusted-dpps/">position paper</a>, and about the <a href="/blog/dpp-registry-goes-live/">registry underneath them</a>.</p>
 
 <h2 id="pfas">What PPWR actually achieved on 12 August 2026</h2>
 
@@ -308,22 +259,20 @@
 </table>
 </div>
 
-<p>Read the third row carefully, because it is widely misquoted. Several compliance summaries render it as a 50 ppm limit on total fluorine. The Regulation sets 50 ppm for PFAS including polymeric PFAS, and uses total fluorine above 50 mg/kg as the trigger for a documentation duty running up the supply chain, so the manufacturer or importer can compile the Annex VII technical file. The distinction changes which test result puts a company in breach.</p>
+<p>Read the third row carefully. The 50 ppm applies to PFAS including polymeric PFAS; total fluorine above 50 mg/kg is the trigger for a documentation duty up the supply chain, not a limit. The distinction changes which test result puts a company in breach.</p>
 
-<p>Article 5(4) sets a second limit that also applies now: the sum of lead, cadmium, mercury and hexavalent chromium from substances present in packaging or packaging components must not exceed 100 mg/kg. Two qualifications belong with it. The date is imported rather than internal, since Article 5(4) states no date of its own and 12 August 2026 comes from Article 71. And the limit is not unqualified for every format: Article 70(3) keeps the derogations in Decisions 2001/171/EC and 2009/292/EC alive until they are repealed by delegated acts under Article 5(8), which covers glass packaging and plastic crates and pallets. Compliance with both provisions has to be demonstrated in the Annex VII technical documentation under Article 5(6).</p>
+<p>Article 5(4) adds a second live limit: lead, cadmium, mercury and hexavalent chromium together must not exceed 100 mg/kg, with its date coming from Article 71. Both belong in the Annex VII technical documentation.</p>
 
 <div class="ppwr-note">
   <div class="ppwr-note__k">Why this asymmetry matters</div>
-  <p>The PFAS restriction needs no implementing act, carries no conditional date, and contains no transition period in the Article itself. It is the clearest and most immediately enforceable obligation in the Regulation. Two qualifiers, neither of which softens it much: it applies only to the extent the packaging is not already prohibited under another Union act, and the Commission must assess by 12 August 2030 whether to amend or repeal the paragraph to avoid overlap with the food-contact, REACH and POPs regimes. The QR code, which absorbed most of the preparation effort, is voluntary. A company that spent 2026 sourcing data-carrier software and did not commission PFAS testing on its food-contact lines optimised for the wrong risk.</p>
+  <p>The PFAS restriction needs no implementing act, no conditional date, no transition period. It is the clearest and most immediately enforceable obligation in the Regulation. The QR code, which absorbed most of the preparation effort, is voluntary. A company that spent 2026 sourcing data-carrier software and did not commission PFAS testing on its food-contact lines optimised for the wrong risk.</p>
 </div>
 
-<h2 id="rest">The rest of the Regulation, and why its dates keep moving</h2>
+<h2 id="rest">Why its dates keep moving</h2>
 
-<p>The QR myth is a symptom. The underlying condition is that PPWR's headline dates are mostly conditional, and the conditions have not been met.</p>
+<p>The QR myth is a symptom. PPWR's headline dates are mostly conditional, and the conditions have not been met. "Whichever is the latest" appears thirteen times across seven articles, and almost every instance ties a calendar date to an act the Commission has yet to adopt, then takes the later of the two.</p>
 
-<p>Search the Regulation for "whichever is the latest" and it appears thirteen times across seven articles: Article 6 on recyclability, Article 7 on recycled content, Article 12 on labelling, Article 13 on waste receptacles, and Articles 24, 55 and 67. Each instance attaches a fixed calendar date to a delegated or implementing act the Commission has yet to adopt, and takes the later of the two.</p>
-
-<p>A timeline that presents 2028 and 2030 as deadlines is presenting the earliest possible version of a schedule as though it were the actual one. Most of those dates can move right, and several already are. Not all: the 1 January 2038 grade-A-or-B floor carries no conditional clause, though it is expressly without prejudice to the innovative-packaging derogation in Article 6(10). A roadmap that treats them as fixed will schedule spend too early and lose credibility internally the first time a date visibly slips.</p>
+<p>A timeline presenting 2028 and 2030 as deadlines is presenting the earliest possible schedule as the actual one. Not everything moves: the 1 January 2038 grade-A-or-B floor has no conditional clause. Treat the rest as fixed and you schedule spend too early, then lose credibility the first time a date slips.</p>
 
 <div class="ppwr-table-wrap">
 <table class="ppwr-table">
@@ -336,12 +285,12 @@
     <tr><td><strong>Heavy metals, 100 mg/kg total</strong></td><td>12 Aug 2026</td><td><span class="ppwr-hard">Hard date</span> Date from Art 71, not Art 5(4); glass and plastic crates keep derogations</td><td>5(4)</td></tr>
     <tr><td>EPR identification, digital marking only if used</td><td>12 Feb 2027</td><td><span class="ppwr-hard">Hard date</span> Optional to apply</td><td>12(9)</td></tr>
     <tr><td>Harmonised sorting label, printed</td><td>12 Aug 2028</td><td><span class="ppwr-cond">Conditional</span> or 24 months after the Art 12(6)/(7) acts</td><td>12(1)</td></tr>
-    <tr><td>Waste-receptacle labels, Member State duty</td><td>12 Aug 2028</td><td><span class="ppwr-cond">Conditional</span> or 30 months after the Art 13(2) acts</td><td>13(1)</td></tr>
+    <tr><td>Waste-receptacle labels, Member State duty</td><td>12 Aug 2028</td><td><span class="ppwr-cond">Conditional</span> or 30 months after adoption of the Art 13(2) acts</td><td>13(1)</td></tr>
     <tr><td>Reusable packaging label plus tracking carrier</td><td>12 Feb 2029</td><td><span class="ppwr-cond">Conditional</span> or 30 months after the Art 12(6) act</td><td>12(2)</td></tr>
     <tr><td>Recycled content minimums, plastic parts</td><td>1 Jan 2030</td><td><span class="ppwr-cond">Conditional</span> or 3 years after the Art 7(8) act</td><td>7(1)</td></tr>
     <tr><td>Grade C floor, below it no market access</td><td>1 Jan 2030</td><td><span class="ppwr-cond">Conditional</span> or 24 months after the Art 6(4) acts</td><td>6(3)</td></tr>
     <tr><td>Recycled-at-scale requirement joins the grade</td><td>1 Jan 2035</td><td><span class="ppwr-cond">Conditional</span> or 5 years after the Art 6(5) acts</td><td>6(2)</td></tr>
-    <tr><td>EPR fee modulation by recyclability grade</td><td>~mid-2031</td><td><span class="ppwr-cond">Conditional</span> 18 months after the later of the Art 6(4) and 6(5) acts</td><td>6(8)</td></tr>
+    <tr><td>EPR fee modulation by recyclability grade</td><td>~mid-2031</td><td><span class="ppwr-cond">Conditional</span> 18 months after the Art 6(4) and 6(5) acts, read as the later of the two</td><td>6(8)</td></tr>
     <tr><td>Substances-of-concern marking methodology</td><td>1 Jan 2030</td><td><span class="ppwr-hard">Hard date</span> Commission duty to adopt</td><td>12(7)</td></tr>
     <tr><td>Grade A or B only</td><td>1 Jan 2038</td><td><span class="ppwr-hard">Hard date</span> in the text</td><td>6(3)</td></tr>
     <tr><td>Recycled content, second tier</td><td>1 Jan 2040</td><td><span class="ppwr-hard">Hard date</span> in the text</td><td>7(2)</td></tr>
@@ -349,83 +298,111 @@
 </table>
 </div>
 
-<p>Two of those rows carry most of the commercial weight. Article 6 requires manufacturers to grade packaging recyclability as A, B or C per Table 3 of Annex II, and summaries describing a five-band A to E scale are describing something else. Below grade C means no market access from 1 January 2030, or 24 months after the Article 6(4) delegated acts if that falls later, and only A and B qualify from 1 January 2038. The grade also sets the price, under Article 6(8), which modulates extended producer responsibility fees by it. Read the trigger carefully, because it is easy to get backwards: modulation starts 18 months after the later of the Article 6(4) delegated acts and the Article 6(5) implementing acts, and the 6(5) acts are due by 1 January 2030. On the Regulation's own deadlines the fee signal therefore lands around mid-2031, after the grade-C market floor rather than before it. The grade decides market access first and the invoice second.</p>
-
-<p>Article 7 covers recycled content and applies to plastic parts only. It is calculated as an average per manufacturing plant per year rather than per unit, which gives real flexibility, but the averaging is bounded and the boundary is easy to miss: it runs "per packaging type and format as referred to in Table 1 of Annex II". A producer cannot offset a low-recycled-content PET line against a high-recycled-content PE film line. The first tier applies from 1 January 2030 or three years after the Article 7(8) act, whichever falls later.</p>
-
-<div class="ppwr-table-wrap">
-<table class="ppwr-table">
-  <caption>Article 7 minimum recycled content for plastic packaging parts, recovered from post-consumer plastic waste.</caption>
-  <thead>
-    <tr><th>Packaging type</th><th>From 2030</th><th>From 2040</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Contact-sensitive, PET as major component, excluding single-use beverage bottles</td><td><strong>30%</strong></td><td><strong>50%</strong></td></tr>
-    <tr><td>Contact-sensitive, plastics other than PET, excluding single-use beverage bottles</td><td><strong>10%</strong></td><td><strong>25%</strong></td></tr>
-    <tr><td>Single-use plastic beverage bottles</td><td><strong>30%</strong></td><td><strong>65%</strong></td></tr>
-    <tr><td>All other plastic packaging</td><td><strong>35%</strong></td><td><strong>65%</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-<p>A plastic part under 5% of the packaging unit's weight falls outside the requirement, and paper and cardboard sit outside Article 7 entirely, which surprises companies who assume the rules are material-neutral. Article 7(14) then requires the Commission to report by 12 February 2032 on whether the 2040 percentages are feasible, and that report may carry a proposal amending them. Article 7(13) is the softer route to the same place: where suitable recycling technologies are unauthorised or not sufficiently available, and the availability or price of recycled plastics makes compliance excessively difficult, the percentages can be amended by delegated act. The 2040 figures are law with two written escape hatches.</p>
-
-<p>One provision deserves more attention than it gets, particularly from the marketing side of a packaging project. Where information is provided by electronic means under paragraphs 1, 2 and 4, Article 12(5) allows personal data to be collected only for the limited purpose of giving the user access to that compliance information, with an explicit cross-reference to Article 5(1) of the GDPR, and prohibits displaying it "with other information intended for sales or marketing purposes". Note what each half does. The data-minimisation limb is what stops a sorting scan from harvesting an email address. The second limb is a prohibition on co-display rather than a rule about where a scan may lead, so the accurate statement is that the compliance information may not share a screen with marketing, not that a QR code may serve no other purpose anywhere. That is still enough to close off a business case a number of vendors have been quietly selling, in which the sorting scan doubles as a campaign landing page. Article 12(8) adds the physical counterpart, prohibiting labels or symbols likely to mislead consumers about the characteristics for which PPWR lays down harmonised labelling, so inventing a friendlier-looking recyclability badge alongside the official one becomes a legal risk rather than a design choice.</p>
+<p>Two rows carry most of the commercial weight. Article 6 grades recyclability as A, B or C per Table 3 of Annex II; there is no D and no E band. Below grade C means no market access from 1 January 2030, or 24 months after the Article 6(4) acts if later, and only A and B qualify from 2038. Fee modulation under Article 6(8) follows 18 months after the 6(4) and 6(5) acts, so on the Regulation's own deadlines it lands around mid-2031, after the market floor. The grade decides market access first and the invoice second.</p>
 
 <h2 id="what-to-do">What to do with the time this buys you</h2>
 
-<p>The conclusion is not that PPWR can be ignored. It is that the work worth doing in 2026 is different from the work most companies were told to do.</p>
+<p>The work worth doing in 2026 is different from the work most companies were told to do.</p>
 
-<p><strong>Test your food-contact packaging for PFAS.</strong> This is the live obligation and Article 5 contains no transition period for it. Supplier self-declarations are a weak evidence base for an Annex VII technical file. Certificates of analysis per packaging type, from an accredited laboratory, are the defensible version.</p>
+<p><strong>Test your food-contact packaging for PFAS,</strong> and check the heavy-metals total while you are at it. These are the live obligations, with no transition period. Supplier self-declarations are a weak evidence base for an Annex VII file; certificates of analysis per packaging type, from an accredited laboratory, are the defensible version.</p>
 
-<p><strong>Check the heavy-metals total.</strong> The 100 mg/kg combined limit also applies now, and also has to appear in the technical documentation.</p>
+<p><strong>Design one carrier, not two.</strong> If a passport regime already applies, or will before 2030, Article 12(5) requires one carrier for both. Build it now and the packaging label becomes an increment, not a second project.</p>
 
-<p><strong>Design one carrier, not two.</strong> If a passport regime already applies to your product, or will before 2030, Article 12(5) requires a single carrier to serve both. Build the architecture for two cleanly separated payloads now and the packaging label becomes an increment rather than a second project.</p>
+<p><strong>Work out whether you own reusable packaging in the legal sense,</strong> and <strong>map substances of concern in the packaging itself</strong>, the inks, adhesives and barrier layers. The first brings a tracking carrier from 12 February 2029, or 30 months after the Article 12(6) act if later. The second bites whenever they are present, and the methodology due by 1 January 2030 will want name and concentration per material per unit. That data takes years to assemble.</p>
 
-<p><strong>Work out whether you own reusable packaging in the legal sense.</strong> If any part of the portfolio sits in a formal reuse system with a system operator, the February 2029 obligation brings a tracking carrier with it, and tracking trips and rotations is a systems project rather than a printing project.</p>
+<p><strong>Settle the EPR identification question,</strong> which Article 12(9) frames as "by 12 February 2027" for anyone who identifies at all, and <strong>get recyclability graded.</strong> Grading is the urgent half: the grade-C floor arrives before fee modulation, so it is a market-access question first and a cost question second.</p>
 
-<p><strong>Map substances of concern in the packaging itself.</strong> Inks, adhesives, barrier layers, pigments. The marking obligation is mandatory when they are present, and the methodology due by 1 January 2030 will require name and concentration per material per packaging unit. Supply-chain data at that granularity takes years to assemble.</p>
+<p>The uncomfortable part is that the delay is not good news. A specification arriving in late 2026 leaves roughly two years to redesign artwork across entire portfolios, and every month the Commission takes is a month removed from that window rather than added to it. The obligation moving right does not make it smaller. It compresses the runway while appearing to extend it.</p>
 
-<p><strong>Settle the EPR identification question,</strong> which bites from 12 February 2027 for anyone who chooses to identify at all, and <strong>get recyclability graded.</strong> Grading is the urgent half: the grade-C market floor arrives before fee modulation does, so treat it as a market-access question first and a cost question second.</p>
+<p>One last piece of wording is worth carrying away. PPWR never says "passport" where it counts: the term appears twice in the whole Regulation, both times in recital 70 and never in an enacting article. If you are working out what this means for a specific portfolio, or how a packaging label should share a carrier with a passport you already have to build, <a href="/#contact">get in touch</a>.</p>
 
-<p>One provision softens the eventual transition. Under Article 12(12), packaging manufactured in the Union or imported before the labelling deadlines that does not comply may still be made available on the market for three years from the date those requirements enter into force. Existing stock does not become worthless overnight.</p>
 
-<p>The uncomfortable part is that the delay is not good news. A specification arriving in late 2026 leaves designers roughly two years to redesign artwork across entire portfolios, and every month the Commission takes is a month removed from that window rather than added to it. The obligation moving right does not make it smaller. It compresses the runway while appearing to extend it.</p>
 
-<p>So: PPWR is a serious regulation with real teeth, and the parts that bite hardest in 2026 are chemical rather than digital. The QR code that dominated the run-up to August is optional, and technology-neutral even where it is required. The label that is mandatory cannot be printed, because the Commission has not published its design. And the single point at which PPWR reaches a Digital Product Passport is Article 12(5): where other Union law already requires product information via a data carrier, one carrier must serve both payloads, kept easily distinguishable. Note the wording, because it matters. That provision never says "passport". The term appears twice in the whole Regulation, both times in recital 70 and never in an enacting article, so the passport link is explanatory rather than binding.</p>
+<script>
+(function () {
+  var gate = document.getElementById('ppwrGate');
+  var gateForm = document.getElementById('ppwrGateForm');
+  var GATE_KEY = 'regen_ppwr_unlocked';
+  if (!gate || !gateForm) return;
 
-<p>If you are working out what this means for a specific packaging portfolio, or how a packaging label should share a carrier with a product passport you already have to build, <a href="/#contact">get in touch</a>.</p>
+  var ts = parseInt(localStorage.getItem(GATE_KEY) || '0', 10);
+  if (ts > 0 && (Date.now() - ts) < 86400000) {
+    gate.classList.remove('ppwr-gate--locked');
+  } else {
+    localStorage.removeItem(GATE_KEY);
+    gate.classList.add('ppwr-gate--locked');
+  }
 
-<h2 id="faq">Frequently asked questions</h2>
+  if (window.Antibot) {
+    window.Antibot.protect(gateForm);
+    var captcha = gateForm.querySelector('.antibot-captcha');
+    var disclaimer = gateForm.querySelector('.ppwr-gate__disclaimer');
+    if (captcha && disclaimer) gateForm.insertBefore(captcha, disclaimer);
+  }
 
-<div class="ppwr-faq">
-  <details>
-    <summary>Does PPWR require a QR code on packaging?</summary>
-    <p>No, not as a general obligation. Article 12(1) says economic operators <em>may</em> place a QR code or other standardised, open, digital data carrier on packaging to help consumers sort it. It is voluntary and additional to the mandatory printed label. Four provisions do compel a carrier, and only the first is unconditional: reusable packaging from 12 February 2029 at the earliest, subject to the open-loop derogation; packaging containing substances of concern, which needs a digital-marking technology and is operable only once the methodology due by 1 January 2030 exists; an electronically readable code as the fallback where no label can be affixed to the packaging or the grouped packaging; and EPR identification from 12 February 2027, which is optional to do. Even then a QR is not specifically required, because every reference to one sits beside an open alternative.</p>
-  </details>
-  <details>
-    <summary>Does packaging need a Digital Product Passport under PPWR?</summary>
-    <p>No. Article 12 establishes a labelling regime and never uses the term. PPWR defines no passport data model and creates no link to the EU Digital Product Passport Registry. Passports come from other regulations: ESPR as the horizontal framework, the Batteries Regulation, the Detergents and Surfactants Regulation from September 2029, and the Construction Products Regulation.</p>
-  </details>
-  <details>
-    <summary>Does a Digital Product Passport have to include packaging data?</summary>
-    <p>Not unless its own regulation says so. A sectoral passport carries what its own act requires. The Batteries Regulation, for example, scopes its passport to the battery: identity, material composition, carbon footprint, due diligence, performance and durability, and circularity. Packaging is not a data category there, and appears only as a fallback surface for the label and QR code where the battery itself is too small to mark. PPWR does not reach across and add packaging fields to another regime's passport.</p>
-  </details>
-  <details>
-    <summary>If my product has a passport and my packaging has information duties, do I need two QR codes?</summary>
-    <p>No, and printing two runs against the text. Article 12(5) provides that where Union law requires information on the packaged product via a data carrier, a single data carrier shall be used for both the product and the packaging information, with the two easily distinguishable. One carrier, two payloads, cleanly separated.</p>
-  </details>
-  <details>
-    <summary>When does the PPWR label become mandatory?</summary>
-    <p>From 12 August 2028, or 24 months from entry into force of the implementing acts under Article 12(6) or 12(7), whichever is the latest. Those acts were due by 12 August 2026 and have not been adopted. The Commission's own Digital Product Passport FAQ states that labelling and data requirements apply "from August 2028 or later, pending an implementing act".</p>
-  </details>
-  <details>
-    <summary>What PPWR obligations actually apply from 12 August 2026?</summary>
-    <p>The most consequential is Article 5(5): food-contact packaging cannot be placed on the market containing PFAS at or above 25 ppb for any single PFAS, 250 ppb for the sum of PFAS, or 50 ppm for PFAS including polymeric PFAS. Article 5(4) caps the combined total of lead, cadmium, mercury and hexavalent chromium at 100 mg/kg. Both must be evidenced in Annex VII technical documentation, and neither depends on an implementing act.</p>
-  </details>
-  <details>
-    <summary>What are the PPWR recyclability grades?</summary>
-    <p>A, B and C, defined in Table 3 of Annex II and assessed by the manufacturer under Article 6(3). Summaries describing an A to E scale are incorrect. From 1 January 2030, or 24 months after the Article 6(4) delegated acts if later, packaging below grade C cannot be placed on the market. From 1 January 2038 only grades A and B qualify.</p>
-  </details>
-</div>
+  gateForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = gateForm.querySelector('.ppwr-gate__btn');
+    var email = gateForm.querySelector('input[name="email"]').value;
+    btn.disabled = true;
+    btn.textContent = 'Opening...';
+    var existingError = gateForm.querySelector('.ppwr-gate__error');
+    if (existingError) existingError.remove();
 
+    function doGateSubmit(antibotPayload) {
+      var payload = {
+        name: '',
+        email: email,
+        message: 'PPWR carrier-cases unlock',
+        source: 'ppwr_gate',
+        page_url: window.location.href
+      };
+      if (antibotPayload) {
+        for (var k in antibotPayload) {
+          if (antibotPayload.hasOwnProperty(k)) payload[k] = antibotPayload[k];
+        }
+      }
+      fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function (res) {
+        if (!res.ok) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            throw new Error(data.error || 'Something went wrong');
+          });
+        }
+        localStorage.setItem(GATE_KEY, Date.now().toString());
+        gate.classList.remove('ppwr-gate--locked');
+        var overlay = document.getElementById('ppwrGateOverlay');
+        var card = overlay.querySelector('.ppwr-gate__card');
+        card.innerHTML = '<h3 class="ppwr-gate__title">Thank you!</h3>' +
+          '<p class="ppwr-gate__text">The four cases are open below. If this was useful, we\u2019d like to hear what you are working on: <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>';
+        setTimeout(function () { overlay.style.display = 'none'; }, 6000);
+      })
+      .catch(function (err) {
+        var errorEl = document.createElement('p');
+        errorEl.className = 'ppwr-gate__error';
+        errorEl.textContent = err.message || 'Failed. Please try again.';
+        gateForm.appendChild(errorEl);
+        btn.disabled = false;
+        btn.textContent = 'Open';
+      });
+    }
+
+    if (window.Antibot) {
+      window.Antibot.validate(gateForm).then(doGateSubmit).catch(function (errMsg) {
+        var errorEl = document.createElement('p');
+        errorEl.className = 'ppwr-gate__error';
+        errorEl.textContent = errMsg;
+        gateForm.appendChild(errorEl);
+        btn.disabled = false;
+        btn.textContent = 'Open';
+      });
+    } else {
+      doGateSubmit(null);
+    }
+  });
+})();
+</script>
