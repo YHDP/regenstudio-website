@@ -186,11 +186,37 @@
    * it costs nothing to let the page render first. requestIdleCallback where it exists, a
    * short timeout where it does not.
    */
+  /**
+   * Boot only once the translations are in.
+   *
+   * Both this and i18n.js are deferred, and this one waits for an idle moment on top of
+   * that, so which of the two lands first is a race. When this one won it, every string
+   * came from the English fallbacks in t(), and a Dutch page showed an English launcher:
+   * measured live on 2026-09-15, where /pt/ rendered "Ask AI" while __i18n.t() already
+   * answered "Pergunte a IA" for the same key.
+   *
+   * Three routes in, because i18n.js may have finished, may be mid-flight, or may never
+   * arrive: onReady fires straight away when it is already done, the event covers the
+   * in-flight case, and the timeout means a missing or broken locale costs English
+   * strings rather than the whole launcher. Whichever arrives first wins; the rest no-op.
+   */
+  function bootTranslated() {
+    var booted = false;
+    function go() {
+      if (booted) return;
+      booted = true;
+      boot();
+    }
+    document.addEventListener('i18nReady', go);
+    if (window.__i18n && window.__i18n.onReady) window.__i18n.onReady(go);
+    setTimeout(go, 3000);
+  }
+
   function schedule() {
     if (window.requestIdleCallback) {
-      window.requestIdleCallback(boot, { timeout: 2000 });
+      window.requestIdleCallback(bootTranslated, { timeout: 2000 });
     } else {
-      setTimeout(boot, 400);
+      setTimeout(bootTranslated, 400);
     }
   }
 
