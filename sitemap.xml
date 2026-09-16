@@ -369,6 +369,16 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-espr/" />
   </url>
   <url>
+    <loc>https://www.regenstudio.world/blog/ppwr-packaging-dpp/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/ppwr-packaging-dpp/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/ppwr-packaging-dpp/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/ppwr-packaging-dpp/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/ppwr-packaging-dpp/" />
+  </url>
+  <url>
     <loc>https://www.regenstudio.world/blog/dpp-registry-goes-live/</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -757,6 +767,26 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/guiding-the-hague-smart-city-team/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/guiding-the-hague-smart-city-team/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/guiding-the-hague-smart-city-team/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/blog/ppwr-packaging-dpp/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/ppwr-packaging-dpp/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/ppwr-packaging-dpp/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/ppwr-packaging-dpp/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/ppwr-packaging-dpp/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/blog/ppwr-packaging-dpp/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/ppwr-packaging-dpp/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/ppwr-packaging-dpp/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/ppwr-packaging-dpp/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/ppwr-packaging-dpp/" />
   </url>
   <url>
     <loc>https://www.regenstudio.world/nl/blog/dpp-registry-goes-live/</loc>

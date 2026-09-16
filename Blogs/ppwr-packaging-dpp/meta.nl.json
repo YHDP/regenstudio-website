@@ -26,9 +26,9 @@
   "featuredImage": "Header.webp",
   "featuredImageAlt": "Een gefacetteerde low-poly fles in turkoois en koraalrood, met daarachter een wegvloeiende rij driehoekige polygoonvormen en lichtdraden die door de facetten lopen, als illustratie van fysieke verpakking die verbonden is met haar digitale gegevens.",
   "excerpt": "Alle producten hebben vanaf 2028 een QR-code op de verpakking nodig. Verpakking heeft een Digitaal Productpaspoort nodig. Paspoorten moeten verpakkingsgegevens dragen. Drie beweringen die rondgaan sinds de Verpakkingenverordening op 12 augustus 2026 van toepassing werd, en geen ervan overleeft contact met de tekst. Wat de PPWR wél verplicht is één gedeelde gegevensdrager waar een productpaspoort en verpakkingsinformatie samenkomen.",
-  "published": false,
+  "published": true,
   "review": {
-    "text": "draft",
-    "assets": "draft"
+    "text": "approved",
+    "assets": "approved"
   }
 }

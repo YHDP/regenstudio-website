@@ -26,9 +26,9 @@
   "featuredImage": "Header.webp",
   "featuredImageAlt": "Uma garrafa facetada em baixa poligonagem, em turquesa e coral, com uma fileira de formas poligonais triangulares recuando ao fundo e fios de luz percorrendo as facetas, ilustrando a embalagem física ligada aos seus dados digitais.",
   "excerpt": "Todos os produtos precisam de um código QR na embalagem a partir de 2028. Embalagem precisa de um Passaporte Digital do Produto. Passaportes têm de carregar dados de embalagem. Três afirmações que circulam desde que o Regulamento de Embalagens passou a se aplicar em 12 de agosto de 2026, e nenhuma sobrevive ao contato com o texto. O que o PPWR obriga é um único portador de dados compartilhado onde o passaporte do produto e a informação da embalagem se encontram.",
-  "published": false,
+  "published": true,
   "review": {
-    "text": "draft",
-    "assets": "draft"
+    "text": "approved",
+    "assets": "approved"
   }
 }

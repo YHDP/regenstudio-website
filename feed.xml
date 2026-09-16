@@ -5,8 +5,19 @@
     <link>https://www.regenstudio.world/blog.html</link>
     <description>Innovations that regenerate Humans, Cities and Nature.</description>
     <language>en</language>
-    <pubDate>Fri, 24 Jul 2026 00:00:00 GMT</pubDate>
+    <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
     <atom:link href="https://www.regenstudio.world/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PPWR applies now, time to bury the three biggest myths around it</title>
+      <link>https://www.regenstudio.world/blog/ppwr-packaging-dpp/</link>
+      <guid isPermaLink="true">https://www.regenstudio.world/blog/ppwr-packaging-dpp/</guid>
+      <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
+      <description>All products need a QR code on their packaging from 2028. Packaging needs a Digital Product Passport. Passports must carry packaging data. Three claims, all circulating since the Packaging Regulation became applicable on 12 August 2026, and none of them survives contact with the text. What PPWR does oblige is one shared data carrier where a product passport and packaging information meet.</description>
+      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
+      <category>Digital Product Passport</category>
+      <category>Circular Business Models</category>
+      <enclosure url="https://www.regenstudio.world/Blogs/ppwr-packaging-dpp/Header.webp" type="image/webp" length="66100" />
+    </item>
     <item>
       <title>The EU DPP Registry is live: enrolment and verification in plain steps</title>
       <link>https://www.regenstudio.world/blog/dpp-registry-goes-live/</link>
@@ -217,16 +228,6 @@
       <category>Digital Product Passport</category>
       <category>Innovation Services</category>
       <enclosure url="https://www.regenstudio.world/Images/demo-dpp-system.svg" type="image/svg+xml" length="5576" />
-    </item>
-    <item>
-      <title>Insights from CircularTech Forum — The Global DPP Community Meets in Cologne</title>
-      <link>https://www.regenstudio.world/blog/CircularTech/</link>
-      <guid isPermaLink="true">https://www.regenstudio.world/blog/CircularTech/</guid>
-      <pubDate>Tue, 23 Sep 2025 00:00:00 GMT</pubDate>
-      <description>On September 22nd I joined the CircularTech Forum in Cologne — the event for the global DPP community. Here are 5 insights I walked away with, from 90% of EU products requiring DPPs to why being early is a superpower.</description>
-      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
-      <category>Digital Product Passport</category>
-      <enclosure url="https://www.regenstudio.world/Blogs/CircularTech/Header.jpg" type="image/jpeg" length="359483" />
     </item>
   </channel>
 </rss>

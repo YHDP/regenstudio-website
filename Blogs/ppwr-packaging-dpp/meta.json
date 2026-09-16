@@ -26,9 +26,9 @@
   "featuredImage": "Header.webp",
   "featuredImageAlt": "A faceted low-poly bottle in teal and coral, with a receding row of triangular polygon forms behind it and threads of light running through the facets, illustrating physical packaging linked to its digital data.",
   "excerpt": "All products need a QR code on their packaging from 2028. Packaging needs a Digital Product Passport. Passports must carry packaging data. Three claims, all circulating since the Packaging Regulation became applicable on 12 August 2026, and none of them survives contact with the text. What PPWR does oblige is one shared data carrier where a product passport and packaging information meet.",
-  "published": false,
+  "published": true,
   "review": {
-    "text": "draft",
-    "assets": "draft"
+    "text": "approved",
+    "assets": "approved"
   }
 }
