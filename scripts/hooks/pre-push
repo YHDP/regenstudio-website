@@ -706,8 +706,11 @@ echo -e "${GREEN}Security scan passed.${NC}"
 #     deploy-then-push, which leaves the assistant briefly ahead of the site. Doing it here
 #     closes the gap to seconds, and GitHub Pages takes longer than that to publish.
 #
-#     It is a no-op, with no output and no delay, unless content that feeds the EN index has
-#     moved since the last deploy. The script owns that test and its own refusal conditions.
+#     It is a no-op, with no output and no delay, unless content that feeds any of the three
+#     indexes has moved since the last deploy. NL and PT were added to that test on
+#     2026-09-16, when all three indexes started being bundled into the function: before
+#     that a Dutch-only change went live against an assistant that had never read it.
+#     The script owns that test and its own refusal conditions.
 if [ "${SKIP_ASSISTANT_DEPLOY:-}" = "1" ]; then
   echo -e "${YELLOW}SKIP_ASSISTANT_DEPLOY=1 — the assistant will not learn anything in this push.${NC}"
   echo -e "${YELLOW}Run scripts/deploy-assistant.sh when you are back online.${NC}"

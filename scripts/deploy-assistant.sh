@@ -2,12 +2,13 @@
 # Rebuild the search index and deploy the site assistant, then stamp what went live.
 #
 # WHY THIS EXISTS
-# The assistant does not read the index from the website. The Edge Function imports it at
-# build time (`import INDEX from "./search-index.en.json"`), so the copy that decides what
-# the assistant knows is the one inside the function directory, and the root copy is
-# gitignored and never published anywhere. Publishing a blog therefore put it on the site
-# while the assistant kept insisting the site did not cover it. That is how a smart-charging
-# case study with a full write-up got denied to a visitor who asked about it directly.
+# The assistant does not read the index from the website. The Edge Function imports all
+# three at build time (`import INDEX_EN from "./search-index.en.json"`, and the same for nl
+# and pt), so the copies that decide what the assistant knows are the ones inside the
+# function directory, and the root copies are gitignored and never published anywhere.
+# Publishing a blog therefore put it on the site while the assistant kept insisting the site
+# did not cover it. That is how a smart-charging case study with a full write-up got denied
+# to a visitor who asked about it directly.
 #
 # The pre-push hook calls this with --if-stale so the two can never drift again. Running it
 # by hand does the same thing unconditionally.
