@@ -153,6 +153,7 @@
   "chat.thinking": "Lendo o site…",
   "chat.try": "Experimente uma destas",
   "launcher.label": "Pergunte o que quiser",
+  "launcher.label_short": "Pergunte à IA",
   "launcher.title": "Pergunte ao nosso assistente digital",
   "launcher.sub": "Ele responde a partir deste site e mostra de qual página veio.",
   "launcher.placeholder": "O que você gostaria de saber?",

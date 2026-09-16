@@ -6509,7 +6509,10 @@ a.dpp-product--linked {
 
 .launcher__form { display: flex; gap: 8px; }
 .launcher__input {
-  flex: 1; min-width: 0; padding: 10px 12px; font: inherit; font-size: 0.9rem;
+  /* 16px, not smaller: iOS Safari zooms the page into any focused input below 16px, and
+     this one takes focus the moment the launcher opens. That zoom is what shifted the page
+     right and stranded it there until the visitor pinched back out. */
+  flex: 1; min-width: 0; padding: 10px 12px; font: inherit; font-size: 1rem;
   color: var(--color-navy); background: #fff;
   border: 1px solid var(--color-border); border-radius: 9px;
 }
@@ -6539,6 +6542,11 @@ a.dpp-product--linked {
   font-size: 0.84rem; font-weight: 600; color: #006d38; text-decoration: none;
 }
 .launcher__email-row a:hover { text-decoration: underline; }
+/* The copy button carries the shared .copyable-email__btn class, and that class goes
+   width:100% below 480px for the footer's stacked layout. In this row it is an icon
+   beside the address, not a block, so it kept stretching into an empty box on phones.
+   The touch-target minimum from @media (pointer: coarse) still applies. */
+.launcher__email-row .copyable-email__btn--small { width: auto; flex: 0 0 auto; }
 .launcher__form-link {
   display: inline-block; margin-top: 8px; font-size: 0.79rem; color: var(--color-warm-gray-dark);
 }
@@ -6548,8 +6556,12 @@ a.dpp-product--linked {
   .launcher__btn:hover { transform: none; }
 }
 
+.launcher__btn-label--short { display: none; }
+
 @media (max-width: 560px) {
-  /* Label out, mark only: at this width the pill would otherwise crowd the article. */
+  /* Short label, not no label. The mark alone is the Regen Studio chameleon, so an
+     icon-only button reads as the logo and says nothing about an assistant. */
   .launcher__btn-label { display: none; }
-  .launcher__btn { padding: 9px; }
+  .launcher__btn-label--short { display: inline; }
+  .launcher__btn { padding: 9px 14px; }
 }

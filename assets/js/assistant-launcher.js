@@ -95,7 +95,11 @@
       '<button class="launcher__btn" type="button" id="launcherBtn" aria-expanded="false" ' +
         'aria-controls="launcherPanel" aria-label="' + label + '">' +
         '<img src="' + avatar + '" alt="" width="34" height="34" decoding="async" fetchpriority="low">' +
+        // Both labels ship; CSS picks one. On a phone the pill used to collapse to the bare
+        // chameleon mark, which reads as the logo rather than as an assistant you can talk to.
         '<span class="launcher__btn-label">' + label + '</span>' +
+        '<span class="launcher__btn-label launcher__btn-label--short">' +
+          t('launcher.label_short', 'Ask AI') + '</span>' +
       '</button>';
 
     document.body.appendChild(wrap);

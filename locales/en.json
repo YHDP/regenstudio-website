@@ -153,6 +153,7 @@
   "chat.thinking": "Reading the site…",
   "chat.try": "Try one of these",
   "launcher.label": "Ask us anything",
+  "launcher.label_short": "Ask AI",
   "launcher.title": "Ask our Digital Assistant",
   "launcher.sub": "It answers from this site and shows you the page it came from.",
   "launcher.placeholder": "What would you like to know?",
