@@ -269,6 +269,26 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/privacy.html" />
   </url>
   <url>
+    <loc>https://www.regenstudio.world/nl/terms.html</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/terms.html" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/terms.html" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/terms.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/terms.html" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/terms.html</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/terms.html" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/terms.html" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/terms.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/terms.html" />
+  </url>
+  <url>
     <loc>https://www.regenstudio.world/nl/client-projects.html</loc>
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
@@ -329,6 +349,66 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/vision.html" />
   </url>
   <url>
+    <loc>https://www.regenstudio.world/nl/digital-product-passports/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/digital-product-passports/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/digital-product-passports/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/digital-product-passports/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/digital-product-passports/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/digital-product-passports/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/digital-product-passports/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/digital-product-passports/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/digital-product-passports/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/digital-product-passports/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/digital-identities/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/digital-identities/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/digital-identities/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/digital-identities/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/digital-identities/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/digital-identities/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/digital-identities/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/digital-identities/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/digital-identities/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/digital-identities/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/problem-analysis/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/problem-analysis/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/problem-analysis/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/problem-analysis/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/problem-analysis/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/problem-analysis/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/problem-analysis/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/problem-analysis/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/problem-analysis/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/problem-analysis/" />
+  </url>
+  <url>
     <loc>https://www.regenstudio.world/nl/what-is-a-digital-product-passport/</loc>
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
@@ -367,6 +447,86 @@
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-espr/" />
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-espr/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-espr/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/what-is-the-construction-products-regulation/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-the-construction-products-regulation/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-the-construction-products-regulation/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-the-construction-products-regulation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-the-construction-products-regulation/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/what-is-the-construction-products-regulation/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-the-construction-products-regulation/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-the-construction-products-regulation/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-the-construction-products-regulation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-the-construction-products-regulation/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/what-is-eidas/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-eidas/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-eidas/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-eidas/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-eidas/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/what-is-eidas/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-eidas/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-eidas/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-eidas/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-eidas/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/what-is-the-edi-wallet/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-the-edi-wallet/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-the-edi-wallet/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-the-edi-wallet/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-the-edi-wallet/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/what-is-the-edi-wallet/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-the-edi-wallet/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-the-edi-wallet/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-the-edi-wallet/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-the-edi-wallet/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/nl/what-is-innovation-design/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-innovation-design/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-innovation-design/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-innovation-design/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-innovation-design/" />
+  </url>
+  <url>
+    <loc>https://www.regenstudio.world/pt/what-is-innovation-design/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.regenstudio.world/what-is-innovation-design/" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/what-is-innovation-design/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/what-is-innovation-design/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/what-is-innovation-design/" />
   </url>
   <url>
     <loc>https://www.regenstudio.world/blog/ppwr-packaging-dpp/</loc>

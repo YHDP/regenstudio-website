@@ -24,6 +24,18 @@
   var here = document.currentScript && document.currentScript.src;
   var ROOT = here ? here.replace(/assets\/js\/assistant-launcher\.js.*$/, '') : '';
 
+  /* Which language the visitor is actually reading, taken from the path rather than from
+     window.__i18n, which is deferred and was measured on 2026-09-15 answering "en" on /pt/
+     while the page was already Portuguese.
+
+     The launcher has to hand off to the chat page in the SAME language. It did not: a
+     tester on an English browser reached the Portuguese site through a search engine,
+     opened this panel, and was sent to the root chat.html, which asked the English corpus a
+     Portuguese question and refused. Empty string for English, so ROOT + '' + 'chat.html'
+     is the unchanged root path. */
+  var LANG_DIR = (location.pathname.match(/^\/(nl|pt)\//) || ['', ''])[1];
+  if (LANG_DIR) LANG_DIR += '/';
+
   if (/\/chat\.html$/.test(location.pathname)) return;   // already there
 
   var KEY = 'regen_assistant_launcher_closed';
@@ -60,7 +72,7 @@
             t('launcher.close', 'Close') + '">&times;</button>' +
         '</div>' +
 
-        '<form class="launcher__form" id="launcherForm" action="' + ROOT + 'chat.html" method="get">' +
+        '<form class="launcher__form" id="launcherForm" action="' + ROOT + LANG_DIR + 'chat.html" method="get">' +
           '<label class="sr-only" for="launcherInput">' + label + '</label>' +
           '<input class="launcher__input" type="text" id="launcherInput" name="q" maxlength="500" ' +
             'autocomplete="off" placeholder="' +
@@ -69,7 +81,7 @@
         '</form>' +
         '<p class="launcher__note">' +
           t('launcher.note', 'Please do not type personal details.') +
-          ' <a href="' + ROOT + 'privacy.html#ai-assistant">' + t('launcher.why', 'Why') + '</a></p>' +
+          ' <a href="' + ROOT + LANG_DIR + 'privacy.html#ai-assistant">' + t('launcher.why', 'Why') + '</a></p>' +
 
         '<div class="launcher__human">' +
           '<p class="launcher__human-label">' + t('launcher.human', 'Prefer a person?') + '</p>' +

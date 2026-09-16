@@ -6435,14 +6435,21 @@ a.dpp-product--linked {
 
    Bottom-right is the only free corner on this site: .freeze-btn is top-right on the
    homepage hero, .privacy-banner is full-width bottom at z-index 10000, .share-toast is
-   bottom-centre at 9999. z-index 95 sits above page content and below both of those,
-   which must stay on top.
+   bottom-centre at 9999. z-index 100 sits above page content AND above the freeze panel
+   (98) and freeze button (99), which is the fix: at 95 the open assistant panel was drawn
+   underneath the freeze panel and the freeze panel took the clicks. It stays below the nav
+   (1000), the privacy banner and the share toast, which must stay on top.
    ========================================================================== */
 .launcher {
   position: fixed;
   right: clamp(16px, 3vw, 28px);
   bottom: clamp(16px, 3vw, 28px);
-  z-index: 95;
+  /* Above .freeze-panel (98) and .freeze-btn (99). At 95 the open assistant panel was
+     drawn underneath the freeze panel on the homepage, and the freeze panel took the
+     clicks: measured with elementFromPoint at the intersection at 1280x800, 1280x620 and
+     1440x900, which returned freeze-panel elements every time. Still below the nav (1000),
+     the privacy banner and the skip link, so nothing that must stay reachable is covered. */
+  z-index: 100;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

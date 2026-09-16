@@ -26,14 +26,18 @@ STAMP="$FN_DIR/.deployed-at-sha"
 
 YELLOW='\033[1;33m'; RED='\033[0;31m'; GREEN='\033[0;32m'; NC='\033[0m'
 
-# Everything that feeds the EN index, measured from the built index rather than guessed:
-# 18 pages and 39 posts. nl/ and pt/ are deliberately absent — only the EN index is bundled
-# into the function, so a Dutch-only change is invisible to the assistant and paying a
-# deploy for it would be a false gate. Widen this the day NL or PT ships.
-# Note what is NOT here: Blogs/<slug>/Header.webp and the .nl/.pt variants. An image never
-# reaches the index, and the translated files feed indexes that are not bundled, so matching
-# them would buy a 30-second deploy for a change the assistant cannot see.
-INDEXED_RE='^(index|about|blog|client-projects|faq|innovation-services|privacy|terms|vision)\.html$|^(digital-identities|digital-product-passports|problem-analysis|what-is-[a-z0-9-]+)/index\.html$|^Blogs/blogs\.json$|^Blogs/[^/]+/(meta\.json|content\.html)$|^build\.ts$'
+# Everything that feeds any of the three bundled indexes.
+#
+# NL and PT shipped on 2026-09-16: all three indexes are imported by the function now, so a
+# Dutch-only or Portuguese-only content change DOES change what the assistant can answer,
+# and leaving them out of this pattern would put a live translated page behind an assistant
+# that denies it exists. That is the exact failure this gate was built to prevent, one
+# language over.
+# Note what is still NOT here: Blogs/<slug>/Header.webp and friends. An image never reaches
+# an index, so matching it would buy a 30-second deploy for nothing.
+PAGES_RE='(index|about|blog|client-projects|faq|innovation-services|privacy|terms|vision)\.html'
+DIRS_RE='(digital-identities|digital-product-passports|problem-analysis|what-is-[a-z0-9-]+)/index\.html'
+INDEXED_RE="^$PAGES_RE\$|^$DIRS_RE\$|^(nl|pt)/$PAGES_RE\$|^(nl|pt)/$DIRS_RE\$|^Blogs/blogs\.json\$|^Blogs/[^/]+/(meta(\.(nl|pt))?\.json|content(\.(nl|pt))?\.html)\$|^build\.ts\$"
 
 IF_STALE=""
 if [ "${1:-}" = "--if-stale" ]; then

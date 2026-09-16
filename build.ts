@@ -736,6 +736,15 @@ const TRANSLATED_STATIC_PAGES = new Set([
   "/client-projects.html", "/innovation-services.html",
   "/vision.html", "/privacy.html", "/thank-you.html",
   "/what-is-a-digital-product-passport/", "/what-is-espr/",
+  // Added 2026-09-16. All eight already existed under nl/ and pt/, fully translated,
+  // each with a canonical, four hreflang tags and the right html lang, and each live
+  // and returning 200. This list is the only thing that was hiding them, and it feeds
+  // two consumers: the sitemap and the assistant's retrieval index. So for months they
+  // were absent from both, which is why a Portuguese visitor asking what the studio
+  // does got "the site does not cover that" about pages that exist in Portuguese.
+  "/digital-identities/", "/digital-product-passports/", "/problem-analysis/",
+  "/terms.html", "/what-is-eidas/", "/what-is-innovation-design/",
+  "/what-is-the-construction-products-regulation/", "/what-is-the-edi-wallet/",
 ]);
 
 /** Build hreflang alternates for a translated static page */
@@ -1590,6 +1599,79 @@ async function generateSearchIndex(
 
 // --- Main ---
 
+/**
+ * Generate nl/chat.html and pt/chat.html from the English chat page.
+ *
+ * Hand-copying was the alternative and was rejected: chat.html carries its own inline
+ * <style> and <script>, so three copies would mean three places to fix every bug in the
+ * assistant's own UI. The site's other pages are hand-authored per language because their
+ * PROSE differs; this page's prose is a dozen UI strings, which locales/*.json already
+ * owns and i18n.js already swaps at runtime.
+ *
+ * What actually has to change is narrow. Only assets live at the root and nowhere else, so
+ * only they need "../". Plain page links are left exactly as they are: href="faq.html" from
+ * /nl/chat.html resolves to /nl/faq.html, which exists, as does every other page this one
+ * links to (checked: about, accessibility, blog, client-projects, faq, index,
+ * innovation-services, privacy, terms, vision).
+ *
+ * Why this page needed to exist at all: the launcher used to send every visitor to the root
+ * chat.html. A tester on an English browser reached the Portuguese site through a search
+ * engine, opened the launcher, and landed on an English page that then asked the English
+ * corpus a Portuguese question.
+ */
+async function generateChatPages(baseDir: string): Promise<number> {
+  let src: string;
+  try {
+    src = await Deno.readTextFile(`${baseDir}/chat.html`);
+  } catch {
+    console.warn("  [chat] chat.html not found, skipping localised chat pages");
+    return 0;
+  }
+
+  let written = 0;
+  for (const lang of ["nl", "pt"] as const) {
+    let strings: Record<string, string> = {};
+    try {
+      strings = JSON.parse(await Deno.readTextFile(`${baseDir}/locales/${lang}.json`));
+    } catch { /* an English title beats no page */ }
+
+    let html = src
+      // Assets resolve from the root only.
+      .replace(/(href|src)="(assets\/|Images\/|style\.css)/g, '$1="../$2')
+      // The one root-absolute link on the page. i18n.js also rewrites it at runtime via
+      // chat.accept_html; doing it here too means it is right with JavaScript disabled.
+      .replaceAll('href="/privacy.html"', `href="/${lang}/privacy.html"`)
+      .replace('<html lang="en">', `<html lang="${lang}">`)
+      .replace(
+        '<link rel="canonical" href="https://www.regenstudio.world/chat.html">',
+        `<link rel="canonical" href="${SITE_URL}/${lang}/chat.html">`,
+      );
+
+    const title = strings["chat.title"];
+    if (title) {
+      html = html.replace(
+        /<title>[^<]*<\/title>/,
+        `<title>${escapeHtml(title)}</title>`,
+      );
+    }
+    const desc = strings["chat.description"];
+    if (desc) {
+      html = html.replace(
+        /(<meta name="description" content=")[^"]*(">)/,
+        `$1${escapeHtml(desc)}$2`,
+      );
+    }
+
+    try {
+      await Deno.mkdir(`${baseDir}/${lang}`, { recursive: true });
+    } catch { /* exists */ }
+    await Deno.writeTextFile(`${baseDir}/${lang}/chat.html`, html);
+    console.log(`  ${lang}/chat.html`);
+    written++;
+  }
+  return written;
+}
+
 async function main() {
   const baseDir = ".";
 
@@ -1682,6 +1764,9 @@ async function main() {
     }
   }
 
+  // Generate the localised chat pages from the English one
+  await generateChatPages(baseDir);
+
   // Generate sitemap.xml
   const sitemap = generateSitemap(posts, translationMap);
   await Deno.writeTextFile(`${baseDir}/sitemap.xml`, sitemap);
@@ -1720,11 +1805,14 @@ async function main() {
     //
     // The deploy is still manual and still required. Nothing here reaches production
     // until `supabase functions deploy site-assistant --no-verify-jwt` runs.
-    if (lang === "en") {
+    // All three languages, since 2026-09-16. The EN-only guard that used to sit here was
+    // the reason the assistant answered a Portuguese question from English sources: the
+    // NL and PT indexes were generated on every build and never reached the function.
+    {
       const fnCopy = `${baseDir}/supabase/functions/site-assistant/search-index.${lang}.json`;
       try {
         await Deno.writeTextFile(fnCopy, body);
-        console.log(`  -> bundled copy updated; deploy the function to publish it`);
+        console.log(`  -> bundled ${lang} copy updated; deploy the function to publish it`);
       } catch (err) {
         // A clone without the Proton symlink is a normal state, not a build failure.
         console.warn(`  [index] could not update the function's copy: ${(err as Error).message}`);

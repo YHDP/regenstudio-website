@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -13,23 +13,23 @@
   <!-- Indexable since 2026-09-11. The noindex was left over from the closed-passphrase
        test and contradicted robots.txt, which already allowed crawling. The page is public,
        linked from the homepage hero, and carries 332 words of its own content. -->
-  <title>Talk to our Digital Assistant | Regen Studio</title>
-  <meta name="description" content="Ask our digital assistant about Regen Studio and get an answer drawn only from this website, with the page it came from.">
+  <title>Praat met onze digitale assistent | Regen Studio</title>
+  <meta name="description" content="Stel onze digitale assistent een vraag over Regen Studio. Je krijgt een antwoord dat alleen uit deze website komt, met de pagina erbij.">
   <meta name="author" content="Regen Studio">
-  <link rel="canonical" href="https://www.regenstudio.world/chat.html">
+  <link rel="canonical" href="https://www.regenstudio.world/nl/chat.html">
   <link rel="alternate" hreflang="en" href="https://www.regenstudio.world/chat.html">
   <link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/chat.html">
   <link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/chat.html">
   <link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/chat.html">
-  <link rel="icon" type="image/png" href="Images/favicon.png">
-  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/fonts/inter.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="assets/fonts/playfair-display.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="../Images/favicon.png">
+  <link rel="preload" href="../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/playfair-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/fonts/inter.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="../assets/fonts/playfair-display.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="../style.css">
   <!-- The send-conversation panel injects the antibot captcha and honeypot, and both
        need this or the captcha renders unstyled and the honeypot is visible. -->
-  <link rel="stylesheet" href="assets/css/antibot.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="../assets/css/antibot.css" media="print" onload="this.media='all'">
   <style>
     .chat-hero { text-align: center; padding: 104px 24px 32px; }
     .chat-hero h1 { margin: 0 0 10px; }
@@ -397,7 +397,7 @@
   <nav class="nav" id="nav">
     <div class="nav__inner container">
       <a href="index.html" class="nav__logo">
-        <img src="Images/logo-icon.svg" alt="" class="nav__logo-icon" width="54" height="48" fetchpriority="high">
+        <img src="../Images/logo-icon.svg" alt="" class="nav__logo-icon" width="54" height="48" fetchpriority="high">
         <span class="nav__logo-text" aria-hidden="true"><span class="nav__logo-regen">REGEN</span> <span class="nav__logo-studio">STUDIO</span></span>
         <span class="sr-only">Regen Studio</span>
       </a>
@@ -481,7 +481,7 @@
   </nav>
 
   <section class="chat-hero">
-    <img class="chat-hero__avatar" src="Images/assistant-avatar.svg" alt=""
+    <img class="chat-hero__avatar" src="../Images/assistant-avatar.svg" alt=""
          width="104" height="104" decoding="async" fetchpriority="high">
     <h1 data-i18n="chat.h1">Talk to our Digital Assistant</h1>
     <p class="chat-hero__sub" data-i18n="chat.sub">
@@ -601,7 +601,7 @@
 
             <label class="chat-send__check">
               <input type="checkbox" id="sendPrivacy" required>
-              <span data-i18n-html="chat.accept_html">I accept the <a href="/privacy.html" target="_blank" rel="noopener">privacy policy</a>. <span aria-hidden="true">*</span></span>
+              <span data-i18n-html="chat.accept_html">I accept the <a href="/nl/privacy.html" target="_blank" rel="noopener">privacy policy</a>. <span aria-hidden="true">*</span></span>
             </label>
 
             <label class="chat-send__check">
@@ -632,10 +632,10 @@
     </div>
   </footer>
 
-  <script src="assets/js/antibot.js" defer></script>
-  <script src="assets/js/nav.js" defer></script>
-  <script src="assets/js/i18n.js" defer></script>
-  <script src="assets/js/chat-anim.js" defer></script>
+  <script src="../assets/js/antibot.js" defer></script>
+  <script src="../assets/js/nav.js" defer></script>
+  <script src="../assets/js/i18n.js" defer></script>
+  <script src="../assets/js/chat-anim.js" defer></script>
   <script>
   (function () {
     'use strict';
@@ -715,7 +715,7 @@
       turn.className = 'chat-turn';
       turn.innerHTML = '<p class="chat-q">' + esc(question) + '</p>' +
         '<div class="chat-answer">' +
-        '<img class="chat-avatar" src="Images/assistant-avatar.svg" alt="" aria-hidden="true" ' +
+        '<img class="chat-avatar" src="../Images/assistant-avatar.svg" alt="" aria-hidden="true" ' +
         'width="36" height="36" decoding="async">' +
         '<div class="chat-think" role="status" aria-live="polite">' +
         '<span class="chat-think__tri"></span><span class="chat-think__tri"></span>' +
@@ -740,7 +740,7 @@
       // to every single answer for no information.
       var html = '<p class="chat-q">' + esc(question) + '</p>' +
                  '<div class="chat-answer">' +
-                 '<img class="chat-avatar" src="Images/assistant-avatar.svg" alt="" ' +
+                 '<img class="chat-avatar" src="../Images/assistant-avatar.svg" alt="" ' +
                  'aria-hidden="true" width="36" height="36" decoding="async">' +
                  '<div class="chat-a' + (refused ? ' chat-a--refused' : '') + '">' +
                  paragraphs(data.answer) + '</div></div>';
