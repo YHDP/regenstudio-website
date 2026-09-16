@@ -1,7 +1,7 @@
 {
-  "title": "A PPWR entrou em vigor, hora de enterrar o maior mito sobre ela",
+  "title": "O PPWR já se aplica, hora de enterrar os três maiores mitos sobre ele",
   "slug": "ppwr-packaging-dpp",
-  "subtitle": "O Regulamento de Embalagens passou a ser aplicável em 12 de agosto de 2026. O QR code que mandaram a maioria das empresas imprimir é voluntário pelo artigo 12.º, n.º 1, o rótulo que é obrigatório ainda não pode ser impresso, e a obrigação que de fato entrou em vigor naquele dia é uma proibição de PFAS de que ninguém falava.",
+  "subtitle": "Circulam três mitos sobre embalagem e Passaportes Digitais do Produto, e cada um tem resposta exata no texto. A única obrigação que o PPWR realmente impõe a um passaporte é que o portador do produto e a informação da embalagem compartilhem um único portador de dados.",
   "author": {
     "name": "Yvo Hunink de Paiva",
     "role": "Regen Studio"
@@ -25,7 +25,7 @@
   ],
   "featuredImage": "Header.webp",
   "featuredImageAlt": "Uma garrafa facetada em baixa poligonagem, em turquesa e coral, com uma fileira de formas poligonais triangulares recuando ao fundo e fios de luz percorrendo as facetas, ilustrando a embalagem física ligada aos seus dados digitais.",
-  "excerpt": "O Regulamento (UE) 2025/40 passou a ser aplicável em 12 de agosto de 2026, e a consultoria que o precedeu estava em boa parte errada. O artigo 12.º, n.º 1, diz que os operadores econômicos podem colocar um QR code na embalagem, não que devem. Este artigo separa o que a PPWR torna voluntário do que torna obrigatório: os três casos em que um portador de dados é mesmo exigido, por que o rótulo de pictogramas obrigatório ainda não tem especificação publicada, os limites de PFAS que entraram em vigor no mesmo dia, e as classes de reciclabilidade A, B e C que decidem o acesso ao mercado a partir de 2030.",
+  "excerpt": "Todos os produtos precisam de um código QR na embalagem a partir de 2028. Embalagem precisa de um Passaporte Digital do Produto. Passaportes têm de carregar dados de embalagem. Três afirmações que circulam desde que o Regulamento de Embalagens passou a se aplicar em 12 de agosto de 2026, e nenhuma sobrevive ao contato com o texto. O que o PPWR obriga é um único portador de dados compartilhado onde o passaporte do produto e a informação da embalagem se encontram.",
   "published": false,
   "review": {
     "text": "draft",

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 930" width="400" height="930" role="img" aria-labelledby="t d">
+  <title id="t">Wanneer een gegevensdrager echt verplicht is onder artikel 12 PPWR</title>
+  <desc id="d">Vier gevallen. Herbruikbare verpakking vanaf 12 februari 2029, of 30 maanden na de handeling bij artikel 12, lid 6, en niet van toepassing op open systemen zonder systeembeheerder. Verpakking met zorgwekkende stoffen, werkbaar zodra de methodologie van 1 januari 2030 bestaat, zonder drempelwaarde in de tekst. Verpakking waar geen etiket op past, wat nu al geldt op grond van artikel 12, lid 5. UPV-identificatie uiterlijk 12 februari 2027, vrijwillig, maar alleen via digitale markering als je het doet.</desc>
+  <rect width="400" height="930" fill="#ffffff"/>
+  <text x="16" y="34" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="19" font-weight="700" fill="#1B2833">Wanneer een drager echt verplicht is</text>
+  <text x="16" y="56" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" fill="#5A6B73">Artikel 12 verplicht een gegevensdrager in vier gevallen.</text>
+  <text x="16" y="73" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" fill="#5A6B73">Geen ervan heeft een onvoorwaardelijke datum.</text>
+  <line x1="16" y1="86" x2="384" y2="86" stroke="#008545" stroke-width="2"/>
+  <g font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+    <rect x="8" y="100" width="384" height="188" rx="12" fill="#ffffff" stroke="#e0e0e0"/>
+    <circle cx="34" cy="130" r="14" fill="#1B2833"/><text x="34" y="135" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+    <text x="56" y="135" font-size="17" font-weight="700" fill="#1B2833">Herbruikbare verpakking</text>
+    <text x="384" y="135" font-size="11" fill="#5A6B73" text-anchor="end">Art 12(2)–(3)</text>
+    <rect x="56" y="150" width="96" height="20" rx="5" fill="#FFF3E0" stroke="#E8C88F"/>
+    <text x="104" y="164" font-size="10.5" font-weight="700" fill="#935D0D" text-anchor="middle">VOORWAARDELIJK</text>
+    <text x="160" y="165" font-size="13" fill="#1a1a1a">12 feb 2029, of +30 maanden</text>
+    <text x="56" y="196" font-size="14" fill="#333">Draagt het hergebruiksysteem en de inzamel-</text>
+    <text x="56" y="216" font-size="14" fill="#333">punten, en moet ritten en rotaties bijhouden.</text>
+    <text x="56" y="236" font-size="14" fill="#333">Geldt niet voor open systemen zonder</text>
+    <text x="56" y="256" font-size="14" fill="#333">systeembeheerder.</text>
+
+    <rect x="8" y="300" width="384" height="188" rx="12" fill="#ffffff" stroke="#e0e0e0"/>
+    <circle cx="34" cy="330" r="14" fill="#1B2833"/><text x="34" y="335" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+    <text x="56" y="335" font-size="17" font-weight="700" fill="#1B2833">Zorgwekkende stoffen</text>
+    <text x="384" y="335" font-size="11" fill="#5A6B73" text-anchor="end">Art 12(1)</text>
+    <rect x="56" y="350" width="96" height="20" rx="5" fill="#FFF3E0" stroke="#E8C88F"/>
+    <text x="104" y="364" font-size="10.5" font-weight="700" fill="#935D0D" text-anchor="middle">VOORWAARDELIJK</text>
+    <text x="160" y="365" font-size="13" fill="#1a1a1a">methodologie per 1 jan 2030</text>
+    <text x="56" y="396" font-size="14" fill="#333">Gemarkeerd met gestandaardiseerde, open,</text>
+    <text x="56" y="416" font-size="14" fill="#333">digitale markeringstechnologie. Geen drempel</text>
+    <text x="56" y="436" font-size="14" fill="#333">in de tekst: het geldt zodra ze aanwezig zijn,</text>
+    <text x="56" y="456" font-size="14" fill="#333">in de inkt, de lijm, de barrièrelaag.</text>
+
+    <rect x="8" y="500" width="384" height="188" rx="12" fill="#ffffff" stroke="#e0e0e0"/>
+    <circle cx="34" cy="530" r="14" fill="#1B2833"/><text x="34" y="535" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">3</text>
+    <text x="56" y="535" font-size="17" font-weight="700" fill="#1B2833">Geen etiket past</text>
+    <text x="384" y="535" font-size="11" fill="#5A6B73" text-anchor="end">Art 12(5)</text>
+    <rect x="56" y="550" width="96" height="20" rx="5" fill="#E6F2EC" stroke="#9ACBB4"/>
+    <text x="104" y="564" font-size="10.5" font-weight="700" fill="#006838" text-anchor="middle">GELDT NU</text>
+    <text x="160" y="565" font-size="13" fill="#1a1a1a">digitaal vervangt fysiek</text>
+    <text x="56" y="596" font-size="14" fill="#333">Waar geen etiket op de verpakking én niet op</text>
+    <text x="56" y="616" font-size="14" fill="#333">de omverpakking kan, of waar toegang voor</text>
+    <text x="56" y="636" font-size="14" fill="#333">kwetsbare groepen, in het bijzonder mensen</text>
+    <text x="56" y="656" font-size="14" fill="#333">met een visuele beperking, dat vraagt.</text>
+
+    <rect x="8" y="700" width="384" height="188" rx="12" fill="#ffffff" stroke="#e0e0e0"/>
+    <circle cx="34" cy="730" r="14" fill="#1B2833"/><text x="34" y="735" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">4</text>
+    <text x="56" y="735" font-size="17" font-weight="700" fill="#1B2833">UPV-identificatie</text>
+    <text x="384" y="735" font-size="11" fill="#5A6B73" text-anchor="end">Art 12(9)</text>
+    <rect x="56" y="750" width="96" height="20" rx="5" fill="#E6F2EC" stroke="#9ACBB4"/>
+    <text x="104" y="764" font-size="10.5" font-weight="700" fill="#006838" text-anchor="middle">12 FEB 2027</text>
+    <text x="160" y="765" font-size="13" fill="#1a1a1a">vrijwillig</text>
+    <text x="56" y="796" font-size="14" fill="#333">Identificeer je, dan moet het een symbool in</text>
+    <text x="56" y="816" font-size="14" fill="#333">een QR-code of andere digitale markerings-</text>
+    <text x="56" y="836" font-size="14" fill="#333">technologie zijn. Een statisch gedrukt symbool</text>
+    <text x="56" y="856" font-size="14" fill="#333">alleen volstaat niet.</text>
+  </g>
+</svg>

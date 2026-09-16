@@ -4,7 +4,7 @@
     .ppwr-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   }
 
-  /* ===== Inhoudsopgave ===== */
+  /* ===== Table of contents ===== */
   .ppwr-toc { margin: 32px 0 40px; padding: 20px 24px; background: #f8f9fa; border-radius: 12px; border: 1px solid #e0e0e0; }
   .ppwr-toc__title { font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: #5A6B73; margin-bottom: 12px; }
   .ppwr-toc__list { margin: 0; padding-left: 20px; }
@@ -13,28 +13,42 @@
   .ppwr-toc__link:hover { text-decoration: underline; }
   .ppwr-toc__link:focus-visible { outline: 2px solid #007B40; outline-offset: 2px; border-radius: 4px; }
 
-  /* ===== Mythe / werkelijkheid ===== */
-  .ppwr-mr { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0 32px; }
-  .ppwr-mr__card { border-radius: 12px; padding: 20px 22px; border: 1px solid; }
-  .ppwr-mr__card--myth { border-color: #D51641; background: #FDF0F3; }
-  .ppwr-mr__card--real { border-color: #008545; background: #E6F2EC; }
-  .ppwr-mr__k { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.09em; font-weight: 700; margin-bottom: 8px; }
-  .ppwr-mr__card--myth .ppwr-mr__k { color: #D51641; }
-  .ppwr-mr__card--real .ppwr-mr__k { color: #006838; }
-  .ppwr-mr__card p { margin: 0; font-size: 1rem; line-height: 1.55; color: #1a1a1a; }
-  @media (max-width: 680px) { .ppwr-mr { grid-template-columns: 1fr; } }
+  /* ===== Myth / reality ledger ===== */
+  .ppwr-ledger { margin: 30px 0 36px; }
+  .ppwr-pair { border: 1px solid #e0e0e0; border-radius: 14px; overflow: hidden; margin-bottom: 16px; background: #fff; }
+  .ppwr-pair__num { display: flex; align-items: center; gap: 10px; padding: 11px 20px; background: #f8f9fa; border-bottom: 1px solid #e0e0e0; }
+  .ppwr-pair__n { display: inline-flex; align-items: center; justify-content: center; width: 25px; height: 25px; border-radius: 50%; background: #1B2833; color: #fff; font-size: 0.82rem; font-weight: 700; flex-shrink: 0; }
+  .ppwr-pair__topic { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 700; color: #5A6B73; }
+  .ppwr-pair__body { display: grid; grid-template-columns: 1fr 1fr; }
+  .ppwr-half { padding: 17px 20px 19px; }
+  .ppwr-half--myth { background: #FDF0F3; border-right: 1px solid #e0e0e0; }
+  .ppwr-half--real { background: #E6F2EC; }
+  .ppwr-half__k { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.09em; font-weight: 700; margin-bottom: 7px; }
+  .ppwr-half--myth .ppwr-half__k { color: #D51641; }
+  .ppwr-half--real .ppwr-half__k { color: #006838; }
+  .ppwr-half p { margin: 0; font-size: 0.99rem; line-height: 1.55; color: #1a1a1a; }
+  .ppwr-half__cite { display: block; margin-top: 9px; font-size: 0.79rem; color: #5A6B73; }
+  @media (max-width: 680px) {
+    .ppwr-pair__body { grid-template-columns: 1fr; }
+    .ppwr-half--myth { border-right: none; border-bottom: 1px solid #e0e0e0; }
+  }
 
-  /* ===== Citaat uit de verordening ===== */
+  /* ===== Quote from the regulation ===== */
   .ppwr-quote { border-left: 6px solid #008545; background: #f8f9fa; border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 26px 0; }
   .ppwr-quote p { margin: 0 0 10px; font-size: 1.05rem; line-height: 1.6; color: #1B2833; font-style: italic; }
   .ppwr-quote cite { display: block; font-style: normal; font-size: 0.84rem; color: #5A6B73; letter-spacing: 0.02em; }
 
-  /* ===== Kader ===== */
+  /* ===== Callout ===== */
   .ppwr-note { border: 1px solid #935D0D; border-left: 6px solid #935D0D; background: #FFFBF4; border-radius: 0 12px 12px 0; padding: 18px 22px; margin: 24px 0; }
   .ppwr-note__k { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; color: #935D0D; font-weight: 700; }
   .ppwr-note p { margin: 6px 0 0; font-size: 1rem; line-height: 1.55; color: #1a1a1a; }
 
-  /* ===== Tabellen ===== */
+  /* ===== Banner line ===== */
+  .ppwr-banner { text-align: center; border-top: 2px solid #008545; border-bottom: 2px solid #008545; padding: 20px 18px; margin: 32px 0; }
+  .ppwr-banner strong { display: block; font-size: 1.35rem; line-height: 1.3; color: #006838; margin-bottom: 7px; }
+  .ppwr-banner span { font-size: 0.93rem; color: #5A6B73; }
+
+  /* ===== Tables ===== */
   .ppwr-table-wrap { margin: 26px 0 30px; }
   .ppwr-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
   .ppwr-table caption { text-align: left; font-size: 0.88rem; color: #5A6B73; margin-bottom: 10px; line-height: 1.45; }
@@ -43,11 +57,28 @@
   .ppwr-table td strong { color: #1B2833; }
   .ppwr-table tr:last-child td { border-bottom: none; }
 
-  /* ===== Datumlabels ===== */
+  /* ===== Date badges ===== */
   .ppwr-cond { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #935D0D; background: #FFF3E0; border: 1px solid #E8C88F; border-radius: 5px; padding: 2px 7px; white-space: nowrap; }
   .ppwr-hard { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #006838; background: #E6F2EC; border: 1px solid #9ACBB4; border-radius: 5px; padding: 2px 7px; white-space: nowrap; }
 
-  /* ===== Veelgestelde vragen ===== */
+  /* ===== Email gate — same mechanism as the CPR product-family tracker ===== */
+  .ppwr-gate { position: relative; }
+  .ppwr-gate--locked .ppwr-gate__content { filter: blur(5px); pointer-events: none; user-select: none; }
+  .ppwr-gate__overlay { display: none; }
+  .ppwr-gate--locked .ppwr-gate__overlay { display: flex; position: absolute; inset: 0; align-items: flex-start; justify-content: center; padding: 28px 16px; z-index: 2; }
+  .ppwr-gate__card { max-width: 460px; width: 100%; background: #fff; border: 1px solid #e0e0e0; border-radius: 14px; box-shadow: 0 10px 34px rgba(27,40,51,0.14); padding: 24px 24px 20px; text-align: center; position: sticky; top: 90px; }
+  .ppwr-gate__title { margin: 0 0 8px; font-size: 1.18rem; line-height: 1.3; color: #1B2833; }
+  .ppwr-gate__text { margin: 0 0 14px; font-size: 0.95rem; line-height: 1.5; color: #333; }
+  .ppwr-gate__input-row { display: flex; gap: 8px; }
+  .ppwr-gate__input { flex: 1; min-width: 0; padding: 10px 12px; font: inherit; font-size: 1rem; color: #1B2833; border: 1px solid #C9D2D5; border-radius: 9px; }
+  .ppwr-gate__input:focus { outline: 2px solid #008545; outline-offset: -1px; }
+  .ppwr-gate__btn { padding: 10px 18px; font: inherit; font-size: 1rem; font-weight: 600; color: #fff; background: #006838; border: 0; border-radius: 9px; cursor: pointer; white-space: nowrap; }
+  .ppwr-gate__btn:disabled { opacity: 0.7; cursor: default; }
+  .ppwr-gate__disclaimer { margin: 10px 0 0; font-size: 0.78rem; line-height: 1.45; color: #5A6B73; }
+  .ppwr-gate__error { margin: 10px 0 0; font-size: 0.85rem; color: #D51641; }
+  @media (max-width: 560px) { .ppwr-gate__input-row { flex-direction: column; } .ppwr-gate__card { top: 76px; } }
+
+  /* ===== FAQ ===== */
   .ppwr-faq details { border: 1px solid #e0e0e0; border-radius: 10px; padding: 14px 18px; margin-bottom: 12px; background: #fff; }
   .ppwr-faq details[open] { border-color: #C9D2D5; background: #f8f9fa; }
   .ppwr-faq summary { cursor: pointer; font-weight: 600; color: #1B2833; font-size: 1rem; line-height: 1.45; }
@@ -55,311 +86,343 @@
   .ppwr-faq details p { margin: 12px 0 0; font-size: 0.97rem; line-height: 1.6; }
 </style>
 
-<p><strong>Op 12 augustus 2026 is de Verpakkingenverordening, Verordening (EU) 2025/40, van toepassing geworden in de hele Europese Unie.</strong> In de maanden daarvoor kwam vrijwel al het verpakkingsadvies uit op één instructie: zorg dat er vóór augustus een QR-code op je verpakking staat. Die instructie klopt niet. Artikel 12, lid 1, zegt dat marktdeelnemers een QR-code op de verpakking <em>mogen</em> aanbrengen om het sorteren door de consument te vergemakkelijken. Mogen, niet moeten. De algemene sorteer-QR is vrijwillig, en daar verandert de verordening niets aan in 2026, 2028 of 2030.</p>
+<p>Begin bij wat de Europese Commissie zelf schrijft. Haar <a href="https://single-market-economy.ec.europa.eu/document/download/8748f8dc-3d48-4862-8153-e1165fb6be99_en?filename=Digital%20Product%20Passport%20-%20Frequently%20Asked%20Questions%20%28FAQ%29.pdf" rel="noopener">FAQ over het Digitaal Productpaspoort</a> geeft de Verpakkingenverordening één regel status mee: "Adopted. Labelling/data requirements apply from August 2028 or later, pending an implementing act."</p>
 
-<p>De mythe verdient een zorgvuldige correctie, want die correctie bestaat uit drie delen en de meeste berichtgeving stopt na het eerste. De sorteer-QR is optioneel. Een andere markering, een gedrukt pictogram-etiket, is wél verplicht, maar nog niet en niet op de datum die iedereen noemt. En er zijn drie specifieke situaties waarin een gegevensdrager echt verplicht is. Wie leest dat de QR vrijwillig is en het tabblad sluit, kan dus alsnog een verplichting hebben die hij niet heeft gezien.</p>
+<p>In <a href="/nl/digital-product-passports/">ons werk aan Digitale Productpaspoorten</a> horen we steeds dat de QR-code van de PPWR in 2026 verplicht werd. De code waar de meeste bedrijven over horen is vrijwillig. En terwijl iedereen over etiketten en gegevensdragers struikelt, missen we wat deze verordening diezelfde dag wél heeft bereikt: een EU-breed verbod op PFAS vanaf drie grenswaarden in verpakking die met levensmiddelen in contact komt, waarvoor geen uitvoeringshandeling nodig is.</p>
 
-<div class="ppwr-mr">
-  <div class="ppwr-mr__card ppwr-mr__card--myth">
-    <div class="ppwr-mr__k">De mythe</div>
-    <p>De PPWR geldt vanaf 12 augustus 2026, dus verpakkingen moeten vanaf dan een QR-code hebben, gekoppeld aan een digitaal productpaspoort in het EU-register.</p>
+<p>Er gaan drie mythes rond. Elk heeft een precies antwoord in de tekst.</p>
+
+<div class="ppwr-ledger">
+
+  <div class="ppwr-pair">
+    <div class="ppwr-pair__num"><span class="ppwr-pair__n">1</span><span class="ppwr-pair__topic">De QR-code</span></div>
+    <div class="ppwr-pair__body">
+      <div class="ppwr-half ppwr-half--myth">
+        <div class="ppwr-half__k">Mythe</div>
+        <p>Alle producten hebben vanaf 2028 een QR-code op de verpakking nodig.</p>
+      </div>
+      <div class="ppwr-half ppwr-half--real">
+        <div class="ppwr-half__k">Werkelijkheid</div>
+        <p>De sorteer-QR is een kan-bepaling en heeft geen eigen nalevingsdatum. Vier gevallen verplichten wél een drager, en geen daarvan heeft een onvoorwaardelijke datum: herbruikbare verpakking, zorgwekkende stoffen, het geval waarin geen etiket past, en UPV-identificatie als je daarvoor kiest.</p>
+        <span class="ppwr-half__cite">Art 12, lid 1, derde alinea · 12, lid 2–3 · 12, lid 1, tweede alinea · 12, lid 5 · 12, lid 9</span>
+      </div>
+    </div>
   </div>
-  <div class="ppwr-mr__card ppwr-mr__card--real">
-    <div class="ppwr-mr__k">De tekst</div>
-    <p>De sorteer-QR is optioneel op grond van artikel 12, lid 1. Verplicht is een gedrukt pictogram-etiket, op zijn vroegst in 2028, en de specificatie die dat etiket definieert bestaat nog niet. De PPWR bevat helemaal geen digitaal productpaspoort.</p>
+
+  <div class="ppwr-pair">
+    <div class="ppwr-pair__num"><span class="ppwr-pair__n">2</span><span class="ppwr-pair__topic">Het paspoort</span></div>
+    <div class="ppwr-pair__body">
+      <div class="ppwr-half ppwr-half--myth">
+        <div class="ppwr-half__k">Mythe</div>
+        <p>Verpakking heeft een Digitaal Productpaspoort nodig.</p>
+      </div>
+      <div class="ppwr-half ppwr-half--real">
+        <div class="ppwr-half__k">Werkelijkheid</div>
+        <p>De PPWR creëert geen paspoort. Artikel 12 is een etiketteringsregime, gebruikt de term nergens, en bevat geen koppeling met het EU-register voor productpaspoorten.</p>
+        <span class="ppwr-half__cite">Artikel 12, integraal</span>
+      </div>
+    </div>
   </div>
+
+  <div class="ppwr-pair">
+    <div class="ppwr-pair__num"><span class="ppwr-pair__n">3</span><span class="ppwr-pair__topic">De gegevens</span></div>
+    <div class="ppwr-pair__body">
+      <div class="ppwr-half ppwr-half--myth">
+        <div class="ppwr-half__k">Mythe</div>
+        <p>Producten met een Digitaal Productpaspoort moeten ook verpakkingsgegevens opnemen.</p>
+      </div>
+      <div class="ppwr-half ppwr-half--real">
+        <div class="ppwr-half__k">Werkelijkheid</div>
+        <p>Niets in de PPWR voegt verpakkingsvelden toe aan het paspoort van een ander regime; elk paspoort draagt wat zijn eigen handeling vraagt. Bestaan ze allebei, dan laat artikel 12, lid 5, ze één gegevensdrager delen.</p>
+        <span class="ppwr-half__cite">Art 12, lid 5, laatste alinea</span>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <div class="ppwr-toc">
   <div class="ppwr-toc__title">Wat dit artikel behandelt</div>
   <ol class="ppwr-toc__list">
-    <li><a class="ppwr-toc__link" href="#de-bepaling">De bepaling die het afdoet</a></li>
-    <li><a class="ppwr-toc__link" href="#wel-verplicht">Wat artikel 12 wél verplicht stelt</a></li>
-    <li><a class="ppwr-toc__link" href="#ontbrekende-handeling">De specificatie die niemand heeft</a></li>
-    <li><a class="ppwr-toc__link" href="#drie-gevallen">Drie gevallen waarin een drager echt verplicht is</a></li>
-    <li><a class="ppwr-toc__link" href="#ondergrenzen">Waarom bijna elke PPWR-datum een ondergrens is</a></li>
-    <li><a class="ppwr-toc__link" href="#vandaag">Wat op 12 augustus 2026 werkelijk verboden werd</a></li>
-    <li><a class="ppwr-toc__link" href="#recyclebaarheid">Recyclebaarheidsklassen A, B en C</a></li>
-    <li><a class="ppwr-toc__link" href="#gerecycled-gehalte">Gerecycled gehalte, en de bijdrage die de klasse volgt</a></li>
-    <li><a class="ppwr-toc__link" href="#geen-dpp">De PPWR is geen paspoortregime</a></li>
-    <li><a class="ppwr-toc__link" href="#privacy">De privacybepaling die vrijwel niemand noemt</a></li>
-    <li><a class="ppwr-toc__link" href="#wat-nu">Wat je met de gewonnen tijd moet doen</a></li>
-    <li><a class="ppwr-toc__link" href="#faq">Veelgestelde vragen</a></li>
+    <li><a class="ppwr-toc__link" href="#myth-1">Mythe 1: alle producten hebben vanaf 2028 een QR-code nodig</a></li>
+    <li><a class="ppwr-toc__link" href="#myth-2">Mythe 2: verpakking heeft een paspoort nodig</a></li>
+    <li><a class="ppwr-toc__link" href="#myth-3">Mythe 3: paspoorten moeten verpakkingsgegevens dragen</a></li>
+    <li><a class="ppwr-toc__link" href="#one-qr">Eén QR-code voor allebei</a></li>
+    <li><a class="ppwr-toc__link" href="#pfas">Wat de PPWR op 12 augustus 2026 echt heeft bereikt</a></li>
+    <li><a class="ppwr-toc__link" href="#rest">Waarom de data blijven schuiven</a></li>
+    <li><a class="ppwr-toc__link" href="#what-to-do">Wat je met de gewonnen tijd doet</a></li>
   </ol>
 </div>
 
-<h2 id="de-bepaling">De bepaling die het afdoet</h2>
+<h2 id="myth-1">Mythe 1: alle producten hebben vanaf 2028 een QR-code nodig</h2>
 
-<p>Artikel 12 heet "Etikettering van verpakkingen". Het eerste lid bestaat uit vier alinea's, en de derde alinea beantwoordt de QR-vraag:</p>
+<p>Artikel 12 heet "Etikettering van verpakking". Het eerste lid heeft vier alinea's, en de derde beslecht de vraag:</p>
 
 <div class="ppwr-quote">
-  <p>"Naast het in dit lid bedoelde geharmoniseerde etiket mogen marktdeelnemers op de verpakking een QR-code of een ander soort gestandaardiseerde, open, digitale gegevensdrager aanbrengen die informatie bevat over de bestemming van elk afzonderlijk onderdeel van de verpakking om het sorteren door de consument te vergemakkelijken."</p>
+  <p>"Naast het geharmoniseerde etiket bedoeld in dit lid mogen marktdeelnemers een QR-code of een ander soort gestandaardiseerde, open, digitale gegevensdrager op de verpakking aanbrengen met informatie over de bestemming van elk afzonderlijk onderdeel van de verpakking, om het sorteren door consumenten te vergemakkelijken."</p>
   <cite>Verordening (EU) 2025/40, artikel 12, lid 1, derde alinea</cite>
 </div>
 
-<p>Eén woord draagt de hele betekenis. "Mogen" is toestemmende wetgevingstaal. Waar de Uniewetgever een verplichting bedoelt, gebruikt hetzelfde artikel de gebiedende wijs: op verpakkingen "wordt een geharmoniseerd etiket aangebracht" in de eerste alinea, verpakkingen met zorgwekkende stoffen "worden gemarkeerd" in de tweede, herbruikbare verpakkingen "worden voorzien van een etiket" in lid 2. Het contrast is bewust en staat binnen één artikel. Niemand die artikel 12 opstelde twijfelde over welke markeringen verplicht werden.</p>
+<p>Eén woord draagt de betekenis. "Mogen" is een kan-bepaling, en "naast het geharmoniseerde etiket" maakt de vrijwillige QR een aanvulling op een verplicht gedrukt etiket. Breng je de QR aan, dan blijf je het etiket schuldig; sla je hem over, dan ben je niets extra's schuldig.</p>
 
-<p>De tweede zinsnede die telt is "naast het geharmoniseerde etiket". De vrijwillige QR is een optionele aanvulling op een verplicht gedrukt etiket, geen vervanging ervan en geen zelfstandige verplichting. Een bedrijf dat de QR toevoegt, moet het etiket nog steeds voeren. Een bedrijf dat de QR overslaat, is niets extra's verschuldigd.</p>
-
-<h2 id="wel-verplicht">Wat artikel 12 wél verplicht stelt</h2>
-
-<p>De verplichting waarvoor bedrijven zouden moeten plannen is fysiek. Op verpakkingen die in de handel worden gebracht moet een geharmoniseerd etiket komen met informatie over de materiële samenstelling, zodat een consument correct kan sorteren. Het etiket is gebaseerd op pictogrammen en moet eenvoudig te begrijpen zijn, ook voor personen met een handicap. Bij composteerbare verpakkingen onder artikel 9 moet er bovendien op staan dat het materiaal composteerbaar is, niet geschikt is voor thuiscompostering, en niet in de natuur mag worden gedeponeerd.</p>
-
-<p>Twee uitzonderingen zijn commercieel relevant. De verplichting geldt niet voor verzendverpakkingen en niet voor verpakkingen die onder een statiegeldsysteem vallen. Verpakkingen voor elektronische handel worden uitdrukkelijk weer ingesloten, dus een bedrijf dat pakketten naar consumenten verstuurt kan zijn dozen niet als vrijgestelde verzendverpakking behandelen.</p>
-
-<p>Dan volgt de datum, en juist daar gaat de berichtgeving mis. Artikel 12, lid 1, zegt niet 12 augustus 2028. Het zegt:</p>
-
-<div class="ppwr-quote">
-  <p>"Vanaf 12 augustus 2028 of 24 maanden vanaf de datum van inwerkingtreding van de op grond van lid 6 of lid 7 van dit artikel vastgestelde uitvoeringshandelingen, indien dat later is…"</p>
-  <cite>Verordening (EU) 2025/40, artikel 12, lid 1, eerste alinea</cite>
-</div>
-
-<p>"Indien dat later is" maakt van 2028 een ondergrens in plaats van een deadline. De verplichting valt op de datum die het laatst komt: de vaste kalenderdatum, of twee jaar na publicatie van de specificatie door de Commissie. Komt de specificatie te laat, dan schuift de verplichting mee. Eerder dan augustus 2028 kan hij niet vallen, en er staat geen bovengrens op hoeveel later het wordt.</p>
-
-<h2 id="ontbrekende-handeling">De specificatie die niemand heeft</h2>
-
-<p>Artikel 12, lid 6, verplichtte de Commissie uitvoeringshandelingen vast te stellen met het geharmoniseerde etiket en de specificaties voor de etiketteringsvereisten en -formaten. Lid 7 verplichtte een tweede uitvoeringshandeling, met de methode om de materiële samenstelling te identificeren via gestandaardiseerde, open, digitale markeringstechnologieën. Beide hadden dezelfde termijn: 12 augustus 2026.</p>
-
-<p>Dat was dezelfde dag waarop de verordening van toepassing werd. De termijn verstreek zonder de handelingen.</p>
+<p>Wat is dan wel verplicht? Iets fysieks: een geharmoniseerd etiket met de materiaalsamenstelling, op basis van pictogrammen. Transportverpakking en statiegeldverpakking vallen erbuiten, e-commerceverpakking is er uitdrukkelijk weer in getrokken, dus wie pakketten verstuurt kan zijn dozen niet als vrijgesteld beschouwen.</p>
 
 <div class="ppwr-note">
-  <div class="ppwr-note__k">Stand van zaken op 12 augustus 2026</div>
-  <p>De uitvoeringshandelingen bij artikel 12 zijn niet vastgesteld. Brancheorganisatie EUROPEN en advocatenkantoren waaronder Latham &amp; Watkins, Hogan Lovells en Gleiss Lutz melden dat een ontwerp na de zomer wordt verwacht, gevolgd door bespreking in de Waste Expert Group van de Commissie en een openbare raadpleging, met vaststelling naar verwachting in het vierde kwartaal van 2026. Dit is gerapporteerde timing en geen officiële toezegging. Controleer het opnieuw voordat een planningsbeslissing erop steunt.</p>
+  <div class="ppwr-note__k">Een QR-code is nooit echt vereist</div>
+  <p>Artikel 12 noemt een QR-code acht keer, en geen van die acht keer staat hij er zonder open alternatief naast. De verplichting, waar zij bestaat, is om gegevens te dragen. De QR-code is één manier om dat te doen, en de manier die de opstellers toevallig bij naam noemen.</p>
 </div>
 
-<p>Reken het door. Treedt de uitvoeringshandeling in december 2026 in werking, dan valt de etiketverplichting 24 maanden later, in december 2028, en is de ondergrens van augustus 2028 irrelevant. Schuift de handeling naar medio 2027, dan valt de verplichting medio 2029. Het pictogramontwerp, het kleurenpalet voor het statiegeldetiket en de specificaties voor de gegevensdrager zijn alle nog onbekend. Geen enkele drukker in Europa kan vandaag een conform PPWR-sorteeretiket produceren, ook niet voor een bedrijf dat dat graag zou willen.</p>
+<p>En de datum is ook niet wat iedereen citeert. Artikel 12, lid 1, luidt "vanaf 12 augustus 2028 of 24 maanden vanaf de datum van inwerkingtreding van de uitvoeringshandelingen vastgesteld op grond van lid 6 of lid 7 van dit artikel, indien dat later is". Die voorwaarde doet echt werk, want de handelingen bestaan niet. Ze waren verschuldigd op 12 augustus 2026, de dag waarop de verordening van toepassing werd, en waren er op die datum niet. Dat is een stand van zaken die je tegen het Publicatieblad moet controleren voordat je erop bouwt. Het rekenwerk telt: een handeling die in december 2026 in werking treedt, schuift de etiketverplichting naar december 2028, en een uitloop naar 2027 schuift hem naar 2029. Zolang zij ontbreekt kan geen drukker in Europa een conform sorteeretiket maken.</p>
 
-<p>Hetzelfde patroon herhaalt zich één artikel verder. Artikel 13 verplicht lidstaten geharmoniseerde etiketten op afvalbakken aan te brengen, per 12 augustus 2028 of 30 maanden na de eigen uitvoeringshandelingen, indien dat later is. Ook die handelingen waren op 12 augustus 2026 verschuldigd, en het artikel bepaalt dat de bak-etikettering moet overeenkomen met de verpakkingsetikettering uit artikel 12, lid 6. De bak en de doos horen op elkaar aan te sluiten. Geen van beide specificaties bestaat.</p>
+<p>Daarmee is de kop "de QR is vrijwillig" nog niet veilig. Artikel 12 verplicht een drager op vier plaatsen, en een bedrijf kan in elk daarvan vallen zonder erop gerekend te hebben. Geen van de vier heeft een onvoorwaardelijke datum.</p>
 
-<h2 id="drie-gevallen">Drie gevallen waarin een drager echt verplicht is</h2>
+<div class="ppwr-gate" id="ppwrGate">
+<div class="ppwr-gate__content">
+<figure style="margin:28px 0 30px">
+  <img src="Blogs/ppwr-packaging-dpp/four-carrier-cases.nl.svg" alt="De vier gevallen waarin artikel 12 van de PPWR een gegevensdrager verplicht. Een: herbruikbare verpakking vanaf 12 februari 2029 of 30 maanden na de handeling bij artikel 12, lid 6, niet van toepassing op open systemen zonder systeembeheerder. Twee: verpakking met zorgwekkende stoffen, zodra de methodologie van 1 januari 2030 bestaat, zonder drempelwaarde in de tekst. Drie: verpakking waar geen etiket op past, wat nu al geldt op grond van artikel 12, lid 5. Vier: UPV-identificatie uiterlijk 12 februari 2027, vrijwillig, maar alleen via digitale markering als je het doet." width="400" height="930" loading="lazy" decoding="async" style="display:block;margin:0 auto;width:100%;max-width:400px;height:auto">
+  <figcaption style="font-size:0.86rem;color:#5A6B73;margin-top:10px;line-height:1.45">De vier gevallen, met de voorwaarde die elke datum verschuift. In drie ervan rol je zonder plan.</figcaption>
+</figure>
 
-<p>Hier wordt een simpele kop als "de QR is vrijwillig" gevaarlijk. Artikel 12 schrijft in drie situaties wel degelijk een digitale gegevensdrager voor, en een bedrijf kan in elk daarvan vallen zonder erop gepland te hebben.</p>
+<p><strong>Herbruikbare verpakking</strong> moet een etiket dragen dat zegt dat zij herbruikbaar is, en het hergebruiksysteem en de inzamelpunten moeten bereikbaar zijn via een drager die ritten en rotaties kan bijhouden. De datum is 12 februari 2029, of 30 maanden na de handeling bij artikel 12, lid 6, indien dat later is. Artikel 12, lid 3, kent een uitzondering die je makkelijk mist: zij geldt niet voor open systemen zonder systeembeheerder, dus of een retour- of hervulschema als formeel hergebruiksysteem telt, bepaalt of de verplichting überhaupt geldt.</p>
 
-<h3>1. Herbruikbare verpakkingen</h3>
+<p><strong>Verpakking die zorgwekkende stoffen bevat</strong> "wordt gemarkeerd met gestandaardiseerde, open, digitale markeringstechnologieën", volgens een methodologie die uiterlijk 1 januari 2030 komt en ten minste naam en concentratie van elke stof in elk materiaal moet bevatten. Dit is de bepaling om in de gaten te houden, en bijna niemand bereidt zich erop voor. De PPWR definieert de term niet: artikel 3 haalt hem uit de Ecodesignverordening, waarvan de tweede grond elke stof vangt met een geharmoniseerde CLP-indeling in een genoemde gevarenklasse. Antimoontrioxide, de katalysator achter het meeste nieuwe PET, is er één. Benzofenon in UV-drogende inkten en formaldehyde in lijmen ook. Let op wat in artikel 12, lid 1, ontbreekt: een drempelwaarde. Geen de minimis, geen percentage, dus letterlijk gelezen houdt dit op een niche te zijn en gaat het op een sectorbrede standaard lijken. Artikel 5, lid 2, verplicht de Commissie, bijgestaan door ECHA, om uiterlijk 31 december 2026 te rapporteren welke zorgwekkende stoffen echt in verpakking zitten, en dat rapport bepaalt de omvang.</p>
 
-<p>Herbruikbare verpakkingen moeten een etiket dragen dat gebruikers informeert dat de verpakking herbruikbaar is. Nadere informatie, waaronder de beschikbaarheid van een lokaal, nationaal of Uniebreed systeem voor hergebruik en informatie over inzamelpunten, moet beschikbaar worden gesteld via een QR-code of een ander type gestandaardiseerde, open, digitale gegevensdrager. Die drager heeft een functionele taak: hij moet het volgen van de verpakking en de berekening van trajecten en omlopen vergemakkelijken, of een gemiddelde schatting als die berekening niet haalbaar is.</p>
+<p><strong>Een terugval waar geen etiket past.</strong> Artikel 12, lid 5, mis je snel: waar een etiket niet op de verpakking én niet op de omverpakking kan worden aangebracht, of waar niet-discriminerende toegang tot informatie voor kwetsbare groepen, in het bijzonder mensen met een visuele beperking, dat vraagt, wordt de informatie "verstrekt via één elektronisch leesbare code of een ander soort gegevensdrager". Dat is het enige geval waarin digitaal het fysieke vervangt in plaats van aanvult.</p>
 
-<p>De datum is 12 februari 2029, of 30 maanden na inwerkingtreding van de uitvoeringshandeling bij lid 6, indien dat later is. Opnieuw voorwaardelijk, en opnieuw afhankelijk van dezelfde ontbrekende handeling.</p>
+<p><strong>UPV-identificatie.</strong> Uiterlijk 12 februari 2027 mag verpakking die onder een regeling voor uitgebreide producentenverantwoordelijkheid valt, worden geïdentificeerd op het gebied waar die regeling geldt. Identificeren is vrijwillig, maar wie het doet heeft geen keuze in de methode: identificatie "geschiedt uitsluitend door middel van een overeenkomstig symbool in een QR-code of een andere gestandaardiseerde, open, digitale markeringstechnologie". Dat sluit een los statisch gedrukt symbool uit, en daarom moet iedereen die nu een Groene Punt of een nationaal UPV-merk drukt deze bepaling goed lezen.</p>
+</div>
 
-<p>Lid 3 bevat vervolgens een afwijking die makkelijk over het hoofd wordt gezien: het vereiste van etiket en drager geldt niet voor openkringloopsystemen zonder systeembeheerder, zoals omschreven in bijlage VI. Of een specifiek refill- of retoursysteem als formeel hergebruiksysteem kwalificeert, met of zonder beheerder, bepaalt of deze verplichting überhaupt van toepassing is. Die vraag laat zich niet in het algemeen beantwoorden. Ze moet tegen een concreet verpakkingsportfolio worden beantwoord.</p>
+<div class="ppwr-gate__overlay" id="ppwrGateOverlay">
+  <div class="ppwr-gate__card">
+    <h3 class="ppwr-gate__title">Bekijk de vier gevallen volledig</h3>
+    <p class="ppwr-gate__text">Vul je e-mailadres in om elk geval te openen waarin artikel 12 een gegevensdrager verplicht, met de datum en de voorwaarde die hem verschuift.</p>
+    <form class="ppwr-gate__form" id="ppwrGateForm">
+      <div class="ppwr-gate__input-row">
+        <input type="email" name="email" placeholder="Je werkmailadres" aria-label="Je werkmailadres" class="ppwr-gate__input" required>
+        <button type="submit" class="btn btn--primary ppwr-gate__btn">Openen</button>
+      </div>
+      <p class="ppwr-gate__disclaimer">Door te verzenden ga je akkoord met ons <a href="/nl/privacy.html">privacybeleid</a>.</p>
+    </form>
+  </div>
+</div>
+</div><!-- /.ppwr-gate -->
 
-<h3>2. Verpakkingen met zorgwekkende stoffen</h3>
 
-<p>De tweede alinea van artikel 12, lid 1, is kort en staat in de gebiedende wijs:</p>
+<h2 id="myth-2">Mythe 2: verpakking heeft een paspoort nodig</h2>
+
+<p>Artikel 12 gebruikt de term "digitaal productpaspoort" nergens. De PPWR creëert geen paspoort, definieert geen gegevensmodel, en legt geen koppeling met het EU-register voor productpaspoorten dat in juli 2026 live ging. Wat zij creëert is een etiketteringsregime met een optionele digitale gegevensdrager voor consumentensortering.</p>
+
+<p>Over die woordkeuze mag je pietluttig zijn, want losse terminologie heeft de mythe waarschijnlijk gemaakt. "Digitaal etiket" komt in de hele PPWR niet voor. Het etiket dat zij vanaf 2028 verplicht stelt is een pictogram, aangebracht, gedrukt of gegraveerd. Digitale verstrekking is de uitzondering van artikel 12, lid 5, al gaat artikel 12, lid 7, verder dan die uitzondering suggereert: de methodologie voor het vaststellen van de materiaalsamenstelling, precies de inhoud die dat etiket draagt, werkt zelf "met gestandaardiseerde, open, digitale markeringstechnologieën". Commentaar dat artikel 12 een "digitaal etiketteringsregime" noemt, plakt twee dingen aan elkaar.</p>
+
+<h2 id="myth-3">Mythe 3: paspoorten moeten verpakkingsgegevens dragen</h2>
+
+<p>Deze is het meest ingrijpend voor wie nu een paspoort bouwt, want zij verandert het gegevensmodel.</p>
+
+<p>Een sectoraal Digitaal Productpaspoort draagt wat zijn eigen verordening voorschrijft. Niets in de PPWR reikt over en voegt verpakkingsvelden toe aan andermans paspoort. De Batterijenverordening (EU) 2023/1542 richt haar paspoort op de batterij: identiteit, materiaalsamenstelling, CO2-voetafdruk, gepaste zorgvuldigheid, prestaties, circulariteit. Verpakking is daar geen gegevenscategorie. Zij komt alleen terug als terugvaloppervlak op grond van artikel 13, lid 7, waar de batterij te klein is om rechtstreeks te merken en de etiketten op de verpakking gaan. Een plek om de drager op te plakken, niet iets wat het paspoort beschrijft.</p>
+
+<p>Hetzelfde geldt voor wasmiddelen onder de <a href="/nl/blog/dsr-digital-product-passport/">Verordening detergentia en oppervlakteactieve stoffen</a>, voor bouwproducten onder de <a href="/nl/blog/cpr-digital-product-passport/">Bouwproductenverordening</a>, en voor wat de gedelegeerde handelingen bij de <a href="/nl/blog/ESPR/">ESPR</a> per productgroep voorschrijven. Wil een sectorale regel verpakkingsgegevens in zijn paspoort, dan moet zij dat zelf zeggen. Een shampoofles kan dus tegelijk een product met een verplicht paspoort zijn en verpakking met een vrijwillig sorteeretiket. Twee ladingen op twee tijdlijnen, en voor de meeste consumentengoederen is het het paspoortregime, niet de PPWR, dat een drager op de verpakking afdwingt.</p>
+
+<h2 id="one-qr">Eén QR-code voor allebei</h2>
+
+<p>Artikel 12, lid 5, voorziet de botsing tussen die twee ladingen en lost hem in één zin op:</p>
 
 <div class="ppwr-quote">
-  <p>"De in de handel gebrachte verpakkingen die zorgwekkende stoffen bevatten, worden gemarkeerd door middel van gestandaardiseerde, open, digitale markeringstechnologieën overeenkomstig de in lid 7, tweede alinea, bedoelde methode."</p>
-  <cite>Verordening (EU) 2025/40, artikel 12, lid 1, tweede alinea</cite>
+  <p>"Indien het Unierecht voorschrijft dat informatie over het verpakte product via een gegevensdrager wordt verstrekt, wordt één gegevensdrager gebruikt voor het verstrekken van de informatie die voor het verpakte product en voor de verpakking vereist is, en zijn beide gemakkelijk te onderscheiden."</p>
+  <cite>Verordening (EU) 2025/40, artikel 12, lid 5, laatste alinea</cite>
 </div>
 
-<p>Dit is een verplichte digitale markering, in hetzelfde artikel als de vrijwillige. De methode die haar definieert is verschuldigd uiterlijk 1 januari 2030 en moet waarborgen dat de markering ten minste naam en concentratie bevat van elke zorgwekkende stof in elk materiaal in een verpakkingseenheid. Dat is een zware gegevensvereiste, en ze wijst naar de toeleveringsketen in plaats van naar de drukkerij.</p>
-
-<p>Eén verduidelijking voorkomt een veelgemaakte verwarring: het gaat om stoffen in de verpakking, in de fleswand, de inkt, de lijm, de barrièrelaag. Het gaat niet over het product dat erin zit.</p>
-
-<h3>3. Identificatie van producentenverantwoordelijkheid</h3>
-
-<p>Het derde geval heeft een ongebruikelijke structuur. Uiterlijk 12 februari 2027 mogen verpakkingen die onder een regeling voor uitgebreide producentenverantwoordelijkheid vallen worden geïdentificeerd op het grondgebied waar die regeling geldt. Identificeren is optioneel. Maar kiest een producent ervoor, dan sluit artikel 12, lid 9, elke andere methode uit: die identificatie mag alleen worden bereikt aan de hand van een QR-code of een andere gestandaardiseerde, open, digitale markeringstechnologie.</p>
-
-<p>Optioneel om te doen, uitsluitend via digitale markering als je het doet. Wat de bepaling uitsluit, is het identificeren van deelname aan de regeling met alleen een statisch gedrukt symbool. Voor elke producent die nu een Groene Punt of een nationaal UPV-merk als statisch symbool drukt, is dit de bepaling om goed te lezen, en de datum is februari 2027 in plaats van 2028 of 2029.</p>
-
-<div class="ppwr-note">
-  <div class="ppwr-note__k">Een QR-code is nooit echt verplicht</div>
-  <p>Dit geldt over alle drie de gevallen heen: de PPWR is technologieneutraal en schrijft nergens specifiek een QR-code voor. Elk van de acht verwijzingen naar een QR-code in artikel 12 luidt "een QR-code <em>of een ander soort</em> gestandaardiseerde, open, digitale gegevensdrager", of in lid 9 "of een andere gestandaardiseerde, open, digitale markeringstechnologie". NFC, RFID en digitaal watermerken voldoen even goed aan de tekst. De PPWR definieert de term zelfs niet zelf: artikel 3 neemt de definitie van "gegevensdrager" over uit artikel 2, punt 29, van de verordening ecologisch ontwerp voor duurzame producten. De verplichting, waar zij bestaat, is om gegevens te dragen. De QR-code is één manier om dat te doen, en toevallig degene die de opstellers noemden.</p>
+<div class="ppwr-banner">
+  <strong>Eén QR-code voor allebei.</strong>
+  <span>Artikel 12, lid 5, is het enige punt waarop de PPWR naar de gegevensdrager van een ander regime reikt.</span>
 </div>
 
-<h2 id="ondergrenzen">Waarom bijna elke PPWR-datum een ondergrens is</h2>
+<p>Let op het werkwoord: "wordt", niet "mag". Eén code, beide ladingen, gemakkelijk te onderscheiden. Overweging 70 lijkt verder te gaan, met de zin dat een productpaspoort "ook moet worden gebruikt" voor deze informatie, maar overwegingen leggen de bedoeling uit en scheppen geen verplichting. De bindende regel is artikel 12, lid 5, en die zegt iets smallers.</p>
 
-<p>De QR-mythe is een symptoom. De onderliggende aandoening is dat de kopdata van de PPWR grotendeels voorwaardelijk zijn, en dat aan die voorwaarden niet is voldaan.</p>
+<p>Voor een wasmiddelfabrikant is dit de nuttigste zin uit artikel 12. De paspoortdrager die in september 2029 verplicht wordt, kan de sorteerinformatie van de verpakking meedragen, dus bouw één drager met twee schoon gescheiden ladingen. We schreven eerder over wat die paspoorten vertrouwenswaardig maakt, in ons <a href="/nl/blog/trusted-dpps/">position paper</a>, en over het <a href="/nl/blog/dpp-registry-goes-live/">register eronder</a>.</p>
 
-<p>Zoek in de verordening op "indien dat later is" en de zinsnede komt dertien keer voor, verspreid over zeven artikelen: artikel 6 over recyclebaarheid, artikel 7 over gerecycled gehalte, artikel 12 over etikettering, artikel 13 over afvalbakken, en de artikelen 24, 55 en 67. Elk geval koppelt een vaste kalenderdatum aan een gedelegeerde of uitvoeringshandeling die de Commissie nog moet vaststellen, en neemt daarvan de laatste.</p>
+<h2 id="pfas">Wat de PPWR op 12 augustus 2026 echt heeft bereikt</h2>
 
-<p>Dat heeft een praktisch gevolg voor iedereen die een nalevingsroadmap bouwt. Een tijdlijn die 2028, 2030 en 2038 als deadlines presenteert, presenteert de vroegst mogelijke versie van een schema alsof het de werkelijke is. Elk van die data kan naar rechts schuiven, en verschillende doen dat al. Een roadmap die ze als vast behandelt, plant uitgaven te vroeg in en verliest bovendien intern geloofwaardigheid zodra een datum zichtbaar verschuift.</p>
+<p>Terwijl de verpakkingssector een QR-verplichting repeteerde die niet bestaat, ging diezelfde dag een echt verbod in, met een fractie van de aandacht.</p>
+
+<p>Vanaf 12 augustus 2026 mag verpakking die met levensmiddelen in contact komt niet op de EU-markt worden gebracht als zij per- en polyfluoralkylstoffen bevat vanaf drie grenswaarden in artikel 5, lid 5. Het operatorwoord telt: precies 25 ppb is een overtreding, geen vrijspraak.</p>
 
 <div class="ppwr-table-wrap">
 <table class="ppwr-table">
-  <caption>PPWR-verplichtingen en hun voorwaarden. "Voorwaardelijk" betekent dat de datum meeschuift als de onderliggende handeling te laat komt.</caption>
+  <caption>PFAS-grenswaarden van artikel 5, lid 5, voor verpakking die met levensmiddelen in contact komt. Geldt nu, voor zover de verpakking niet al op grond van een andere Uniehandeling verboden is.</caption>
+  <thead>
+    <tr><th>Maat</th><th>Grenswaarde</th><th>Noot</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Elke afzonderlijke PFAS, gerichte analyse</td><td><strong>25 ppb</strong></td><td>Polymere PFAS tellen niet mee bij de kwantificering</td></tr>
+    <tr><td>Som van PFAS, gerichte analyse</td><td><strong>250 ppb</strong></td><td>Waar van toepassing met voorafgaande afbraak van precursoren; polymere uitgezonderd</td></tr>
+    <tr><td>PFAS inclusief polymere PFAS</td><td><strong>50 ppm</strong></td><td>Overschrijdt het totale fluor 50 mg/kg, dan moet de fabrikant, importeur of downstreamgebruiker op verzoek bewijs van de fluorhoeveelheid leveren, gemeten als PFAS of als niet-PFAS</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Lees de derde rij goed. De 50 ppm geldt voor PFAS inclusief polymere PFAS; totaal fluor boven 50 mg/kg is de trigger voor een documentatieplicht door de keten heen, geen grenswaarde. Dat onderscheid bepaalt welke testuitslag een bedrijf in overtreding brengt.</p>
+
+<p>Artikel 5, lid 4, voegt een tweede geldende grens toe: lood, cadmium, kwik en zeswaardig chroom mogen samen niet boven 100 mg/kg uitkomen, met een datum die uit artikel 71 komt. Beide horen thuis in de technische documentatie van bijlage VII.</p>
+
+<div class="ppwr-note">
+  <div class="ppwr-note__k">Waarom die asymmetrie ertoe doet</div>
+  <p>Het PFAS-verbod heeft geen uitvoeringshandeling nodig, geen voorwaardelijke datum, geen overgangstermijn. Het is de helderste en direct afdwingbare verplichting in de verordening. De QR-code, die het meeste voorbereidingswerk opslokte, is vrijwillig. Wie in 2026 software voor gegevensdragers inkocht en geen PFAS-test op zijn levensmiddelenlijnen liet doen, heeft voor het verkeerde risico geoptimaliseerd.</p>
+</div>
+
+<h2 id="rest">Waarom de data blijven schuiven</h2>
+
+<p>De QR-mythe is een symptoom. De kopdata van de PPWR zijn grotendeels voorwaardelijk, en aan die voorwaarden is niet voldaan. "Indien dat later is" staat dertien keer in zeven artikelen, en bijna elke keer koppelt het een kalenderdatum aan een handeling die de Commissie nog moet vaststellen, en neemt het de latere van de twee.</p>
+
+<p>Een tijdlijn die 2028 en 2030 als deadlines presenteert, presenteert het vroegst mogelijke schema als het echte. Niet alles schuift: de ondergrens klasse A of B van 1 januari 2038 kent geen voorwaarde. Behandel de rest als vast en je plant je uitgaven te vroeg, en verliest geloofwaardigheid zodra een datum zichtbaar opschuift.</p>
+
+<div class="ppwr-table-wrap">
+<table class="ppwr-table">
+  <caption>PPWR-verplichtingen en hun voorwaarden. "Voorwaardelijk" betekent dat de datum schuift als de onderliggende handeling te laat komt.</caption>
   <thead>
     <tr><th>Verplichting</th><th>Vroegste datum</th><th>Voorwaarde</th><th>Artikel</th></tr>
   </thead>
   <tbody>
-    <tr><td><strong>PFAS-grenswaarden, levensmiddelencontactverpakkingen</strong></td><td>12 aug 2026</td><td><span class="ppwr-hard">Harde datum</span> Geen handeling nodig</td><td>5, lid 5</td></tr>
-    <tr><td><strong>Zware metalen, samen 100 mg/kg</strong></td><td>12 aug 2026</td><td><span class="ppwr-hard">Harde datum</span> Geen handeling nodig</td><td>5, lid 4</td></tr>
-    <tr><td>UPV-identificatie, uitsluitend digitale markering</td><td>12 feb 2027</td><td><span class="ppwr-hard">Harde datum</span> Optioneel toe te passen</td><td>12, lid 9</td></tr>
-    <tr><td>Geharmoniseerd sorteeretiket, gedrukt</td><td>12 aug 2028</td><td><span class="ppwr-cond">Voorwaardelijk</span> of 24 maanden na de handelingen bij lid 6/7</td><td>12, lid 1</td></tr>
-    <tr><td>Etikettering afvalbakken, taak lidstaten</td><td>12 aug 2028</td><td><span class="ppwr-cond">Voorwaardelijk</span> of 30 maanden na de handelingen bij art. 13, lid 2</td><td>13, lid 1</td></tr>
-    <tr><td>Herbruikbare verpakking, etiket en volgdrager</td><td>12 feb 2029</td><td><span class="ppwr-cond">Voorwaardelijk</span> of 30 maanden na de handeling bij lid 6</td><td>12, lid 2</td></tr>
-    <tr><td>Minimumgehalte gerecycled materiaal, kunststof</td><td>1 jan 2030</td><td><span class="ppwr-cond">Voorwaardelijk</span> of 3 jaar na de handeling bij art. 7, lid 8</td><td>7, lid 1</td></tr>
-    <tr><td>Ondergrens klasse C, anders geen markttoegang</td><td>1 jan 2030</td><td><span class="ppwr-cond">Voorwaardelijk</span> of 24 maanden na de handelingen bij art. 6, lid 4</td><td>6, lid 3</td></tr>
-    <tr><td>Methode markering zorgwekkende stoffen</td><td>1 jan 2030</td><td><span class="ppwr-hard">Harde datum</span> Plicht van de Commissie</td><td>12, lid 7</td></tr>
+    <tr><td><strong>PFAS-grenzen, levensmiddelenverpakking</strong></td><td>12 aug 2026</td><td><span class="ppwr-hard">Harde datum</span> Geen handeling nodig</td><td>5, lid 5</td></tr>
+    <tr><td><strong>Zware metalen, 100 mg/kg totaal</strong></td><td>12 aug 2026</td><td><span class="ppwr-hard">Harde datum</span> Datum uit art 71, niet uit art 5, lid 4; glas en kunststof kratten houden derogaties</td><td>5, lid 4</td></tr>
+    <tr><td>UPV-identificatie, alleen digitale markering indien gebruikt</td><td>12 feb 2027</td><td><span class="ppwr-hard">Harde datum</span> Vrijwillig toe te passen</td><td>12, lid 9</td></tr>
+    <tr><td>Geharmoniseerd sorteeretiket, gedrukt</td><td>12 aug 2028</td><td><span class="ppwr-cond">Voorwaardelijk</span> of 24 maanden na de handelingen bij art 12, lid 6/7</td><td>12, lid 1</td></tr>
+    <tr><td>Etiketten afvalbakken, plicht van de lidstaat</td><td>12 aug 2028</td><td><span class="ppwr-cond">Voorwaardelijk</span> of 30 maanden na vaststelling van de handelingen bij art 13, lid 2</td><td>13, lid 1</td></tr>
+    <tr><td>Etiket herbruikbare verpakking plus trackingdrager</td><td>12 feb 2029</td><td><span class="ppwr-cond">Voorwaardelijk</span> of 30 maanden na de handeling bij art 12, lid 6</td><td>12, lid 2</td></tr>
+    <tr><td>Minimum gerecycled gehalte, kunststofdelen</td><td>1 jan 2030</td><td><span class="ppwr-cond">Voorwaardelijk</span> of 3 jaar na de handeling bij art 7, lid 8</td><td>7, lid 1</td></tr>
+    <tr><td>Ondergrens klasse C, daaronder geen markttoegang</td><td>1 jan 2030</td><td><span class="ppwr-cond">Voorwaardelijk</span> of 24 maanden na de handelingen bij art 6, lid 4</td><td>6, lid 3</td></tr>
+    <tr><td>Recycling op schaal komt bij de klasse</td><td>1 jan 2035</td><td><span class="ppwr-cond">Voorwaardelijk</span> of 5 jaar na de handelingen bij art 6, lid 5</td><td>6, lid 2</td></tr>
+    <tr><td>Differentiatie UPV-bijdragen naar klasse</td><td>~medio 2031</td><td><span class="ppwr-cond">Voorwaardelijk</span> 18 maanden na de handelingen bij art 6, lid 4 en lid 5, gelezen als de latere van de twee</td><td>6, lid 8</td></tr>
+    <tr><td>Methodologie markering zorgwekkende stoffen</td><td>1 jan 2030</td><td><span class="ppwr-hard">Harde datum</span> Plicht van de Commissie</td><td>12, lid 7</td></tr>
     <tr><td>Alleen klasse A of B</td><td>1 jan 2038</td><td><span class="ppwr-hard">Harde datum</span> in de tekst</td><td>6, lid 3</td></tr>
     <tr><td>Gerecycled gehalte, tweede tranche</td><td>1 jan 2040</td><td><span class="ppwr-hard">Harde datum</span> in de tekst</td><td>7, lid 2</td></tr>
   </tbody>
 </table>
 </div>
 
-<h2 id="vandaag">Wat op 12 augustus 2026 werkelijk verboden werd</h2>
+<p>Twee rijen dragen het meeste commerciële gewicht. Artikel 6 deelt recyclebaarheid in als A, B of C volgens tabel 3 van bijlage II; er is geen D en geen E. Onder klasse C betekent geen markttoegang vanaf 1 januari 2030, of 24 maanden na de handelingen bij artikel 6, lid 4, indien dat later is, en vanaf 2038 kwalificeren alleen A en B. De klasse bepaalt ook de prijs: de differentiatie van UPV-bijdragen op grond van artikel 6, lid 8, volgt 18 maanden na de handelingen bij lid 4 en lid 5, dus op de eigen termijnen van de verordening landt dat signaal rond medio 2031, ná de ondergrens voor markttoegang. De klasse beslist eerst over markttoegang en daarna over de factuur.</p>
 
-<p>Terwijl de verpakkingssector een QR-verplichting repeteerde die niet bestaat, trad op diezelfde datum een echt verbod in werking, met een fractie van de aandacht.</p>
+<h2 id="what-to-do">Wat je met de gewonnen tijd doet</h2>
 
-<p>Vanaf 12 augustus 2026 mogen verpakkingen die met levensmiddelen in contact komen niet in de handel worden gebracht als zij per- en polyfluoralkylstoffen bevatten boven drie grenswaarden uit artikel 5, lid 5:</p>
+<p>Het werk dat er in 2026 toe doet, is ander werk dan de meeste bedrijven is aangeraden.</p>
 
-<div class="ppwr-table-wrap">
-<table class="ppwr-table">
-  <caption>PFAS-grenswaarden uit artikel 5, lid 5, voor levensmiddelencontactverpakkingen. Nu van toepassing, voor zover de verpakking niet al op grond van een andere Uniehandeling verboden is.</caption>
-  <thead>
-    <tr><th>Meting</th><th>Grenswaarde</th><th>Toelichting</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>PFAS, gerichte analyse</td><td><strong>25 ppb</strong></td><td>PFAS in polymere vorm telt niet mee in de kwantificering</td></tr>
-    <tr><td>Som van PFAS, gerichte analyse</td><td><strong>250 ppb</strong></td><td>Indien van toepassing met voorafgaande afbraak van precursoren; polymeer telt niet mee</td></tr>
-    <tr><td>PFAS inclusief polymere vorm</td><td><strong>50 ppm</strong></td><td>Overschrijdt het totale fluor 50 mg/kg, dan moeten leveranciers op verzoek bewijs van de fluorhoeveelheid leveren</td></tr>
-  </tbody>
-</table>
-</div>
+<p><strong>Test je levensmiddelenverpakking op PFAS,</strong> en controleer meteen het totaal aan zware metalen. Dit zijn de geldende verplichtingen, zonder overgangstermijn. Verklaringen van leveranciers zijn een zwakke bewijsbasis voor een dossier onder bijlage VII; analysecertificaten per verpakkingstype, van een geaccrediteerd laboratorium, zijn de verdedigbare versie.</p>
 
-<p>Lees de derde rij goed, want die wordt breed verkeerd geciteerd. Verschillende nalevingssamenvattingen maken er een grens van 50 ppm op totaal fluor van. De verordening stelt 50 ppm voor PFAS inclusief polymere PFAS, en gebruikt totaal fluor boven 50 mg/kg als trigger voor een informatieplicht die de keten in loopt, zodat de fabrikant of importeur het technisch dossier uit bijlage VII kan opstellen. Het onderscheid bepaalt welke testuitslag een bedrijf in overtreding brengt.</p>
+<p><strong>Ontwerp één drager, geen twee.</strong> Geldt er al een paspoortregime voor je product, of gaat dat vóór 2030 gelden, dan vraagt artikel 12, lid 5, om één drager voor allebei. Bouw hem nu en het verpakkingsetiket wordt een uitbreiding, geen tweede project.</p>
 
-<p>Artikel 5, lid 4, stelt een tweede harde grens die eveneens nu geldt: de som van lood, cadmium, kwik en zeswaardig chroom afkomstig van stoffen in verpakking of verpakkingsonderdelen mag niet hoger zijn dan 100 mg/kg. Naleving van beide bepalingen moet worden aangetoond in de technische documentatie uit bijlage VII, op grond van artikel 5, lid 6.</p>
+<p><strong>Zoek uit of je in juridische zin herbruikbare verpakking hebt,</strong> en <strong>breng zorgwekkende stoffen in de verpakking zelf in kaart</strong>, de inkten, lijmen en barrièrelagen. Het eerste brengt vanaf 12 februari 2029, of 30 maanden na de handeling bij artikel 12, lid 6, een trackingdrager mee. Het tweede geldt zodra ze aanwezig zijn, en de methodologie van uiterlijk 1 januari 2030 vraagt naam en concentratie per materiaal per verpakkingseenheid. Ketengegevens op dat niveau kosten jaren.</p>
 
-<div class="ppwr-note">
-  <div class="ppwr-note__k">Waarom deze scheefgroei telt</div>
-  <p>De PFAS-beperking vergt geen uitvoeringshandeling, kent geen voorwaardelijke datum en bevat in het artikel zelf geen overgangstermijn. Het is de helderste en direct handhaafbaarste verplichting in de verordening. De QR-code, die het grootste deel van de voorbereidingsinspanning opslokte, is vrijwillig. Een bedrijf dat 2026 besteedde aan software voor gegevensdragers en geen PFAS-tests liet uitvoeren op zijn levensmiddelencontactlijnen, heeft geoptimaliseerd op het verkeerde risico.</p>
-</div>
+<p><strong>Beslis over UPV-identificatie,</strong> die artikel 12, lid 9, formuleert als "uiterlijk 12 februari 2027" voor wie überhaupt identificeert, en <strong>laat je recyclebaarheid indelen.</strong> Dat indelen is de urgente helft: de ondergrens klasse C komt vóór de differentiatie van bijdragen, dus het is eerst een markttoegangsvraag en daarna een kostenvraag.</p>
 
-<h2 id="recyclebaarheid">Recyclebaarheidsklassen A, B en C</h2>
+<p>Ongemakkelijk is dat het uitstel geen goed nieuws is. Een specificatie die eind 2026 komt, laat ruwweg twee jaar om het drukwerk van hele portfolio's opnieuw te ontwerpen, en elke maand die de Commissie neemt, gaat van dat venster af in plaats van erbij. Dat de verplichting opschuift maakt haar niet kleiner. Het perst de aanloop samen terwijl het lijkt of hij langer wordt.</p>
 
-<p>Artikel 6 verplicht fabrikanten de recyclebaarheid van verpakkingen te beoordelen en het resultaat uit te drukken in een prestatieklasse. Er zijn drie klassen, A, B en C, beschreven in tabel 3 van bijlage II. Samenvattingen die een schaal van A tot en met E beschrijven, beschrijven iets anders.</p>
+<p>Eén woordkeuze is het waard om mee te nemen. De PPWR zegt nergens "paspoort" waar het telt: de term staat twee keer in de hele verordening, beide keren in overweging 70 en nooit in een artikel. Wil je weten wat dit voor een specifiek portfolio betekent, of hoe een verpakkingsetiket een drager deelt met een paspoort dat je toch al moet bouwen, <a href="/nl/#contact">neem dan contact op</a>.</p>
 
-<p>De klassen krijgen in twee stappen tanden. Vanaf 1 januari 2030, of 24 maanden na inwerkingtreding van de gedelegeerde handelingen bij artikel 6, lid 4, indien dat later is, mogen verpakkingen niet in de handel worden gebracht tenzij zij recyclebaar zijn binnen klasse A, B of C. Vanaf 1 januari 2038 gaat de ondergrens omhoog: alleen klasse A en B mogen dan nog in de handel worden gebracht. Een verpakkingsformaat onderaan de reeks heeft dus ruwweg een decennium resterende marktlevensduur, aangenomen dat de gedelegeerde handelingen op tijd komen.</p>
+<script>
+(function () {
+  var gate = document.getElementById('ppwrGate');
+  var gateForm = document.getElementById('ppwrGateForm');
+  var GATE_KEY = 'regen_ppwr_unlocked';
+  if (!gate || !gateForm) return;
 
-<p>De klassen sturen ook geld. Op grond van artikel 6, lid 8, moeten de bijdragen voor uitgebreide producentenverantwoordelijkheid worden gedifferentieerd naar recyclebaarheidsklasse, vanaf 18 maanden na inwerkingtreding van de gedelegeerde handelingen bij lid 4 en de uitvoeringshandelingen bij lid 5. Betere klasse, lagere bijdrage. Voor verpakkingen met hoge volumes wordt dit waarschijnlijk het scherpste commerciële signaal, ruim vóór enig marktverbod, omdat het de jaarlijkse UPV-factuur raakt in plaats van een verre nalevingsdatum.</p>
+  var ts = parseInt(localStorage.getItem(GATE_KEY) || '0', 10);
+  if (ts > 0 && (Date.now() - ts) < 86400000) {
+    gate.classList.remove('ppwr-gate--locked');
+  } else {
+    localStorage.removeItem(GATE_KEY);
+    gate.classList.add('ppwr-gate--locked');
+  }
 
-<h2 id="gerecycled-gehalte">Gerecycled gehalte, en de bijdrage die de klasse volgt</h2>
+  /* antibot.js is deferred, so it executes AFTER this inline script. Calling
+     Antibot.protect() straight away therefore did nothing, and the visitor met
+     "Please complete the triangle verification" with no triangle ever drawn,
+     because validate() at submit time did find Antibot. Wait for it instead. */
+  function whenAntibot(cb) {
+    var done = false;
+    function go() {
+      if (done || !window.Antibot) return;
+      done = true;
+      clearInterval(iv);
+      cb();
+    }
+    if (window.Antibot) return go();
+    var tries = 0;
+    var iv = setInterval(function () {
+      if (window.Antibot || ++tries > 100) go();
+      if (tries > 100) clearInterval(iv);
+    }, 50);
+    window.addEventListener('load', go);
+  }
 
-<p>Artikel 7 geldt voor kunststofdelen van verpakkingen, en uitsluitend voor kunststof. Het stelt minimumpercentages post-consumer gerecycled materiaal vast, berekend als gemiddelde per productievestiging en per jaar in plaats van per eenheid, wat fabrikanten echte flexibiliteit geeft over een productassortiment.</p>
+  whenAntibot(function () {
+    window.Antibot.protect(gateForm);
+    var captcha = gateForm.querySelector('.antibot-captcha');
+    var disclaimer = gateForm.querySelector('.ppwr-gate__disclaimer');
+    if (captcha && disclaimer) gateForm.insertBefore(captcha, disclaimer);
+  });
 
-<p>De eerste tranche geldt vanaf 1 januari 2030, of drie jaar na inwerkingtreding van de uitvoeringshandeling bij artikel 7, lid 8, indien dat later valt. De tweede tranche geldt vanaf 1 januari 2040, zonder voorwaarde in de tekst.</p>
+  gateForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = gateForm.querySelector('.ppwr-gate__btn');
+    var email = gateForm.querySelector('input[name="email"]').value;
+    btn.disabled = true;
+    btn.textContent = 'Opening...';
+    var existingError = gateForm.querySelector('.ppwr-gate__error');
+    if (existingError) existingError.remove();
 
-<div class="ppwr-table-wrap">
-<table class="ppwr-table">
-  <caption>Minimumgehalte gerecycled materiaal uit artikel 7 voor kunststofdelen van verpakkingen, teruggewonnen uit post-consumer kunststofafval.</caption>
-  <thead>
-    <tr><th>Verpakkingstype</th><th>Vanaf 2030</th><th>Vanaf 2040</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Contactgevoelig, PET als hoofdbestanddeel, behalve drankflessen voor eenmalig gebruik</td><td><strong>30%</strong></td><td><strong>50%</strong></td></tr>
-    <tr><td>Contactgevoelig, andere kunststoffen dan PET, behalve drankflessen voor eenmalig gebruik</td><td><strong>10%</strong></td><td><strong>25%</strong></td></tr>
-    <tr><td>Kunststof drankflessen voor eenmalig gebruik</td><td><strong>30%</strong></td><td><strong>65%</strong></td></tr>
-    <tr><td>Alle overige kunststofverpakkingen</td><td><strong>35%</strong></td><td><strong>65%</strong></td></tr>
-  </tbody>
-</table>
-</div>
+    function doGateSubmit(antibotPayload) {
+      var payload = {
+        name: '',
+        email: email,
+        message: 'PPWR carrier-cases unlock',
+        source: 'ppwr_gate',
+        page_url: window.location.href
+      };
+      if (antibotPayload) {
+        for (var k in antibotPayload) {
+          if (antibotPayload.hasOwnProperty(k)) payload[k] = antibotPayload[k];
+        }
+      }
+      fetch('https://uemspezaqxmkhenimwuf.supabase.co/functions/v1/contact-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function (res) {
+        if (!res.ok) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            throw new Error(data.error || 'Something went wrong');
+          });
+        }
+        localStorage.setItem(GATE_KEY, Date.now().toString());
+        gate.classList.remove('ppwr-gate--locked');
+        var overlay = document.getElementById('ppwrGateOverlay');
+        var card = overlay.querySelector('.ppwr-gate__card');
+        card.innerHTML = '<h3 class="ppwr-gate__title">Thank you!</h3>' +
+          '<p class="ppwr-gate__text">The four cases are open below. If this was useful, we\u2019d like to hear what you are working on: <a href="mailto:info@regenstudio.world">info@regenstudio.world</a>.</p>';
+        setTimeout(function () { overlay.style.display = 'none'; }, 6000);
+      })
+      .catch(function (err) {
+        var errorEl = document.createElement('p');
+        errorEl.className = 'ppwr-gate__error';
+        errorEl.textContent = err.message || 'Failed. Please try again.';
+        gateForm.appendChild(errorEl);
+        btn.disabled = false;
+        btn.textContent = 'Open';
+      });
+    }
 
-<p>Een kunststofdeel dat minder dan 5% van het totale gewicht van de hele verpakkingseenheid uitmaakt, valt buiten het vereiste. Papieren en kartonnen verpakkingen vallen volledig buiten artikel 7, wat bedrijven verrast die aannemen dat de regels voor gerecycled gehalte materiaalneutraal zijn.</p>
-
-<p>Eén voorbehoud hoort op elke planningsslide voor 2040. Artikel 7, lid 14, verplicht de Commissie uiterlijk 12 februari 2032 te rapporteren over hoe de percentages voor 2030 in de praktijk uitpakten en of de percentages voor 2040 haalbaar zijn, en dat rapport kan vergezeld gaan van een wetgevingsvoorstel dat de cijfers voor 2040 wijzigt. De cijfers voor 2040 zijn wet, en zijn tegelijk uitdrukkelijk aangemerkt voor herziening.</p>
-
-<h2 id="geen-dpp">De PPWR is geen paspoortregime</h2>
-
-<p>Dit is de diepere fout onder de QR-mythe, en zij leidt tot verkeerde architectuurbeslissingen in plaats van alleen tot een verkeerde kalender.</p>
-
-<p>Artikel 12 gebruikt de term "digitaal productpaspoort" nergens. De PPWR creëert geen paspoort, definieert geen paspoortdatamodel en bevat geen koppeling met het EU-register voor digitale productpaspoorten dat in juli 2026 live ging. Wat artikel 12 creëert is een etiketteringsregime, met een optionele digitale gegevensdrager eraan vast voor consumentensortering.</p>
-
-<p>Over de woordkeuze mag je pietluttig zijn, want juist de losse terminologie heeft de mythe vermoedelijk voortgebracht. De term "digitaal etiket" komt nergens in de PPWR voor, ook niet in de overwegingen. De verordening gebruikt tien keer "digitale gegevensdrager" en zes keer "digitale markeringstechnologieën", en elk van de negenentwintig keer dat het woord "etiket" valt, gaat het om iets dat op de verpakking wordt gedrukt, aangebracht of gegraveerd. Commentaar dat artikel 12 een "digitaal etiketteringsregime" noemt, plakt twee losse dingen aan elkaar, en wie die formulering opneemt concludeert redelijkerwijs dat het verplichte onderdeel in 2028 digitaal is. Het is een pictogram.</p>
-
-<div class="ppwr-table-wrap">
-<table class="ppwr-table">
-  <caption>De vier constructies die in elkaar worden geschoven, en hoe de PPWR ze werkelijk noemt.</caption>
-  <thead>
-    <tr><th>Constructie</th><th>Status onder de PPWR</th><th>Wat het feitelijk is</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Geharmoniseerd etiket</td><td>Verplicht, op zijn vroegst 2028</td><td>Gedrukt pictogram met de materiële samenstelling. Fysiek.</td></tr>
-    <tr><td>Digitale gegevensdrager</td><td>Optioneel voor sorteren; verplicht in drie gevallen</td><td>QR, NFC, RFID of watermerk. De term die de PPWR echt gebruikt.</td></tr>
-    <tr><td>Digitale markeringstechnologie</td><td>Verplicht bij zorgwekkende stoffen</td><td>Machineleesbare markering volgens een methode die 1 jan 2030 verschuldigd is.</td></tr>
-    <tr><td>"Digitaal etiket"</td><td>Bestaat niet in de tekst</td><td>Branchejargon dat de eerste twee samenvoegt.</td></tr>
-  </tbody>
-</table>
-</div>
-
-<p>Digitale markering en een digitaal productpaspoort zijn eveneens verwante ideeën, gebouwd voor verschillende taken.</p>
-
-<p>Het onderscheid telt omdat het verpakte product wel degelijk een echt paspoort kan dragen. Detergentia krijgen er een vanaf 23 september 2029, op grond van de <a href="/nl/blog/dsr-digital-product-passport/">verordening detergentia en oppervlakteactieve stoffen</a>. Batterijen hebben er al een. Bouwproducten volgen onder de <a href="/nl/blog/cpr-digital-product-passport/">verordening bouwproducten</a>, en de horizontale machinerie staat onder <a href="/nl/blog/ESPR/">ESPR</a> met het <a href="/nl/blog/dpp-registry-goes-live/">register</a> eronder. Een shampoofles kan tegelijk een product zijn met een verplicht paspoort en een verpakking met een optioneel sorteeretiket. Dat zijn twee verschillende ladingen met twee verschillende rechtsgrondslagen.</p>
-
-<p>Artikel 12, lid 5, voorziet precies deze botsing en lost haar in één zin op:</p>
-
-<div class="ppwr-quote">
-  <p>"Indien de informatie op het verpakte product krachtens het Unierecht moet worden verstrekt door middel van een gegevensdrager, wordt één gegevensdrager gebruikt om de vereiste informatie over het verpakte product en over de verpakking te verstrekken, waarbij beide soorten informatie gemakkelijk te onderscheiden zijn."</p>
-  <cite>Verordening (EU) 2025/40, artikel 12, lid 5, laatste alinea</cite>
-</div>
-
-<p>Eén drager, beide ladingen, duidelijk te onderscheiden. Voor een producent van wasmiddelen is dit de nuttigste zin in artikel 12: de DSR-paspoortdrager die in september 2029 verplicht wordt, kan ook de sorteerinformatie van de verpakking dragen, en er is geen verplichting om twee codes te drukken. Het beslecht ook de volgordevraag. Voor de meeste consumentengoederen is het paspoortregime, niet de PPWR, wat er daadwerkelijk voor zorgt dat er een QR op de verpakking komt, en dat gebeurt op het tijdschema van het paspoortregime.</p>
-
-<p>Over wat er nodig is om die paspoorten betrouwbaar te maken schreven we eerder in ons <a href="/nl/blog/trusted-dpps/">position paper over betrouwbare digitale productpaspoorten</a>.</p>
-
-<h2 id="privacy">De privacybepaling die vrijwel niemand noemt</h2>
-
-<p>Artikel 12, lid 5, verbindt twee voorwaarden aan informatie die langs elektronische weg wordt verstrekt, en die verdienen meer aandacht dan ze krijgen, zeker aan de marketingkant van een verpakkingsproject.</p>
-
-<p>Ten eerste mogen persoonsgegevens uitsluitend worden verzameld voor het beperkte doel de gebruiker toegang te verlenen tot de relevante nalevingsinformatie, met een expliciete verwijzing naar artikel 5, lid 1, van de AVG. Ten tweede, en botter: de informatie "wordt niet samen met andere informatie voor verkoop- of marketingdoeleinden getoond".</p>
-
-<p>Daarmee vervalt een businesscase die veel leveranciers stilletjes verkopen. Een sorteer-QR die de consument op een merkcampagnepagina laat landen, een e-mailadres oogst of de bezoeker in een loyaliteitstrechter laat vallen, is geen conforme uitvoering van artikel 12. De scan moet het sorteren dienen, en alleen dat.</p>
-
-<p>Lid 8 voegt aan de fysieke kant een verwant verbod toe. Marktdeelnemers mogen geen etiketten, merktekens, symbolen of opschriften tonen die consumenten waarschijnlijk misleiden over de duurzaamheidseisen, andere kenmerken of afvalbeheeropties waarvoor de PPWR geharmoniseerde etikettering vastlegt. Zodra het geharmoniseerde etiket bestaat, wordt het bedenken van een vriendelijker ogend recyclebaarheidsteken ernaast een juridisch risico in plaats van een ontwerpkeuze.</p>
-
-<p>Er is een ontwerpimplicatie die het waard is expliciet te maken. Een verpakkings-QR die nu als marketingmiddel wordt gebouwd, moet later worden herbouwd als nalevingsmiddel. Andersom bouwen, als schone nalevingslaag die toevallig goed is vormgegeven, kost in totaal minder.</p>
-
-<h2 id="wat-nu">Wat je met de gewonnen tijd moet doen</h2>
-
-<p>De juiste conclusie hieruit is niet dat de PPWR genegeerd kan worden. Het is dat het werk dat in 2026 de moeite waard is, ander werk is dan wat de meeste bedrijven te horen kregen.</p>
-
-<p><strong>Test je levensmiddelencontactverpakkingen op PFAS.</strong> Dit is de levende verplichting, ze geldt vandaag, en artikel 5 kent er geen overgangstermijn voor. Eigen verklaringen van leveranciers vormen een zwakke bewijsbasis voor een technisch dossier onder bijlage VII. Analysecertificaten per verpakkingstype, van een geaccrediteerd laboratorium, zijn de verdedigbare versie.</p>
-
-<p><strong>Controleer het totaal aan zware metalen.</strong> De gecombineerde grens van 100 mg/kg voor lood, cadmium, kwik en zeswaardig chroom geldt eveneens nu, en moet ook in de technische documentatie terechtkomen.</p>
-
-<p><strong>Bepaal of je herbruikbare verpakking hebt in juridische zin.</strong> Zit een deel van het portfolio in een formeel hergebruiksysteem met systeembeheerder, dan brengt de verplichting van februari 2029 een volgdrager mee, en het volgen van trajecten en omlopen is een systeemproject in plaats van een drukwerkproject. Is het systeem een openkringloop zonder beheerder, dan kan lid 3 het vrijstellen. Die vaststelling is nu de moeite waard, nu ze goedkoop is.</p>
-
-<p><strong>Breng zorgwekkende stoffen in de verpakking zelf in kaart.</strong> Inkten, lijmen, barrièrelagen, pigmenten. De markeringsverplichting uit lid 1 is verplicht wanneer ze aanwezig zijn, en de methode die uiterlijk 1 januari 2030 komt zal naam en concentratie per materiaal per verpakkingseenheid vragen. Ketengegevens op dat detailniveau kosten jaren om te verzamelen.</p>
-
-<p><strong>Beslis de UPV-identificatievraag vóór februari 2027.</strong> Wil je scheme-identificatie op de verpakking, dan moet dat een QR of gelijkwaardige digitale markering zijn. Wil je dat niet, dan ontstaat er geen verplichting.</p>
-
-<p><strong>Laat recyclebaarheid klasseren en modelleer de bijdrage.</strong> De klasse stuurt de differentiatie van de UPV-bijdrage, en dat wordt eerder gevoeld dan de markttoegangsgrens van 2030. Weten of een formaat op A, B of C uitkomt, verandert verpakkingsbeslissingen met lange doorlooptijden.</p>
-
-<p><strong>Ontwerp één drager, geen twee.</strong> Geldt er al een paspoortregime voor je product, of gaat dat vóór 2030 gelden, dan laat artikel 12, lid 5, één drager beide taken vervullen. Ontwerp daar nu voor en het verpakkingsetiket wordt een aanvulling in plaats van een tweede project.</p>
-
-<p>Eén bepaling verzacht de uiteindelijke overgang. Op grond van lid 12 mogen verpakkingen die in de Unie zijn vervaardigd of ingevoerd vóór de etiketteringstermijnen en die niet aan de criteria voldoen, nog drie jaar op de markt worden aangeboden, gerekend vanaf de datum waarop die etiketteringsvereisten in werking treden. Bestaande voorraad wordt niet van de ene op de andere dag waardeloos. Let wel op de formulering: de termijn loopt vanaf inwerkingtreding van de vereisten en dekt verpakkingen die vóór de deadline zijn gemaakt of ingevoerd, dus het loont je productiedata te kennen.</p>
-
-<p>Het ongemakkelijke deel van deze analyse is dat het uitstel geen goed nieuws is. Een specificatie die eind 2026 verschijnt, laat ontwerpers ruwweg twee jaar om artwork over hele portfolio's te herzien, en elke maand die de Commissie neemt, is een maand die van dat venster af gaat in plaats van erbij. Dat de verplichting opschuift maakt haar niet kleiner. Het comprimeert de aanlooptijd terwijl het lijkt alsof er ruimte bij komt.</p>
-
-<h2 id="faq">Veelgestelde vragen</h2>
-
-<div class="ppwr-faq">
-  <details>
-    <summary>Verplicht de PPWR een QR-code op verpakkingen?</summary>
-    <p>Nee, niet als algemene verplichting. Artikel 12, lid 1, zegt dat marktdeelnemers een QR-code of een andere gestandaardiseerde, open, digitale gegevensdrager op de verpakking <em>mogen</em> aanbrengen om consumenten te helpen sorteren. Het is vrijwillig en aanvullend op het verplichte gedrukte etiket. Er zijn drie uitzonderingen waarin een gegevensdrager wel verplicht is: herbruikbare verpakkingen vanaf op zijn vroegst 12 februari 2029, verpakkingen die zorgwekkende stoffen bevatten, en UPV-identificatie vanaf 12 februari 2027 wanneer een producent ervoor kiest te identificeren. Ook in die drie gevallen is een QR-code niet specifiek vereist: de tekst luidt steeds "een QR-code of een ander soort gestandaardiseerde, open, digitale gegevensdrager", dus NFC, RFID of digitaal watermerken voldoen even goed.</p>
-  </details>
-  <details>
-    <summary>Wanneer wordt het PPWR-etiket verplicht?</summary>
-    <p>Vanaf 12 augustus 2028, of 24 maanden na inwerkingtreding van de uitvoeringshandelingen op grond van artikel 12, lid 6 of lid 7, indien dat later is. Die handelingen waren verschuldigd uiterlijk 12 augustus 2026 en zijn niet vastgesteld, dus de feitelijke datum ligt op dit moment later dan augustus 2028. Treedt de handeling eind 2026 in werking, dan valt de verplichting eind 2028. Schuift ze naar 2027, dan valt de verplichting in 2029.</p>
-  </details>
-  <details>
-    <summary>Creëert de PPWR een digitaal productpaspoort voor verpakkingen?</summary>
-    <p>Nee. Artikel 12 stelt een etiketteringsregime in en gebruikt de term nergens. De PPWR definieert geen paspoortdatamodel en legt geen koppeling met het EU-register voor digitale productpaspoorten. Paspoorten komen uit andere verordeningen: ESPR als horizontaal kader, de batterijenverordening, de verordening detergentia vanaf september 2029, en de verordening bouwproducten. Draagt een product een paspoort en heeft de verpakking informatieplichten, dan vereist artikel 12, lid 5, één gegevensdrager voor beide, waarbij de twee soorten informatie gemakkelijk te onderscheiden zijn.</p>
-  </details>
-  <details>
-    <summary>Welke PPWR-verplichtingen gelden werkelijk vanaf 12 augustus 2026?</summary>
-    <p>De ingrijpendste is artikel 5, lid 5: verpakkingen die met levensmiddelen in contact komen mogen niet in de handel worden gebracht met PFAS op of boven 25 ppb voor PFAS met gerichte analyse, 250 ppb voor de som van PFAS, of 50 ppm voor PFAS inclusief polymere vorm. Artikel 5, lid 4, begrenst het gecombineerde totaal van lood, cadmium, kwik en zeswaardig chroom op 100 mg/kg. Beide moeten worden aangetoond in de technische documentatie uit bijlage VII, en geen van beide hangt af van een uitvoeringshandeling.</p>
-  </details>
-  <details>
-    <summary>Wat zijn de PPWR-recyclebaarheidsklassen?</summary>
-    <p>A, B en C, omschreven in tabel 3 van bijlage II en beoordeeld door de fabrikant op grond van artikel 6, lid 3. Samenvattingen die een schaal van A tot en met E noemen, kloppen niet. Vanaf 1 januari 2030, of 24 maanden na de gedelegeerde handelingen bij artikel 6, lid 4, indien dat later is, mogen verpakkingen onder klasse C niet in de handel worden gebracht. Vanaf 1 januari 2038 kwalificeren alleen klasse A en B nog. De klasse stuurt ook de differentiatie van UPV-bijdragen op grond van lid 8, die begint 18 maanden na die handelingen.</p>
-  </details>
-  <details>
-    <summary>Is mijn bestaande verpakkingsvoorraad waardeloos zodra het etiket geldt?</summary>
-    <p>Niet meteen. Artikel 12, lid 12, staat toe dat verpakkingen die vóór de betreffende termijn in de Unie zijn vervaardigd of ingevoerd en niet aan de etiketteringscriteria voldoen, nog drie jaar op de markt worden aangeboden, gerekend vanaf de datum waarop de etiketteringsvereisten in werking treden.</p>
-  </details>
-</div>
-
-<p>De PPWR is een serieuze verordening met echte tanden, en de onderdelen die in 2026 het hardst bijten zijn chemisch in plaats van digitaal. De QR-code die de aanloop naar augustus domineerde is optioneel, het etiket dat verplicht is kan nog niet worden gedrukt omdat de Commissie het ontwerp niet heeft gepubliceerd, en vrijwel elke datum in de nalevingskalender is een ondergrens die meeschuift met de onderliggende handeling. Wie tegen de PPWR plant, moet de voorwaarden bij de data lezen en niet alleen de data.</p>
-
-<p>Wil je uitzoeken wat dit betekent voor een specifiek verpakkingsportfolio, of hoe een verpakkingsetiket een drager kan delen met een productpaspoort dat je toch al moet bouwen, <a href="/nl/#contact">neem dan contact op</a>.</p>
+    if (window.Antibot) {
+      window.Antibot.validate(gateForm).then(doGateSubmit).catch(function (errMsg) {
+        var errorEl = document.createElement('p');
+        errorEl.className = 'ppwr-gate__error';
+        errorEl.textContent = errMsg;
+        gateForm.appendChild(errorEl);
+        btn.disabled = false;
+        btn.textContent = 'Open';
+      });
+    } else {
+      doGateSubmit(null);
+    }
+  });
+})();
+</script>
