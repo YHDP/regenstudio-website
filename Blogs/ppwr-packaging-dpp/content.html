@@ -333,12 +333,33 @@
     gate.classList.add('ppwr-gate--locked');
   }
 
-  if (window.Antibot) {
+  /* antibot.js is deferred, so it executes AFTER this inline script. Calling
+     Antibot.protect() straight away therefore did nothing, and the visitor met
+     "Please complete the triangle verification" with no triangle ever drawn,
+     because validate() at submit time did find Antibot. Wait for it instead. */
+  function whenAntibot(cb) {
+    var done = false;
+    function go() {
+      if (done || !window.Antibot) return;
+      done = true;
+      clearInterval(iv);
+      cb();
+    }
+    if (window.Antibot) return go();
+    var tries = 0;
+    var iv = setInterval(function () {
+      if (window.Antibot || ++tries > 100) go();
+      if (tries > 100) clearInterval(iv);
+    }, 50);
+    window.addEventListener('load', go);
+  }
+
+  whenAntibot(function () {
     window.Antibot.protect(gateForm);
     var captcha = gateForm.querySelector('.antibot-captcha');
     var disclaimer = gateForm.querySelector('.ppwr-gate__disclaimer');
     if (captcha && disclaimer) gateForm.insertBefore(captcha, disclaimer);
-  }
+  });
 
   gateForm.addEventListener('submit', function (e) {
     e.preventDefault();
