@@ -1274,7 +1274,13 @@
 
           var imageHtml;
           if (blog.featuredImage) {
-            imageHtml = '<img class="blog-card__image" src="/Blogs/' + blog._folder + '/' + blog.featuredImage + '" alt="' + (blog.featuredImageAlt || '') + '">';
+            // Card-sized variant, with the full image as the fallback. Same rule as
+            // blog.js cardImageSrc(): a ~380px card does not need the post hero's pixels.
+            var _full = '/Blogs/' + blog._folder + '/' + blog.featuredImage;
+            var _card = _full.replace(/\.(webp|png|jpe?g)$/i, '-card.webp');
+            imageHtml = '<img class="blog-card__image" src="' + _card + '" alt="' +
+              (blog.featuredImageAlt || '') + '" width="800" height="500" loading="lazy"' +
+              ' onerror="this.onerror=null;this.src=\'' + _full + '\'">';
           } else {
             imageHtml = '<div class="blog-card__placeholder"></div>';
           }

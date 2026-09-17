@@ -245,6 +245,16 @@
     return [].concat(Array.from(expanded));
   }
 
+  /* Blog cards render at about 380px wide (repeat(3, 1fr)), so shipping the post hero's
+     full-size image into a card cost 12.5 MB across 38 posts. build.ts writes a
+     <stem>-card.webp next to each featured image; this swaps to it and lets the browser
+     fall back to the original if a post has no variant yet. Measured 2026-09-16: the three
+     images on the homepage preview alone went 402KB -> 105KB. */
+  function cardImageSrc(src) {
+    if (!src) return src;
+    return src.replace(/\.(webp|png|jpe?g)$/i, '-card.webp');
+  }
+
   // --- Resolve image paths from static pages ---
   function resolveImagePath(slug, featuredImage) {
     if (!featuredImage) return '';
@@ -400,7 +410,7 @@
       ? (basePath + 'Blogs/' + post.slug + '/' + post.featuredImage)
       : '';
     const imageHtml = post.featuredImage
-      ? `<div class="blog-card__image"><img src="${imgSrc}" alt="${post.featuredImageAlt || ''}" loading="lazy"></div>`
+      ? `<div class="blog-card__image"><img src="${cardImageSrc(imgSrc)}" alt="${post.featuredImageAlt || ''}" loading="lazy" width="800" height="500" onerror="this.onerror=null;this.src='${imgSrc}'"></div>`
       : `<div class="blog-card__image"><div class="blog-card__image-placeholder">${icons.image}</div></div>`;
 
     // On the Client Projects listing every card is a client project, so that
