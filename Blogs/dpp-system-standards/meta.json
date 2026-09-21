@@ -34,6 +34,8 @@
   "featuredImage": "header.png",
   "featuredImageAlt": "A colorful low-poly illustration of many floating octahedra of varying sizes connected into a network on a pale sky, in Regen Studio's triangular-polygon style — the Digital Product Passport system standards as a shared, interoperable ecosystem",
   "excerpt": "In 2026, CEN/CENELEC finalised eight European Standards — the EN 1821x series — that define how every EU Digital Product Passport is identified, carried, exchanged, stored, secured and authenticated. Here is what each standard does, how they fit together, and what they mean if you place products on the EU market.",
+  "seoTitle": "CEN/CENELEC JTC 24 DPP standards: the EN 1821x series",
+  "metaDescription": "What each of the eight EN 1821x standards from CEN/CENELEC JTC 24 does for the EU Digital Product Passport, and how they fit together.",
   "published": true,
   "review": {
     "text": "approved",

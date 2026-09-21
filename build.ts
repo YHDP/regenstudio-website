@@ -30,6 +30,10 @@ interface BlogMeta {
   featuredImage: string;
   featuredImageAlt: string;
   excerpt: string;
+  // Optional search-result overrides. The excerpt doubles as the on-page answer capsule and
+  // runs long; Google shows ~60 title and ~155 description characters, so these trim for it.
+  seoTitle?: string;
+  metaDescription?: string;
   published: boolean;
   review?: { text: "draft" | "approved"; assets: "draft" | "approved" };
 }
@@ -401,8 +405,8 @@ function buildHead(post: BlogPost, lang: Lang = "en", availableLangs: Lang[] = [
   const ap = assetPrefix(lang);
   const canonicalUrl = `${SITE_URL}${prefix}/blog/${post.slug}/`;
   const imageUrl = resolveImageUrl(post.slug, post.featuredImage);
-  const title = `${post.title} | ${SITE_NAME}`;
-  const description = post.excerpt || post.subtitle || SITE_DESCRIPTION;
+  const title = post.seoTitle ?? `${post.title} | ${SITE_NAME}`;
+  const description = post.metaDescription || post.excerpt || post.subtitle || SITE_DESCRIPTION;
   // Strip HTML entities and tags from description for meta tags
   const cleanDesc = stripHtml(description)
     .replace(/&mdash;/g, "\u2014")
