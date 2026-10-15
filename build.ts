@@ -1129,10 +1129,14 @@ async function dataUri(path: string): Promise<string | null> {
  *  stay as live-site refs — they are not confidential and reduce blob size. */
 async function inlineAssets(html: string, baseDir: string, slug: string, lang: Lang): Promise<string> {
   const prefix = assetPrefix(lang);
-  const targets: string[] = ["Images/client-logos/coe-dpp.svg", "Images/client-logos/rvo.png"];
+  // Partner and funding logos may be new with this draft and not on the live site yet:
+  // inline every one the page references (small files, so the blob stays reasonable).
+  const targets = new Set<string>();
+  const esc = prefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  for (const m of html.matchAll(new RegExp(`${esc}(Images/(?:client-logos|Funding)/[^"'()\\s]+)`, "g"))) targets.add(m[1]);
   try {
     for await (const e of Deno.readDir(`${baseDir}/Blogs/${slug}`)) {
-      if (e.isFile && /\.(webp|png|jpe?g|svg|gif)$/i.test(e.name)) targets.push(`Blogs/${slug}/${e.name}`);
+      if (e.isFile && /\.(webp|png|jpe?g|svg|gif)$/i.test(e.name)) targets.add(`Blogs/${slug}/${e.name}`);
     }
   } catch { /* no post dir */ }
   let out = html;
@@ -1140,8 +1144,45 @@ async function inlineAssets(html: string, baseDir: string, slug: string, lang: L
     const uri = await dataUri(`${baseDir}/${rel}`);
     if (uri) out = out.split(`${prefix}${rel}`).join(uri);
   }
+  return await inlineSlugFrames(out, baseDir, slug, prefix);
+}
+
+/** A draft may frame its own sub-page (e.g. Blogs/<slug>/paspoort/index.html). That page is
+ *  not on the live site, so the review artifact carries it as srcdoc, with its local
+ *  stylesheets, scripts and images inlined. Links that open the same page are dropped. */
+async function inlineSlugFrames(html: string, baseDir: string, slug: string, prefix: string): Promise<string> {
+  const re = new RegExp(`<iframe([^>]*?)\\ssrc="${prefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(Blogs/${slug}/[^"]+\\.html)"([^>]*)>`, "g");
+  let out = html;
+  for (const m of [...html.matchAll(re)]) {
+    const rel = m[2];
+    const dir = rel.slice(0, rel.lastIndexOf("/") + 1);
+    let page: string;
+    try { page = await Deno.readTextFile(`${baseDir}/${rel}`); } catch { continue; }
+    for (const css of [...page.matchAll(/<link rel="stylesheet" href="([^":]+)">/g)]) {
+      try { page = page.replace(css[0], `<style>${await Deno.readTextFile(`${baseDir}/${dir}${css[1]}`)}</style>`); } catch { /* keep */ }
+    }
+    for (const js of [...page.matchAll(/<script src="([^":]+)"( defer)?><\/script>/g)]) {
+      try { page = page.replace(js[0], `<script>${await Deno.readTextFile(`${baseDir}/${dir}${js[1]}`)}</script>`); } catch { /* keep */ }
+    }
+    for (const img of new Set([...page.matchAll(/src="((?:assets|beeld)\/[^"]+)"/g)].map((x) => x[1]))) {
+      const uri = await dataUri(`${baseDir}/${dir}${img}`);
+      if (uri) page = page.split(`"${img}"`).join(`"${uri}"`);
+    }
+    const srcdoc = page.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+    out = out.replace(m[0], `<iframe${m[1]} srcdoc="${srcdoc}"${m[3]}>`);
+    out = out.replace(new RegExp(`<a href="${prefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}${rel}"[^>]*>[^<]*</a>`, "g"), "");
+  }
   return out;
 }
+
+/** Review artifacts must never write to production forms: a reviewer testing a gate or the
+ *  contact CTA would otherwise create a real lead and trigger real emails. POSTs to the
+ *  contact-form Edge Function are answered locally with a success and nothing is sent. */
+const REVIEW_SEND_GUARD = `<script>(function(){var f=window.fetch;window.fetch=function(u,o){
+if(String(u).indexOf('/functions/v1/contact-form')!==-1&&o&&String(o.method).toUpperCase()==='POST'){
+console.info('Review artifact: form submission not sent.');
+return Promise.resolve(new Response('{"ok":true,"review":true}',{status:200,headers:{'Content-Type':'application/json'}}));}
+return f.apply(this,arguments);};})();</script>`;
 
 async function encryptHtml(html: string, password: string) {
   const enc = new TextEncoder();
@@ -1228,7 +1269,8 @@ async function buildCommentStage(
     if (password) {
       const deployDir = `${baseDir}/_review/${slug}${sub}`;
       await Deno.mkdir(deployDir, { recursive: true });
-      const enc = await encryptHtml(await inlineAssets(html, baseDir, slug, lang), password);
+      const guarded = html.replace("<head>", `<head>\n${REVIEW_SEND_GUARD}`);
+      const enc = await encryptHtml(await inlineAssets(guarded, baseDir, slug, lang), password);
       await Deno.writeTextFile(`${deployDir}/index.html`, decryptorShell(enc));
       console.log(`  _review/${slug}${sub}/index.html  (encrypted)`);
     }
