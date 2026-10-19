@@ -249,12 +249,11 @@ while read local_ref local_sha remote_ref remote_sha; do
   #    Closed identifier vocabulary. UPDATE THIS REGEX when a new voucher
   #    client onboards (mirror against dpa/ops/clients.json). Tests run via:
   #      echo 'voucher/seepje' | grep -iE "$CLIENT_IDENTIFIERS_RE"
-  CLIENT_IDENTIFIERS_RE='seepje|houtgoed|evsmart|engelvaart|hollands.?wol[^a-z]|kvw3-[0-9]{5}'
-  # Note: 'kvw3-[0-9]{5}' matches voucher numbers like KVW3-00568 / KVW3-00614
-  # but NOT the public framework name "KvW3-DPP-voucher" or "KvW3-context".
-  # The KvW3 (Kansen voor West 3) ERDF programme is publicly named; only the
-  # per-client voucher number is the leak vector. (Tightened 2026-05-04 after
-  # Path A v0.2 contract template referenced the public KvW3 framework name.)
+  CLIENT_IDENTIFIERS_RE='seepje|houtgoed|evsmart|engelvaart|hollands.?wol[^a-z]'
+  # 2026-10-19: voucher numbers (KVW3-#####) are no longer blocked. The vouchers
+  # are in their communication stage and EFRO publicity rules require the project
+  # number on every public item (funding banner of each client-project post).
+  # A voucher number names no client by itself; the client NAME check stays.
 
   # B-PT2 fix (2026-05-05 new-lens audit): PUBLIC_DIFF MUST be defined BEFORE
   # any check that consumes it. Earlier ordering had the R2 extension blocks
@@ -296,9 +295,9 @@ while read local_ref local_sha remote_ref remote_sha; do
   # are sourced from eur-lex. The grep -v below excludes lines that also
   # contain unambiguous EU-regulation-context markers (regulation number,
   # eur-lex URL, named regulation acronym in a regulatory phrase). Engagement
-  # leaks would normally cite a beschikking number or voucher code (KvW3-...)
-  # — those are caught by the CLIENT_IDENTIFIERS_RE check above and are NOT
-  # whitelisted here.
+  # leaks would normally carry a client name, which the CLIENT_IDENTIFIERS_RE
+  # check below catches; a bare engagement date carries no legislative marker
+  # and still blocks here.
   #
   # 2026-07-28 extension: the same reasoning covers Dutch NATIONAL legislative
   # milestones, which the EU-only marker list missed. The e-cognossement post
@@ -320,9 +319,7 @@ while read local_ref local_sha remote_ref remote_sha; do
   # those languages cite them, "1 jan 2030 ... art 6, lid 4" and "1 jan 2030 ... art. 6.º,
   # n.º 4", which carried none of the English markers above and blocked the push on 14
   # lines, every one of them a date out of Regulation (EU) 2025/40. Engagement leaks stay
-  # caught: a voucher number or beschikking reference is matched by CLIENT_IDENTIFIERS_RE,
-  # which this does not touch, and a bare project-end date carries no legislative marker
-  # and still blocks.
+  # caught: a bare project-end date carries no legislative marker and still blocks.
   # 2026-07-28 correctness fix: the month pattern was a base list plus a flat
   # optional-suffix list, which could not spell two months. "oktober" needs
   # "ober" (only "tober" was listed) and "maart" never matched at all, since
@@ -398,13 +395,11 @@ while read local_ref local_sha remote_ref remote_sha; do
     # Consent-aware clearance (2026-07-07): a client NAME may appear in a public
     # file IFF the manifest records naming_allowed=true for that subject
     # (documented CaseStudy/naming consent, recorded via
-    # consent-registry/record-operator-consent.sh -> regen-manifest.sh). Voucher
-    # NUMBERS (kvw3-#####) are pure leak vectors and NEVER clear.
+    # consent-registry/record-operator-consent.sh -> regen-manifest.sh).
     # Fail-CLOSED: manifest unavailable / subject without naming consent -> block.
     # The operator's local manifest path is NEVER hardcoded in this PUBLIC repo;
     # it comes from $REGEN_CONSENT_MANIFEST or the gitignored
     # scripts/hooks/.consent-manifest-path. Unset -> fail closed (block all).
-    HARD_ID_RE='kvw3-[0-9]{5}'
     NAME_SLUG_TOKENS="seepje houtgoed evsmart engelvaart hollands"
     MANIFEST_PATH="${REGEN_CONSENT_MANIFEST:-}"
     if [ -z "$MANIFEST_PATH" ] && [ -f "scripts/hooks/.consent-manifest-path" ]; then
@@ -454,25 +449,17 @@ PYEOF
       fi
     done
 
-    HARD_HITS=$(echo "$LEAK_HITS" | grep -niE "$HARD_ID_RE" || true)
     NOT_CLEARED_CLEAN=$(printf '%s\n' "$NOT_CLEARED" | grep -vE '^[[:space:]]*$' || true)
 
-    if [ -n "$HARD_HITS" ] || [ -n "$NOT_CLEARED_CLEAN" ]; then
+    if [ -n "$NOT_CLEARED_CLEAN" ]; then
       echo -e "${RED}BLOCKED: Client identifier(s) without documented naming consent:${NC}"
-      if [ -n "$NOT_CLEARED_CLEAN" ]; then
-        printf '%s\n' "$NOT_CLEARED_CLEAN" | sed 's/^/  name (no naming_allowed): /'
-      fi
-      if [ -n "$HARD_HITS" ]; then
-        echo "  voucher-number hit(s) — never clear:"
-        echo "$HARD_HITS" | head -10
-      fi
+      printf '%s\n' "$NOT_CLEARED_CLEAN" | sed 's/^/  name (no naming_allowed): /'
       echo ""
       echo -e "${YELLOW}  Public paths must be GENERIC TEMPLATES that load client data at${NC}"
       echo -e "${YELLOW}  runtime from authenticated Edge Functions. A client NAME may appear${NC}"
       echo -e "${YELLOW}  publicly ONLY with naming_allowed=true — record it via${NC}"
       echo -e "${YELLOW}  consent-registry/record-operator-consent.sh then regen-manifest.sh.${NC}"
-      echo -e "${YELLOW}  Voucher numbers never clear. Guard added 2026-05-04 (Seepje leak);${NC}"
-      echo -e "${YELLOW}  consent-aware since 2026-07-07.${NC}"
+      echo -e "${YELLOW}  Guard added 2026-05-04 (Seepje leak); consent-aware since 2026-07-07.${NC}"
       ISSUES=$((ISSUES + 1))
     fi
   fi
