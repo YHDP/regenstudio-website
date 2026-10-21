@@ -1,7 +1,7 @@
 {
-  "title": "A Product Passport for European Wool",
+  "title": "Getting wool ready for Digital Product Passports",
   "slug": "european-wool-product-passport",
-  "subtitle": "What the Digital Product Passport asks of a Dutch wool supplier, and why the hardest problem lies with a single European dataset. Regen Studio and CircularTech Forum worked it out with Hollands Wol Collectief.",
+  "subtitle": "What the European Digital Product Passport asks of a wool products manufacturer, how well prepared it is, and what has to happen at European level for wool to be compliant and fairly represented.",
   "author": {
     "name": "Yvo Hunink de Paiva",
     "role": "Regenerative Innovation Design"
@@ -26,7 +26,7 @@
   ],
   "featuredImage": "header.webp",
   "featuredImageAlt": "A flock of faceted, low-poly sheep in yellow, cream and dark brown, illustrating a product passport for European wool",
-  "excerpt": "Hollands Wol Collectief, a Rotterdam supplier of scoured Dutch wool and felt, explored with Regen Studio and CircularTech Forum what the Digital Product Passport means for wool. We scored 76 data points and found that Europe's reference database holds one wool dataset, mostly Australian and New Zealand, in which one method choice can double the result. We propose a European approach.",
+  "excerpt": "Hollands Wol Collectief, a Rotterdam supplier of scoured Dutch wool and felt, explored with Regen Studio and CircularTech Forum what the Digital Product Passport means for wool. The project scored 76 data points and found that Europe's reference database holds one wool dataset, mostly Australian and New Zealand, in which one method choice can double the result. It proposes a European approach.",
   "published": false,
   "review": {
     "text": "draft",

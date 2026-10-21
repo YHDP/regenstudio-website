@@ -1,5 +1,6 @@
-/* European wool passport post, shared by content.html, content.nl.html and content.pt.html.
-   Banner, lead, CTA and FAQ follow Blogs/ev-charger-passport-laadplein; .wp-slides is the gated deck. */
+/* Wool passport post, shared by content.html, content.nl.html and content.pt.html.
+   Banner, CTA and FAQ follow Blogs/ev-charger-passport-laadplein; .slide-viewer + .wp-gate is the
+   gated deck (assets/js/slide-viewer.js, assets/js/content-gate.js). */
 .lp-banner { background:#F0FAF4; border:1px solid #D1FAE5; border-radius:12px; overflow:hidden; margin-bottom:40px; }
 .lp-banner__r { display:grid; grid-template-columns:132px 1fr; align-items:stretch; border-bottom:1px solid #D1FAE5; }
 .lp-banner__k { display:flex; align-items:center; padding:14px 18px; border-right:1px solid #D1FAE5; color:#007B40; font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; }
@@ -9,9 +10,6 @@
 .lp-banner__fundtext { font-size:0.78rem; color:#475259; margin:0; padding:10px 18px 12px; line-height:1.5; }
 .lp-fund__eu { display:inline-flex; align-items:center; }
 .lp-fund__eu img { height:52px; width:auto; display:block; }
-.lp-jump-wrap { text-align:center; margin:-16px 0 36px; }
-.lp-jump { display:inline-block; margin:0; padding:9px 18px; border-radius:999px; background:#006838; color:#fff !important; font-size:0.88rem; font-weight:600; text-decoration:none; }
-.lp-lead { font-size:0.95rem; line-height:1.55; color:#475259; font-style:italic; margin:0 0 28px; }
 .lp-cta { margin:36px 0 8px; padding:28px 30px; border-radius:14px; background:#0F3D2A; color:#fff; }
 .lp-cta h3 { color:#fff; font-size:1.3rem; margin:0 0 8px; }
 .lp-cta p { color:#D7EBDF; margin:0 0 18px; line-height:1.55; }
@@ -24,34 +22,39 @@
 .lp-faq details[open] summary { color:#006838; }
 .lp-faq p { margin:10px 0 0; line-height:1.6; }
 
-.wp-slides { margin:24px 0 36px; scroll-margin-top:90px; }
-.wp-slides img { display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:8px; margin:0 0 14px; background:#fff; }
-.wp-slides__rest { position:relative; }
-.wp-slides__gate { display:none; }
-.wp-slides__dl { margin:4px 0 0; font-size:0.92rem; }
-.wp-slides__dl a { color:#006d38; font-weight:600; }
-/* Locked: the blurred deck sits behind the form as a backdrop, so the block is as tall as the form. */
-.content-gate--locked .wp-slides__rest { overflow:hidden; border-radius:8px; margin:0 0 14px; }
-.content-gate--locked .wp-slides__deck { position:absolute; inset:0; filter:blur(7px); pointer-events:none; user-select:none; }
-.content-gate--locked .wp-slides__dl { display:none; }
-.content-gate--locked .wp-slides__gate { display:flex; position:relative; justify-content:center; padding:56px 12px; }
-.wp-slides__card { max-width:460px; width:100%; background:#fff; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.14); padding:26px 28px; margin:0; }
-.wp-slides__title { font-size:1.2rem; font-weight:600; margin:0 0 8px; color:#1A2533; }
-.wp-slides__text { font-size:0.88rem; line-height:1.55; color:#475259; margin:0 0 16px; }
-.wp-slides__row { display:flex; gap:8px; margin:0 0 12px; }
-.wp-slides__input { flex:1; min-width:0; padding:10px 14px; font-size:0.9rem; border:1px solid #CBD5D1; border-radius:8px; }
-.wp-slides__btn { white-space:nowrap; padding:10px 20px; font-size:0.9rem; border:0; border-radius:8px; background:#006838; color:#fff; font-weight:600; cursor:pointer; }
-.wp-slides__btn:disabled { background:#4F7F63; cursor:default; }
-.wp-slides__check { display:flex; gap:8px; align-items:flex-start; font-size:0.78rem; line-height:1.45; color:#475259; margin:0 0 8px; }
-.wp-slides__check input { margin-top:3px; flex:none; }
-.wp-slides__check a { color:#006d38; text-decoration:underline; }
-.wp-slides__err { font-size:0.82rem; color:#D51641; margin:8px 0 0; }
+.slide-viewer { margin:20px 0 36px; scroll-margin-top:90px; }
+.slide-viewer__stage { position:relative; border:1px solid #E5E7EB; border-radius:10px; overflow:hidden; background:#fff; aspect-ratio:16/9; cursor:default; }
+.slide-viewer__slide { margin:0; }
+.slide-viewer__slide img { display:block; width:100%; height:auto; }
+.slide-viewer--blurred .slide-viewer__slide img { filter:blur(9px); transform:scale(1.03); }
+.slide-viewer--blurred .slide-viewer__stage { cursor:pointer; }
+.slide-viewer__bar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:10px 0 0; }
+.slide-viewer__nav { display:flex; gap:8px; }
+.slide-viewer__nav button { font:inherit; font-size:0.9rem; min-width:44px; min-height:40px; padding:6px 14px; border:1px solid #CBD5D1; border-radius:999px; background:#fff; color:#1A2533; cursor:pointer; }
+.slide-viewer__nav button:hover { border-color:#006838; color:#006838; }
+.slide-viewer__count { font-size:0.85rem; color:#475259; font-variant-numeric:tabular-nums; }
+.slide-viewer__dl { font-size:0.9rem; }
+.slide-viewer__dl a { color:#006d38; font-weight:600; }
+.content-gate--locked .slide-viewer__dl { display:none; }
+.slide-viewer__dialog { position:fixed; inset:0; z-index:1000; display:flex; align-items:center; justify-content:center; padding:16px; background:rgba(15,61,42,0.35); }
+.slide-viewer__dialog[hidden] { display:none; }
+.wp-gate__card { position:relative; max-width:440px; width:100%; max-height:100%; overflow:auto; background:#fff; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.18); padding:24px 26px; margin:0; }
+.wp-gate__close { position:absolute; top:8px; right:10px; border:0; background:none; font-size:1.4rem; line-height:1; color:#475259; cursor:pointer; padding:4px 8px; }
+.wp-gate__title { font-size:1.15rem; font-weight:600; margin:0 0 8px; color:#1A2533; }
+.wp-gate__text { font-size:0.86rem; line-height:1.5; color:#475259; margin:0 0 14px; }
+.wp-gate__row { display:flex; gap:8px; margin:0 0 12px; }
+.wp-gate__input { flex:1; min-width:0; padding:10px 14px; font-size:0.9rem; border:1px solid #CBD5D1; border-radius:8px; }
+.wp-gate__btn { white-space:nowrap; padding:10px 20px; font-size:0.9rem; border:0; border-radius:8px; background:#006838; color:#fff; font-weight:600; cursor:pointer; }
+.wp-gate__btn:disabled { background:#4F7F63; cursor:default; }
+.wp-gate__check { display:flex; gap:8px; align-items:flex-start; font-size:0.78rem; line-height:1.45; color:#475259; margin:0 0 8px; }
+.wp-gate__check input { margin-top:3px; flex:none; }
+.wp-gate__check a { color:#006d38; text-decoration:underline; }
+.wp-gate__err { font-size:0.82rem; color:#D51641; margin:8px 0 0; }
 
 @media (max-width:768px) {
   .lp-banner__r { grid-template-columns:1fr; }
   .lp-banner__k { border-right:0; padding:10px 16px 0; }
   .lp-fund__eu img { height:48px; }
-  .wp-slides__row { flex-direction:column; }
-  .content-gate--locked .wp-slides__gate { padding:24px 8px; }
-  .wp-slides__card { padding:20px; }
+  .wp-gate__row { flex-direction:column; }
+  .wp-gate__card { padding:20px; }
 }

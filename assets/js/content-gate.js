@@ -7,6 +7,8 @@
  *   data-gate-message  `message` sent with it (lands in the notification to info@)
  *   data-msg-email, data-msg-privacy, data-msg-busy, data-msg-fail  visitor-facing strings
  * The gate adds `content-gate--locked` while locked; the post's own CSS decides what that hides.
+ * On unlock it dispatches `content-gate:unlocked` on the gate element. Review renders
+ * (/_comment-stage/, /_review/) are never locked, so reviewers see the whole content.
  *
  * Consolidates the inline gates of the PPWR, DSR and EV-charger posts and fixes what they got
  * wrong: antibot.js loads deferred, so it is awaited before protect() (a submission without its
@@ -36,6 +38,7 @@
     if (!form || gate.getAttribute('data-ready')) return;
     gate.setAttribute('data-ready', '1');
 
+    if (/\/_(comment-stage|review)\//.test(window.location.pathname)) return;
     var ts = unlockedAt(d.gateKey);
     if (ts > 0 && Date.now() - ts < TTL) return;
     try { localStorage.removeItem(d.gateKey); } catch (e) {}
@@ -76,6 +79,7 @@
         if (!res.ok) return res.json().catch(function () { return {}; }).then(function (b) { throw new Error(b.error); });
         try { localStorage.setItem(d.gateKey, Date.now().toString()); } catch (e2) {}
         gate.classList.remove('content-gate--locked');
+        gate.dispatchEvent(new CustomEvent('content-gate:unlocked'));
       }).catch(function (e3) { showErr(typeof e3 === 'string' ? e3 : e3 && e3.message); });
     });
   }
