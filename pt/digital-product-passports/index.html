@@ -617,6 +617,10 @@
               <input type="checkbox" name="newsletter_opt_in" value="1">
               <span>Mantenha-me informado sobre mudan&ccedil;as na regulamenta&ccedil;&atilde;o de DPP</span>
             </label>
+            <label class="regen-form__checkbox regen-form__checkbox--required">
+              <input type="checkbox" name="privacy_policy_accepted" value="1" required>
+              <span>Li e concordo com a <a href="../privacy.html">Pol&iacute;tica de Privacidade</a>. <span style="color:#B91C1C;font-weight:600">(obrigat&oacute;rio)</span></span>
+            </label>
             <p class="dpp-gate__disclaimer">Ao enviar voc&ecirc; concorda com nossa <a href="../privacy.html">Pol&iacute;tica de Privacidade</a>.</p>
           </form>
         </div>
@@ -1080,6 +1084,17 @@
           var email = gateForm.querySelector('input[name="email"]').value;
           var nlCheckbox = gateForm.querySelector('input[name="newsletter_opt_in"]');
           var newsletterOptIn = nlCheckbox ? nlCheckbox.checked : false;
+          var ppCheckbox = gateForm.querySelector('input[name="privacy_policy_accepted"]');
+          if (ppCheckbox && !ppCheckbox.checked) {
+            var priorError = gateForm.querySelector('.dpp-gate__error');
+            if (priorError) priorError.remove();
+            var ppError = document.createElement('p');
+            ppError.className = 'dpp-gate__error';
+            ppError.textContent = 'Confirme que voc\u00ea leu a Pol\u00edtica de Privacidade.';
+            gateForm.appendChild(ppError);
+            ppCheckbox.focus();
+            return;
+          }
           btn.disabled = true;
           btn.textContent = 'Desbloqueando...';
 
@@ -1093,7 +1108,10 @@
               message: 'DPP product overview unlock',
               source: 'dpp_gate',
               page_url: window.location.href,
-              newsletter_opt_in: newsletterOptIn
+              newsletter_opt_in: newsletterOptIn,
+              ai_processing_opt_in: false,
+              privacy_policy_accepted: true,
+              consent_version: '2026-04-24'
             };
             if (antibotPayload) {
               for (var key in antibotPayload) {
