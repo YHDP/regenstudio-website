@@ -74,7 +74,7 @@
           ai_processing_opt_in: false, privacy_policy_accepted: true, consent_version: CONSENT_VERSION
         };
         for (var k in antibot) if (Object.prototype.hasOwnProperty.call(antibot, k)) payload[k] = antibot[k];
-        return fetch(FN, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        return fetch(FN, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }); // supabase.co edge function
       }).then(function (res) {
         if (!res.ok) return res.json().catch(function () { return {}; }).then(function (b) { throw new Error(b.error); });
         try { localStorage.setItem(d.gateKey, Date.now().toString()); } catch (e2) {}
