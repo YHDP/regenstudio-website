@@ -26,7 +26,7 @@
     "whitepaper"
   ],
   "featuredImage": "header.webp",
-  "featuredImageAlt": "Meio tronco de árvore formado por 218 células coloridas: por fora os pontos de dados do passaporte do móvel, por dentro os dos registros do marceneiro",
+  "featuredImageAlt": "A Stadstoel desenhada em facetas: uma cadeira de balanço de madeira com uma faixa vermelha de teca, laterais que seguem como balanço e o logotipo da Regen Studio, enquanto triângulos coloridos se soltam do encosto",
   "excerpt": "A Regen Studio e a Meubelmakerij Houtgoed exploraram quais informações um pequeno marceneiro precisa para um passaporte digital do produto: 218 pontos de dados, 129 no passaporte e 89 nos registros do próprio marceneiro. Construímos um sistema que segue o dia de trabalho, deixamos o modelo 3D ajudar no preenchimento e publicamos o passaporte da Stadstoel, com controle de versões, no site do marceneiro.",
   "published": false,
   "review": {
