@@ -5,8 +5,19 @@
     <link>https://www.regenstudio.world/blog.html</link>
     <description>Innovations that regenerate Humans, Cities and Nature.</description>
     <language>en</language>
-    <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
+    <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
     <atom:link href="https://www.regenstudio.world/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The EU DPP Registry&apos;s API and battery data model are out: what to build before February 2027</title>
+      <link>https://www.regenstudio.world/blog/dpp-registry-technical-package/</link>
+      <guid isPermaLink="true">https://www.regenstudio.world/blog/dpp-registry-technical-package/</guid>
+      <pubDate>Wed, 04 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Battery passports must be registered from 18 February 2027. The Commission&apos;s 30 October 2026 technical package for the EU DPP Registry adds a registration API, service-account and self-hosted authentication, and a semantic model for batteries. Registration requests JSON, the DCAT catalogue is only announced, and battery registration is still not confirmed.</description>
+      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
+      <category>Digital Product Passport</category>
+      <category>Digital Identity</category>
+      <enclosure url="https://www.regenstudio.world/Blogs/dpp-registry-technical-package/Header.webp" type="image/webp" length="105136" />
+    </item>
     <item>
       <title>Myths around the New Packaging Regulations and Digital Product Passports</title>
       <link>https://www.regenstudio.world/blog/ppwr-packaging-dpp/</link>
@@ -217,17 +228,6 @@
       <category>AI</category>
       <category>Innovation Services</category>
       <enclosure url="https://www.regenstudio.world/Blogs/emergent-triangles/hero-triangles.png" type="image/png" length="673829" />
-    </item>
-    <item>
-      <title>Try the DPP System Demo: A Full Digital Product Passport in Action</title>
-      <link>https://www.regenstudio.world/blog/demo-dpp-system/</link>
-      <guid isPermaLink="true">https://www.regenstudio.world/blog/demo-dpp-system/</guid>
-      <pubDate>Sun, 08 Feb 2026 00:00:00 GMT</pubDate>
-      <description>See what a complete DPP system looks like end-to-end. Our interactive demo traces Brazilian hardwood furniture from forest to finished product, with UNTP verifiable credentials and live ESPR compliance data.</description>
-      <author>noreply@regenstudio.world (Yvo Hunink de Paiva)</author>
-      <category>Digital Product Passport</category>
-      <category>Innovation Services</category>
-      <enclosure url="https://www.regenstudio.world/Images/demo-dpp-system.svg" type="image/svg+xml" length="5576" />
     </item>
   </channel>
 </rss>

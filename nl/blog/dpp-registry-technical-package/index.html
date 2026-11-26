@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://uemspezaqxmkhenimwuf.supabase.co; frame-src 'self' https://player.vimeo.com https://w.soundcloud.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self' https://uemspezaqxmkhenimwuf.supabase.co">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>De API en het batterijgegevensmodel van het EU-register voor digitale productpaspoorten zijn er: wat je vóór februari 2027 moet bouwen | Regen Studio</title>
+  <meta name="description" content="Batterijpaspoorten moeten vanaf 18 februari 2027 geregistreerd worden. Het technisch pakket van 30 oktober 2026 voor het EU-register voor digitale productpaspoorten voegt een registratie-API toe, authenticatie via een serviceaccount en op je eigen server, en een semantisch model voor batterijen. De registratie vraagt om JSON, de DCAT-catalogus is alleen aangekondigd, en batterijregistratie is nog altijd niet bevestigd.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.regenstudio.world/nl/blog/dpp-registry-technical-package/">
+
+  <!-- Hreflang alternates -->
+  <link rel="alternate" hreflang="en" href="https://www.regenstudio.world/blog/dpp-registry-technical-package/">
+  <link rel="alternate" hreflang="nl" href="https://www.regenstudio.world/nl/blog/dpp-registry-technical-package/">
+  <link rel="alternate" hreflang="pt-BR" href="https://www.regenstudio.world/pt/blog/dpp-registry-technical-package/">
+  <link rel="alternate" hreflang="x-default" href="https://www.regenstudio.world/blog/dpp-registry-technical-package/">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.regenstudio.world/nl/blog/dpp-registry-technical-package/">
+  <meta property="og:title" content="De API en het batterijgegevensmodel van het EU-register voor digitale productpaspoorten zijn er: wat je vóór februari 2027 moet bouwen | Regen Studio">
+  <meta property="og:description" content="Batterijpaspoorten moeten vanaf 18 februari 2027 geregistreerd worden. Het technisch pakket van 30 oktober 2026 voor het EU-register voor digitale productpaspoorten voegt een registratie-API toe, authenticatie via een serviceaccount en op je eigen server, en een semantisch model voor batterijen. De registratie vraagt om JSON, de DCAT-catalogus is alleen aangekondigd, en batterijregistratie is nog altijd niet bevestigd.">
+  <meta property="og:image" content="https://www.regenstudio.world/Blogs/dpp-registry-technical-package/Header.webp">
+  <meta property="og:image:alt" content="Het technisch pakket van het EU-register voor digitale productpaspoorten: een API, twee authenticatieprofielen en een gelaagd semantisch model voor batterijen">
+  <meta property="og:site_name" content="Regen Studio">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="article:published_time" content="2026-11-04">
+  <meta property="article:modified_time" content="2026-11-04">
+  <meta property="article:author" content="Yvo Hunink de Paiva">
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="De API en het batterijgegevensmodel van het EU-register voor digitale productpaspoorten zijn er: wat je vóór februari 2027 moet bouwen | Regen Studio">
+  <meta name="twitter:description" content="Batterijpaspoorten moeten vanaf 18 februari 2027 geregistreerd worden. Het technisch pakket van 30 oktober 2026 voor het EU-register voor digitale productpaspoorten voegt een registratie-API toe, authenticatie via een serviceaccount en op je eigen server, en een semantisch model voor batterijen. De registratie vraagt om JSON, de DCAT-catalogus is alleen aangekondigd, en batterijregistratie is nog altijd niet bevestigd.">
+  <meta name="twitter:image" content="https://www.regenstudio.world/Blogs/dpp-registry-technical-package/Header.webp">
+
+  <!-- JSON-LD Article Schema -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"De API en het batterijgegevensmodel van het EU-register voor digitale productpaspoorten zijn er: wat je vóór februari 2027 moet bouwen","description":"Batterijpaspoorten moeten vanaf 18 februari 2027 geregistreerd worden. Het technisch pakket van 30 oktober 2026 voor het EU-register voor digitale productpaspoorten voegt een registratie-API toe, authenticatie via een serviceaccount en op je eigen server, en een semantisch model voor batterijen. De registratie vraagt om JSON, de DCAT-catalogus is alleen aangekondigd, en batterijregistratie is nog altijd niet bevestigd.","image":"https://www.regenstudio.world/Blogs/dpp-registry-technical-package/Header.webp","datePublished":"2026-11-04","dateModified":"2026-11-04","inLanguage":"nl","wordCount":3709,"timeRequired":"PT16M","author":{"@type":"Person","@id":"https://www.regenstudio.world/#founder","name":"Yvo Hunink de Paiva","url":"https://www.regenstudio.world/about.html"},"publisher":{"@type":"Organization","@id":"https://www.regenstudio.world/#organization","name":"Regen Studio","url":"https://www.regenstudio.world","logo":{"@type":"ImageObject","url":"https://www.regenstudio.world/Images/Logo-Text-on-the-sideAtivo 2.svg"}},"keywords":"Digital Product Passport, Digital Identity","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.regenstudio.world/nl/blog/dpp-registry-technical-package/"}}</script>
+
+  <!-- JSON-LD Breadcrumb Schema -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startpagina","item":"https://www.regenstudio.world/nl/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.regenstudio.world/nl/blog.html"},{"@type":"ListItem","position":3,"name":"De API en het batterijgegevensmodel van het EU-register voor digitale productpaspoorten zijn er: wat je vóór februari 2027 moet bouwen","item":"https://www.regenstudio.world/nl/blog/dpp-registry-technical-package/"}]}</script>
+
+  <!-- RSS Discovery -->
+  <link rel="alternate" type="application/rss+xml" title="Regen Studio Blog" href="https://www.regenstudio.world/feed.xml">
+
+  <!-- Slug marker for blog.js hydration -->
+  <meta name="blog-post-slug" content="dpp-registry-technical-package">
+
+  <link rel="icon" type="image/png" href="../../../Images/favicon.png">
+  <link rel="stylesheet" href="../../../assets/fonts/fonts.css">
+  <link rel="stylesheet" href="../../../style.css">
+  <link rel="stylesheet" href="../../../blog.css">
+  <link rel="stylesheet" href="../../../assets/css/antibot.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="../../../nl/index.html" class="nav__logo">
+        <img src="../../../Images/Logo-Text-on-the-sideAtivo 2.svg" alt="Regen Studio" class="nav__logo-img" width="180" height="48" fetchpriority="high">
+      </a>
+      <!-- Mobile slide-in menu -->
+      <ul class="nav__links" id="navLinks">
+        <li><a href="../../../nl/about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="../../../nl/vision.html" data-i18n="nav.vision">Vision</a></li>
+        <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos</a></li>
+        <li><a href="../../../nl/innovation-services.html" data-i18n="nav.services">Services</a></li>
+        <li><a href="../../../digital-product-passports/" data-i18n="nav.product_passports">Product Passports</a></li>
+        <li><a href="../../../digital-identities/" data-i18n="nav.digital_identity">Digital Identity</a></li>
+        <li><a href="../../../nl/client-projects.html" data-i18n="nav.client_projects">Client Projects</a></li>
+        <li><a href="../../../nl/blog.html" data-i18n="nav.blog">Blog</a></li>
+          <li class="nav__contact-wrap">
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false" id="navContactBtn">Get in Touch</button>
+          <div class="nav__contact-popover" id="navContactPopover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <a href="../../../nl/#contact-form" class="nav__contact-popover-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="nav__actions">
+        <!-- Desktop dropdown menu -->
+        <button class="nav__menu-btn" aria-expanded="false" aria-controls="navDropdown">
+          Menu <span class="nav__menu-btn__arrow">&#9662;</span>
+        </button>
+        <div class="nav__dropdown" id="navDropdown">
+          <a href="../../../nl/vision.html" data-i18n="nav.vision">Vision</a>
+          <a href="../../../nl/innovation-services.html" data-i18n="nav.services">Services</a>
+          <a href="../../../problem-analysis/" data-i18n="nav.problem_analysis">Problem Analysis</a>
+          <a href="../../../nl/client-projects.html" data-i18n="nav.client_projects">Client Projects</a>
+          <a href="../../../nl/blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="nav.demos">Demos <span class="sr-only">(opent in een nieuw tabblad)</span></a>
+          <a href="../../../nl/about.html" data-i18n="nav.about">About</a>
+          <a href="../../../nl/faq.html" data-i18n="nav.faq">FAQ</a>
+        </div>
+        <div class="nav__contact-wrap nav__contact-wrap--desktop">
+          <button class="btn btn--small nav__contact-btn" aria-expanded="false">Get in Touch</button>
+          <div class="nav__contact-popover">
+            <div class="nav__contact-popover-inner">
+              <p class="nav__contact-popover-text">Drop us a line — we'd love to hear from you.</p>
+              <a href="../../../nl/#contact-form" class="nav__contact-popover-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Send us a message
+              </a>
+              <div class="nav__contact-popover-divider">or email us directly</div>
+              <div class="copyable-email copyable-email--compact">
+                <span class="copyable-email__address">info@regenstudio.world</span>
+                <button class="copyable-email__btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="copyable-email__icon copyable-email__icon--copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copyable-email__icon copyable-email__icon--check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="copyable-email__label">Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <!-- Post Header (pre-rendered, JS hydrates) -->
+    <section class="post-header" id="postHeader">
+      <div class="container">
+        <a href="../../../nl/blog.html" class="post-header__back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Terug naar Blog</a>
+        <div class="post-header__categories"><span class="post-header__category post-header__category--emerald">Digital Product Passport</span><span class="post-header__category post-header__category--magenta">Digital Identity</span></div>
+        <h1 class="post-header__title">De API en het batterijgegevensmodel van het EU-register voor digitale productpaspoorten zijn er: wat je vóór februari 2027 moet bouwen</h1>
+        <p class="post-header__subtitle">Op 30 oktober 2026 publiceerde de Commissie de API van het register, de authenticatieregels en het eerste semantische model, voor batterijen. Dit moet een batterijfabrikant nu bouwen, en dit is waarom een geslaagde batterijregistratie nog niet bevestigd is.</p>
+        <div class="post-header__meta">
+          <div class="post-header__author">
+            <span class="post-header__author-name">Yvo Hunink de Paiva</span>
+            <span class="post-header__author-role">Regen Studio</span>
+          </div>
+          <div class="post-header__meta-divider"></div>
+          <div class="post-header__meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> <time datetime="2026-11-04">4 november 2026</time></div>
+          <div class="post-header__meta-divider"></div>
+          <div class="post-header__meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 16 min leestijd</div>
+        </div>
+      </div></section>
+
+    <!-- Featured Image (pre-rendered) -->
+    <section class="post-featured-image" id="postFeaturedImage">
+      <div class="container">
+        <img src="../../../Blogs/dpp-registry-technical-package/Header.webp" alt="Het technisch pakket van het EU-register voor digitale productpaspoorten: een API, twee authenticatieprofielen en een gelaagd semantisch model voor batterijen">
+      </div></section>
+
+    <!-- Post Content (pre-rendered, JS hydrates for share buttons etc.) -->
+    <section class="post-content" id="postContent">
+      <div class="post-content__inner">
+        <p class="post-answer-capsule"><strong>Batterijpaspoorten moeten vanaf 18 februari 2027 geregistreerd worden. Het technisch pakket van 30 oktober 2026 voor het EU-register voor digitale productpaspoorten voegt een registratie-API toe, authenticatie via een serviceaccount en op je eigen server, en een semantisch model voor batterijen. De registratie vraagt om JSON, de DCAT-catalogus is alleen aangekondigd, en batterijregistratie is nog altijd niet bevestigd.</strong></p>
+        <div class="post-content__body" id="post-content"><style>
+  .dpptg-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95rem; }
+  .dpptg-table th, .dpptg-table td { border-bottom: 1px solid #ECEFF1; padding: 10px 12px; text-align: left; vertical-align: top; line-height: 1.5; }
+  .dpptg-table th { background: #F1F7F2; color: #243644; font-weight: 700; }
+  .dpptg-table td:first-child { font-weight: 600; color: #243644; white-space: nowrap; }
+  .dpptg-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  @media (max-width: 600px) { .dpptg-table td:first-child { white-space: normal; min-width: 7rem; } }
+  .dpptg-note {
+    background: #F1F7F2;
+    border: 1px solid #D7E6DA;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 24px 0;
+  }
+  .dpptg-note h4 { margin: 0 0 8px 0; color: #006d38; font-size: 1rem; }
+  .dpptg-note p { margin: 0 0 8px 0; line-height: 1.6; }
+  .dpptg-note p:last-child { margin-bottom: 0; }
+  .dpptg-note ul { margin: 8px 0 0 0; padding-left: 20px; line-height: 1.6; }
+  .dpptg-warn {
+    background: #FFF6E9;
+    border: 1px solid #F3D9A8;
+    border-left: 5px solid #935D0D;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 24px 0;
+  }
+  .dpptg-warn h4 { margin: 0 0 8px 0; color: #935D0D; font-size: 1rem; }
+  .dpptg-warn p { margin: 0 0 8px 0; line-height: 1.6; }
+  .dpptg-warn p:last-child { margin-bottom: 0; }
+  .dpptg-faq__item { border: 1px solid #E5EDE7; border-radius: 10px; background: #FFFFFF; margin: 10px 0; }
+  .dpptg-faq__item summary {
+    cursor: pointer; padding: 14px 18px; font-weight: 700; color: #243644; font-size: 1.02rem;
+    list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  }
+  .dpptg-faq__item summary::-webkit-details-marker { display: none; }
+  .dpptg-faq__item summary::after { content: "+"; color: #008545; font-weight: 700; font-size: 1.35rem; line-height: 1; }
+  .dpptg-faq__item[open] summary::after { content: "\2212"; }
+  .dpptg-faq__item summary:hover { color: #006d38; }
+  .dpptg-faq__answer { padding: 0 18px 16px 18px; line-height: 1.65; color: #374151; }
+  .dpptg-faq__answer p { margin: 0; }
+</style>
+
+<p>Breng je batterijen voor elektrische voertuigen, batterijen voor lichte vervoermiddelen (LMT) of industriële batterijen van meer dan 2 kWh in de EU in de handel, dan heeft elke batterij vanaf <strong>18 februari 2027</strong> een batterijpaspoort nodig, en de Batterijverordening verplicht je de unieke identificatiecode daarvan te uploaden naar het EU-register voor digitale productpaspoorten. Op <strong>30 oktober 2026</strong> publiceerde de Commissie op haar <a href="https://single-market-economy.ec.europa.eu/single-market/digital-product-passport/resources-documentation_en" target="_blank" rel="noopener">DPP-pagina met documentatie</a> de technische regels om die registratie machinaal te doen: een registratie-API, de manier waarop je systemen en je paspoortserver zich moeten authenticeren, en het eerste semantische gegevensmodel. Dat model dekt alleen batterijen.</p>
+
+<div class="dpptg-note">
+  <h4>In het kort</h4>
+  <ul>
+    <li><strong>Bouw nu.</strong> Je paspoort is een JSON-document op je eigen server, gecontroleerd tegen de schema's die de Commissie publiceert, en geregistreerd via de webinterface of de nieuwe API.</li>
+    <li><strong>Begin bij het zegel.</strong> Registreren vraagt een geverifieerde organisatie, en verificatie vraagt een gekwalificeerd elektronisch zegel op een gekwalificeerd middel.</li>
+    <li><strong>Reken er nog niet op dat het werkt.</strong> De nieuwste gebruikershandleiding zegt nog altijd dat een batterijregistratie niet kan slagen, en geen enkele tekst van de Commissie zegt dat dat inmiddels wel kan.</li>
+  </ul>
+</div>
+
+<p>In juli sloten we ons <a href="/nl/blog/dpp-registry-goes-live/">artikel over de livegang van het register</a> af met twee open punten: geen API voor marktdeelnemers en geen gegevensmodel voor batterijen. Dit pakket dicht die grotendeels. De citaten hieronder komen letterlijk uit de teksten van de Commissie. Alle technische documenten zijn alleen in het Engels verschenen, dus namen van documenten, menu's en velden laten we in het Engels staan.</p>
+
+<h2 id="whats-in-the-package">Wat het pakket bevat</h2>
+
+<p>Zes documenten zijn nieuw. Twee andere op dezelfde pagina zijn rond dezelfde tijd bijgewerkt.</p>
+
+<ul>
+  <li><strong>API Integration Guide</strong> voor marktdeelnemers, met de <strong>OpenAPI-specificaties</strong> (OpenAPI 3.1, versie 1.0.0): hoe een systeem registraties indient.</li>
+  <li><strong>Service Account Technical Integration Guide</strong>: hoe je systemen inloggen op die API.</li>
+  <li><strong>Self-Hosted Authentication Guide</strong>: hoe je paspoortserver het register herkent wanneer dat om het beschermde deel van een paspoort vraagt.</li>
+  <li><strong>Semantic Data Guide</strong>, met de <strong>Semantic Data Artifacts</strong>: de codelijsten, validatieregels en schema's voor het kernpaspoort en voor batterijen.</li>
+  <li>Bijgewerkt: de <strong>User Guide for Economic Operators v1.03</strong> (laatst gepubliceerd op 16 september 2026; de documentatiepagina noemt hem "v3"), en de Digital Batteries Passport <strong>data points by category</strong>, v3.2 van 19 oktober 2026, inmiddels vervangen door versie 4 van 19 november 2026.</li>
+</ul>
+
+<h2 id="data-standards">Welke datastandaarden het model gebruikt</h2>
+
+<p>Eerst een korte woordenlijst. SKOS is een formaat voor codelijsten, SHACL een taal voor validatieregels, RDF het onderliggende datamodel, en JSON-LD een manier om gewone JSON-sleutels een gedeelde betekenis te geven. De tabel noemt de W3C-standaarden die in de gepubliceerde bestanden voorkomen, met de rol van elk.</p>
+
+<div class="dpptg-scroll">
+<table class="dpptg-table">
+  <thead>
+    <tr><th>Standaard</th><th>Wat het pakket ermee doet</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>SKOS</td><td>De stamgegevens. Elk veld en elke code is een begrip in een van 17 begrippenschema's.</td></tr>
+    <tr><td>SHACL</td><td>De hoofdregels. 18 shape-bestanden; de handleiding zegt dat de andere schema's daaruit worden gegenereerd.</td></tr>
+    <tr><td>RDF</td><td>Het onderliggende datamodel, gepubliceerd als Turtle-bestanden.</td></tr>
+    <tr><td>JSON-LD</td><td>Vijf contexten die gewone JSON-sleutels koppelen aan termen uit de vocabulaires, in lagen van kern naar productgroep naar subgroep.</td></tr>
+    <tr><td>SPARQL</td><td>Alleen binnen SHACL-shapes, voor controles zoals het voorkomen van een waarde in een codelijst. Er is geen query-endpoint.</td></tr>
+    <tr><td>XSD</td><td>Gebruikt voor datatypes. De handleiding beschrijft XML-schema's, maar het archief bevat geen enkel .xsd-bestand.</td></tr>
+    <tr><td>OWL</td><td>Alleen versiemetadata (ontologie-IRI, versie-IRI, versie-info). Geen klassen, eigenschappen of axioma's.</td></tr>
+    <tr><td>DCAT</td><td>Aangekondigd. Volgens de handleiding "will publish" de repository een DCAT-AP 3.0.1-catalogus. Die zit niet in het pakket.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>SKOS, SHACL, RDF en JSON-LD dragen het model; SPARQL, XSD en OWL spelen een bijrol; DCAT komt later. De registratie zelf gebruikt gewone JSON. Paragraaf 2.1 van de Semantic Data Guide is daar duidelijk over: <em>"The registration process will be requesting JSON data format, as it is the only mandatory data format in accordance with EN 18216:2026."</em> (De registratie vraagt dus om JSON, omdat dat volgens EN 18216:2026 het enige verplichte formaat is.) Die JSON wordt gecontroleerd met een <strong>JSON Schema</strong> (draft 2020-12, een specificatie die niet van het W3C komt) dat de Commissie uit de SHACL-shapes genereert. De shapes controleren hetzelfde paspoort wanneer het als JSON-LD of RDF is uitgedrukt.</p>
+
+<p>In de gepubliceerde bestanden controleren de gegenereerde schema's minder dan de shapes waar ze uit voortkomen. Een batterij-shape eist per veld een bepaalde eenheid, volt bij een spanning bijvoorbeeld, terwijl het JSON Schema elk eenheidsadres accepteert, ook een dat niet in de codelijst staat. De shapes eisen bovendien registratie op het niveau van het artikel voor batterijen en blokkeren de velden die een batterijsubgroep uitsluit; de JSON Schemas doen geen van beide. Een paspoort kan dus door het JSON Schema komen en toch op de shapes stuklopen. De API-handleiding zegt niet welke controle het register uitvoert op het paspoort dat het ophaalt, dus test tegen allebei tot de Commissie daar uitsluitsel over geeft.</p>
+
+<div class="dpptg-note">
+  <h4>Twee details voor bouwers van paspoortsystemen</h4>
+  <p>Elk paspoort vermeldt tegen welke releases het is gebouwd, in een veld <code>contentSpecificationIds</code>: minstens een kernrelease en een productrelease, plus de subgroep als die er is. En taalcodes moeten een regio bevatten: <code>en-IE</code> wordt geaccepteerd, <code>en</code> niet.</p>
+  <p>Het andere detail is de licentie, en die is eenvoudiger dan het lijkt. De Commissie publiceert de 17 vocabulaires en de API-specificaties onder de opensourcelicentie EUPL-1.2, en de uitvoeringsverordening bepaalt dat het semantisch register en de API's daarvan kosteloos worden verstrekt (artikel 12, lid 7, van Uitvoeringsverordening (EU) 2026/1778). Je kunt met deze bestanden bouwen en je paspoorten ertegen valideren zonder iemand toestemming te vragen. De shapes, schema's en contexten hebben nog geen licentievermelding, dus als je kopieën in je eigen product meelevert, houd dan de bronvermelding van de Commissie erbij.</p>
+</div>
+
+<h2 id="api">Registreren via de API</h2>
+
+<p>De API is klein, en de regels vragen om zorgvuldig lezen. Er zijn vijf operaties: de geldige productgroepen opvragen, een registratie indienen, en drie aanroepen op het Activity Dashboard (het takenlogboek van het register) om een indiening te volgen en de resultaten per item te lezen. Er is geen operatie om een registratie op te vragen, te wijzigen of in te trekken, en je organisatie verifieer je nog steeds in de webinterface, want de API heeft daar geen route voor.</p>
+
+<p>Eén indiening registreert tot 100 paspoorten tegelijk. Elk item daarin is één paspoort met een eigen UPI, en alle items horen bij dezelfde productgroep. Een indiening is hooguit 10 MB, en alleen in JSON. Voor batterijen moet het verzoek een subgroep noemen. De voorbeelden in de API-handleiding en het OpenAPI-bestand gebruiken <code>EV</code> en <code>LMT</code>, terwijl het gegevensmodel zijn subgroepen evb, ind en lmt noemt, en nergens wordt het een op het ander afgebeeld. Vraag de geldige lijst daarom tijdens het draaien op bij het register. Registratie is alles of niets: faalt één paspoort in de batch, dan wordt geen enkel paspoort geregistreerd.</p>
+
+<figure>
+  <img src="../../../Blogs/dpp-registry-technical-package/submission.svg" alt="Eén indiening bevat tot 100 paspoorten van één productgroep, elk met een eigen UPI. Het register haalt elk paspoort op en controleert het. Slagen ze allemaal, dan worden ze allemaal geregistreerd, elk met een eigen identificatiecode voor registratie; faalt er één, dan wordt er geen enkele geregistreerd." width="680" loading="lazy">
+  <figcaption>Eén indiening, tot 100 paspoorten: ze worden allemaal geregistreerd, of geen enkele. (Diagram in het Engels.)</figcaption>
+</figure>
+
+<p>Sinds <a href="/nl/blog/dpp-registry-goes-live/">ons artikel van juli</a> is de maximale lengte van de unieke productidentificatiecode (UPI), het webadres van je paspoort, gegroeid naar <strong>2.000 tekens</strong>. Het register doet ook meer dan een gegeven opslaan: het haalt je live paspoort op bij de UPI en valideert het. Je DPP moet dus gehost en via de UPI bereikbaar zijn voordat je hem registreert.</p>
+
+<h2 id="authentication">Authenticatie werkt in twee richtingen</h2>
+
+<p>Het pakket beschrijft twee aparte inlogregelingen, één per richting. Ze zijn makkelijk te verwarren, dus we benoemen ze naar wie wie aanroept.</p>
+
+<h3 id="auth-service-account">1. Jouw systeem roept het register aan: het serviceaccount</h3>
+
+<p>Dit is alleen van belang als je via de API registreert. Een beheerder van je geverifieerde organisatie maakt in het register een serviceaccount aan (maximaal vijf per organisatie) en uploadt de publieke helft van een sleutelpaar. Je systeem bewijst wie het is door een kort bericht te ondertekenen met de private helft, die je eigen systemen nooit verlaat, en krijgt een toegangsbewijs terug dat 15 minuten geldig is. Alleen sleutels op basis van elliptische krommen worden geaccepteerd, en gedeelde wachtwoorden worden niet ondersteund. Een paar details wijken af van wat gangbare softwarebibliotheken standaard doen, dus geef je ontwikkelaar de Service Account-handleiding zelf en geen samenvatting.</p>
+
+<figure>
+  <img src="../../../Blogs/dpp-registry-technical-package/service-account.svg" alt="Inloggen op de API van het register: je systeem heeft de private sleutel, stuurt een ondertekend bericht naar de inlogdienst van de Commissie, krijgt een toegangsbewijs terug dat 15 minuten geldig is, en roept daarmee de API van het register aan. Eenmalig: een beheerder maakt het serviceaccount aan en uploadt de publieke sleutel. Alleen nodig voor de API; in het webportaal log je zelf in." width="680" loading="lazy">
+  <figcaption>Richting 1: je systeem logt in met een serviceaccount en registreert daarna. (Diagram in het Engels.)</figcaption>
+</figure>
+
+<h3 id="auth-self-hosted">2. Het register roept jouw server aan: het beschermde deel van het paspoort</h3>
+
+<p>Je paspoort heeft een openbaar en een beschermd deel. Bij registratie opent het register je paspoort eerst zoals elke bezoeker dat doet en leest het openbare deel. Daarna vraagt het opnieuw, nu met een kortlopend toegangsbewijs dat de Commissie heeft ondertekend, en je server controleert dat bewijs voordat hij het beschermde deel vrijgeeft. Geen bewijs betekent: het openbare deel. Een bewijs dat de controle niet doorstaat betekent een weigering, nooit in plaats daarvan het openbare deel. Een website van vaste bestanden kan die controle niet uitvoeren; daarvoor is een klein programma op de server nodig, of een paspoortaanbieder die het voor je doet.</p>
+
+<figure>
+  <img src="../../../Blogs/dpp-registry-technical-package/protected-part.svg" alt="Een verzoek zonder toegangsbewijs krijgt alleen het openbare deel van het paspoort. Het verzoek van het register met een geldig bewijs van de Commissie krijgt het openbare en het beschermde deel. Een verzoek met een verkeerd, verlopen of voor een ander bedoeld bewijs wordt geweigerd met foutcode 401 of 403, nooit met het openbare deel: dat heeft het register al van zijn eerste aanroep." width="680" loading="lazy">
+  <figcaption>Richting 2: wat je server teruggeeft als het register om het paspoort vraagt. (Diagram in het Engels.)</figcaption>
+</figure>
+
+<h3 id="auth-tiers">Nu twee niveaus, later meer</h3>
+
+<p>Voorlopig zijn er maar twee niveaus, openbaar en beschermd, en het register is de enige partij die het beschermde deel mag zien. Batterijen hebben meer nodig. Op basis van artikel 77, lid 2, en bijlage XIII van de Batterijverordening deelt het gegevensmodel voor batterijen elk gegeven in vier toegangsgroepen in: openbare gegevens; gegevens voor personen met een gerechtvaardigd belang, aangemelde instanties, markttoezichtautoriteiten en de Commissie; gegevens alleen voor aangemelde instanties, markttoezichtautoriteiten en de Commissie; en gegevens over een individuele batterij voor personen met een gerechtvaardigd belang. Er is nog geen gepubliceerde procedure waarmee iemand uit de laatste drie groepen zijn deel van jouw server kan ophalen.</p>
+
+<figure>
+  <img src="../../../Blogs/dpp-registry-technical-package/battery-access-groups.svg" alt="Wie welke toegangsgroep van het batterijpaspoort mag zien: iedereen ziet groep 1 (gegevens 1 tot en met 45). Personen met een gerechtvaardigd belang, zoals reparateurs, recyclers en exploitanten die batterijen een tweede leven geven, zien groep 1, 2 en 4, maar niet groep 3, de testrapporten. Autoriteiten (aangemelde instanties, markttoezicht, de Commissie) zien groep 1, 2 en 3, maar niet groep 4, de gegevens over één specifieke batterij. Voor groep 2 tot en met 4 is er nog geen gepubliceerde manier om de server van de marktdeelnemer te bereiken." width="680" loading="lazy">
+  <figcaption>De vier toegangsgroepen van het gegevensmodel voor batterijen, naar artikel 77, lid 2, en bijlage XIII van de Batterijverordening en de richtsnoer van de Commissie over gegevenspunten, versie 4. (Diagram in het Engels.)</figcaption>
+</figure>
+
+<p>Voor andere productgroepen komen de regels per product. De verordening ecologisch ontwerp laat aan de gedelegeerde handeling van elk product over wie welke gegevens mag lezen of bijwerken (artikel 9, lid 2, van Verordening (EU) 2024/1781), en artikel 11 laat de Commissie procedures vaststellen voor de digitale credentials van wie toegangsrechten heeft. De Self-Hosted-handleiding voegt alleen toe dat identificatie van marktdeelnemers via hun unieke marktdeelnemeridentificatiecode in een toekomstige versie komt. Niets wat gepubliceerd is, zegt nog hoe andere partijen het beschermde deel gaan bereiken.</p>
+
+<h3 id="auth-standards">Hoe dit zich verhoudt tot de Europese DPP-normen</h3>
+
+<p>Beide handleidingen verwijzen alleen naar internetstandaarden van de IETF. Geen van beide noemt EN 18239 of EN 18246, de CEN/CENELEC-normen over toegangsrechten en over gegevensauthenticatie die we beschreven in onze <a href="/nl/blog/dpp-system-standards/">veldgids voor de acht DPP-systeemnormen</a>, en ook de uitvoeringsverordening verwijst er niet naar. Ze werken op verschillende niveaus. De handleidingen regelen het vertrouwen tussen het register en de server van een marktdeelnemer. EN 18239 gaat over wie nog meer gecontroleerde gegevens mag lezen of wijzigen, van autoriteiten tot reparateurs, en EN 18246 over het ondertekenen van gegevens, zodat zowel de gegevens als hun uitgever te verifiëren zijn. Waar ze elkaar raken, stemmen de handleidingen overeen met de ontwerpen die wij hebben gelezen: openbare gegevens vragen geen inlog, en gecontroleerde gegevens worden pas na authenticatie en autorisatie vrijgegeven. De ontwerpen vragen authenticatie op een hoog betrouwbaarheidsniveau. In het register zit die sterke identiteitscontrole een stap eerder, bij de verificatie van je organisatie, bijvoorbeeld met een gekwalificeerd zegel of een gekwalificeerde handtekening (artikel 4 van Uitvoeringsverordening (EU) 2026/1778). Geen van beide normen is al bekendgemaakt in het Publicatieblad; de <a href="https://single-market-economy.ec.europa.eu/single-market/goods/european-standards/harmonised-standards/digital-product-passport-dpp_en" target="_blank" rel="noopener">lijst van geharmoniseerde DPP-normen</a> van de Commissie laat zien wanneer dat gebeurt.</p>
+
+<h2 id="user-guide">Wat er veranderde in de gebruikershandleiding</h2>
+
+<p>Versie 1.03 maakt expliciet wat versie 1.0 openliet: je zegel moet op een gekwalificeerd middel staan, zoals een smartcard of USB-token van je verlener van vertrouwensdiensten, of uit een gekwalificeerde dienst voor ondertekening op afstand komen, en een certificaat dat als softwarebestand is opgeslagen (.p12 of .pfx) wordt afgewezen. Heb je nog geen zegel gekocht, kijk dan goed welk soort je koopt.</p>
+
+<h2 id="batteries">Batterijen: model gepubliceerd, registratie niet bevestigd</h2>
+
+<div class="dpptg-warn">
+  <h4>Twee feiten die nog niet op elkaar aansluiten</h4>
+  <p>Het gegevensmodel voor batterijen is nu gepubliceerd. Toch zegt de gebruikershandleiding, zes weken eerder bijgewerkt, nog altijd dat succesvolle registratie van batterijpaspoorten "not currently available" is (nu niet mogelijk), en geen enkele tekst van de Commissie zegt dat het inmiddels werkt. Test een registratie voordat je erop vertrouwt.</p>
+</div>
+
+<p>Batterijen blijven de enige productgroep die het register aanbiedt, en alleen op het niveau van het artikel. Voor detergentia, bouwproducten, textiel en de ESPR-productgroepen is geen semantisch model gepubliceerd.</p>
+
+<h2 id="questions-for-policy-makers">Een paar vragen aan beleidsmakers</h2>
+
+<p>Toen we het gegevensmodel voor batterijen naast de richtsnoer van de Commissie over gegevenspunten van batterijen legden (versie 4 van 19 november 2026, die net als v3.2 zegt geen officieel standpunt van de Commissie te zijn), bleven vier punten ons onduidelijk. Misschien lezen we ze verkeerd, dus we stellen ze als vragen.</p>
+
+<div class="dpptg-scroll">
+<table class="dpptg-table">
+  <thead>
+    <tr><th>Gegevenspunt</th><th>De richtsnoer</th><th>Het gegevensmodel</th><th>Onze vraag</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Kritieke grondstoffen</td><td>Verwijst naar bijlage X, punt 1, van de Batterijverordening: kobalt, natuurlijk grafiet, lithium en nikkel</td><td>Noemt de 34 kritieke grondstoffen van de verordening kritieke grondstoffen</td><td>Welke lijst hoort een batterijpaspoort te gebruiken?</td></tr>
+    <tr><td>Temperatuurbereik bij spanningswaarden</td><td>"Wanneer relevant"</td><td>Altijd verplicht</td><td>Hoe zegt een paspoort dat een bereik niet relevant is?</td></tr>
+    <tr><td>Markering voor gescheiden inzameling</td><td>Ja of nee</td><td>Alleen "ja" geaccepteerd</td><td>Is een "nee" bewust onmogelijk gemaakt?</td></tr>
+    <tr><td>Nominale capaciteit</td><td>Openbaar gegeven 25 is een herhaling en hoeft niet ingevuld; beschermd gegeven 51 is dezelfde waarde als gegeven 11</td><td>Laat gegeven 25 weg, maar houdt een eigen beschermd veld aan, verplicht voor EV- en LMT-batterijen</td><td>Vullen marktdeelnemers dat apart in, of nemen ze gegeven 11 over?</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>De tweede en derde vraag doen ertoe voor iedereen die nu bouwt, want een paspoort dat de richtsnoer volgt, kan op de controles van het gegevensmodel stuklopen. Werk je aan deze teksten en weet je hoe ze bedoeld zijn, dan horen we dat graag.</p>
+
+<h2 id="what-to-do">Wat marktdeelnemers moeten doen, voor batterijen al vóór februari 2027</h2>
+
+<p>Elke productgroep met een paspoortplicht doorloopt dezelfde stappen zodra de regels gaan gelden. Voor batterijen moeten ze vóór 18 februari 2027 klaar zijn. Onze volgorde:</p>
+
+<ol>
+  <li><strong>Laat je verifiëren met het juiste zegel.</strong> Een gekwalificeerd elektronisch zegel (QSeal) is het wettelijk erkende digitale stempel van een bedrijf; een eenmanszaak gebruikt in plaats daarvan een gekwalificeerde elektronische handtekening (QES). Koop het bij een aanbieder op een EU-vertrouwenslijst, op een gekwalificeerd middel of via een dienst voor ondertekening op afstand, en zet het in PAdES, het standaardformaat voor handtekeningen in een pdf. De aanschaf kost tijd, dus begin hier.</li>
+  <li><strong>Host het paspoort voordat je het registreert.</strong> Het register haalt het op, dus de UPI moet via HTTPS uitkomen bij geldige JSON die zijn <code>contentSpecificationIds</code> vermeldt.</li>
+  <li><strong>Valideer tegen zowel JSON Schema als SHACL</strong> voor je subgroep, tot de Commissie bevestigt welke controles het register bij registratie uitvoert. Elke validator voor JSON Schema 2020-12 en een open-source SHACL-validator zoals pySHACL volstaan; dit is werk voor je ontwikkelaar of paspoortaanbieder.</li>
+  <li><strong>Bouw het beschermde endpoint volgens de handleiding</strong>: het openbare deel voor anonieme verzoeken, 401 bij elk ongeldig token zonder terugval, een audience-controle die exact op de origin let, en 403 tenzij de identificatiecode van de aanvragende organisatie byte voor byte overeenkomt met je beleid.</li>
+  <li><strong>Richt het serviceaccount in</strong> als je de API gaat gebruiken. Bewaar de sleutel als het kan in een hardwaremodule, en plan de vervanging: twee actieve credentials tegelijk, elk hooguit twee jaar geldig.</li>
+</ol>
+
+<p>Omdat batterijen per artikel worden geregistreerd, lopen de aantallen snel op. De webinterface neemt één paspoort per formulier, of tot 100 per geüpload bestand, alles of niets. Bij tienduizenden batterijen per jaar zijn dat honderden uploads die elk in hun geheel moeten slagen, dus reken op de API. Hosting is hoe dan ook nodig, omdat het register je paspoort bij registratie ophaalt, en dat geldt ook voor het beschermde endpoint voor alle batterijgegevens die niet openbaar zijn.</p>
+
+<h2 id="how-regen-helps">Hoe Regen Studio helpt</h2>
+
+<p>We helpen marktdeelnemers van regelgeving naar een werkend, registreerbaar paspoort: welke eisen voor je product gelden en wanneer, welke van je gegevens die al dekken, en wat je systemen nodig hebben om een paspoort te hosten, te beschermen en te registreren dat het register accepteert. Maak je batterijen en wil je weten of je huidige opzet door de controles van het register zou komen, dan kunnen we daar deze maand over praten.</p>
+
+<p>Ook helpen we aanbieders van DPP-diensten met hun roadmap naar systemen die aan de regels van het register voldoen.</p>
+
+<p style="font-size: 0.9rem; color: #6b7280; margin-top: 40px; padding-top: 24px; border-top: 1px solid #e5e7eb;"><strong>Bronnen</strong>: Europese Commissie, DPP-pagina met documentatie (technisch pakket van 30 oktober 2026, alleen in het Engels): API Integration Guide for Economic Operators v1.0 en OpenAPI-specificaties 1.0.0; Service Account Technical Integration Guide v1.0; Self-Hosted Authentication Guide for Economic Operators v1.0; Semantic Data Guide v1.0 en Semantic Data Artifacts (core 1.0.0, batteries 1.0.0); DPP Registry User Guide for Economic Operators v1.03 (16 september 2026); Guidance Document: Digital Batteries Passport, data points by category v3.2 (19 oktober 2026) en versie 4 (19 november 2026). Uitvoeringsverordening (EU) 2026/1778 van de Commissie; Verordening (EU) 2023/1542 (batterijen). De analyse en het advies zijn van Regen Studio zelf.</p>
+
+
+</div>
+      </div></section>
+
+    <!-- Related Posts (rendered by JS) -->
+    <section class="related-posts" id="relatedPosts"></section>
+
+    <!-- FAQ footnote: after related posts + CTA, at the very end of the post -->
+    <section class="post-faq" id="postFaq">
+      <div class="container">
+        <div class="post-faq__inner"><h2 id="faq">Veelgestelde vragen</h2>
+
+<div class="dpptg-faq">
+  <details class="dpptg-faq__item">
+    <summary>Heeft het EU-register voor digitale productpaspoorten nu een API?</summary>
+    <div class="dpptg-faq__answer"><p>Ja. Sinds 30 oktober 2026 publiceert de Commissie een API Integration Guide en OpenAPI-specificaties. De API heeft vijf operaties: productgroepen opvragen, een registratie van 1 tot 100 items indienen (alleen JSON, hooguit 10 MB), en drie aanroepen op het Activity Dashboard om de taak te volgen en de resultaten per item te lezen. Systemen authenticeren zich met een serviceaccount via OAuth 2.0 private_key_jwt.</p></div>
+  </details>
+
+  <details class="dpptg-faq__item">
+    <summary>Welk gegevensformaat vraagt registratie in het DPP-register?</summary>
+    <div class="dpptg-faq__answer"><p>JSON. De Semantic Data Guide zegt dat de registratie om JSON vraagt, het enige verplichte formaat volgens EN 18216:2026. JSON wordt gevalideerd met JSON Schema; JSON-LD en RDF met SHACL. XML wordt alleen geaccepteerd bij het uploaden van een bestand in de webinterface.</p></div>
+  </details>
+
+  <details class="dpptg-faq__item">
+    <summary>Welke W3C-standaarden gebruikt het semantische DPP-model?</summary>
+    <div class="dpptg-faq__answer"><p>SKOS, SHACL, RDF en JSON-LD dragen het model, SPARQL komt alleen voor binnen SHACL-shapes, XSD wordt gebruikt voor datatypes zonder dat er .xsd-bestanden zijn gepubliceerd, OWL alleen voor versiemetadata, en de DCAT-AP-catalogus is aangekondigd maar nog niet gepubliceerd. De registratie vraagt om JSON, waarvoor de Commissie JSON Schemas publiceert (draft 2020-12, geen W3C-standaard); de Semantic Data Guide zegt dat JSON-documenten met die schema's worden gevalideerd, maar de API-handleiding zegt niet welke controles het register uitvoert op het paspoort dat het ophaalt.</p></div>
+  </details>
+
+  <details class="dpptg-faq__item">
+    <summary>Kun je nu een batterijpaspoort registreren?</summary>
+    <div class="dpptg-faq__answer"><p>Niet bevestigd. Het semantische model voor batterijen is op 30 oktober 2026 gepubliceerd, maar de gebruikershandleiding v1.03 zegt nog altijd dat succesvolle registratie van batterijpaspoorten nu niet mogelijk is, en geen enkele tekst van de Commissie zegt dat het inmiddels lukt. Batterijen zijn de enige productgroep die het register aanbiedt, op het niveau van het artikel. De paspoortplicht geldt vanaf 18 februari 2027 voor EV- en LMT-batterijen en voor industriële batterijen van meer dan 2 kWh.</p></div>
+  </details>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Heeft het EU-register voor digitale productpaspoorten nu een API?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Sinds 30 oktober 2026 publiceert de Commissie een API Integration Guide en OpenAPI-specificaties. De API heeft vijf operaties: productgroepen opvragen, een registratie van 1 tot 100 items indienen (alleen JSON, hooguit 10 MB), en drie aanroepen op het Activity Dashboard om de taak te volgen en de resultaten per item te lezen. Systemen authenticeren zich met een serviceaccount via OAuth 2.0 private_key_jwt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welk gegevensformaat vraagt registratie in het DPP-register?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JSON. De Semantic Data Guide zegt dat de registratie om JSON vraagt, het enige verplichte formaat volgens EN 18216:2026. JSON wordt gevalideerd met JSON Schema; JSON-LD en RDF met SHACL. XML wordt alleen geaccepteerd bij het uploaden van een bestand in de webinterface."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welke W3C-standaarden gebruikt het semantische DPP-model?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SKOS, SHACL, RDF en JSON-LD dragen het model, SPARQL komt alleen voor binnen SHACL-shapes, XSD wordt gebruikt voor datatypes zonder dat er .xsd-bestanden zijn gepubliceerd, OWL alleen voor versiemetadata, en de DCAT-AP-catalogus is aangekondigd maar nog niet gepubliceerd. De registratie vraagt om JSON, waarvoor de Commissie JSON Schemas publiceert (draft 2020-12, geen W3C-standaard); de Semantic Data Guide zegt dat JSON-documenten met die schema's worden gevalideerd, maar de API-handleiding zegt niet welke controles het register uitvoert op het paspoort dat het ophaalt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kun je nu een batterijpaspoort registreren?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Niet bevestigd. Het semantische model voor batterijen is op 30 oktober 2026 gepubliceerd, maar de gebruikershandleiding v1.03 zegt nog altijd dat succesvolle registratie van batterijpaspoorten nu niet mogelijk is, en geen enkele tekst van de Commissie zegt dat het inmiddels lukt. Batterijen zijn de enige productgroep die het register aanbiedt, op het niveau van het artikel. De paspoortplicht geldt vanaf 18 februari 2027 voor EV- en LMT-batterijen en voor industriële batterijen van meer dan 2 kWh."
+      }
+    }
+  ]
+}
+</script></div>
+      </div></section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="Regen Studio">
+    <meta itemprop="url" content="https://www.regenstudio.world">
+    <meta itemprop="email" content="info@regenstudio.world">
+    <meta itemprop="description" content="Regenerative innovation design studio pioneering systemic innovations at the intersection of technology, society, and nature.">
+    <link itemprop="logo" href="https://www.regenstudio.world/Images/Logo-Text-on-the-sideAtivo 2.svg">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../../../nl/index.html" class="footer__logo">
+          <img src="../../../Images/Regen Logos/FooterWhiteLogoAtivo 3Fides.svg" alt="Regen Studio" class="footer__logo-img" width="1046" height="492">
+        </a>
+        <p>Baanbrekende innovaties voor het herstel van onze natuur, steden en menselijke ecosystemen.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h2>Navigatie</h2>
+          <ul>
+            <li><a href="../../../nl/about.html" data-i18n="footer.about">Over Ons</a></li>
+            <li><a href="../../../nl/vision.html" data-i18n="footer.vision">Vision</a></li>
+            <li><a href="../../../nl/innovation-services.html" data-i18n="footer.services">Services</a></li>
+            <li><a href="../../../digital-product-passports/" data-i18n="footer.product_passports">Product Passports</a></li>
+            <li><a href="../../../digital-identities/" data-i18n="footer.digital_identity">Digital Identity</a></li>
+            <li><a href="../../../nl/client-projects.html" data-i18n="footer.client_projects">Client Projects</a></li>
+            <li><a href="../../../nl/blog.html" data-i18n="footer.blog">Blog</a></li>
+            <li><a href="https://demos.regenstudio.world" target="_blank" rel="noopener" data-i18n="footer.demos">Demos</a></li>
+            <li><a href="../../../nl/faq.html" data-i18n="footer.faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h2>Contact</h2>
+          <ul>
+            <li>
+              <span class="footer__email-row">
+                <span class="footer__email-address">info@regenstudio.world</span>
+                <button class="footer__copy-btn" data-email="info@regenstudio.world" aria-label="Copy email address">
+                  <svg class="footer__copy-icon footer__copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="footer__copy-icon footer__copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+              </span>
+            </li>
+            <li><a href="https://www.linkedin.com/company/regen-studio-world/" target="_blank" rel="noopener" itemprop="sameAs">LinkedIn</a></li>
+            <li><a href="https://bsky.app/profile/regen-studio.bsky.social" target="_blank" rel="noopener" itemprop="sameAs">Bluesky</a></li>
+            <li><a href="https://mastodon.social/@regen_studio" target="_blank" rel="noopener me" itemprop="sameAs">Mastodon</a></li>
+          </ul>
+        </div>
+        <div class="footer__col footer__col--locations">
+          <h2>Locaties</h2>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">Nederland</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio B.V.</p>
+              <p class="footer__address"><span itemprop="streetAddress">Stollenbergweg 43</span>, <span itemprop="postalCode">6571 AB</span>, <span itemprop="addressLocality">Berg en Dal</span></p>
+              <meta itemprop="addressCountry" content="NL">
+            </div>
+            <p class="footer__reg">KVK 90337948 · BTW NL865282377B01</p>
+          </div>
+          <div class="footer__location" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <p class="footer__location-country">Brazilië</p>
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <p class="footer__entity" itemprop="name">Regen Studio Consultoria LTDA</p>
+              <p class="footer__address"><span itemprop="streetAddress">Av. Washington Lu&iacute;s 1527, 174B</span><br><span itemprop="postalCode">04662-002</span>, <span itemprop="addressLocality">S&atilde;o Paulo</span></p>
+              <meta itemprop="addressCountry" content="BR">
+            </div>
+            <p class="footer__reg">CNPJ 57.579.114/0001-55</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2024–2026 Regen Studio B.V. &middot; <a href="../../../nl/privacy.html">Privacybeleid</a> &middot; <a href="../../../terms.html">Gebruiksvoorwaarden</a> &middot; <a href="../../../accessibility.html">Accessibility</a> &middot; <a href="../../../nl/about.html">Over Ons</a> &middot; <a href="../../../admin/">Admin</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/nav.js" defer></script>
+  <script src="../../../assets/js/i18n.js" defer></script>
+  <script src="../../../assets/js/antibot.js" defer></script>
+  <script src="../../../blog.js" defer></script>
+  <script src="../../../assets/js/tracker.js" defer></script>
+</body>
+</html>

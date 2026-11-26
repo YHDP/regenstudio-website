@@ -27,9 +27,9 @@
   "featuredImage": "Header.webp",
   "featuredImageAlt": "O pacote técnico do Registro de DPP da UE: uma API, dois perfis de autenticação e um modelo semântico em camadas para baterias",
   "excerpt": "Os passaportes de bateria precisam ser registrados a partir de 18 de fevereiro de 2027. O pacote técnico de 30 de outubro de 2026 para o Registro de DPP da UE traz uma API de registro, autenticação por conta de serviço e no servidor próprio, e um modelo semântico para baterias. O registro pede JSON, o catálogo DCAT foi apenas anunciado e o registro de baterias ainda não está confirmado.",
-  "published": false,
+  "published": true,
   "review": {
-    "text": "draft",
-    "assets": "draft"
+    "text": "approved",
+    "assets": "approved"
   }
 }

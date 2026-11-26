@@ -27,9 +27,9 @@
   "featuredImage": "Header.webp",
   "featuredImageAlt": "Het technisch pakket van het EU-register voor digitale productpaspoorten: een API, twee authenticatieprofielen en een gelaagd semantisch model voor batterijen",
   "excerpt": "Batterijpaspoorten moeten vanaf 18 februari 2027 geregistreerd worden. Het technisch pakket van 30 oktober 2026 voor het EU-register voor digitale productpaspoorten voegt een registratie-API toe, authenticatie via een serviceaccount en op je eigen server, en een semantisch model voor batterijen. De registratie vraagt om JSON, de DCAT-catalogus is alleen aangekondigd, en batterijregistratie is nog altijd niet bevestigd.",
-  "published": false,
+  "published": true,
   "review": {
-    "text": "draft",
-    "assets": "draft"
+    "text": "approved",
+    "assets": "approved"
   }
 }

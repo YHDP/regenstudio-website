@@ -27,9 +27,9 @@
   "featuredImage": "Header.webp",
   "featuredImageAlt": "The EU DPP Registry's technical package: an API, two authentication profiles and a layered semantic model for batteries",
   "excerpt": "Battery passports must be registered from 18 February 2027. The Commission's 30 October 2026 technical package for the EU DPP Registry adds a registration API, service-account and self-hosted authentication, and a semantic model for batteries. Registration requests JSON, the DCAT catalogue is only announced, and battery registration is still not confirmed.",
-  "published": false,
+  "published": true,
   "review": {
-    "text": "draft",
-    "assets": "draft"
+    "text": "approved",
+    "assets": "approved"
   }
 }
