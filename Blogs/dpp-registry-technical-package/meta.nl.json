@@ -1,0 +1,35 @@
+{
+  "title": "De API en het batterijgegevensmodel van het EU-register voor digitale productpaspoorten zijn er: wat je vóór februari 2027 moet bouwen",
+  "slug": "dpp-registry-technical-package",
+  "subtitle": "Op 30 oktober 2026 publiceerde de Commissie de API van het register, de authenticatieregels en het eerste semantische model, voor batterijen. Dit moet een batterijfabrikant nu bouwen, en dit is waarom een geslaagde batterijregistratie nog niet bevestigd is.",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regen Studio"
+  },
+  "date": "2026-11-04",
+  "categories": [
+    "Digital Product Passport",
+    "Digital Identity"
+  ],
+  "tags": [
+    "DPP",
+    "DPP-Registry",
+    "ESPR",
+    "2026-1778",
+    "API",
+    "JSON-LD",
+    "SHACL",
+    "SKOS",
+    "JSON-Schema",
+    "battery-passport",
+    "OAuth"
+  ],
+  "featuredImage": "Header.webp",
+  "featuredImageAlt": "Het technisch pakket van het EU-register voor digitale productpaspoorten: een API, twee authenticatieprofielen en een gelaagd semantisch model voor batterijen",
+  "excerpt": "Batterijpaspoorten moeten vanaf 18 februari 2027 geregistreerd worden. Het technisch pakket van 30 oktober 2026 voor het EU-register voor digitale productpaspoorten voegt een registratie-API toe, authenticatie via een serviceaccount en op je eigen server, en een semantisch model voor batterijen. De registratie vraagt om JSON, de DCAT-catalogus is alleen aangekondigd, en batterijregistratie is nog altijd niet bevestigd.",
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
+}

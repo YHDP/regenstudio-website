@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 682" font-family="'Inter', 'Segoe UI', system-ui, sans-serif" role="img" aria-labelledby="ba-t ba-d">
+  <title id="ba-t">Who may see which of the four access groups of the battery passport</title>
+  <desc id="ba-d">A grid of three kinds of reader against the four access groups of Annex XIII of the Batteries Regulation. Group 1, public, items 1 to 45 such as maker, chemistry and capacity: everyone. Group 2, items 46 to 49, detailed composition, spare parts, dismantling and safety: persons with a legitimate interest and the authorities (notified bodies, market surveillance authorities and the Commission). Group 3, item 50, results of test reports proving compliance: only the authorities, not persons with a legitimate interest. Group 4, items 51 to 71, data on one specific battery such as state of health, charge cycles and accidents: only persons with a legitimate interest. Persons with a legitimate interest are repairers, remanufacturers, second-life operators and recyclers, and for group 4 also the buyer of the battery, to offer it on energy markets. A separate implementing act will say exactly who counts. Today the access protocol has two levels, public and protected for the Registry, so groups 2 to 4 have no published way to reach the operator's server yet.</desc>
+
+  <rect width="680" height="682" rx="18" fill="#FFFFFF" stroke="#E2E8ED"/>
+
+  <text x="340" y="40" text-anchor="middle" fill="#006d38" font-size="12" font-weight="700" letter-spacing="1.4">BATTERY PASSPORT · ARTICLE 77 AND ANNEX XIII</text>
+  <text x="340" y="68" text-anchor="middle" fill="#1A2B36" font-size="20" font-weight="700">Who may see which access group</text>
+
+  <!-- Column headers -->
+  <g text-anchor="middle">
+    <rect x="220" y="92" width="102" height="4" rx="2" fill="#008545"/>
+    <text x="271" y="116" fill="#006d38" font-size="10" font-weight="700" letter-spacing="0.6">1 · PUBLIC</text>
+    <text x="271" y="136" fill="#1A2B36" font-size="13" font-weight="700">Items 1–45</text>
+    <text x="271" y="156" fill="#5A6B73" font-size="11.5">maker, chemistry,</text>
+    <text x="271" y="172" fill="#5A6B73" font-size="11.5">capacity</text>
+
+    <rect x="330" y="92" width="102" height="4" rx="2" fill="#009BBB"/>
+    <text x="381" y="116" fill="#00728b" font-size="10" font-weight="700" letter-spacing="0.6">2 · RESTRICTED</text>
+    <text x="381" y="136" fill="#1A2B36" font-size="13" font-weight="700">Items 46–49</text>
+    <text x="381" y="156" fill="#5A6B73" font-size="11.5">composition, spares,</text>
+    <text x="381" y="172" fill="#5A6B73" font-size="11.5">dismantling, safety</text>
+
+    <rect x="440" y="92" width="102" height="4" rx="2" fill="#93093F"/>
+    <text x="491" y="116" fill="#93093F" font-size="10" font-weight="700" letter-spacing="0.6">3 · RESTRICTED</text>
+    <text x="491" y="136" fill="#1A2B36" font-size="13" font-weight="700">Item 50</text>
+    <text x="491" y="156" fill="#5A6B73" font-size="11.5">test reports that</text>
+    <text x="491" y="172" fill="#5A6B73" font-size="11.5">prove compliance</text>
+
+    <rect x="550" y="92" width="102" height="4" rx="2" fill="#FFA92D"/>
+    <text x="601" y="116" fill="#935D0D" font-size="10" font-weight="700" letter-spacing="0.6">4 · ONE BATTERY</text>
+    <text x="601" y="136" fill="#1A2B36" font-size="13" font-weight="700">Items 51–71</text>
+    <text x="601" y="156" fill="#5A6B73" font-size="11.5">health, cycles,</text>
+    <text x="601" y="172" fill="#5A6B73" font-size="11.5">accidents</text>
+  </g>
+
+  <!-- Row frames -->
+  <rect x="24" y="190" width="632" height="60" rx="12" fill="#F5F7F9" stroke="#E2E8ED"/>
+  <rect x="24" y="258" width="632" height="112" rx="12" fill="#F5F7F9" stroke="#E2E8ED"/>
+  <rect x="24" y="378" width="632" height="76" rx="12" fill="#F5F7F9" stroke="#E2E8ED"/>
+
+  <!-- Row labels -->
+  <text x="40" y="225" fill="#1A2B36" font-size="15" font-weight="700">Everyone</text>
+
+  <text x="40" y="284" fill="#1A2B36" font-size="15" font-weight="700">Legitimate interest</text>
+  <text x="40" y="304" fill="#5A6B73" font-size="12">repairers, remanufacturers,</text>
+  <text x="40" y="320" fill="#5A6B73" font-size="12">second-life operators,</text>
+  <text x="40" y="336" fill="#5A6B73" font-size="12">recyclers; for group 4 also</text>
+  <text x="40" y="352" fill="#5A6B73" font-size="12">the buyer, for energy markets</text>
+
+  <text x="40" y="404" fill="#1A2B36" font-size="15" font-weight="700">Authorities</text>
+  <text x="40" y="424" fill="#5A6B73" font-size="12">notified bodies, market</text>
+  <text x="40" y="440" fill="#5A6B73" font-size="12">surveillance, Commission</text>
+
+  <!-- Icons -->
+  <defs>
+    <g id="ba-yes"><circle r="13" fill="#008545"/><path d="M-6 0.5 L-2 4.5 L6 -4" stroke="#FFFFFF" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="ba-no"><circle r="13" fill="#FFFFFF" stroke="#C9D2D5" stroke-width="1.5"/><path d="M-4.5 -4.5 L4.5 4.5 M4.5 -4.5 L-4.5 4.5" stroke="#9AAAB4" stroke-width="2.2" stroke-linecap="round"/></g>
+  </defs>
+
+  <!-- Everyone -->
+  <use href="#ba-yes" x="271" y="220"/>
+  <use href="#ba-no" x="381" y="220"/>
+  <use href="#ba-no" x="491" y="220"/>
+  <use href="#ba-no" x="601" y="220"/>
+
+  <!-- Legitimate interest -->
+  <use href="#ba-yes" x="271" y="306"/>
+  <use href="#ba-yes" x="381" y="306"/>
+  <use href="#ba-no" x="491" y="306"/>
+  <use href="#ba-yes" x="601" y="306"/>
+
+  <!-- Authorities -->
+  <use href="#ba-yes" x="271" y="416"/>
+  <use href="#ba-yes" x="381" y="416"/>
+  <use href="#ba-yes" x="491" y="416"/>
+  <use href="#ba-no" x="601" y="416"/>
+
+  <!-- Why strip -->
+  <rect x="24" y="474" width="632" height="96" rx="12" fill="#FFFFFF" stroke="#ECEFF1"/>
+  <rect x="24" y="474" width="5" height="96" rx="2.5" fill="#93093F"/>
+  <text x="44" y="498" fill="#93093F" font-size="12" font-weight="700" letter-spacing="1.1">WHY GROUPS 2 AND 3 DIFFER</text>
+  <text x="44" y="520" fill="#1B2833" font-size="13">Group 3 holds the test reports that prove compliance. The Regulation opens</text>
+  <text x="44" y="538" fill="#1B2833" font-size="13">it only to the authorities. Exactly who counts as having a legitimate</text>
+  <text x="44" y="556" fill="#1B2833" font-size="13">interest, per group, is left to a separate implementing act (Art 77(9)).</text>
+
+  <!-- Today strip -->
+  <rect x="24" y="582" width="632" height="80" rx="12" fill="#FFF6E9" stroke="#F3D9A8"/>
+  <rect x="24" y="582" width="5" height="80" rx="2.5" fill="#935D0D"/>
+  <text x="44" y="606" fill="#935D0D" font-size="12" font-weight="700" letter-spacing="1.1">TODAY</text>
+  <text x="44" y="627" fill="#1B2833" font-size="13">The access protocol has two levels, public and protected for the Registry.</text>
+  <text x="44" y="645" fill="#1B2833" font-size="13">Groups 2 to 4 have no published way to reach your server yet.</text>
+</svg>

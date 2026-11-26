@@ -1,0 +1,35 @@
+{
+  "title": "A API e o modelo de dados de baterias do Registro de DPP da UE foram publicados: o que construir antes de fevereiro de 2027",
+  "slug": "dpp-registry-technical-package",
+  "subtitle": "Em 30 de outubro de 2026 a Comissão publicou a API do Registro, as suas regras de autenticação e o primeiro modelo semântico, para baterias. Veja o que um fabricante de baterias precisa construir agora, e por que um registro de bateria bem-sucedido ainda não está confirmado.",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regen Studio"
+  },
+  "date": "2026-11-04",
+  "categories": [
+    "Digital Product Passport",
+    "Digital Identity"
+  ],
+  "tags": [
+    "DPP",
+    "DPP-Registry",
+    "ESPR",
+    "2026-1778",
+    "API",
+    "JSON-LD",
+    "SHACL",
+    "SKOS",
+    "JSON-Schema",
+    "battery-passport",
+    "OAuth"
+  ],
+  "featuredImage": "Header.webp",
+  "featuredImageAlt": "O pacote técnico do Registro de DPP da UE: uma API, dois perfis de autenticação e um modelo semântico em camadas para baterias",
+  "excerpt": "Os passaportes de bateria precisam ser registrados a partir de 18 de fevereiro de 2027. O pacote técnico de 30 de outubro de 2026 para o Registro de DPP da UE traz uma API de registro, autenticação por conta de serviço e no servidor próprio, e um modelo semântico para baterias. O registro pede JSON, o catálogo DCAT foi apenas anunciado e o registro de baterias ainda não está confirmado.",
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
+}

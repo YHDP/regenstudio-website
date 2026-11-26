@@ -214,7 +214,7 @@ button.mp__vraag { border:0; cursor:pointer; font-family:inherit; line-height:in
 /* whitepaper card: same surface as the closing card, cover left, plain download link right */
 .lp-wp { display:grid; grid-template-columns:minmax(0,180px) minmax(0,1fr); gap:24px; align-items:center; padding:22px 26px; border-radius:16px; background:#FBF8F3; border:1px solid #E8DFCF; }
 .post-content__body .lp-wp img.lp-wp__omslag { display:block; width:100%; height:auto; border-radius:6px; border:1px solid #E8DFCF; box-shadow:0 4px 14px rgba(36,54,68,.12); margin:0; }
-.post-content__body .lp-wp h3 { font-size:1.3rem; margin:0 0 8px; line-height:1.3; }
+.post-content__body .lp-wp .lp-wp__titel { font-weight:700; color:#1a1a2e; font-size:1.3rem; margin:0 0 8px; line-height:1.3; }
 .lp-cq .lp-wp p { margin:0 0 18px; font-size:.98rem; line-height:1.55; color:#4B6F8D; }
 .lp-wp .lp-kaart__knop { display:inline-block; align-self:flex-start; }
 @container (max-width:500px) {

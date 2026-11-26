@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 560" font-family="'Inter', 'Segoe UI', system-ui, sans-serif" role="img" aria-labelledby="sub-t sub-d">
+  <title id="sub-t">One submission to the EU DPP Registry: up to 100 passports, registered all or nothing</title>
+  <desc id="sub-d">A submission holds up to 100 passports of one product group, each with its own web address (UPI), in JSON and at most 10 MB. The Registry fetches every passport at its UPI and checks it. If every passport passes, all are registered and each gets its own registration identifier. If one passport fails, none is registered and the batch has to be submitted again.</desc>
+  <defs>
+    <marker id="sub-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9AAAB4"/>
+    </marker>
+  </defs>
+
+  <rect width="680" height="560" rx="18" fill="#FFFFFF" stroke="#E2E8ED"/>
+
+  <text x="340" y="40" text-anchor="middle" fill="#006d38" font-size="12" font-weight="700" letter-spacing="1.4">REGISTERING THROUGH THE API</text>
+  <text x="340" y="68" text-anchor="middle" fill="#1A2B36" font-size="20" font-weight="700">Up to 100 passports, registered all or nothing</text>
+
+  <!-- Submission panel -->
+  <rect x="40" y="92" width="600" height="200" rx="14" fill="#F5F7F9" stroke="#E2E8ED"/>
+  <text x="60" y="118" fill="#6b7280" font-size="11.5" font-weight="700" letter-spacing="1.1">ONE SUBMISSION · ONE PRODUCT GROUP · JSON · MAX 10 MB</text>
+
+  <!-- Passport card template, repeated -->
+  <g font-size="15">
+    <!-- 1 -->
+    <rect x="60" y="134" width="104" height="118" rx="10" fill="#FFFFFF" stroke="#ECEFF1"/>
+    <rect x="60" y="134" width="5" height="118" rx="2.5" fill="#008545"/>
+    <rect x="78" y="148" width="28" height="36" rx="4" fill="#E6F2EC" stroke="#9ACBB4"/>
+    <path d="M84 158 H100 M84 165 H100 M84 172 H94" stroke="#9ACBB4" stroke-width="2" stroke-linecap="round"/>
+    <text x="78" y="206" fill="#1A2B36" font-weight="700">Passport</text>
+    <text x="78" y="225" fill="#6b7280" font-size="12">no. 1</text>
+    <text x="78" y="242" fill="#00728b" font-size="11" font-family="ui-monospace, Menlo, monospace">…/p/0001</text>
+
+    <!-- 2 -->
+    <rect x="176" y="134" width="104" height="118" rx="10" fill="#FFFFFF" stroke="#ECEFF1"/>
+    <rect x="176" y="134" width="5" height="118" rx="2.5" fill="#008545"/>
+    <rect x="194" y="148" width="28" height="36" rx="4" fill="#E6F2EC" stroke="#9ACBB4"/>
+    <path d="M200 158 H216 M200 165 H216 M200 172 H210" stroke="#9ACBB4" stroke-width="2" stroke-linecap="round"/>
+    <text x="194" y="206" fill="#1A2B36" font-weight="700">Passport</text>
+    <text x="194" y="225" fill="#6b7280" font-size="12">no. 2</text>
+    <text x="194" y="242" fill="#00728b" font-size="11" font-family="ui-monospace, Menlo, monospace">…/p/0002</text>
+
+    <!-- 3 -->
+    <rect x="292" y="134" width="104" height="118" rx="10" fill="#FFFFFF" stroke="#ECEFF1"/>
+    <rect x="292" y="134" width="5" height="118" rx="2.5" fill="#008545"/>
+    <rect x="310" y="148" width="28" height="36" rx="4" fill="#E6F2EC" stroke="#9ACBB4"/>
+    <path d="M316 158 H332 M316 165 H332 M316 172 H326" stroke="#9ACBB4" stroke-width="2" stroke-linecap="round"/>
+    <text x="310" y="206" fill="#1A2B36" font-weight="700">Passport</text>
+    <text x="310" y="225" fill="#6b7280" font-size="12">no. 3</text>
+    <text x="310" y="242" fill="#00728b" font-size="11" font-family="ui-monospace, Menlo, monospace">…/p/0003</text>
+
+    <!-- ellipsis -->
+    <rect x="408" y="134" width="104" height="118" rx="10" fill="none" stroke="#C9D2D5" stroke-dasharray="5 4"/>
+    <text x="460" y="194" text-anchor="middle" fill="#6b7280" font-size="26" font-weight="700">…</text>
+    <text x="460" y="222" text-anchor="middle" fill="#6b7280" font-size="12">up to 100</text>
+
+    <!-- 100 -->
+    <rect x="524" y="134" width="104" height="118" rx="10" fill="#FFFFFF" stroke="#ECEFF1"/>
+    <rect x="524" y="134" width="5" height="118" rx="2.5" fill="#008545"/>
+    <rect x="542" y="148" width="28" height="36" rx="4" fill="#E6F2EC" stroke="#9ACBB4"/>
+    <path d="M548 158 H564 M548 165 H564 M548 172 H558" stroke="#9ACBB4" stroke-width="2" stroke-linecap="round"/>
+    <text x="542" y="206" fill="#1A2B36" font-weight="700">Passport</text>
+    <text x="542" y="225" fill="#6b7280" font-size="12">no. 100</text>
+    <text x="542" y="242" fill="#00728b" font-size="11" font-family="ui-monospace, Menlo, monospace">…/p/0100</text>
+  </g>
+  <text x="60" y="276" fill="#5A6B73" font-size="13">Each item is one passport with its own web address, the UPI.</text>
+
+  <line x1="340" y1="294" x2="340" y2="328" stroke="#9AAAB4" stroke-width="2" marker-end="url(#sub-arrow)"/>
+
+  <!-- Registry -->
+  <rect x="40" y="338" width="600" height="72" rx="12" fill="#0F2A22"/>
+  <text x="60" y="364" fill="#AFF9D7" font-size="12" font-weight="700" letter-spacing="1.2">EU DPP REGISTRY</text>
+  <text x="60" y="392" fill="#FFFFFF" font-size="16" font-weight="700">Fetches every passport at its UPI and checks it</text>
+
+  <line x1="185" y1="412" x2="185" y2="444" stroke="#9AAAB4" stroke-width="2" marker-end="url(#sub-arrow)"/>
+  <line x1="495" y1="412" x2="495" y2="444" stroke="#9AAAB4" stroke-width="2" marker-end="url(#sub-arrow)"/>
+
+  <!-- Outcomes -->
+  <rect x="40" y="454" width="290" height="86" rx="12" fill="#E6F2EC" stroke="#9ACBB4"/>
+  <text x="60" y="480" fill="#006838" font-size="12" font-weight="700" letter-spacing="1.1">EVERY PASSPORT PASSES</text>
+  <text x="60" y="506" fill="#1B2833" font-size="16" font-weight="700">All are registered</text>
+  <text x="60" y="526" fill="#5A6B73" font-size="13">each with its own registration ID</text>
+
+  <rect x="350" y="454" width="290" height="86" rx="12" fill="#FDF0F3" stroke="#F1C4CF"/>
+  <text x="370" y="480" fill="#D51641" font-size="12" font-weight="700" letter-spacing="1.1">ONE PASSPORT FAILS</text>
+  <text x="370" y="506" fill="#1B2833" font-size="16" font-weight="700">None is registered</text>
+  <text x="370" y="526" fill="#5A6B73" font-size="13">fix it, then resubmit the batch</text>
+</svg>
