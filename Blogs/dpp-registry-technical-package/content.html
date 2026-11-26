@@ -119,7 +119,7 @@
 <p>This one matters only if you register through the API. An administrator of your verified organisation creates a service account in the Registry (at most five per organisation) and uploads the public half of a key pair. Your system proves who it is by signing a short message with the private half, which never leaves your systems, and gets back an access pass that is valid for 15 minutes. Only elliptic-curve keys are accepted and shared passwords are not supported. A few details differ from what common software libraries do by default, so give your developer the Service Account guide itself rather than a summary.</p>
 
 <figure>
-  <img src="Blogs/dpp-registry-technical-package/service-account.svg" alt="Logging in to the Registry API: your system holds the private key, sends a signed message to the Commission login service, gets back an access pass valid for 15 minutes, and calls the Registry API with that pass. Set up once: an administrator creates the service account and uploads the public key. Only needed for the API; in the web portal you log in yourself." width="680" loading="lazy">
+  <img src="Blogs/dpp-registry-technical-package/service-account.svg" alt="Logging in to the Registry API: your system keeps its own signing key, sends a signed message to the Commission login service, gets back an access pass valid for 15 minutes, and calls the Registry API with that pass. Set up once: an administrator creates the service account and uploads the public key. Only needed for the API; in the web portal you log in yourself." width="680" loading="lazy">
   <figcaption>Direction 1: your system logs in with a service account, then registers.</figcaption>
 </figure>
 
