@@ -1,0 +1,228 @@
+/* Richting een meubelpaspoort, shared by content.html, content.nl.html and content.pt.html.
+   Banner and CTA follow Blogs/custom-furniture-passport-houtgoed/post.css; .mp is the data-point trunk
+   (rebuilt from the Houtgoed Stadstoel page in Regen colours). The gate card reuses .dpp-gate__* from style.css. */
+.lp-banner { background:#F0FAF4; border:1px solid #D1FAE5; border-radius:12px; overflow:hidden; margin-bottom:40px; }
+.lp-banner__r { display:grid; grid-template-columns:132px 1fr; align-items:stretch; border-bottom:1px solid #D1FAE5; }
+.lp-banner__k { display:flex; align-items:center; padding:14px 18px; border-right:1px solid #D1FAE5; color:#006838; font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; }
+.lp-banner__v { display:flex; align-items:center; gap:12px 18px; flex-wrap:wrap; padding:12px 16px; }
+.lp-banner__logo { display:inline-flex; align-items:center; }
+.lp-banner__logo img { width:auto; display:block; }
+.lp-banner__fundtext { font-size:0.78rem; color:#475259; margin:0; padding:10px 18px 12px; line-height:1.5; }
+.lp-fund__eu { display:inline-flex; align-items:center; }
+.lp-fund__eu img { height:52px; width:auto; display:block; }
+.hg-fig { margin:28px 0 32px; }
+.hg-fig img { display:block; width:100%; height:auto; border:1px solid #E5E7EB; border-radius:10px; background:#fff; }
+.hg-fig figcaption { font-size:0.82rem; line-height:1.5; color:#475259; margin:10px 2px 0; }
+.lp-cta { margin:36px 0 8px; padding:28px 30px; border-radius:14px; background:#1B2833; color:#fff; }
+.lp-cta h3 { color:#fff; font-size:1.3rem; margin:0 0 8px; }
+.lp-cta p { color:#DDE3E8; margin:0 0 18px; line-height:1.55; }
+.lp-cta__btns { display:flex; gap:10px; flex-wrap:wrap; }
+.lp-cta__btns a { display:inline-block; padding:10px 20px; border-radius:999px; font-weight:600; font-size:0.92rem; text-decoration:none; }
+.lp-cta__btns .lp-cta__primary { background:#65DD35; color:#1B2833 !important; }
+.lp-cta__btns .lp-cta__secondary { border:1px solid #9AA3AB; color:#fff !important; }
+
+.mp { margin:32px 0 36px; padding:24px 22px 22px; background:#F7F8F9; border:1px solid #E4E2E2; border-radius:14px; }
+.mp__oog { display:block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#006838; margin-bottom:6px; }
+.mp__kop { font-size:1.35rem; margin:0 0 8px; }
+.mp__intro { margin:0 0 14px; line-height:1.6; }
+.mp .mp__legenda { display:flex; flex-wrap:wrap; gap:8px 16px; margin:10px 0 0; padding:0; list-style:none; font-size:0.86rem; color:#1A2533; }
+.mp .mp__legenda li { display:inline-flex; align-items:center; gap:7px; margin:0; }
+.mp__legenda i { width:14px; height:14px; border-radius:4px; display:inline-block; box-shadow:inset 0 0 0 1px rgba(27,40,51,.15); }
+.mp__hint { font-size:0.84rem; color:#4B5563; margin:8px 0 0; }
+.mp__boom { position:relative; margin-top:14px; }
+.mp__boom svg { display:block; width:100%; height:auto; overflow:visible; }
+.mp__dp { cursor:pointer; transition:opacity .25s, fill .35s; stroke:#F7F8F9; stroke-width:1.6; }
+.mp__dp:hover, .mp__dp:focus { stroke:#1B2833; stroke-width:3; outline:none; }
+.mp__dp--dicht { cursor:default; pointer-events:none; }
+.mp__dp--gekozen { stroke:#1B2833; stroke-width:4; }
+.mp__boom text { font-family:inherit; }
+.mp__fail { margin:12px 0 0; color:#B91C1C; }
+.mp__onderwerpen { columns:2 240px; column-gap:28px; margin:16px 0 0; padding:0; list-style:none; font-size:0.88rem; }
+.mp__onderwerpen li { color:#1A2533; display:flex; gap:10px; align-items:baseline; margin-bottom:6px; break-inside:avoid; }
+.mp__onderwerpen li b { flex:none; width:22px; height:22px; border-radius:50%; background:#1B2833; color:#fff; font-size:11px; line-height:22px; text-align:center; }
+.mp__noot { font-size:0.8rem; color:#4B5563; margin:14px 0 0; line-height:1.5; }
+.mp__kaart { position:absolute; z-index:5; width:min(340px,92vw); background:#fff; padding:20px 22px 18px; border-radius:10px; box-shadow:0 18px 50px rgba(27,40,51,.25); border-top:5px solid #008545; }
+.mp__kaart[hidden], .mp__kaart [hidden] { display:none; }
+.mp__kaart--verwacht { border-top-color:#FFA92D; }
+.mp__kaart--vrij { border-top-color:#9CA3AF; }
+.mp__kaart .mp__kaart-rest p.mp__adres { margin:10px 0 0; font-size:.8rem; color:#6e6e6e; min-height:1.2em; }
+.mp__kaart .mp__oog { padding-right:30px; }
+.mp__kaart h4 { font-size:1.1rem; margin:0 30px 8px 0; color:#1A2533; }
+.mp__kaart p { font-size:0.9rem; margin:0 0 12px; line-height:1.5; color:#1A2533; }
+.mp__kaart dl { display:grid; grid-template-columns:auto 1fr; gap:5px 12px; margin:0; font-size:0.82rem; }
+.mp__kaart dt { color:#4B5563; }
+.mp__kaart dd { margin:0; font-weight:600; color:#1A2533; }
+.mp__dicht { position:absolute; right:8px; top:8px; width:36px; height:36px; border:0; background:none; font-size:26px; line-height:36px; color:#1A2533; cursor:pointer; }
+.mp__laag { margin:22px 0 0; padding:20px 20px 18px; background:#fff; border:1px solid #E4E2E2; border-radius:12px; }
+.mp__laag h4.mp__laag-kop { font-size:1.05rem; margin:0 0 6px; color:#1A2533; }
+.mp__laag > p { margin:0 0 12px; font-size:0.92rem; line-height:1.55; color:#1A2533; }
+.mp__gate { margin-top:4px; }
+.mp__gate .dpp-gate__card { max-width:none; padding:20px 0 0; background:none; border:0; box-shadow:none; }
+.mp__gate .dpp-gate__form { text-align:left; }
+.mp__dank { margin:0; font-weight:600; }
+.mp__grijs { display:grid; gap:6px; margin:0 0 14px; }
+.mp__vraag { display:inline-block; padding:10px 20px; border-radius:999px; background:#008545; color:#fff !important; font-weight:600; font-size:0.9rem; text-decoration:none; }
+.mp__vraag:hover, .mp__vraag:focus-visible { background:#006838; }
+button.mp__vraag { border:0; cursor:pointer; font-family:inherit; line-height:inherit; }
+.mp__laag > p.mp__adres { margin:10px 0 0; font-size:.8rem; color:#6e6e6e; min-height:1.2em; }
+
+@media (max-width:768px) {
+  .lp-banner__r { grid-template-columns:1fr; }
+  .lp-banner__k { border-right:0; padding:10px 16px 0; }
+  .lp-fund__eu img { height:48px; }
+  .mp { padding:18px 14px; }
+  .mp__laag { padding:16px 14px; }
+  .mp__kaart { position:fixed; left:0 !important; right:0; bottom:0; top:auto !important; width:100%; max-height:70vh; overflow:auto; border-radius:14px 14px 0 0; padding-bottom:28px; }
+}
+
+/* ── NL round 3 (lab round 2 picks: c18a, c19, c20, c21, CTA). EN and PT still use .lp-banner and .lp-cta above.
+   Each block sits in .lp-cq, the container its own @container rules read (not #post-content: a container there
+   would become the containing block of the fixed .mp__kaart sheet on mobile). */
+@font-face { font-family:'KoHo'; font-style:normal; font-weight:700; font-display:swap; src:url('../../assets/fonts/koho-logo-700.woff2') format('woff2'); }
+@font-face { font-family:'KoHo'; font-style:normal; font-weight:200; font-display:swap; src:url('../../assets/fonts/koho-logo-200.woff2') format('woff2'); }
+.lp-cq { container-type:inline-size; margin:32px 0; }
+.lp-cq p { margin:0; }
+.lp-k { font-size:10.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#006838; line-height:1.3; }
+.lp-merk { display:inline-flex; align-items:center; gap:10px; text-decoration:none !important; }
+.lp-merk img { display:block; height:36px; width:auto; box-shadow:none; }
+.lp-merk span { font-family:'KoHo',sans-serif; font-size:19px; letter-spacing:.06em; color:#243644; line-height:1; white-space:nowrap; }
+.lp-merk b { font-weight:700; color:#243644; }
+.lp-merk i { font-style:normal; font-weight:200; }
+/* the summary block replaces the template's answer capsule on this post only */
+.post-content__inner:has(.lp-sam) .post-answer-capsule { display:none; }
+/* summary (lab c18a): question, approach, outcome above the Stadstoel film */
+.lp-sam { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; border-radius:14px; overflow:hidden; background:#E4E2E2; border:1px solid #E4E2E2; margin-bottom:16px; }
+.lp-sam > div { background:#fff; padding:18px 18px 20px; }
+.lp-sam svg { width:34px; height:34px; display:block; margin-bottom:10px; }
+.lp-sam .lp-k { font-size:.78rem; letter-spacing:.1em; margin-bottom:6px; }
+.lp-cq .lp-sam p:not(.lp-k) { font-size:.95rem; line-height:1.55; color:#243644; }
+/* the Stadstoel film under the summary: 16:9, poster shown until play, no autoplay (it has sound) */
+.lp-cq .lp-film { margin:0; }
+.lp-film__video { display:block; width:100%; height:auto; aspect-ratio:16/9; background:#FBF8F2; border-radius:10px; border:1px solid #E8DFCF; }
+.post-content__body .lp-film figcaption { text-align:left; font-size:.85rem; line-height:1.5; color:#475259; margin:8px 2px 0; }
+@container (max-width:500px) { .lp-sam { grid-template-columns:1fr; } }
+/* colofon (lab c19): two halves on desktop, labels left of each logo on a narrow column. Media query, not a
+   container query: this block is the first element of the content file, which blog.js reads for the listing card. */
+.lp-colofon { border:1px solid #D1FAE5; border-radius:12px; overflow:hidden; background:#F0FAF4; margin-bottom:32px; }
+.lp-colofon__top { display:grid; grid-template-columns:1fr 1fr; background:#fff; }
+.lp-colofon__cel { padding:16px 20px 18px; display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center; }
+.lp-colofon__cel > a { min-height:64px; display:flex; align-items:center; }
+.lp-colofon__cel + .lp-colofon__cel { border-left:1px solid #D1FAE5; }
+.lp-colofon img { display:block; width:auto; box-shadow:none; }
+.lp-colofon__hg { height:64px; }
+.lp-colofon__fund { border-top:1px solid #D1FAE5; padding:16px 20px 14px; }
+.lp-colofon__logos { display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; margin:8px 0 12px; }
+.lp-colofon__eu { height:52px; }
+.lp-colofon__kvw { height:24px; }
+.lp-colofon__zh { height:44px; }
+.post-content__body .lp-colofon__tekst { font-size:.78rem; line-height:1.5; color:#475259; margin:0; }
+.lp-colofon__pn { font-family:ui-monospace,'SF Mono',Menlo,monospace; font-size:.78rem; background:#fff; border:1px solid #CFE9DA; border-radius:6px; padding:1px 7px; color:#243644; white-space:nowrap; }
+@media (max-width:600px) {
+  .lp-colofon__top { grid-template-columns:1fr; padding:14px 18px; gap:14px; }
+  .lp-colofon__cel { flex-direction:row; padding:0; text-align:left; gap:14px; }
+  .lp-colofon__cel + .lp-colofon__cel { border-left:0; }
+  .lp-colofon__cel .lp-k { width:98px; flex:none; }
+  .lp-colofon__cel > a { min-height:0; }
+  .lp-colofon__hg { height:58px; }
+  .lp-colofon__logos { justify-content:flex-start; gap:16px; }
+  .lp-colofon__eu { height:44px; }
+}
+/* four steps (lab c20): a line with four nodes, vertical on a narrow column */
+.post-content__body .lp-stappen { position:relative; display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding:4px 0 0; margin:0; list-style:none; }
+.lp-stappen::before { content:""; position:absolute; left:12%; right:12%; top:30px; height:2px; background:linear-gradient(90deg,#93093F,#FFA92D,#65DD35,#008545); }
+.post-content__body .lp-stappen li { position:relative; text-align:center; margin:0; }
+.lp-stappen__dot { width:56px; height:56px; border-radius:50%; background:#fff; border:2px solid #243644; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; position:relative; }
+.lp-stappen__dot svg { width:28px; height:28px; display:block; }
+.lp-stappen__n { position:absolute; top:-6px; right:-6px; width:22px; height:22px; border-radius:50%; background:#243644; color:#fff; font-size:11px; font-weight:700; line-height:22px; text-align:center; z-index:3; }
+.lp-stappen__dot--img img { width:52px; height:52px; border-radius:50%; object-fit:cover; display:block; box-shadow:none; }
+.lp-stappen__dot--qr { border-color:#008545; }
+.lp-stappen__dot--qr img { width:30px; height:30px; display:block; box-shadow:none; }
+.lp-cq .lp-stappen__t { font-size:.95rem; font-weight:600; color:#243644; line-height:1.3; margin-bottom:4px; }
+.lp-cq .lp-stappen p:not(.lp-stappen__t) { font-size:.84rem; line-height:1.45; }
+@container (max-width:500px) {
+  .post-content__body .lp-stappen { grid-template-columns:1fr; gap:14px; }
+  .lp-stappen::before { left:27px; right:auto; top:20px; bottom:20px; width:2px; height:auto; background:linear-gradient(180deg,#93093F,#FFA92D,#65DD35,#008545); }
+  .post-content__body .lp-stappen li { display:grid; grid-template-columns:56px 1fr; gap:14px; text-align:left; align-items:center; }
+  .lp-stappen__dot { margin:0; }
+}
+/* after the data points (lab c21 without the weighed position): timeline, six phases, fill-in time */
+.lp-fig { border:1px solid #E4E2E2; border-radius:14px; padding:20px 22px; margin:0 0 24px; background:#fff; }
+.lp-cq .lp-fig__t { font-size:.95rem; font-weight:700; color:#243644; margin:0 0 12px; line-height:1.35; }
+.post-content__body .lp-tl { position:relative; display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:22px 0 0; margin:0; list-style:none; }
+.lp-tl::before { content:""; position:absolute; left:0; right:0; top:8px; height:2px; background:#DDE3E8; }
+.post-content__body .lp-tl li { position:relative; font-size:.8rem; line-height:1.4; color:#4B6F8D; margin:0; }
+.lp-tl li::before { content:""; position:absolute; top:-19px; left:0; width:12px; height:12px; border-radius:50%; background:#93093F; border:2px solid #fff; box-shadow:0 0 0 1px #93093F; }
+.lp-tl li.lp-tl--exp::before { background:#fff; box-shadow:0 0 0 2px #FFA92D; }
+.lp-tl b { display:block; color:#243644; font-size:.84rem; }
+/* phase numbers = the fase index in datapunten.json (0 is "vooraf", not a phase of the work), same badge as .mp__onderwerpen */
+.post-content__body .lp-fasen { display:grid; grid-template-columns:repeat(6,1fr); gap:2px; margin:0; padding:0; list-style:none; }
+.post-content__body .lp-fasen li { display:flex; flex-direction:column; align-items:center; gap:6px; margin:0; background:#EEF1F4; padding:10px 6px 9px; text-align:center; font-size:.8rem; font-weight:600; color:#243644; line-height:1.2; }
+.lp-fasen__n { width:22px; height:22px; border-radius:50%; background:#1B2833; color:#fff; font-size:11px; font-weight:700; line-height:22px; text-align:center; }
+.post-content__body .lp-fasen li:first-child { border-radius:8px 0 0 8px; }
+.post-content__body .lp-fasen li:last-child { border-radius:0 8px 8px 0; }
+.post-content__body .lp-fasen li.lp-fasen--nieuw { background:#008545; color:#fff; }
+.lp-fasen--nieuw .lp-fasen__n { background:#fff; color:#006838; }
+.lp-noten { display:grid; grid-template-columns:repeat(6,1fr); gap:2px; margin-top:8px; }
+.lp-cq .lp-noot { grid-column:span 2; font-size:.74rem; line-height:1.4; color:#4B6F8D; padding:8px 6px 0; border-top:2px solid transparent; }
+.lp-noot b { display:block; font-size:.74rem; color:#243644; }
+.lp-cq .lp-noot--pub { grid-column:6; }
+.lp-noot--3d { border-top-color:#009BBB !important; }
+.lp-noot--wet { border-top-color:#93093F !important; }
+.lp-noot--pub { border-top-color:#008545 !important; }
+.lp-smal { display:none; }
+@container (max-width:500px) {
+  .lp-fig { padding:18px 16px; }
+  .post-content__body .lp-tl { grid-template-columns:1fr 1fr; row-gap:26px; }
+  .post-content__body .lp-fasen { grid-template-columns:1fr 1fr 1fr; }
+  .post-content__body .lp-fasen li:first-child { border-radius:8px 0 0 0; }
+  .post-content__body .lp-fasen li:nth-child(3) { border-radius:0 8px 0 0; }
+  .post-content__body .lp-fasen li:nth-child(4) { border-radius:0 0 0 8px; }
+  .post-content__body .lp-fasen li:last-child { border-radius:0 0 8px 0; }
+  .lp-noten { grid-template-columns:1fr; }
+  .lp-cq .lp-noot, .lp-cq .lp-noot--pub { grid-column:auto; }
+  .lp-smal { display:inline; }
+}
+/* the three lessons (slide from the Stadstoel film, rendered still) */
+.post-content__body .lp-lessen { margin:0 0 24px; }
+.post-content__body .lp-lessen img { display:block; width:100%; height:auto; border-radius:14px; border:1px solid #E8DFCF; box-shadow:none; }
+.post-content__body .lp-lessen figcaption { text-align:left; }
+/* closing card (lab c23, reference lab-3d/cta.html): image slot left, text right; stacked on a narrow column */
+.lp-kaart { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.25fr); border-radius:16px; overflow:hidden; background:#FBF8F3; border:1px solid #E8DFCF; }
+.lp-kaart__beeld { position:relative; min-height:320px; background:radial-gradient(120% 90% at 50% 35%, #FFFDF8 0%, #F3ECDF 70%); }
+.lp-kaart__3d { position:absolute; inset:0; opacity:0; transition:opacity .5s ease; cursor:grab; touch-action:pan-y; }
+.lp-kaart__3d:active { cursor:grabbing; }
+.lp-kaart__3d canvas { display:block; width:100%; height:100%; touch-action:pan-y; }
+.lp-kaart__beeld.is-3d .lp-kaart__3d { opacity:1; }
+.lp-kaart__beeld img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 45%; box-shadow:none; }
+.lp-kaart__beeld span { position:absolute; z-index:1; left:10px; bottom:10px; font-size:.7rem; background:rgba(251,248,243,.92); color:#243644; padding:3px 9px; border-radius:999px; line-height:1.3; }
+.lp-kaart__txt { padding:24px 26px 22px; display:flex; flex-direction:column; justify-content:center; }
+.post-content__body .lp-kaart h3 { font-size:1.3rem; margin:0 0 8px; line-height:1.3; }
+.lp-cq .lp-kaart p { margin:0 0 18px; font-size:.98rem; line-height:1.55; color:#4B6F8D; }
+.lp-kaart__rij { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+.lp-kaart__knop { font:600 .95rem/1.3 inherit; font-family:inherit; background:#008545; color:#fff !important; border:0; border-radius:999px; padding:11px 18px; cursor:pointer; text-decoration:none !important; }
+.lp-kaart__knop:hover { background:#006838; }
+.lp-kaart__knop:focus-visible { outline:3px solid #009BBB; outline-offset:2px; }
+@container (max-width:500px) {
+  .lp-kaart { grid-template-columns:minmax(0,1fr); }
+  .lp-kaart__beeld { min-height:240px; border-bottom:1px solid #E8DFCF; }
+  .lp-kaart__txt { padding:20px; }
+}
+.lp-cq .lp-kaart .lp-kaart__merk { margin:0 0 14px; }
+.post-content__body .lp-kaart__naast { font-size:.95rem; font-weight:600; color:#243644; text-decoration:underline; text-underline-offset:3px; }
+.lp-cq .lp-kaart .lp-kaart__adres { margin:10px 0 0; font-size:.8rem; color:#6e6e6e; min-height:1.2em; }
+/* whitepaper card: same surface as the closing card, cover left, plain download link right */
+.lp-wp { display:grid; grid-template-columns:minmax(0,180px) minmax(0,1fr); gap:24px; align-items:center; padding:22px 26px; border-radius:16px; background:#FBF8F3; border:1px solid #E8DFCF; }
+.post-content__body .lp-wp img.lp-wp__omslag { display:block; width:100%; height:auto; border-radius:6px; border:1px solid #E8DFCF; box-shadow:0 4px 14px rgba(36,54,68,.12); margin:0; }
+.post-content__body .lp-wp h3 { font-size:1.3rem; margin:0 0 8px; line-height:1.3; }
+.lp-cq .lp-wp p { margin:0 0 18px; font-size:.98rem; line-height:1.55; color:#4B6F8D; }
+.lp-wp .lp-kaart__knop { display:inline-block; align-self:flex-start; }
+@container (max-width:500px) {
+  .lp-wp { grid-template-columns:minmax(0,1fr); padding:20px; }
+  .post-content__body .lp-wp img.lp-wp__omslag { max-width:160px; }
+}
+/* two renders of the same slide; build.ts rewrites src but not srcset, so the swap is CSS (a hidden lazy image is not fetched) */
+.post-content__body .lp-lessen img.lp-lessen__smal { display:none; }
+@media (max-width:600px) {
+  .post-content__body .lp-lessen img.lp-lessen__breed { display:none; }
+  .post-content__body .lp-lessen img.lp-lessen__smal { display:block; }
+}

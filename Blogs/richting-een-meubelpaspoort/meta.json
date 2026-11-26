@@ -1,0 +1,36 @@
+{
+  "title": "Towards a furniture passport",
+  "slug": "richting-een-meubelpaspoort",
+  "subtitle": "What Regen Studio did with Meubelmakerij Houtgoed to give one chair a digital product passport: 218 data points explored, a system built that follows the working day, and the passport placed on the maker's own website.",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regenerative Innovation Design"
+  },
+  "date": "2026-11-25",
+  "categories": [
+    "Client Projects",
+    "Digital Product Passport"
+  ],
+  "tags": [
+    "furniture",
+    "custom-furniture",
+    "wood",
+    "digital-product-passports",
+    "ESPR",
+    "EUDR",
+    "REACH",
+    "did-web",
+    "3d-modelling",
+    "houtgoed",
+    "small-business",
+    "whitepaper"
+  ],
+  "featuredImage": "header.webp",
+  "featuredImageAlt": "Half a tree trunk built from 218 coloured cells: the data points of the furniture passport on the outside, those of the maker's own records inside",
+  "excerpt": "Regen Studio and Meubelmakerij Houtgoed explored which information a small furniture maker needs for a digital product passport: 218 data points, 129 in the passport and 89 in the maker's own records. We built a system that follows the working day, let the 3D model help fill it in, and put the passport of the Stadstoel, with versioning, on the maker's website.",
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
+}

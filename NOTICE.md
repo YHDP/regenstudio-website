@@ -20,6 +20,15 @@ This project includes the following third-party components:
 - **Bundled deps (all MIT):** html2canvas (© Niklas von Hertzen), jsPDF (© James Hall + parallax.com), core-js + Babel runtime (© Denis Pushkarev)
 - **Used by:** `dpa-contract.html` for client-side PDF generation of signed Verwerkersovereenkomst documents
 
+## three.js
+
+- **Version:** r170 (npm `three@0.170.0`, `build/three.module.min.js`, SHA-256 `08fd7545…3c39e7`)
+- **License:** MIT
+- **Copyright:** (c) 2010-2024 Three.js Authors
+- **Source:** https://github.com/mrdoob/three.js
+- **Location:** `Blogs/richting-een-meubelpaspoort/3d/three.module.js`
+- **Used by:** `Blogs/richting-een-meubelpaspoort/3d/stoel.js`, the 3D Stadstoel in the closing card of the Dutch post. Loaded only when the card nears the viewport; no network calls of its own.
+
 ## Inter (typeface)
 
 - **License:** SIL Open Font License 1.1

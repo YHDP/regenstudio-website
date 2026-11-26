@@ -980,10 +980,12 @@
       </div>
     `;
 
-    // Execute deferred scripts in blog content (innerHTML doesn't run scripts)
+    // Execute deferred scripts in blog content (innerHTML doesn't run scripts).
+    // An external one keeps its src, or it would be recreated empty and never run again.
     postContainer.querySelectorAll('script').forEach(function(old) {
       var s = document.createElement('script');
-      s.textContent = old.textContent;
+      if (old.src) s.src = old.src;
+      else s.textContent = old.textContent;
       old.parentNode.replaceChild(s, old);
     });
 

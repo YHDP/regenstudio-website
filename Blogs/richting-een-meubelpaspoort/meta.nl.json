@@ -1,0 +1,36 @@
+{
+  "title": "Een paspoort voor een meubel",
+  "slug": "richting-een-meubelpaspoort",
+  "subtitle": "Houtgoed en Regen Studio kregen een DPP-voucher om te verkennen wat de nieuwe Europese regels voor duurzame producten op de Europese markt, de ESPR, gaan betekenen. Meubels staan op het werkplan van die verordening om er productspecifieke regels voor vast te stellen. Wij zochten alvast uit wat een kleine meubelmaker kan verwachten.",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Regeneratief innovatieontwerp"
+  },
+  "date": "2026-11-25",
+  "categories": [
+    "Client Projects",
+    "Digital Product Passport"
+  ],
+  "tags": [
+    "furniture",
+    "custom-furniture",
+    "wood",
+    "digital-product-passports",
+    "ESPR",
+    "EUDR",
+    "REACH",
+    "did-web",
+    "3d-modelling",
+    "houtgoed",
+    "small-business",
+    "whitepaper"
+  ],
+  "featuredImage": "header.webp",
+  "featuredImageAlt": "Een halve boomstam opgebouwd uit 218 gekleurde vakjes: buiten de datapunten van het meubelpaspoort, binnen die van de eigen administratie",
+  "excerpt": "Regen Studio en Meubelmakerij Houtgoed verkenden welke gegevens een kleine meubelmaker nodig heeft voor een digitaal productpaspoort: 218 datapunten, waarvan 129 in het paspoort en 89 in de eigen administratie. We bouwden een systeem dat de werkdag volgt, lieten het 3D-model meeschrijven en zetten het paspoort van de Stadstoel met versiebeheer op de website van de maker.",
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
+}

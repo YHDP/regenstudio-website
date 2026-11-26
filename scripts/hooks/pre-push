@@ -510,13 +510,34 @@ PYEOF
     if [ -n "$NEW_SLUGS" ]; then
       while IFS= read -r slug; do
         [ -z "$slug" ] && continue
-        CHECK_PAIRS=$(printf '%s\n%s\ten' "$CHECK_PAIRS" "$slug")
+        # A slug may go live in one language only (build.ts publishes each language on its
+        # own approval), so a new slug needs at least one language cleared. Every generated
+        # page is still checked above against its own language's meta.
+        CHECK_PAIRS=$(printf '%s\n%s\tany' "$CHECK_PAIRS" "$slug")
       done <<< "$NEW_SLUGS"
     fi
   fi
   if [ -n "$CHECK_PAIRS" ]; then
     while IFS=$'\t' read -r slug lang; do
       [ -z "$slug" ] && continue
+      if [ "$lang" = "any" ]; then
+        any_ok=""
+        for any_path in "Blogs/$slug/meta.json" "Blogs/$slug/meta.nl.json" "Blogs/$slug/meta.pt.json"; do
+          any_ok=$(git show "$local_sha:$any_path" 2>/dev/null | python3 -c "
+import json, sys
+try: d = json.load(sys.stdin)
+except Exception: sys.exit(0)
+r = d.get('review', {}) or {}
+if d.get('published', False) and r.get('text') == 'approved' and r.get('assets') == 'approved': print('OK')
+" 2>/dev/null || true)
+          [ "$any_ok" = "OK" ] && break
+        done
+        if [ "$any_ok" != "OK" ]; then
+          echo -e "${RED}BLOCKED: $slug newly listed in Blogs/blogs.json but no language is published + approved${NC}"
+          ISSUES=$((ISSUES + 1))
+        fi
+        continue
+      fi
       if [ "$lang" = "en" ]; then
         meta_path="Blogs/$slug/meta.json"
       else

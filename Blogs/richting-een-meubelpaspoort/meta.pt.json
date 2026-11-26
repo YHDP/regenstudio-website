@@ -1,0 +1,36 @@
+{
+  "title": "Rumo a um passaporte de móveis",
+  "slug": "richting-een-meubelpaspoort",
+  "subtitle": "O que a Regen Studio fez com a Meubelmakerij Houtgoed para dar a uma cadeira um passaporte digital do produto: 218 pontos de dados explorados, um sistema que segue o dia de trabalho e o passaporte publicado no site do próprio marceneiro.",
+  "author": {
+    "name": "Yvo Hunink de Paiva",
+    "role": "Design de Inovação Regenerativa"
+  },
+  "date": "2026-11-25",
+  "categories": [
+    "Client Projects",
+    "Digital Product Passport"
+  ],
+  "tags": [
+    "furniture",
+    "custom-furniture",
+    "wood",
+    "digital-product-passports",
+    "ESPR",
+    "EUDR",
+    "REACH",
+    "did-web",
+    "3d-modelling",
+    "houtgoed",
+    "small-business",
+    "whitepaper"
+  ],
+  "featuredImage": "header.webp",
+  "featuredImageAlt": "Meio tronco de árvore formado por 218 células coloridas: por fora os pontos de dados do passaporte do móvel, por dentro os dos registros do marceneiro",
+  "excerpt": "A Regen Studio e a Meubelmakerij Houtgoed exploraram quais informações um pequeno marceneiro precisa para um passaporte digital do produto: 218 pontos de dados, 129 no passaporte e 89 nos registros do próprio marceneiro. Construímos um sistema que segue o dia de trabalho, deixamos o modelo 3D ajudar no preenchimento e publicamos o passaporte da Stadstoel, com controle de versões, no site do marceneiro.",
+  "published": false,
+  "review": {
+    "text": "draft",
+    "assets": "draft"
+  }
+}

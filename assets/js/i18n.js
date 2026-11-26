@@ -134,6 +134,15 @@
 
   // --- Language switcher ---
 
+  function postHasLang(lang) {
+    if (lang === LANG) return true;
+    var alts = document.querySelectorAll('link[rel="alternate"][hreflang]');
+    for (var i = 0; i < alts.length; i++) {
+      if (alts[i].getAttribute("hreflang").slice(0, 2) === lang) return true;
+    }
+    return false;
+  }
+
   function buildSwitcherUrl(targetLang) {
     var path = window.location.pathname;
 
@@ -142,6 +151,13 @@
       path = path.substring(3) || "/";
     } else if (path.indexOf("/pt/") === 0 || path === "/pt") {
       path = path.substring(3) || "/";
+    }
+
+    // A blog post may be published in fewer languages than the site has. Its hreflang
+    // alternates (written by build.ts) list the ones that exist; for any other language,
+    // link to that language's blog index instead of a page that does not exist.
+    if (/^\/blog\/[^/]+\/?$/.test(path) && !postHasLang(targetLang)) {
+      path = "/blog.html";
     }
 
     // Add target prefix (unless English = root)

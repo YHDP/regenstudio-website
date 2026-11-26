@@ -264,29 +264,32 @@ async function loadPosts(baseDir: string): Promise<BlogPost[]> {
   );
 }
 
-/** Load translated posts for a given language. Returns only posts that have both meta and content. */
+/** Load translated posts for a given language. Walks blogs.json itself, so a language publishes
+ *  on its own: what counts is THAT language's meta (published + both review fields approved),
+ *  never whether the English version is published. */
 async function loadTranslatedPosts(baseDir: string, lang: Lang, enPosts: BlogPost[]): Promise<BlogPost[]> {
   if (lang === "en") return enPosts;
 
+  const slugs: string[] = JSON.parse(await Deno.readTextFile(`${baseDir}/Blogs/blogs.json`));
   const posts: BlogPost[] = [];
-  for (const enPost of enPosts) {
+  for (const slug of slugs) {
     try {
       const metaJson = await Deno.readTextFile(
-        `${baseDir}/Blogs/${enPost.slug}/meta.${lang}.json`
+        `${baseDir}/Blogs/${slug}/meta.${lang}.json`
       );
       const meta: BlogMeta = JSON.parse(metaJson);
       if (!meta.published) continue;
       if (meta.review?.text !== "approved" || meta.review?.assets !== "approved") {
-        console.warn(`[skip] ${enPost.slug} (${lang}): review incomplete (text=${meta.review?.text}, assets=${meta.review?.assets})`);
+        console.warn(`[skip] ${slug} (${lang}): review incomplete (text=${meta.review?.text}, assets=${meta.review?.assets})`);
         continue;
       }
 
       const content = await Deno.readTextFile(
-        `${baseDir}/Blogs/${enPost.slug}/content.${lang}.html`
+        `${baseDir}/Blogs/${slug}/content.${lang}.html`
       );
       const readingTime = calcReadingTime(content);
-      // Use slug from English post (URL slugs stay in English)
-      posts.push({ ...meta, slug: enPost.slug, content, readingTime });
+      // URL slugs are the folder names in blogs.json
+      posts.push({ ...meta, slug, content, readingTime });
     } catch {
       // Translation doesn't exist for this post — skip silently
     }
@@ -386,6 +389,11 @@ function buildBreadcrumbJsonLd(post: BlogPost, lang: Lang = "en"): string {
 
 // --- Build hreflang link tags ---
 
+function xDefaultLang(langs: Iterable<Lang>): Lang {
+  const list = Array.from(langs);
+  return list.includes("en") ? "en" : list[0];
+}
+
 function buildHreflangTags(slug: string, availableLangs: Lang[]): string {
   const tags: string[] = [];
   for (const lang of availableLangs) {
@@ -393,8 +401,8 @@ function buildHreflangTags(slug: string, availableLangs: Lang[]): string {
     const hreflang = lang === "pt" ? "pt-BR" : lang;
     tags.push(`  <link rel="alternate" hreflang="${hreflang}" href="${SITE_URL}${prefix}/blog/${slug}/">`);
   }
-  // x-default points to English version
-  tags.push(`  <link rel="alternate" hreflang="x-default" href="${SITE_URL}/blog/${slug}/">`);
+  // x-default points to the English version, or to the first language that exists
+  tags.push(`  <link rel="alternate" hreflang="x-default" href="${SITE_URL}${langPrefix(xDefaultLang(availableLangs))}/blog/${slug}/">`);
   return tags.join("\n");
 }
 
@@ -898,6 +906,7 @@ function buildStaticPageEntries(today: string): SitemapEntry[] {
 function generateSitemap(
   posts: BlogPost[],
   translationMap: Map<string, Set<Lang>> = new Map(),
+  translatedPosts: Map<Lang, BlogPost[]> = new Map(),
 ): string {
   const today = new Date().toISOString().slice(0, 10);
   const translatedPages = TRANSLATED_STATIC_PAGES;
@@ -939,7 +948,7 @@ function generateSitemap(
         const prefix = langPrefix(lang);
         entry.alternates[hreflang] = `${SITE_URL}${prefix}/blog/${encodeURIComponent(p.slug)}/`;
       }
-      entry.alternates["x-default"] = `${SITE_URL}/blog/${encodeURIComponent(p.slug)}/`;
+      entry.alternates["x-default"] = `${SITE_URL}${langPrefix(xDefaultLang(langs))}/blog/${encodeURIComponent(p.slug)}/`;
     }
     return entry;
   });
@@ -949,12 +958,13 @@ function generateSitemap(
   for (const [slug, langs] of translationMap) {
     for (const lang of langs) {
       if (lang === "en") continue;
-      const enPost = posts.find((p) => p.slug === slug);
-      if (!enPost) continue;
+      const datedPost = posts.find((p) => p.slug === slug) ??
+        translatedPosts.get(lang)?.find((p) => p.slug === slug);
+      if (!datedPost) continue;
       const prefix = langPrefix(lang);
       const entry: SitemapEntry = {
         loc: `${SITE_URL}${prefix}/blog/${encodeURIComponent(slug)}/`,
-        lastmod: enPost.date,
+        lastmod: datedPost.date,
         changefreq: "monthly",
         priority: "0.6",
       };
@@ -965,7 +975,7 @@ function generateSitemap(
           const altPrefix = langPrefix(altLang);
           entry.alternates[hreflang] = `${SITE_URL}${altPrefix}/blog/${encodeURIComponent(slug)}/`;
         }
-        entry.alternates["x-default"] = `${SITE_URL}/blog/${encodeURIComponent(slug)}/`;
+        entry.alternates["x-default"] = `${SITE_URL}${langPrefix(xDefaultLang(langs))}/blog/${encodeURIComponent(slug)}/`;
       }
       translatedBlogEntries.push(entry);
     }
@@ -1744,23 +1754,6 @@ async function main() {
 
   const template = await readTemplate(baseDir);
 
-  // --- Build translation map (which slugs have which languages) ---
-  const translationMap = new Map<string, Set<Lang>>();
-  for (const post of posts) {
-    const langs = new Set<Lang>(["en" as Lang]);
-    for (const lang of SUPPORTED_LANGS) {
-      if (lang === "en") continue;
-      try {
-        await Deno.stat(`${baseDir}/Blogs/${post.slug}/meta.${lang}.json`);
-        await Deno.stat(`${baseDir}/Blogs/${post.slug}/content.${lang}.html`);
-        langs.add(lang);
-      } catch {
-        // Translation not available
-      }
-    }
-    translationMap.set(post.slug, langs);
-  }
-
   // --- Load translated posts ---
   const translatedPosts: Map<Lang, BlogPost[]> = new Map();
   for (const lang of SUPPORTED_LANGS) {
@@ -1769,6 +1762,18 @@ async function main() {
     if (langPosts.length > 0) {
       translatedPosts.set(lang, langPosts);
       console.log(`Found ${langPosts.length} ${lang.toUpperCase()} translated posts.`);
+    }
+  }
+
+  // --- Build translation map: which languages of each slug are actually published ---
+  // Built from the loaded posts, so hreflang and sitemap alternates never point at an
+  // unpublished language. English posts first, to keep their sitemap order stable.
+  const translationMap = new Map<string, Set<Lang>>();
+  for (const post of posts) translationMap.set(post.slug, new Set<Lang>(["en"]));
+  for (const [lang, langPosts] of translatedPosts) {
+    for (const post of langPosts) {
+      if (!translationMap.has(post.slug)) translationMap.set(post.slug, new Set<Lang>());
+      translationMap.get(post.slug)!.add(lang);
     }
   }
 
@@ -1813,7 +1818,7 @@ async function main() {
   await generateChatPages(baseDir);
 
   // Generate sitemap.xml
-  const sitemap = generateSitemap(posts, translationMap);
+  const sitemap = generateSitemap(posts, translationMap, translatedPosts);
   await Deno.writeTextFile(`${baseDir}/sitemap.xml`, sitemap);
   console.log("  sitemap.xml");
 
