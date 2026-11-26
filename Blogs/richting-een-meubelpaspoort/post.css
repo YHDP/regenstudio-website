@@ -59,6 +59,7 @@
 .mp__gate { margin-top:4px; }
 .mp__gate .dpp-gate__card { max-width:none; padding:20px 0 0; background:none; border:0; box-shadow:none; }
 .mp__gate .dpp-gate__form { text-align:left; }
+.mp__gate .dpp-gate__input-row { margin-bottom:16px; } /* air between the e-mail field and the first checkbox */
 .mp__dank { margin:0; font-weight:600; }
 .mp__grijs { display:grid; gap:6px; margin:0 0 14px; }
 .mp__vraag { display:inline-block; padding:10px 20px; border-radius:999px; background:#008545; color:#fff !important; font-weight:600; font-size:0.9rem; text-decoration:none; }
@@ -186,6 +187,10 @@ button.mp__vraag { border:0; cursor:pointer; font-family:inherit; line-height:in
 .post-content__body .lp-lessen { margin:0 0 24px; }
 .post-content__body .lp-lessen img { display:block; width:100%; height:auto; border-radius:14px; border:1px solid #E8DFCF; box-shadow:none; }
 .post-content__body .lp-lessen figcaption { text-align:left; }
+/* Black Jaguar Foundation: a wide photo band (Pexels, credited in the caption) above the short story of the donated chair */
+.post-content__body .lp-bos { margin:0; }
+.post-content__body .lp-bos img { display:block; width:100%; height:auto; border-radius:14px; border:1px solid #E8DFCF; box-shadow:none; }
+.post-content__body .lp-bos figcaption { text-align:left; font-size:.85rem; line-height:1.5; color:#475259; margin:8px 2px 0; }
 /* closing card (lab c23, reference lab-3d/cta.html): image slot left, text right; stacked on a narrow column */
 .lp-kaart { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.25fr); border-radius:16px; overflow:hidden; background:#FBF8F3; border:1px solid #E8DFCF; }
 .lp-kaart__beeld { position:relative; min-height:320px; background:radial-gradient(120% 90% at 50% 35%, #FFFDF8 0%, #F3ECDF 70%); }
