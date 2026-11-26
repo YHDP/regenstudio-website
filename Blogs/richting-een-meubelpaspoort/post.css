@@ -193,6 +193,7 @@ button.mp__vraag { border:0; cursor:pointer; font-family:inherit; line-height:in
 .lp-kaart__3d:active { cursor:grabbing; }
 .lp-kaart__3d canvas { display:block; width:100%; height:100%; touch-action:pan-y; }
 .lp-kaart__beeld.is-3d .lp-kaart__3d { opacity:1; }
+.lp-kaart__beeld.is-3d img { opacity:0; transition:opacity .5s ease; }
 .lp-kaart__beeld img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 45%; box-shadow:none; }
 .lp-kaart__beeld span { position:absolute; z-index:1; left:10px; bottom:10px; font-size:.7rem; background:rgba(251,248,243,.92); color:#243644; padding:3px 9px; border-radius:999px; line-height:1.3; }
 .lp-kaart__txt { padding:24px 26px 22px; display:flex; flex-direction:column; justify-content:center; }
